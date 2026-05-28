@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../sections/Hero.astro';
+import Services from '../sections/Services.astro';
+import About from '../sections/About.astro';
+import Process from '../sections/Process.astro';
+import Contact from '../sections/Contact.astro';
+---
+
+<BaseLayout
+  title="BananaByte LLC | IT Solutions & Web Design"
+  description="BananaByte delivers professional IT solutions and web design services for businesses in Orlando, FL."
+  path="/"
+>
+  <Nav />
+  <main>
+    <Hero />
+    <Services />
+    <About />
+    <Process />
+    <Contact />
+  </main>
+  <Footer />
+</BaseLayout>

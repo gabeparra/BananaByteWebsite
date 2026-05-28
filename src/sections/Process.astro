@@ -1,0 +1,29 @@
+---
+import Section from '../components/Section.astro';
+import ProcessStep from '../components/ProcessStep.astro';
+---
+
+<Section id="process" eyebrow="Process" heading="A clear four-step path from idea to launch.">
+  <div class="grid gap-5 md:grid-cols-2">
+    <ProcessStep
+      step="01"
+      title="Discover"
+      description="We align on goals, constraints, and the business outcomes your project needs to deliver."
+    />
+    <ProcessStep
+      step="02"
+      title="Design"
+      description="We define architecture and user flows with a practical, conversion-minded design direction."
+    />
+    <ProcessStep
+      step="03"
+      title="Build"
+      description="We execute with transparent milestones, clean code standards, and rigorous QA."
+    />
+    <ProcessStep
+      step="04"
+      title="Launch & Support"
+      description="After release, we monitor performance, handle improvements, and stay available for support."
+    />
+  </div>
+</Section>

@@ -1,0 +1,31 @@
+---
+import GridTexture from '../components/GridTexture.astro';
+import Logo from '../components/Logo.astro';
+---
+
+<section id="top" class="relative isolate overflow-hidden border-b border-white/10">
+  <GridTexture />
+  <div class="relative mx-auto flex min-h-[85vh] w-full max-w-6xl items-center px-6 py-20">
+    <div class="max-w-3xl">
+      <div class="mb-8 h-[3px] w-14 bg-banana-yellow"></div>
+      <p class="mb-6">
+        <Logo />
+        <span class="ml-3 font-mono text-xs uppercase tracking-[0.25em] text-white/80">LLC</span>
+      </p>
+      <h1 class="mb-6 font-mono text-4xl font-semibold leading-tight text-white sm:text-5xl md:text-6xl">
+        We build software that runs your business.
+      </h1>
+      <p class="mb-10 max-w-2xl font-mono text-sm uppercase tracking-[0.2em] text-white/70">
+        IT Solutions · Web Design · Orlando, FL
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="#contact" class="focus-ring rounded border border-banana-yellow bg-banana-yellow px-5 py-3 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-black transition hover:bg-banana-bright">
+          Get A Quote
+        </a>
+        <a href="#services" class="focus-ring rounded border border-white/25 px-5 py-3 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:border-white/60">
+          See Services
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

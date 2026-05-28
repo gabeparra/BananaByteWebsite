@@ -1,0 +1,11 @@
+---
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+---
+
+<span class:list={['font-mono tracking-[0.18em] uppercase', compact ? 'text-sm' : 'text-base']}>
+  <span class="font-semibold text-banana-yellow">Banana</span><span class="font-bold text-white normal-case tracking-[0.1em]">byte</span>
+</span>

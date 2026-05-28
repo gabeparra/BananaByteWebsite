@@ -1,0 +1,21 @@
+---
+import Section from '../components/Section.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+---
+
+<Section id="services" eyebrow="Capabilities" heading="Professional technology services for growing businesses.">
+  <div class="grid gap-6 md:grid-cols-3">
+    <ServiceCard
+      title="IT Solutions"
+      description="Managed IT, networking, secure workstations, and practical support that keeps your team productive."
+    />
+    <ServiceCard
+      title="Web Design"
+      description="Performance-focused websites built for trust, conversion, and long-term maintainability."
+    />
+    <ServiceCard
+      title="Cloud & Hosting"
+      description="Reliable deployment pipelines, hosting optimization, and monitoring for predictable uptime."
+    />
+  </div>
+</Section>

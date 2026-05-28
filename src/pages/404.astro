@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page Not Found | BananaByte"
+  description="The page you requested could not be found."
+  path="/404"
+>
+  <main class="mx-auto flex min-h-screen max-w-4xl items-center justify-center px-6 text-center">
+    <div>
+      <p class="mb-4 font-mono text-xs uppercase tracking-[0.25em] text-banana-yellow">404</p>
+      <h1 class="mb-4 font-mono text-4xl text-white md:text-5xl">Page not found</h1>
+      <p class="mb-8 text-white/70">This page does not exist or may have moved.</p>
+      <a
+        href="/"
+        class="focus-ring inline-block rounded border border-banana-yellow bg-banana-yellow px-5 py-3 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-black transition hover:bg-banana-bright"
+      >
+        Back Home
+      </a>
+    </div>
+  </main>
+</BaseLayout>

@@ -1,0 +1,55 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  path?: string;
+}
+
+const {
+  title,
+  description,
+  path = '/'
+} = Astro.props;
+
+const canonicalUrl = new URL(path, Astro.site ?? 'https://bananabyte.io').toString();
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'BananaByte LLC',
+  url: 'https://bananabyte.io',
+  email: 'contact@bananabyte.io',
+  areaServed: 'Orlando, FL',
+  description: 'BananaByte delivers IT solutions and professional web design for small businesses.',
+  sameAs: ['https://bananabyte.io'],
+  knowsAbout: ['IT Solutions', 'Web Design', 'Cloud Hosting']
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={new URL('/og-image.png', Astro.site ?? 'https://bananabyte.io').toString()} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL('/og-image.png', Astro.site ?? 'https://bananabyte.io').toString()} />
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+  </head>
+  <body class="bg-black text-white antialiased">
+    <slot />
+  </body>
+</html>

@@ -1,11 +1,36 @@
-# Banana Byte Website
+# BananaByte Website
 
-Public website for **Banana Byte**.
+Professional company website for BananaByte LLC, built with Astro and deployed to Vercel.
+
+## Tech Stack
+
+- Astro 5
+- Tailwind CSS 4
+- TypeScript (strict)
+- Vercel adapter
+- Brand fonts: Inter + JetBrains Mono
 
 ## Development
 
-This repository is in early setup. Add your site stack and update this section with local dev and build instructions.
+```sh
+nvm use
+npm install
+npm run dev
+```
 
-## License
+Open `http://localhost:4321`.
 
-MIT — see [LICENSE](LICENSE).
+## Build
+
+```sh
+npm run build
+npm run preview
+```
+
+## Brand Palette
+
+- Deep Black: `#0A0A0A`
+- Bright Yellow: `#FFE140`
+- Brand Yellow: `#F5C800`
+- Dark Gold: `#CC9900`
+- White: `#FFFFFF`

@@ -1,0 +1,62 @@
+---
+interface Props {
+  action?: string;
+}
+
+const { action = 'mailto:contact@bananabyte.io' } = Astro.props;
+---
+
+<div class="rounded-lg bg-banana-bright p-8 text-black shadow-2xl shadow-black/20 md:p-12">
+  <p class="mb-3 font-mono text-xs uppercase tracking-[0.25em] text-banana-gold">Let&apos;s Work Together</p>
+  <h3 class="mb-2 font-mono text-4xl font-bold">
+    <span class="text-banana-gold">Banana</span><span class="normal-case">byte</span>
+  </h3>
+  <p class="mb-8 max-w-xl text-sm md:text-base">
+    Tell us what you are building and we will reply with a clear plan and timeline.
+  </p>
+  <div class="mb-8 flex flex-col gap-2 text-sm font-medium md:flex-row md:items-center md:gap-6">
+    <a href="mailto:contact@bananabyte.io" class="focus-ring underline decoration-banana-gold/70 underline-offset-4">
+      contact@bananabyte.io
+    </a>
+    <span class="hidden h-4 w-px bg-black/20 md:block"></span>
+    <a href="https://bananabyte.io" class="focus-ring underline decoration-banana-gold/70 underline-offset-4">
+      bananabyte.io
+    </a>
+  </div>
+  <form action={action} method="post" class="grid gap-4 md:grid-cols-2">
+    <label class="flex flex-col gap-2 text-sm font-medium">
+      Name
+      <input
+        name="name"
+        required
+        class="focus-ring rounded border border-black/15 bg-white/75 px-3 py-2 text-black placeholder-black/50"
+        placeholder="Your name"
+      />
+    </label>
+    <label class="flex flex-col gap-2 text-sm font-medium">
+      Email
+      <input
+        name="email"
+        type="email"
+        required
+        class="focus-ring rounded border border-black/15 bg-white/75 px-3 py-2 text-black placeholder-black/50"
+        placeholder="you@company.com"
+      />
+    </label>
+    <label class="md:col-span-2 flex flex-col gap-2 text-sm font-medium">
+      Project
+      <textarea
+        name="project"
+        rows="4"
+        required
+        class="focus-ring rounded border border-black/15 bg-white/75 px-3 py-2 text-black placeholder-black/50"
+        placeholder="Briefly describe your project needs..."
+      ></textarea>
+    </label>
+    <div class="md:col-span-2">
+      <button type="submit" class="focus-ring rounded bg-black px-5 py-3 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-black/85">
+        Send Inquiry
+      </button>
+    </div>
+  </form>
+</div>

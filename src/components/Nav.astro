@@ -1,0 +1,20 @@
+---
+import Logo from './Logo.astro';
+---
+
+<header class="sticky top-0 z-20 border-b border-white/10 bg-black/90 backdrop-blur">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+    <a href="#top" class="focus-ring">
+      <Logo compact />
+    </a>
+    <nav aria-label="Primary" class="hidden gap-6 text-sm md:flex">
+      <a href="#services" class="focus-ring text-white/80 transition hover:text-white">Services</a>
+      <a href="#about" class="focus-ring text-white/80 transition hover:text-white">About</a>
+      <a href="#process" class="focus-ring text-white/80 transition hover:text-white">Process</a>
+      <a href="#contact" class="focus-ring text-white/80 transition hover:text-white">Contact</a>
+    </nav>
+    <a href="#contact" class="focus-ring rounded border border-banana-yellow bg-banana-yellow px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-black transition hover:bg-banana-bright">
+      Get A Quote
+    </a>
+  </div>
+</header>
