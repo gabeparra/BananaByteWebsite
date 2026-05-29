@@ -1,0 +1,8 @@
+name = "bananabytewebsite"
+compatibility_date = "2026-05-29"
+
+# Static Astro site (output: 'static') served via Cloudflare Workers static assets.
+# `npm run build` emits to ./dist; Workers serves it directly — no Worker script needed.
+[assets]
+directory = "./dist"
+not_found_handling = "404-page"
