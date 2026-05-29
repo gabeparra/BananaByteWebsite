@@ -27,3 +27,7 @@ pnpm-debug.log*
 .vscode/*
 !.vscode/extensions.json
 .vercel
+
+# local design working files (not part of the deployed site)
+mockups/
+*-mockup.html
