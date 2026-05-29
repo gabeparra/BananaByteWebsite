@@ -1219,6 +1219,105 @@
     .price:nth-child(5){grid-column:auto}
     .work-grid{grid-template-columns:repeat(2,1fr)}
   }
+
+  /* ---- gabrielparra.dev live-iframe card ---- */
+  /* The .iframe-clip wrapper clips the scaled iframe to the visible viewport size */
+  .project .iframe-clip{
+    position:relative;
+    width:100%;
+    /* height is set inline via JS-free CSS calc based on scale */
+    overflow:hidden;
+    background:var(--panel-2);
+    /* pointer-events passthrough so the iframe is browsable */
+  }
+  .project .iframe-clip iframe{
+    display:block;
+    width:1280px;
+    height:900px;
+    border:none;
+    transform-origin:top left;
+    /* scale to fit the card width — computed via CSS custom property set inline */
+    transform:scale(var(--iframe-scale,0.28));
+    pointer-events:auto;
+  }
+  /* clip height = 900px * scale so the card is compact */
+  .project.project-live .browser .viewport{
+    height:auto;
+    overflow:hidden;
+  }
+  .project.project-live .iframe-clip{
+    /* 900 * 0.28 = 252px — close to the mockup card heights */
+    height:calc(900px * var(--iframe-scale,0.28));
+  }
+  /* On wider cards (>=768px) we can afford a bigger scale */
+  @media (min-width:768px){
+    .project.project-live .iframe-clip{
+      height:calc(900px * var(--iframe-scale-md,0.30));
+    }
+    .project.project-live .iframe-clip iframe{
+      transform:scale(var(--iframe-scale-md,0.30));
+    }
+  }
+  /* Mobile: iframe is fine but add a prominent "Open" overlay on small screens
+     where interactive sub-pixel content may be awkward */
+  .live-open-overlay{
+    display:none;
+    position:absolute;
+    inset:0;
+    align-items:center;
+    justify-content:center;
+    background:rgba(11,12,14,.55);
+    backdrop-filter:blur(2px);
+    -webkit-backdrop-filter:blur(2px);
+    z-index:2;
+    pointer-events:none;
+  }
+  @media (max-width:520px){
+    .live-open-overlay{display:flex;pointer-events:auto}
+    .project.project-live .iframe-clip iframe{pointer-events:none}
+  }
+  .live-open-overlay a{
+    display:inline-flex;align-items:center;gap:6px;
+    background:var(--yellow);color:var(--black);
+    font:700 13px/1 var(--mono);
+    padding:10px 16px;border-radius:3px;
+    text-decoration:none;letter-spacing:.02em;
+    box-shadow:3px 3px 0 var(--black);
+    pointer-events:auto;
+  }
+  /* "Open live site" text link in caption */
+  .view-live{
+    display:inline-flex;align-items:center;gap:6px;
+    font:600 13px/1 var(--mono);
+    color:var(--yellow);
+    text-decoration:none;
+    border-bottom:1px solid transparent;
+    transition:border-color .18s var(--ease-out),color .18s var(--ease-out);
+    letter-spacing:.02em;
+  }
+  .view-live:hover,.view-live:focus-visible{border-bottom-color:var(--yellow)}
+  .view-live svg{width:14px;height:14px}
+  /* featured badge on the live card */
+  .pcat-live{
+    display:inline-flex;align-items:center;gap:6px;
+    font:700 11px/1 var(--mono);
+    letter-spacing:.08em;text-transform:uppercase;
+    color:var(--yellow);
+    margin-bottom:8px;
+  }
+  .pcat-live::before{
+    content:'';display:inline-block;
+    width:7px;height:7px;border-radius:50%;
+    background:var(--yellow);
+    animation:pulse-dot 2s ease infinite;
+  }
+  @keyframes pulse-dot{
+    0%,100%{opacity:1;transform:scale(1)}
+    50%{opacity:.5;transform:scale(.7)}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .pcat-live::before{animation:none}
+  }
 </style>
 </head>
 <body>
@@ -1467,11 +1566,40 @@
     <div class="wrap">
       <span class="eyebrow reveal"><span class="sp">[</span> <span data-en="02 / WORK" data-es="02 / TRABAJOS">02 / WORK</span> <span class="sp">]</span></span>
       <h2 class="sec-title reveal" id="work-h" data-en="Recent work" data-es="Trabajos recientes">Recent work</h2>
-      <p class="sec-lead reveal" data-en="A few local sites we&rsquo;ve built. Hover or tap a preview to take a look around." data-es="Algunos sitios locales que hemos hecho. Pasa el cursor o toca una vista previa para echar un vistazo.">A few local sites we&rsquo;ve built. Hover or tap a preview to take a look around.</p>
-      <p class="work-note reveal" data-en="Sample concepts shown for now &mdash; we&rsquo;ll swap in real client work as it goes live." data-es="Por ahora mostramos conceptos de muestra &mdash; iremos poniendo trabajos reales de clientes a medida que se publiquen.">Sample concepts shown for now &mdash; we&rsquo;ll swap in real client work as it goes live.</p>
+      <p class="sec-lead reveal" data-en="One live site I built, plus a couple of concept designs." data-es="Un sitio en vivo que hice, más un par de diseños de concepto.">One live site I built, plus a couple of concept designs.</p>
+      <p class="work-note reveal" data-en="Real client work goes here as it launches." data-es="El trabajo real de clientes irá aquí a medida que se publique.">Real client work goes here as it launches.</p>
 
       <div class="work-grid reveal" data-stagger>
 
+        <!-- 1: FEATURED — gabrielparra.dev live iframe -->
+        <article class="project project-live" style="--iframe-scale:0.28;--iframe-scale-md:0.30">
+          <div class="browser">
+            <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span class="addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>gabrielparra.dev</span></div>
+            <div class="viewport">
+              <div class="iframe-clip">
+                <iframe
+                  src="https://www.gabrielparra.dev/"
+                  title="gabrielparra.dev — live preview"
+                  loading="lazy"
+                  referrerpolicy="no-referrer"
+                  sandbox="allow-scripts allow-same-origin allow-popups"
+                ></iframe>
+                <!-- Mobile overlay: tap to open on small screens where sub-pixel interaction is awkward -->
+                <div class="live-open-overlay" aria-hidden="true">
+                  <a href="https://www.gabrielparra.dev/" target="_blank" rel="noopener" tabindex="-1" data-en="Open live site ↗" data-es="Abrir sitio en vivo ↗">Open live site ↗</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pcap">
+            <span class="pcat-live" data-en="Live site · My portfolio" data-es="Sitio en vivo · Mi portafolio">Live site · My portfolio</span>
+            <h3>gabrielparra.dev</h3>
+            <p data-en="My own portfolio, built and shipped on Vercel. Take a look around &mdash; it&rsquo;s the live site, right here." data-es="Mi propio portafolio, hecho y publicado en Vercel. Echa un vistazo: es el sitio en vivo, aquí mismo.">My own portfolio, built and shipped on Vercel. Take a look around &mdash; it&rsquo;s the live site, right here.</p>
+            <a href="https://www.gabrielparra.dev/" target="_blank" rel="noopener" class="view-live"><span data-en="Open live site" data-es="Abrir sitio en vivo">Open live site</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+          </div>
+        </article>
+
+        <!-- 2: Aloha Café concept (unchanged) -->
         <article class="project" style="--scroll-to:-42%">
           <div class="browser">
             <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span class="addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>alohacafe-orlando.com</span></div>
@@ -1495,6 +1623,7 @@
           </div>
         </article>
 
+        <!-- 3: GreenScape concept (unchanged) -->
         <article class="project" style="--scroll-to:-48%">
           <div class="browser">
             <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span class="addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>greenscapelawn.com</span></div>
@@ -1515,51 +1644,6 @@
             <h3>GreenScape Lawn Care</h3>
             <p data-en="Service list, before-and-after gallery, and a one-tap quote request for a busy landscaper." data-es="Lista de servicios, galería de antes y después, y una solicitud de cotización con un solo toque para un jardinero con mucho trabajo.">Service list, before-and-after gallery, and a one-tap quote request for a busy landscaper.</p>
             <a href="#work" class="view"><span data-en="View concept" data-es="Ver concepto">View concept</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-          </div>
-        </article>
-
-        <article class="project" style="--scroll-to:-40%">
-          <div class="browser">
-            <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span class="addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>sunrisedental.com</span></div>
-            <div class="viewport">
-              <div class="scroller" aria-hidden="true">
-                <div class="mini">
-                  <div class="mini-nav"><div class="mini-logo"><span class="dotmark"></span>Sunrise Dental</div><div class="mini-navlinks"><span></span><span></span><span></span></div></div>
-                  <div class="mini-photo"></div>
-                  <div class="mini-hero"><div class="mini-kicker"></div><div class="mini-h"></div><div class="mini-h sm"></div><div class="mini-p"></div><div class="mini-p w2"></div><div class="mini-btnrow"><div class="mini-btn"></div><div class="mini-btn ghost"></div></div></div>
-                  <div class="mini-band"><div class="bl"></div><div class="bbtn"></div></div>
-                  <div class="mini-foot"><span></span><span></span><span></span></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="pcap">
-            <span class="pcat" data-en="Dentist" data-es="Dentista">Dentist</span>
-            <h3>Sunrise Dental</h3>
-            <p data-en="Calm, trustworthy design with online booking front-and-center for a family practice." data-es="Un diseño tranquilo y confiable, con la cita en línea bien al frente, para un consultorio familiar.">Calm, trustworthy design with online booking front-and-center for a family practice.</p>
-            <a href="#work" class="view"><span data-en="View concept" data-es="Ver concepto">View concept</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-          </div>
-        </article>
-
-        <article class="project" style="--scroll-to:-46%">
-          <div class="browser">
-            <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span class="addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>bananabyte.io</span></div>
-            <div class="viewport">
-              <div class="scroller" aria-hidden="true">
-                <div class="mini">
-                  <div class="mini-nav"><div class="mini-logo"><span class="dotmark"></span>BANANAbyte</div><div class="mini-navlinks"><span></span><span></span><span></span></div></div>
-                  <div class="mini-hero"><div class="mini-kicker"></div><div class="mini-h"></div><div class="mini-h sm"></div><div class="mini-p"></div><div class="mini-p w2"></div><div class="mini-btnrow"><div class="mini-btn"></div><div class="mini-btn ghost"></div></div></div>
-                  <div class="mini-grid"><div class="mini-card"><div class="thumb"></div><div class="l"></div><div class="l s"></div></div><div class="mini-card"><div class="thumb"></div><div class="l"></div><div class="l s"></div></div><div class="mini-card"><div class="thumb"></div><div class="l"></div><div class="l s"></div></div></div>
-                  <div class="mini-band"><div class="bl"></div><div class="bbtn"></div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="pcap">
-            <span class="pcat" data-en="This site" data-es="Este sitio">This site</span>
-            <h3>BANANAbyte.io</h3>
-            <p data-en="The very page you&rsquo;re on &mdash; fast, clean, and easy to maintain. Proof we practice what we sell." data-es="La misma página en la que estás &mdash; rápida, limpia y fácil de mantener. La prueba de que practicamos lo que vendemos.">The very page you&rsquo;re on &mdash; fast, clean, and easy to maintain. Proof we practice what we sell.</p>
-            <a href="#top" class="view"><span data-en="View site" data-es="Ver sitio">View site</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
           </div>
         </article>
 
