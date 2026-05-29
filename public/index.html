@@ -1,0 +1,2392 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title data-en="BANANAbyte — Local Tech Help &amp; Web Design · Orlando, FL" data-es="BANANAbyte — Soporte Técnico Local y Diseño Web · Orlando, FL">BANANAbyte — Local Tech Help &amp; Web Design · Orlando, FL</title>
+<meta name="description" data-en="BANANAbyte — friendly local tech help and web design in Orlando, FL. Computer repair, networking, data rescue, patient hands-on help, and small-business websites. Run by Gabe. Honest, plain English, upfront pricing." data-es="BANANAbyte — soporte técnico local y diseño web en Orlando, FL. Reparación de computadoras, redes, recuperación de datos, ayuda paciente paso a paso y sitios web para pequeños negocios. Atendido por Gabe. Honesto, en palabras claras y con precios por adelantado." content="BANANAbyte — friendly local tech help and web design in Orlando, FL. Computer repair, networking, data rescue, patient hands-on help, and small-business websites. Run by Gabe. Honest, plain English, upfront pricing.">
+<meta name="theme-color" content="#0B0C0E">
+<link rel="canonical" href="https://bananabyte.io/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="alternate icon" href="/favicon.ico" sizes="any">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BANANAbyte">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="es_US">
+<meta property="og:title" content="BANANAbyte — Local Tech Help & Web Design · Orlando, FL">
+<meta property="og:description" content="Friendly local tech help and web design in Orlando, FL. Computer repair, networking, data rescue, patient hands-on help, and small-business websites.">
+<meta property="og:url" content="https://bananabyte.io/">
+<meta property="og:image" content="https://bananabyte.io/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BANANAbyte — Local Tech Help & Web Design · Orlando, FL">
+<meta name="twitter:description" content="Friendly local tech help and web design in Orlando, FL. Computer repair, networking, data rescue, and small-business websites.">
+<meta name="twitter:image" content="https://bananabyte.io/og-image.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"BANANAbyte LLC","image":"https://bananabyte.io/og-image.png","url":"https://bananabyte.io","email":"contact@bananabyte.io","telephone":"+1-407-555-0137","priceRange":"$$","description":"Friendly local tech help and web design in Orlando, FL — computer repair, networking, data recovery, patient tech help, and small-business websites. Honest, plain English, upfront pricing.","areaServed":{"@type":"City","name":"Orlando"},"address":{"@type":"PostalAddress","addressLocality":"Orlando","addressRegion":"FL","addressCountry":"US"},"founder":{"@type":"Person","name":"Gabe"},"knowsAbout":["Computer Repair","Networking","Data Recovery","Tech Support","Web Design"]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* ---- COOL-GRAPHITE (graphite warmth + slate coolness) ---- */
+    --bg:#0B0C0E;          /* page */
+    --panel:#15171B;       /* base panel */
+    --panel-2:#1E2127;     /* raised panel */
+    --hair:#2E323A;        /* hairline borders — visible edges on dark */
+    --hair-soft:#23262C;   /* faintest dividers */
+    --edge:#EEF1F5;        /* near-white edges on key blocks */
+    --ink:#F2F4F7;         /* primary text */
+    --mut:#9AA2AE;         /* secondary text — AA on dark panels */
+    --mut-2:#BBC2CD;       /* secondary, brighter */
+    --black:#000000;       /* pure-black offset shadow */
+    --yellow:#F5C800;      /* the single spark */
+    --bright:#FFE140;      /* brighter spark for hover/active */
+
+    --shadow:7px 7px 0 var(--black);
+    --shadow-sm:4px 4px 0 var(--black);
+
+    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --sans:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    --display:'Archivo Black','Inter',system-ui,sans-serif;
+    --nav-h:64px;
+
+    --rv-y:16px;
+    --ease-out:cubic-bezier(.16,.84,.32,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    font-family:var(--sans);
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.6;
+    font-size:16px;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  /* faint architectural grid — barely there */
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    background-image:
+      linear-gradient(rgba(238,241,245,.5) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(238,241,245,.5) 1px,transparent 1px);
+    background-size:54px 54px;
+    opacity:.02;
+    pointer-events:none;
+    z-index:0;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  ::selection{background:var(--yellow);color:var(--black)}
+
+  section[id]{scroll-margin-top:calc(var(--nav-h) + 12px)}
+  #top{scroll-margin-top:0}
+
+  /* skip link */
+  .skip{
+    position:absolute;left:8px;top:-60px;z-index:2000;
+    background:var(--yellow);color:var(--black);
+    font-family:var(--mono);font-weight:800;font-size:13px;
+    letter-spacing:.04em;text-transform:uppercase;text-decoration:none;
+    padding:12px 16px;border:3px solid var(--black);
+    transition:top .16s ease;
+  }
+  .skip:focus{top:8px}
+  @media (prefers-reduced-motion:reduce){.skip{transition:none}}
+
+  /* keyboard focus — yellow ring */
+  a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,.burger:focus-visible{
+    outline:3px solid var(--yellow);
+    outline-offset:3px;
+  }
+
+  .wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 18px;position:relative;z-index:1}
+
+  /* ---------- PIXEL BANANA MASCOT ---------- */
+  .pixel-banana{
+    display:inline-block;
+    image-rendering:pixelated;
+    image-rendering:crisp-edges;
+    flex-shrink:0;
+    vertical-align:middle;
+  }
+
+  /* ---------- SCROLL PROGRESS ---------- */
+  .scroll-progress{
+    position:fixed;top:0;left:0;right:0;height:3px;z-index:1400;
+    background:transparent;pointer-events:none;
+  }
+  .scroll-progress .bar{
+    height:100%;width:100%;
+    background:var(--yellow);
+    transform:scaleX(0);transform-origin:0 50%;
+    will-change:transform;
+  }
+  @media (prefers-reduced-motion:reduce){.scroll-progress{display:none}}
+
+  /* ---------- FINAL BADGE ---------- */
+  .badge{
+    position:fixed;top:10px;right:10px;z-index:1300;
+    font-family:var(--mono);font-size:10px;font-weight:800;
+    letter-spacing:.12em;
+    background:var(--panel-2);color:var(--ink);
+    border:1px solid var(--hair);
+    padding:6px 9px;
+    text-transform:uppercase;
+    box-shadow:3px 3px 0 var(--black);
+    pointer-events:none;
+  }
+  .badge .sp{color:var(--yellow)}
+  @media (min-width:760px){ .badge{font-size:11px;top:12px;right:12px} }
+
+  /* ---------- REVEAL SYSTEM ----------
+     SAFE-BY-DEFAULT: reveals are fully visible unless the page has proven
+     (via the .reveal-ready flag set on <html> only AFTER the observer is
+     wired) that it can bring them back. So if JS is off, errors out before
+     setup, or the observer never attaches, body copy is NEVER stranded
+     invisible — it just stays put, instantly readable. */
+  .reveal-ready .reveal{
+    opacity:0;
+    transform:translateY(var(--rv-y));
+    transition:opacity .42s var(--ease-out),transform .42s var(--ease-out);
+    will-change:transform,opacity;
+  }
+  .reveal-ready .reveal.in{opacity:1;transform:none}
+  .reveal-ready .reveal[data-stagger] > *{
+    opacity:0;transform:translateY(var(--rv-y));
+    transition:opacity .4s var(--ease-out),transform .4s var(--ease-out);
+  }
+  .reveal-ready .reveal[data-stagger].in > *{opacity:1;transform:none}
+  .reveal-ready .reveal.done,
+  .reveal-ready .reveal.done > *{will-change:auto}
+
+  /* Hero rule only animates once JS has wired it up */
+  .hero .rule{transform:scaleX(1)}
+  .reveal-ready .hero .rule{transform:scaleX(0)}
+  .reveal-ready .hero.ready .rule{transform:scaleX(1)}
+
+  /* Reduced motion: full static fallback — never hide, never move, never animate */
+  @media (prefers-reduced-motion:reduce){
+    .reveal-ready .reveal,
+    .reveal-ready .reveal[data-stagger] > *{
+      opacity:1 !important;transform:none !important;transition:none !important;
+    }
+    .reveal-ready .hero .rule{transform:scaleX(1) !important;transition:none !important}
+    .scroll-progress{display:none}
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:1000;
+    background:rgba(11,12,14,.84);
+    backdrop-filter:saturate(120%) blur(10px);
+    -webkit-backdrop-filter:saturate(120%) blur(10px);
+    border-bottom:1px solid var(--hair);
+  }
+  .nav-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    height:var(--nav-h);
+    gap:10px;
+  }
+  .wordmark{
+    font-family:var(--mono);font-weight:800;
+    font-size:18px;letter-spacing:-.02em;
+    text-decoration:none;line-height:1;color:var(--ink);
+    display:inline-flex;align-items:center;gap:9px;
+    flex-shrink:0;
+  }
+  .wordmark .nm-banana{color:var(--yellow)}
+  .wordmark .nm-byte{color:var(--ink)}
+  .desktop-links{display:none}
+  .nav-actions{display:none}
+  .nav-right{display:flex;align-items:center;gap:8px;padding-right:2px}
+
+  /* ---------- LANGUAGE TOGGLE ---------- */
+  .lang-toggle{
+    display:inline-flex;align-items:stretch;flex-shrink:0;
+    border:1px solid var(--hair);background:var(--panel-2);
+    box-shadow:var(--shadow-sm);
+    overflow:hidden;
+  }
+  .lang-toggle button{
+    appearance:none;-webkit-appearance:none;
+    font-family:var(--mono);font-weight:800;font-size:13px;
+    letter-spacing:.06em;text-transform:uppercase;
+    background:transparent;color:var(--mut-2);
+    border:0;cursor:pointer;
+    min-width:44px;min-height:44px;
+    padding:0 12px;
+    display:inline-flex;align-items:center;justify-content:center;
+    transition:background .15s ease,color .15s ease;
+  }
+  .lang-toggle .sep{
+    width:1px;align-self:center;height:22px;background:var(--hair);flex-shrink:0;
+  }
+  .lang-toggle button:hover{color:var(--ink)}
+  .lang-toggle button[aria-pressed="true"]{
+    background:var(--yellow);color:var(--black);
+  }
+  @media (prefers-reduced-motion:reduce){.lang-toggle button{transition:none}}
+
+  /* small text/whatsapp icon-button */
+  .icon-btn{
+    width:48px;height:48px;flex-shrink:0;
+    display:inline-flex;align-items:center;justify-content:center;
+    background:var(--panel-2);border:1px solid var(--hair);
+    color:var(--ink);text-decoration:none;
+    box-shadow:var(--shadow-sm);
+    transition:transform .07s ease,box-shadow .07s ease,color .15s ease,border-color .15s ease;
+  }
+  .icon-btn svg{width:22px;height:22px;display:block}
+  .icon-btn:hover{color:var(--yellow);border-color:var(--yellow)}
+  .icon-btn:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--black)}
+  @media (prefers-reduced-motion:reduce){.icon-btn{transition:color .15s ease,border-color .15s ease}}
+
+  /* hamburger */
+  .burger{
+    width:48px;height:48px;
+    background:var(--panel-2);
+    border:1px solid var(--hair);
+    box-shadow:var(--shadow-sm);
+    display:flex;flex-direction:column;gap:5px;
+    align-items:center;justify-content:center;
+    cursor:pointer;
+    transition:transform .07s ease,box-shadow .07s ease;
+  }
+  .burger:active{transform:translate(4px,4px);box-shadow:0 0 0 var(--black)}
+  .burger span{display:block;width:22px;height:2px;background:var(--ink);transition:.25s;transform-origin:center}
+  .burger[aria-expanded="true"] span{background:var(--yellow)}
+  .burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  @media (prefers-reduced-motion:reduce){.burger,.burger span{transition:none}}
+
+  /* dim backdrop */
+  .scrim{
+    position:fixed;inset:0;z-index:998;
+    background:rgba(0,0,0,.66);
+    opacity:0;visibility:hidden;
+    transition:opacity .22s ease,visibility .22s ease;
+  }
+  .scrim.open{opacity:1;visibility:visible}
+  @media (prefers-reduced-motion:reduce){.scrim{transition:none}}
+
+  /* mobile dropdown panel */
+  .mobile-menu{
+    position:fixed;
+    top:calc(var(--nav-h) + 1px);left:0;right:0;
+    max-height:calc(100dvh - var(--nav-h) - 1px);
+    background:var(--panel);
+    border-top:3px solid var(--yellow);
+    border-bottom:1px solid var(--hair);
+    z-index:999;
+    transform:translateY(-130%);
+    transition:transform .28s cubic-bezier(.2,.8,.2,1);
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+    padding:6px 18px calc(30px + env(safe-area-inset-bottom));
+  }
+  .mobile-menu.open{transform:translateY(0)}
+  @media (prefers-reduced-motion:reduce){.mobile-menu{transition:none}}
+  .mobile-menu ul{list-style:none}
+  .mobile-menu li{border-bottom:1px solid var(--hair)}
+  .mobile-menu a.mlink{
+    display:flex;flex-direction:column;justify-content:center;
+    font-family:var(--display);
+    font-size:25px;
+    color:var(--ink);
+    text-decoration:none;
+    text-transform:uppercase;
+    padding:16px 4px;
+    letter-spacing:-.01em;line-height:1.04;
+    min-height:58px;
+  }
+  .mobile-menu a.mlink .idx{
+    font-family:var(--mono);font-size:11px;color:var(--mut-2);
+    font-weight:700;letter-spacing:.16em;margin-bottom:7px;
+  }
+  .mobile-menu a.mlink:active{color:var(--yellow)}
+
+  /* language toggle inside mobile menu */
+  .m-lang{
+    margin-top:18px;
+    display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  }
+  .m-lang .m-lang-lbl{
+    font-family:var(--mono);font-size:11px;font-weight:700;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--mut-2);
+  }
+  .m-lang .lang-toggle{box-shadow:var(--shadow-sm)}
+  .m-lang .lang-toggle button{min-height:48px;min-width:54px;font-size:14px}
+
+  .m-actions{display:flex;flex-direction:column;gap:11px;margin-top:20px}
+  .m-quote{
+    display:flex;align-items:center;justify-content:center;gap:9px;
+    background:var(--yellow);color:var(--black);
+    font-family:var(--mono);font-weight:800;text-transform:uppercase;
+    font-size:16px;letter-spacing:.02em;text-decoration:none;
+    border:3px solid var(--yellow);
+    padding:17px 14px;min-height:58px;text-align:center;
+    box-shadow:6px 6px 0 var(--black);
+  }
+  .m-quote:active{transform:translate(4px,4px);box-shadow:2px 2px 0 var(--black)}
+  .m-dual{display:flex;gap:11px}
+  .m-text,.m-wa{
+    flex:1;
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    background:var(--panel-2);color:var(--ink);
+    font-family:var(--mono);font-weight:800;text-transform:uppercase;
+    font-size:14px;letter-spacing:.02em;text-decoration:none;
+    border:3px solid var(--edge);
+    padding:15px 8px;min-height:54px;text-align:center;
+  }
+  .m-text svg,.m-wa svg{width:18px;height:18px;flex-shrink:0}
+  .m-text:active,.m-wa:active{transform:translate(3px,3px)}
+  .m-call{
+    text-align:center;margin-top:10px;
+    font-family:var(--mono);font-size:13px;letter-spacing:.04em;
+    color:var(--mut-2);text-transform:uppercase;min-height:44px;
+    display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px;
+  }
+  .m-call a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--hair)}
+  body.locked{overflow:hidden}
+
+  /* ---------- TICKER ---------- */
+  .ticker{
+    background:var(--panel);color:var(--mut-2);
+    border-bottom:1px solid var(--hair);
+    overflow:hidden;white-space:nowrap;
+    font-family:var(--mono);font-weight:700;font-size:12px;
+    letter-spacing:.18em;text-transform:uppercase;
+    padding:10px 0;
+  }
+  .ticker-track{display:inline-block;animation:scroll 34s linear infinite}
+  .ticker-track span{padding:0 14px}
+  .ticker-track .dot{color:var(--yellow)}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media (hover:none){
+    .ticker{white-space:normal;text-align:center;line-height:2.2}
+    .ticker-track{animation:none}
+    .ticker-track .dup{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){.ticker-track{animation:none;white-space:normal}.ticker-track .dup{display:none}}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{position:relative;z-index:1;padding:56px 0}
+  .eyebrow{
+    font-family:var(--mono);font-size:12px;font-weight:700;
+    letter-spacing:.18em;text-transform:uppercase;
+    display:inline-flex;align-items:center;gap:8px;color:var(--mut-2);
+    border:1px solid var(--hair);
+    background:var(--panel-2);
+    padding:6px 11px;margin-bottom:20px;
+  }
+  .eyebrow .sp{color:var(--yellow)}
+  .sec-title{
+    font-family:var(--display);
+    font-size:clamp(28px,7.6vw,40px);line-height:1.0;letter-spacing:-.02em;
+    text-transform:uppercase;margin-bottom:16px;color:var(--ink);
+  }
+  .sec-lead{
+    font-family:var(--mono);font-size:13px;font-weight:500;
+    letter-spacing:.04em;text-transform:uppercase;color:var(--mut-2);
+    max-width:58ch;margin-bottom:6px;line-height:1.7;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:var(--bg);
+    border-bottom:1px solid var(--hair);
+    padding-top:50px;padding-bottom:58px;
+    overflow:hidden;position:relative;
+  }
+  .hero-fx{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+  .hero-grid{
+    position:absolute;inset:-60px;
+    background-image:
+      linear-gradient(rgba(238,241,245,.5) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(238,241,245,.5) 1px,transparent 1px);
+    background-size:46px 46px;
+    opacity:.045;
+    animation:gridDrift 60s linear infinite;
+    will-change:transform;
+  }
+  @keyframes gridDrift{from{transform:translate3d(0,0,0)}to{transform:translate3d(46px,46px,0)}}
+  .hero-glow{
+    position:absolute;top:0;left:0;
+    width:560px;height:560px;margin:-280px 0 0 -280px;
+    background:radial-gradient(circle at center,rgba(245,200,0,.15),rgba(245,200,0,.05) 38%,transparent 68%);
+    transform:translate3d(50vw,200px,0);
+    opacity:.9;
+  }
+  @media (hover:none){
+    .hero-grid{animation:none;opacity:.035}
+    .hero-glow{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){.hero-grid{animation:none}.hero-glow{display:none}}
+  .hero-inner{position:relative;z-index:1}
+  .hero .tag{
+    font-family:var(--mono);font-weight:700;font-size:11px;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--mut-2);
+    border:1px solid var(--hair);background:var(--panel-2);
+    display:inline-flex;align-items:center;gap:8px;padding:7px 11px;margin-bottom:24px;
+    max-width:100%;
+  }
+  .hero .tag .sp{color:var(--yellow)}
+  .hero h1{
+    font-family:var(--display);
+    font-size:clamp(32px,9vw,54px);
+    line-height:1.0;letter-spacing:-.025em;
+    text-transform:uppercase;
+    margin-bottom:14px;color:var(--ink);
+    word-break:break-word;overflow-wrap:break-word;hyphens:auto;
+  }
+  .hero h1 .hl{color:var(--yellow)}
+  .hero .rule{
+    height:6px;width:120px;max-width:60%;
+    background:var(--yellow);
+    margin:0 0 22px;
+    transform-origin:0 50%;
+    transition:transform .8s var(--ease-out) .2s;
+    will-change:transform;
+  }
+  .hero .sub{
+    font-family:var(--mono);font-weight:500;font-size:14px;
+    letter-spacing:.04em;text-transform:uppercase;color:var(--mut-2);
+    border-left:3px solid var(--yellow);
+    padding-left:13px;margin-bottom:28px;
+    max-width:46ch;line-height:1.7;
+  }
+  .hero .trust{
+    font-size:16px;color:var(--mut-2);line-height:1.6;
+    margin-top:22px;max-width:50ch;
+  }
+  .hero .trust b{color:var(--ink);font-weight:600}
+
+  /* button row + buttons */
+  .btn-row{display:flex;flex-direction:column;gap:13px}
+  .btn{
+    font-family:var(--mono);font-weight:800;font-size:15px;
+    letter-spacing:.04em;text-transform:uppercase;
+    text-decoration:none;text-align:center;
+    padding:16px 22px;min-height:56px;
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    cursor:pointer;position:relative;
+    transition:transform .07s ease,box-shadow .07s ease,background .15s ease,color .15s ease,border-color .15s ease;
+    box-shadow:var(--shadow);
+  }
+  .btn svg{width:19px;height:19px;flex-shrink:0}
+  .btn:active{transform:translate(6px,6px);box-shadow:0 0 0 var(--black)}
+  .btn-primary{background:var(--yellow);color:var(--black);border:3px solid var(--yellow)}
+  .btn-primary:hover{background:var(--bright);border-color:var(--bright)}
+  .btn-secondary{background:var(--panel-2);color:var(--ink);border:3px solid var(--edge)}
+  .btn-secondary:hover{color:var(--black);background:var(--edge)}
+  .btn .mag{display:inline-flex;align-items:center;gap:8px;transition:transform .18s var(--ease-out);pointer-events:none}
+  @media (prefers-reduced-motion:reduce){.btn,.btn .mag{transition:background .15s ease,color .15s ease,border-color .15s ease}}
+  .btn-dual{display:flex;gap:13px}
+  .btn-dual .btn{flex:1;padding:16px 14px;font-size:14px}
+
+  /* ---------- BROWSER MOCKUP (shared: hero live demo + portfolio) ---------- */
+  .browser{
+    border:1px solid var(--hair);
+    background:var(--panel);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    max-width:100%;
+  }
+  .browser .chrome{
+    background:var(--panel-2);
+    padding:10px 12px;
+    display:flex;align-items:center;gap:8px;
+    border-bottom:1px solid var(--hair);
+  }
+  .browser .chrome i{width:11px;height:11px;display:block;border-radius:50%;flex-shrink:0}
+  .browser .chrome i:nth-child(1){background:#3a3e46}
+  .browser .chrome i:nth-child(2){background:#3a3e46}
+  .browser .chrome i:nth-child(3){background:var(--yellow)}
+  .browser .addr{
+    flex:1;min-width:0;margin-left:6px;
+    font-family:var(--mono);font-size:11px;color:var(--mut-2);
+    letter-spacing:.02em;
+    background:var(--bg);border:1px solid var(--hair);
+    padding:5px 10px;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    display:flex;align-items:center;gap:6px;
+  }
+  .browser .addr svg{width:11px;height:11px;flex-shrink:0;color:var(--mut)}
+  /* the live viewport that scrolls */
+  .browser .viewport{
+    position:relative;
+    height:320px;
+    overflow:hidden;
+    background:var(--bg);
+  }
+  .browser .scroller{
+    position:absolute;top:0;left:0;right:0;
+    will-change:transform;
+  }
+  /* faint fade at the bottom edge to read as "live" */
+  .browser .viewport::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(180deg,rgba(11,12,14,0) 78%,rgba(11,12,14,.55) 100%);
+    z-index:3;
+  }
+
+  /* --- mini fake-website building blocks (greyscale + 1 yellow accent each) --- */
+  .mini{padding:0 0 6px}
+  .mini-nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:13px 16px;border-bottom:1px solid var(--hair-soft);
+    background:var(--panel);
+  }
+  .mini-logo{display:flex;align-items:center;gap:7px;font-family:var(--display);font-size:12px;color:var(--ink);text-transform:uppercase;letter-spacing:-.01em}
+  .mini-logo .dotmark{width:10px;height:10px;background:var(--yellow);flex-shrink:0}
+  .mini-navlinks{display:flex;gap:8px}
+  .mini-navlinks span{width:24px;height:6px;background:var(--hair);display:block}
+  .mini-hero{padding:24px 16px 18px}
+  .mini-kicker{width:64px;height:7px;background:var(--yellow);margin-bottom:12px}
+  .mini-h{height:14px;background:var(--mut);margin-bottom:8px;width:88%}
+  .mini-h.sm{width:62%}
+  .mini-p{height:7px;background:var(--hair);margin-bottom:6px;width:100%}
+  .mini-p.w2{width:80%}
+  .mini-p.w3{width:55%}
+  .mini-btnrow{display:flex;gap:9px;margin-top:15px}
+  .mini-btn{height:26px;width:92px;background:var(--yellow)}
+  .mini-btn.ghost{background:transparent;border:1.5px solid var(--hair);width:80px}
+  .mini-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:6px 16px 20px}
+  .mini-card{background:var(--panel-2);border:1px solid var(--hair);padding:12px}
+  .mini-card .thumb{height:38px;background:var(--bg);border:1px solid var(--hair);margin-bottom:9px;position:relative}
+  .mini-card .thumb::after{content:"";position:absolute;left:8px;bottom:8px;width:14px;height:14px;background:var(--yellow)}
+  .mini-card .l{height:6px;background:var(--hair);margin-bottom:5px}
+  .mini-card .l.s{width:60%}
+  .mini-band{
+    margin:4px 16px 18px;padding:16px;
+    background:var(--panel-2);border:1px solid var(--hair);
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+  }
+  .mini-band .bl{height:9px;width:130px;background:var(--mut)}
+  .mini-band .bbtn{height:28px;width:84px;background:var(--yellow);flex-shrink:0}
+  .mini-foot{padding:14px 16px;border-top:1px solid var(--hair-soft);display:flex;gap:8px}
+  .mini-foot span{height:6px;width:40px;background:var(--hair);display:block}
+  /* image-ish block for cafe/dental "photos" — pure greyscale, NOT a real photo */
+  .mini-photo{height:84px;margin:0 16px 14px;background:
+     repeating-linear-gradient(135deg,var(--panel-2) 0 10px,var(--panel) 10px 20px);
+     border:1px solid var(--hair);position:relative}
+  .mini-photo::after{content:"";position:absolute;right:12px;top:12px;width:20px;height:20px;background:var(--yellow)}
+
+  /* live-demo caption bar inside hero browser */
+  .demo-cap{
+    position:absolute;left:0;right:0;bottom:0;z-index:4;
+    background:rgba(11,12,14,.78);
+    border-top:1px solid var(--hair);
+    padding:9px 13px;
+    font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--mut-2);
+    display:flex;align-items:center;gap:8px;
+  }
+  .demo-cap .pip{width:7px;height:7px;background:var(--yellow);flex-shrink:0;animation:pip 2.4s ease-in-out infinite}
+  @keyframes pip{0%,100%{opacity:1}50%{opacity:.3}}
+  @media (prefers-reduced-motion:reduce){.demo-cap .pip{animation:none}}
+  .demo-cap b{color:var(--ink);font-weight:700}
+
+  /* ---------- SERVICES ---------- */
+  .services{background:var(--bg)}
+  .svc-list{display:flex;flex-direction:column;gap:26px;margin-top:18px}
+  .svc{
+    border:1px solid var(--hair);background:var(--panel);
+    box-shadow:var(--shadow-sm);
+    position:relative;overflow:hidden;
+    transition:transform .18s var(--ease-out),box-shadow .18s var(--ease-out),border-color .18s var(--ease-out);
+  }
+  .svc::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(115deg,transparent 40%,rgba(245,200,0,.13) 50%,transparent 60%);
+    transform:translateX(-120%);
+    transition:transform .6s var(--ease-out);
+  }
+  .svc:hover{border-color:var(--edge);box-shadow:var(--shadow);transform:translate(-2px,-3px)}
+  .svc:hover::after{transform:translateX(120%)}
+  @media (hover:none){.svc::after{display:none}}
+  @media (prefers-reduced-motion:reduce){.svc,.svc::after{transition:none}.svc::after{display:none}.svc:hover{transform:none}}
+  .svc .num{
+    font-family:var(--mono);font-weight:800;font-size:12px;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--mut-2);
+    background:var(--panel-2);border:1px solid var(--hair);
+    display:inline-block;padding:5px 9px;
+    position:absolute;top:12px;left:16px;z-index:2;
+  }
+  .svc:hover .num{color:var(--yellow);border-color:var(--yellow)}
+  .svc-body{padding:48px 20px 26px;position:relative;z-index:1}
+  .svc h3{
+    font-family:var(--display);font-size:19px;
+    text-transform:uppercase;letter-spacing:-.01em;
+    margin-bottom:12px;line-height:1.12;color:var(--ink);
+  }
+  .svc p{font-size:16px;max-width:52ch;color:var(--mut-2);line-height:1.65}
+  .svc .ic{
+    border:1px solid var(--hair);width:48px;height:48px;
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:18px;background:var(--panel-2);color:var(--ink);
+    transition:color .15s ease,border-color .15s ease;
+  }
+  .svc .ic svg{width:24px;height:24px}
+  .svc:hover .ic{color:var(--yellow);border-color:var(--yellow)}
+
+  /* ---------- WORK / PORTFOLIO ---------- */
+  .work{background:var(--panel);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+  .work-note{
+    font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--mut-2);margin-top:10px;border-left:3px solid var(--hair);padding-left:11px;max-width:64ch;line-height:1.6;
+  }
+  .work-grid{display:flex;flex-direction:column;gap:30px;margin-top:26px}
+  .project{
+    border:1px solid var(--hair);background:var(--bg);
+    box-shadow:var(--shadow-sm);
+    transition:transform .18s var(--ease-out),box-shadow .18s var(--ease-out),border-color .18s var(--ease-out);
+  }
+  .project:hover,.project:focus-within{border-color:var(--edge);box-shadow:var(--shadow);transform:translate(-2px,-3px)}
+  @media (prefers-reduced-motion:reduce){.project{transition:none}.project:hover,.project:focus-within{transform:none}}
+  /* portfolio preview that scrolls on hover/focus — tasteful, transform only */
+  .project .browser{box-shadow:none;border:none;border-bottom:1px solid var(--hair)}
+  .project .viewport{height:230px}
+  .project .scroller{transition:transform 2.6s var(--ease-out)}
+  .project:hover .scroller,
+  .project:focus-within .scroller{transform:translateY(var(--scroll-to,-46%))}
+  @media (prefers-reduced-motion:reduce){
+    .project .scroller{transition:none}
+    .project:hover .scroller,.project:focus-within .scroller{transform:none}
+  }
+  .project .pcap{padding:18px 18px 20px}
+  .project .pcat{
+    font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--yellow);margin-bottom:7px;display:block;
+  }
+  .project h3{
+    font-family:var(--display);font-size:18px;text-transform:uppercase;
+    letter-spacing:-.01em;line-height:1.12;margin-bottom:6px;color:var(--ink);
+  }
+  .project p{font-size:16px;color:var(--mut-2);line-height:1.55;margin-bottom:13px;max-width:46ch}
+  .project .view{
+    font-family:var(--mono);font-weight:800;font-size:13px;letter-spacing:.04em;
+    text-transform:uppercase;color:var(--ink);text-decoration:none;
+    display:inline-flex;align-items:center;gap:6px;min-height:44px;
+    border-bottom:2px solid var(--hair);padding-bottom:2px;
+    transition:color .12s ease,border-color .12s ease;
+  }
+  .project .view:hover,.project .view:focus-visible{color:var(--yellow);border-bottom-color:var(--yellow)}
+  .project .view svg{width:14px;height:14px;transition:transform .18s var(--ease-out)}
+  .project .view:hover svg{transform:translateX(3px)}
+  @media (prefers-reduced-motion:reduce){.project .view svg{transition:none}.project .view:hover svg{transform:none}}
+
+  /* ---------- PRICING ---------- */
+  .pricing{background:var(--bg);border-bottom:1px solid var(--hair)}
+  .price-list{display:flex;flex-direction:column;gap:22px;margin-top:24px}
+  .price{
+    border:1px solid var(--hair);background:var(--panel);
+    box-shadow:var(--shadow-sm);
+    padding:24px 20px;position:relative;overflow:hidden;
+    transition:transform .18s var(--ease-out),box-shadow .18s var(--ease-out),border-color .18s var(--ease-out);
+  }
+  .price::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(115deg,transparent 40%,rgba(245,200,0,.11) 50%,transparent 60%);
+    transform:translateX(-120%);transition:transform .6s var(--ease-out);
+  }
+  .price:hover{border-color:var(--edge);box-shadow:var(--shadow);transform:translate(-2px,-3px)}
+  .price:hover::after{transform:translateX(120%)}
+  @media (hover:none){.price::after{display:none}}
+  @media (prefers-reduced-motion:reduce){.price,.price::after{transition:none}.price::after{display:none}.price:hover{transform:none}}
+  .price .ph{
+    display:flex;align-items:baseline;justify-content:space-between;gap:14px;
+    margin-bottom:10px;flex-wrap:wrap;
+  }
+  .price h3{
+    font-family:var(--display);font-size:17px;text-transform:uppercase;
+    letter-spacing:-.01em;line-height:1.16;color:var(--ink);
+  }
+  .price .amt{
+    font-family:var(--mono);font-weight:800;font-size:18px;
+    color:var(--yellow);white-space:nowrap;letter-spacing:.02em;
+  }
+  .price .amt small{color:var(--mut-2);font-weight:700;font-size:12px}
+  .price p{font-size:16px;color:var(--mut-2);line-height:1.6;max-width:50ch}
+  .price .free{
+    font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--yellow);margin-top:10px;display:inline-block;
+  }
+  .reassure{
+    margin-top:26px;
+    border:1px solid var(--hair);background:var(--panel-2);
+    box-shadow:var(--shadow-sm);
+    padding:20px 18px;
+    border-left:3px solid var(--yellow);
+  }
+  .reassure p{font-size:16px;color:var(--ink);line-height:1.6;max-width:64ch}
+  .reassure p b{color:var(--yellow);font-weight:700}
+
+  /* ---------- ABOUT / MEET THE FOUNDER ---------- */
+  .about{background:var(--panel);border-bottom:1px solid var(--hair)}
+  .about .sec-title{color:var(--ink)}
+  .about .blurb{
+    font-size:17px;line-height:1.7;max-width:58ch;margin-bottom:26px;color:var(--mut-2);
+    border-left:3px solid var(--yellow);padding-left:16px;
+  }
+  .about .blurb b{color:var(--ink);font-weight:700}
+  /* founder avatar — pixel banana, NOT a photo */
+  .founder-photo{
+    border:3px solid var(--edge);background:var(--panel-2);
+    box-shadow:var(--shadow);
+    aspect-ratio:4/5;max-width:330px;width:100%;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    position:relative;overflow:hidden;
+    margin:0 auto 26px;
+  }
+  .founder-photo .pixel-banana{width:124px;height:124px}
+  .founder-photo .cap{
+    position:absolute;bottom:0;left:0;right:0;
+    background:var(--yellow);color:var(--black);
+    font-family:var(--mono);font-weight:800;font-size:12px;
+    letter-spacing:.12em;text-transform:uppercase;
+    padding:9px 12px;text-align:center;
+  }
+  .founder-photo::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 50% 35%,rgba(245,200,0,.1),transparent 62%);
+    pointer-events:none;
+  }
+  .chips{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+  .chip{
+    font-family:var(--mono);font-weight:700;font-size:13px;
+    letter-spacing:.04em;text-transform:uppercase;color:var(--ink);
+    border:1px solid var(--hair);background:var(--bg);
+    padding:12px 15px;
+    box-shadow:var(--shadow-sm);
+    min-height:48px;display:flex;align-items:center;gap:8px;line-height:1.3;
+  }
+  .chip::before{content:"";width:7px;height:7px;background:var(--yellow);flex-shrink:0}
+
+  /* ---------- TESTIMONIALS ---------- */
+  .reviews{background:var(--bg);border-bottom:1px solid var(--hair)}
+  .review-list{display:flex;flex-direction:column;gap:22px;margin-top:24px}
+  .review{
+    border:1px solid var(--hair);background:var(--panel);
+    box-shadow:var(--shadow-sm);
+    padding:24px 20px;
+    transition:transform .18s var(--ease-out),box-shadow .18s var(--ease-out),border-color .18s var(--ease-out);
+  }
+  .review:hover{border-color:var(--edge);box-shadow:var(--shadow);transform:translate(-2px,-3px)}
+  @media (prefers-reduced-motion:reduce){.review{transition:none}.review:hover{transform:none}}
+  .review .stars{
+    color:var(--yellow);font-size:16px;letter-spacing:.18em;
+    margin-bottom:14px;line-height:1;
+  }
+  .review blockquote{
+    font-size:16px;line-height:1.65;color:var(--ink);
+    margin-bottom:16px;max-width:50ch;
+  }
+  .review .who{
+    font-family:var(--mono);font-weight:700;font-size:12px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--mut-2);
+  }
+  .review .who .y{color:var(--yellow)}
+
+  /* ---------- PROCESS ---------- */
+  .process{background:var(--panel);border-bottom:1px solid var(--hair)}
+  .steps{display:flex;flex-direction:column;gap:22px;margin-top:18px}
+  .step{
+    border:1px solid var(--hair);background:var(--bg);
+    box-shadow:var(--shadow-sm);
+    display:flex;align-items:stretch;
+    transition:transform .18s var(--ease-out),box-shadow .18s var(--ease-out),border-color .18s var(--ease-out);
+  }
+  .step:hover{border-color:var(--edge);box-shadow:var(--shadow);transform:translate(-2px,-3px)}
+  @media (prefers-reduced-motion:reduce){.step{transition:none}.step:hover{transform:none}}
+  .step .n{
+    font-family:var(--display);font-size:32px;
+    background:var(--panel-2);color:var(--mut-2);
+    border-right:1px solid var(--hair);
+    min-width:74px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    line-height:1;transition:color .15s ease}
+  .step:hover .n{color:var(--yellow)}
+  .step .t{padding:20px 18px;min-width:0}
+  .step h4{
+    font-family:var(--mono);font-weight:800;font-size:15px;
+    text-transform:uppercase;letter-spacing:.03em;margin-bottom:7px;color:var(--ink);line-height:1.2;
+  }
+  .step p{font-size:16px;color:var(--mut-2);line-height:1.6}
+
+  /* ---------- CONTACT ---------- */
+  .contact{background:var(--bg);border-bottom:1px solid var(--hair)}
+  .contact-grid{display:flex;flex-direction:column;gap:28px;margin-top:10px}
+  form{
+    border:1px solid var(--hair);background:var(--panel);
+    box-shadow:var(--shadow);
+    padding:24px 20px;
+  }
+  .field{margin-bottom:20px}
+  .field label{
+    display:block;
+    font-family:var(--mono);font-weight:800;font-size:12px;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--mut-2);
+    margin-bottom:9px;line-height:1.4;
+  }
+  .field .opt{color:var(--mut-2);font-weight:500}
+  .field input,.field textarea{
+    width:100%;
+    font-family:var(--sans);font-size:16px;
+    border:1px solid var(--hair);
+    background:var(--panel-2);
+    padding:14px 13px;
+    min-height:54px;
+    color:var(--ink);
+    transition:border-color .12s ease,box-shadow .12s ease;
+  }
+  .field input::placeholder,.field textarea::placeholder{color:var(--mut)}
+  .field textarea{min-height:128px;resize:vertical;line-height:1.55}
+  .field input:focus,.field textarea:focus{
+    outline:none;border-color:var(--yellow);
+    box-shadow:0 0 0 3px rgba(245,200,0,.18);
+  }
+  .form-note{
+    font-family:var(--mono);font-size:12px;color:var(--mut-2);
+    letter-spacing:.04em;margin-top:-4px;margin-bottom:18px;line-height:1.5;
+  }
+  .form-note a{color:var(--ink);border-bottom:1px solid var(--hair);text-decoration:none}
+  .form-note a:hover,.form-note a:focus-visible{border-bottom-color:var(--yellow);color:var(--yellow)}
+  .send{
+    width:100%;
+    font-family:var(--mono);font-weight:800;font-size:16px;
+    letter-spacing:.05em;text-transform:uppercase;
+    background:var(--yellow);color:var(--black);
+    border:3px solid var(--yellow);
+    padding:18px;min-height:58px;cursor:pointer;
+    box-shadow:6px 6px 0 var(--black);
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    transition:transform .07s ease,box-shadow .07s ease,background .15s ease;
+  }
+  .send:hover{background:var(--bright);border-color:var(--bright)}
+  .send:active{transform:translate(6px,6px);box-shadow:0 0 0 var(--black)}
+  .send[data-sent="true"]{background:var(--edge);border-color:var(--edge)}
+  @media (prefers-reduced-motion:reduce){.send{transition:background .15s ease}}
+
+  /* big text + whatsapp CTAs beside the form — the PRIMARY fast path */
+  .reach{
+    border:1px solid var(--hair);background:var(--panel);color:var(--ink);
+    box-shadow:var(--shadow);padding:24px 20px;
+  }
+  .reach .lbl{
+    font-family:var(--mono);font-size:12px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--mut-2);margin-bottom:14px;
+  }
+  .reach-btn{
+    display:flex;align-items:center;justify-content:center;gap:11px;
+    font-family:var(--mono);font-weight:800;font-size:17px;
+    letter-spacing:.02em;text-transform:uppercase;text-decoration:none;
+    padding:17px 14px;min-height:60px;margin-bottom:13px;text-align:center;
+    box-shadow:6px 6px 0 var(--black);
+    transition:transform .07s ease,box-shadow .07s ease,background .15s ease,color .15s ease,border-color .15s ease;
+  }
+  .reach-btn svg{width:23px;height:23px;flex-shrink:0}
+  .reach-btn.text-cta{background:var(--yellow);color:var(--black);border:3px solid var(--yellow)}
+  .reach-btn.text-cta:hover{background:var(--bright);border-color:var(--bright)}
+  .reach-btn.wa-cta{background:var(--panel-2);color:var(--ink);border:3px solid var(--edge)}
+  .reach-btn.wa-cta:hover{background:var(--edge);color:var(--black)}
+  .reach-btn:active{transform:translate(6px,6px);box-shadow:0 0 0 var(--black)}
+  @media (prefers-reduced-motion:reduce){.reach-btn{transition:background .15s ease,color .15s ease,border-color .15s ease}}
+  .reach .mail{
+    font-family:var(--mono);font-weight:800;font-size:15px;
+    color:var(--ink);text-decoration:none;
+    word-break:break-word;display:inline-block;
+    min-height:44px;line-height:44px;
+    border-bottom:2px solid var(--hair);
+    transition:border-color .12s ease,color .12s ease;
+  }
+  .reach .mail:hover,.reach .mail:focus-visible{border-bottom-color:var(--yellow);color:var(--yellow)}
+  .reach .sec-call{
+    margin-top:16px;padding-top:16px;border-top:1px solid var(--hair);
+    font-size:14px;color:var(--mut-2);line-height:1.6;
+  }
+  .reach .sec-call a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--hair);font-weight:600}
+  .reach .sec-call a:hover,.reach .sec-call a:focus-visible{border-bottom-color:var(--yellow);color:var(--yellow)}
+  .reach .meta{margin-top:16px;font-size:16px;line-height:1.85;color:var(--mut-2)}
+  .reach .meta b{color:var(--ink)}
+  .reach .meta .y{color:var(--yellow)}
+
+  /* ---------- SLOT-MACHINE PHONE REVEAL (secondary, native to graphite) ----------
+     Replaces the plain "Prefer to talk? Call …" line inside .reach. Deliberately
+     quieter than the form / Text / WhatsApp: a small hairline panel, mono labels,
+     yellow used only as the single spark. Everything namespaced .bb-spin* / #bbSpin*
+     so nothing collides with the base's existing classes, ids, or JS. */
+  .bb-spin{
+    margin-top:16px;padding-top:16px;
+    border-top:1px solid var(--hair);
+  }
+  .bb-spin .bb-spin-cap{
+    font-family:var(--mono);font-size:12px;font-weight:700;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--mut-2);
+    margin-bottom:10px;line-height:1.5;
+  }
+  /* derive reel size from the panel width so all 10 digits + separators fit
+     from ~280px up; vw fallback for engines without container-query units */
+  .bb-spin-reels{
+    /* vw fallback intentionally CONSERVATIVE: it must fit all 10 digits +
+       3 separators + 2 gaps + padding + borders inside the narrow .reach
+       column down to ~300px viewports even on engines with no container
+       units. Tested: fits at 320 / 360 / 375 / 414. The @supports cqw
+       block below upgrades to true container-relative sizing. */
+    --bb-reel-w:clamp(13px,4.2vw,21px);
+    --bb-reel-h:clamp(30px,8.4vw,38px);
+    --bb-reel-font:clamp(16px,5vw,23px);
+    --bb-sep-font:clamp(13px,4vw,20px);
+    --bb-reel-gap:clamp(1px,.6vw,3px);
+    --bb-sep-min:clamp(5px,2.4vw,13px);
+    --bb-gap-min:clamp(2px,1.4vw,9px);
+    --bb-reels-pad-x:clamp(4px,2vw,11px);
+    display:flex;align-items:center;justify-content:center;
+    flex-wrap:nowrap;
+    gap:var(--bb-reel-gap);
+    padding:10px var(--bb-reels-pad-x);
+    background:var(--panel-2);
+    border:1px solid var(--hair);
+    box-shadow:inset 0 2px 10px rgba(0,0,0,.4);
+    position:relative;max-width:100%;
+  }
+  @supports (width:1cqw){
+    .bb-spin-shell{container-type:inline-size}
+    .bb-spin-reels{
+      --bb-reel-w:clamp(15px,5cqw,21px);
+      --bb-reel-h:clamp(30px,8.6cqw,38px);
+      --bb-reel-font:clamp(17px,5.4cqw,23px);
+      --bb-sep-font:clamp(14px,4.6cqw,20px);
+      --bb-reel-gap:clamp(1px,.8cqw,3px);
+      --bb-sep-min:clamp(6px,3cqw,13px);
+      --bb-gap-min:clamp(3px,1.8cqw,9px);
+      --bb-reels-pad-x:clamp(5px,2.4cqw,11px);
+    }
+  }
+  .bb-spin-shell{display:flex;justify-content:center;margin-bottom:12px;width:100%}
+  /* progressive enhancement: hide the reels + trigger until JS wires them up,
+     show the plain tel fallback instead. Once #bbSpin gains .bb-spin-ready the
+     interactive machine takes over and the fallback steps aside. */
+  .bb-spin-fallback{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;
+    min-height:50px;padding:13px 16px;text-decoration:none;text-align:center;
+    font-family:var(--mono);font-weight:800;font-size:15px;letter-spacing:.04em;
+    background:var(--panel-2);color:var(--ink);
+    border:3px solid var(--edge);box-shadow:var(--shadow-sm);
+    transition:background .15s ease,color .15s ease;
+  }
+  .bb-spin-fallback svg{width:18px;height:18px;flex-shrink:0}
+  .bb-spin-fallback b{color:var(--bright);font-weight:800}
+  .bb-spin-fallback:hover,.bb-spin-fallback:focus-visible{background:var(--edge);color:var(--black)}
+  .bb-spin-fallback:hover b,.bb-spin-fallback:focus-visible b{color:var(--black)}
+  .bb-spin .bb-spin-shell,
+  .bb-spin .bb-spin-trigger{display:none}
+  .bb-spin.bb-spin-ready .bb-spin-fallback{display:none}
+  .bb-spin.bb-spin-ready .bb-spin-shell{display:flex}
+  .bb-spin.bb-spin-ready .bb-spin-trigger{display:inline-flex}
+  @media (prefers-reduced-motion:reduce){.bb-spin-fallback{transition:none}}
+  /* glass top/bottom sheen on the reel window */
+  .bb-spin-reels::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(180deg,rgba(238,241,245,.06),transparent 24%,transparent 76%,rgba(0,0,0,.34));
+  }
+  .bb-reel{
+    width:var(--bb-reel-w);height:var(--bb-reel-h);
+    overflow:hidden;flex:0 0 auto;position:relative;
+    background:linear-gradient(180deg,#23272E,var(--panel));
+    border:1px solid var(--hair);
+  }
+  .bb-reel.sep{
+    width:auto;min-width:var(--bb-sep-min);height:var(--bb-reel-h);
+    background:transparent;border:none;overflow:visible;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .bb-reel.sep.gap{min-width:var(--bb-gap-min)}
+  .bb-reel.sep span{
+    font-family:var(--display);font-size:var(--bb-sep-font);
+    color:var(--mut-2);line-height:1;transform:translateY(-1px);
+  }
+  .bb-strip{display:flex;flex-direction:column}
+  .bb-strip.spinning{will-change:transform}
+  .bb-strip .bb-digit{
+    height:var(--bb-reel-h);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--mono);font-weight:800;font-size:var(--bb-reel-font);
+    color:var(--ink);user-select:none;
+  }
+  .bb-reel .bb-flash{
+    position:absolute;inset:0;pointer-events:none;opacity:0;
+    background:radial-gradient(circle at 50% 50%,rgba(255,225,64,.85),rgba(245,200,0,0) 70%);
+  }
+  .bb-reel.locked{border-color:rgba(245,200,0,.55)}
+  .bb-reel.locked .bb-digit{color:var(--bright)}
+  .bb-reel.flash-on .bb-flash{animation:bbFlash 480ms ease-out forwards}
+  @keyframes bbFlash{0%{opacity:0;transform:scale(.6)}25%{opacity:1;transform:scale(1.05)}100%{opacity:0;transform:scale(1.2)}}
+  .bb-reel.settle .bb-strip{animation:bbSettle 280ms cubic-bezier(.2,.9,.25,1)}
+  @keyframes bbSettle{
+    0%{transform:translateY(var(--bb-lock-y))}
+    45%{transform:translateY(calc(var(--bb-lock-y) + 4px))}
+    100%{transform:translateY(var(--bb-lock-y))}
+  }
+  /* secondary trigger — mono, panel chip with offset shadow, NOT the yellow CTA */
+  .bb-spin-trigger{
+    appearance:none;-webkit-appearance:none;-webkit-tap-highlight-color:transparent;
+    display:inline-flex;align-items:center;justify-content:center;gap:9px;
+    width:100%;min-height:50px;padding:13px 16px;
+    font-family:var(--mono);font-weight:800;font-size:13px;
+    letter-spacing:.06em;text-transform:uppercase;
+    background:var(--panel-2);color:var(--ink);
+    border:1px solid var(--hair);box-shadow:var(--shadow-sm);
+    cursor:pointer;
+    transition:transform .07s ease,box-shadow .07s ease,color .15s ease,border-color .15s ease;
+  }
+  .bb-spin-trigger:hover{color:var(--yellow);border-color:var(--yellow)}
+  .bb-spin-trigger:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--black)}
+  .bb-spin-trigger[disabled]{cursor:default;opacity:.7}
+  .bb-spin-trigger .bb-ico{flex-shrink:0;color:var(--yellow)}
+  .bb-spin-trigger .bb-ico svg{width:17px;height:17px;display:block}
+  /* revealed number row: tel link + spin-again, appears after settle */
+  .bb-spin-out{
+    margin-top:0;display:grid;gap:10px;
+    max-height:0;opacity:0;overflow:hidden;
+    transform:translateY(6px);
+    transition:max-height .45s var(--ease-out),opacity .4s var(--ease-out),transform .4s var(--ease-out),margin-top .45s var(--ease-out);
+  }
+  .bb-spin-out.open{max-height:260px;opacity:1;transform:none;margin-top:12px;overflow:visible}
+  .bb-spin-call{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    min-height:50px;padding:13px 16px;text-decoration:none;text-align:center;
+    font-family:var(--mono);font-weight:800;font-size:15px;letter-spacing:.04em;
+    background:var(--panel-2);color:var(--ink);
+    border:3px solid var(--edge);box-shadow:var(--shadow-sm);
+    transition:transform .07s ease,box-shadow .07s ease,background .15s ease,color .15s ease;
+  }
+  .bb-spin-call svg{width:18px;height:18px;flex-shrink:0}
+  .bb-spin-call b{color:var(--bright);font-weight:800}
+  .bb-spin-call:hover{background:var(--edge);color:var(--black)}
+  .bb-spin-call:hover b{color:var(--black)}
+  .bb-spin-call:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--black)}
+  .bb-spin-again{
+    appearance:none;-webkit-appearance:none;-webkit-tap-highlight-color:transparent;
+    display:inline-flex;align-items:center;justify-content:center;gap:7px;
+    margin:0 auto;min-height:44px;padding:8px 16px;
+    background:transparent;border:1px solid var(--hair);color:var(--mut-2);
+    font-family:var(--mono);font-weight:700;font-size:11px;
+    letter-spacing:.1em;text-transform:uppercase;cursor:pointer;
+    transition:color .15s ease,border-color .15s ease,transform .07s ease;
+  }
+  .bb-spin-again:hover{color:var(--ink);border-color:var(--edge)}
+  .bb-spin-again:active{transform:translate(2px,2px)}
+  @media (prefers-reduced-motion:reduce){
+    .bb-spin-trigger,.bb-spin-call,.bb-spin-again{transition:color .15s ease,border-color .15s ease}
+    .bb-spin-out{transition:none}
+    .bb-reel.flash-on .bb-flash{animation:none;opacity:0}
+    .bb-reel.settle .bb-strip{animation:none}
+    .bb-strip{will-change:auto}
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--bg);color:var(--ink);
+    border-top:1px solid var(--hair);
+    padding:38px 0 calc(38px + env(safe-area-inset-bottom));
+    text-align:center;position:relative;z-index:1;
+  }
+  footer .fmark{
+    font-family:var(--mono);font-weight:800;font-size:22px;
+    letter-spacing:-.02em;margin-bottom:16px;
+    display:inline-flex;align-items:center;gap:9px;justify-content:center;color:var(--ink);
+  }
+  footer .fmark .nm-banana{color:var(--yellow)}
+  footer .line{
+    font-family:var(--mono);font-size:13px;letter-spacing:.06em;
+    color:var(--mut-2);line-height:1.9;text-transform:uppercase;
+    word-break:break-word;
+  }
+  footer .line a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--hair);transition:.12s}
+  footer .line a:hover,footer .line a:focus-visible{border-bottom-color:var(--yellow);color:var(--yellow)}
+  footer .social{
+    display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px;
+  }
+  footer .social a{
+    font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--mut-2);text-decoration:none;
+    border:1px solid var(--hair);background:var(--panel-2);
+    padding:10px 14px;min-height:44px;display:inline-flex;align-items:center;
+    transition:.12s;
+  }
+  footer .social a:hover,footer .social a:focus-visible{color:var(--yellow);border-color:var(--yellow)}
+  footer .fcall{
+    margin-top:18px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--mut-2);
+  }
+  footer .fcall a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--hair)}
+  footer .fcall a:hover,footer .fcall a:focus-visible{border-bottom-color:var(--yellow);color:var(--yellow)}
+
+  /* ============ TABLET / DESKTOP ============ */
+  @media (min-width:760px){
+    :root{--nav-h:72px}
+    body{font-size:17px}
+    .wrap{padding:0 32px}
+    section{padding:88px 0}
+
+    .wordmark{font-size:21px}
+
+    /* NOTE: the FULL desktop nav (links + Quote + Text + WhatsApp icons) only
+       fits comfortably from ~980px. Between 760–979 we keep the accessible
+       hamburger so the nav never overflows the 768px tablet width. */
+    .desktop-links a{
+      font-family:var(--mono);font-weight:700;font-size:13px;
+      letter-spacing:.06em;text-transform:uppercase;color:var(--mut-2);
+      text-decoration:none;padding:12px 11px;
+      border:1px solid transparent;transition:.12s;white-space:nowrap;
+    }
+    .desktop-links a:hover,.desktop-links a:focus-visible{color:var(--ink);border-color:var(--hair);background:var(--panel-2)}
+    .nav-cta{
+      display:inline-flex;align-items:center;gap:7px;
+      font-family:var(--mono);font-weight:800;font-size:13px;
+      letter-spacing:.05em;text-transform:uppercase;text-decoration:none;
+      background:var(--yellow);color:var(--black);
+      border:1px solid var(--yellow);padding:12px 15px;white-space:nowrap;
+      box-shadow:3px 3px 0 var(--black);
+      transition:transform .07s ease,box-shadow .07s ease,background .15s ease;
+    }
+    .nav-cta:hover{background:var(--bright);border-color:var(--bright)}
+    .nav-cta:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--black)}
+    @media (prefers-reduced-motion:reduce){.nav-cta{transition:background .15s ease}}
+
+    .hero{padding-top:78px;padding-bottom:92px}
+    .hero h1{font-size:clamp(46px,6.4vw,72px)}
+    .hero .sub{font-size:15px}
+    .hero .rule{width:160px}
+    .btn-row{flex-direction:row;flex-wrap:wrap;align-items:center}
+    .btn{flex:0 1 auto;padding:18px 24px}
+    .btn-dual{flex:0 1 auto}
+    .btn-dual .btn{flex:0 1 auto;padding:18px 18px}
+    .hero-inner{display:grid;grid-template-columns:1.02fr .98fr;gap:50px;align-items:center}
+    .browser .viewport{height:360px}
+
+    .sec-title{font-size:clamp(36px,5vw,46px)}
+    .sec-lead{margin-bottom:8px}
+
+    .svc-list{display:grid;grid-template-columns:repeat(6,1fr);gap:30px;margin-top:30px}
+    .svc{grid-column:span 2}
+    .svc:nth-child(4){grid-column:2 / span 2}
+    .svc:nth-child(5){grid-column:4 / span 2}
+    .svc-body{padding:48px 26px 32px}
+
+    .work-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+    .project .viewport{height:240px}
+
+    .price-list{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+    .price:nth-child(5){grid-column:1 / -1}
+    .reassure{margin-top:30px}
+
+    .about-inner{display:grid;grid-template-columns:.85fr 1.15fr;gap:54px;align-items:center}
+    .founder-photo{margin:0}
+    .chips{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+    .review-list{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+
+    .steps{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:30px}
+    .step .n{min-width:96px;font-size:44px}
+
+    .contact-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:44px;align-items:start}
+    .reach-wrap{position:sticky;top:calc(var(--nav-h) + 24px)}
+    .contact .sec-title{font-size:clamp(38px,5vw,50px)}
+  }
+  /* ---- FULL DESKTOP NAV: only from 1100px, where links + Quote + Text +
+     WhatsApp + lang toggle all fit without overflowing the bar in EITHER
+     language (Spanish "Cotiza Gratis" is wider than "Get a Quote"). Below
+     this we keep the accessible hamburger, which always fits. ---- */
+  @media (min-width:1100px){
+    .burger{display:none}
+    .scrim{display:none}
+    .mobile-menu{display:none}
+    .desktop-links{display:flex;align-items:center;gap:2px;list-style:none}
+    .nav-actions{display:inline-flex;align-items:center;gap:8px;margin-left:8px}
+  }
+  @media (min-width:1024px){
+    .hero h1{font-size:74px}
+    .sec-title{font-size:50px}
+    .svc-body{padding:48px 30px 34px}
+    .price-list{grid-template-columns:repeat(3,1fr)}
+    .price:nth-child(4){grid-column:auto}
+    .price:nth-child(5){grid-column:auto}
+    .work-grid{grid-template-columns:repeat(2,1fr)}
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#top" data-en="Skip to content" data-es="Saltar al contenido">Skip to content</a>
+
+<!-- scroll progress -->
+<div class="scroll-progress" aria-hidden="true"><div class="bar" id="progressBar"></div></div>
+
+<div class="badge" aria-hidden="true"><span class="sp">&#9698;</span> FINAL &middot; EN/ES</div>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="wordmark" aria-label="BANANAbyte home" data-en-aria="BANANAbyte home" data-es-aria="BANANAbyte inicio">
+      <svg class="pixel-banana" width="26" height="26" viewBox="0 0 16 16" role="img" aria-hidden="true" focusable="false" shape-rendering="crispEdges">
+        <rect x="11" y="2" width="2" height="2" fill="#7A6300"/>
+        <rect x="12" y="3" width="2" height="2" fill="#F5C800"/>
+        <rect x="11" y="4" width="2" height="2" fill="#FFE140"/>
+        <rect x="10" y="5" width="2" height="2" fill="#FFE140"/>
+        <rect x="9" y="6" width="2" height="2" fill="#F5C800"/>
+        <rect x="7" y="7" width="2" height="2" fill="#FFE140"/>
+        <rect x="5" y="8" width="2" height="2" fill="#FFE140"/>
+        <rect x="3" y="9" width="2" height="2" fill="#F5C800"/>
+        <rect x="2" y="10" width="2" height="2" fill="#F5C800"/>
+        <rect x="2" y="11" width="2" height="2" fill="#7A6300"/>
+        <rect x="3" y="12" width="3" height="2" fill="#F5C800"/>
+        <rect x="6" y="12" width="3" height="1" fill="#FFE140"/>
+        <rect x="9" y="11" width="2" height="2" fill="#F5C800"/>
+      </svg>
+      <span><span class="nm-banana">BANANA</span><span class="nm-byte">byte</span></span>
+    </a>
+
+    <nav class="nav-right" aria-label="Primary" data-en-aria="Primary" data-es-aria="Principal">
+      <ul class="desktop-links">
+        <li><a href="#services" data-en="Services" data-es="Servicios">Services</a></li>
+        <li><a href="#work" data-en="Work" data-es="Trabajos">Work</a></li>
+        <li><a href="#pricing" data-en="Pricing" data-es="Precios">Pricing</a></li>
+        <li><a href="#about" data-en="About" data-es="Nosotros">About</a></li>
+        <li><a href="#contact" data-en="Contact" data-es="Contacto">Contact</a></li>
+      </ul>
+
+      <div class="lang-toggle" role="group" aria-label="Language / Idioma" data-en-aria="Language" data-es-aria="Idioma">
+        <button type="button" class="lang-btn" data-lang="en" aria-pressed="true" aria-label="Switch to English" data-en-aria="Switch to English" data-es-aria="Cambiar a inglés">EN</button>
+        <span class="sep" aria-hidden="true"></span>
+        <button type="button" class="lang-btn" data-lang="es" aria-pressed="false" aria-label="Cambiar a español" data-en-aria="Switch to Spanish" data-es-aria="Cambiar a español">ES</button>
+      </div>
+
+      <span class="nav-actions">
+        <a href="#contact" class="nav-cta" data-magnetic data-en="Get a Quote" data-es="Cotiza Gratis">Get a Quote</a>
+        <a href="sms:+14075550137" class="icon-btn" aria-label="Text us at (407) 555-0137" title="Text us" data-en-aria="Text us at (407) 555-0137" data-es-aria="Escríbenos al (407) 555-0137" data-en-title="Text us" data-es-title="Escríbenos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg>
+        </a>
+        <a href="https://wa.me/14075550137" rel="noopener" target="_blank" class="icon-btn" aria-label="Message us on WhatsApp" title="WhatsApp" data-en-aria="Message us on WhatsApp" data-es-aria="Escríbenos por WhatsApp">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.84-1.96-.93-.26-.1-.46-.15-.65.15-.2.3-.74.93-.9 1.12-.17.2-.34.22-.63.08-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.34.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.65-1.57-.9-2.15-.24-.56-.48-.48-.65-.49l-.56-.01c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.2 1.87.12.57-.08 1.7-.7 1.95-1.36.24-.67.24-1.24.17-1.36-.07-.12-.27-.2-.56-.34zM12 2a10 10 0 0 0-8.6 15.07L2 22l5.05-1.32A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3 .78.8-2.92-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+        </a>
+      </span>
+
+      <button class="burger" id="burger" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu" data-en-aria-open="Open navigation menu" data-es-aria-open="Abrir menú de navegación" data-en-aria-close="Close navigation menu" data-es-aria-close="Cerrar menú de navegación">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- backdrop + mobile dropdown -->
+<div class="scrim" id="scrim" hidden></div>
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Site navigation" data-en-aria="Site navigation" data-es-aria="Navegación del sitio" hidden>
+  <ul>
+    <li><a class="mlink" href="#services" data-close><span class="idx" data-en="01 / SERVICES" data-es="01 / SERVICIOS">01 / SERVICES</span><span data-en="Services" data-es="Servicios">Services</span></a></li>
+    <li><a class="mlink" href="#work" data-close><span class="idx" data-en="02 / WORK" data-es="02 / TRABAJOS">02 / WORK</span><span data-en="Work" data-es="Trabajos">Work</span></a></li>
+    <li><a class="mlink" href="#pricing" data-close><span class="idx" data-en="03 / PRICING" data-es="03 / PRECIOS">03 / PRICING</span><span data-en="Pricing" data-es="Precios">Pricing</span></a></li>
+    <li><a class="mlink" href="#about" data-close><span class="idx" data-en="04 / ABOUT" data-es="04 / NOSOTROS">04 / ABOUT</span><span data-en="About" data-es="Nosotros">About</span></a></li>
+    <li><a class="mlink" href="#contact" data-close><span class="idx" data-en="05 / CONTACT" data-es="05 / CONTACTO">05 / CONTACT</span><span data-en="Contact" data-es="Contacto">Contact</span></a></li>
+  </ul>
+
+  <div class="m-lang">
+    <span class="m-lang-lbl" data-en="Language" data-es="Idioma">Language</span>
+    <div class="lang-toggle" role="group" aria-label="Language / Idioma" data-en-aria="Language" data-es-aria="Idioma">
+      <button type="button" class="lang-btn" data-lang="en" aria-pressed="true" aria-label="Switch to English" data-en-aria="Switch to English" data-es-aria="Cambiar a inglés">EN</button>
+      <span class="sep" aria-hidden="true"></span>
+      <button type="button" class="lang-btn" data-lang="es" aria-pressed="false" aria-label="Cambiar a español" data-en-aria="Switch to Spanish" data-es-aria="Cambiar a español">ES</button>
+    </div>
+  </div>
+
+  <div class="m-actions">
+    <a href="#contact" class="m-quote" data-close data-en="Get a Quote" data-es="Cotiza Gratis">Get a Quote</a>
+    <div class="m-dual">
+      <a href="sms:+14075550137" class="m-text" data-close>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg>
+        <span data-en="Text us" data-es="Escríbenos">Text us</span>
+      </a>
+      <a href="https://wa.me/14075550137" rel="noopener" target="_blank" class="m-wa" data-close>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.84-1.96-.93-.26-.1-.46-.15-.65.15-.2.3-.74.93-.9 1.12-.17.2-.34.22-.63.08-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.34.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.65-1.57-.9-2.15-.24-.56-.48-.48-.65-.49l-.56-.01c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.2 1.87.12.57-.08 1.7-.7 1.95-1.36.24-.67.24-1.24.17-1.36-.07-.12-.27-.2-.56-.34zM12 2a10 10 0 0 0-8.6 15.07L2 22l5.05-1.32A10 10 0 1 0 12 2z"/></svg>
+        <span>WhatsApp</span>
+      </a>
+    </div>
+    <p class="m-call"><span data-en="Prefer to talk? Call" data-es="¿Prefieres hablar? Llama al">Prefer to talk? Call</span> <a href="tel:+14075550137">(407)&nbsp;555-0137</a></p>
+  </div>
+</div>
+
+<!-- ============ TICKER ============ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span data-en="Computer Repair" data-es="Reparación de Computadoras">Computer Repair</span><span class="dot">&#9670;</span><span data-en="Networking" data-es="Redes">Networking</span><span class="dot">&#9670;</span><span data-en="Data Rescue" data-es="Recuperación de Datos">Data Rescue</span><span class="dot">&#9670;</span><span data-en="Friendly Tech Help" data-es="Ayuda Técnica Amable">Friendly Tech Help</span><span class="dot">&#9670;</span><span data-en="Web Design" data-es="Diseño Web">Web Design</span><span class="dot">&#9670;</span><span data-en="Upfront Pricing" data-es="Precios por Adelantado">Upfront Pricing</span><span class="dot">&#9670;</span><span>Orlando, FL</span><span class="dot">&#9670;</span>
+    <span class="dup" data-en="Computer Repair" data-es="Reparación de Computadoras">Computer Repair</span><span class="dot dup">&#9670;</span><span class="dup" data-en="Networking" data-es="Redes">Networking</span><span class="dot dup">&#9670;</span><span class="dup" data-en="Data Rescue" data-es="Recuperación de Datos">Data Rescue</span><span class="dot dup">&#9670;</span><span class="dup" data-en="Friendly Tech Help" data-es="Ayuda Técnica Amable">Friendly Tech Help</span><span class="dot dup">&#9670;</span><span class="dup" data-en="Web Design" data-es="Diseño Web">Web Design</span><span class="dot dup">&#9670;</span><span class="dup" data-en="Upfront Pricing" data-es="Precios por Adelantado">Upfront Pricing</span><span class="dot dup">&#9670;</span><span class="dup">Orlando, FL</span><span class="dot dup">&#9670;</span>
+  </div>
+</div>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero" aria-labelledby="hero-h">
+    <div class="hero-fx" aria-hidden="true">
+      <div class="hero-grid"></div>
+      <div class="hero-glow" id="heroGlow"></div>
+    </div>
+    <div class="wrap hero-inner">
+      <div>
+        <span class="tag reveal">
+          <svg class="pixel-banana" width="15" height="15" viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges">
+            <rect x="11" y="2" width="2" height="2" fill="#7A6300"/><rect x="12" y="3" width="2" height="2" fill="#F5C800"/><rect x="11" y="4" width="2" height="2" fill="#FFE140"/><rect x="10" y="5" width="2" height="2" fill="#FFE140"/><rect x="9" y="6" width="2" height="2" fill="#F5C800"/><rect x="7" y="7" width="2" height="2" fill="#FFE140"/><rect x="5" y="8" width="2" height="2" fill="#FFE140"/><rect x="3" y="9" width="2" height="2" fill="#F5C800"/><rect x="2" y="10" width="2" height="2" fill="#F5C800"/><rect x="2" y="11" width="2" height="2" fill="#7A6300"/><rect x="3" y="12" width="3" height="2" fill="#F5C800"/><rect x="6" y="12" width="3" height="1" fill="#FFE140"/><rect x="9" y="11" width="2" height="2" fill="#F5C800"/>
+          </svg>
+          <span data-en="BANANAbyte &mdash; Orlando, FL" data-es="BANANAbyte &mdash; Orlando, FL">BANANAbyte &mdash; Orlando, FL</span>
+        </span>
+        <h1 id="hero-h" data-en="Local tech help that <span class=&quot;hl&quot;>actually shows up.</span>" data-es="Soporte técnico local que <span class=&quot;hl&quot;>de verdad llega.</span>">Local tech help that <span class="hl">actually shows up.</span></h1>
+        <div class="rule" aria-hidden="true"></div>
+        <p class="sub reveal" data-en="Computer Repair &middot; Networking &middot; Data &middot; Web Design &mdash; Orlando, FL" data-es="Reparación de Computadoras &middot; Redes &middot; Datos &middot; Diseño Web &mdash; Orlando, FL">Computer Repair &middot; Networking &middot; Data &middot; Web Design &mdash; Orlando, FL</p>
+        <div class="btn-row reveal">
+          <a href="#contact" class="btn btn-primary" data-magnetic>
+            <span class="mag"><span data-en="Get a Quote" data-es="Cotiza Gratis">Get a Quote</span> <span aria-hidden="true">&rarr;</span></span>
+          </a>
+          <div class="btn-dual">
+            <a href="sms:+14075550137" class="btn btn-secondary">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg>
+              <span data-en="Text us" data-es="Escríbenos">Text us</span>
+            </a>
+            <a href="https://wa.me/14075550137" rel="noopener" target="_blank" class="btn btn-secondary">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.84-1.96-.93-.26-.1-.46-.15-.65.15-.2.3-.74.93-.9 1.12-.17.2-.34.22-.63.08-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.34.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.65-1.57-.9-2.15-.24-.56-.48-.48-.65-.49l-.56-.01c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.2 1.87.12.57-.08 1.7-.7 1.95-1.36.24-.67.24-1.24.17-1.36-.07-.12-.27-.2-.56-.34zM12 2a10 10 0 0 0-8.6 15.07L2 22l5.05-1.32A10 10 0 1 0 12 2z"/></svg>
+              <span>WhatsApp</span>
+            </a>
+          </div>
+        </div>
+        <p class="trust reveal" data-en="Friendly, no jargon, and an <b>upfront price you approve before we start</b>." data-es="Trato amable, sin tecnicismos, y un <b>precio por adelantado que apruebas antes de empezar</b>.">Friendly, no jargon, and an <b>upfront price you approve before we start</b>.</p>
+      </div>
+
+      <!-- HERO LIVE DEMO: cool-graphite browser cycling through sample site previews -->
+      <div class="browser reveal" id="liveDemo" role="img" aria-label="Animated preview of sample websites built by BANANAbyte" data-en-aria="Animated preview of sample websites built by BANANAbyte" data-es-aria="Vista previa animada de sitios web de muestra creados por BANANAbyte">
+        <div class="chrome" aria-hidden="true">
+          <i></i><i></i><i></i>
+          <span class="addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span id="demoAddr">bananabyte.io/demo</span></span>
+        </div>
+        <div class="viewport">
+          <div class="scroller" id="demoScroller">
+
+            <!-- preview 1: café -->
+            <div class="mini" data-preview>
+              <div class="mini-nav"><div class="mini-logo"><span class="dotmark"></span>Aloha Café</div><div class="mini-navlinks"><span></span><span></span><span></span></div></div>
+              <div class="mini-hero"><div class="mini-kicker"></div><div class="mini-h"></div><div class="mini-h sm"></div><div class="mini-p"></div><div class="mini-p w2"></div><div class="mini-btnrow"><div class="mini-btn"></div><div class="mini-btn ghost"></div></div></div>
+              <div class="mini-photo"></div>
+              <div class="mini-grid"><div class="mini-card"><div class="thumb"></div><div class="l"></div><div class="l s"></div></div><div class="mini-card"><div class="thumb"></div><div class="l"></div><div class="l s"></div></div><div class="mini-card"><div class="thumb"></div><div class="l"></div><div class="l s"></div></div></div>
+            </div>
+
+            <!-- preview 2: lawn care -->
+            <div class="mini" data-preview>
+              <div class="mini-nav"><div class="mini-logo"><span class="dotmark"></span>GreenScape</div><div class="mini-navlinks"><span></span><span></span><span></span></div></div>
+              <div class="mini-hero"><div class="mini-kicker"></div><div class="mini-h"></div><div class="mini-h sm"></div><div class="mini-p"></div><div class="mini-p w2"></div><div class="mini-p w3"></div><div class="mini-btnrow"><div class="mini-btn"></div></div></div>
+              <div class="mini-band"><div class="bl"></div><div class="bbtn"></div></div>
+              <div class="mini-grid"><div class="mini-card"><div class="thumb"></div><div class="l"></div><div class="l s"></div></div><div class="mini-card"><div class="thumb"></div><div class="l"></div><div class="l s"></div></div><div class="mini-card"><div class="thumb"></div><div class="l"></div><div class="l s"></div></div></div>
+              <div class="mini-foot"><span></span><span></span><span></span></div>
+            </div>
+
+            <!-- preview 3: dental -->
+            <div class="mini" data-preview>
+              <div class="mini-nav"><div class="mini-logo"><span class="dotmark"></span>Sunrise Dental</div><div class="mini-navlinks"><span></span><span></span><span></span></div></div>
+              <div class="mini-photo"></div>
+              <div class="mini-hero"><div class="mini-kicker"></div><div class="mini-h"></div><div class="mini-h sm"></div><div class="mini-p"></div><div class="mini-p w2"></div><div class="mini-btnrow"><div class="mini-btn"></div><div class="mini-btn ghost"></div></div></div>
+              <div class="mini-band"><div class="bl"></div><div class="bbtn"></div></div>
+            </div>
+
+          </div>
+        </div>
+        <div class="demo-cap" aria-hidden="true"><span class="pip"></span> <b data-en="Sample sites" data-es="Sitios de muestra">Sample sites</b> <span data-en="— the kind we build" data-es="— del estilo que hacemos">— the kind we build</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="services" id="services" aria-labelledby="svc-h">
+    <div class="wrap">
+      <span class="eyebrow reveal"><span class="sp">[</span> <span data-en="01 / SERVICES" data-es="01 / SERVICIOS">01 / SERVICES</span> <span class="sp">]</span></span>
+      <h2 class="sec-title reveal" id="svc-h" data-en="What we do" data-es="Lo que hacemos">What we do</h2>
+      <p class="sec-lead reveal" data-en="Five things, done right &mdash; from a dead laptop to a brand-new website." data-es="Cinco cosas, bien hechas &mdash; desde una laptop muerta hasta un sitio web nuevecito.">Five things, done right &mdash; from a dead laptop to a brand-new website.</p>
+
+      <div class="svc-list reveal" data-stagger>
+        <article class="svc">
+          <span class="num">// 01</span>
+          <div class="svc-body">
+            <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="1"/><path d="M8 21h8M12 17v4"/></svg></div>
+            <h3 data-en="Computer Repair" data-es="Reparación de Computadoras">Computer Repair</h3>
+            <p data-en="Slow, crashing, or infected? We fix hardware and software problems, remove viruses, replace failing parts, and bring tired machines back to life." data-es="¿Lenta, se traba o tiene virus? Resolvemos problemas de hardware y software, eliminamos virus, cambiamos las piezas que ya no sirven y le devolvemos la vida a equipos cansados.">Slow, crashing, or infected? We fix hardware and software problems, remove viruses, replace failing parts, and bring tired machines back to life.</p>
+          </div>
+        </article>
+
+        <article class="svc">
+          <span class="num">// 02</span>
+          <div class="svc-body">
+            <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13a10 10 0 0 1 14 0M8.5 16.5a5 5 0 0 1 7 0M2 9.5a15 15 0 0 1 20 0"/><circle cx="12" cy="20" r="1"/></svg></div>
+            <h3 data-en="Networking Solutions" data-es="Soluciones de Redes">Networking Solutions</h3>
+            <p data-en="Wi-Fi that reaches every room. We set up, secure, and troubleshoot home and office networks, routers, and mesh systems." data-es="Wi-Fi que llega a cada rincón de la casa. Instalamos, aseguramos y arreglamos redes de casa y oficina, routers y sistemas mesh.">Wi-Fi that reaches every room. We set up, secure, and troubleshoot home and office networks, routers, and mesh systems.</p>
+          </div>
+        </article>
+
+        <article class="svc">
+          <span class="num">// 03</span>
+          <div class="svc-body">
+            <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.66 3.58 3 8 3s8-1.34 8-3V5M4 11v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"/></svg></div>
+            <h3 data-en="Data Cleanup &amp; Recovery" data-es="Limpieza y Recuperación de Datos">Data Cleanup &amp; Recovery</h3>
+            <p data-en="Recover lost files, declutter packed drives, organize years of photos and documents, and set up backups so nothing disappears again." data-es="Recuperamos archivos perdidos, liberamos discos llenos, organizamos años de fotos y documentos, y configuramos respaldos para que nada vuelva a desaparecer.">Recover lost files, declutter packed drives, organize years of photos and documents, and set up backups so nothing disappears again.</p>
+          </div>
+        </article>
+
+        <article class="svc">
+          <span class="num">// 04</span>
+          <div class="svc-body">
+            <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg></div>
+            <h3 data-en="Friendly Tech Help" data-es="Ayuda Técnica Amable">Friendly Tech Help</h3>
+            <p data-en="Patient, no-jargon help getting your computer, phone, or tablet set up, organized, and easy to use &mdash; perfect for seniors or anyone who&rsquo;d rather just have it handled." data-es="Ayuda paciente y sin tecnicismos para configurar y organizar tu computadora, teléfono o tableta y dejarlos fáciles de usar &mdash; ideal para personas mayores o para quien simplemente prefiere que se lo resolvamos.">Patient, no-jargon help getting your computer, phone, or tablet set up, organized, and easy to use &mdash; perfect for seniors or anyone who&rsquo;d rather just have it handled.</p>
+          </div>
+        </article>
+
+        <article class="svc">
+          <span class="num">// 05</span>
+          <div class="svc-body">
+            <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+            <h3 data-en="Web Design" data-es="Diseño Web">Web Design</h3>
+            <p data-en="Fast, clean websites for local businesses &mdash; quick to load, sharp to look at, and easy to maintain. (Like this one.)" data-es="Sitios web rápidos y limpios para negocios locales &mdash; cargan al instante, se ven muy bien y son fáciles de mantener. (Como este.)">Fast, clean websites for local businesses &mdash; quick to load, sharp to look at, and easy to maintain. (Like this one.)</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WORK / PORTFOLIO ============ -->
+  <section class="work" id="work" aria-labelledby="work-h">
+    <div class="wrap">
+      <span class="eyebrow reveal"><span class="sp">[</span> <span data-en="02 / WORK" data-es="02 / TRABAJOS">02 / WORK</span> <span class="sp">]</span></span>
+      <h2 class="sec-title reveal" id="work-h" data-en="Recent work" data-es="Trabajos recientes">Recent work</h2>
+      <p class="sec-lead reveal" data-en="A few local sites we&rsquo;ve built. Hover or tap a preview to take a look around." data-es="Algunos sitios locales que hemos hecho. Pasa el cursor o toca una vista previa para echar un vistazo.">A few local sites we&rsquo;ve built. Hover or tap a preview to take a look around.</p>
+      <p class="work-note reveal" data-en="Sample concepts shown for now &mdash; we&rsquo;ll swap in real client work as it goes live." data-es="Por ahora mostramos conceptos de muestra &mdash; iremos poniendo trabajos reales de clientes a medida que se publiquen.">Sample concepts shown for now &mdash; we&rsquo;ll swap in real client work as it goes live.</p>
+
+      <div class="work-grid reveal" data-stagger>
+
+        <article class="project" style="--scroll-to:-42%">
+          <div class="browser">
+            <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span class="addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>alohacafe-orlando.com</span></div>
+            <div class="viewport">
+              <div class="scroller" aria-hidden="true">
+                <div class="mini">
+                  <div class="mini-nav"><div class="mini-logo"><span class="dotmark"></span>Aloha Café</div><div class="mini-navlinks"><span></span><span></span><span></span></div></div>
+                  <div class="mini-hero"><div class="mini-kicker"></div><div class="mini-h"></div><div class="mini-h sm"></div><div class="mini-p"></div><div class="mini-p w2"></div><div class="mini-btnrow"><div class="mini-btn"></div><div class="mini-btn ghost"></div></div></div>
+                  <div class="mini-photo"></div>
+                  <div class="mini-grid"><div class="mini-card"><div class="thumb"></div><div class="l"></div><div class="l s"></div></div><div class="mini-card"><div class="thumb"></div><div class="l"></div><div class="l s"></div></div><div class="mini-card"><div class="thumb"></div><div class="l"></div><div class="l s"></div></div></div>
+                  <div class="mini-foot"><span></span><span></span><span></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pcap">
+            <span class="pcat" data-en="Café &middot; Orlando" data-es="Cafetería &middot; Orlando">Café &middot; Orlando</span>
+            <h3>Aloha Café — Orlando</h3>
+            <p data-en="A cozy neighborhood café site with menu, hours, and an easy &ldquo;find us&rdquo; map." data-es="Un sitio acogedor para una cafetería de barrio con menú, horarios y un mapa fácil de &ldquo;cómo llegar&rdquo;.">A cozy neighborhood café site with menu, hours, and an easy &ldquo;find us&rdquo; map.</p>
+            <a href="#work" class="view"><span data-en="View concept" data-es="Ver concepto">View concept</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </article>
+
+        <article class="project" style="--scroll-to:-48%">
+          <div class="browser">
+            <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span class="addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>greenscapelawn.com</span></div>
+            <div class="viewport">
+              <div class="scroller" aria-hidden="true">
+                <div class="mini">
+                  <div class="mini-nav"><div class="mini-logo"><span class="dotmark"></span>GreenScape</div><div class="mini-navlinks"><span></span><span></span><span></span></div></div>
+                  <div class="mini-hero"><div class="mini-kicker"></div><div class="mini-h"></div><div class="mini-h sm"></div><div class="mini-p"></div><div class="mini-p w2"></div><div class="mini-p w3"></div><div class="mini-btnrow"><div class="mini-btn"></div></div></div>
+                  <div class="mini-band"><div class="bl"></div><div class="bbtn"></div></div>
+                  <div class="mini-grid"><div class="mini-card"><div class="thumb"></div><div class="l"></div><div class="l s"></div></div><div class="mini-card"><div class="thumb"></div><div class="l"></div><div class="l s"></div></div><div class="mini-card"><div class="thumb"></div><div class="l"></div><div class="l s"></div></div></div>
+                  <div class="mini-foot"><span></span><span></span><span></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pcap">
+            <span class="pcat" data-en="Landscaping" data-es="Jardinería">Landscaping</span>
+            <h3>GreenScape Lawn Care</h3>
+            <p data-en="Service list, before-and-after gallery, and a one-tap quote request for a busy landscaper." data-es="Lista de servicios, galería de antes y después, y una solicitud de cotización con un solo toque para un jardinero con mucho trabajo.">Service list, before-and-after gallery, and a one-tap quote request for a busy landscaper.</p>
+            <a href="#work" class="view"><span data-en="View concept" data-es="Ver concepto">View concept</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </article>
+
+        <article class="project" style="--scroll-to:-40%">
+          <div class="browser">
+            <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span class="addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>sunrisedental.com</span></div>
+            <div class="viewport">
+              <div class="scroller" aria-hidden="true">
+                <div class="mini">
+                  <div class="mini-nav"><div class="mini-logo"><span class="dotmark"></span>Sunrise Dental</div><div class="mini-navlinks"><span></span><span></span><span></span></div></div>
+                  <div class="mini-photo"></div>
+                  <div class="mini-hero"><div class="mini-kicker"></div><div class="mini-h"></div><div class="mini-h sm"></div><div class="mini-p"></div><div class="mini-p w2"></div><div class="mini-btnrow"><div class="mini-btn"></div><div class="mini-btn ghost"></div></div></div>
+                  <div class="mini-band"><div class="bl"></div><div class="bbtn"></div></div>
+                  <div class="mini-foot"><span></span><span></span><span></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pcap">
+            <span class="pcat" data-en="Dentist" data-es="Dentista">Dentist</span>
+            <h3>Sunrise Dental</h3>
+            <p data-en="Calm, trustworthy design with online booking front-and-center for a family practice." data-es="Un diseño tranquilo y confiable, con la cita en línea bien al frente, para un consultorio familiar.">Calm, trustworthy design with online booking front-and-center for a family practice.</p>
+            <a href="#work" class="view"><span data-en="View concept" data-es="Ver concepto">View concept</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </article>
+
+        <article class="project" style="--scroll-to:-46%">
+          <div class="browser">
+            <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span class="addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>bananabyte.io</span></div>
+            <div class="viewport">
+              <div class="scroller" aria-hidden="true">
+                <div class="mini">
+                  <div class="mini-nav"><div class="mini-logo"><span class="dotmark"></span>BANANAbyte</div><div class="mini-navlinks"><span></span><span></span><span></span></div></div>
+                  <div class="mini-hero"><div class="mini-kicker"></div><div class="mini-h"></div><div class="mini-h sm"></div><div class="mini-p"></div><div class="mini-p w2"></div><div class="mini-btnrow"><div class="mini-btn"></div><div class="mini-btn ghost"></div></div></div>
+                  <div class="mini-grid"><div class="mini-card"><div class="thumb"></div><div class="l"></div><div class="l s"></div></div><div class="mini-card"><div class="thumb"></div><div class="l"></div><div class="l s"></div></div><div class="mini-card"><div class="thumb"></div><div class="l"></div><div class="l s"></div></div></div>
+                  <div class="mini-band"><div class="bl"></div><div class="bbtn"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pcap">
+            <span class="pcat" data-en="This site" data-es="Este sitio">This site</span>
+            <h3>BANANAbyte.io</h3>
+            <p data-en="The very page you&rsquo;re on &mdash; fast, clean, and easy to maintain. Proof we practice what we sell." data-es="La misma página en la que estás &mdash; rápida, limpia y fácil de mantener. La prueba de que practicamos lo que vendemos.">The very page you&rsquo;re on &mdash; fast, clean, and easy to maintain. Proof we practice what we sell.</p>
+            <a href="#top" class="view"><span data-en="View site" data-es="Ver sitio">View site</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRICING ============ -->
+  <section class="pricing" id="pricing" aria-labelledby="price-h">
+    <div class="wrap">
+      <span class="eyebrow reveal"><span class="sp">[</span> <span data-en="03 / PRICING" data-es="03 / PRECIOS">03 / PRICING</span> <span class="sp">]</span></span>
+      <h2 class="sec-title reveal" id="price-h" data-en="Honest, upfront pricing" data-es="Precios honestos y por adelantado">Honest, upfront pricing</h2>
+      <p class="sec-lead reveal" data-en="Starting prices &mdash; you approve the number before any work begins." data-es="Precios desde &mdash; tú apruebas el monto antes de que empiece cualquier trabajo.">Starting prices &mdash; you approve the number before any work begins.</p>
+
+      <div class="price-list reveal" data-stagger>
+        <article class="price">
+          <div class="ph"><h3 data-en="Diagnostic &amp; Tune-Up" data-es="Diagnóstico y Puesta a Punto">Diagnostic &amp; Tune-Up</h3><span class="amt"><span data-en="from $49" data-es="desde $49">from $49</span></span></div>
+          <p data-en="We find what&rsquo;s wrong and make your machine fast again." data-es="Encontramos qué falla y dejamos tu equipo rápido de nuevo.">We find what&rsquo;s wrong and make your machine fast again.</p>
+        </article>
+        <article class="price">
+          <div class="ph"><h3 data-en="Home Network Setup" data-es="Instalación de Red en Casa">Home Network Setup</h3><span class="amt"><span data-en="from $129" data-es="desde $129">from $129</span></span></div>
+          <p data-en="Whole-home Wi-Fi, set up and secured right." data-es="Wi-Fi para toda la casa, instalado y bien protegido.">Whole-home Wi-Fi, set up and secured right.</p>
+        </article>
+        <article class="price">
+          <div class="ph"><h3 data-en="Data Rescue &amp; Backup" data-es="Recuperación y Respaldo de Datos">Data Rescue &amp; Backup</h3><span class="amt"><span data-en="from $99" data-es="desde $99">from $99</span></span></div>
+          <p data-en="Recover what matters and protect it going forward." data-es="Recuperamos lo que importa y lo protegemos de aquí en adelante.">Recover what matters and protect it going forward.</p>
+        </article>
+        <article class="price">
+          <div class="ph"><h3 data-en="Friendly Tech Help" data-es="Ayuda Técnica Amable">Friendly Tech Help</h3><span class="amt">$60<small data-en="/hr" data-es="/hora">/hr</small></span></div>
+          <p data-en="Patient one-on-one help." data-es="Ayuda paciente, uno a uno.">Patient one-on-one help.</p>
+          <span class="free" data-en="First 15 minutes free" data-es="Primeros 15 minutos gratis">First 15 minutes free</span>
+        </article>
+        <article class="price">
+          <div class="ph"><h3 data-en="Small-Business Website" data-es="Sitio Web para Negocios">Small-Business Website</h3><span class="amt"><span data-en="from $900" data-es="desde $900">from $900</span></span></div>
+          <p data-en="Fast, clean, and easy to maintain." data-es="Rápido, limpio y fácil de mantener.">Fast, clean, and easy to maintain.</p>
+        </article>
+      </div>
+
+      <div class="reassure reveal">
+        <p data-en="Every job starts with a <b>free, no-obligation quote</b>. You approve the price before we touch anything." data-es="Todo trabajo comienza con una <b>cotización gratis y sin compromiso</b>. Tú apruebas el precio antes de que toquemos nada.">Every job starts with a <b>free, no-obligation quote</b>. You approve the price before we touch anything.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT / MEET THE FOUNDER ============ -->
+  <section class="about" id="about" aria-labelledby="about-h">
+    <div class="wrap about-inner">
+      <div class="reveal">
+        <div class="founder-photo" role="img" aria-label="BANANAbyte&rsquo;s pixel-banana mascot, standing in for founder Gabe" data-en-aria="BANANAbyte&rsquo;s pixel-banana mascot, standing in for founder Gabe" data-es-aria="La mascota de banana en píxeles de BANANAbyte, en lugar del fundador Gabe">
+          <svg class="pixel-banana" viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges">
+            <rect x="11" y="2" width="2" height="2" fill="#7A6300"/><rect x="12" y="3" width="2" height="2" fill="#F5C800"/><rect x="11" y="4" width="2" height="2" fill="#FFE140"/><rect x="10" y="5" width="2" height="2" fill="#FFE140"/><rect x="9" y="6" width="2" height="2" fill="#F5C800"/><rect x="7" y="7" width="2" height="2" fill="#FFE140"/><rect x="5" y="8" width="2" height="2" fill="#FFE140"/><rect x="3" y="9" width="2" height="2" fill="#F5C800"/><rect x="2" y="10" width="2" height="2" fill="#F5C800"/><rect x="2" y="11" width="2" height="2" fill="#7A6300"/><rect x="3" y="12" width="3" height="2" fill="#F5C800"/><rect x="6" y="12" width="3" height="1" fill="#FFE140"/><rect x="9" y="11" width="2" height="2" fill="#F5C800"/>
+          </svg>
+          <span class="cap" data-en="Gabe &middot; Founder" data-es="Gabe &middot; Fundador">Gabe &middot; Founder</span>
+        </div>
+      </div>
+      <div class="reveal" data-stagger>
+        <span class="eyebrow"><span class="sp">[</span> <span data-en="04 / ABOUT" data-es="04 / NOSOTROS">04 / ABOUT</span> <span class="sp">]</span></span>
+        <h2 class="sec-title" id="about-h" data-en="Meet the founder." data-es="Conoce al fundador.">Meet the founder.</h2>
+        <p class="blurb" data-en="Hi, I&rsquo;m Gabe &mdash; and I&rsquo;m the one who answers your message and shows up to help. I started BANANAbyte because too many people get talked down to, overcharged, or ghosted by tech companies. My promise is simple: <b>honest advice</b>, <b>plain English</b>, and a <b>fair price you approve up front</b>. Whether you run a small business or you just want the family computer working again, I&rsquo;ve got you." data-es="Hola, soy Gabe &mdash; y soy quien responde tu mensaje y llega a ayudarte en persona. Empecé BANANAbyte porque a demasiada gente la tratan con aires de superioridad, le cobran de más o la dejan en visto las empresas de tecnología. Mi promesa es sencilla: <b>consejos honestos</b>, <b>palabras claras</b> y un <b>precio justo que apruebas por adelantado</b>. Ya sea que tengas un pequeño negocio o solo quieras que la computadora de la familia vuelva a funcionar, cuenta conmigo.">Hi, I&rsquo;m Gabe &mdash; and I&rsquo;m the one who answers your message and shows up to help. I started BANANAbyte because too many people get talked down to, overcharged, or ghosted by tech companies. My promise is simple: <b>honest advice</b>, <b>plain English</b>, and a <b>fair price you approve up front</b>. Whether you run a small business or you just want the family computer working again, I&rsquo;ve got you.</p>
+        <div class="chips" role="list" aria-label="What BANANAbyte stands for" data-en-aria="What BANANAbyte stands for" data-es-aria="Lo que representa BANANAbyte">
+          <span class="chip" role="listitem" data-en="Local &amp; Owner-Operated" data-es="Local y Atendido por su Dueño">Local &amp; Owner-Operated</span>
+          <span class="chip" role="listitem" data-en="Upfront Pricing" data-es="Precios por Adelantado">Upfront Pricing</span>
+          <span class="chip" role="listitem" data-en="Plain English, No Jargon" data-es="Palabras Claras, Sin Tecnicismos">Plain English, No Jargon</span>
+          <span class="chip" role="listitem" data-en="On-Site or Remote" data-es="A Domicilio o Remoto">On-Site or Remote</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIALS ============ -->
+  <section class="reviews" id="reviews" aria-labelledby="rev-h">
+    <div class="wrap">
+      <span class="eyebrow reveal"><span class="sp">[</span> <span data-en="05 / WHAT PEOPLE SAY" data-es="05 / LO QUE DICEN">05 / WHAT PEOPLE SAY</span> <span class="sp">]</span></span>
+      <h2 class="sec-title reveal" id="rev-h" data-en="Neighbors who&rsquo;d call again" data-es="Vecinos que volverían a llamar">Neighbors who&rsquo;d call again</h2>
+
+      <div class="review-list reveal" data-stagger>
+        <figure class="review">
+          <div class="stars" aria-label="Five out of five stars" data-en-aria="Five out of five stars" data-es-aria="Cinco de cinco estrellas">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote data-en="Gabe fixed in one afternoon what two other shops couldn&rsquo;t. Explained everything in plain English." data-es="Gabe arregló en una tarde lo que otros dos talleres no pudieron. Me explicó todo en palabras claras.">Gabe fixed in one afternoon what two other shops couldn&rsquo;t. Explained everything in plain English.</blockquote>
+          <figcaption class="who">Maria R. &middot; <span class="y">Winter Park</span></figcaption>
+        </figure>
+        <figure class="review">
+          <div class="stars" aria-label="Five out of five stars" data-en-aria="Five out of five stars" data-es-aria="Cinco de cinco estrellas">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote data-en="Set up our whole office network and we haven&rsquo;t had a single dropout since. Fair price, no surprises." data-es="Montó toda la red de nuestra oficina y desde entonces no se ha caído ni una sola vez. Precio justo, sin sorpresas.">Set up our whole office network and we haven&rsquo;t had a single dropout since. Fair price, no surprises.</blockquote>
+          <figcaption class="who">David K. &middot; <span class="y">Downtown Orlando</span></figcaption>
+        </figure>
+        <figure class="review">
+          <div class="stars" aria-label="Five out of five stars" data-en-aria="Five out of five stars" data-es-aria="Cinco de cinco estrellas">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote data-en="So patient with my mom&rsquo;s laptop. Finally someone who doesn&rsquo;t make you feel dumb." data-es="Tuvo muchísima paciencia con la laptop de mi mamá. Por fin alguien que no te hace sentir tonto.">So patient with my mom&rsquo;s laptop. Finally someone who doesn&rsquo;t make you feel dumb.</blockquote>
+          <figcaption class="who">Trevor B. &middot; <span class="y">Oviedo</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESS ============ -->
+  <section class="process" id="process" aria-labelledby="proc-h">
+    <div class="wrap">
+      <span class="eyebrow reveal"><span class="sp">[</span> <span data-en="06 / PROCESS" data-es="06 / PROCESO">06 / PROCESS</span> <span class="sp">]</span></span>
+      <h2 class="sec-title reveal" id="proc-h" data-en="How it works" data-es="Cómo funciona">How it works</h2>
+      <p class="sec-lead reveal" data-en="One job, start to finish &mdash; no jargon, no surprise invoices." data-es="Un trabajo, de principio a fin &mdash; sin tecnicismos ni facturas sorpresa.">One job, start to finish &mdash; no jargon, no surprise invoices.</p>
+
+      <div class="steps reveal" data-stagger>
+        <article class="step">
+          <div class="n">01</div>
+          <div class="t"><h4 data-en="Reach Out" data-es="Escríbenos">Reach Out</h4><p data-en="Send the form, text, or WhatsApp us and tell us what&rsquo;s going wrong." data-es="Llena el formulario, mándanos un mensaje de texto o un WhatsApp y cuéntanos qué está fallando.">Send the form, text, or WhatsApp us and tell us what&rsquo;s going wrong.</p></div>
+        </article>
+        <article class="step">
+          <div class="n">02</div>
+          <div class="t"><h4 data-en="Diagnose" data-es="Diagnóstico">Diagnose</h4><p data-en="We pinpoint the real problem and give you a clear, upfront quote &mdash; no surprises." data-es="Identificamos el problema real y te damos una cotización clara y por adelantado &mdash; sin sorpresas.">We pinpoint the real problem and give you a clear, upfront quote &mdash; no surprises.</p></div>
+        </article>
+        <article class="step">
+          <div class="n">03</div>
+          <div class="t"><h4 data-en="Fix It" data-es="Lo Resolvemos">Fix It</h4><p data-en="We do the work, on-site or remote, and keep you posted the whole way." data-es="Hacemos el trabajo, a domicilio o de forma remota, y te mantenemos al tanto en todo momento.">We do the work, on-site or remote, and keep you posted the whole way.</p></div>
+        </article>
+        <article class="step">
+          <div class="n">04</div>
+          <div class="t"><h4 data-en="Stay Running" data-es="Que Siga Andando">Stay Running</h4><p data-en="We make sure it sticks, set up backups, and stay a message away." data-es="Nos aseguramos de que dure, dejamos los respaldos listos y quedamos a un mensaje de distancia.">We make sure it sticks, set up backups, and stay a message away.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="contact" id="contact" aria-labelledby="contact-h">
+    <div class="wrap">
+      <span class="eyebrow reveal"><span class="sp">[</span> <span data-en="07 / CONTACT" data-es="07 / CONTACTO">07 / CONTACT</span> <span class="sp">]</span></span>
+      <h2 class="sec-title reveal" id="contact-h" data-en="Tell us what&rsquo;s going wrong." data-es="Cuéntanos qué está fallando.">Tell us what&rsquo;s going wrong.</h2>
+      <p class="sec-lead reveal" data-en="Fill out the quick form for a free quote &mdash; or just text us. We usually reply within a business day." data-es="Llena el formulario rápido para una cotización gratis &mdash; o solo mándanos un mensaje de texto. Normalmente respondemos en un día hábil.">Fill out the quick form for a free quote &mdash; or just text us. We usually reply within a business day.</p>
+
+      <div class="contact-grid">
+        <form id="quoteForm" class="reveal" action="mailto:contact@bananabyte.io" method="post" enctype="text/plain" novalidate>
+          <div class="field">
+            <label for="name" data-en="Name" data-es="Nombre">Name</label>
+            <input type="text" id="name" name="name" autocomplete="name" placeholder="Your name" data-en-ph="Your name" data-es-ph="Tu nombre">
+          </div>
+          <div class="field">
+            <label for="email" data-en="Email" data-es="Correo electrónico">Email</label>
+            <input type="email" id="email" name="email" autocomplete="email" inputmode="email" placeholder="you@example.com" data-en-ph="you@example.com" data-es-ph="tu@ejemplo.com">
+          </div>
+          <div class="field">
+            <label for="phone"><span data-en="Phone" data-es="Teléfono">Phone</span> <span class="opt" data-en="(optional)" data-es="(opcional)">(optional)</span></label>
+            <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" placeholder="(407) 555-0137" data-en-ph="(407) 555-0137" data-es-ph="(407) 555-0137">
+          </div>
+          <div class="field">
+            <label for="project" data-en="What do you need help with?" data-es="¿Con qué necesitas ayuda?">What do you need help with?</label>
+            <textarea id="project" name="project" placeholder="Slow laptop, spotty Wi-Fi, lost photos, a new website..." data-en-ph="Slow laptop, spotty Wi-Fi, lost photos, a new website..." data-es-ph="Laptop lenta, Wi-Fi inestable, fotos perdidas, un sitio web nuevo..."></textarea>
+          </div>
+          <p class="form-note"><span data-en="Rather not type it out?" data-es="¿Prefieres no escribir todo?">Rather not type it out?</span> <a href="sms:+14075550137" data-en="Text us" data-es="Escríbenos">Text us</a> <span data-en="or" data-es="o por">or</span> <a href="https://wa.me/14075550137" rel="noopener" target="_blank">WhatsApp</a><span data-en="" data-es=""></span><span data-en=" instead." data-es=".">  instead.</span></p>
+          <button type="submit" class="send" id="sendBtn" data-en="Get a Quote" data-es="Cotiza Gratis">Get a Quote <span aria-hidden="true">&rarr;</span></button>
+          <p class="form-note" id="formStatus" role="status" aria-live="polite" style="margin-top:14px;margin-bottom:0"></p>
+        </form>
+
+        <aside class="reach-wrap reveal">
+          <div class="reach">
+            <p class="lbl" data-en="[ THE FAST WAY ]" data-es="[ LA VÍA RÁPIDA ]">[ THE FAST WAY ]</p>
+            <a class="reach-btn text-cta" href="sms:+14075550137">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg>
+              <span data-en="Text us" data-es="Escríbenos">Text us</span>
+            </a>
+            <a class="reach-btn wa-cta" href="https://wa.me/14075550137" rel="noopener" target="_blank">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.84-1.96-.93-.26-.1-.46-.15-.65.15-.2.3-.74.93-.9 1.12-.17.2-.34.22-.63.08-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.34.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.65-1.57-.9-2.15-.24-.56-.48-.48-.65-.49l-.56-.01c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.2 1.87.12.57-.08 1.7-.7 1.95-1.36.24-.67.24-1.24.17-1.36-.07-.12-.27-.2-.56-.34zM12 2a10 10 0 0 0-8.6 15.07L2 22l5.05-1.32A10 10 0 1 0 12 2z"/></svg>
+              <span>WhatsApp</span>
+            </a>
+            <p class="lbl" style="margin-top:18px;margin-bottom:8px" data-en="[ OR EMAIL ]" data-es="[ O POR CORREO ]">[ OR EMAIL ]</p>
+            <a class="mail" href="mailto:contact@bananabyte.io">contact@bananabyte.io</a>
+            <div class="meta">
+              <b>BANANAbyte LLC</b><br>
+              <span data-en="Orlando, Florida" data-es="Orlando, Florida">Orlando, Florida</span><br>
+              <span data-en="Mon&ndash;Sat &middot; 9&ndash;6 EST" data-es="Lun&ndash;Sáb &middot; 9&ndash;6 EST">Mon&ndash;Sat &middot; 9&ndash;6 EST</span><br>
+              <span class="y" data-en="On-site or remote" data-es="A domicilio o remoto">On-site or remote</span> <span data-en="&middot; small business &amp; family" data-es="&middot; negocios y familias">&middot; small business &amp; family</span>
+            </div>
+            <!-- SLOT-MACHINE PHONE REVEAL — secondary, fun way to get the number.
+                 The form / Text / WhatsApp above stay the primary contact path. -->
+            <div class="bb-spin" id="bbSpin">
+              <p class="bb-spin-cap" data-en="Prefer to talk? Spin for it." data-es="¿Prefieres hablar? Gíralo.">Prefer to talk? Spin for it.</p>
+              <!-- No-JS / no-enhancement fallback: the real number is shown right
+                   here and only hidden once the spin machine has been wired up,
+                   so the phone is NEVER stranded behind JavaScript. -->
+              <a class="bb-spin-fallback" href="tel:+14075550137">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <span><span data-en="Call" data-es="Llamar">Call</span> <b>(407)&nbsp;555-0137</b></span>
+              </a>
+              <div class="bb-spin-shell">
+                <div class="bb-spin-reels" id="bbSpinReels" aria-hidden="true"><!-- reels injected by JS --></div>
+              </div>
+              <button type="button" class="bb-spin-trigger" id="bbSpinTrigger"
+                      data-en-idle="Spin to reveal my number" data-es-idle="Gira para ver mi número"
+                      data-en-spinning="Spinning…" data-es-spinning="Girando…"
+                      data-en-revealed="Revealed!" data-es-revealed="¡Revelado!">
+                <span class="bb-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><polyline points="21 3 21 9 15 9"/></svg></span>
+                <span class="bb-spin-label" data-en="Spin to reveal my number" data-es="Gira para ver mi número">Spin to reveal my number</span>
+              </button>
+              <p id="bbSpinLive" role="status" aria-live="polite" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0"></p>
+              <div class="bb-spin-out" id="bbSpinOut" aria-hidden="true">
+                <a class="bb-spin-call" id="bbSpinCall" href="tel:+14075550137">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                  <span><span data-en="Call" data-es="Llamar">Call</span> <b>(407)&nbsp;555-0137</b></span>
+                </a>
+                <button type="button" class="bb-spin-again" id="bbSpinAgain" aria-label="Spin again" data-en-aria="Spin again" data-es-aria="Girar de nuevo">
+                  <span aria-hidden="true">&#8635;</span> <span data-en="Spin again" data-es="Girar de nuevo">Spin again</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <span class="fmark">
+      <svg class="pixel-banana" width="22" height="22" viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges">
+        <rect x="11" y="2" width="2" height="2" fill="#7A6300"/><rect x="12" y="3" width="2" height="2" fill="#F5C800"/><rect x="11" y="4" width="2" height="2" fill="#FFE140"/><rect x="10" y="5" width="2" height="2" fill="#FFE140"/><rect x="9" y="6" width="2" height="2" fill="#F5C800"/><rect x="7" y="7" width="2" height="2" fill="#FFE140"/><rect x="5" y="8" width="2" height="2" fill="#FFE140"/><rect x="3" y="9" width="2" height="2" fill="#F5C800"/><rect x="2" y="10" width="2" height="2" fill="#F5C800"/><rect x="2" y="11" width="2" height="2" fill="#7A6300"/><rect x="3" y="12" width="3" height="2" fill="#F5C800"/><rect x="6" y="12" width="3" height="1" fill="#FFE140"/><rect x="9" y="11" width="2" height="2" fill="#F5C800"/>
+      </svg>
+      <span><span class="nm-banana">BANANA</span>byte</span>
+    </span>
+    <p class="line">
+      BANANAbyte LLC &middot; Orlando, FL &middot; <a href="mailto:contact@bananabyte.io">contact@bananabyte.io</a> &middot; &copy; 2026
+    </p>
+    <div class="social" aria-label="Reach us" data-en-aria="Reach us" data-es-aria="Contáctanos">
+      <a href="sms:+14075550137" data-en="Text" data-es="Texto">Text</a>
+      <a href="https://wa.me/14075550137" rel="noopener" target="_blank">WhatsApp</a>
+      <a href="https://instagram.com/" rel="noopener" target="_blank" aria-label="BANANAbyte on Instagram" data-en-aria="BANANAbyte on Instagram" data-es-aria="BANANAbyte en Instagram">Instagram</a>
+      <a href="https://facebook.com/" rel="noopener" target="_blank" aria-label="BANANAbyte on Facebook" data-en-aria="BANANAbyte on Facebook" data-es-aria="BANANAbyte en Facebook">Facebook</a>
+    </div>
+    <p class="fcall"><span data-en="Prefer to talk? Call" data-es="¿Prefieres hablar? Llama al">Prefer to talk? Call</span> <a href="tel:+14075550137">(407) 555-0137</a></p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var doc = document.documentElement;
+  var body = document.body;
+
+  var reduceMotion = false;
+  try { reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch(e){}
+  var finePointer = false;
+  try { finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches; } catch(e){}
+
+  /* ===================================================================
+     LANGUAGE TOGGLE (EN / ES)
+     - Every translatable node carries data-en / data-es (text or HTML).
+     - aria-labels/titles/placeholders carry data-*-aria / data-*-title /
+       data-*-ph variants.
+     - Choice persists in localStorage('bb-lang').
+     - First visit: browser language → 'es' if navigator.language startsWith
+       'es', else 'en'.
+     - Runs immediately (independent of the motion layer below) so language
+       works even with reduced-motion or no IntersectionObserver.
+     =================================================================== */
+  var LANG_KEY = 'bb-lang';
+  var SENT_FLAG = 'data-sent';
+
+  function stored(){
+    try { return window.localStorage.getItem(LANG_KEY); } catch(e){ return null; }
+  }
+  function persist(lang){
+    try { window.localStorage.setItem(LANG_KEY, lang); } catch(e){}
+  }
+  function detectLang(){
+    var saved = stored();
+    if(saved === 'en' || saved === 'es') return saved;
+    var nav = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+    return nav.indexOf('es') === 0 ? 'es' : 'en';
+  }
+
+  var langButtons = Array.prototype.slice.call(document.querySelectorAll('.lang-btn'));
+
+  function applyLang(lang){
+    if(lang !== 'es') lang = 'en';
+
+    // 1) Text / inline-HTML swaps
+    var nodes = document.querySelectorAll('[data-en],[data-es]');
+    Array.prototype.forEach.call(nodes, function(el){
+      var val = el.getAttribute('data-' + lang);
+      if(val === null) return;
+      // Skip the send button while it's in its transient "sent" state.
+      if(el.id === 'sendBtn' && el.getAttribute(SENT_FLAG) === 'true') return;
+      if(el.id === 'sendBtn'){
+        // preserve the trailing arrow on the quote button
+        el.innerHTML = val + ' <span aria-hidden="true">&rarr;</span>';
+        return;
+      }
+      // <title> and other text-only metadata can't take child markup
+      if(el.tagName === 'TITLE'){ el.textContent = val; return; }
+      el.innerHTML = val;
+    });
+
+    // 2) Attribute swaps: aria-label, title, placeholder, content (meta)
+    var aria = document.querySelectorAll('[data-' + lang + '-aria]');
+    Array.prototype.forEach.call(aria, function(el){
+      el.setAttribute('aria-label', el.getAttribute('data-' + lang + '-aria'));
+    });
+    var titles = document.querySelectorAll('[data-' + lang + '-title]');
+    Array.prototype.forEach.call(titles, function(el){
+      el.setAttribute('title', el.getAttribute('data-' + lang + '-title'));
+    });
+    var phs = document.querySelectorAll('[data-' + lang + '-ph]');
+    Array.prototype.forEach.call(phs, function(el){
+      el.setAttribute('placeholder', el.getAttribute('data-' + lang + '-ph'));
+    });
+    // meta description
+    var metaDesc = document.querySelector('meta[name="description"]');
+    if(metaDesc && metaDesc.getAttribute('data-' + lang)){
+      metaDesc.setAttribute('content', metaDesc.getAttribute('data-' + lang));
+    }
+
+    // 3) Burger aria-label depends on both language AND open state
+    var burgerBtn = document.getElementById('burger');
+    if(burgerBtn){
+      var isOpen = burgerBtn.getAttribute('aria-expanded') === 'true';
+      var key = 'data-' + lang + '-aria-' + (isOpen ? 'close' : 'open');
+      if(burgerBtn.getAttribute(key)) burgerBtn.setAttribute('aria-label', burgerBtn.getAttribute(key));
+    }
+
+    // 4) <html lang>, toggle state
+    doc.setAttribute('lang', lang);
+    langButtons.forEach(function(b){
+      var on = b.getAttribute('data-lang') === lang;
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  }
+
+  // expose so the burger handler can refresh its aria-label per language
+  window.__bbApplyBurgerAria = function(){
+    var lang = doc.getAttribute('lang') === 'es' ? 'es' : 'en';
+    var burgerBtn = document.getElementById('burger');
+    if(!burgerBtn) return;
+    var isOpen = burgerBtn.getAttribute('aria-expanded') === 'true';
+    var key = 'data-' + lang + '-aria-' + (isOpen ? 'close' : 'open');
+    if(burgerBtn.getAttribute(key)) burgerBtn.setAttribute('aria-label', burgerBtn.getAttribute(key));
+  };
+
+  var currentLang = detectLang();
+  applyLang(currentLang);
+
+  langButtons.forEach(function(b){
+    b.addEventListener('click', function(){
+      var lang = b.getAttribute('data-lang');
+      currentLang = lang;
+      persist(lang);
+      applyLang(lang);
+    });
+  });
+
+  /* ---------------- MOBILE MENU (accessible, fault-tolerant) ---------------- */
+  var burger = document.getElementById('burger');
+  var menu   = document.getElementById('mobileMenu');
+  var scrim  = document.getElementById('scrim');
+
+  if(burger && menu && scrim){
+    var lastFocus = null;
+
+    function focusables(){
+      return Array.prototype.slice.call(
+        menu.querySelectorAll('a[href],button:not([disabled])')
+      ).filter(function(el){ return el.offsetParent !== null; });
+    }
+    function setOpen(open){
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      // refresh aria-label in the active language for the new state
+      if(window.__bbApplyBurgerAria) window.__bbApplyBurgerAria();
+      body.classList.toggle('locked', open);
+      if(open){
+        lastFocus = document.activeElement;
+        menu.hidden = false; scrim.hidden = false;
+        void menu.offsetWidth;
+        menu.classList.add('open'); scrim.classList.add('open');
+        var f = focusables(); if(f.length) f[0].focus();
+      } else {
+        menu.classList.remove('open'); scrim.classList.remove('open');
+        window.setTimeout(function(){
+          if(!menu.classList.contains('open')){ menu.hidden = true; scrim.hidden = true; }
+        }, reduceMotion ? 0 : 300);
+        if(lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+      }
+    }
+    burger.addEventListener('click', function(){ setOpen(burger.getAttribute('aria-expanded') !== 'true'); });
+    scrim.addEventListener('click', function(){ setOpen(false); });
+    menu.querySelectorAll('[data-close]').forEach(function(a){
+      a.addEventListener('click', function(){ setOpen(false); });
+    });
+    document.addEventListener('keydown', function(e){
+      if(burger.getAttribute('aria-expanded') !== 'true') return;
+      if(e.key === 'Escape'){ e.preventDefault(); setOpen(false); return; }
+      if(e.key === 'Tab'){
+        var f = focusables(); if(!f.length) return;
+        var first = f[0], last = f[f.length - 1];
+        if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+        else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+      }
+    });
+    // 1100px = the breakpoint where the burger is replaced by the full desktop
+    // nav; auto-close the dropdown only when it actually disappears.
+    var mq = window.matchMedia('(min-width:1100px)');
+    function handleMq(){
+      if(mq.matches && burger.getAttribute('aria-expanded') === 'true'){
+        menu.classList.remove('open'); scrim.classList.remove('open');
+        menu.hidden = true; scrim.hidden = true;
+        burger.setAttribute('aria-expanded','false');
+        if(window.__bbApplyBurgerAria) window.__bbApplyBurgerAria();
+        body.classList.remove('locked');
+      }
+    }
+    if(mq.addEventListener) mq.addEventListener('change', handleMq);
+    else if(mq.addListener) mq.addListener(handleMq);
+  }
+
+  /* ---------------- VISUAL-ONLY FORM (graceful, bilingual) ---------------- */
+  var form = document.getElementById('quoteForm');
+  var btn  = document.getElementById('sendBtn');
+  var status = document.getElementById('formStatus');
+  if(form && btn){
+    var SENT_TXT = { en: 'REQUEST SENT ✓', es: 'SOLICITUD ENVIADA ✓' };
+    var STATUS_TXT = {
+      en: 'Thanks — we got it. We usually reply within one business day. In a hurry? Just text (407) 555-0137.',
+      es: 'Gracias — ya la recibimos. Normalmente respondemos en un día hábil. ¿Tienes prisa? Mándanos un texto al (407) 555-0137.'
+    };
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var lang = doc.getAttribute('lang') === 'es' ? 'es' : 'en';
+      btn.textContent = SENT_TXT[lang];
+      btn.setAttribute('data-sent','true');
+      if(status){ status.textContent = STATUS_TXT[lang]; }
+      window.setTimeout(function(){
+        btn.removeAttribute('data-sent');
+        // restore in the language active *now* (user may have toggled meanwhile)
+        var l2 = doc.getAttribute('lang') === 'es' ? 'es' : 'en';
+        btn.innerHTML = btn.getAttribute('data-' + l2) + ' <span aria-hidden="true">&rarr;</span>';
+        if(status){ status.textContent = ''; }
+        form.reset();
+      }, 4000);
+    });
+  }
+
+  /* ===================================================================
+     MOTION LAYER
+     Everything below only HIDES content (via .reveal-ready) once we are
+     certain we can bring it back. If reduced-motion is on, or the browser
+     lacks IntersectionObserver, we never add .reveal-ready, so all body
+     copy stays fully visible and static. Language toggle + Quote/Text/
+     WhatsApp never depend on any of this.
+     =================================================================== */
+
+  /* Reduced motion: leave everything static & visible. Done. */
+  if(reduceMotion){ return; }
+
+  /* If no IntersectionObserver, also leave everything static & visible. */
+  if(!('IntersectionObserver' in window)){ return; }
+
+  /* Safe to opt into the hidden-then-reveal behaviour now. */
+  doc.classList.add('reveal-ready');
+
+  /* ---------------- HERO RULE DRAW-IN ON LOAD ---------------- */
+  var hero = document.getElementById('hero');
+  if(hero){ requestAnimationFrame(function(){ requestAnimationFrame(function(){ hero.classList.add('ready'); }); }); }
+
+  /* ---------------- SCROLL REVEALS (IntersectionObserver, once) ---------------- */
+  var revealEls = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(!entry.isIntersecting) return;
+      var el = entry.target;
+      var kids = el.hasAttribute('data-stagger')
+        ? Array.prototype.slice.call(el.children) : [];
+      if(kids.length){
+        kids.forEach(function(kid, i){ kid.style.transitionDelay = Math.min(i, 6) * 60 + 'ms'; });
+      }
+      el.classList.add('in');
+      window.setTimeout(function(){
+        el.classList.add('done');
+        kids.forEach(function(kid){ kid.style.transitionDelay = ''; });
+      }, 560 + Math.min(kids.length, 6) * 60);
+      io.unobserve(el);
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+  revealEls.forEach(function(el){ io.observe(el); });
+
+  /* Safety net: if anything above the fold somehow never intersects
+     (e.g. zero-height edge cases), force-reveal after 1.2s so copy is
+     never stuck hidden. */
+  window.setTimeout(function(){
+    revealEls.forEach(function(el){
+      if(!el.classList.contains('in')){
+        var r = el.getBoundingClientRect();
+        if(r.top < window.innerHeight){ el.classList.add('in','done'); io.unobserve(el); }
+      }
+    });
+  }, 1200);
+
+  /* ---------------- SCROLL PROGRESS BAR (rAF-throttled) ---------------- */
+  var progress = document.getElementById('progressBar');
+  if(progress){
+    var pTick = false;
+    function updateProgress(){
+      pTick = false;
+      var max = doc.scrollHeight - window.innerHeight;
+      var p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      progress.style.transform = 'scaleX(' + p + ')';
+    }
+    window.addEventListener('scroll', function(){
+      if(!pTick){ pTick = true; requestAnimationFrame(updateProgress); }
+    }, { passive:true });
+    window.addEventListener('resize', function(){
+      if(!pTick){ pTick = true; requestAnimationFrame(updateProgress); }
+    }, { passive:true });
+    updateProgress();
+  }
+
+  /* ---------------- HERO LIVE-DEMO AUTO-CYCLE (transform only) ---------------- */
+  var scroller = document.getElementById('demoScroller');
+  var addr     = document.getElementById('demoAddr');
+  var liveDemo = document.getElementById('liveDemo');
+  if(scroller && liveDemo){
+    var previews = Array.prototype.slice.call(scroller.querySelectorAll('[data-preview]'));
+    var addrs = ['alohacafe-orlando.com','greenscapelawn.com','sunrisedental.com'];
+    var idx = 0;
+    var demoTimer = null;
+    function showPreview(i){
+      var target = previews[i];
+      if(!target) return;
+      scroller.style.transition = 'transform 1.1s cubic-bezier(.16,.84,.32,1)';
+      scroller.style.transform = 'translateY(' + (-target.offsetTop) + 'px)';
+      if(addr && addrs[i]) addr.textContent = addrs[i];
+    }
+    function nextPreview(){
+      idx = (idx + 1) % previews.length;
+      showPreview(idx);
+    }
+    function startCycle(){ if(!demoTimer && previews.length > 1){ demoTimer = window.setInterval(nextPreview, 3600); } }
+    function stopCycle(){ if(demoTimer){ window.clearInterval(demoTimer); demoTimer = null; } }
+    var dio = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ startCycle(); } else { stopCycle(); }
+      });
+    }, { threshold: 0.2 });
+    dio.observe(liveDemo);
+  }
+
+  /* ---------------- HERO CURSOR SPOTLIGHT (desktop / fine-pointer only) ---------------- */
+  var glow = document.getElementById('heroGlow');
+  if(glow && hero && finePointer){
+    var gx = window.innerWidth * 0.5, gy = 220;
+    var tx = gx, ty = gy;
+    var gTick = false;
+    function onMove(e){
+      var r = hero.getBoundingClientRect();
+      tx = e.clientX - r.left;
+      ty = e.clientY - r.top;
+      if(!gTick){ gTick = true; requestAnimationFrame(animateGlow); }
+    }
+    function animateGlow(){
+      gTick = false;
+      gx += (tx - gx) * 0.12;
+      gy += (ty - gy) * 0.12;
+      glow.style.transform = 'translate3d(' + gx + 'px,' + gy + 'px,0)';
+      if(Math.abs(tx - gx) > 0.5 || Math.abs(ty - gy) > 0.5){
+        gTick = true; requestAnimationFrame(animateGlow);
+      }
+    }
+    hero.addEventListener('mousemove', onMove, { passive:true });
+    glow.style.transform = 'translate3d(' + gx + 'px,' + gy + 'px,0)';
+  }
+
+  /* ---------------- MAGNETIC PRIMARY BUTTONS (desktop / fine pointer only) ---------------- */
+  if(finePointer){
+    var magnets = Array.prototype.slice.call(document.querySelectorAll('[data-magnetic]'));
+    magnets.forEach(function(el){
+      var inner = el.querySelector('.mag');
+      var target = inner || el;
+      var raf = false, mx = 0, my = 0;
+      function move(e){
+        var r = el.getBoundingClientRect();
+        mx = (e.clientX - (r.left + r.width/2)) * 0.22;
+        my = (e.clientY - (r.top  + r.height/2)) * 0.30;
+        if(!raf){ raf = true; requestAnimationFrame(apply); }
+      }
+      function apply(){ raf = false; target.style.transform = 'translate(' + mx + 'px,' + my + 'px)'; }
+      function reset(){ mx = 0; my = 0; target.style.transform = ''; }
+      el.addEventListener('mousemove', move, { passive:true });
+      el.addEventListener('mouseleave', reset);
+      el.addEventListener('blur', reset, true);
+    });
+  }
+})();
+</script>
+
+<script>
+/* ===================================================================
+   SLOT-MACHINE PHONE REVEAL (secondary contact flourish)
+   Self-contained IIFE in its own script tag so it runs regardless of the
+   main script's reduced-motion / no-IntersectionObserver early returns.
+   - Visible button/again labels are translated by the base applyLang()
+     (they carry data-en/data-es). This script only reads <html lang> for
+     the aria-live announcement + digit-by-digit spoken phone number.
+   - All ids/classes are bb-spin* / #bbSpin* — no collision with the base.
+   - prefers-reduced-motion: number is shown instantly, no spin.
+   =================================================================== */
+(function(){
+  "use strict";
+  var reels = document.getElementById("bbSpinReels");
+  var trigger = document.getElementById("bbSpinTrigger");
+  if(!reels || !trigger) return;
+  if(trigger.dataset.bbBound === "1") return;   // guard against duplicate listeners
+  trigger.dataset.bbBound = "1";
+
+  var label   = trigger.querySelector(".bb-spin-label");
+  var out     = document.getElementById("bbSpinOut");
+  var again   = document.getElementById("bbSpinAgain");
+  var live    = document.getElementById("bbSpinLive");
+  var docEl   = document.documentElement;
+
+  function lang(){ return docEl.getAttribute("lang") === "es" ? "es" : "en"; }
+
+  // bilingual aria-live / spoken strings (visible labels handled by applyLang)
+  var TXT = {
+    en: {
+      spinning: "Spinning the reels…",
+      revealed: "Number revealed: 4 0 7. 5 5 5. 0 1 3 7. A Call button is now available below."
+    },
+    es: {
+      spinning: "Girando los rodillos…",
+      revealed: "Número revelado: 4 0 7. 5 5 5. 0 1 3 7. Ya tienes un botón de Llamar abajo."
+    }
+  };
+
+  // (407) 555-0137  ->  ( 4 0 7 )  5 5 5  -  0 1 3 7
+  var PATTERN = [
+    {t:"sep", c:"("},
+    {t:"d", v:4}, {t:"d", v:0}, {t:"d", v:7},
+    {t:"sep", c:")"},
+    {t:"gap"},
+    {t:"d", v:5}, {t:"d", v:5}, {t:"d", v:5},
+    {t:"gap"},
+    {t:"sep", c:"-"},
+    {t:"d", v:0}, {t:"d", v:1}, {t:"d", v:3}, {t:"d", v:7}
+  ];
+  var SPIN_CYCLES = 5;
+  var digitReels = [];
+
+  var rmMQ = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : {matches:false};
+  function reduced(){ return !!rmMQ.matches; }
+
+  function tileH(){
+    if(digitReels.length){
+      var h = digitReels[0].reel.getBoundingClientRect().height;
+      if(h) return h;
+    }
+    var v = getComputedStyle(reels).getPropertyValue("--bb-reel-h");
+    return parseFloat(v) || 38;
+  }
+
+  function buildReels(){
+    reels.innerHTML = "";
+    digitReels.length = 0;
+    PATTERN.forEach(function(item){
+      if(item.t === "sep" || item.t === "gap"){
+        var sep = document.createElement("div");
+        sep.className = "bb-reel sep" + (item.t === "gap" ? " gap" : "");
+        if(item.c){ var s = document.createElement("span"); s.textContent = item.c; sep.appendChild(s); }
+        reels.appendChild(sep);
+        return;
+      }
+      var reel = document.createElement("div");
+      reel.className = "bb-reel";
+      var strip = document.createElement("div");
+      strip.className = "bb-strip";
+      var total = SPIN_CYCLES * 10 + 1;
+      for(var i=0;i<total;i++){
+        var d = document.createElement("div");
+        d.className = "bb-digit";
+        d.textContent = String(i === total - 1 ? item.v : (i % 10));
+        strip.appendChild(d);
+      }
+      var flash = document.createElement("div");
+      flash.className = "bb-flash";
+      reel.appendChild(strip); reel.appendChild(flash);
+      reels.appendChild(reel);
+      digitReels.push({ reel:reel, strip:strip, target:item.v, total:total });
+    });
+  }
+
+  var spinning = false;
+  var timers = [];
+  function clearTimers(){ timers.forEach(clearTimeout); timers = []; }
+
+  function resetReels(){
+    digitReels.forEach(function(r){
+      r.reel.classList.remove("locked","flash-on","settle");
+      r.strip.classList.remove("spinning");
+      r.strip.style.transition = "none";
+      r.strip.style.transform = "translateY(0)";
+      r.strip.style.removeProperty("--bb-lock-y");
+    });
+    void reels.offsetHeight;
+  }
+
+  function showFinalInstant(){
+    var h = tileH();
+    digitReels.forEach(function(r){
+      r.strip.classList.remove("spinning");
+      r.strip.style.transition = "none";
+      r.strip.style.transform = "translateY(" + (-(r.total - 1) * h) + "px)";
+      r.reel.classList.add("locked");
+    });
+  }
+
+  function announce(){
+    if(!live) return;
+    live.textContent = "";
+    requestAnimationFrame(function(){ live.textContent = TXT[lang()].revealed; });
+  }
+
+  function openOut(){
+    if(out){ out.classList.add("open"); out.setAttribute("aria-hidden","false"); }
+    trigger.disabled = true;
+    if(label) label.textContent = trigger.getAttribute("data-" + lang() + "-revealed") || label.textContent;
+  }
+  function closeOut(){
+    if(out){ out.classList.remove("open"); out.setAttribute("aria-hidden","true"); }
+    trigger.disabled = false;
+    if(label) label.textContent = trigger.getAttribute("data-" + lang() + "-idle") || label.textContent;
+  }
+
+  function spin(){
+    if(spinning) return;
+    spinning = true;
+    clearTimers();
+    closeOut();
+
+    if(reduced()){
+      resetReels(); showFinalInstant(); openOut(); announce();
+      spinning = false; return;
+    }
+
+    if(live) live.textContent = TXT[lang()].spinning;
+    trigger.disabled = true;
+    if(label) label.textContent = trigger.getAttribute("data-" + lang() + "-spinning") || label.textContent;
+    resetReels();
+
+    var h = tileH();
+    var baseDur = 1.4, stepDur = 0.1, stagger = 120, lastLockMs = 0;
+
+    digitReels.forEach(function(r, i){
+      var dur = baseDur + i * stepDur;
+      var startDelay = i * stagger;
+      var finalY = -(r.total - 1) * h;
+      r.strip.style.setProperty("--bb-lock-y", finalY + "px");
+      var lockMs = startDelay + dur * 1000;
+      lastLockMs = Math.max(lastLockMs, lockMs);
+
+      timers.push(setTimeout(function(){
+        r.strip.classList.add("spinning");
+        r.strip.style.transition = "transform " + dur + "s cubic-bezier(0.12,0.62,0.16,1)";
+        requestAnimationFrame(function(){ requestAnimationFrame(function(){
+          r.strip.style.transform = "translateY(" + finalY + "px)";
+        }); });
+      }, startDelay));
+
+      timers.push(setTimeout(function(){
+        r.reel.classList.add("locked","flash-on","settle");
+        timers.push(setTimeout(function(){
+          r.reel.classList.remove("flash-on","settle");
+          r.strip.classList.remove("spinning");
+        }, 520));
+      }, lockMs));
+    });
+
+    timers.push(setTimeout(function(){
+      spinning = false; openOut(); announce();
+    }, lastLockMs + 120));
+  }
+
+  function replay(){
+    clearTimers();
+    spinning = false;
+    closeOut();
+    resetReels();
+    if(trigger && typeof trigger.focus === "function") trigger.focus({ preventScroll:true });
+    timers.push(setTimeout(spin, 160));
+  }
+
+  buildReels();
+  // reveal the interactive machine (and hide the plain tel fallback) only now
+  // that the reels exist and listeners are about to be bound.
+  var bbSpinRoot = document.getElementById("bbSpin");
+  if(bbSpinRoot) bbSpinRoot.classList.add("bb-spin-ready");
+  trigger.addEventListener("click", spin);
+  if(again) again.addEventListener("click", replay);
+
+  // Keep the trigger's DYNAMIC label correct when the language is toggled.
+  // The base applyLang() rewrites the .bb-spin-label span from its data-en/
+  // data-es (the idle text). If the number is already revealed (trigger
+  // disabled) we must restore the "Revealed!" wording in the new language.
+  function syncSpinLabel(){
+    if(!label) return;
+    var key = trigger.disabled ? "-revealed" : "-idle";
+    var v = trigger.getAttribute("data-" + lang() + key);
+    if(v) label.textContent = v;
+  }
+  Array.prototype.forEach.call(document.querySelectorAll(".lang-btn"), function(b){
+    // run AFTER the base click handler has applied the language swap
+    b.addEventListener("click", function(){ requestAnimationFrame(syncSpinLabel); });
+  });
+
+  // rebuild reel geometry on resize (idle only); re-apply final state if open
+  var lastH = Math.round(tileH());
+  var resizeRAF = 0;
+  window.addEventListener("resize", function(){
+    if(resizeRAF) cancelAnimationFrame(resizeRAF);
+    resizeRAF = requestAnimationFrame(function(){
+      var h = Math.round(tileH());
+      if(h !== lastH && !spinning){
+        lastH = h;
+        var wasOpen = out && out.classList.contains("open");
+        buildReels();
+        if(wasOpen) showFinalInstant();
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
