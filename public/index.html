@@ -1222,42 +1222,27 @@
 
   /* ---- gabrielparra.dev live-iframe card ---- */
   /* The .iframe-clip wrapper clips the scaled iframe to the visible viewport size */
+  /* Box fills the card width at a fixed 16:10 ratio; the iframe is rendered at a
+     desktop width (1280px) and scaled to fill the box EXACTLY (scale = boxW/1280,
+     set by JS on load+resize) so there is no empty gap. */
   .project .iframe-clip{
     position:relative;
     width:100%;
-    /* height is set inline via JS-free CSS calc based on scale */
+    aspect-ratio:16 / 10;
     overflow:hidden;
     background:var(--panel-2);
-    /* pointer-events passthrough so the iframe is browsable */
   }
   .project .iframe-clip iframe{
-    display:block;
+    position:absolute;
+    top:0; left:0;
     width:1280px;
-    height:900px;
+    height:800px;
     border:none;
     transform-origin:top left;
-    /* scale to fit the card width — computed via CSS custom property set inline */
-    transform:scale(var(--iframe-scale,0.28));
+    transform:scale(0.3); /* fallback; JS sets the exact fill scale */
     pointer-events:auto;
   }
-  /* clip height = 900px * scale so the card is compact */
-  .project.project-live .browser .viewport{
-    height:auto;
-    overflow:hidden;
-  }
-  .project.project-live .iframe-clip{
-    /* 900 * 0.28 = 252px — close to the mockup card heights */
-    height:calc(900px * var(--iframe-scale,0.28));
-  }
-  /* On wider cards (>=768px) we can afford a bigger scale */
-  @media (min-width:768px){
-    .project.project-live .iframe-clip{
-      height:calc(900px * var(--iframe-scale-md,0.30));
-    }
-    .project.project-live .iframe-clip iframe{
-      transform:scale(var(--iframe-scale-md,0.30));
-    }
-  }
+  .project.project-live .browser .viewport{ height:auto; overflow:hidden; }
   /* Mobile: iframe is fine but add a prominent "Open" overlay on small screens
      where interactive sub-pixel content may be awkward */
   .live-open-overlay{
@@ -1572,7 +1557,7 @@
       <div class="work-grid reveal" data-stagger>
 
         <!-- 1: FEATURED — gabrielparra.dev live iframe -->
-        <article class="project project-live" style="--iframe-scale:0.28;--iframe-scale-md:0.30">
+        <article class="project project-live">
           <div class="browser">
             <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span class="addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>gabrielparra.dev</span></div>
             <div class="viewport">
@@ -2470,6 +2455,24 @@
       }
     });
   });
+})();
+</script>
+<script>
+/* Scale each live-preview iframe to fill its box width exactly (no empty gap). */
+(function(){
+  function fitFrames(){
+    var clips=document.querySelectorAll('.iframe-clip');
+    for(var i=0;i<clips.length;i++){
+      var f=clips[i].querySelector('iframe');
+      if(!f) continue;
+      f.style.transform='scale('+(clips[i].clientWidth/1280)+')';
+    }
+  }
+  var raf;
+  function onResize(){ if(raf) cancelAnimationFrame(raf); raf=requestAnimationFrame(fitFrames); }
+  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',fitFrames); } else { fitFrames(); }
+  window.addEventListener('load',fitFrames);
+  window.addEventListener('resize',onResize);
 })();
 </script>
 </body>
