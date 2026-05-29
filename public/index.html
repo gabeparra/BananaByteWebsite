@@ -2253,24 +2253,24 @@
   var TXT = {
     en: {
       spinning: "Spinning the reels…",
-      revealed: "Number revealed: 4 0 7. 5 5 5. 0 1 3 7. A Call button is now available below."
+      revealed: "Number revealed: 3 2 1. 2 0 2. 3 7 3 2. A Call button is now available below."
     },
     es: {
       spinning: "Girando los rodillos…",
-      revealed: "Número revelado: 4 0 7. 5 5 5. 0 1 3 7. Ya tienes un botón de Llamar abajo."
+      revealed: "Número revelado: 3 2 1. 2 0 2. 3 7 3 2. Ya tienes un botón de Llamar abajo."
     }
   };
 
-  // (321) 202-3732  ->  ( 4 0 7 )  5 5 5  -  0 1 3 7
+  // (321) 202-3732  ->  ( 3 2 1 )  2 0 2  -  3 7 3 2
   var PATTERN = [
     {t:"sep", c:"("},
-    {t:"d", v:4}, {t:"d", v:0}, {t:"d", v:7},
+    {t:"d", v:3}, {t:"d", v:2}, {t:"d", v:1},
     {t:"sep", c:")"},
     {t:"gap"},
-    {t:"d", v:5}, {t:"d", v:5}, {t:"d", v:5},
+    {t:"d", v:2}, {t:"d", v:0}, {t:"d", v:2},
     {t:"gap"},
     {t:"sep", c:"-"},
-    {t:"d", v:0}, {t:"d", v:1}, {t:"d", v:3}, {t:"d", v:7}
+    {t:"d", v:3}, {t:"d", v:7}, {t:"d", v:3}, {t:"d", v:2}
   ];
   var SPIN_CYCLES = 5;
   var digitReels = [];
