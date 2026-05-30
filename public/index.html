@@ -35,7 +35,7 @@
     --hair-soft:#23262C;   /* faintest dividers */
     --edge:#EEF1F5;        /* near-white edges on key blocks */
     --ink:#F2F4F7;         /* primary text */
-    --mut:#9AA2AE;         /* secondary text — AA on dark panels */
+    --mut:#AAB2BE;         /* secondary text — AA on dark panels */
     --mut-2:#BBC2CD;       /* secondary, brighter */
     --black:#000000;       /* pure-black offset shadow */
     --yellow:#F5C800;      /* the single spark */
@@ -490,6 +490,7 @@
 
   /* ---------- BROWSER MOCKUP (shared: hero live demo + portfolio) ---------- */
   .browser{
+    position:relative;
     border:1px solid var(--hair);
     background:var(--panel);
     box-shadow:var(--shadow);
@@ -1160,7 +1161,7 @@
     @media (prefers-reduced-motion:reduce){.nav-cta{transition:background .15s ease}}
 
     .hero{padding-top:78px;padding-bottom:92px}
-    .hero h1{font-size:clamp(46px,6.4vw,72px)}
+    .hero h1{font-size:clamp(36px,4.4vw,48px)}
     .hero .sub{font-size:15px}
     .hero .rule{width:160px}
     .btn-row{flex-direction:row;flex-wrap:wrap;align-items:center}
@@ -1211,7 +1212,7 @@
     .nav-actions{display:inline-flex;align-items:center;gap:8px;margin-left:8px}
   }
   @media (min-width:1024px){
-    .hero h1{font-size:74px}
+    .hero h1{font-size:48px}
     .sec-title{font-size:50px}
     .svc-body{padding:48px 30px 34px}
     .price-list{grid-template-columns:repeat(3,1fr)}
@@ -1312,7 +1313,6 @@
 <!-- scroll progress -->
 <div class="scroll-progress" aria-hidden="true"><div class="bar" id="progressBar"></div></div>
 
-<div class="badge" aria-hidden="true"><span class="sp">&#9698;</span> FINAL &middot; EN/ES</div>
 
 <!-- ============ NAV ============ -->
 <header class="nav">
