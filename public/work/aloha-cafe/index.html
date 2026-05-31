@@ -1,0 +1,758 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Aloha Café — Island warmth, Orlando roots</title>
+<meta name="description" content="A cozy Hawaiian-inspired neighborhood coffee shop in Orlando's Mills 50 District. Kona cold brew, fresh malasadas, loco moco & good vibes. 1123 Mills Ave.">
+<meta name="theme-color" content="#0a4f49">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,500&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sand:#fbf3e4;
+    --sand-deep:#f3e6cf;
+    --cream:#fffaf0;
+    --teal:#0e6b63;
+    --teal-deep:#0a4f49;
+    --teal-ink:#08332f;
+    --coral:#f0683c;          /* brand coral — large fills / buttons only */
+    --coral-deep:#dd4f26;     /* button hover / 4:1 white-on-coral */
+    --coral-text:#bd3a16;     /* AA coral for text on light bg (≥4.7:1) */
+    --coral-soft:#f6976f;
+    --sun:#f6b93b;
+    --leaf:#3f9b6d;
+    --leaf-deep:#2c7a52;
+    --coffee:#6b4326;
+    --ink:#23332f;
+    --muted:#54655f;          /* nudged darker → 5.4:1 on sand */
+    --line:rgba(14,107,99,.16);
+    --shadow:0 18px 40px -24px rgba(10,79,73,.55);
+    --radius:22px;
+    --maxw:1140px;
+    --bar:34px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:"Nunito",system-ui,sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    color:var(--ink);
+    background:var(--sand);
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  /* subtle paper grain */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/></svg>");
+    mix-blend-mode:multiply;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  :focus-visible{outline:3px solid var(--coral);outline-offset:3px;border-radius:6px}
+  h1,h2,h3{font-family:"Fraunces",Georgia,serif;line-height:1.08;margin:0;font-weight:800;letter-spacing:-.01em}
+  .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 22px;position:relative;z-index:2}
+  section{position:relative;z-index:2}
+
+  /* skip link */
+  .skip{position:absolute;left:-999px;top:0;z-index:2000;background:var(--teal-ink);color:#fff;padding:10px 16px;border-radius:0 0 12px 0;font-weight:800;text-decoration:none}
+  .skip:focus{left:0}
+
+  /* ---- BANANAbyte bar ---- */
+  .bb-bar{
+    position:fixed;top:0;left:0;right:0;height:var(--bar);z-index:1000;
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    background:var(--teal-ink);color:#f3e9d6;
+    font-size:13px;font-weight:700;letter-spacing:.02em;text-decoration:none;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    padding:0 14px;white-space:nowrap;overflow:hidden;
+  }
+  .bb-bar b{color:var(--sun)}
+  .bb-bar .txt{display:inline-block;overflow:hidden;text-overflow:ellipsis;opacity:.82;transition:opacity .2s}
+  .bb-bar:hover .txt{opacity:1}
+  .bb-bar .arr{display:inline-block;transition:transform .25s}
+  .bb-bar:hover .arr{transform:translateX(-4px)}
+  .bb-bar .short{display:none}
+
+  /* ---- NAV ---- */
+  .nav{
+    position:fixed;top:var(--bar);left:0;right:0;z-index:900;
+    background:rgba(251,243,228,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);transition:box-shadow .3s,background .3s;
+  }
+  .nav.scrolled{box-shadow:0 10px 30px -22px rgba(10,79,73,.6);background:rgba(251,243,228,.95)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:"Pacifico",cursive;font-size:25px;color:var(--teal);line-height:1;flex:0 0 auto}
+  .brand .mark{width:34px;height:34px;flex:0 0 34px}
+  .nav-links{display:flex;align-items:center;gap:6px;list-style:none;margin:0;padding:0}
+  .nav-links a{
+    text-decoration:none;font-weight:700;font-size:15.5px;color:var(--ink);
+    padding:11px 14px;border-radius:999px;transition:color .2s,background .2s;display:inline-block;
+  }
+  .nav-links a:hover{color:var(--teal);background:rgba(14,107,99,.08)}
+  .nav-cta{
+    background:var(--coral)!important;color:#fff!important;box-shadow:0 10px 20px -10px rgba(240,104,60,.8);
+  }
+  .nav-cta:hover{background:var(--coral-deep)!important;color:#fff!important}
+  .burger{
+    display:none;width:46px;height:46px;border:1px solid var(--line);background:var(--cream);
+    border-radius:13px;cursor:pointer;padding:0;align-items:center;justify-content:center;flex:0 0 46px;
+  }
+  .burger span{display:block;width:21px;height:2.4px;background:var(--teal);border-radius:3px;position:relative;transition:.28s}
+  .burger span::before,.burger span::after{content:"";position:absolute;left:0;width:21px;height:2.4px;background:var(--teal);border-radius:3px;transition:.28s}
+  .burger span::before{top:-6.5px}.burger span::after{top:6.5px}
+  .burger[aria-expanded="true"] span{background:transparent}
+  .burger[aria-expanded="true"] span::before{top:0;transform:rotate(45deg)}
+  .burger[aria-expanded="true"] span::after{top:0;transform:rotate(-45deg)}
+
+  /* ---- HERO ---- */
+  .hero{
+    position:relative;overflow:hidden;
+    padding:calc(var(--bar) + 68px + 60px) 0 90px;
+    background:
+      radial-gradient(120% 90% at 82% 8%, #fde7bd 0%, rgba(253,231,189,0) 52%),
+      radial-gradient(100% 80% at 8% 100%, #d6efe2 0%, rgba(214,239,226,0) 55%),
+      linear-gradient(180deg,#fdf6e7 0%, var(--sand) 100%);
+  }
+  .sun{position:absolute;top:-70px;right:-60px;width:340px;height:340px;z-index:1;opacity:.9;animation:spin 80s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .leaf{position:absolute;z-index:1;pointer-events:none}
+  .leaf.l1{top:auto;bottom:-30px;left:-70px;width:300px;transform:rotate(8deg);opacity:.9}
+  .leaf.l2{top:-40px;left:42%;width:200px;transform:rotate(200deg);opacity:.5}
+  .leaf.l3{bottom:30px;right:-50px;width:230px;transform:rotate(-20deg) scaleX(-1);opacity:.65}
+  .hero-grid{position:relative;z-index:3;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+  .hero-copy{min-width:0}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:9px;font-weight:800;text-transform:uppercase;
+    letter-spacing:.14em;font-size:12.5px;color:var(--teal-deep);
+    background:rgba(255,255,255,.75);border:1px solid var(--line);
+    padding:7px 14px;border-radius:999px;margin-bottom:22px;
+  }
+  .eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--coral);box-shadow:0 0 0 4px rgba(240,104,60,.18)}
+  .hero h1{font-size:clamp(44px,8.5vw,84px);color:var(--teal-deep);font-weight:800}
+  .hero h1 .script{display:block;font-family:"Pacifico",cursive;font-weight:400;font-size:.6em;color:var(--coral-text);letter-spacing:0;margin-bottom:2px;transform:rotate(-2deg)}
+  .lede{font-size:19px;color:var(--muted);max-width:30em;margin:20px 0 30px;font-weight:500}
+  .lede b{color:var(--teal-deep);font-weight:800}
+  .cta-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:9px;text-decoration:none;font-weight:800;font-size:16px;
+    padding:15px 26px;border-radius:999px;cursor:pointer;border:0;transition:transform .18s,box-shadow .25s,background .2s;
+    min-height:50px;
+  }
+  .btn-primary{background:var(--coral);color:#fff;box-shadow:0 16px 30px -14px rgba(240,104,60,.9)}
+  .btn-primary:hover{transform:translateY(-2px);background:var(--coral-deep);box-shadow:0 22px 36px -14px rgba(240,104,60,.95)}
+  .btn-ghost{background:#fff;color:var(--teal-deep);border:2px solid var(--teal);}
+  .btn-ghost:hover{transform:translateY(-2px);background:var(--teal);color:#fff}
+  .hero-stats{display:flex;gap:26px;margin-top:34px;flex-wrap:wrap}
+  .hero-stats .s b{font-family:"Fraunces",serif;font-size:26px;color:var(--coral-text);font-weight:800;display:block;line-height:1}
+  .hero-stats .s span{font-size:13.5px;color:var(--muted);font-weight:700}
+
+  /* hero card art */
+  .hero-card{
+    position:relative;border-radius:30px;overflow:hidden;box-shadow:var(--shadow);
+    background:linear-gradient(160deg,var(--teal) 0%, var(--teal-deep) 100%);
+    aspect-ratio:4/5;display:flex;align-items:flex-end;border:6px solid #fff;max-width:100%;
+  }
+  .hero-card .glow{position:absolute;inset:0;background:radial-gradient(70% 55% at 70% 22%, rgba(246,185,59,.55), transparent 60%)}
+  .hero-card .cup{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+  .hero-card .tag{
+    position:relative;z-index:2;margin:18px;background:rgba(255,250,240,.96);border-radius:16px;
+    padding:14px 16px;display:flex;align-items:center;gap:12px;width:calc(100% - 36px);
+  }
+  .hero-card .tag .ic{width:40px;height:40px;border-radius:12px;background:var(--coral);display:flex;align-items:center;justify-content:center;flex:0 0 40px}
+  .hero-card .tag h4{font-family:"Fraunces",serif;font-size:17px;margin:0;color:var(--teal-deep)}
+  .hero-card .tag p{margin:0;font-size:13px;color:var(--muted);font-weight:600}
+  .hero-figure{position:relative}
+  .float-badge{
+    position:absolute;z-index:4;top:-18px;left:-22px;background:var(--sun);color:var(--teal-ink);
+    font-family:"Fraunces",serif;font-weight:800;font-size:14px;padding:14px;border-radius:50%;
+    width:84px;height:84px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.1;
+    box-shadow:0 14px 26px -12px rgba(246,185,59,.9);animation:bob 5s ease-in-out infinite;transform:rotate(-10deg)}
+  @keyframes bob{50%{transform:rotate(-10deg) translateY(-8px)}}
+
+  /* wave divider */
+  .wave{display:block;width:100%;height:48px;position:relative;z-index:2;margin-top:-2px}
+
+  /* ---- STORY ---- */
+  .story{background:var(--cream);padding:84px 0}
+  .story-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:54px;align-items:center}
+  .story-copy,.story-art{min-width:0}
+  .label{font-weight:800;text-transform:uppercase;letter-spacing:.16em;font-size:12.5px;color:var(--coral-text);margin-bottom:14px}
+  .story h2{font-size:clamp(30px,4.6vw,44px);color:var(--teal-deep)}
+  .story p{color:var(--muted);font-size:17.5px;margin:18px 0 0}
+  .story p strong{color:var(--teal-deep)}
+  .sign{font-family:"Pacifico",cursive;color:var(--coral-text);font-size:26px;margin-top:18px}
+  .sign small{display:block;font-family:"Nunito";font-size:13px;color:var(--muted);font-weight:700;letter-spacing:.02em;margin-top:2px}
+  .story-art{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:5/4;border:6px solid #fff;box-shadow:var(--shadow);
+    background:linear-gradient(150deg,#1aa17e,#0e6b63 55%,#0a4f49);display:grid;place-items:center}
+  .story-art .pat{position:absolute;inset:0;opacity:.4}
+  .story-art .credit{position:absolute;bottom:12px;right:14px;z-index:3;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.78);background:rgba(8,51,47,.42);padding:5px 10px;border-radius:999px}
+  .feat-list{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}
+  .feat{background:var(--sand);border:1px solid var(--line);border-radius:16px;padding:16px 14px;text-align:center;min-width:0}
+  .feat .ic{width:44px;height:44px;margin:0 auto 8px;border-radius:13px;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow)}
+  .feat b{display:block;font-family:"Fraunces",serif;font-size:15px;color:var(--teal-deep)}
+  .feat span{font-size:12.5px;color:var(--muted);font-weight:600}
+
+  /* ---- MENU ---- */
+  .menu{padding:88px 0;background:linear-gradient(180deg,var(--sand) 0%, #f7ecd6 100%)}
+  .sec-head{text-align:center;max-width:620px;margin:0 auto 48px}
+  .sec-head h2{font-size:clamp(32px,5vw,50px);color:var(--teal-deep)}
+  .sec-head h2 em{font-style:normal;color:var(--coral-text);font-family:"Pacifico",cursive;font-size:.8em;font-weight:400}
+  .sec-head p{color:var(--muted);font-size:17px;margin-top:12px;font-weight:500}
+  .menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .mcard{
+    background:var(--cream);border:1px solid var(--line);border-radius:var(--radius);padding:8px;
+    box-shadow:0 14px 34px -26px rgba(10,79,73,.55);display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s;min-width:0;
+  }
+  .mcard:hover{transform:translateY(-6px);box-shadow:0 26px 46px -26px rgba(10,79,73,.6)}
+  .mcard .top{
+    border-radius:16px;height:118px;display:flex;align-items:flex-end;justify-content:space-between;
+    padding:14px 16px;color:#fff;position:relative;overflow:hidden;
+  }
+  .mcard.c1 .top{background:linear-gradient(140deg,#7a4a28,#4d2c14)}
+  .mcard.c2 .top{background:linear-gradient(140deg,#1aa17e,#0e6b63)}
+  .mcard.c3 .top{background:linear-gradient(140deg,#e2552b,#b8350f)}
+  .mcard .top h3{font-size:21px;position:relative;z-index:2}
+  .mcard .top .emoji{font-size:34px;position:relative;z-index:2;filter:drop-shadow(0 4px 6px rgba(0,0,0,.25))}
+  .mcard .top .ring{position:absolute;width:150px;height:150px;border-radius:50%;border:2px dashed rgba(255,255,255,.25);right:-40px;top:-50px}
+  .mlist{list-style:none;margin:0;padding:16px 14px 8px;flex:1}
+  .mlist li{display:flex;align-items:baseline;gap:8px;padding:11px 0;border-bottom:1px dashed var(--line)}
+  .mlist li:last-child{border-bottom:0}
+  .mlist .info{min-width:0}
+  .mlist .nm{font-weight:800;color:var(--teal-ink);font-size:16px}
+  .mlist .ds{display:block;font-size:13px;color:var(--muted);font-weight:600;margin-top:1px}
+  .mlist .dots{flex:1;min-width:14px;border-bottom:2px dotted var(--line);transform:translateY(-4px)}
+  .mlist .pr{font-family:"Fraunces",serif;font-weight:800;color:var(--coral-text);font-size:17px;white-space:nowrap}
+  .mtag{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--leaf-deep);background:rgba(63,155,109,.18);padding:2px 7px;border-radius:6px;margin-left:6px;vertical-align:middle}
+  .menu-note{text-align:center;margin-top:34px;color:var(--muted);font-weight:600;font-size:14.5px}
+
+  /* ---- GALLERY ---- */
+  .gallery{padding:20px 0 0}
+  .strip{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+  .tile{aspect-ratio:1;border-radius:18px;position:relative;overflow:hidden;display:flex;align-items:flex-end;justify-content:flex-start;padding:12px;color:#fff;font-weight:800;font-size:13.5px;box-shadow:0 14px 30px -24px rgba(10,79,73,.7);transition:transform .25s}
+  .tile:hover{transform:translateY(-5px) rotate(-1deg)}
+  .tile span{position:relative;z-index:2;background:rgba(8,51,47,.5);padding:5px 9px;border-radius:9px;backdrop-filter:blur(2px)}
+  .tile .em{position:absolute;top:50%;left:50%;transform:translate(-50%,-55%);font-size:42px;z-index:1;filter:drop-shadow(0 4px 8px rgba(0,0,0,.25))}
+  .t1{background:linear-gradient(150deg,#f6b93b,#e2552b)}
+  .t2{background:linear-gradient(150deg,#1aa17e,#0a4f49)}
+  .t3{background:linear-gradient(150deg,#8a5a32,#4d2c14)}
+  .t4{background:linear-gradient(150deg,#f6976f,#c8421f)}
+  .t5{background:linear-gradient(150deg,#2c7a52,#0e6b63)}
+
+  /* ---- REVIEWS ---- */
+  .reviews{padding:80px 0 30px}
+  .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .rev{background:var(--cream);border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px;box-shadow:0 14px 34px -28px rgba(10,79,73,.5);min-width:0}
+  .stars{color:#d98a14;font-size:16px;letter-spacing:2px;margin-bottom:12px}
+  .rev p{margin:0 0 18px;font-family:"Fraunces",serif;font-size:18px;font-style:italic;color:var(--teal-ink);line-height:1.5;font-weight:500}
+  .rev .who{display:flex;align-items:center;gap:12px}
+  .rev .av{width:42px;height:42px;border-radius:50%;flex:0 0 42px;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-family:"Fraunces",serif}
+  .rev .who b{display:block;font-size:14.5px;color:var(--ink)}
+  .rev .who span{font-size:12.5px;color:var(--muted);font-weight:700}
+
+  /* ---- VISIT ---- */
+  .visit{padding:84px 0;background:var(--teal-deep);color:#f2ead8;position:relative;overflow:hidden}
+  .visit .leaf-bg{position:absolute;opacity:.12;z-index:1}
+  .visit .leaf-bg.a{bottom:-60px;left:-60px;width:340px;transform:rotate(15deg)}
+  .visit .leaf-bg.b{top:-60px;right:-40px;width:280px;transform:rotate(190deg)}
+  .visit .label{color:var(--sun)}
+  .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:stretch}
+  .visit-grid>div{min-width:0}
+  .visit h2{color:#fff;font-size:clamp(30px,4.6vw,46px)}
+  .visit .sub{color:rgba(242,234,216,.82);font-size:17px;margin:16px 0 26px;max-width:32em;font-weight:500}
+  .info{display:grid;gap:14px}
+  .irow{display:flex;align-items:flex-start;gap:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:16px 18px}
+  .irow .ic{width:42px;height:42px;flex:0 0 42px;border-radius:12px;background:var(--coral);display:flex;align-items:center;justify-content:center}
+  .irow h4{font-family:"Fraunces",serif;font-size:16px;color:#fff;margin:0 0 4px}
+  .irow .lines{font-size:14.5px;color:rgba(242,234,216,.85);font-weight:600}
+  .irow .lines span{display:block}
+  .irow .lines .now{color:var(--sun);font-weight:800}
+  .irow a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.4)}
+  .irow a:hover{border-bottom-color:#fff}
+  /* map */
+  .map{border-radius:var(--radius);overflow:hidden;position:relative;min-height:340px;border:6px solid rgba(255,255,255,.14);
+    background:linear-gradient(180deg,#d8eee2,#bfe3d2);}
+  .map .roads path{stroke:#a6d2bd;stroke-width:7;fill:none;stroke-linecap:round}
+  .map .roads .main{stroke:#fff;stroke-width:11}
+  .map .water{fill:#9cd3e6}
+  .map .park{fill:#bfe0b4}
+  .map .pin{position:absolute;top:46%;left:54%;transform:translate(-50%,-100%);z-index:3;text-align:center}
+  .map .pin .dot{width:30px;height:30px;border-radius:50% 50% 50% 0;background:var(--coral);transform:rotate(-45deg);margin:0 auto;box-shadow:0 8px 16px -6px rgba(200,66,31,.8);border:3px solid #fff}
+  .map .pin .lab{margin-top:10px;background:#fff;color:var(--teal-deep);font-weight:800;font-size:12.5px;padding:5px 11px;border-radius:999px;box-shadow:var(--shadow);white-space:nowrap}
+  .map .you{position:absolute;bottom:14px;left:14px;background:rgba(8,51,47,.88);color:#fff;font-size:11.5px;font-weight:700;padding:6px 11px;border-radius:999px;z-index:3}
+
+  /* order form */
+  .order-strip{margin-top:54px;background:linear-gradient(135deg,var(--coral),#d8491f);border-radius:var(--radius);padding:34px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;position:relative;overflow:hidden}
+  .order-strip>div{min-width:0}
+  .order-strip h3{color:#fff;font-size:clamp(24px,3.6vw,34px)}
+  .order-strip p{color:#fff;font-weight:600;margin:8px 0 0;max-width:30em}
+  .order-strip .ring{position:absolute;width:240px;height:240px;border:2px dashed rgba(255,255,255,.25);border-radius:50%;right:-70px;top:-80px;pointer-events:none}
+  .order-form{display:flex;gap:10px;flex-wrap:wrap;position:relative;z-index:2}
+  .order-form input{border:0;border-radius:14px;padding:14px 16px;font:inherit;font-weight:600;min-height:50px;min-width:0;width:220px;flex:1 1 180px;color:var(--ink)}
+  .order-form button{background:var(--teal-ink);color:#fff;border:0;border-radius:14px;padding:14px 24px;font:inherit;font-weight:800;cursor:pointer;min-height:50px;transition:transform .18s,background .2s;flex:0 0 auto}
+  .order-form button:hover{transform:translateY(-2px);background:#062521}
+  .form-note{font-size:12.5px;color:#fff;font-weight:600;margin-top:10px;width:100%;opacity:.92}
+
+  /* ---- FOOTER ---- */
+  footer{background:var(--teal-ink);color:#d9cfba;padding:64px 0 26px;position:relative;z-index:2}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px}
+  .foot-grid>div{min-width:0}
+  .foot-brand .brand{color:#fff;margin-bottom:14px}
+  .foot-brand p{font-size:14.5px;color:rgba(217,207,186,.85);font-weight:500;max-width:26em}
+  .socials{display:flex;gap:10px;margin-top:18px}
+  .socials a{width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;transition:background .2s,transform .2s}
+  .socials a:hover{background:var(--coral);transform:translateY(-3px)}
+  footer h5{font-family:"Fraunces",serif;font-size:16px;color:#fff;margin:0 0 14px}
+  .fcol ul{list-style:none;margin:0;padding:0}
+  .fcol li{margin-bottom:4px}
+  .fcol a{text-decoration:none;color:rgba(217,207,186,.85);font-size:14.5px;font-weight:600;transition:color .2s;display:inline-block;padding:6px 0;min-height:34px}
+  .fcol a:hover{color:var(--sun)}
+  .fhours{font-size:14px;color:rgba(217,207,186,.85);font-weight:600;line-height:1.9}
+  .fhours b{color:#fff}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.1);margin-top:42px;padding-top:22px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;font-size:13px;color:rgba(217,207,186,.78);font-weight:600}
+  .foot-bottom a{color:var(--sun);text-decoration:none;font-weight:800}
+  .foot-bottom a:hover{text-decoration:underline}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---- RESPONSIVE ---- */
+  @media(max-width:960px){
+    .hero-grid,.story-grid,.visit-grid{grid-template-columns:1fr;gap:38px}
+    .hero-figure{max-width:420px;margin:0 auto;width:100%}
+    .menu-grid,.rev-grid{grid-template-columns:1fr}
+    .strip{grid-template-columns:repeat(3,1fr)}
+    .foot-grid{grid-template-columns:1fr 1fr;gap:30px}
+    .foot-brand{grid-column:1/-1}
+  }
+  @media(max-width:760px){
+    .burger{display:flex}
+    .bb-bar .full{display:none}
+    .bb-bar .short{display:inline}
+    .nav-links{
+      position:fixed;top:calc(var(--bar) + 68px);left:0;right:0;
+      flex-direction:column;align-items:stretch;gap:6px;
+      background:var(--cream);padding:16px 22px 26px;border-bottom:1px solid var(--line);
+      box-shadow:0 24px 30px -24px rgba(10,79,73,.6);
+      transform:translateY(-135%);transition:transform .35s cubic-bezier(.45,.05,.3,1);
+      max-height:calc(100dvh - var(--bar) - 68px);overflow:auto;
+    }
+    .nav-links.open{transform:translateY(0)}
+    .nav-links a{padding:15px 16px;font-size:17px}
+    .nav-links .nav-cta{text-align:center}
+    .feat-list{grid-template-columns:1fr}
+    .order-strip{flex-direction:column;align-items:flex-start}
+    .order-form{width:100%}
+    .order-form input,.order-form button{width:100%;flex:1 1 100%}
+  }
+  @media(max-width:430px){
+    body{font-size:16px}
+    .wrap{padding:0 16px}
+    .hero{padding-top:calc(var(--bar) + 68px + 36px)}
+    .strip{grid-template-columns:repeat(2,1fr)}
+    .hero-stats{gap:18px}
+    .foot-grid{grid-template-columns:1fr}
+    .float-badge{left:auto;right:-6px;top:-14px}
+    .bb-bar{font-size:12.5px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;scroll-behavior:auto}
+    .reveal{opacity:1;transform:none;transition:none}
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#menu">Skip to menu</a>
+
+<!-- BANANAbyte concept bar -->
+<a class="bb-bar" href="https://bananabyte.io" target="_blank" rel="noopener" aria-label="A concept site by BANANAbyte — see more of our work at bananabyte.io">
+  <span class="arr" aria-hidden="true">◂</span>
+  <span class="txt full">A concept site by <b>BANANA</b>byte — see more of our work</span>
+  <span class="txt short">Concept site by <b>BANANA</b>byte</span>
+</a>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" aria-label="Aloha Café home">
+      <svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="20" cy="20" r="19" fill="#0e6b63"/>
+        <path d="M20 9c5 1 9 4 9 9 0 4-3 7-6 8 1-4-1-8-5-10 2-2 2-5 2-7z" fill="#f6b93b"/>
+        <path d="M20 31c-5-1-9-4-9-9 0-4 3-7 6-8-1 4 1 8 5 10-2 2-2 5-2 7z" fill="#f0683c"/>
+        <circle cx="20" cy="20" r="3" fill="#fffaf0"/>
+      </svg>
+      Aloha Café
+    </a>
+    <nav aria-label="Primary">
+      <ul class="nav-links" id="navlinks">
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#visit">Visit</a></li>
+        <li><a href="#order" class="nav-cta">Order Ahead</a></li>
+      </ul>
+    </nav>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks"><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="sun" viewBox="0 0 200 200" aria-hidden="true">
+    <g fill="#f6b93b" opacity=".85">
+      <circle cx="100" cy="100" r="44"/>
+      <g stroke="#f6b93b" stroke-width="7" stroke-linecap="round">
+        <line x1="100" y1="14" x2="100" y2="38"/><line x1="100" y1="162" x2="100" y2="186"/>
+        <line x1="14" y1="100" x2="38" y2="100"/><line x1="162" y1="100" x2="186" y2="100"/>
+        <line x1="40" y1="40" x2="57" y2="57"/><line x1="143" y1="143" x2="160" y2="160"/>
+        <line x1="160" y1="40" x2="143" y2="57"/><line x1="57" y1="143" x2="40" y2="160"/>
+      </g>
+    </g>
+  </svg>
+  <svg class="leaf l1" viewBox="0 0 200 120" aria-hidden="true"><path d="M5 60C60 5 150 5 195 30 130 40 70 75 40 115 30 95 15 78 5 60Z" fill="#2c7a52"/><path d="M30 70C80 35 140 30 180 38" stroke="#1e5c3c" stroke-width="2" fill="none"/></svg>
+  <svg class="leaf l2" viewBox="0 0 200 120" aria-hidden="true"><path d="M5 60C60 5 150 5 195 30 130 40 70 75 40 115 30 95 15 78 5 60Z" fill="#3f9b6d"/></svg>
+  <svg class="leaf l3" viewBox="0 0 200 120" aria-hidden="true"><path d="M5 60C60 5 150 5 195 30 130 40 70 75 40 115 30 95 15 78 5 60Z" fill="#2c7a52"/><path d="M30 70C80 35 140 30 180 38" stroke="#1e5c3c" stroke-width="2" fill="none"/></svg>
+
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow reveal"><span class="dot"></span>Mills 50 District · Orlando, FL</span>
+      <h1 class="reveal"><span class="script">Aloha,</span>welcome to the<br>cozy side of coffee.</h1>
+      <p class="lede reveal"><b>Island warmth, Orlando roots</b> — small-batch coffee, fresh-from-the-fryer malasadas &amp; good vibes, served slow under the palms.</p>
+      <div class="cta-row reveal">
+        <a class="btn btn-primary" href="#menu">See the Menu
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="#visit">Find Us
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+        </a>
+      </div>
+      <div class="hero-stats reveal">
+        <div class="s"><b>4.9★</b><span>620+ local reviews</span></div>
+        <div class="s"><b>Since '19</b><span>family-run on Mills</span></div>
+        <div class="s"><b>7am</b><span>fresh pastries daily</span></div>
+      </div>
+    </div>
+
+    <div class="hero-figure reveal">
+      <div class="hero-card" role="img" aria-label="Aloha Café's signature Kona cold brew, steeped 16 hours for a smooth, low-acid pour.">
+        <div class="float-badge" aria-hidden="true">Fresh<br>Kona<br>Daily</div>
+        <div class="glow"></div>
+        <div class="cup" aria-hidden="true">
+          <svg width="180" height="200" viewBox="0 0 180 200">
+            <g>
+              <path d="M50 26c0 0 6-12 0-20" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" opacity=".55"/>
+              <path d="M75 24c0 0 7-13 0-22" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" opacity=".4"/>
+              <path d="M100 26c0 0 6-12 0-20" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" opacity=".55"/>
+            </g>
+            <ellipse cx="78" cy="52" rx="62" ry="14" fill="#fffaf0"/>
+            <path d="M16 52c0 60 14 110 62 110s62-50 62-110Z" fill="#fffaf0"/>
+            <path d="M16 52c0 12 1 25 3 38 18 14 38 14 59 14s41 0 59-14c2-13 3-26 3-38Z" fill="#6b4326"/>
+            <ellipse cx="78" cy="52" rx="62" ry="13" fill="#8a5a32"/>
+            <ellipse cx="78" cy="50" rx="48" ry="9" fill="#a0703f"/>
+            <path d="M62 46c8-5 24-5 32 0-8 4-24 4-32 0Z" fill="#c98a52" opacity=".8"/>
+            <path d="M140 70c22-4 30 10 22 24-6 11-20 11-26 6 8-3 14-12 4-30Z" fill="#fffaf0"/>
+          </svg>
+        </div>
+        <div class="tag">
+          <div class="ic" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a3 3 0 010 6h-1"/><path d="M3 8h15v5a6 6 0 01-6 6H9a6 6 0 01-6-6V8Z"/><path d="M6 2v2M10 2v2M14 2v2"/></svg>
+          </div>
+          <div>
+            <h4>Kona Cold Brew</h4>
+            <p>16hr steep · smooth, low-acid, never bitter</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<svg class="wave" viewBox="0 0 1440 48" preserveAspectRatio="none" aria-hidden="true"><path d="M0 24c180 30 360 30 540 12s360-30 540-12 180 24 360 24v0H0Z" fill="#fffaf0"/></svg>
+
+<!-- STORY -->
+<section class="story" id="story">
+  <div class="wrap story-grid">
+    <div class="story-art reveal" role="img" aria-label="Decorative island-pattern panel in Aloha Café's teal and sunset palette.">
+      <svg class="pat" viewBox="0 0 200 200" preserveAspectRatio="none" aria-hidden="true"><g fill="none" stroke="#fffaf0" stroke-width="1.4" opacity=".5"><path d="M-10 40C40 0 90 0 130-30M-10 90C40 50 90 50 130 20M-10 140C40 100 90 100 130 70M70 210C120 170 170 170 210 140"/></g></svg>
+      <svg width="150" height="150" viewBox="0 0 120 120" style="position:relative;z-index:2" aria-hidden="true">
+        <circle cx="60" cy="60" r="56" fill="none" stroke="#fffaf0" stroke-width="3" opacity=".5"/>
+        <path d="M60 24c-9 14-9 28 0 42 9-14 9-28 0-42Z" fill="#f6b93b"/>
+        <path d="M60 96c9-14 9-28 0-42-9 14-9 28 0 42Z" fill="#f0683c"/>
+        <path d="M24 60c14-9 28-9 42 0-14 9-28 9-42 0Z" fill="#fffaf0"/>
+        <path d="M96 60c-14 9-28 9-42 0 14-9 28-9 42 0Z" fill="#fffaf0" opacity=".75"/>
+        <circle cx="60" cy="60" r="7" fill="#0a4f49"/>
+      </svg>
+      <span class="credit">Hilo &rarr; Orlando · est. 2019</span>
+    </div>
+    <div class="story-copy reveal">
+      <div class="label">Our Story</div>
+      <h2>A little slice of the islands, two blocks off Colonial.</h2>
+      <p>Aloha Café started in 2019 when <strong>Malia &amp; Theo Kahale</strong> traded the trade winds of Hilo for a sleepy corner of Orlando's Mills 50 district. They missed the slow island mornings — the kind where the coffee is from down the road, the malasadas are still warm, and nobody's in a hurry.</p>
+      <p>So they built one. Every cup is poured by hand, the cold brew steeps for sixteen hours, and the banana bread recipe is straight from Malia's tūtū. Pull up a rattan chair, kick off your slippahs, and stay a while. <strong>You're 'ohana here.</strong></p>
+      <div class="sign">— Malia &amp; Theo<small>Owners · Roasters · Resident greeters</small></div>
+      <div class="feat-list">
+        <div class="feat">
+          <div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0e6b63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 00-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 00-7-7Z"/><circle cx="12" cy="9" r="2.2"/></svg></div>
+          <b>Locally Roasted</b><span>Beans from a Winter Park micro-roaster</span>
+        </div>
+        <div class="feat">
+          <div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8421f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M12 3v18"/><circle cx="12" cy="12" r="9"/></svg></div>
+          <b>Baked Daily</b><span>Pastries from the fryer by 7am sharp</span>
+        </div>
+        <div class="feat">
+          <div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2c7a52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 8.5C20 5 17 3 12 3S4 5 4 8.5C4 14 12 21 12 21s8-7 8-12.5Z"/></svg></div>
+          <b>Made with Aloha</b><span>Family-run, neighbor-first, always</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu" id="menu">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>On the <em>menu</em></h2>
+      <p>Small batch, big flavor. Everything's made to order — dairy-free milks always on the house.</p>
+    </div>
+    <div class="menu-grid">
+
+      <article class="mcard c1 reveal">
+        <div class="top"><div class="ring"></div><h3>Coffee &amp; Espresso</h3><span class="emoji" aria-hidden="true">☕</span></div>
+        <ul class="mlist">
+          <li><div class="info"><span class="nm">Kona Cold Brew</span><span class="ds">16-hour steep, smooth &amp; low-acid</span></div><i class="dots" aria-hidden="true"></i><span class="pr">$4.50</span></li>
+          <li><div class="info"><span class="nm">Coconut Latte<span class="mtag">signature</span></span><span class="ds">Espresso, toasted coconut, oat milk</span></div><i class="dots" aria-hidden="true"></i><span class="pr">$5.25</span></li>
+          <li><div class="info"><span class="nm">Hand Pour-Over</span><span class="ds">Single-origin, ask for today's bean</span></div><i class="dots" aria-hidden="true"></i><span class="pr">$4.00</span></li>
+          <li><div class="info"><span class="nm">Lilikoi Iced Tea</span><span class="ds">Passionfruit, lightly sweetened</span></div><i class="dots" aria-hidden="true"></i><span class="pr">$3.75</span></li>
+        </ul>
+      </article>
+
+      <article class="mcard c2 reveal">
+        <div class="top"><div class="ring"></div><h3>Island Breakfast</h3><span class="emoji" aria-hidden="true">🍳</span></div>
+        <ul class="mlist">
+          <li><div class="info"><span class="nm">Loco Moco<span class="mtag">fan fave</span></span><span class="ds">Rice, beef patty, egg, island gravy</span></div><i class="dots" aria-hidden="true"></i><span class="pr">$12</span></li>
+          <li><div class="info"><span class="nm">Açaí Bowl</span><span class="ds">Granola, banana, honey, coconut flakes</span></div><i class="dots" aria-hidden="true"></i><span class="pr">$9.50</span></li>
+          <li><div class="info"><span class="nm">Avocado Toast</span><span class="ds">Sourdough, chili crunch, lime, furikake</span></div><i class="dots" aria-hidden="true"></i><span class="pr">$8</span></li>
+          <li><div class="info"><span class="nm">Spam Musubi</span><span class="ds">Grilled, teriyaki-glazed, nori-wrapped</span></div><i class="dots" aria-hidden="true"></i><span class="pr">$5</span></li>
+        </ul>
+      </article>
+
+      <article class="mcard c3 reveal">
+        <div class="top"><div class="ring"></div><h3>Sweets</h3><span class="emoji" aria-hidden="true">🍰</span></div>
+        <ul class="mlist">
+          <li><div class="info"><span class="nm">Guava Malasada<span class="mtag">warm</span></span><span class="ds">Portuguese donut, guava-filled</span></div><i class="dots" aria-hidden="true"></i><span class="pr">$3.50</span></li>
+          <li><div class="info"><span class="nm">Tūtū's Banana Bread</span><span class="ds">Family recipe, toasted with butter</span></div><i class="dots" aria-hidden="true"></i><span class="pr">$4</span></li>
+          <li><div class="info"><span class="nm">Lilikoi Cheesecake</span><span class="ds">Passionfruit curd, graham crust</span></div><i class="dots" aria-hidden="true"></i><span class="pr">$6</span></li>
+          <li><div class="info"><span class="nm">Haupia Bar</span><span class="ds">Coconut custard, chocolate ribbon</span></div><i class="dots" aria-hidden="true"></i><span class="pr">$4.50</span></li>
+        </ul>
+      </article>
+
+    </div>
+    <p class="menu-note reveal">🌱 Vegan &amp; gluten-free swaps available · Ask the counter about today's specials board</p>
+
+    <!-- GALLERY -->
+    <div class="gallery reveal" role="group" aria-label="A taste of the café">
+      <div class="strip">
+        <div class="tile t1"><span class="em" aria-hidden="true">🥥</span><span>Coconut Latte</span></div>
+        <div class="tile t2"><span class="em" aria-hidden="true">🌿</span><span>Açaí Bowl</span></div>
+        <div class="tile t3"><span class="em" aria-hidden="true">🍞</span><span>Banana Bread</span></div>
+        <div class="tile t4"><span class="em" aria-hidden="true">🍩</span><span>Malasadas</span></div>
+        <div class="tile t5"><span class="em" aria-hidden="true">☕</span><span>Cold Brew</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>What the neighbors say</h2>
+    </div>
+    <div class="rev-grid">
+      <div class="rev reveal">
+        <div class="stars" aria-hidden="true">★★★★★</div>
+        <p>"The coconut latte is dangerous — I'm here three mornings a week now. Feels like a hug in a mug."</p>
+        <div class="who"><div class="av" style="background:#0e6b63" aria-hidden="true">K</div><div><b>Kayla R.</b><span>Audubon Park · 5 stars</span></div></div>
+      </div>
+      <div class="rev reveal">
+        <div class="stars" aria-hidden="true">★★★★★</div>
+        <p>"Best malasadas outside of Honolulu, full stop. Malia and Theo treat you like family the second you walk in."</p>
+        <div class="who"><div class="av" style="background:#c8421f" aria-hidden="true">D</div><div><b>Devon M.</b><span>Mills 50 regular · 5 stars</span></div></div>
+      </div>
+      <div class="rev reveal">
+        <div class="stars" aria-hidden="true">★★★★★</div>
+        <p>"My go-to remote-work spot. Loco moco at lunch, lilikoi tea all afternoon, and nobody rushes you out. Aloha for real."</p>
+        <div class="who"><div class="av" style="background:#2c7a52" aria-hidden="true">S</div><div><b>Sara &amp; Jon T.</b><span>Colonialtown · 5 stars</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section class="visit" id="visit">
+  <svg class="leaf-bg a" viewBox="0 0 200 120" aria-hidden="true"><path d="M5 60C60 5 150 5 195 30 130 40 70 75 40 115 30 95 15 78 5 60Z" fill="#fffaf0"/></svg>
+  <svg class="leaf-bg b" viewBox="0 0 200 120" aria-hidden="true"><path d="M5 60C60 5 150 5 195 30 130 40 70 75 40 115 30 95 15 78 5 60Z" fill="#fffaf0"/></svg>
+  <div class="wrap">
+    <div class="visit-grid">
+      <div class="reveal">
+        <div class="label">Visit Us</div>
+        <h2>Come hang under the palms.</h2>
+        <p class="sub">Two blocks south of Colonial in the heart of Mills 50 — free street parking out back, dog-friendly patio out front.</p>
+        <div class="info">
+          <div class="irow">
+            <div class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0Z"/><circle cx="12" cy="10" r="2.6"/></svg></div>
+            <div><h4>Find us</h4><div class="lines"><span>1123 Mills Ave</span><span>Orlando, FL 32803</span></div></div>
+          </div>
+          <div class="irow">
+            <div class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+            <div><h4>Hours</h4><div class="lines"><span class="now">● Open now · closes 3pm</span><span>Mon – Sat &nbsp;7am – 3pm</span><span>Sunday &nbsp;&nbsp;&nbsp;8am – 2pm</span></div></div>
+          </div>
+          <div class="irow">
+            <div class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2H7a2 2 0 012 1.7l.5 3a2 2 0 01-.6 1.9L7.6 9.8a16 16 0 006 6l1.2-1.3a2 2 0 011.9-.5l3 .5A2 2 0 0122 16.9Z"/></svg></div>
+            <div><h4>Say aloha</h4><div class="lines"><a href="tel:+14075550143">(407) 555-0143</a><a href="mailto:hello@alohacafe-orl.com">hello@alohacafe-orl.com</a></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="map reveal" role="img" aria-label="Stylized map showing Aloha Café at 1123 Mills Avenue, Orlando, in the Mills 50 District.">
+        <svg width="100%" height="100%" viewBox="0 0 400 340" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0" aria-hidden="true">
+          <rect width="400" height="340" fill="#cfe9da"/>
+          <path class="water" d="M0 0h120v60C70 90 40 120 0 130Z" opacity=".9"/>
+          <path class="park" d="M280 200h120v140H250c10-40 0-100 30-140Z"/>
+          <g class="roads">
+            <path d="M-10 120H420"/><path d="M-10 250H420"/>
+            <path d="M120 -10V360"/><path d="M300 -10V360"/>
+            <path class="main" d="M-10 185H420"/>
+            <path class="main" d="M216 -10V360"/>
+          </g>
+          <g opacity=".55" fill="#8fc2a8">
+            <rect x="30" y="200" width="40" height="30" rx="3"/><rect x="80" y="205" width="26" height="25" rx="3"/>
+            <rect x="140" y="200" width="30" height="28" rx="3"/><rect x="250" y="135" width="34" height="28" rx="3"/>
+            <rect x="135" y="135" width="40" height="30" rx="3"/>
+          </g>
+        </svg>
+        <div class="pin" aria-hidden="true"><div class="dot"></div><div class="lab">☕ Aloha Café · 1123 Mills</div></div>
+        <div class="you" aria-hidden="true">Mills 50 District</div>
+      </div>
+    </div>
+
+    <!-- ORDER -->
+    <div class="order-strip reveal" id="order">
+      <div class="ring" aria-hidden="true"></div>
+      <div>
+        <h3>Order ahead, skip the line.</h3>
+        <p>Drop your email and we'll send a link to pre-order your morning fix for pickup. No app, no fuss.</p>
+      </div>
+      <form class="order-form" onsubmit="return alohaSubmit(event)">
+        <label class="sr-only" for="orderEmail" style="position:absolute;left:-9999px">Your email address</label>
+        <input id="orderEmail" type="email" placeholder="you@email.com" aria-label="Your email address" required>
+        <button type="submit" id="orderBtn">Get my link</button>
+        <div class="form-note">Demo form — no email is collected or sent.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#top" aria-label="Aloha Café home">
+          <svg class="mark" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#1aa17e"/><path d="M20 9c5 1 9 4 9 9 0 4-3 7-6 8 1-4-1-8-5-10 2-2 2-5 2-7z" fill="#f6b93b"/><path d="M20 31c-5-1-9-4-9-9 0-4 3-7 6-8-1 4 1 8 5 10-2 2-2 5-2 7z" fill="#f0683c"/><circle cx="20" cy="20" r="3" fill="#08332f"/></svg>
+          Aloha Café
+        </a>
+        <p>Island warmth, Orlando roots. Pour-overs, malasadas &amp; good vibes in the Mills 50 District since 2019. Mahalo for stopping by.</p>
+        <div class="socials">
+          <a href="#" aria-label="Aloha Café on Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="#fff" stroke="none"/></svg></a>
+          <a href="#" aria-label="Aloha Café on Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M14 8.5h2.5V5.5H14c-2.2 0-3.5 1.4-3.5 3.6V11H8v3h2.5v7h3v-7H16l.5-3h-3V9.4c0-.6.3-.9 1-.9Z"/></svg></a>
+          <a href="#" aria-label="Aloha Café on TikTok"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M16 3c.3 2.2 1.6 3.7 3.7 4v3c-1.4 0-2.7-.4-3.7-1.1V15a6 6 0 11-6-6c.3 0 .7 0 1 .1v3.1A3 3 0 1013 15V3h3Z"/></svg></a>
+          <a href="#" aria-label="Aloha Café on Yelp"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M11 4 9.5 12l5-3.5L11 4Zm-1.7 9.6L4 12.5l3.4 4 1.9-2.9Zm.6 2.3L8 21l4-2.4-2.1-2.7ZM14 13l6 1.2-3.4 3.6L14 13Zm.4-1.8 4.6-4.4-5 .8.4 3.6Z"/></svg></a>
+        </div>
+      </div>
+      <div class="fcol">
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="#menu">Full Menu</a></li>
+          <li><a href="#story">Our Story</a></li>
+          <li><a href="#order">Order Ahead</a></li>
+          <li><a href="#visit">Catering &amp; Events</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h5>Visit</h5>
+        <ul>
+          <li><a href="#visit">1123 Mills Ave</a></li>
+          <li><a href="#visit">Orlando, FL 32803</a></li>
+          <li><a href="tel:+14075550143">(407) 555-0143</a></li>
+          <li><a href="#order">Gift Cards</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h5>Hours</h5>
+        <div class="fhours">
+          <b>Mon – Sat</b><br>7:00am – 3:00pm<br>
+          <b>Sunday</b><br>8:00am – 2:00pm
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Aloha Café · Mahalo for the love, Orlando 🌺</span>
+      <span>Concept site by <a href="https://bananabyte.io" target="_blank" rel="noopener">BANANAbyte</a> · bananabyte.io</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // sticky nav shadow
+  var nav=document.getElementById('nav');
+  addEventListener('scroll',function(){nav.classList.toggle('scrolled',scrollY>10)},{passive:true});
+
+  // mobile menu
+  var burger=document.getElementById('burger'),links=document.getElementById('navlinks');
+  burger.addEventListener('click',function(){
+    var open=links.classList.toggle('open');
+    burger.setAttribute('aria-expanded',open);
+    burger.setAttribute('aria-label',open?'Close menu':'Open menu');
+  });
+  links.addEventListener('click',function(e){
+    if(e.target.tagName==='A'){links.classList.remove('open');burger.setAttribute('aria-expanded','false');burger.setAttribute('aria-label','Open menu');}
+  });
+  // close on Escape
+  addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&links.classList.contains('open')){links.classList.remove('open');burger.setAttribute('aria-expanded','false');burger.setAttribute('aria-label','Open menu');burger.focus();}
+  });
+
+  // scroll reveal
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el,i){
+    el.style.transitionDelay=(Math.min(i%4,3)*70)+'ms';
+    io.observe(el);
+  });
+
+  // demo form
+  function alohaSubmit(e){
+    e.preventDefault();
+    var b=document.getElementById('orderBtn');
+    b.textContent='Mahalo! 🌺 Check your inbox';
+    b.disabled=true;b.style.opacity=.9;
+    setTimeout(function(){b.textContent='Get my link';b.disabled=false;e.target.reset();},2600);
+    return false;
+  }
+</script>
+</body>
+</html>

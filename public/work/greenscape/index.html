@@ -1,0 +1,791 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>GreenScape Lawn Care — Orlando's Friendly Lawn &amp; Landscape Crew</title>
+<meta name="description" content="GreenScape Lawn Care: licensed &amp; insured lawn mowing, landscape design, mulch, irrigation and tree trimming in Orlando, FL. Free quotes, locally owned since 2014.">
+<meta name="theme-color" content="#13592b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --grass:#1F7A3D;
+    --grass-deep:#13592b;
+    --grass-2:#2E7D32;
+    --leaf:#5cb85c;
+    --mint:#e8f5ea;
+    --mint-2:#d6efda;
+    --sun:#F6C544;
+    --sun-deep:#E9A91A;
+    --earth:#7a5230;
+    --earth-soft:#a9794f;
+    --cream:#FBFAF4;
+    --cream-2:#f4f1e6;
+    --ink:#1c2a20;
+    --ink-soft:#3d5346;
+    --white:#ffffff;
+    --shadow:0 18px 40px -18px rgba(19,89,43,.45);
+    --shadow-sm:0 8px 22px -12px rgba(19,89,43,.40);
+    --radius:22px;
+    --bbar:34px;
+    --maxw:1180px;
+    --ease:cubic-bezier(.2,.7,.2,1);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:"Source Sans 3",system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    padding-top:var(--bbar);
+  }
+  h1,h2,h3,h4{font-family:"Poppins",sans-serif;line-height:1.08;margin:0;color:var(--ink);letter-spacing:-.01em}
+  a{color:inherit;text-decoration:none}
+  img,svg{display:block;max-width:100%}
+  p{margin:0 0 1em}
+  .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .eyebrow{
+    font-family:"Poppins",sans-serif;font-weight:700;text-transform:uppercase;
+    letter-spacing:.16em;font-size:.74rem;color:var(--grass);
+    display:inline-flex;align-items:center;gap:.5rem;
+  }
+  .eyebrow::before{content:"";width:26px;height:3px;border-radius:3px;background:var(--sun)}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:.55rem;
+    font-family:"Poppins",sans-serif;font-weight:700;font-size:1rem;
+    padding:14px 26px;border-radius:999px;min-height:48px;cursor:pointer;border:0;
+    transition:transform .2s var(--ease), box-shadow .2s var(--ease), background .2s;
+    text-align:center;line-height:1.1;
+  }
+  .btn-sun{background:var(--sun);color:#3a2c05;box-shadow:0 10px 22px -8px rgba(233,169,26,.7)}
+  .btn-sun:hover{transform:translateY(-2px);box-shadow:0 16px 28px -8px rgba(233,169,26,.8);background:var(--sun-deep)}
+  .btn-green{background:var(--grass);color:#fff;box-shadow:var(--shadow-sm)}
+  .btn-green:hover{transform:translateY(-2px);background:var(--grass-deep)}
+  .btn-ghost{background:rgba(255,255,255,.16);color:#fff;border:2px solid rgba(255,255,255,.6)}
+  .btn-ghost:hover{background:rgba(255,255,255,.28)}
+  :focus-visible{outline:3px solid var(--sun-deep);outline-offset:3px;border-radius:6px}
+
+  /* ===== BananaByte bar ===== */
+  .bbar{
+    position:fixed;top:0;left:0;right:0;height:var(--bbar);z-index:1000;
+    background:#15110c;color:#f3e9d6;
+    display:flex;align-items:center;justify-content:center;
+    border-bottom:1px solid rgba(246,197,68,.25);
+    padding:0 10px;
+  }
+  .bbar a{
+    display:inline-flex;align-items:center;gap:.45rem;
+    padding:7px 12px;border-radius:8px;min-height:30px;
+    font-size:.82rem;font-weight:500;letter-spacing:.02em;
+    white-space:nowrap;max-width:100%;
+  }
+  .bbar a:hover{background:rgba(246,197,68,.14)}
+  .bbar b{color:var(--sun);font-family:"Poppins";font-weight:700}
+  .bbar .lbl{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .bbar .arr{transition:transform .2s var(--ease);flex:0 0 auto}
+  .bbar a:hover .arr{transform:translateX(-4px)}
+
+  /* ===== Nav ===== */
+  header.nav{
+    position:sticky;top:var(--bbar);z-index:900;
+    background:rgba(251,250,244,.88);backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--cream-2);
+  }
+  .nav-in{display:flex;align-items:center;gap:20px;height:74px}
+  .brand{display:flex;align-items:center;gap:11px;font-family:"Poppins";font-weight:800;font-size:1.32rem;color:var(--grass-deep)}
+  .brand .mark{width:42px;height:42px;flex:0 0 auto;filter:drop-shadow(0 4px 8px rgba(31,122,61,.3))}
+  .brand small{display:block;font-family:"Source Sans 3";font-weight:600;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
+  .nav-links{display:flex;align-items:center;gap:6px;margin-left:auto}
+  .nav-links a.lnk{
+    font-family:"Poppins";font-weight:600;font-size:.96rem;padding:10px 14px;border-radius:10px;color:var(--ink-soft);
+    transition:color .15s,background .15s;min-height:44px;display:inline-flex;align-items:center;
+  }
+  .nav-links a.lnk:hover{color:var(--grass-deep);background:var(--mint)}
+  .nav-phone{display:inline-flex;align-items:center;gap:8px;font-family:"Poppins";font-weight:700;color:var(--grass-deep);padding:10px 12px;font-size:.96rem;min-height:44px}
+  .nav-phone svg{width:17px;height:17px}
+  .nav-cta{padding:11px 20px;min-height:44px}
+  .hamb{
+    margin-left:auto;display:none;width:48px;height:48px;border-radius:12px;border:1.5px solid var(--mint-2);
+    background:var(--white);cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:5px;
+  }
+  .hamb span{width:22px;height:2.5px;background:var(--grass-deep);border-radius:3px;transition:.25s var(--ease)}
+  .hamb[aria-expanded="true"] span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+  .hamb[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .hamb[aria-expanded="true"] span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+
+  /* ===== Hero ===== */
+  .hero{position:relative;overflow:hidden;background:linear-gradient(170deg,#2b8e4b 0%,var(--grass) 42%,var(--grass-deep) 100%);color:#fff}
+  .hero::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(circle at 78% 18%, rgba(246,197,68,.28), transparent 40%);
+  }
+  /* subtle mow-stripe brand motif behind hero content */
+  .hero::before{
+    content:"";position:absolute;inset:0;pointer-events:none;opacity:.10;
+    background:repeating-linear-gradient(115deg,#ffffff 0 2px,transparent 2px 64px);
+  }
+  .hero-sun{position:absolute;top:-70px;right:-60px;width:340px;height:340px;pointer-events:none;animation:spin 80s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.08fr .92fr;gap:40px;align-items:center;padding:64px 0 150px}
+  .hero h1{font-size:clamp(2.5rem,6vw,4.3rem);font-weight:800;color:#fff;text-shadow:0 4px 24px rgba(7,40,18,.3)}
+  .hero h1 .hl{color:var(--sun)}
+  .hero .lede{font-size:1.18rem;max-width:34ch;color:#eafaee;margin:18px 0 30px;font-weight:400}
+  .hero .lede b{color:#fff;font-weight:600}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:26px}
+  .trust-row{display:flex;flex-wrap:wrap;gap:10px 22px;font-size:.92rem;color:#eafaee}
+  .trust-row span{display:inline-flex;align-items:center;gap:8px;font-weight:600}
+  .trust-row svg{width:18px;height:18px;flex:0 0 auto}
+
+  /* hero card */
+  .hero-card{position:relative;background:var(--cream);border-radius:26px;padding:8px;box-shadow:0 40px 70px -30px rgba(6,38,17,.65);transform:rotate(1.4deg)}
+  .hero-scene{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/3.2;background:linear-gradient(#bfe9f6,#e7f6fb)}
+  .badge-float{
+    position:absolute;background:#fff;border-radius:16px;padding:11px 15px;box-shadow:var(--shadow);
+    display:flex;align-items:center;gap:11px;font-family:"Poppins";font-weight:700;font-size:.92rem;color:var(--ink);
+  }
+  .badge-float .ic{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;flex:0 0 auto}
+  .badge-float small{display:block;font-family:"Source Sans 3";font-weight:500;font-size:.72rem;color:var(--ink-soft)}
+  .bf-1{top:-18px;left:-16px;transform:rotate(-3deg)}
+  .bf-2{bottom:-16px;right:-14px;transform:rotate(2deg)}
+
+  .wave-sep{position:absolute;left:0;right:0;bottom:-1px;z-index:3;line-height:0}
+  .wave-sep svg{width:100%;height:auto;display:block}
+
+  /* ===== Sections ===== */
+  section{position:relative}
+  .sec-pad{padding:84px 0}
+  .sec-head{max-width:640px;margin-bottom:46px}
+  .sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+  .sec-head h2{font-size:clamp(2rem,4.2vw,2.9rem);font-weight:800;margin:14px 0 10px}
+  .sec-head p{color:var(--ink-soft);font-size:1.1rem;margin:0}
+
+  /* Services */
+  #services{background:var(--cream)}
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .svc{
+    background:#fff;border:1px solid var(--cream-2);border-radius:var(--radius);padding:26px 24px 24px;
+    position:relative;overflow:hidden;transition:transform .25s var(--ease),box-shadow .25s var(--ease),border-color .25s;
+  }
+  .svc::before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,var(--leaf),var(--grass));transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+  .svc:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:var(--mint-2)}
+  .svc:hover::before{transform:scaleX(1)}
+  .svc .ic{width:56px;height:56px;border-radius:15px;background:var(--mint);display:grid;place-items:center;margin-bottom:16px;color:var(--grass-deep)}
+  .svc:hover .ic{background:var(--grass);color:#fff;transition:.25s}
+  .svc h3{font-size:1.22rem;font-weight:700;margin-bottom:6px}
+  .svc p{color:var(--ink-soft);font-size:.98rem;margin:0}
+  .svc .price{display:inline-block;margin-top:14px;font-family:"Poppins";font-weight:700;font-size:.86rem;color:var(--grass-deep);background:var(--mint);padding:5px 12px;border-radius:999px}
+
+  /* Before / After */
+  #work{background:linear-gradient(180deg,var(--mint) 0%,#fff 100%)}
+  .ba-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+  .ba-stage{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);aspect-ratio:16/11;user-select:none;background:#cfd9c2}
+  .ba-layer{position:absolute;inset:0}
+  .ba-after{clip-path:inset(0 0 0 0)}
+  .ba-tag{position:absolute;bottom:14px;font-family:"Poppins";font-weight:700;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:rgba(16,24,18,.66);padding:6px 13px;border-radius:999px;backdrop-filter:blur(3px);z-index:4}
+  .ba-tag.l{left:14px}
+  .ba-tag.r{right:14px}
+  .ba-divider{position:absolute;top:0;bottom:0;width:3px;background:#fff;left:50%;z-index:5;box-shadow:0 0 0 1px rgba(0,0,0,.08)}
+  .ba-handle{position:absolute;top:50%;left:50%;width:46px;height:46px;border-radius:50%;background:#fff;transform:translate(-50%,-50%);z-index:6;display:grid;place-items:center;box-shadow:var(--shadow-sm);color:var(--grass-deep);cursor:ew-resize;touch-action:none}
+  .ba-range{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;z-index:7;margin:0}
+  .ba-copy ul{list-style:none;padding:0;margin:18px 0 0}
+  .ba-copy li{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px;font-size:1.02rem}
+  .ba-copy li svg{flex:0 0 auto;margin-top:3px;color:var(--grass)}
+  .ba-strip{display:flex;gap:14px;margin-top:24px}
+  .ba-mini{flex:1;border-radius:14px;overflow:hidden;aspect-ratio:4/3;box-shadow:var(--shadow-sm);position:relative;min-width:0}
+  .ba-mini span{position:absolute;left:8px;bottom:8px;font-family:"Poppins";font-weight:700;font-size:.66rem;color:#fff;background:rgba(16,24,18,.55);padding:3px 9px;border-radius:999px}
+
+  /* Why band */
+  #why{background:var(--grass-deep);color:#fff;position:relative;overflow:hidden}
+  #why::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 12% 120%,rgba(246,197,68,.18),transparent 45%),radial-gradient(circle at 90% -10%,rgba(92,184,92,.25),transparent 40%)}
+  #why .sec-head h2,#why .sec-head p{color:#fff}
+  #why .sec-head p{color:#dff4e1}
+  .why-grid{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .why-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:18px;padding:24px 20px;backdrop-filter:blur(4px);transition:transform .25s var(--ease),background .25s}
+  .why-card:hover{transform:translateY(-5px);background:rgba(255,255,255,.14)}
+  .why-card .ic{width:52px;height:52px;border-radius:14px;background:var(--sun);color:#3a2c05;display:grid;place-items:center;margin-bottom:14px}
+  .why-card h3{color:#fff;font-size:1.12rem;margin-bottom:6px}
+  .why-card p{color:#e1f3e3;font-size:.94rem;margin:0}
+
+  /* Reviews */
+  #reviews{background:var(--cream)}
+  .rev-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .rev{background:#fff;border:1px solid var(--cream-2);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow-sm);position:relative}
+  .rev .quote{position:absolute;top:14px;right:24px;font-family:"Poppins";font-weight:800;font-size:4rem;color:var(--mint-2);line-height:1}
+  .stars{display:flex;gap:3px;margin-bottom:14px;color:var(--sun-deep)}
+  .stars svg{width:20px;height:20px}
+  .rev p{font-size:1.06rem;color:var(--ink);font-style:italic;margin-bottom:18px;position:relative;z-index:1}
+  .rev .who{display:flex;align-items:center;gap:12px}
+  .rev .av{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-family:"Poppins";font-weight:700;color:#fff;font-size:1rem}
+  .rev .who b{display:block;font-family:"Poppins";font-size:.98rem}
+  .rev .who small{color:var(--ink-soft);font-size:.85rem}
+  .rev-rating{text-align:center;margin-bottom:40px;font-size:1.05rem;color:var(--ink-soft)}
+  .rev-rating b{color:var(--grass-deep);font-family:"Poppins"}
+
+  /* Quote / form */
+  #quote{background:linear-gradient(165deg,#2b8e4b,var(--grass-deep));color:#fff;position:relative;overflow:hidden}
+  #quote .leaf-bg{position:absolute;bottom:-40px;left:-40px;width:280px;opacity:.12;pointer-events:none}
+  .quote-grid{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1.05fr;gap:48px;align-items:center}
+  .quote-copy h2{color:#fff;font-size:clamp(2rem,4.5vw,3rem);margin-bottom:14px}
+  .quote-copy p{color:#eafaee;font-size:1.12rem;max-width:42ch}
+  .quote-pts{list-style:none;padding:0;margin:24px 0 0}
+  .quote-pts li{display:flex;gap:12px;align-items:center;margin-bottom:14px;font-weight:600}
+  .quote-pts svg{color:var(--sun);flex:0 0 auto}
+  form.card{background:#fff;border-radius:24px;padding:30px;box-shadow:0 40px 70px -30px rgba(6,38,17,.6)}
+  form.card h3{color:var(--ink);font-size:1.4rem;margin-bottom:4px}
+  form.card .sub{color:var(--ink-soft);font-size:.96rem;margin-bottom:20px}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-family:"Poppins";font-weight:600;font-size:.86rem;color:var(--ink);margin-bottom:6px}
+  .field input,.field select{
+    width:100%;padding:13px 15px;border:1.5px solid #d9d3c2;border-radius:12px;font-family:inherit;font-size:1rem;
+    color:var(--ink);background:var(--cream);min-height:48px;transition:border-color .15s,box-shadow .15s;
+  }
+  .field input:focus,.field select:focus{outline:none;border-color:var(--grass);box-shadow:0 0 0 3px rgba(31,122,61,.15)}
+  form.card .btn{width:100%;margin-top:6px}
+  .form-note{text-align:center;font-size:.82rem;color:var(--ink-soft);margin:14px 0 0}
+  .form-ok{display:none;background:var(--mint);color:var(--grass-deep);border-radius:12px;padding:14px;text-align:center;font-weight:600;margin-top:16px}
+  .form-ok.show{display:block}
+
+  /* Footer */
+  footer{background:var(--ink);color:#cbd6cd;padding:60px 0 0}
+  .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.1fr;gap:34px;padding-bottom:46px}
+  .foot-brand .brand{color:#fff}
+  .foot-brand .brand small{color:#a8bcad}
+  .foot-brand p{margin-top:16px;color:#a8bcad;font-size:.96rem;max-width:32ch}
+  footer h4{color:#fff;font-size:.82rem;text-transform:uppercase;letter-spacing:.12em;margin-bottom:16px;font-family:"Poppins"}
+  footer ul{list-style:none;padding:0;margin:0}
+  footer li{margin-bottom:10px;font-size:.96rem;color:#a8bcad}
+  footer a:hover{color:var(--sun)}
+  .foot-contact b{color:#fff;font-family:"Poppins";font-size:1.05rem}
+  .hours-row{display:flex;justify-content:space-between;gap:10px}
+  .hours-row span:last-child{color:#dfe7e0}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.1);padding:22px 0;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;font-size:.86rem;color:#9bafa2}
+  .foot-bottom a b{color:var(--sun);font-family:"Poppins"}
+  .foot-bottom .by{display:inline-flex;align-items:center;gap:6px}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ===== Responsive ===== */
+  @media(max-width:980px){
+    .hero-grid{grid-template-columns:1fr;gap:30px;padding:48px 0 130px}
+    .hero-card{max-width:440px;margin:6px auto 0}
+    .ba-grid,.quote-grid{grid-template-columns:1fr;gap:32px}
+    .svc-grid,.why-grid{grid-template-columns:repeat(2,1fr)}
+    .rev-grid{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr 1fr;gap:30px}
+  }
+  @media(max-width:760px){
+    .nav-links,.nav-phone.desk{display:none}
+    .hamb{display:flex}
+    .nav-links.open{
+      display:flex;flex-direction:column;align-items:stretch;gap:4px;
+      position:absolute;top:74px;left:0;right:0;background:var(--white);
+      padding:16px 18px 22px;box-shadow:var(--shadow);border-bottom:1px solid var(--cream-2);margin:0;
+    }
+    .nav-links.open a.lnk{font-size:1.05rem;padding:13px 14px}
+    .nav-links.open .nav-phone{display:inline-flex;padding:13px 14px;border-top:1px solid var(--cream-2);margin-top:6px}
+    .nav-links.open .nav-cta{margin-top:6px;justify-content:center}
+  }
+  @media(max-width:560px){
+    body{font-size:16px}
+    .wrap{padding:0 18px}
+    .sec-pad{padding:62px 0}
+    .svc-grid,.why-grid{grid-template-columns:1fr}
+    .ba-strip{flex-direction:column}
+    .hero-sun{width:230px;top:-46px;right:-46px}
+    .hero-cta .btn{width:100%}
+    .foot-grid{grid-template-columns:1fr}
+    .foot-bottom{flex-direction:column;text-align:center}
+    .hero-card{margin:6px 6px 0;max-width:none}
+    .badge-float{font-size:.82rem;padding:9px 12px}
+    .bf-1{left:0;top:-14px}
+    .bf-2{right:0;bottom:-12px}
+    .bbar a{font-size:.78rem}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;scroll-behavior:auto}
+    .reveal{opacity:1;transform:none;transition:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- BananaByte concept bar -->
+<div class="bbar">
+  <a href="https://bananabyte.io" target="_blank" rel="noopener">
+    <span class="arr" aria-hidden="true">◂</span> <span class="lbl">A concept site by <b>BANANAbyte</b></span>
+  </a>
+</div>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" aria-label="GreenScape Lawn Care home">
+      <svg class="mark" viewBox="0 0 48 48" aria-hidden="true">
+        <circle cx="24" cy="24" r="24" fill="#1F7A3D"/>
+        <path d="M33 13C20 13 14 21 14 31c0 1 .3 2 .7 3 6-9 12-12 18-15-5 4-9 8-13 16 2 1 4 1.5 6 1.5 9 0 14-7 14-16 0-3-1-5-2-7-3 0-5-.5-5-.5z" fill="#bff0c7"/>
+        <path d="M14 34c4-9 11-13 19-16" stroke="#1F7A3D" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+      </svg>
+      <span>GreenScape<small>Lawn &amp; Landscape · Orlando</small></span>
+    </a>
+    <nav class="nav-links" id="navlinks" aria-label="Primary">
+      <a class="lnk" href="#services">Services</a>
+      <a class="lnk" href="#work">Gallery</a>
+      <a class="lnk" href="#reviews">Reviews</a>
+      <a class="nav-phone desk" href="tel:+14075550148" aria-label="Call GreenScape at (407) 555-0148">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0 1 22 16.92Z"/></svg>
+        (407) 555-0148
+      </a>
+      <a class="btn btn-green nav-cta" href="#quote">Get a Quote</a>
+    </nav>
+    <button class="hamb" id="hamb" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<a id="top"></a>
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="hero-sun" viewBox="0 0 200 200" aria-hidden="true">
+    <g fill="#F6C544" opacity=".9">
+      <circle cx="100" cy="100" r="46"/>
+      <g stroke="#F6C544" stroke-width="9" stroke-linecap="round">
+        <line x1="100" y1="14" x2="100" y2="40"/><line x1="100" y1="160" x2="100" y2="186"/>
+        <line x1="14" y1="100" x2="40" y2="100"/><line x1="160" y1="100" x2="186" y2="100"/>
+        <line x1="38" y1="38" x2="56" y2="56"/><line x1="144" y1="144" x2="162" y2="162"/>
+        <line x1="162" y1="38" x2="144" y2="56"/><line x1="56" y1="144" x2="38" y2="162"/>
+      </g>
+    </g>
+  </svg>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow" style="color:#fff">Licensed &amp; Insured · Orlando, FL</span>
+      <h1>Lawns the<br><span class="hl">neighbors notice.</span></h1>
+      <p class="lede"><b>GreenScape Lawn Care</b> — Orlando's friendly lawn &amp; landscape crew, keeping yards across Central Florida crisp, green, and weed-free all year round.</p>
+      <div class="hero-cta">
+        <a class="btn btn-sun" href="#quote">Get a Free Quote
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3a2c05" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="tel:+14075550148">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0 1 22 16.92Z"/></svg>
+          Call (407) 555-0148
+        </a>
+      </div>
+      <div class="trust-row">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="#F6C544" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Free, no-pressure estimates</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="#F6C544" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Same-week scheduling</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="#F6C544" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 4.9★ · 600+ local yards</span>
+      </div>
+    </div>
+
+    <!-- Hero illustration card -->
+    <div class="hero-card">
+      <div class="hero-scene">
+        <svg viewBox="0 0 400 320" preserveAspectRatio="xMidYMid slice" aria-label="Illustration of a freshly mowed green lawn with a house, trees, sun and flower bed" role="img" style="width:100%;height:100%">
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfe9f6"/><stop offset="1" stop-color="#eaf7fb"/></linearGradient>
+            <linearGradient id="lawn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#56ab4d"/><stop offset="1" stop-color="#2f8a3e"/></linearGradient>
+          </defs>
+          <rect width="400" height="320" fill="url(#sky)"/>
+          <circle cx="328" cy="62" r="34" fill="#F6C544"/>
+          <circle cx="328" cy="62" r="34" fill="#fff" opacity=".15"/>
+          <ellipse cx="92" cy="70" rx="40" ry="18" fill="#fff" opacity=".85"/>
+          <ellipse cx="120" cy="64" rx="30" ry="15" fill="#fff" opacity=".85"/>
+          <!-- house -->
+          <rect x="60" y="118" width="150" height="80" fill="#f3ede1"/>
+          <polygon points="52,120 135,78 218,120" fill="#8a5a35"/>
+          <rect x="150" y="150" width="30" height="48" fill="#7a5230"/>
+          <rect x="82" y="140" width="34" height="30" fill="#bfe9f6" stroke="#fff" stroke-width="3"/>
+          <!-- trees -->
+          <rect x="252" y="150" width="10" height="46" fill="#7a5230"/>
+          <circle cx="257" cy="140" r="30" fill="#3f9a4a"/><circle cx="276" cy="148" r="22" fill="#4fae54"/><circle cx="240" cy="150" r="20" fill="#359241"/>
+          <!-- lawn -->
+          <path d="M0 196 Q200 178 400 196 V320 H0 Z" fill="url(#lawn)"/>
+          <!-- mow stripes -->
+          <g opacity=".18" fill="#ffffff">
+            <path d="M0 230 Q200 214 400 230 V244 Q200 228 0 244 Z"/>
+            <path d="M0 270 Q200 256 400 270 V284 Q200 270 0 284 Z"/>
+          </g>
+          <!-- flower bed -->
+          <ellipse cx="318" cy="250" rx="70" ry="22" fill="#7a4f2f"/>
+          <g><circle cx="290" cy="244" r="7" fill="#F6C544"/><circle cx="318" cy="240" r="7" fill="#e8607a"/><circle cx="346" cy="246" r="7" fill="#F6C544"/><circle cx="304" cy="252" r="6" fill="#e8607a"/><circle cx="332" cy="252" r="6" fill="#fff"/></g>
+        </svg>
+      </div>
+      <div class="badge-float bf-1">
+        <span class="ic" style="background:var(--mint);color:var(--grass-deep)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v6M5 7c-2 3-2 8 1 11 3-1 5-4 5-8M19 7c2 3 2 8-1 11-3-1-5-4-5-8"/></svg>
+        </span>
+        <div>Fresh cut weekly<small>Crisp edges, every time</small></div>
+      </div>
+      <div class="badge-float bf-2">
+        <span class="ic" style="background:var(--sun);color:#3a2c05">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6l-8-4Z"/><path d="m9 12 2 2 4-4"/></svg>
+        </span>
+        <div>Insured &amp; bonded<small>FL Lic. #LC-209-441</small></div>
+      </div>
+    </div>
+  </div>
+  <div class="wave-sep" aria-hidden="true">
+    <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0 60 Q360 10 720 50 T1440 40 V90 H0 Z" fill="#FBFAF4"/></svg>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="sec-pad">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">What we do</span>
+      <h2>Full-service lawn &amp; landscape care</h2>
+      <p>One friendly crew for everything outside your front door — from a tidy weekly mow to a brand-new front-yard design.</p>
+    </div>
+    <div class="svc-grid">
+      <article class="svc reveal">
+        <span class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="18" r="3"/><circle cx="18" cy="18" r="3"/><path d="M9 18h6M5 15V7h6l5 5v3M11 7V4"/></svg></span>
+        <h3>Mowing &amp; Edging</h3>
+        <p>Sharp, even cuts with clean-edged walkways and beds. Clippings bagged or mulched — your call.</p>
+        <span class="price">from $39 / visit</span>
+      </article>
+      <article class="svc reveal">
+        <span class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V11l7-6 7 6v10M9 21v-6h6v6"/></svg></span>
+        <h3>Landscape Design</h3>
+        <p>Custom front- and back-yard plans with Florida-friendly plants that thrive in our heat and rain.</p>
+        <span class="price">free design consult</span>
+      </article>
+      <article class="svc reveal">
+        <span class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 16c4-8 14-8 18 0M2 16h20M12 16v-6M12 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/></svg></span>
+        <h3>Mulch &amp; Flower Beds</h3>
+        <p>Fresh mulch, crisp bed edges, and seasonal color that makes the whole yard pop with curb appeal.</p>
+        <span class="price">from $95 / bed</span>
+      </article>
+      <article class="svc reveal">
+        <span class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2v4M14 2v4M6 10h12l-1 11a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1L6 10ZM4 10h16"/></svg></span>
+        <h3>Cleanups &amp; Hauling</h3>
+        <p>Storm debris, leaf removal, and overgrowth gone in a day. We bag it, load it, and haul it away.</p>
+        <span class="price">from $120 / job</span>
+      </article>
+      <article class="svc reveal">
+        <span class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2C8 7 6 10 6 14a6 6 0 0 0 12 0c0-4-2-7-6-12Z"/><path d="M12 22v-4"/></svg></span>
+        <h3>Irrigation &amp; Sprinklers</h3>
+        <p>Sprinkler repairs, new zones, and smart-timer setups that keep grass green without wasting water.</p>
+        <span class="price">from $85 + parts</span>
+      </article>
+      <article class="svc reveal">
+        <span class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22V12M12 12 7 7M12 14l5-5M12 9a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/></svg></span>
+        <h3>Tree &amp; Shrub Trimming</h3>
+        <p>Shaped hedges and pruned small trees for healthier growth and a yard that always looks intentional.</p>
+        <span class="price">from $75 / hr</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE / AFTER -->
+<section id="work" class="sec-pad">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Before &amp; after</span>
+      <h2>Real transformations, drag to compare</h2>
+      <p>Slide the handle to see what a single GreenScape visit can do for a tired Orlando front yard.</p>
+    </div>
+    <div class="ba-grid">
+      <div class="reveal">
+        <div class="ba-stage" id="baStage">
+          <!-- BEFORE -->
+          <div class="ba-layer" aria-hidden="true">
+            <svg viewBox="0 0 400 280" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%">
+              <defs><linearGradient id="bsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cdd2c0"/><stop offset="1" stop-color="#e2e2d2"/></linearGradient></defs>
+              <rect width="400" height="280" fill="url(#bsky)"/>
+              <circle cx="330" cy="50" r="26" fill="#d9cf9a"/>
+              <rect x="70" y="100" width="140" height="74" fill="#d8cfbe"/>
+              <polygon points="62,102 140,64 218,102" fill="#9b8a6f"/>
+              <path d="M0 174 Q200 168 400 174 V280 H0 Z" fill="#8f9466"/>
+              <!-- patchy weeds -->
+              <g fill="#6f7444"><ellipse cx="60" cy="220" rx="34" ry="12"/><ellipse cx="180" cy="244" rx="44" ry="14"/><ellipse cx="320" cy="226" rx="40" ry="13"/></g>
+              <g stroke="#5f6438" stroke-width="2"><path d="M40 230v-14M50 232v-18M150 250v-16M165 252v-20M300 234v-14M312 236v-18"/></g>
+            </svg>
+          </div>
+          <!-- AFTER -->
+          <div class="ba-layer ba-after" id="baAfter">
+            <svg viewBox="0 0 400 280" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%">
+              <defs>
+                <linearGradient id="asky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfe9f6"/><stop offset="1" stop-color="#eaf7fb"/></linearGradient>
+                <linearGradient id="alawn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#56ab4d"/><stop offset="1" stop-color="#2f8a3e"/></linearGradient>
+              </defs>
+              <rect width="400" height="280" fill="url(#asky)"/>
+              <circle cx="330" cy="50" r="26" fill="#F6C544"/>
+              <rect x="70" y="100" width="140" height="74" fill="#f3ede1"/>
+              <polygon points="62,102 140,64 218,102" fill="#8a5a35"/>
+              <path d="M0 174 Q200 160 400 174 V280 H0 Z" fill="url(#alawn)"/>
+              <g opacity=".2" fill="#fff"><path d="M0 210 Q200 198 400 210 V222 Q200 210 0 222 Z"/><path d="M0 248 Q200 236 400 248 V260 Q200 248 0 260 Z"/></g>
+              <ellipse cx="320" cy="232" rx="56" ry="16" fill="#7a4f2f"/>
+              <g><circle cx="296" cy="228" r="6" fill="#F6C544"/><circle cx="320" cy="224" r="6" fill="#e8607a"/><circle cx="344" cy="230" r="6" fill="#fff"/></g>
+            </svg>
+          </div>
+          <span class="ba-tag l">Before</span>
+          <span class="ba-tag r">After</span>
+          <div class="ba-divider" id="baDivider"></div>
+          <div class="ba-handle" id="baHandle" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7 3 12l5 5M16 7l5 5-5 5"/></svg>
+          </div>
+          <input class="ba-range" id="baRange" type="range" min="0" max="100" value="50" aria-label="Drag to reveal more of the after photo">
+        </div>
+      </div>
+      <div class="ba-copy reveal">
+        <h3 style="font-size:1.5rem;margin-bottom:8px">From overgrown to outstanding — in one visit.</h3>
+        <p style="color:var(--ink-soft);margin:0">This Conway-area yard went from patchy and weed-grown to a stripe-mowed showpiece. Most first cleanups wrap up the same day.</p>
+        <ul>
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Weeds pulled, edges defined, beds re-mulched</li>
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Stripe-mow finish that lasts between visits</li>
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> All debris hauled away — nothing left behind</li>
+        </ul>
+        <div class="ba-strip" aria-hidden="true">
+          <div class="ba-mini" style="background:linear-gradient(160deg,#56ab4d,#2f8a3e)"><span>Winter Park</span></div>
+          <div class="ba-mini" style="background:linear-gradient(160deg,#7a4f2f,#a9794f)"><span>Lake Nona</span></div>
+          <div class="ba-mini" style="background:linear-gradient(160deg,#3f9a4a,#13592b)"><span>Baldwin Park</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why" class="sec-pad">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow" style="color:var(--sun);justify-content:center">Why GreenScape</span>
+      <h2>The reliable crew your yard's been missing</h2>
+      <p>No call-center runaround, no surprise fees — just a local team that shows up and gets it done.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6l-8-4Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+        <h3>Licensed &amp; Insured</h3>
+        <p>Fully licensed (FL #LC-209-441) and insured, so your property is always protected.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg></span>
+        <h3>Free Quotes</h3>
+        <p>Honest, itemized estimates with no obligation and no high-pressure upsells. Ever.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-5-7-11a7 7 0 0 1 14 0c0 6-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+        <h3>Locally Owned</h3>
+        <p>Family-run and Orlando-based since 2014. We live and mow in the neighborhoods we serve.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l2.6 6.5L21 9l-5 4.5L17.5 21 12 17l-5.5 4L8 13.5 3 9l6.4-.5L12 2Z"/></svg></span>
+        <h3>Satisfaction Guaranteed</h3>
+        <p>Not happy with a visit? We'll come back and make it right within 48 hours — free.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" class="sec-pad">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow" style="justify-content:center">Neighbors love us</span>
+      <h2>4.9 stars across 600+ Orlando yards</h2>
+    </div>
+    <p class="rev-rating reveal">Rated <b>4.9 / 5</b> on Google &amp; Nextdoor · <b>612</b> verified local reviews</p>
+    <div class="rev-grid">
+      <article class="rev reveal">
+        <span class="quote" aria-hidden="true">”</span>
+        <div class="stars" role="img" aria-label="Rated 5 out of 5 stars">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.6 6.5L21 9l-5 4.5L17.5 21 12 17l-5.5 4L8 13.5 3 9l6.4-.5L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.6 6.5L21 9l-5 4.5L17.5 21 12 17l-5.5 4L8 13.5 3 9l6.4-.5L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.6 6.5L21 9l-5 4.5L17.5 21 12 17l-5.5 4L8 13.5 3 9l6.4-.5L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.6 6.5L21 9l-5 4.5L17.5 21 12 17l-5.5 4L8 13.5 3 9l6.4-.5L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.6 6.5L21 9l-5 4.5L17.5 21 12 17l-5.5 4L8 13.5 3 9l6.4-.5L12 2Z"/></svg>
+        </div>
+        <p>"These guys turned our jungle of a backyard into something we actually use. On time, polite, and the stripe-mow looks like a baseball field. Best $50 a week we spend."</p>
+        <div class="who">
+          <span class="av" style="background:var(--grass)" aria-hidden="true">MD</span>
+          <div><b>Marcus D.</b><small>Conway · weekly mowing</small></div>
+        </div>
+      </article>
+      <article class="rev reveal">
+        <span class="quote" aria-hidden="true">”</span>
+        <div class="stars" role="img" aria-label="Rated 5 out of 5 stars">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.6 6.5L21 9l-5 4.5L17.5 21 12 17l-5.5 4L8 13.5 3 9l6.4-.5L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.6 6.5L21 9l-5 4.5L17.5 21 12 17l-5.5 4L8 13.5 3 9l6.4-.5L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.6 6.5L21 9l-5 4.5L17.5 21 12 17l-5.5 4L8 13.5 3 9l6.4-.5L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.6 6.5L21 9l-5 4.5L17.5 21 12 17l-5.5 4L8 13.5 3 9l6.4-.5L12 2Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.6 6.5L21 9l-5 4.5L17.5 21 12 17l-5.5 4L8 13.5 3 9l6.4-.5L12 2Z"/></svg>
+        </div>
+        <p>"GreenScape redesigned our whole front bed with native plants and new mulch. Neighbors keep asking who did it. Quote was free, fair, and exactly what they charged. Highly recommend."</p>
+        <div class="who">
+          <span class="av" style="background:var(--sun-deep)" aria-hidden="true">PR</span>
+          <div><b>Priya R.</b><small>Baldwin Park · landscape design</small></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE / FORM -->
+<section id="quote" class="sec-pad">
+  <svg class="leaf-bg" viewBox="0 0 200 200" aria-hidden="true"><path d="M100 20C50 20 20 60 20 110c0 30 12 50 30 65 20-35 45-55 90-70-30 20-55 40-70 80 10 5 20 5 30 5 50 0 80-40 80-95 0-15-5-30-15-45-25 0-45-5-65-5Z" fill="#fff"/></svg>
+  <div class="wrap quote-grid">
+    <div class="quote-copy reveal">
+      <span class="eyebrow" style="color:var(--sun)">Get started</span>
+      <h2>Request your free quote</h2>
+      <p>Tell us a little about your yard and we'll text or call you back — usually within one business day — with a no-obligation estimate.</p>
+      <ul class="quote-pts">
+        <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Reply within 1 business day</li>
+        <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> No deposit, no obligation</li>
+        <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Prefer to talk? <a href="tel:+14075550148" style="color:#fff;text-decoration:underline">(407) 555-0148</a></li>
+      </ul>
+    </div>
+    <form class="card reveal" id="quoteForm" novalidate>
+      <h3>Get my quote</h3>
+      <p class="sub">Free estimate · serving greater Orlando</p>
+      <div class="field">
+        <label for="qname">Name</label>
+        <input id="qname" name="name" type="text" placeholder="Jordan Rivera" autocomplete="name" required>
+      </div>
+      <div class="field">
+        <label for="qaddr">Property address</label>
+        <input id="qaddr" name="address" type="text" placeholder="1420 Edgewater Dr, Orlando, FL" autocomplete="street-address" required>
+      </div>
+      <div class="field">
+        <label for="qservice">Service needed</label>
+        <select id="qservice" name="service" required>
+          <option value="">Choose a service…</option>
+          <option>Weekly / bi-weekly mowing</option>
+          <option>Landscape design</option>
+          <option>Mulch &amp; flower beds</option>
+          <option>Yard cleanup &amp; hauling</option>
+          <option>Irrigation &amp; sprinklers</option>
+          <option>Tree &amp; shrub trimming</option>
+          <option>Something else</option>
+        </select>
+      </div>
+      <button class="btn btn-sun" type="submit">Get my quote
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3a2c05" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+      <p class="form-note">We'll never share your info. Demo form — submissions aren't stored.</p>
+      <div class="form-ok" id="formOk" role="status" aria-live="polite">🌱 Thanks! This is a demo, so nothing was sent — but a real GreenScape rep would call within a day.</div>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="brand">
+          <svg class="mark" viewBox="0 0 48 48" aria-hidden="true">
+            <circle cx="24" cy="24" r="24" fill="#2E7D32"/>
+            <path d="M33 13C20 13 14 21 14 31c0 1 .3 2 .7 3 6-9 12-12 18-15-5 4-9 8-13 16 2 1 4 1.5 6 1.5 9 0 14-7 14-16 0-3-1-5-2-7-3 0-5-.5-5-.5z" fill="#bff0c7"/>
+          </svg>
+          <span>GreenScape<small>Lawn &amp; Landscape · Orlando</small></span>
+        </span>
+        <p>Orlando's friendly, family-run lawn &amp; landscape crew. Licensed, insured, and locally owned since 2014.</p>
+      </div>
+      <div>
+        <h4>Service Area</h4>
+        <ul>
+          <li>Orlando &amp; Winter Park</li>
+          <li>Baldwin Park · Conway</li>
+          <li>Lake Nona · Dr. Phillips</li>
+          <li>Maitland · College Park</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Hours</h4>
+        <ul>
+          <li class="hours-row"><span>Mon–Fri</span><span>7am – 6pm</span></li>
+          <li class="hours-row"><span>Saturday</span><span>8am – 3pm</span></li>
+          <li class="hours-row"><span>Sunday</span><span>Closed</span></li>
+        </ul>
+      </div>
+      <div class="foot-contact">
+        <h4>Get in touch</h4>
+        <ul>
+          <li><a href="tel:+14075550148"><b>(407) 555-0148</b></a></li>
+          <li><a href="mailto:hello@greenscapeorlando.com">hello@greenscapeorlando.com</a></li>
+          <li>2180 N Orange Ave,<br>Orlando, FL 32804</li>
+          <li style="margin-top:10px"><a class="btn btn-sun" href="#quote" style="padding:10px 18px;font-size:.9rem">Get a Free Quote</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 GreenScape Lawn Care, LLC · FL Lic. #LC-209-441 · All rights reserved.</span>
+      <span class="by">Site by <a href="https://bananabyte.io" target="_blank" rel="noopener"><b>BANANAbyte</b></a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav
+  (function(){
+    var h=document.getElementById('hamb'), n=document.getElementById('navlinks');
+    h.addEventListener('click',function(){
+      var open=n.classList.toggle('open');
+      h.setAttribute('aria-expanded',open?'true':'false');
+      h.setAttribute('aria-label',open?'Close menu':'Open menu');
+    });
+    n.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click',function(){
+        n.classList.remove('open');
+        h.setAttribute('aria-expanded','false');
+        h.setAttribute('aria-label','Open menu');
+      });
+    });
+  })();
+
+  // Before / after slider
+  (function(){
+    var range=document.getElementById('baRange'),
+        after=document.getElementById('baAfter'),
+        div=document.getElementById('baDivider'),
+        handle=document.getElementById('baHandle');
+    function set(v){
+      after.style.clipPath='inset(0 '+(100-v)+'% 0 0)';
+      div.style.left=v+'%';
+      handle.style.left=v+'%';
+    }
+    range.addEventListener('input',function(){set(this.value)});
+    set(50);
+  })();
+
+  // Form demo handler
+  (function(){
+    var f=document.getElementById('quoteForm'), ok=document.getElementById('formOk');
+    f.addEventListener('submit',function(e){
+      e.preventDefault();
+      if(!f.checkValidity()){f.reportValidity();return;}
+      ok.classList.add('show');
+      f.querySelector('button[type=submit]').textContent='Sent ✓';
+      setTimeout(function(){f.reset();},400);
+    });
+  })();
+
+  // Scroll reveal
+  (function(){
+    var els=document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}
+      });
+    },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+    els.forEach(function(e,i){e.style.transitionDelay=(i%3*70)+'ms';io.observe(e);});
+  })();
+</script>
+</body>
+</html>

@@ -21,7 +21,7 @@
 <meta name="twitter:title" content="BANANAbyte — Local Tech Help & Web Design · Orlando, FL">
 <meta name="twitter:description" content="Friendly local tech help and web design in Orlando, FL. Computer repair, networking, data rescue, and small-business websites.">
 <meta name="twitter:image" content="https://bananabyte.io/og-image.png">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"BANANAbyte LLC","image":"https://bananabyte.io/og-image.png","url":"https://bananabyte.io","email":"contact@bananabyte.io","telephone":"+1-321-202-3732","priceRange":"$$","description":"Friendly local tech help and web design in Orlando, FL — computer repair, networking, data recovery, patient tech help, and small-business websites. Honest, plain English, upfront pricing.","areaServed":{"@type":"City","name":"Orlando"},"address":{"@type":"PostalAddress","addressLocality":"Orlando","addressRegion":"FL","addressCountry":"US"},"founder":{"@type":"Person","name":"Gabe"},"knowsAbout":["Computer Repair","Networking","Data Recovery","Tech Support","Web Design"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"BANANAbyte LLC","image":"https://bananabyte.io/og-image.png","url":"https://bananabyte.io","email":"contact@bananabyte.io","telephone":"+1-321-202-3732","priceRange":"$$","description":"Friendly local tech help and web design in Orlando, FL — computer repair, networking, data recovery, patient tech help, and small-business websites. Honest, plain English, upfront pricing.","areaServed":{"@type":"City","name":"Orlando"},"address":{"@type":"PostalAddress","addressLocality":"Orlando","addressRegion":"FL","addressCountry":"US"},"founder":{"@type":"Person","name":"Gabe"},"knowsAbout":["Computer Repair","Networking","Data Recovery","Tech Support","Web Design","Website Maintenance"]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -1176,8 +1176,7 @@
 
     .svc-list{display:grid;grid-template-columns:repeat(6,1fr);gap:30px;margin-top:30px}
     .svc{grid-column:span 2}
-    .svc:nth-child(4){grid-column:2 / span 2}
-    .svc:nth-child(5){grid-column:4 / span 2}
+    /* 6 services -> clean 3 x 2 grid (each spans 2 of 6 cols) */
     .svc-body{padding:48px 26px 32px}
 
     .work-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
@@ -1483,7 +1482,7 @@
     <div class="wrap">
       <span class="eyebrow reveal"><span class="sp">[</span> <span data-en="01 / SERVICES" data-es="01 / SERVICIOS">01 / SERVICES</span> <span class="sp">]</span></span>
       <h2 class="sec-title reveal" id="svc-h" data-en="What we do" data-es="Lo que hacemos">What we do</h2>
-      <p class="sec-lead reveal" data-en="Five things, done right &mdash; from a dead laptop to a brand-new website." data-es="Cinco cosas, bien hechas &mdash; desde una laptop muerta hasta un sitio web nuevecito.">Five things, done right &mdash; from a dead laptop to a brand-new website.</p>
+      <p class="sec-lead reveal" data-en="Six things, done right &mdash; from a dead laptop to a brand-new website." data-es="Seis cosas, bien hechas &mdash; desde una laptop muerta hasta un sitio web nuevecito.">Six things, done right &mdash; from a dead laptop to a brand-new website.</p>
 
       <div class="svc-list reveal" data-stagger>
         <article class="svc">
@@ -1528,6 +1527,15 @@
             <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
             <h3 data-en="Web Design" data-es="Diseño Web">Web Design</h3>
             <p data-en="Fast, clean websites for local businesses &mdash; quick to load, sharp to look at, and easy to maintain. (Like this one.)" data-es="Sitios web rápidos y limpios para negocios locales &mdash; cargan al instante, se ven muy bien y son fáciles de mantener. (Como este.)">Fast, clean websites for local businesses &mdash; quick to load, sharp to look at, and easy to maintain. (Like this one.)</p>
+          </div>
+        </article>
+
+        <article class="svc">
+          <span class="num">// 06</span>
+          <div class="svc-body">
+            <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div>
+            <h3 data-en="Website Maintenance" data-es="Mantenimiento de Sitios Web">Website Maintenance</h3>
+            <p data-en="Already have a Wix, Shopify, or WordPress site? We keep it updated, secure, and fast &mdash; content edits, plugin &amp; theme updates, backups, and quick fixes when something breaks." data-es="¿Ya tienes un sitio en Wix, Shopify o WordPress? Lo mantenemos actualizado, seguro y rápido &mdash; cambios de contenido, actualizaciones de plugins y temas, copias de seguridad, y arreglos rápidos cuando algo falla.">Already have a Wix, Shopify, or WordPress site? We keep it updated, secure, and fast &mdash; content edits, plugin &amp; theme updates, backups, and quick fixes when something breaks.</p>
           </div>
         </article>
       </div>
@@ -1592,7 +1600,7 @@
             <span class="pcat" data-en="Café &middot; Orlando" data-es="Cafetería &middot; Orlando">Café &middot; Orlando</span>
             <h3>Aloha Café — Orlando</h3>
             <p data-en="A cozy neighborhood café site with menu, hours, and an easy &ldquo;find us&rdquo; map." data-es="Un sitio acogedor para una cafetería de barrio con menú, horarios y un mapa fácil de &ldquo;cómo llegar&rdquo;.">A cozy neighborhood café site with menu, hours, and an easy &ldquo;find us&rdquo; map.</p>
-            <a href="#work" class="view"><span data-en="View concept" data-es="Ver concepto">View concept</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            <a href="/work/aloha-cafe/" target="_blank" rel="noopener" class="view"><span data-en="View concept" data-es="Ver concepto">View concept</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
           </div>
         </article>
 
@@ -1616,7 +1624,7 @@
             <span class="pcat" data-en="Landscaping" data-es="Jardinería">Landscaping</span>
             <h3>GreenScape Lawn Care</h3>
             <p data-en="Service list, before-and-after gallery, and a one-tap quote request for a busy landscaper." data-es="Lista de servicios, galería de antes y después, y una solicitud de cotización con un solo toque para un jardinero con mucho trabajo.">Service list, before-and-after gallery, and a one-tap quote request for a busy landscaper.</p>
-            <a href="#work" class="view"><span data-en="View concept" data-es="Ver concepto">View concept</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            <a href="/work/greenscape/" target="_blank" rel="noopener" class="view"><span data-en="View concept" data-es="Ver concepto">View concept</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
           </div>
         </article>
 
