@@ -90,7 +90,8 @@ async function notifyResend(env, fields) {
   const key = env.RESEND_API_KEY;
   const from = env.MAIL_FROM; // must be on the Resend-verified bananabyte.io
   const to = env.MAIL_TO;     // owner inbox (gabpar49@gmail.com)
-  if (!key || !from || !to) return false;
+  // Skip cleanly if unconfigured or the key is obviously malformed.
+  if (!key || !key.startsWith("re_") || !from || !to) return false;
 
   const subject = `New inquiry from ${fields.name}`.slice(0, 180);
   const text =
@@ -179,9 +180,10 @@ async function handleContact(request, env, origin) {
     return json({ ok: false, success: false, error: "Bad request" }, 400, origin);
   }
 
-  // Honeypot — the form's hidden `botcheck` checkbox. A real user never sends it;
-  // a bot that fills it gets a silent 200 (no signal) and no notification.
-  if (data.botcheck && String(data.botcheck).trim() !== "") {
+  // Honeypot — the form's hidden `botcheck` checkbox. An unchecked checkbox is
+  // omitted from the body entirely, so a real user never sends this field at all.
+  // ANY presence (even "" or "on") means a bot filled it: silent 200, no notify.
+  if ("botcheck" in data) {
     return json({ ok: true, success: true }, 200, origin);
   }
 
@@ -247,15 +249,18 @@ export default {
       if (request.method !== "POST") {
         return json({ ok: false, success: false, error: "Method not allowed" }, 405, corsOrigin);
       }
-      // Same-origin enforcement: stop cross-site browser abuse. Accept if Origin
-      // matches; fall back to Referer prefix when Origin is absent.
+      // Same-origin enforcement (CSRF + scripted-abuse guard): a foreign Origin is
+      // rejected outright; when Origin is absent we REQUIRE a valid same-origin
+      // Referer, which blocks curl/script posts that send neither header. Real
+      // browsers always send Origin on a POST, so legitimate users are unaffected.
       const reqOrigin = request.headers.get("Origin");
       const referer = request.headers.get("Referer") || "";
       const refererOk = referer === ALLOWED || referer.startsWith(ALLOWED + "/");
-      if (reqOrigin !== null && reqOrigin !== ALLOWED) {
-        return json({ ok: false, success: false, error: "Forbidden" }, 403, corsOrigin);
-      }
-      if (reqOrigin === null && referer && !refererOk) {
+      if (reqOrigin !== null) {
+        if (reqOrigin !== ALLOWED) {
+          return json({ ok: false, success: false, error: "Forbidden" }, 403, corsOrigin);
+        }
+      } else if (!refererOk) {
         return json({ ok: false, success: false, error: "Forbidden" }, 403, corsOrigin);
       }
       return handleContact(request, env, corsOrigin);
@@ -269,6 +274,11 @@ export default {
     // Fall-through: serve the static site. (With run_worker_first scoped to
     // /api/*, non-API requests don't normally reach here, but this keeps the
     // handler correct if that scoping ever changes.)
-    return env.ASSETS.fetch(request);
+    try {
+      return await env.ASSETS.fetch(request);
+    } catch (e) {
+      console.error("assets fetch failed", e?.message || e);
+      return new Response("Service unavailable", { status: 502 });
+    }
   },
 };

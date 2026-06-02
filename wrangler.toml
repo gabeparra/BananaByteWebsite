@@ -17,7 +17,6 @@ run_worker_first = [ "/api/*" ]
 ALLOWED_ORIGIN = "https://bananabyte.io"
 MAIL_FROM = "BananaByte <contact@bananabyte.io>"   # must be on the Resend-verified domain
 MAIL_TO = "gabpar49@gmail.com"                      # owner inbox
-TELEGRAM_CHAT_ID = "5766153421"                     # owner Telegram chat (not a secret)
 
 # --- Native rate limiting (GA): 5 submissions / 60s per client IP ---
 [[ratelimits]]
@@ -28,4 +27,5 @@ simple = { limit = 5, period = 60 }
 # --- Secrets (set once via CLI, NEVER committed) ---
 #   npx wrangler secret put RESEND_API_KEY      # re_... from resend.com
 #   npx wrangler secret put TELEGRAM_BOT_TOKEN  # bot token for instant pings
+#   npx wrangler secret put TELEGRAM_CHAT_ID    # owner chat id (kept out of git)
 # For `wrangler dev`, put the same names in a gitignored .dev.vars file.
