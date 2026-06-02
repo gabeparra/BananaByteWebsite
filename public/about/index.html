@@ -807,6 +807,7 @@
   <meta name="twitter:description" content="BANANAbyte is owner-operated tech help and web design in Orlando, FL — honest advice, real timelines, and someone who actually shows up.">
   <meta name="twitter:image" content="https://bananabyte.io/og-image.png">
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "0928fb51dad843818b6718b55b31e615"}'></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
 
@@ -1052,13 +1053,94 @@
 
 
   <!-- ============ CLOSING CTA ============ -->
+<!-- contact form styling — vars-only, so it themes in formal AND crazy -->
+<style>
+  .contact-grid-2{display:grid;grid-template-columns:1fr;gap:22px;margin-top:24px}
+  @media (min-width:900px){
+    .contact-grid-2{grid-template-columns:1.05fr .95fr;gap:30px;align-items:start}
+  }
+  .bb-form-card{
+    border:var(--border-w) solid var(--hair);background:var(--panel);
+    border-radius:var(--radius);box-shadow:var(--card-shadow);
+    padding:26px 22px;
+    transition:border-color var(--tt) var(--ease),border-radius var(--tt) var(--ease),background var(--tt) var(--ease),box-shadow var(--tt) var(--ease);
+  }
+  html[data-theme="crazy"] .bb-form-card{border-color:var(--edge)}
+  .bb-form-card .lbl{
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--mut);margin-bottom:6px;
+  }
+  .bb-form-card .bb-form-intro{font-size:15px;color:var(--mut);line-height:1.55;margin-bottom:18px;max-width:46ch}
+  html[data-theme="crazy"] .bb-form-card .bb-form-intro{font-family:var(--mono);font-size:13px;letter-spacing:.03em;text-transform:uppercase}
+  #bbContactForm{display:flex;flex-direction:column;gap:16px}
+  #bbContactForm label{
+    display:flex;flex-direction:column;gap:8px;
+    font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--mut);line-height:1.4;
+  }
+  #bbContactForm label .req{color:var(--yellow);margin-left:3px}
+  #bbContactForm input,
+  #bbContactForm textarea{
+    font-family:var(--sans);font-size:16px;font-weight:450;line-height:1.5;
+    color:var(--ink);background:var(--bg);
+    border:var(--border-w) solid var(--hair);border-radius:var(--radius-sm);
+    padding:13px 14px;width:100%;min-height:52px;
+    transition:border-color .15s ease,box-shadow .15s ease,border-radius var(--tt) var(--ease),background var(--tt) var(--ease);
+    -webkit-appearance:none;appearance:none;
+  }
+  html[data-theme="crazy"] #bbContactForm input,
+  html[data-theme="crazy"] #bbContactForm textarea{
+    border-width:2px;border-color:var(--edge);font-family:var(--mono);font-size:15px;
+  }
+  #bbContactForm textarea{resize:vertical;min-height:124px;line-height:1.6}
+  #bbContactForm input::placeholder,
+  #bbContactForm textarea::placeholder{color:var(--mut);opacity:.7}
+  #bbContactForm input:hover,
+  #bbContactForm textarea:hover{border-color:var(--edge)}
+  #bbContactForm input:focus,
+  #bbContactForm textarea:focus{
+    outline:none;border-color:var(--yellow);
+    box-shadow:0 0 0 3px color-mix(in srgb,var(--yellow) 26%,transparent);
+  }
+  #bbContactForm.was-validated input:invalid,
+  #bbContactForm.was-validated textarea:invalid{
+    border-color:#E5484D;box-shadow:0 0 0 3px rgba(229,72,77,.2);
+  }
+  #bbContactForm .bb-submit{
+    font-family:var(--mono);font-weight:800;font-size:14px;letter-spacing:.03em;
+    text-decoration:none;text-align:center;padding:15px 22px;min-height:54px;
+    display:inline-flex;align-items:center;justify-content:center;gap:9px;
+    cursor:pointer;border-radius:var(--radius-sm);
+    background:var(--yellow);color:var(--on-yellow);border:var(--border-w) solid var(--yellow);box-shadow:var(--btn-shadow);
+    transition:transform .08s ease,background .15s ease,box-shadow var(--tt) var(--ease),border-radius var(--tt) var(--ease),border-color var(--tt) var(--ease);
+  }
+  html[data-theme="crazy"] #bbContactForm .bb-submit{text-transform:uppercase;border-width:2px}
+  #bbContactForm .bb-submit:hover{background:var(--bright);border-color:var(--bright)}
+  #bbContactForm .bb-submit:active{transform:translateY(1px)}
+  #bbContactForm .bb-submit[disabled]{opacity:.65;cursor:default}
+  #bbContactForm .bb-submit svg{width:18px;height:18px;flex-shrink:0}
+  #bbFormStatus{
+    font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.02em;line-height:1.5;
+    margin:0;min-height:0;
+  }
+  #bbFormStatus:empty{display:none}
+  #bbFormStatus.is-ok{color:var(--yellow)}
+  #bbFormStatus.is-err{color:#FF8A8E}
+  #bbFormStatus.is-busy{color:var(--mut)}
+  .bb-form-note{
+    margin-top:4px;font-size:13px;color:var(--mut);line-height:1.55;
+    display:flex;align-items:flex-start;gap:8px;
+  }
+  .bb-form-note svg{width:15px;height:15px;flex-shrink:0;color:var(--yellow);margin-top:2px}
+</style>
+
   <section class="contact" id="contact" aria-labelledby="cta-h">
     <div class="wrap">
       <span class="eyebrow reveal"><span class="sp">[</span> <span data-en="Let&rsquo;s talk" data-es="Hablemos">Let&rsquo;s talk</span> <span class="sp">]</span></span>
       <h2 class="sec-title reveal" id="cta-h" data-en="Have a problem? Let&rsquo;s fix it." data-es="¿Tienes un problema? Vamos a resolverlo.">Have a problem? Let&rsquo;s fix it.</h2>
       <p class="sec-lead reveal" data-en="Tell me what&rsquo;s going on and I&rsquo;ll give you a straight answer and a free quote &mdash; usually within one business day." data-es="Cuéntame qué está pasando y te doy una respuesta directa y una cotización gratis &mdash; normalmente en un día hábil.">Tell me what&rsquo;s going on and I&rsquo;ll give you a straight answer and a free quote &mdash; usually within one business day.</p>
 
-      <div class="contact-grid">
+      <div class="contact-grid-2">
         <div class="reach reveal">
           <p class="lbl" data-en="[ THE FAST WAY ]" data-es="[ LA VÍA RÁPIDA ]">[ THE FAST WAY ]</p>
           <a class="reach-btn text-cta" href="sms:+13212023732">
@@ -1071,7 +1153,56 @@
           </a>
           <p class="mail-row"><span data-en="Or email" data-es="O por correo">Or email</span> <a href="mailto:contact@bananabyte.io">contact@bananabyte.io</a></p>
           <p class="mail-row"><span data-en="Prefer to talk? Call" data-es="¿Prefieres hablar? Llama al">Prefer to talk? Call</span> <a href="tel:+13212023732">(321)&nbsp;202-3732</a></p>
-          <a href="/contact/" class="contact-link"><span data-en="Open the full contact page" data-es="Abrir la página de contacto">Open the full contact page</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+
+        <!-- ---------- RIGHT: the working contact form ---------- -->
+        <div class="bb-form-card reveal">
+          <p class="lbl" data-en="[ SEND A MESSAGE ]" data-es="[ ENVÍA UN MENSAJE ]">[ SEND A MESSAGE ]</p>
+          <p class="bb-form-intro" data-en="Not sure how to describe it? No problem &mdash; just tell us what&rsquo;s happening in your own words and we&rsquo;ll take it from there." data-es="¿No sabes cómo describirlo? No hay problema &mdash; cuéntanos qué pasa con tus propias palabras y nosotros nos encargamos del resto.">Not sure how to describe it? No problem &mdash; just tell us what&rsquo;s happening in your own words and we&rsquo;ll take it from there.</p>
+
+          <form id="bbContactForm" action="/api/contact" method="POST" novalidate>
+            <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
+
+            <label>
+              <span><span data-en="Name" data-es="Nombre">Name</span><span class="req" aria-hidden="true">*</span></span>
+              <input type="text" name="name" autocomplete="name" required
+                     data-en-ph="Your name" data-es-ph="Tu nombre" placeholder="Your name">
+            </label>
+
+            <label>
+              <span><span data-en="Email" data-es="Correo">Email</span><span class="req" aria-hidden="true">*</span></span>
+              <input type="email" name="email" autocomplete="email" inputmode="email" required
+                     data-en-ph="you@example.com" data-es-ph="tu@ejemplo.com" placeholder="you@example.com">
+            </label>
+
+            <label>
+              <span data-en="Phone (optional)" data-es="Teléfono (opcional)">Phone (optional)</span>
+              <input type="tel" name="phone" autocomplete="tel" inputmode="tel"
+                     data-en-ph="(321) 555-0000" data-es-ph="(321) 555-0000" placeholder="(321) 555-0000">
+            </label>
+
+            <label>
+              <span><span data-en="What do you need help with?" data-es="¿Con qué necesitas ayuda?">What do you need help with?</span><span class="req" aria-hidden="true">*</span></span>
+              <textarea name="message" rows="5" required
+                        data-en-ph="Tell us the device and what's happening &mdash; e.g. &quot;My laptop won't turn on&quot; or &quot;I need a website for my shop.&quot;"
+                        data-es-ph="Cuéntanos el equipo y qué pasa &mdash; p. ej. &quot;Mi laptop no enciende&quot; o &quot;Necesito un sitio web para mi negocio.&quot;"
+                        placeholder="Tell us the device and what's happening — e.g. &quot;My laptop won't turn on&quot; or &quot;I need a website for my shop.&quot;"></textarea>
+            </label>
+
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAADdmY73Y2U4TGmbD" data-theme="dark"></div>
+
+            <button type="submit" class="bb-submit">
+              <span class="bb-submit-label" data-en="Send" data-es="Enviar">Send</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+
+            <p id="bbFormStatus" role="status" aria-live="polite"></p>
+
+            <p class="bb-form-note">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/></svg>
+              <span data-en="We only use your info to reply about your request &mdash; no spam, ever. Prefer not to fill a form? Just text or WhatsApp us." data-es="Solo usamos tus datos para responder sobre tu solicitud &mdash; nunca spam. ¿Prefieres no llenar un formulario? Solo escríbenos por mensaje o WhatsApp.">We only use your info to reply about your request &mdash; no spam, ever. Prefer not to fill a form? Just text or WhatsApp us.</span>
+            </p>
+          </form>
         </div>
       </div>
     </div>
