@@ -1,8 +1,31 @@
 name = "bananabytewebsite"
+main = "./worker/index.js"
 compatibility_date = "2026-05-29"
 
 # Static Astro site (output: 'static') served via Cloudflare Workers static assets.
-# `npm run build` emits to ./dist; Workers serves it directly — no Worker script needed.
+# `npm run build` emits to ./dist. With run_worker_first scoped to /api/*, the
+# Worker script (./worker/index.js) ONLY handles /api/* requests; every other
+# request is served straight from ./dist — fast, free, and uncounted.
 [assets]
 directory = "./dist"
+binding = "ASSETS"
 not_found_handling = "404-page"
+run_worker_first = [ "/api/*" ]
+
+# --- Non-secret config (safe to commit) ---
+[vars]
+ALLOWED_ORIGIN = "https://bananabyte.io"
+MAIL_FROM = "BananaByte <contact@bananabyte.io>"   # must be on the Resend-verified domain
+MAIL_TO = "gabpar49@gmail.com"                      # owner inbox
+TELEGRAM_CHAT_ID = "5766153421"                     # owner Telegram chat (not a secret)
+
+# --- Native rate limiting (GA): 5 submissions / 60s per client IP ---
+[[ratelimits]]
+name = "CONTACT_LIMITER"        # -> env.CONTACT_LIMITER
+namespace_id = "1001"
+simple = { limit = 5, period = 60 }
+
+# --- Secrets (set once via CLI, NEVER committed) ---
+#   npx wrangler secret put RESEND_API_KEY      # re_... from resend.com
+#   npx wrangler secret put TELEGRAM_BOT_TOKEN  # bot token for instant pings
+# For `wrangler dev`, put the same names in a gitignored .dev.vars file.
