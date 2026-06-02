@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title data-en="BANANAbyte — Local Tech Help &amp; Web Design · Orlando, FL" data-es="BANANAbyte — Soporte Técnico Local y Diseño Web · Orlando, FL">BANANAbyte — Local Tech Help &amp; Web Design · Orlando, FL</title>
+<title data-en="Pricing — BANANAbyte" data-es="Precios — BANANAbyte">Pricing — BANANAbyte</title>
 <meta name="description" data-en="BANANAbyte — friendly local tech help and web design in Orlando, FL. Computer repair, networking, data rescue, patient hands-on help, and small-business websites. Run by Gabe. Honest, plain English, upfront pricing." data-es="BANANAbyte — soporte técnico local y diseño web en Orlando, FL. Reparación de computadoras, redes, recuperación de datos, ayuda paciente paso a paso y sitios web para pequeños negocios. Atendido por Gabe. Honesto, en palabras claras y con precios por adelantado." content="BANANAbyte — friendly local tech help and web design in Orlando, FL. Computer repair, networking, data rescue, patient hands-on help, and small-business websites. Run by Gabe. Honest, plain English, upfront pricing.">
 <meta name="theme-color" content="#0A0B0D">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -898,194 +898,347 @@
 
 <main>
 
-  <!-- ============ HERO ============ -->
-  <section class="hero" id="hero" aria-labelledby="hero-h">
-    <div class="hero-fx" aria-hidden="true"><div class="hero-grid"></div><div class="hero-glow"></div></div>
-    <div class="wrap hero-inner">
-      <div class="hero-copy">
-        <span class="tag"><span class="sp">&#9679;</span> <span data-en="BANANAbyte &mdash; Orlando, FL" data-es="BANANAbyte &mdash; Orlando, FL">BANANAbyte &mdash; Orlando, FL</span></span>
-        <h1 id="hero-h" data-en="Local tech help that <span class=&quot;hl&quot;>actually shows up.</span>" data-es="Soporte técnico local que <span class=&quot;hl&quot;>de verdad llega.</span>">Local tech help that <span class="hl">actually shows up.</span></h1>
-        <p class="sub" data-en="Computer repair, networking, data rescue, and small-business websites &mdash; friendly, in plain English, with a price you approve up front." data-es="Reparación de computadoras, redes, recuperación de datos y sitios web para negocios &mdash; con trato amable, en palabras claras y un precio que apruebas por adelantado.">Computer repair, networking, data rescue, and small-business websites &mdash; friendly, in plain English, with a price you approve up front.</p>
-        <div class="btn-row">
-          <a href="/contact/" class="btn btn-primary"><span data-en="Get a quote" data-es="Cotiza gratis">Get a quote</span> <span aria-hidden="true">&rarr;</span></a>
-          <div class="btn-dual">
-            <a href="sms:+13212023732" class="btn btn-secondary">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg>
-              <span data-en="Text us" data-es="Escríbenos">Text us</span>
-            </a>
-            <a href="https://wa.me/13212023732" rel="noopener" target="_blank" class="btn btn-secondary">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.84-1.96-.93-.26-.1-.46-.15-.65.15-.2.3-.74.93-.9 1.12-.17.2-.34.22-.63.08-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.34.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.65-1.57-.9-2.15-.24-.56-.48-.48-.65-.49l-.56-.01c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.2 1.87.12.57-.08 1.7-.7 1.95-1.36.24-.67.24-1.24.17-1.36-.07-.12-.27-.2-.56-.34zM12 2a10 10 0 0 0-8.6 15.07L2 22l5.05-1.32A10 10 0 1 0 12 2z"/></svg>
-              <span>WhatsApp</span>
-            </a>
-          </div>
-        </div>
-        <p class="trust">
-          <span class="chk" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-          <span data-en="Local &amp; owner-operated &middot; <b>free quote before any work</b> &middot; usually a reply within one business day." data-es="Local y atendido por su dueño &middot; <b>cotización gratis antes de empezar</b> &middot; normalmente respondemos en un día hábil.">Local &amp; owner-operated &middot; <b>free quote before any work</b> &middot; usually a reply within one business day.</span>
-        </p>
-      </div>
+  <!-- ============ PAGE-SCOPED STYLES ============
+       Pricing-only helpers. Everything reads from the shared theme CSS
+       custom properties, so each rule morphs automatically between the
+       formal (default) and crazy themes — no new colors are hard-coded. -->
+  <style>
+    /* page header block, mirrors the section shell rhythm */
+    .pg-head{border-bottom:var(--border-w) solid var(--hair);transition:border-color var(--tt) var(--ease)}
+    .pg-head .sec-lead{max-width:60ch;font-size:17px}
+    html[data-theme="crazy"] .pg-head .sec-lead{font-size:13px}
 
-      <!-- refined non-interactive hero visual: scaled iframe of a real sample -->
-      <div class="hero-visual" aria-hidden="true">
-        <div class="browser">
-          <div class="chrome"><i></i><i></i><i></i><span class="addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>alohacafe-orlando.com</span></div>
-          <div class="viewport"><iframe id="heroFrame" src="work/aloha-cafe/" title="Aloha Café — a sample site we built" loading="lazy" tabindex="-1" scrolling="no"></iframe></div>
-          <a class="demo-cap" href="/work/aloha-cafe/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><span class="pip"></span> <b>Aloha Café</b> <span data-en="&mdash; a sample site we built &#8599;" data-es="&mdash; un sitio de muestra que hicimos &#8599;">— a sample site we built &#8599;</span></a>
-        </div>
-      </div>
+    /* price card — built on the .svc card so it inherits both themes */
+    .price-card{display:flex;flex-direction:column;height:100%}
+    .price-card .price-top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:14px}
+    .price-card h3{margin-bottom:0}
+    .price-tag{
+      flex-shrink:0;display:inline-flex;flex-direction:column;align-items:flex-end;text-align:right;
+      font-family:var(--mono);line-height:1.05;
+    }
+    .price-tag .from{
+      font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);
+      margin-bottom:3px;
+    }
+    .price-tag .amt{font-size:23px;font-weight:800;color:var(--yellow)}
+    html[data-theme="crazy"] .price-tag .amt{color:var(--ink)}
+    .price-tag .unit{font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--mut);margin-top:3px}
+
+    .price-card .blurb{font-size:15px;color:var(--mut);line-height:1.55;margin-bottom:16px;max-width:46ch}
+
+    /* included list — checkmark bullets in the brand accent */
+    .price-incl{list-style:none;margin:0 0 18px;padding:0;display:flex;flex-direction:column;gap:9px}
+    .price-incl li{display:flex;align-items:flex-start;gap:10px;font-size:14.5px;line-height:1.5;color:var(--ink)}
+    .price-incl li .ck{flex-shrink:0;color:var(--yellow);margin-top:2px}
+    .price-incl li .ck svg{width:16px;height:16px;display:block}
+
+    .price-card .price-foot{margin-top:auto}
+    .price-card .price-link{
+      display:inline-flex;align-items:center;gap:8px;
+      font-family:var(--mono);font-weight:800;font-size:13px;letter-spacing:.04em;
+      color:var(--ink);text-decoration:none;border-bottom:2px solid var(--hair);
+      padding-bottom:3px;min-height:44px;transition:color .15s ease,border-color .15s ease;
+    }
+    html[data-theme="crazy"] .price-card .price-link{text-transform:uppercase}
+    .price-card .price-link:hover{color:var(--yellow);border-bottom-color:var(--yellow)}
+    .price-card .price-link svg{width:15px;height:15px;transition:transform .18s var(--ease)}
+    .price-card .price-link:hover svg{transform:translateX(4px)}
+
+    /* small clarifying note under the grid */
+    .price-note{
+      margin-top:22px;font-size:14px;color:var(--mut);line-height:1.6;max-width:64ch;
+      display:flex;align-items:flex-start;gap:9px;
+    }
+    .price-note .ck{color:var(--yellow);flex-shrink:0;margin-top:1px}
+    .price-note b{color:var(--ink);font-weight:600}
+
+    /* reassurance band — reuses trust-sec surface treatment */
+    .assure .assure-card{
+      border:var(--border-w) solid var(--hair);background:var(--bg);border-radius:var(--radius);
+      box-shadow:var(--card-shadow);padding:28px 24px;display:flex;align-items:flex-start;gap:18px;
+      transition:border-color var(--tt) var(--ease),border-radius var(--tt) var(--ease),background var(--tt) var(--ease),box-shadow var(--tt) var(--ease);
+    }
+    html[data-theme="crazy"] .assure .assure-card{border-color:var(--edge)}
+    .assure .assure-ic{
+      width:46px;height:46px;border-radius:12px;flex-shrink:0;
+      display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(150deg, color-mix(in srgb,var(--yellow) 24%,transparent), color-mix(in srgb,var(--yellow) 6%,transparent));
+      border:1px solid color-mix(in srgb,var(--yellow) 26%,var(--hair));color:var(--yellow);
+      transition:border-radius var(--tt) var(--ease),background var(--tt) var(--ease);
+    }
+    html[data-theme="crazy"] .assure .assure-ic{border-radius:0;border:2px solid var(--black);background:var(--yellow);color:var(--on-yellow);box-shadow:4px 4px 0 var(--black)}
+    .assure .assure-ic svg{width:24px;height:24px}
+    .assure .assure-card h2{font-size:clamp(20px,4.4vw,26px);color:var(--ink);line-height:1.12;margin-bottom:8px}
+    .assure .assure-card p{font-size:15.5px;color:var(--mut);line-height:1.6;max-width:58ch}
+    .assure .assure-card p b{color:var(--ink);font-weight:600}
+
+    /* FAQ — accessible details/summary on the card surface */
+    .faq-list{display:flex;flex-direction:column;gap:14px;margin-top:24px}
+    .faq{
+      border:var(--border-w) solid var(--hair);background:var(--panel);border-radius:var(--radius);
+      box-shadow:var(--card-shadow);overflow:hidden;
+      transition:border-color .2s var(--ease),border-radius var(--tt) var(--ease),background var(--tt) var(--ease),box-shadow var(--tt) var(--ease);
+    }
+    html[data-theme="crazy"] .faq{border-color:var(--edge)}
+    .faq[open]{border-color:var(--edge)}
+    .faq summary{
+      list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;
+      padding:20px 22px;min-height:60px;
+      font-family:var(--display);font-weight:var(--h-weight);letter-spacing:var(--h-spacing);text-transform:var(--h-transform);
+      font-size:17px;line-height:1.25;color:var(--ink);
+    }
+    html[data-theme="crazy"] .faq summary{font-size:16px}
+    .faq summary::-webkit-details-marker{display:none}
+    .faq summary .q-ico{
+      flex-shrink:0;width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;
+      border:1px solid var(--hair);background:var(--panel-2);color:var(--yellow);
+      transition:transform .2s var(--ease),border-radius var(--tt) var(--ease),background var(--tt) var(--ease),border-color var(--tt) var(--ease);
+    }
+    html[data-theme="crazy"] .faq summary .q-ico{border-radius:0;border:2px solid var(--black);background:var(--yellow);color:var(--on-yellow)}
+    .faq summary .q-ico svg{width:17px;height:17px;display:block}
+    .faq[open] summary .q-ico{transform:rotate(45deg)}
+    .faq summary:hover{color:var(--yellow)}
+    .faq .a{padding:0 22px 22px;font-size:15px;line-height:1.65;color:var(--mut);max-width:64ch}
+    .faq .a a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--hair);transition:color .15s ease,border-color .15s ease}
+    .faq .a a:hover{color:var(--yellow);border-bottom-color:var(--yellow)}
+
+    /* closing CTA band */
+    .pricing-cta{border-top:var(--border-w) solid var(--hair);transition:border-color var(--tt) var(--ease)}
+    .pricing-cta .cta-card{
+      border:var(--border-w) solid var(--hair);background:var(--panel);border-radius:var(--radius);
+      box-shadow:var(--card-shadow);padding:32px 26px;text-align:center;
+      transition:border-color var(--tt) var(--ease),border-radius var(--tt) var(--ease),background var(--tt) var(--ease),box-shadow var(--tt) var(--ease);
+    }
+    html[data-theme="crazy"] .pricing-cta .cta-card{border-color:var(--edge)}
+    .pricing-cta .cta-card h2{font-size:clamp(24px,5.2vw,34px);color:var(--ink);line-height:1.1;margin-bottom:12px}
+    .pricing-cta .cta-card p{font-size:16px;color:var(--mut);line-height:1.6;max-width:52ch;margin:0 auto 22px}
+    .pricing-cta .cta-btns{display:flex;flex-direction:column;gap:12px;align-items:center}
+
+    @media (min-width:760px){
+      .price-incl li{font-size:15px}
+      .assure .assure-card{padding:32px 30px;gap:22px}
+      .pricing-cta .cta-btns{flex-direction:row;justify-content:center;flex-wrap:wrap}
+    }
+  </style>
+
+  <!-- ============ PAGE HEADER ============ -->
+  <section class="pg-head" aria-labelledby="pricing-h">
+    <div class="wrap">
+      <span class="eyebrow reveal"><span class="sp">[</span> <span data-en="Pricing" data-es="Precios">Pricing</span> <span class="sp">]</span></span>
+      <h1 class="sec-title reveal" id="pricing-h" data-en="Honest, upfront pricing." data-es="Precios honestos y por adelantado.">Honest, upfront pricing.</h1>
+      <p class="sec-lead reveal" data-en="Every job starts with a <b>free, no-obligation quote</b> &mdash; a clear number you approve before we touch a single thing. No diagnostic fees that turn into surprises, no padded invoices, no &ldquo;we&rsquo;ll figure it out later.&rdquo; The prices below are honest starting points, and once we understand your situation, you&rsquo;ll know exactly what it costs." data-es="Cada trabajo comienza con una <b>cotización gratis y sin compromiso</b> &mdash; un número claro que apruebas antes de que toquemos nada. Sin cargos de diagnóstico que se convierten en sorpresas, sin facturas infladas y sin &ldquo;ya lo resolvemos después&rdquo;. Los precios de abajo son puntos de partida honestos y, una vez que entendamos tu situación, sabrás exactamente cuánto cuesta.">Every job starts with a <b>free, no-obligation quote</b> &mdash; a clear number you approve before we touch a single thing. No diagnostic fees that turn into surprises, no padded invoices, no &ldquo;we&rsquo;ll figure it out later.&rdquo; The prices below are honest starting points, and once we understand your situation, you&rsquo;ll know exactly what it costs.</p>
     </div>
   </section>
 
-  <!-- ============ WHAT WE DO ============ -->
-  <section class="services" id="services" aria-labelledby="svc-h">
+  <!-- ============ PACKAGES ============ -->
+  <section class="services" id="packages" aria-labelledby="pkg-h">
     <div class="wrap">
-      <span class="eyebrow reveal"><span class="sp">[</span> <span data-en="What we do" data-es="Lo que hacemos">What we do</span> <span class="sp">]</span></span>
-      <h2 class="sec-title reveal" id="svc-h" data-en="Six things, done right." data-es="Seis cosas, bien hechas.">Six things, done right.</h2>
-      <p class="sec-lead reveal" data-en="From a dead laptop to a brand-new website &mdash; one local shop, no runaround." data-es="Desde una laptop muerta hasta un sitio web nuevecito &mdash; un solo taller local, sin vueltas.">From a dead laptop to a brand-new website &mdash; one local shop, no runaround.</p>
+      <span class="eyebrow reveal"><span class="sp">[</span> <span data-en="What it costs" data-es="Cuánto cuesta">What it costs</span> <span class="sp">]</span></span>
+      <h2 class="sec-title reveal" id="pkg-h" data-en="Five common jobs, five starting prices." data-es="Cinco trabajos comunes, cinco precios de partida.">Five common jobs, five starting prices.</h2>
+      <p class="sec-lead reveal" data-en="These are typical starting prices, not the final bill. The exact number depends on what your machine, network, or site actually needs &mdash; and you always see it before we begin." data-es="Estos son precios de partida típicos, no la factura final. El número exacto depende de lo que de verdad necesite tu equipo, red o sitio &mdash; y siempre lo ves antes de empezar.">These are typical starting prices, not the final bill. The exact number depends on what your machine, network, or site actually needs &mdash; and you always see it before we begin.</p>
 
       <div class="svc-list">
-        <article class="svc reveal">
-          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="1.5"/><path d="M8 21h8M12 17v4"/></svg></div>
-          <h3 data-en="Computer Repair" data-es="Reparación de Computadoras">Computer Repair</h3>
-          <p data-en="Slow, crashing, or infected? We fix hardware and software, remove viruses, and bring tired machines back to life." data-es="¿Lenta, se traba o tiene virus? Resolvemos hardware y software, eliminamos virus y le devolvemos la vida a equipos cansados.">Slow, crashing, or infected? We fix hardware and software, remove viruses, and bring tired machines back to life.</p>
-        </article>
-        <article class="svc reveal">
-          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13a10 10 0 0 1 14 0M8.5 16.5a5 5 0 0 1 7 0M2 9.5a15 15 0 0 1 20 0"/><circle cx="12" cy="20" r="1"/></svg></div>
-          <h3 data-en="Networking Solutions" data-es="Soluciones de Redes">Networking Solutions</h3>
-          <p data-en="Wi-Fi that reaches every room. We set up, secure, and troubleshoot home and office networks, routers, and mesh systems." data-es="Wi-Fi que llega a cada rincón. Instalamos, aseguramos y arreglamos redes de casa y oficina, routers y sistemas mesh.">Wi-Fi that reaches every room. We set up, secure, and troubleshoot home and office networks, routers, and mesh systems.</p>
-        </article>
-        <article class="svc reveal">
-          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.66 3.58 3 8 3s8-1.34 8-3V5M4 11v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"/></svg></div>
-          <h3 data-en="Data Cleanup &amp; Recovery" data-es="Limpieza y Recuperación de Datos">Data Cleanup &amp; Recovery</h3>
-          <p data-en="Recover lost files, declutter packed drives, organize years of photos, and set up backups so nothing disappears again." data-es="Recuperamos archivos perdidos, liberamos discos llenos, organizamos años de fotos y configuramos respaldos para que nada vuelva a desaparecer.">Recover lost files, declutter packed drives, organize years of photos, and set up backups so nothing disappears again.</p>
-        </article>
-        <article class="svc reveal">
-          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg></div>
-          <h3 data-en="Friendly Tech Help" data-es="Ayuda Técnica Amable">Friendly Tech Help</h3>
-          <p data-en="Patient, no-jargon help with your computer, phone, or tablet &mdash; perfect for seniors or anyone who&rsquo;d rather just have it handled." data-es="Ayuda paciente y sin tecnicismos con tu computadora, teléfono o tableta &mdash; ideal para personas mayores o para quien prefiere que se lo resolvamos.">Patient, no-jargon help with your computer, phone, or tablet &mdash; perfect for seniors or anyone who&rsquo;d rather just have it handled.</p>
-        </article>
-        <article class="svc reveal">
-          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
-          <h3 data-en="Web Design" data-es="Diseño Web">Web Design</h3>
-          <p data-en="Fast, clean websites for local businesses &mdash; quick to load, sharp to look at, and easy to maintain. (Like this one.)" data-es="Sitios web rápidos y limpios para negocios locales &mdash; cargan al instante, se ven muy bien y son fáciles de mantener. (Como este.)">Fast, clean websites for local businesses &mdash; quick to load, sharp to look at, and easy to maintain. (Like this one.)</p>
-        </article>
-        <article class="svc reveal">
-          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div>
-          <h3 data-en="Website Maintenance" data-es="Mantenimiento de Sitios Web">Website Maintenance</h3>
-          <p data-en="Have a Wix, Shopify, or WordPress site? We keep it updated, secure, and fast &mdash; content edits, updates, backups, and quick fixes." data-es="¿Tienes un sitio en Wix, Shopify o WordPress? Lo mantenemos actualizado, seguro y rápido &mdash; cambios de contenido, actualizaciones, respaldos y arreglos rápidos.">Have a Wix, Shopify, or WordPress site? We keep it updated, secure, and fast &mdash; content edits, updates, backups, and quick fixes.</p>
-        </article>
-      </div>
 
-      <a href="/services/" class="see-all reveal"><span data-en="See all services" data-es="Ver todos los servicios">See all services</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-    </div>
-  </section>
-
-  <!-- ============ TRUST + TESTIMONIAL ============ -->
-  <section class="trust-sec" aria-labelledby="trust-h">
-    <div class="wrap">
-      <span class="eyebrow reveal"><span class="sp">[</span> <span data-en="Why neighbors call" data-es="Por qué llaman los vecinos">Why neighbors call</span> <span class="sp">]</span></span>
-      <h2 class="sec-title reveal" id="trust-h" data-en="Honest help, no surprises." data-es="Ayuda honesta, sin sorpresas.">Honest help, no surprises.</h2>
-
-      <div class="trust-grid">
-        <div class="tpoint reveal">
-          <div class="tp-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/><polyline points="9 12 11 14 15 10"/></svg></div>
-          <h3 data-en="Upfront pricing" data-es="Precios por adelantado">Upfront pricing</h3>
-          <p data-en="A free quote first &mdash; you approve the number before any work begins." data-es="Primero una cotización gratis &mdash; apruebas el monto antes de empezar.">A free quote first &mdash; you approve the number before any work begins.</p>
-        </div>
-        <div class="tpoint reveal">
-          <div class="tp-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-          <h3 data-en="Plain English" data-es="Palabras claras">Plain English</h3>
-          <p data-en="No jargon, no talking down &mdash; just clear answers you can actually use." data-es="Sin tecnicismos ni aires de superioridad &mdash; respuestas claras que sí puedes usar.">No jargon, no talking down &mdash; just clear answers you can actually use.</p>
-        </div>
-        <div class="tpoint reveal">
-          <div class="tp-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-          <h3 data-en="Local &amp; on time" data-es="Local y puntual">Local &amp; on time</h3>
-          <p data-en="Owner-operated in Orlando &mdash; on-site or remote, and we actually show up." data-es="Atendido por su dueño en Orlando &mdash; a domicilio o remoto, y de verdad llegamos.">Owner-operated in Orlando &mdash; on-site or remote, and we actually show up.</p>
-        </div>
-      </div>
-
-      <figure class="review reveal">
-        <div class="stars" aria-label="Five out of five stars" data-en-aria="Five out of five stars" data-es-aria="Cinco de cinco estrellas">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <blockquote data-en="&ldquo;Gabe fixed in one afternoon what two other shops couldn&rsquo;t. Explained everything in plain English.&rdquo;" data-es="&ldquo;Gabe arregló en una tarde lo que otros dos talleres no pudieron. Me explicó todo en palabras claras.&rdquo;">&ldquo;Gabe fixed in one afternoon what two other shops couldn&rsquo;t. Explained everything in plain English.&rdquo;</blockquote>
-        <figcaption class="who">Maria R. &middot; <span class="y">Winter Park</span></figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- ============ ABOUT teaser ============ -->
-  <section class="about" id="about" aria-labelledby="about-h">
-    <div class="wrap">
-      <span class="eyebrow reveal"><span class="sp">[</span> <span data-en="Who you&rsquo;re calling" data-es="A quién llamas">Who you&rsquo;re calling</span> <span class="sp">]</span></span>
-      <div class="about-card reveal">
-        <div class="founder-photo" role="img" aria-label="BANANAbyte's pixel-banana mascot, standing in for founder Gabe" data-en-aria="BANANAbyte's pixel-banana mascot, standing in for founder Gabe" data-es-aria="La mascota de banana en píxeles de BANANAbyte, en lugar del fundador Gabe">
-          <svg class="pixel-banana bb-pixel" viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges"></svg>
-          <span class="cap" data-en="Gabe &middot; Founder" data-es="Gabe &middot; Fundador">Gabe &middot; Founder</span>
-        </div>
-        <div class="about-body">
-          <div class="about-head"><h2 id="about-h" data-en="Meet the founder." data-es="Conoce al fundador.">Meet the founder.</h2></div>
-          <p class="blurb" data-en="Hi, I&rsquo;m Gabe &mdash; the one who answers your message and shows up to help. I started BANANAbyte because too many people get talked down to, overcharged, or ghosted by tech companies. My promise is simple: <b>honest advice</b>, <b>plain English</b>, and a <b>fair price you approve up front</b>." data-es="Hola, soy Gabe &mdash; quien responde tu mensaje y llega a ayudarte. Empecé BANANAbyte porque a demasiada gente la tratan con superioridad, le cobran de más o la dejan en visto. Mi promesa es sencilla: <b>consejos honestos</b>, <b>palabras claras</b> y un <b>precio justo que apruebas por adelantado</b>.">Hi, I&rsquo;m Gabe &mdash; the one who answers your message and shows up to help. I started BANANAbyte because too many people get talked down to, overcharged, or ghosted by tech companies. My promise is simple: <b>honest advice</b>, <b>plain English</b>, and a <b>fair price you approve up front</b>.</p>
-          <div class="chips" role="list" aria-label="What BANANAbyte stands for" data-en-aria="What BANANAbyte stands for" data-es-aria="Lo que representa BANANAbyte">
-            <span class="chip" role="listitem" data-en="Local &amp; owner-operated" data-es="Local y atendido por su dueño">Local &amp; owner-operated</span>
-            <span class="chip" role="listitem" data-en="Upfront pricing" data-es="Precios por adelantado">Upfront pricing</span>
-            <span class="chip" role="listitem" data-en="No jargon" data-es="Sin tecnicismos">No jargon</span>
-            <span class="chip" role="listitem" data-en="On-site or remote" data-es="A domicilio o remoto">On-site or remote</span>
+        <!-- 1 · Diagnostic & Tune-Up -->
+        <article class="svc price-card reveal">
+          <div class="price-top">
+            <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="11"/><line x1="11" y1="14" x2="11.01" y2="14"/></svg></div>
+            <div class="price-tag">
+              <span class="from" data-en="From" data-es="Desde">From</span>
+              <span class="amt">$49</span>
+            </div>
           </div>
-          <a href="/about/" class="see-all"><span data-en="Read the full story" data-es="Lee la historia completa">Read the full story</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <h3 data-en="Diagnostic &amp; Tune-Up" data-es="Diagnóstico y Puesta a Punto">Diagnostic &amp; Tune-Up</h3>
+          <p class="blurb" data-en="Slow, noisy, or acting strange? We find out why and get it running smoothly again." data-es="¿Lenta, ruidosa o portándose raro? Averiguamos por qué y la dejamos funcionando bien otra vez.">Slow, noisy, or acting strange? We find out why and get it running smoothly again.</p>
+          <ul class="price-incl">
+            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span data-en="Full hardware &amp; software health check" data-es="Revisión completa de hardware y software">Full hardware &amp; software health check</span></li>
+            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span data-en="Virus &amp; malware scan and cleanup" data-es="Escaneo y limpieza de virus y malware">Virus &amp; malware scan and cleanup</span></li>
+            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span data-en="Speed-up: startup, storage &amp; updates" data-es="Optimización: arranque, almacenamiento y actualizaciones">Speed-up: startup, storage &amp; updates</span></li>
+            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span data-en="Plain-English report of what we found" data-es="Reporte en palabras claras de lo que encontramos">Plain-English report of what we found</span></li>
+          </ul>
+          <div class="price-foot">
+            <a href="/contact/" class="price-link"><span data-en="Get a quote" data-es="Cotiza gratis">Get a quote</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </article>
+
+        <!-- 2 · Home Network Setup -->
+        <article class="svc price-card reveal">
+          <div class="price-top">
+            <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13a10 10 0 0 1 14 0M8.5 16.5a5 5 0 0 1 7 0M2 9.5a15 15 0 0 1 20 0"/><circle cx="12" cy="20" r="1"/></svg></div>
+            <div class="price-tag">
+              <span class="from" data-en="From" data-es="Desde">From</span>
+              <span class="amt">$129</span>
+            </div>
+          </div>
+          <h3 data-en="Home Network Setup" data-es="Instalación de Red en Casa">Home Network Setup</h3>
+          <p class="blurb" data-en="Wi-Fi that finally reaches every room &mdash; set up cleanly and secured the right way." data-es="Wi-Fi que por fin llega a cada cuarto &mdash; instalado de forma limpia y asegurado como debe ser.">Wi-Fi that finally reaches every room &mdash; set up cleanly and secured the right way.</p>
+          <ul class="price-incl">
+            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span data-en="Router or mesh setup &amp; placement" data-es="Configuración y ubicación de router o mesh">Router or mesh setup &amp; placement</span></li>
+            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span data-en="Whole-home coverage &amp; dead-zone fixes" data-es="Cobertura en toda la casa y arreglo de zonas muertas">Whole-home coverage &amp; dead-zone fixes</span></li>
+            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span data-en="Secure passwords &amp; a separate guest network" data-es="Contraseñas seguras y una red de invitados aparte">Secure passwords &amp; a separate guest network</span></li>
+            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span data-en="Printers &amp; smart devices connected" data-es="Impresoras y dispositivos inteligentes conectados">Printers &amp; smart devices connected</span></li>
+          </ul>
+          <div class="price-foot">
+            <a href="/contact/" class="price-link"><span data-en="Get a quote" data-es="Cotiza gratis">Get a quote</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </article>
+
+        <!-- 3 · Data Rescue & Backup -->
+        <article class="svc price-card reveal">
+          <div class="price-top">
+            <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.66 3.58 3 8 3s8-1.34 8-3V5M4 11v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"/></svg></div>
+            <div class="price-tag">
+              <span class="from" data-en="From" data-es="Desde">From</span>
+              <span class="amt">$99</span>
+            </div>
+          </div>
+          <h3 data-en="Data Rescue &amp; Backup" data-es="Rescate y Respaldo de Datos">Data Rescue &amp; Backup</h3>
+          <p class="blurb" data-en="Lost photos or files? We try to recover them &mdash; then set up backups so it never happens again." data-es="¿Perdiste fotos o archivos? Intentamos recuperarlos &mdash; y luego configuramos respaldos para que no vuelva a pasar.">Lost photos or files? We try to recover them &mdash; then set up backups so it never happens again.</p>
+          <ul class="price-incl">
+            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span data-en="Recovery of deleted or lost files" data-es="Recuperación de archivos borrados o perdidos">Recovery of deleted or lost files</span></li>
+            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span data-en="Safe transfer to a new drive or computer" data-es="Transferencia segura a un disco o equipo nuevo">Safe transfer to a new drive or computer</span></li>
+            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span data-en="Automatic cloud or external backup set up" data-es="Respaldo automático en la nube o externo configurado">Automatic cloud or external backup set up</span></li>
+            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span data-en="Honest upfront on what&rsquo;s recoverable" data-es="Te decimos de frente qué se puede recuperar">Honest upfront on what&rsquo;s recoverable</span></li>
+          </ul>
+          <div class="price-foot">
+            <a href="/contact/" class="price-link"><span data-en="Get a quote" data-es="Cotiza gratis">Get a quote</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </article>
+
+        <!-- 4 · Friendly Tech Help -->
+        <article class="svc price-card reveal">
+          <div class="price-top">
+            <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg></div>
+            <div class="price-tag">
+              <span class="amt">$60</span>
+              <span class="unit" data-en="/ hour" data-es="/ hora">/ hour</span>
+            </div>
+          </div>
+          <h3 data-en="Friendly Tech Help" data-es="Ayuda Técnica Amable">Friendly Tech Help</h3>
+          <p class="blurb" data-en="Patient, no-jargon help with anything tech &mdash; on-site or remote, billed by the hour." data-es="Ayuda paciente y sin tecnicismos con cualquier cosa de tecnología &mdash; a domicilio o remoto, cobrada por hora.">Patient, no-jargon help with anything tech &mdash; on-site or remote, billed by the hour.</p>
+          <ul class="price-incl">
+            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span data-en="First 15 minutes free &mdash; no commitment" data-es="Primeros 15 minutos gratis &mdash; sin compromiso">First 15 minutes free &mdash; no commitment</span></li>
+            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span data-en="Phones, tablets, email, printers &amp; more" data-es="Teléfonos, tabletas, correo, impresoras y más">Phones, tablets, email, printers &amp; more</span></li>
+            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span data-en="Great for seniors &amp; first-time tech help" data-es="Ideal para personas mayores y primera ayuda con tecnología">Great for seniors &amp; first-time tech help</span></li>
+            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span data-en="Billed only for the time we actually use" data-es="Cobramos solo el tiempo que realmente usamos">Billed only for the time we actually use</span></li>
+          </ul>
+          <div class="price-foot">
+            <a href="/contact/" class="price-link"><span data-en="Get a quote" data-es="Cotiza gratis">Get a quote</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </article>
+
+        <!-- 5 · Small-Business Website -->
+        <article class="svc price-card reveal">
+          <div class="price-top">
+            <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+            <div class="price-tag">
+              <span class="from" data-en="From" data-es="Desde">From</span>
+              <span class="amt">$900</span>
+            </div>
+          </div>
+          <h3 data-en="Small-Business Website" data-es="Sitio Web para Pequeños Negocios">Small-Business Website</h3>
+          <p class="blurb" data-en="A fast, clean website your customers can find &mdash; built, launched, and ready to grow with you." data-es="Un sitio web rápido y limpio que tus clientes encuentran &mdash; creado, lanzado y listo para crecer contigo.">A fast, clean website your customers can find &mdash; built, launched, and ready to grow with you.</p>
+          <ul class="price-incl">
+            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span data-en="Custom multi-page design, mobile-first" data-es="Diseño personalizado de varias páginas, primero móvil">Custom multi-page design, mobile-first</span></li>
+            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span data-en="Fast loading &amp; basic Google-friendly SEO" data-es="Carga rápida y SEO básico amigable con Google">Fast loading &amp; basic Google-friendly SEO</span></li>
+            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span data-en="Contact forms, maps &amp; click-to-call" data-es="Formularios de contacto, mapas y clic para llamar">Contact forms, maps &amp; click-to-call</span></li>
+            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span data-en="Launch help, training &amp; optional upkeep" data-es="Ayuda para el lanzamiento, capacitación y mantenimiento opcional">Launch help, training &amp; optional upkeep</span></li>
+          </ul>
+          <div class="price-foot">
+            <a href="/contact/" class="price-link"><span data-en="Get a quote" data-es="Cotiza gratis">Get a quote</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </article>
+
+      </div>
+
+      <p class="price-note reveal">
+        <span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span data-en="Parts (drives, routers, replacement components, domains, hosting) are quoted separately and shown to you before purchase. Don&rsquo;t see your exact problem here? <b>Just ask</b> &mdash; the quote is always free." data-es="Las piezas (discos, routers, componentes de repuesto, dominios, hosting) se cotizan aparte y te las mostramos antes de comprar. ¿No ves tu problema exacto aquí? <b>Solo pregunta</b> &mdash; la cotización siempre es gratis.">Parts (drives, routers, replacement components, domains, hosting) are quoted separately and shown to you before purchase. Don&rsquo;t see your exact problem here? <b>Just ask</b> &mdash; the quote is always free.</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ REASSURANCE BAND ============ -->
+  <section class="trust-sec assure" aria-labelledby="assure-h">
+    <div class="wrap">
+      <div class="assure-card reveal">
+        <div class="assure-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/><polyline points="9 12 11 14 15 10"/></svg></div>
+        <div>
+          <h2 id="assure-h" data-en="You approve the price before we touch anything." data-es="Apruebas el precio antes de que toquemos nada.">You approve the price before we touch anything.</h2>
+          <p data-en="We walk through the problem with you, give you a clear number in writing, and only get started once you say yes. <b>No surprise invoices, no hidden fees, no pressure</b> &mdash; if the price isn&rsquo;t right for you, there&rsquo;s no cost and no hard feelings." data-es="Repasamos el problema contigo, te damos un número claro por escrito y solo empezamos cuando dices que sí. <b>Sin facturas sorpresa, sin cargos ocultos y sin presión</b> &mdash; si el precio no te conviene, no hay ningún costo y todo queda bien.">We walk through the problem with you, give you a clear number in writing, and only get started once you say yes. <b>No surprise invoices, no hidden fees, no pressure</b> &mdash; if the price isn&rsquo;t right for you, there&rsquo;s no cost and no hard feelings.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ CONTACT CTA ============ -->
-  <section class="contact" id="contact" aria-labelledby="contact-h">
+  <!-- ============ FAQ ============ -->
+  <section class="faq-sec" aria-labelledby="faq-h">
     <div class="wrap">
-      <span class="eyebrow reveal"><span class="sp">[</span> <span data-en="Get in touch" data-es="Hablemos">Get in touch</span> <span class="sp">]</span></span>
-      <h2 class="sec-title reveal" id="contact-h" data-en="Tell us what&rsquo;s going wrong." data-es="Cuéntanos qué está fallando.">Tell us what&rsquo;s going wrong.</h2>
-      <p class="sec-lead reveal" data-en="The fastest way is a text or WhatsApp &mdash; we usually reply within one business day." data-es="Lo más rápido es un mensaje o WhatsApp &mdash; normalmente respondemos en un día hábil.">The fastest way is a text or WhatsApp &mdash; we usually reply within one business day.</p>
+      <span class="eyebrow reveal"><span class="sp">[</span> <span data-en="Good to know" data-es="Bueno saberlo">Good to know</span> <span class="sp">]</span></span>
+      <h2 class="sec-title reveal" id="faq-h" data-en="Pricing questions, answered." data-es="Preguntas sobre precios, respondidas.">Pricing questions, answered.</h2>
 
-      <div class="contact-grid">
-        <div class="reach reveal">
-          <p class="lbl" data-en="[ THE FAST WAY ]" data-es="[ LA VÍA RÁPIDA ]">[ THE FAST WAY ]</p>
-          <a class="reach-btn text-cta" href="sms:+13212023732">
+      <div class="faq-list">
+        <details class="faq reveal">
+          <summary>
+            <span data-en="Do you charge for quotes?" data-es="¿Cobran por las cotizaciones?">Do you charge for quotes?</span>
+            <span class="q-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          </summary>
+          <div class="a">
+            <p data-en="No &mdash; quotes are always free and there&rsquo;s no obligation. Tell us what&rsquo;s going on by text, WhatsApp, or email, and we&rsquo;ll give you an honest estimate before any work starts. You only pay if you approve the price and we do the job." data-es="No &mdash; las cotizaciones siempre son gratis y sin compromiso. Cuéntanos qué pasa por mensaje, WhatsApp o correo y te damos un estimado honesto antes de empezar cualquier trabajo. Solo pagas si apruebas el precio y hacemos el trabajo.">No &mdash; quotes are always free and there&rsquo;s no obligation. Tell us what&rsquo;s going on by text, WhatsApp, or email, and we&rsquo;ll give you an honest estimate before any work starts. You only pay if you approve the price and we do the job.</p>
+          </div>
+        </details>
+
+        <details class="faq reveal">
+          <summary>
+            <span data-en="What&rsquo;s your service area? Do you travel?" data-es="¿Cuál es su área de servicio? ¿Se trasladan?">What&rsquo;s your service area? Do you travel?</span>
+            <span class="q-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          </summary>
+          <div class="a">
+            <p data-en="We&rsquo;re based in Orlando, FL and serve the greater Orlando area &mdash; including Winter Park, Kissimmee, and nearby neighborhoods &mdash; with on-site visits. Many issues we can also solve remotely from anywhere. If you&rsquo;re a bit farther out, just ask: a small travel fee may apply, and we&rsquo;ll always tell you up front before you commit." data-es="Estamos en Orlando, FL y atendemos el área metropolitana de Orlando &mdash; incluyendo Winter Park, Kissimmee y zonas cercanas &mdash; con visitas a domicilio. Muchos problemas también los resolvemos de forma remota desde cualquier lugar. Si estás un poco más lejos, solo pregunta: puede aplicar un pequeño cargo de traslado, y siempre te lo decimos por adelantado antes de que te comprometas.">We&rsquo;re based in Orlando, FL and serve the greater Orlando area &mdash; including Winter Park, Kissimmee, and nearby neighborhoods &mdash; with on-site visits. Many issues we can also solve remotely from anywhere. If you&rsquo;re a bit farther out, just ask: a small travel fee may apply, and we&rsquo;ll always tell you up front before you commit.</p>
+          </div>
+        </details>
+
+        <details class="faq reveal">
+          <summary>
+            <span data-en="How do I pay?" data-es="¿Cómo pago?">How do I pay?</span>
+            <span class="q-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          </summary>
+          <div class="a">
+            <p data-en="Whatever&rsquo;s easiest for you. We accept cash, major cards, and common apps like Zelle, Venmo, and Cash App. For most jobs payment is due when the work is finished and you&rsquo;re happy; larger projects like a website may be split into a deposit and a final payment, spelled out clearly before we begin." data-es="Lo que te sea más cómodo. Aceptamos efectivo, tarjetas principales y apps comunes como Zelle, Venmo y Cash App. En la mayoría de los trabajos el pago se hace al terminar y cuando estés conforme; los proyectos más grandes como un sitio web se pueden dividir en un anticipo y un pago final, explicado con claridad antes de comenzar.">Whatever&rsquo;s easiest for you. We accept cash, major cards, and common apps like Zelle, Venmo, and Cash App. For most jobs payment is due when the work is finished and you&rsquo;re happy; larger projects like a website may be split into a deposit and a final payment, spelled out clearly before we begin.</p>
+          </div>
+        </details>
+
+        <details class="faq reveal">
+          <summary>
+            <span data-en="Do you guarantee the work?" data-es="¿Garantizan el trabajo?">Do you guarantee the work?</span>
+            <span class="q-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          </summary>
+          <div class="a">
+            <p data-en="Yes. If something we fixed acts up again shortly after, we&rsquo;ll come back and make it right &mdash; that&rsquo;s on us. Some things, like failing hardware or recovering severely damaged drives, we can&rsquo;t promise miracles on, and we&rsquo;ll always be honest with you about that before you spend a dollar. Our goal is simple: you should feel the work was worth it." data-es="Sí. Si algo que arreglamos vuelve a fallar poco después, regresamos y lo dejamos bien &mdash; eso corre por nuestra cuenta. En ciertas cosas, como hardware que está muriendo o recuperar discos muy dañados, no podemos prometer milagros, y siempre seremos honestos contigo al respecto antes de que gastes un dólar. Nuestra meta es sencilla: que sientas que el trabajo valió la pena.">Yes. If something we fixed acts up again shortly after, we&rsquo;ll come back and make it right &mdash; that&rsquo;s on us. Some things, like failing hardware or recovering severely damaged drives, we can&rsquo;t promise miracles on, and we&rsquo;ll always be honest with you about that before you spend a dollar. Our goal is simple: you should feel the work was worth it.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CLOSING CTA ============ -->
+  <section class="contact pricing-cta" aria-labelledby="cta-h">
+    <div class="wrap">
+      <div class="cta-card reveal">
+        <h2 id="cta-h" data-en="Ready for a real number?" data-es="¿Listo para un número de verdad?">Ready for a real number?</h2>
+        <p data-en="Tell us what&rsquo;s going on and we&rsquo;ll send back an honest, free quote &mdash; usually within one business day. No pressure, no obligation." data-es="Cuéntanos qué está pasando y te enviamos una cotización honesta y gratis &mdash; normalmente en un día hábil. Sin presión y sin compromiso.">Tell us what&rsquo;s going on and we&rsquo;ll send back an honest, free quote &mdash; usually within one business day. No pressure, no obligation.</p>
+        <div class="cta-btns">
+          <a href="/contact/" class="btn btn-primary"><span data-en="Get a free quote" data-es="Cotiza gratis">Get a free quote</span> <span aria-hidden="true">&rarr;</span></a>
+          <a href="sms:+13212023732" class="btn btn-secondary">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg>
             <span data-en="Text us" data-es="Escríbenos">Text us</span>
           </a>
-          <a class="reach-btn wa-cta" href="https://wa.me/13212023732" rel="noopener" target="_blank">
+          <a href="https://wa.me/13212023732" rel="noopener" target="_blank" class="btn btn-secondary">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.84-1.96-.93-.26-.1-.46-.15-.65.15-.2.3-.74.93-.9 1.12-.17.2-.34.22-.63.08-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.34.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.65-1.57-.9-2.15-.24-.56-.48-.48-.65-.49l-.56-.01c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.2 1.87.12.57-.08 1.7-.7 1.95-1.36.24-.67.24-1.24.17-1.36-.07-.12-.27-.2-.56-.34zM12 2a10 10 0 0 0-8.6 15.07L2 22l5.05-1.32A10 10 0 1 0 12 2z"/></svg>
             <span>WhatsApp</span>
           </a>
-          <p class="mail-row"><span data-en="Or email" data-es="O por correo">Or email</span> <a href="mailto:contact@bananabyte.io">contact@bananabyte.io</a></p>
-          <a href="/contact/" class="contact-link"><span data-en="Open the full contact page" data-es="Abrir la página de contacto">Open the full contact page</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-
-          <!-- SLOT-MACHINE PHONE REVEAL (secondary, fun way to get the number) -->
-          <div class="bb-spin" id="bbSpin">
-            <p class="bb-spin-cap" data-en="Prefer to talk? Spin for it." data-es="¿Prefieres hablar? Gíralo.">Prefer to talk? Spin for it.</p>
-            <a class="bb-spin-fallback" href="tel:+13212023732">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              <span><span data-en="Call" data-es="Llamar">Call</span> <b>(321)&nbsp;202-3732</b></span>
-            </a>
-            <div class="bb-spin-shell">
-              <div class="bb-spin-reels" id="bbSpinReels" aria-hidden="true"></div>
-            </div>
-            <button type="button" class="bb-spin-trigger" id="bbSpinTrigger"
-                    data-en-idle="Spin to reveal my number" data-es-idle="Gira para ver mi número"
-                    data-en-spinning="Spinning…" data-es-spinning="Girando…"
-                    data-en-revealed="Revealed!" data-es-revealed="¡Revelado!">
-              <span class="bb-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><polyline points="21 3 21 9 15 9"/></svg></span>
-              <span class="bb-spin-label" data-en="Spin to reveal my number" data-es="Gira para ver mi número">Spin to reveal my number</span>
-            </button>
-            <p id="bbSpinLive" role="status" aria-live="polite" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0"></p>
-            <div class="bb-spin-out" id="bbSpinOut" aria-hidden="true">
-              <a class="bb-spin-call" id="bbSpinCall" href="tel:+13212023732">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <span><span data-en="Call" data-es="Llamar">Call</span> <b>(321)&nbsp;202-3732</b></span>
-              </a>
-              <button type="button" class="bb-spin-again" id="bbSpinAgain" aria-label="Spin again" data-en-aria="Spin again" data-es-aria="Girar de nuevo">
-                <span aria-hidden="true">&#8635;</span> <span data-en="Spin again" data-es="Girar de nuevo">Spin again</span>
-              </button>
-            </div>
-          </div>
         </div>
+        <p class="mail-row" style="margin-top:18px;font-size:14px;color:var(--mut)"><span data-en="Or email" data-es="O por correo">Or email</span> <a href="mailto:contact@bananabyte.io" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--hair)">contact@bananabyte.io</a></p>
       </div>
     </div>
   </section>
