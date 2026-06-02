@@ -1546,5 +1546,33 @@
   })();
 })();
 </script>
+<!-- first-party click analytics — cookieless beacon to /api/event -->
+<script>
+(function(){
+  function track(n){ try{ navigator.sendBeacon('/api/event', new Blob([JSON.stringify({name:n})],{type:'application/json'})); }catch(e){} }
+  document.addEventListener('click', function(e){
+    var t = e.target; if(!t || !t.closest) return;
+    var a = t.closest('a[href]');
+    if(a){
+      var h = a.getAttribute('href') || '';
+      if(h.indexOf('sms:')===0) track('text_click');
+      else if(h.indexOf('wa.me')>-1) track('whatsapp_click');
+      else if(h.indexOf('tel:')===0) track('call_click');
+      else if(h.indexOf('mailto:')===0) track('email_click');
+    }
+    if(t.closest('#bbSpinTrigger')) track('spin');
+    if(t.closest('.nav-cta, .m-quote, .btn-primary')) track('quote_click');
+  }, true);
+  var f = document.getElementById('bbContactForm');
+  if(f) f.addEventListener('submit', function(){ track('form_submit'); });
+  var de = document.documentElement, lt = de.getAttribute('data-theme'), ll = de.getAttribute('lang');
+  try{
+    new MutationObserver(function(){
+      var th = de.getAttribute('data-theme'); if(th && th!==lt){ lt=th; track('theme_'+th); }
+      var lg = de.getAttribute('lang'); if(lg && lg!==ll){ ll=lg; track('lang_'+lg); }
+    }).observe(de, {attributes:true, attributeFilter:['data-theme','lang']});
+  }catch(e){}
+})();
+</script>
 </body>
 </html>

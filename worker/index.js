@@ -266,6 +266,85 @@ async function handleContact(request, env, origin) {
   return json({ ok: true, success: true }, 200, origin);
 }
 
+/* ----------------------- /api/event (cookieless click analytics) ----------------------- */
+
+// Allowlisted event names — keeps the public counter from being polluted.
+const EVENT_NAMES = new Set([
+  "text_click", "whatsapp_click", "call_click", "email_click",
+  "form_submit", "quote_click", "spin",
+  "theme_crazy", "theme_formal", "lang_es", "lang_en",
+]);
+
+// Beacon endpoint: increments a per-day counter blob in KV. Always 204 (fire-and-forget);
+// never leaks why it ignored something, so it can't be probed.
+async function handleEvent(request, env, allowed) {
+  const ok204 = () => new Response(null, { status: 204 });
+  if (request.method !== "POST") return ok204();
+
+  const reqOrigin = request.headers.get("Origin");
+  if (reqOrigin !== null && reqOrigin !== allowed) return ok204(); // cross-site -> ignore
+
+  if (env.EVENT_LIMITER) {
+    const ip = request.headers.get("CF-Connecting-IP") || "unknown";
+    try {
+      const { success } = await env.EVENT_LIMITER.limit({ key: ip });
+      if (!success) return ok204();
+    } catch (e) { /* fail open — analytics is non-critical */ }
+  }
+
+  let name = "";
+  try { name = String((JSON.parse(await request.text()) || {}).name || ""); }
+  catch { return ok204(); }
+  if (!EVENT_NAMES.has(name) || !env.EVENTS) return ok204();
+
+  const day = new Date().toISOString().slice(0, 10);
+  const key = "stats:" + day;
+  try {
+    const cur = (await env.EVENTS.get(key, "json")) || {};
+    cur[name] = (cur[name] || 0) + 1;
+    await env.EVENTS.put(key, JSON.stringify(cur), { expirationTtl: 60 * 60 * 24 * 100 });
+  } catch (e) { console.error("event kv error", e?.message || e); }
+  return ok204();
+}
+
+/* ----------------------- /api/stats (private dashboard, token-gated) ----------------------- */
+
+async function handleStats(request, env, url) {
+  const token = url.searchParams.get("token") || "";
+  if (!env.STATS_TOKEN || token !== env.STATS_TOKEN) {
+    return new Response("Not found", { status: 404 }); // don't reveal the endpoint exists
+  }
+  if (!env.EVENTS) return new Response("No data store", { status: 500 });
+
+  const list = await env.EVENTS.list({ prefix: "stats:" });
+  const days = [];
+  const totals = {};
+  for (const k of list.keys) {
+    const counts = (await env.EVENTS.get(k.name, "json")) || {};
+    days.push({ day: k.name.slice(6), counts });
+    for (const [n, v] of Object.entries(counts)) totals[n] = (totals[n] || 0) + v;
+  }
+  days.sort((a, b) => (a.day < b.day ? 1 : -1)); // newest first
+
+  if (url.searchParams.get("format") === "json") {
+    return new Response(JSON.stringify({ totals, days }, null, 2),
+      { headers: { "Content-Type": "application/json", "Cache-Control": "no-store" } });
+  }
+
+  const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+  const tRows = Object.keys(totals).sort().map((n) => `<tr><td>${esc(n)}</td><td class="n">${totals[n]}</td></tr>`).join("");
+  const dRows = days.map((d) => {
+    const r = Object.keys(d.counts).sort().map((n) => `<tr><td>${esc(n)}</td><td class="n">${d.counts[n]}</td></tr>`).join("");
+    return `<h3>${esc(d.day)}</h3><table>${r}</table>`;
+  }).join("");
+  const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>BANANAbyte — event stats</title>
+<style>body{font:15px/1.5 -apple-system,Segoe UI,Roboto,sans-serif;background:#0B0B0C;color:#E9E9EA;margin:0;padding:28px;max-width:640px}h1{font-size:20px}h1 b{color:#F5C800}h2{margin-top:28px;font-size:13px;color:#8a8a8f;text-transform:uppercase;letter-spacing:.08em}h3{margin:18px 0 6px;font-size:13px;color:#8a8a8f}table{width:100%;border-collapse:collapse;margin:0 0 8px}td{padding:7px 10px;border-bottom:1px solid #1f1f22}td.n{text-align:right;font-variant-numeric:tabular-nums;color:#F5C800;font-weight:700;width:84px}.m{color:#8a8a8f}</style></head>
+<body><h1><b>BANANA</b>byte — click analytics</h1><p class="m">Cookieless · first-party · ${days.length} day(s) recorded.</p>
+<h2>All-time totals</h2><table>${tRows || '<tr><td class="m">No events yet</td></tr>'}</table>
+<h2>By day</h2>${dRows || '<p class="m">No events yet.</p>'}</body></html>`;
+  return new Response(html, { headers: { "Content-Type": "text/html;charset=utf-8", "Cache-Control": "no-store" } });
+}
+
 /* --------------------------------- entry --------------------------------- */
 
 export default {
@@ -307,6 +386,13 @@ export default {
         return json({ ok: false, success: false, error: "Forbidden" }, 403, corsOrigin);
       }
       return handleContact(request, env, corsOrigin);
+    }
+
+    if (url.pathname === "/api/event") {
+      return handleEvent(request, env, ALLOWED);
+    }
+    if (url.pathname === "/api/stats") {
+      return handleStats(request, env, url);
     }
 
     // Unknown /api/* path — explicit 404 (don't fall through to the 404 asset page).
