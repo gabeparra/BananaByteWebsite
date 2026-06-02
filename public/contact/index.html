@@ -792,6 +792,7 @@
   .reveal-ready .reveal.in{opacity:1;transform:none}
   @media (prefers-reduced-motion:reduce){.reveal-ready .reveal{opacity:1 !important;transform:none !important;transition:none !important}}
 </style>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
 
@@ -1150,6 +1151,8 @@
                       placeholder="Tell us the device and what's happening — e.g. &quot;My laptop won't turn on&quot; or &quot;I need a website for my shop.&quot;"></textarea>
           </label>
 
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAADdmY73Y2U4TGmbD" data-theme="dark"></div>
+
           <button type="submit" class="bb-submit">
             <span class="bb-submit-label" data-en="Send" data-es="Enviar">Send</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
@@ -1206,6 +1209,8 @@
                es: 'Por favor completa tu nombre, un correo válido y un mensaje corto.' },
     errSend: { en: 'Something went wrong sending that. Please try again, or just text us.',
                es: 'Algo salió mal al enviar. Inténtalo de nuevo, o solo escríbenos por mensaje.' },
+    captcha: { en: 'Please complete the verification below the message box, then send.',
+               es: 'Por favor completa la verificación debajo del mensaje y envía.' },
     sendBtn: { en: 'Send', es: 'Enviar' },
     sendingBtn: { en: 'Sending…', es: 'Enviando…' }
   };
@@ -1230,6 +1235,15 @@
 
     // honeypot — silently drop bots
     if(form.botcheck && form.botcheck.checked) return;
+
+    // require the Turnstile token (the managed widget usually fills it on its own)
+    var ts = form.querySelector('[name="cf-turnstile-response"]');
+    if(ts && !ts.value){
+      setStatus('is-err', 'captcha');
+      var w = document.querySelector('.cf-turnstile');
+      if(w && w.scrollIntoView) w.scrollIntoView({block:'center'});
+      return;
+    }
 
     setStatus('is-busy', 'sending');
     if(submit) submit.disabled = true;

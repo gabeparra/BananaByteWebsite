@@ -131,6 +131,29 @@ async function notifyResend(env, fields) {
   return true;
 }
 
+// Cloudflare Turnstile (bot challenge) verification. Returns true if the token
+// is valid — or if Turnstile isn't configured, so the form never hard-locks.
+// Fails CLOSED (false) on an explicit failure or verify error when configured.
+async function verifyTurnstile(env, token, ip) {
+  if (!env.TURNSTILE_SECRET) return true; // not configured → skip
+  if (!token || typeof token !== "string") return false;
+  const body = new URLSearchParams();
+  body.append("secret", env.TURNSTILE_SECRET);
+  body.append("response", token);
+  if (ip) body.append("remoteip", ip);
+  try {
+    const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+      method: "POST",
+      body,
+    });
+    const out = await res.json();
+    return out.success === true;
+  } catch (e) {
+    console.error("turnstile verify error", e?.message || e);
+    return false;
+  }
+}
+
 /* ------------------------------- handler ------------------------------- */
 
 async function handleContact(request, env, origin) {
@@ -140,9 +163,10 @@ async function handleContact(request, env, origin) {
     return json({ ok: false, success: false, error: "Payload too large" }, 413, origin);
   }
 
+  const ip = request.headers.get("CF-Connecting-IP") || "unknown";
+
   // Rate limit — keyed on the real client IP (CF-Connecting-IP is trustworthy here).
   if (env.CONTACT_LIMITER) {
-    const ip = request.headers.get("CF-Connecting-IP") || "unknown";
     try {
       const { success } = await env.CONTACT_LIMITER.limit({ key: ip });
       if (!success) {
@@ -216,6 +240,13 @@ async function handleContact(request, env, origin) {
       .slice(0, LIMITS.message)
       .trim(),
   };
+
+  // Bot challenge — verify the Turnstile token before doing any work that sends
+  // mail/pings. Enforced only when TURNSTILE_SECRET is configured (else skipped).
+  const tsToken = data["cf-turnstile-response"];
+  if (!(await verifyTurnstile(env, tsToken, ip))) {
+    return json({ ok: false, success: false, error: "Verification failed" }, 403, origin);
+  }
 
   // Fire both channels; accept the submission if EITHER succeeds.
   const [tg, mail] = await Promise.all([
