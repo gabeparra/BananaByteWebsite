@@ -276,7 +276,19 @@ export default {
     const corsOrigin = ALLOWED;
 
     if (url.pathname === "/api/contact") {
-      if (request.method === "OPTIONS") return json({}, 204, corsOrigin);
+      if (request.method === "OPTIONS") {
+        // 204 must NOT carry a body — return a bodyless preflight response.
+        return new Response(null, {
+          status: 204,
+          headers: {
+            "Access-Control-Allow-Origin": corsOrigin,
+            "Access-Control-Allow-Methods": "POST, OPTIONS",
+            "Access-Control-Allow-Headers": "Content-Type",
+            "Access-Control-Max-Age": "86400",
+            "Vary": "Origin",
+          },
+        });
+      }
       if (request.method !== "POST") {
         return json({ ok: false, success: false, error: "Method not allowed" }, 405, corsOrigin);
       }
