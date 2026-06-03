@@ -35,3 +35,6 @@ pnpm-debug.log*
 # local design working files (not part of the deployed site)
 mockups/
 *-mockup.html
+
+# local backup of the full multi-page home (restore from git history)
+_full-home-backup.html
