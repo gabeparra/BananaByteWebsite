@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>BANANAbyte — Web design studio, Orlando FL</title>
+<meta name="description" content="BANANAbyte is a one-person web studio in Orlando building fast, clean websites for small businesses. New sites, redesigns, speed-ups, small shops, and ongoing care." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#f4f0e6;
+    --paper-2:#ebe5d6;
+    --ink:#1a1714;
+    --ink-soft:#4b463e;
+    --ink-faint:#8c857a;
+    --accent:#b4632a;        /* warm muted clay / ripe-peel ochre */
+    --accent-deep:#8a4a1e;
+    --line:#cfc7b4;
+    --line-strong:#b8af99;
+    --max:1280px;
+    --ease:cubic-bezier(.22,1,.36,1);
+    --serif:"Fraunces", Georgia, "Times New Roman", serif;
+    --grot:"Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--grot);
+    font-weight:400;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+    position:relative;
+  }
+
+  /* paper grain + faint vignette */
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    pointer-events:none;z-index:9999;
+    opacity:.05;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  body::after{
+    content:"";
+    position:fixed;inset:0;
+    pointer-events:none;z-index:0;
+    background:radial-gradient(120% 90% at 50% -10%, rgba(180,99,42,.06), transparent 60%);
+  }
+
+  ::selection{background:var(--accent);color:var(--paper)}
+
+  a{color:inherit;text-decoration:none}
+  .wrap{width:100%;max-width:var(--max);margin:0 auto;padding:0 40px;position:relative;z-index:1}
+
+  .mono{font-family:var(--grot);font-weight:500;text-transform:uppercase;letter-spacing:.22em;font-size:11px;color:var(--ink-faint)}
+  .num{font-family:var(--grot);font-weight:300;font-variant-numeric:tabular-nums}
+
+  .hair{height:1px;background:var(--line);border:0;width:100%}
+  .hair-strong{height:1px;background:var(--line-strong);border:0;width:100%}
+
+  /* ---------- reveal system ---------- */
+  .r{opacity:0;transform:translateY(26px);transition:opacity 1.05s var(--ease),transform 1.05s var(--ease)}
+  .r.in{opacity:1;transform:none}
+  .clip{display:block;overflow:hidden}
+  .clip > span{display:block;transform:translateY(110%);transition:transform 1.05s var(--ease)}
+  .clip.in > span{transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .r,.clip>span{transition:none;opacity:1;transform:none}
+  }
+
+  /* =================== NAV =================== */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(244,240,230,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .brand{display:flex;align-items:center;gap:11px;font-family:var(--serif);font-size:23px;line-height:1}
+  .brand .b1{font-weight:600;letter-spacing:.01em}
+  .brand .b2{font-weight:300;font-style:italic;color:var(--ink-soft)}
+  .peel{width:26px;height:26px;flex:0 0 auto;transform:rotate(-8deg)}
+  .nav-links{display:flex;gap:34px;align-items:center}
+  .nav-links a{font-family:var(--grot);font-size:13px;letter-spacing:.04em;color:var(--ink-soft);position:relative;padding:4px 0;transition:color .3s}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--accent);transition:width .35s var(--ease)}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-links a:hover::after{width:100%}
+  .nav-cta{font-family:var(--grot);font-size:13px;font-weight:500;letter-spacing:.04em;border:1px solid var(--ink);border-radius:999px;padding:9px 18px;color:var(--ink);transition:all .35s var(--ease)}
+  .nav-cta:hover{background:var(--ink);color:var(--paper)}
+  @media(max-width:860px){.nav-links a:not(.nav-cta){display:none}}
+
+  /* =================== HERO =================== */
+  .hero{padding:78px 0 56px;position:relative}
+  .hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;margin-bottom:46px}
+  .hero-kick{max-width:300px}
+  .hero-kick .mono{display:block;margin-bottom:12px}
+  .hero-kick p{font-size:14px;color:var(--ink-soft);line-height:1.6}
+  .hero-meta{text-align:right}
+  .hero-meta .num{font-size:13px;color:var(--ink-faint);display:block;line-height:1.9}
+  .hero-meta .num b{color:var(--ink);font-weight:500}
+
+  h1.display{
+    font-family:var(--serif);
+    font-weight:300;
+    font-size:clamp(48px,9.2vw,142px);
+    line-height:.92;
+    letter-spacing:-.025em;
+    margin:0 0 0 -.02em;
+  }
+  h1.display em{font-style:italic;font-weight:400;color:var(--accent)}
+  h1.display .line{position:relative}
+
+  .hero-base{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;margin-top:46px;align-items:end}
+  .hero-sub{font-family:var(--serif);font-weight:300;font-size:clamp(19px,2.2vw,25px);line-height:1.4;color:var(--ink-soft);max-width:34ch}
+  .hero-sub b{color:var(--ink);font-weight:500;font-style:italic}
+  .hero-act{display:flex;flex-direction:column;align-items:flex-start;gap:18px}
+
+  .btn-primary{
+    display:inline-flex;align-items:center;gap:14px;
+    font-family:var(--grot);font-size:15px;font-weight:500;letter-spacing:.02em;
+    background:var(--ink);color:var(--paper);
+    padding:17px 26px;border-radius:999px;border:1px solid var(--ink);
+    transition:all .4s var(--ease);position:relative;overflow:hidden;
+  }
+  .btn-primary .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);transition:transform .4s var(--ease)}
+  .btn-primary .arw{transition:transform .4s var(--ease)}
+  .btn-primary:hover{background:var(--accent);border-color:var(--accent)}
+  .btn-primary:hover .dot{background:var(--paper);transform:scale(1.25)}
+  .btn-primary:hover .arw{transform:translateX(5px)}
+  .avail{font-size:12.5px;color:var(--ink-faint);display:flex;align-items:center;gap:8px}
+  .pulse{width:8px;height:8px;border-radius:50%;background:#5b8c3a;box-shadow:0 0 0 0 rgba(91,140,58,.5);animation:pulse 2.4s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(91,140,58,.5)}70%{box-shadow:0 0 0 9px rgba(91,140,58,0)}100%{box-shadow:0 0 0 0 rgba(91,140,58,0)}}
+
+  @media(max-width:760px){
+    .hero-top{flex-direction:column;gap:20px}
+    .hero-meta{text-align:left}
+    .hero-base{grid-template-columns:1fr;gap:30px}
+  }
+
+  /* =================== SECTION SHELL =================== */
+  section.block{padding:88px 0}
+  .sec-head{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:baseline;margin-bottom:54px}
+  .sec-num{font-family:var(--serif);font-weight:300;font-size:clamp(34px,4vw,52px);color:var(--accent);line-height:.8;font-feature-settings:"tnum"}
+  .sec-title{font-family:var(--serif);font-weight:400;font-size:clamp(28px,4vw,46px);line-height:1.02;letter-spacing:-.02em}
+  .sec-title em{font-style:italic;color:var(--ink-soft)}
+  .sec-aside{justify-self:end;text-align:right;max-width:240px}
+  .sec-aside p{font-size:13.5px;color:var(--ink-soft);line-height:1.6}
+  @media(max-width:760px){
+    .sec-head{grid-template-columns:1fr;gap:14px}
+    .sec-aside{justify-self:start;text-align:left;margin-top:6px}
+  }
+
+  /* =================== WHAT I DO =================== */
+  .svc-list{border-top:1px solid var(--line-strong)}
+  .svc{
+    display:grid;grid-template-columns:64px 1.1fr 1.4fr auto;gap:30px;
+    align-items:center;padding:30px 8px;border-bottom:1px solid var(--line);
+    position:relative;transition:padding-left .45s var(--ease),background .45s var(--ease);
+  }
+  .svc::before{content:"";position:absolute;left:0;top:0;height:100%;width:0;background:rgba(180,99,42,.05);transition:width .45s var(--ease);z-index:-1}
+  .svc:hover{padding-left:24px}
+  .svc:hover::before{width:100%}
+  .svc-ix{font-family:var(--grot);font-weight:300;font-size:13px;color:var(--ink-faint);font-variant-numeric:tabular-nums}
+  .svc-name{font-family:var(--serif);font-weight:400;font-size:clamp(22px,2.6vw,30px);line-height:1.05;letter-spacing:-.01em;transition:color .4s}
+  .svc:hover .svc-name{color:var(--accent-deep)}
+  .svc-desc{font-size:14.5px;color:var(--ink-soft);line-height:1.55;max-width:46ch}
+  .svc-tag{font-family:var(--grot);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);white-space:nowrap;border:1px solid var(--line-strong);border-radius:999px;padding:6px 13px;transition:all .4s}
+  .svc:hover .svc-tag{border-color:var(--accent);color:var(--accent-deep)}
+  @media(max-width:900px){
+    .svc{grid-template-columns:44px 1fr;gap:6px 18px;align-items:start;padding:26px 6px}
+    .svc-desc{grid-column:2;margin-top:8px}
+    .svc-tag{grid-column:2;justify-self:start;margin-top:14px}
+    .svc:hover{padding-left:14px}
+  }
+
+  /* =================== WORK =================== */
+  .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+  @media(max-width:900px){.work-grid{grid-template-columns:1fr;gap:26px;max-width:480px}}
+  .card{
+    border:1px solid var(--line-strong);background:var(--paper-2);
+    border-radius:3px;overflow:hidden;position:relative;
+    transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .5s;
+  }
+  .card:hover{transform:translateY(-7px);box-shadow:18px 22px 0 -6px rgba(26,23,20,.12);border-color:var(--ink)}
+  .card-canvas{aspect-ratio:4/3.1;position:relative;overflow:hidden;border-bottom:1px solid var(--line-strong)}
+  .card-canvas svg{position:absolute;inset:0;width:100%;height:100%}
+  .card-canvas .glow{position:absolute;inset:0;opacity:0;background:radial-gradient(60% 60% at 50% 40%,rgba(255,255,255,.35),transparent 70%);transition:opacity .6s;mix-blend-mode:overlay}
+  .card:hover .card-canvas .glow{opacity:1}
+  .card-meta{padding:20px 22px 24px;display:flex;flex-direction:column;gap:5px}
+  .card-meta .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .card-name{font-family:var(--serif);font-weight:500;font-size:22px;letter-spacing:-.01em}
+  .card-yr{font-family:var(--grot);font-weight:300;font-size:12px;color:var(--ink-faint);font-variant-numeric:tabular-nums}
+  .card-kind{font-family:var(--grot);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-deep)}
+  .card-note{font-size:13.5px;color:var(--ink-soft);margin-top:9px;line-height:1.5}
+
+  /* =================== PROCESS / WHY ME =================== */
+  .why{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line-strong);border-left:1px solid var(--line)}
+  .why-cell{padding:34px 26px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);transition:background .4s}
+  .why-cell:hover{background:var(--paper-2)}
+  .why-cell .wn{font-family:var(--serif);font-weight:300;font-size:15px;color:var(--accent);display:block;margin-bottom:18px;font-variant-numeric:tabular-nums}
+  .why-cell h3{font-family:var(--serif);font-weight:500;font-size:21px;line-height:1.1;letter-spacing:-.01em;margin-bottom:11px}
+  .why-cell p{font-size:13.5px;color:var(--ink-soft);line-height:1.55}
+  @media(max-width:900px){.why{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.why{grid-template-columns:1fr}}
+
+  /* =================== CONTACT =================== */
+  .cta{position:relative;padding:96px 0 100px;border-top:1px solid var(--line-strong);overflow:hidden}
+  .cta::before{
+    content:"";position:absolute;inset:0;z-index:0;
+    background:
+      radial-gradient(60% 80% at 12% 0%, rgba(180,99,42,.10), transparent 55%),
+      radial-gradient(50% 70% at 92% 110%, rgba(180,99,42,.09), transparent 55%);
+  }
+  .cta .wrap{display:grid;grid-template-columns:1fr .9fr;gap:60px;align-items:center}
+  .cta-h{font-family:var(--serif);font-weight:300;font-size:clamp(34px,5.4vw,72px);line-height:.98;letter-spacing:-.025em}
+  .cta-h em{font-style:italic;color:var(--accent)}
+  .cta-p{font-size:15px;color:var(--ink-soft);margin-top:22px;max-width:40ch;line-height:1.6}
+  .form{display:flex;flex-direction:column;gap:14px}
+  .field{display:flex;border:1px solid var(--ink);border-radius:999px;background:rgba(244,240,230,.6);overflow:hidden;transition:border-color .35s,box-shadow .35s}
+  .field:focus-within{border-color:var(--accent);box-shadow:0 0 0 4px rgba(180,99,42,.12)}
+  .field input{flex:1;border:0;background:transparent;padding:16px 22px;font-family:var(--grot);font-size:15px;color:var(--ink);outline:none}
+  .field input::placeholder{color:var(--ink-faint)}
+  .field button{border:0;background:var(--ink);color:var(--paper);font-family:var(--grot);font-weight:500;font-size:14px;letter-spacing:.02em;padding:0 26px;cursor:pointer;transition:background .35s}
+  .field button:hover{background:var(--accent)}
+  .form-note{font-size:12.5px;color:var(--ink-faint);padding-left:4px}
+  .form-note.ok{color:var(--accent-deep)}
+  .or{font-size:13px;color:var(--ink-soft);padding-left:4px}
+  .or a{color:var(--accent-deep);border-bottom:1px solid var(--line-strong);transition:border-color .3s}
+  .or a:hover{border-color:var(--accent)}
+  @media(max-width:820px){.cta .wrap{grid-template-columns:1fr;gap:40px}}
+
+  /* =================== FOOTER =================== */
+  footer{border-top:1px solid var(--line);padding:42px 0 56px}
+  .foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px}
+  .foot .left{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .foot-brand{font-family:var(--serif);font-size:18px}
+  .foot-brand b{font-weight:600}.foot-brand i{font-weight:300;font-style:italic;color:var(--ink-soft)}
+  .foot .dot-sep{color:var(--ink-faint)}
+  .foot .meta{font-size:13px;color:var(--ink-soft)}
+  .foot .meta a{color:var(--ink-soft);border-bottom:1px solid transparent;transition:border-color .3s,color .3s}
+  .foot .meta a:hover{color:var(--accent-deep);border-color:var(--accent)}
+  .foot .right{font-family:var(--grot);font-size:12px;color:var(--ink-faint);letter-spacing:.04em}
+
+  .deco-peel{position:absolute;pointer-events:none;opacity:.07;z-index:0}
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="BANANAbyte home">
+      <svg class="peel" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M6 5c-1.6 5.4 1.4 13.2 7 17.6C18 26.4 24 27.4 27 25.6c-3 .2-7.4-1-11-3.9C10.8 17.4 7.3 11 8.2 5.4 7.6 5 6.7 4.9 6 5Z" fill="#b4632a"/>
+        <path d="M7.6 4.4c-.5 5.7 3 13 8.6 17.3 4.4 3.4 9.8 4.5 12.7 3-2.6-.2-6.1-1.6-9.3-4C13.4 16.8 9.7 9.9 10 4.6c-.8-.4-1.7-.5-2.4-.2Z" fill="#d98b3f"/>
+      </svg>
+      <span><span class="b1">BANANA</span><span class="b2">byte</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#why">Why me</a>
+      <a class="nav-cta" href="#contact">Start a project</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+
+    <div class="hero-top">
+      <div class="hero-kick r" data-d="500">
+        <span class="mono">Web studio — est. Orlando</span>
+        <p>A one-person studio building honest, fast websites for small businesses that would rather be running their business than fighting their website.</p>
+      </div>
+      <div class="hero-meta r" data-d="600">
+        <span class="num">28.5° N / 81.3° W</span>
+        <span class="num">Orlando, Florida</span>
+        <span class="num"><b>Built by Gabe</b></span>
+      </div>
+    </div>
+
+    <h1 class="display" id="headline">
+      <span class="clip line" data-d="120"><span>Websites that</span></span>
+      <span class="clip line" data-d="240"><span><em>earn their keep</em>—</span></span>
+      <span class="clip line" data-d="360"><span>no jargon, no fuss.</span></span>
+    </h1>
+
+    <div class="hero-base">
+      <p class="hero-sub r" data-d="760">
+        I design and build <b>fast, clean</b> websites for cafés, contractors, clinics &amp; shops around Central Florida. Flat pricing, quick turnaround, and <b>you own everything</b> when it ships.
+      </p>
+      <div class="hero-act r" data-d="860">
+        <a class="btn-primary" href="#contact">
+          <span class="dot"></span> Start a project <span class="arw">→</span>
+        </a>
+        <span class="avail"><span class="pulse"></span> Taking on 2 new projects for June</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section class="block" id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num r" data-d="0">01</div>
+      <h2 class="sec-title r" data-d="80">What I do <em>— a short, honest list.</em></h2>
+      <div class="sec-aside r" data-d="160">
+        <p>Five things, done properly. Pick one, or start with a free 20-minute call and we'll figure out which.</p>
+      </div>
+    </div>
+
+    <div class="svc-list">
+
+      <div class="svc r" data-d="0">
+        <span class="svc-ix">01</span>
+        <span class="svc-name">A brand-new website</span>
+        <span class="svc-desc">From a blank page to a site that loads in under a second, reads well on a phone, and actually brings in calls and bookings.</span>
+        <span class="svc-tag">New build</span>
+      </div>
+
+      <div class="svc r" data-d="70">
+        <span class="svc-ix">02</span>
+        <span class="svc-name">A proper redesign</span>
+        <span class="svc-desc">Already have a site that feels dated or clunky? I rebuild it modern, accessible, and on-brand without losing your search ranking.</span>
+        <span class="svc-tag">Redesign</span>
+      </div>
+
+      <div class="svc r" data-d="140">
+        <span class="svc-ix">03</span>
+        <span class="svc-name">Speed-ups &amp; fixes</span>
+        <span class="svc-desc">Slow, broken, or held together with tape. I find what's dragging it down, fix it, and make it quick again — often in days.</span>
+        <span class="svc-tag">Tune-up</span>
+      </div>
+
+      <div class="svc r" data-d="210">
+        <span class="svc-ix">04</span>
+        <span class="svc-name">A simple online store</span>
+        <span class="svc-desc">Sell a handful of products or take orders without the bloat. Clean checkout, real payments, nothing you'll need a manual for.</span>
+        <span class="svc-tag">Small shop</span>
+      </div>
+
+      <div class="svc r" data-d="280">
+        <span class="svc-ix">05</span>
+        <span class="svc-name">Ongoing care</span>
+        <span class="svc-desc">Updates, backups, small changes, and someone who picks up the phone. A monthly plan so the site never becomes your problem.</span>
+        <span class="svc-tag">Maintenance</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== WORK ===== -->
+<section class="block" id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num r" data-d="0">02</div>
+      <h2 class="sec-title r" data-d="80">Selected work <em>— small business, big difference.</em></h2>
+      <div class="sec-aside r" data-d="160">
+        <p>A few recent builds. Sample concepts shown — full case studies on request.</p>
+      </div>
+    </div>
+
+    <div class="work-grid">
+
+      <article class="card r" data-d="0">
+        <div class="card-canvas">
+          <svg viewBox="0 0 400 310" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="400" height="310" fill="#e7ddc8"/>
+            <rect x="0" y="0" width="400" height="118" fill="#2f6b4f"/>
+            <circle cx="318" cy="58" r="42" fill="#f4c95d"/>
+            <path d="M0 118 q60 26 120 6 q70-22 140 4 q70 24 140 0V310H0Z" fill="#f4f0e6"/>
+            <rect x="34" y="150" width="150" height="13" rx="6" fill="#2f6b4f"/>
+            <rect x="34" y="174" width="220" height="8" rx="4" fill="#cbb89a"/>
+            <rect x="34" y="190" width="190" height="8" rx="4" fill="#cbb89a"/>
+            <rect x="34" y="222" width="96" height="30" rx="15" fill="#d9622a"/>
+            <text x="44" y="42" font-family="Georgia, serif" font-style="italic" font-size="30" fill="#f4c95d">Aloha</text>
+          </svg>
+          <div class="glow"></div>
+        </div>
+        <div class="card-meta">
+          <div class="row"><span class="card-name">Aloha Café</span><span class="card-yr">2026</span></div>
+          <span class="card-kind">New build · Menu + ordering</span>
+          <p class="card-note">A bright one-page site with online ordering. Page weight cut to 0.4&nbsp;s; weekend pickup orders up noticeably.</p>
+        </div>
+      </article>
+
+      <article class="card r" data-d="110">
+        <div class="card-canvas">
+          <svg viewBox="0 0 400 310" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="400" height="310" fill="#dfe7d4"/>
+            <rect x="0" y="0" width="400" height="310" fill="#eef2e7"/>
+            <path d="M0 250 q50-50 100-30 q40 16 70-6 q44-32 90-8 q50 26 80-10 q30-34 60-6V310H0Z" fill="#5b8c3a"/>
+            <path d="M0 270 q60-30 120-12 q60 18 120-8 q60-26 120 4 V310H0Z" fill="#3f6b27"/>
+            <rect x="36" y="46" width="120" height="14" rx="7" fill="#3f6b27"/>
+            <rect x="36" y="72" width="230" height="8" rx="4" fill="#b7c6a4"/>
+            <rect x="36" y="88" width="180" height="8" rx="4" fill="#b7c6a4"/>
+            <rect x="36" y="120" width="108" height="30" rx="15" fill="#3f6b27"/>
+            <circle cx="332" cy="62" r="30" fill="#cfe0b8"/>
+            <path d="M332 40c-10 8-12 26 0 40 12-14 10-32 0-40Z" fill="#5b8c3a"/>
+          </svg>
+          <div class="glow"></div>
+        </div>
+        <div class="card-meta">
+          <div class="row"><span class="card-name">GreenScape Lawn Care</span><span class="card-yr">2025</span></div>
+          <span class="card-kind">Redesign · Quote requests</span>
+          <p class="card-note">Tired template replaced with a fast, mobile-first site and a one-tap quote form. Inbound leads doubled in a season.</p>
+        </div>
+      </article>
+
+      <article class="card r" data-d="220">
+        <div class="card-canvas">
+          <svg viewBox="0 0 400 310" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="400" height="310" fill="#dde7ef"/>
+            <rect x="0" y="0" width="400" height="310" fill="#eef3f7"/>
+            <rect x="0" y="0" width="400" height="96" fill="#1f5b7a"/>
+            <circle cx="200" cy="150" r="46" fill="#ffffff" stroke="#1f5b7a" stroke-width="3"/>
+            <path d="M200 128c-9 7-11 24 0 38 11-14 9-31 0-38Z" fill="#42a0c4"/>
+            <path d="M186 150c0 8 6 14 14 14s14-6 14-14" stroke="#1f5b7a" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <rect x="40" y="34" width="120" height="13" rx="6" fill="#ffffff"/>
+            <rect x="40" y="56" width="80" height="7" rx="3" fill="#9fc6da"/>
+            <rect x="120" y="226" width="160" height="9" rx="4" fill="#bcd2e0"/>
+            <rect x="146" y="246" width="108" height="9" rx="4" fill="#bcd2e0"/>
+            <rect x="152" y="272" width="96" height="28" rx="14" fill="#1f5b7a"/>
+          </svg>
+          <div class="glow"></div>
+        </div>
+        <div class="card-meta">
+          <div class="row"><span class="card-name">Orlando Dental</span><span class="card-yr">2025</span></div>
+          <span class="card-kind">New build · Online booking</span>
+          <p class="card-note">Calm, trustworthy practice site with self-serve appointment booking and clear insurance info. Fewer phone tags, more visits.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHY ME ===== -->
+<section class="block" id="why">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num r" data-d="0">03</div>
+      <h2 class="sec-title r" data-d="80">Why work with me <em>— how it actually goes.</em></h2>
+      <div class="sec-aside r" data-d="160">
+        <p>No agency layers, no account managers, no surprise invoices. You talk to the person building it.</p>
+      </div>
+    </div>
+
+    <div class="why r" data-d="60">
+      <div class="why-cell">
+        <span class="wn">01</span>
+        <h3>We talk first</h3>
+        <p>A free, no-pressure call. I learn your business, your goals, and what's actually broken — before quoting a thing.</p>
+      </div>
+      <div class="why-cell">
+        <span class="wn">02</span>
+        <h3>One flat price</h3>
+        <p>You get a clear, fixed quote in writing. No hourly meter, no scope-creep games, no "it depends" at the end.</p>
+      </div>
+      <div class="why-cell">
+        <span class="wn">03</span>
+        <h3>Fast turnaround</h3>
+        <p>Most small sites launch in two to three weeks. You see real progress every few days, not radio silence.</p>
+      </div>
+      <div class="why-cell">
+        <span class="wn">04</span>
+        <h3>You own it all</h3>
+        <p>The domain, the code, the accounts — all in your name. I make myself optional, not a permanent dependency.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="cta" id="contact">
+  <svg class="deco-peel" style="right:-30px;top:-40px;width:260px;transform:rotate(18deg)" viewBox="0 0 32 32" aria-hidden="true"><path d="M6 5c-1.6 5.4 1.4 13.2 7 17.6C18 26.4 24 27.4 27 25.6c-3 .2-7.4-1-11-3.9C10.8 17.4 7.3 11 8.2 5.4 7.6 5 6.7 4.9 6 5Z" fill="#b4632a"/></svg>
+  <div class="wrap">
+    <div class="r" data-d="0">
+      <span class="mono" style="display:block;margin-bottom:18px">— Start a project</span>
+      <h2 class="cta-h">Let's build something<br><em>worth bookmarking.</em></h2>
+      <p class="cta-p">Tell me a little about your business and what you need. I reply to every message myself, usually within a day.</p>
+    </div>
+
+    <div class="r" data-d="140">
+      <form class="form" id="leadForm" novalidate>
+        <div class="field">
+          <input type="email" id="email" name="email" placeholder="your@email.com" aria-label="Your email address" autocomplete="email" />
+          <button type="submit">Start →</button>
+        </div>
+        <span class="form-note" id="note">Drop your email and I'll reach out — no spam, no list.</span>
+        <span class="or">Prefer to write first? <a href="mailto:contact@bananabyte.io">contact@bananabyte.io</a></span>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <hr class="hair" style="margin-bottom:34px" />
+    <div class="foot">
+      <div class="left">
+        <span class="foot-brand"><b>BANANA</b><i>byte</i></span>
+        <span class="dot-sep">·</span>
+        <span class="meta">Orlando, FL</span>
+        <span class="dot-sep">·</span>
+        <span class="meta"><a href="mailto:contact@bananabyte.io">contact@bananabyte.io</a></span>
+      </div>
+      <div class="right">© 2026 — A one-person studio.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Staggered reveal on load + on scroll
+  (function(){
+    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function reveal(el){
+      var d = parseInt(el.getAttribute('data-d') || '0', 10);
+      setTimeout(function(){ el.classList.add('in'); }, prefersReduced ? 0 : d);
+    }
+
+    // Hero + first-viewport: play the orchestrated load sequence immediately
+    var hero = document.querySelectorAll('.hero .r, #headline .clip');
+    hero.forEach(reveal);
+
+    // Everything else: reveal as it scrolls into view (re-stagger per section)
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          reveal(e.target);
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+    document.querySelectorAll('.block .r, .block .clip, .cta .r').forEach(function(el){
+      io.observe(el);
+    });
+  })();
+
+  // Lead form — no real submit; friendly confirmation
+  (function(){
+    var form = document.getElementById('leadForm');
+    var note = document.getElementById('note');
+    var email = document.getElementById('email');
+    if(!form) return;
+    form.addEventListener('submit', function(ev){
+      ev.preventDefault();
+      var v = (email.value || '').trim();
+      var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+      if(!ok){
+        note.textContent = 'Hmm — that email doesn’t look right. Mind checking it?';
+        note.classList.remove('ok');
+        email.focus();
+        return;
+      }
+      note.textContent = 'Got it — thanks! I’ll be in touch shortly. (Demo form — nothing sent.)';
+      note.classList.add('ok');
+      form.querySelector('button').textContent = 'Sent ✓';
+      email.setAttribute('disabled','');
+    });
+  })();
+</script>
+</body>
+</html>

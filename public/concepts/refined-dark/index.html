@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>BANANAbyte — Web development studio · Orlando, FL</title>
+<meta name="description" content="BANANAbyte builds fast, clean websites for small businesses in Orlando. New sites, redesigns, speed-ups, simple stores, and ongoing care. Flat pricing, fast turnaround, you own everything." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#07070A;
+    --bg-2:#0B0B11;
+    --panel:rgba(255,255,255,.035);
+    --panel-2:rgba(255,255,255,.06);
+    --line:rgba(255,255,255,.09);
+    --line-2:rgba(255,255,255,.16);
+    --ink:#F4F4F6;
+    --muted:#9A9AA8;
+    --faint:#62626F;
+    --accent:#FFD43B;        /* banana */
+    --accent-2:#FFE177;
+    --accent-deep:#E0B400;
+    --violet:#8B7BFF;        /* secondary glow */
+    --grad-glow: radial-gradient(60% 60% at 50% 0%, rgba(255,212,59,.16), rgba(255,212,59,0) 70%);
+    --sans:"Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+    --mono:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --maxw:1140px;
+    --ease:cubic-bezier(.22,1,.36,1);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:17px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--accent);color:#0A0A0A;}
+
+  /* ---------- ambient background atmosphere ---------- */
+  .atmos{position:fixed;inset:0;z-index:0;pointer-events:none;}
+  .atmos .mesh{
+    position:absolute;inset:-20%;
+    background:
+      radial-gradient(40% 35% at 18% 12%, rgba(255,212,59,.10), transparent 60%),
+      radial-gradient(45% 40% at 85% 8%, rgba(139,123,255,.10), transparent 62%),
+      radial-gradient(50% 45% at 50% 110%, rgba(255,212,59,.06), transparent 60%);
+    filter:saturate(120%);
+  }
+  .atmos .grid{
+    position:absolute;inset:0;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,.025) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(80% 60% at 50% 0%, #000 0%, transparent 75%);
+    -webkit-mask-image:radial-gradient(80% 60% at 50% 0%, #000 0%, transparent 75%);
+  }
+  .grain{
+    position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.04;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .wrap{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;padding:0 26px;}
+
+  /* ---------- reveal system ---------- */
+  [data-rise]{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease), transform .8s var(--ease);}
+  [data-rise].in{opacity:1;transform:none;}
+  .seq > *{opacity:0;transform:translateY(18px);}
+  .seq.in > *{animation:rise .7s var(--ease) forwards;}
+  .seq.in > *:nth-child(1){animation-delay:.04s;}
+  .seq.in > *:nth-child(2){animation-delay:.10s;}
+  .seq.in > *:nth-child(3){animation-delay:.16s;}
+  .seq.in > *:nth-child(4){animation-delay:.22s;}
+  .seq.in > *:nth-child(5){animation-delay:.28s;}
+  .seq.in > *:nth-child(6){animation-delay:.34s;}
+  @keyframes rise{to{opacity:1;transform:none;}}
+  @media (prefers-reduced-motion:reduce){
+    [data-rise],.seq>*{opacity:1!important;transform:none!important;animation:none!important;transition:none!important;}
+  }
+
+  /* ---------- nav ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:30;
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+    background:linear-gradient(to bottom, rgba(7,7,10,.85), rgba(7,7,10,.55));
+  }
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:66px;}
+  .wordmark{font-weight:700;font-size:21px;letter-spacing:-.02em;display:flex;align-items:center;gap:9px;}
+  .wordmark .dot{
+    width:24px;height:24px;border-radius:7px;display:grid;place-items:center;
+    background:linear-gradient(150deg,var(--accent),var(--accent-deep));
+    box-shadow:0 0 0 1px rgba(255,212,59,.4), 0 6px 18px -6px rgba(255,212,59,.6);
+    font-size:14px;
+  }
+  .wordmark b{color:var(--ink);}
+  .wordmark .lc{color:var(--muted);font-weight:500;}
+  .nav-links{display:flex;align-items:center;gap:30px;font-size:14.5px;color:var(--muted);}
+  .nav-links a{transition:color .2s;}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-cta{
+    font-family:var(--mono);font-size:13px;font-weight:500;
+    padding:9px 16px;border-radius:9px;color:#0A0A0A;
+    background:linear-gradient(150deg,var(--accent-2),var(--accent));
+    box-shadow:0 6px 22px -10px rgba(255,212,59,.9);
+    transition:transform .2s var(--ease), box-shadow .2s;
+  }
+  .nav-cta:hover{transform:translateY(-1px);box-shadow:0 10px 28px -10px rgba(255,212,59,1);}
+  @media(max-width:760px){.nav-links a:not(.nav-cta){display:none;}}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;padding:118px 0 86px;}
+  .hero::before{content:"";position:absolute;inset:0;background:var(--grad-glow);pointer-events:none;}
+  .hero-shimmer{
+    position:absolute;left:50%;top:-40px;transform:translateX(-50%);
+    width:min(820px,92vw);height:420px;pointer-events:none;z-index:0;
+    background:conic-gradient(from 180deg at 50% 50%, rgba(255,212,59,0), rgba(255,212,59,.22), rgba(139,123,255,.16), rgba(255,212,59,0));
+    filter:blur(60px);opacity:.7;
+    animation:spin 22s linear infinite;
+  }
+  @keyframes spin{to{transform:translateX(-50%) rotate(360deg);}}
+  @media(prefers-reduced-motion:reduce){.hero-shimmer{animation:none;}}
+
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:9px;
+    font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;color:var(--muted);
+    padding:7px 13px;border:1px solid var(--line);border-radius:100px;
+    background:var(--panel);backdrop-filter:blur(6px);
+  }
+  .eyebrow .pulse{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(255,212,59,.6);animation:pulse 2.4s infinite;}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,212,59,.5);}70%{box-shadow:0 0 0 8px rgba(255,212,59,0);}100%{box-shadow:0 0 0 0 rgba(255,212,59,0);}}
+
+  h1.hero-h{
+    font-size:clamp(40px,7.4vw,82px);
+    line-height:.98;letter-spacing:-.035em;font-weight:700;
+    margin:26px 0 0;max-width:14ch;
+  }
+  h1.hero-h .accent{
+    background:linear-gradient(120deg,var(--accent-2),var(--accent) 55%,var(--accent-deep));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    position:relative;
+  }
+  h1.hero-h .accent::after{
+    content:"";position:absolute;left:0;right:0;bottom:.06em;height:.07em;border-radius:2px;
+    background:linear-gradient(90deg,var(--accent),transparent);opacity:.55;
+  }
+  .hero-sub{margin-top:24px;font-size:clamp(17px,2.1vw,20px);color:var(--muted);max-width:54ch;line-height:1.55;}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px;align-items:center;}
+  .btn-primary{
+    display:inline-flex;align-items:center;gap:10px;
+    font-weight:600;font-size:16px;color:#0A0A0A;
+    padding:14px 24px;border-radius:12px;
+    background:linear-gradient(150deg,var(--accent-2),var(--accent));
+    box-shadow:0 12px 34px -12px rgba(255,212,59,.95), inset 0 1px 0 rgba(255,255,255,.4);
+    transition:transform .22s var(--ease), box-shadow .22s;
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 40px -12px rgba(255,212,59,1), inset 0 1px 0 rgba(255,255,255,.5);}
+  .btn-primary .arrow{transition:transform .22s var(--ease);}
+  .btn-primary:hover .arrow{transform:translate(3px,-3px);}
+  .btn-ghost{
+    display:inline-flex;align-items:center;gap:9px;
+    font-weight:500;font-size:15.5px;color:var(--ink);
+    padding:14px 20px;border-radius:12px;border:1px solid var(--line-2);
+    background:var(--panel);transition:border-color .2s, background .2s;
+  }
+  .btn-ghost:hover{border-color:var(--accent);background:var(--panel-2);}
+
+  .hero-meta{display:flex;flex-wrap:wrap;gap:22px;margin-top:46px;color:var(--faint);font-family:var(--mono);font-size:12.5px;}
+  .hero-meta span{display:inline-flex;align-items:center;gap:8px;}
+  .hero-meta span::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);}
+
+  /* ---------- section scaffolding ---------- */
+  section{position:relative;padding:88px 0;}
+  .sec-label{font-family:var(--mono);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-deep);display:flex;align-items:center;gap:12px;}
+  .sec-label::before{content:"";width:26px;height:1px;background:linear-gradient(90deg,var(--accent),transparent);}
+  .sec-h{font-size:clamp(28px,4vw,42px);letter-spacing:-.03em;font-weight:700;margin-top:16px;line-height:1.05;max-width:18ch;}
+  .sec-lede{color:var(--muted);margin-top:14px;max-width:52ch;font-size:17px;}
+
+  /* ---------- services ---------- */
+  .services{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;margin-top:44px;}
+  .svc{
+    grid-column:span 4;position:relative;
+    border:1px solid var(--line);border-radius:16px;
+    background:linear-gradient(180deg, var(--panel-2), var(--panel));
+    padding:24px 22px 26px;overflow:hidden;
+    transition:transform .3s var(--ease), border-color .3s, box-shadow .3s;
+  }
+  .svc::before{
+    content:"";position:absolute;inset:0;border-radius:16px;opacity:0;
+    background:radial-gradient(60% 80% at 50% 0%, rgba(255,212,59,.12), transparent 70%);
+    transition:opacity .3s;pointer-events:none;
+  }
+  .svc:hover{transform:translateY(-4px);border-color:var(--line-2);box-shadow:0 20px 50px -24px rgba(0,0,0,.8);}
+  .svc:hover::before{opacity:1;}
+  .svc:hover .svc-ico{transform:translateY(-2px) rotate(-4deg);border-color:var(--accent);}
+  .svc-ico{
+    width:42px;height:42px;border-radius:11px;display:grid;place-items:center;
+    border:1px solid var(--line-2);background:var(--panel);font-size:20px;
+    transition:transform .3s var(--ease), border-color .3s;
+  }
+  .svc h3{font-size:18.5px;letter-spacing:-.01em;margin-top:18px;font-weight:600;}
+  .svc p{color:var(--muted);font-size:15px;margin-top:8px;line-height:1.5;}
+  .svc .num{position:absolute;top:18px;right:20px;font-family:var(--mono);font-size:12px;color:var(--faint);}
+  .svc.wide{grid-column:span 6;}
+  @media(max-width:900px){.svc{grid-column:span 6;}.svc.wide{grid-column:span 6;}}
+  @media(max-width:600px){.svc,.svc.wide{grid-column:span 12;}}
+
+  /* ---------- work strip ---------- */
+  .work{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px;}
+  .card{
+    position:relative;border:1px solid var(--line);border-radius:18px;overflow:hidden;
+    background:var(--bg-2);transition:transform .3s var(--ease), border-color .3s, box-shadow .3s;
+  }
+  .card:hover{transform:translateY(-5px);border-color:var(--line-2);box-shadow:0 26px 60px -30px rgba(0,0,0,.9);}
+  .card .thumb{position:relative;height:158px;overflow:hidden;border-bottom:1px solid var(--line);}
+  .card .thumb .browser{
+    position:absolute;inset:14px 14px 0;border-radius:10px 10px 0 0;
+    border:1px solid var(--line-2);border-bottom:none;background:#0E0E15;overflow:hidden;
+    transition:transform .35s var(--ease);
+  }
+  .card:hover .thumb .browser{transform:translateY(-6px);}
+  .browser .bar{height:22px;display:flex;align-items:center;gap:5px;padding:0 9px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.03);}
+  .browser .bar i{width:7px;height:7px;border-radius:50%;display:inline-block;background:var(--faint);}
+  .browser .bar i:first-child{background:#FF5F57;}
+  .browser .bar i:nth-child(2){background:#FEBC2E;}
+  .browser .bar i:nth-child(3){background:#28C840;}
+  .browser .canvas{position:absolute;inset:22px 0 0;padding:12px 13px;}
+  .browser .canvas .hl{height:11px;width:55%;border-radius:3px;background:linear-gradient(90deg,var(--accent),var(--accent-deep));}
+  .browser .canvas .ln{height:7px;border-radius:3px;background:rgba(255,255,255,.10);margin-top:9px;}
+  .browser .canvas .ln.s{width:78%;}
+  .browser .canvas .ln.m{width:64%;}
+  .browser .canvas .blk{display:flex;gap:7px;margin-top:12px;}
+  .browser .canvas .blk span{flex:1;height:30px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid var(--line);}
+  /* per-card accent tint */
+  .card.a .thumb{background:radial-gradient(120% 100% at 50% 0%, rgba(255,212,59,.14), transparent 60%);}
+  .card.b .thumb{background:radial-gradient(120% 100% at 50% 0%, rgba(63,196,128,.16), transparent 60%);}
+  .card.b .browser .canvas .hl{background:linear-gradient(90deg,#3FC480,#1E8E58);}
+  .card.c .thumb{background:radial-gradient(120% 100% at 50% 0%, rgba(99,156,255,.16), transparent 60%);}
+  .card.c .browser .canvas .hl{background:linear-gradient(90deg,#7FA9FF,#3F6FE0);}
+  .card .meta{padding:16px 18px 18px;}
+  .card .meta .row{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+  .card .meta h4{font-size:16.5px;font-weight:600;letter-spacing:-.01em;}
+  .card .meta .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--accent-deep);border:1px solid var(--line);border-radius:100px;padding:3px 8px;white-space:nowrap;}
+  .card .meta p{color:var(--muted);font-size:14px;margin-top:7px;line-height:1.45;}
+  .card .meta .stat{margin-top:13px;display:flex;gap:16px;font-family:var(--mono);font-size:11.5px;color:var(--faint);}
+  .card .meta .stat b{color:var(--ink);font-weight:600;}
+  @media(max-width:880px){.work{grid-template-columns:1fr;}}
+
+  /* ---------- why / process ---------- */
+  .why{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;margin-top:44px;}
+  .steps{border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,var(--panel-2),var(--panel));overflow:hidden;}
+  .step{display:flex;gap:16px;padding:20px 22px;border-bottom:1px solid var(--line);transition:background .25s;}
+  .step:last-child{border-bottom:none;}
+  .step:hover{background:var(--panel-2);}
+  .step .n{
+    flex:0 0 auto;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;
+    font-family:var(--mono);font-size:13px;font-weight:600;color:var(--accent);
+    border:1px solid var(--line-2);background:rgba(255,212,59,.06);
+  }
+  .step h4{font-size:16.5px;font-weight:600;}
+  .step p{color:var(--muted);font-size:14.5px;margin-top:4px;}
+  .why-list{display:grid;gap:14px;}
+  .why-item{display:flex;gap:12px;align-items:flex-start;}
+  .why-item .check{flex:0 0 auto;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;background:rgba(255,212,59,.12);border:1px solid rgba(255,212,59,.3);color:var(--accent);font-size:13px;margin-top:2px;}
+  .why-item b{font-weight:600;}
+  .why-item span{display:block;color:var(--muted);font-size:14.5px;margin-top:2px;}
+  @media(max-width:840px){.why{grid-template-columns:1fr;gap:32px;}}
+
+  /* ---------- contact CTA ---------- */
+  .cta{position:relative;}
+  .cta-card{
+    position:relative;border:1px solid var(--line-2);border-radius:24px;overflow:hidden;
+    background:linear-gradient(180deg, rgba(255,212,59,.05), var(--bg-2));
+    padding:54px 44px;text-align:center;
+    box-shadow:0 40px 90px -50px rgba(255,212,59,.5);
+  }
+  .cta-card::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 120% at 50% 0%, rgba(255,212,59,.18), transparent 65%);pointer-events:none;}
+  .cta-card h2{font-size:clamp(28px,4.4vw,46px);letter-spacing:-.03em;line-height:1.02;font-weight:700;position:relative;}
+  .cta-card p{color:var(--muted);margin-top:14px;font-size:17px;position:relative;max-width:46ch;margin-left:auto;margin-right:auto;}
+  form.start{position:relative;display:flex;gap:10px;max-width:520px;margin:30px auto 0;}
+  form.start input{
+    flex:1;min-width:0;font-family:var(--sans);font-size:15.5px;color:var(--ink);
+    padding:14px 16px;border-radius:12px;border:1px solid var(--line-2);background:var(--panel);
+    transition:border-color .2s, box-shadow .2s;
+  }
+  form.start input::placeholder{color:var(--faint);}
+  form.start input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(255,212,59,.18);}
+  form.start button{
+    flex:0 0 auto;font-weight:600;font-size:15.5px;color:#0A0A0A;cursor:pointer;border:none;
+    padding:14px 22px;border-radius:12px;background:linear-gradient(150deg,var(--accent-2),var(--accent));
+    box-shadow:0 12px 30px -12px rgba(255,212,59,.9);transition:transform .2s var(--ease);
+  }
+  form.start button:hover{transform:translateY(-2px);}
+  .cta-note{margin-top:16px;font-family:var(--mono);font-size:12.5px;color:var(--faint);position:relative;}
+  .cta-ok{position:relative;margin-top:18px;font-size:15px;color:var(--accent-2);min-height:1.2em;}
+  @media(max-width:560px){form.start{flex-direction:column;}.cta-card{padding:40px 22px;}}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--line);padding:40px 0 56px;position:relative;z-index:2;}
+  .foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;}
+  .foot .brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:17px;}
+  .foot .brand .dot{width:20px;height:20px;border-radius:6px;background:linear-gradient(150deg,var(--accent),var(--accent-deep));display:grid;place-items:center;font-size:12px;}
+  .foot .meta{font-family:var(--mono);font-size:13px;color:var(--faint);display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+  .foot .meta a{color:var(--muted);transition:color .2s;}
+  .foot .meta a:hover{color:var(--accent);}
+  .foot .sep{color:var(--line-2);}
+</style>
+</head>
+<body>
+  <div class="atmos"><div class="mesh"></div><div class="grid"></div></div>
+  <div class="grain"></div>
+
+  <!-- NAV -->
+  <header class="nav">
+    <div class="wrap nav-in">
+      <a href="#top" class="wordmark"><span class="dot">🍌</span><b>BANANA</b><span class="lc">byte</span></a>
+      <nav class="nav-links">
+        <a href="#services">What I do</a>
+        <a href="#work">Work</a>
+        <a href="#why">Why me</a>
+        <a href="#start" class="nav-cta">Start a project</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-shimmer"></div>
+      <div class="wrap seq" id="hero-seq">
+        <span class="eyebrow"><span class="pulse"></span>Solo web studio · Orlando, FL</span>
+        <h1 class="hero-h">Websites that load fast and <span class="accent">actually convert</span>.</h1>
+        <p class="hero-sub">I'm Gabe — I design and build clean, no-nonsense websites for small businesses. New builds, redesigns, speed fixes, and simple stores. Flat pricing, quick turnaround, and you own every file.</p>
+        <div class="hero-cta">
+          <a href="#start" class="btn-primary">Start a project <span class="arrow">↗</span></a>
+          <a href="#work" class="btn-ghost">See sample work</a>
+        </div>
+        <div class="hero-meta">
+          <span>Flat, upfront pricing</span>
+          <span>1–2 week turnaround</span>
+          <span>You own everything</span>
+          <span>Zero jargon</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="wrap">
+        <div data-rise>
+          <div class="sec-label">What I do</div>
+          <h2 class="sec-h">A focused menu — built to ship, not to upsell.</h2>
+          <p class="sec-lede">Everything below is handled by one person who answers your emails. No account managers, no surprise add-ons.</p>
+        </div>
+        <div class="services" data-rise>
+          <div class="svc wide">
+            <span class="num">01</span>
+            <div class="svc-ico">✦</div>
+            <h3>Brand-new websites</h3>
+            <p>A modern, mobile-first site designed around what your business actually needs — booking, calls, directions, sales. Live in a week or two.</p>
+          </div>
+          <div class="svc">
+            <span class="num">02</span>
+            <div class="svc-ico">↻</div>
+            <h3>Redesigns</h3>
+            <p>Take a dated or clunky site and make it feel current, fast, and trustworthy.</p>
+          </div>
+          <div class="svc">
+            <span class="num">03</span>
+            <div class="svc-ico">⚡</div>
+            <h3>Speed-ups &amp; fixes</h3>
+            <p>Broken layouts, slow loads, mobile bugs — diagnosed and fixed, fast.</p>
+          </div>
+          <div class="svc">
+            <span class="num">04</span>
+            <div class="svc-ico">🛒</div>
+            <h3>Simple online stores</h3>
+            <p>Sell a handful of products or services without a bloated, fragile setup.</p>
+          </div>
+          <div class="svc">
+            <span class="num">05</span>
+            <div class="svc-ico">🛟</div>
+            <h3>Ongoing care</h3>
+            <p>Updates, backups, and small changes on call — so your site never goes stale.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section id="work">
+      <div class="wrap">
+        <div data-rise>
+          <div class="sec-label">Sample work</div>
+          <h2 class="sec-h">Small businesses, sharper online.</h2>
+          <p class="sec-lede">A few representative builds — the kind of clean, fast sites local shops actually need.</p>
+        </div>
+        <div class="work" data-rise>
+
+          <article class="card a">
+            <div class="thumb">
+              <div class="browser">
+                <div class="bar"><i></i><i></i><i></i></div>
+                <div class="canvas">
+                  <div class="hl"></div>
+                  <div class="ln s"></div><div class="ln m"></div>
+                  <div class="blk"><span></span><span></span><span></span></div>
+                </div>
+              </div>
+            </div>
+            <div class="meta">
+              <div class="row"><h4>Aloha Café</h4><span class="tag">REDESIGN</span></div>
+              <p>A warm one-page site with menu, hours, and one-tap directions for a neighborhood coffee spot.</p>
+              <div class="stat"><span>Load <b>0.8s</b></span><span>Mobile <b>100</b></span></div>
+            </div>
+          </article>
+
+          <article class="card b">
+            <div class="thumb">
+              <div class="browser">
+                <div class="bar"><i></i><i></i><i></i></div>
+                <div class="canvas">
+                  <div class="hl"></div>
+                  <div class="ln s"></div><div class="ln m"></div>
+                  <div class="blk"><span></span><span></span><span></span></div>
+                </div>
+              </div>
+            </div>
+            <div class="meta">
+              <div class="row"><h4>GreenScape Lawn Care</h4><span class="tag">NEW SITE</span></div>
+              <p>Quote-request landing page with service area, before/after gallery, and a click-to-call header.</p>
+              <div class="stat"><span>Leads <b>+38%</b></span><span>Built <b>9 days</b></span></div>
+            </div>
+          </article>
+
+          <article class="card c">
+            <div class="thumb">
+              <div class="browser">
+                <div class="bar"><i></i><i></i><i></i></div>
+                <div class="canvas">
+                  <div class="hl"></div>
+                  <div class="ln s"></div><div class="ln m"></div>
+                  <div class="blk"><span></span><span></span><span></span></div>
+                </div>
+              </div>
+            </div>
+            <div class="meta">
+              <div class="row"><h4>Orlando Dental</h4><span class="tag">BOOKING</span></div>
+              <p>Trustworthy clinic site with online appointment requests, insurance info, and clear directions.</p>
+              <div class="stat"><span>Bookings <b>2×</b></span><span>Mobile <b>99</b></span></div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY / PROCESS -->
+    <section id="why">
+      <div class="wrap">
+        <div data-rise>
+          <div class="sec-label">How it works</div>
+          <h2 class="sec-h">Simple process, honest pricing.</h2>
+        </div>
+        <div class="why" data-rise>
+          <div class="steps">
+            <div class="step"><div class="n">1</div><div><h4>Quick chat</h4><p>Tell me about your business and what you need. I'll send a flat quote — no meetings required.</p></div></div>
+            <div class="step"><div class="n">2</div><div><h4>Design &amp; build</h4><p>You see a working preview early and give feedback. I build the real thing, fast.</p></div></div>
+            <div class="step"><div class="n">3</div><div><h4>Launch</h4><p>We go live, I hand over every file and login, and walk you through it.</p></div></div>
+            <div class="step"><div class="n">4</div><div><h4>Stay supported</h4><p>Need a tweak later? Optional care plans, or pay only when something comes up.</p></div></div>
+          </div>
+          <div class="why-list">
+            <div class="why-item"><span class="check">✓</span><div><b>Flat, upfront pricing</b><span>You know the full cost before I start. No hourly creep.</span></div></div>
+            <div class="why-item"><span class="check">✓</span><div><b>Fast turnaround</b><span>Most sites are live within one to two weeks.</span></div></div>
+            <div class="why-item"><span class="check">✓</span><div><b>You own everything</b><span>Domain, hosting, code, content — all in your name, always.</span></div></div>
+            <div class="why-item"><span class="check">✓</span><div><b>Talk to a human</b><span>You email me directly. No tickets, no call center.</span></div></div>
+            <div class="why-item"><span class="check">✓</span><div><b>Local to Orlando</b><span>Same city, same timezone, real accountability.</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT CTA -->
+    <section class="cta" id="start">
+      <div class="wrap" data-rise>
+        <div class="cta-card">
+          <h2>Let's build something that works.</h2>
+          <p>Drop your email and a sentence about your project. I'll reply within a day with honest next steps and a flat quote.</p>
+          <form class="start" id="startForm" novalidate>
+            <input type="email" id="email" placeholder="you@yourbusiness.com" aria-label="Your email" autocomplete="email" required />
+            <button type="submit">Start a project ↗</button>
+          </form>
+          <div class="cta-ok" id="ctaOk" role="status" aria-live="polite"></div>
+          <div class="cta-note">Or email me directly: contact@bananabyte.io</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap foot">
+      <div class="brand"><span class="dot">🍌</span>BANANA<span class="lc" style="color:var(--muted);font-weight:500">byte</span></div>
+      <div class="meta">
+        <span>Orlando, FL</span><span class="sep">·</span>
+        <a href="mailto:contact@bananabyte.io">contact@bananabyte.io</a><span class="sep">·</span>
+        <span>© 2026 BANANAbyte</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Staggered hero reveal on load
+    window.addEventListener('load', function(){
+      requestAnimationFrame(function(){
+        var h = document.getElementById('hero-seq');
+        if (h) h.classList.add('in');
+      });
+    });
+
+    // Scroll-triggered reveals (staggered groups + single rises)
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold:.14, rootMargin:'0px 0px -8% 0px' });
+    document.querySelectorAll('[data-rise], .seq:not(#hero-seq)').forEach(function(el){
+      if(el.classList.contains('seq')) el.classList.add('seq');
+      io.observe(el);
+    });
+    // also reveal plain [data-rise]
+    document.querySelectorAll('[data-rise]').forEach(function(el){
+      var o = new IntersectionObserver(function(en){
+        en.forEach(function(x){ if(x.isIntersecting){ x.target.classList.add('in'); o.unobserve(x.target);} });
+      }, { threshold:.12, rootMargin:'0px 0px -6% 0px'});
+      o.observe(el);
+    });
+
+    // Inline "form" — no real submit, just a friendly confirmation
+    var form = document.getElementById('startForm');
+    var ok = document.getElementById('ctaOk');
+    if(form){
+      form.addEventListener('submit', function(ev){
+        ev.preventDefault();
+        var val = (document.getElementById('email').value || '').trim();
+        var valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+        if(!valid){
+          ok.style.color = 'var(--muted)';
+          ok.textContent = 'Pop in a valid email and I’ll take it from there.';
+          return;
+        }
+        ok.style.color = 'var(--accent-2)';
+        ok.textContent = 'Thanks — I’ll be in touch within a day. 🍌';
+        form.reset();
+      });
+    }
+  </script>
+</body>
+</html>

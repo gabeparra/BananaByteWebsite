@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>BANANAbyte — Web Development · Orlando, FL</title>
+  <meta name="description" content="BANANAbyte is a small Orlando web-development studio building fast, clean websites for small businesses. No jargon, fair flat pricing, you own everything.">
+  <meta name="theme-color" content="#0A0E0A">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      /* ── phosphor terminal palette ───────────────────────────── */
+      --bg:#070B08;            /* near-black with a green undertone */
+      --bg2:#0A100B;
+      --panel:#0D140E;         /* terminal body */
+      --panel-2:#101A11;
+      --titlebar:#0A0F0A;
+      --hair:#1B2A1D;          /* subtle borders */
+      --edge:#27402A;
+      --ink:#D6F2D9;           /* soft phosphor white-green */
+      --mut:#6E8C72;           /* dim comment green */
+      --dim:#46604A;
+      --phos:#46F08C;          /* primary green phosphor */
+      --phos-soft:#2bd476;
+      --amber:#FFB31E;         /* banana / secondary accent */
+      --amber-soft:#E89A00;
+      --cyan:#5BE0D6;
+      --violet:#B388FF;
+      --rose:#FF7A8A;
+      --on-phos:#04210F;
+      --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+      --r:14px; --r-sm:9px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    html,body{margin:0}
+    body{
+      background:var(--bg); color:var(--ink); font-family:var(--mono);
+      line-height:1.65; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+      font-size:15px; letter-spacing:.005em;
+    }
+    /* atmosphere: phosphor glow + scanlines + grain */
+    body::before{
+      content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+      background:
+        radial-gradient(70vw 60vh at 12% -6%, rgba(70,240,140,.10), transparent 62%),
+        radial-gradient(56vw 52vh at 100% 8%, rgba(255,179,30,.055), transparent 60%),
+        radial-gradient(64vw 70vh at 84% 116%, rgba(70,240,140,.06), transparent 60%);
+    }
+    body::after{
+      content:""; position:fixed; inset:0; z-index:9999; pointer-events:none; opacity:.5;
+      background:repeating-linear-gradient(to bottom, rgba(0,0,0,0) 0, rgba(0,0,0,0) 2px, rgba(0,0,0,.16) 3px);
+      mix-blend-mode:multiply;
+    }
+    a{color:inherit; text-decoration:none}
+    ::selection{background:rgba(70,240,140,.28); color:#eafff0}
+    .wrap{width:100%; max-width:1080px; margin:0 auto; padding:0 22px; position:relative; z-index:1}
+
+    /* ── shared reveal animation ─────────────────────────────── */
+    .rv{opacity:0; transform:translateY(14px); filter:blur(2px)}
+    .lit .rv{animation:rise .62s cubic-bezier(.2,.7,.2,1) forwards; animation-delay:var(--d,0s)}
+    @keyframes rise{to{opacity:1; transform:none; filter:none}}
+    @media(prefers-reduced-motion:reduce){
+      .rv{opacity:1!important; transform:none!important; filter:none!important; animation:none!important}
+      .cursor,.tcursor,.dot-blink{animation:none!important}
+    }
+
+    /* ── top bar ─────────────────────────────────────────────── */
+    .topbar{position:sticky; top:0; z-index:50; background:rgba(7,11,8,.82); backdrop-filter:blur(8px); border-bottom:1px solid var(--hair)}
+    .topbar-in{display:flex; align-items:center; justify-content:space-between; padding:13px 0}
+    .wordmark{font-weight:800; font-size:17px; letter-spacing:-.01em; display:inline-flex; align-items:center; gap:8px}
+    .wordmark .glyph{color:var(--bg); background:var(--phos); width:24px; height:24px; border-radius:6px; display:grid; place-items:center; font-size:14px; font-weight:800; box-shadow:0 0 16px rgba(70,240,140,.45); transform:rotate(-6deg)}
+    .wordmark .b{color:var(--phos)}
+    .wordmark .y{color:var(--ink)}
+    .topnav{display:flex; align-items:center; gap:22px; font-size:13px; color:var(--mut)}
+    .topnav a{transition:color .15s} .topnav a:hover{color:var(--phos)}
+    .topnav .nlink{position:relative}
+    .topnav .nlink::before{content:"~/"; color:var(--dim)}
+    .topnav .cta{color:var(--on-phos); background:var(--phos); padding:7px 14px; border-radius:var(--r-sm); font-weight:700; box-shadow:0 0 0 0 rgba(70,240,140,.5); transition:box-shadow .2s, transform .08s}
+    .topnav .cta::before{content:""}
+    .topnav .cta:hover{color:var(--on-phos); box-shadow:0 6px 22px -6px rgba(70,240,140,.6)}
+    .topnav .cta:active{transform:translateY(1px)}
+    @media(max-width:680px){ .topnav .nlink{display:none} }
+
+    /* ── hero ────────────────────────────────────────────────── */
+    main{position:relative; z-index:1}
+    .hero{padding:54px 0 30px}
+    .hero-grid{display:grid; grid-template-columns:1fr; gap:34px}
+    @media(min-width:940px){ .hero-grid{grid-template-columns:1.05fr .95fr; gap:46px; align-items:center} }
+
+    .kicker{display:inline-flex; align-items:center; gap:9px; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--mut); border:1px solid var(--hair); border-radius:999px; padding:6px 13px; background:var(--panel)}
+    .kicker .dot-blink{width:8px; height:8px; border-radius:50%; background:var(--phos); box-shadow:0 0 10px var(--phos); animation:bp 1.6s ease-in-out infinite}
+    @keyframes bp{0%,100%{opacity:1} 50%{opacity:.25}}
+
+    h1{font-weight:800; font-size:clamp(33px,6.2vw,58px); line-height:1.04; letter-spacing:-.02em; margin:20px 0 16px}
+    h1 .green{color:var(--phos); text-shadow:0 0 26px rgba(70,240,140,.35)}
+    h1 .amber{color:var(--amber)}
+    .prompt-line{color:var(--dim); font-size:clamp(14px,2.4vw,17px); font-weight:500; margin-bottom:4px}
+    .prompt-line .sig{color:var(--phos)}
+    /* typed command */
+    .typed{color:var(--ink)}
+    .typed .flag{color:var(--amber)}
+    .cursor{display:inline-block; width:.55ch; height:1.05em; background:var(--phos); margin-left:1px; transform:translateY(.16em); box-shadow:0 0 8px var(--phos); animation:blink 1.05s step-end infinite}
+    @keyframes blink{50%{opacity:0}}
+
+    .lead{font-size:clamp(15px,2.1vw,17px); color:var(--ink); max-width:50ch; margin:6px 0 16px; line-height:1.7}
+    .lead .mut{color:var(--mut)}
+    .hero-meta{display:flex; flex-wrap:wrap; gap:8px 18px; color:var(--mut); font-size:13px; margin-bottom:26px}
+    .hero-meta span{display:inline-flex; align-items:center; gap:7px}
+    .hero-meta .ok{color:var(--phos)}
+
+    .btnrow{display:flex; flex-wrap:wrap; gap:13px; align-items:center}
+    .btn{display:inline-flex; align-items:center; gap:10px; font-weight:700; font-size:14.5px; border-radius:var(--r-sm); padding:13px 20px; cursor:pointer; border:1px solid transparent; transition:transform .08s, box-shadow .2s, background .15s, border-color .15s}
+    .btn-primary{background:var(--phos); color:var(--on-phos); box-shadow:0 10px 30px -12px rgba(70,240,140,.7)}
+    .btn-primary:hover{background:#5cff9c; box-shadow:0 14px 38px -10px rgba(70,240,140,.8); transform:translateY(-1px)}
+    .btn-primary:active{transform:translateY(0)}
+    .btn-ghost{background:transparent; color:var(--ink); border-color:var(--edge)}
+    .btn-ghost:hover{border-color:var(--phos); color:var(--phos)}
+    .btn .arrow{transition:transform .18s}
+    .btn:hover .arrow{transform:translateX(3px)}
+
+    /* ── terminal window (hero right) ────────────────────────── */
+    .term{border:1px solid var(--edge); border-radius:var(--r); background:linear-gradient(180deg,var(--panel),#0a110b); box-shadow:0 40px 80px -34px rgba(0,0,0,.9), 0 0 0 1px rgba(70,240,140,.04) inset, 0 0 60px -30px rgba(70,240,140,.4); overflow:hidden}
+    .term-bar{display:flex; align-items:center; gap:8px; padding:11px 14px; background:var(--titlebar); border-bottom:1px solid var(--hair)}
+    .tdot{width:12px; height:12px; border-radius:50%}
+    .tdot.r{background:#ff5f57} .tdot.y{background:#febc2e} .tdot.g{background:#28c840}
+    .term-title{margin-left:8px; font-size:12px; color:var(--mut); letter-spacing:.02em}
+    .term-title .fname{color:var(--ink)}
+    .term-body{padding:16px 16px 18px; font-size:13.5px; line-height:1.85; min-height:268px}
+    .tline{white-space:pre-wrap; word-break:break-word}
+    .tdim{color:var(--dim)} .tmut{color:var(--mut)}
+    .tsig{color:var(--phos); font-weight:700}
+    .tcmd{color:var(--ink)} .tcmd .flag{color:var(--amber)}
+    .tok{color:var(--phos)} .tbar{color:var(--cyan)}
+    .tprogress{color:var(--cyan)}
+    .tcursor{display:inline-block; width:.6ch; height:1.05em; background:var(--phos); transform:translateY(.16em); box-shadow:0 0 7px var(--phos); animation:blink 1.05s step-end infinite}
+    .term-foot{display:flex; justify-content:space-between; align-items:center; padding:9px 14px; border-top:1px solid var(--hair); background:var(--titlebar); font-size:11.5px; color:var(--dim); letter-spacing:.05em}
+    .term-foot .branch{color:var(--phos)}
+    .term-foot .branch::before{content:""}
+
+    /* ── section scaffold ────────────────────────────────────── */
+    section{padding:46px 0}
+    .seclabel{display:flex; align-items:baseline; gap:10px; margin-bottom:6px; color:var(--mut); font-size:13px}
+    .seclabel .hash{color:var(--phos); font-weight:700}
+    .seclabel .path{color:var(--dim)}
+    .sectitle{font-size:clamp(24px,4vw,34px); font-weight:800; letter-spacing:-.02em; margin:4px 0 8px; color:var(--ink)}
+    .secsub{color:var(--mut); max-width:58ch; margin:0 0 28px; font-size:14.5px}
+
+    /* ── services ────────────────────────────────────────────── */
+    .svc-grid{display:grid; grid-template-columns:1fr; gap:14px}
+    @media(min-width:620px){ .svc-grid{grid-template-columns:1fr 1fr} }
+    @media(min-width:980px){ .svc-grid{grid-template-columns:repeat(3,1fr)} }
+    .svc{position:relative; border:1px solid var(--hair); border-radius:var(--r); background:var(--panel); padding:20px 18px 18px; overflow:hidden; transition:border-color .2s, transform .2s, box-shadow .2s}
+    .svc::before{content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--phos); opacity:0; transition:opacity .2s}
+    .svc:hover{border-color:var(--edge); transform:translateY(-3px); box-shadow:0 18px 40px -24px rgba(0,0,0,.85)}
+    .svc:hover::before{opacity:1}
+    .svc .fn{color:var(--amber); font-size:13px; font-weight:700; margin-bottom:10px}
+    .svc .fn .kw{color:var(--violet)} .svc .fn .br{color:var(--dim)}
+    .svc h3{font-size:17px; font-weight:700; margin:0 0 7px; color:var(--ink)}
+    .svc p{margin:0; color:var(--mut); font-size:13.5px; line-height:1.65}
+    .svc .ret{display:block; margin-top:12px; color:var(--dim); font-size:12.5px}
+    .svc .ret b{color:var(--phos); font-weight:700}
+
+    /* ── proof / sample work ─────────────────────────────────── */
+    .work-grid{display:grid; grid-template-columns:1fr; gap:16px}
+    @media(min-width:760px){ .work-grid{grid-template-columns:repeat(3,1fr)} }
+    .proj{border:1px solid var(--hair); border-radius:var(--r); background:var(--panel); overflow:hidden; transition:transform .22s, box-shadow .22s, border-color .22s; display:flex; flex-direction:column}
+    .proj:hover{transform:translateY(-4px); border-color:var(--edge); box-shadow:0 26px 54px -28px rgba(0,0,0,.9)}
+    /* fake browser chrome */
+    .pchrome{display:flex; align-items:center; gap:6px; padding:9px 11px; background:var(--titlebar); border-bottom:1px solid var(--hair)}
+    .pdot{width:9px; height:9px; border-radius:50%; background:#243527}
+    .purl{margin-left:8px; font-size:11px; color:var(--mut); background:var(--bg); padding:3px 9px; border-radius:6px; border:1px solid var(--hair); flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+    .purl .lock{color:var(--phos)}
+    /* gradient preview canvas */
+    .pview{height:120px; position:relative; overflow:hidden; display:grid; place-items:center}
+    .pview .mark{font-size:26px; font-weight:800; letter-spacing:-.02em; color:#fff; mix-blend-mode:overlay; opacity:.95; text-align:center; line-height:1; padding:0 10px}
+    .pview::after{content:""; position:absolute; inset:0; background:repeating-linear-gradient(to bottom, rgba(255,255,255,0) 0, rgba(255,255,255,0) 5px, rgba(0,0,0,.07) 6px); pointer-events:none}
+    .pv1{background:radial-gradient(120% 120% at 20% 0%, #2bd476, #0c6b3e 70%, #04361f)}
+    .pv2{background:radial-gradient(120% 120% at 80% 10%, #FFB31E, #b86c00 65%, #3a2400)}
+    .pv3{background:radial-gradient(120% 120% at 50% 0%, #5BE0D6, #1f7e8c 68%, #07333c)}
+    .pbody{padding:15px 15px 17px}
+    .pbody h4{margin:0 0 4px; font-size:15.5px; font-weight:700; color:var(--ink)}
+    .pbody .ptag{color:var(--mut); font-size:12.5px; margin:0 0 11px}
+    .pmetrics{display:flex; gap:8px; flex-wrap:wrap}
+    .chip{font-size:11px; color:var(--phos); border:1px solid var(--hair); border-radius:999px; padding:3px 9px; background:rgba(70,240,140,.04)}
+    .chip.amber{color:var(--amber); background:rgba(255,179,30,.05)}
+
+    /* ── why-me / process strip ──────────────────────────────── */
+    .why{margin-top:30px; border:1px solid var(--hair); border-radius:var(--r); background:linear-gradient(180deg,var(--panel),#0a100b); overflow:hidden}
+    .why-head{padding:13px 18px; border-bottom:1px solid var(--hair); background:var(--titlebar); color:var(--mut); font-size:13px}
+    .why-head .c{color:var(--dim)}
+    .why-grid{display:grid; grid-template-columns:1fr; gap:1px; background:var(--hair)}
+    @media(min-width:760px){ .why-grid{grid-template-columns:repeat(4,1fr)} }
+    .wcell{background:var(--panel); padding:20px 18px}
+    .wcell .num{color:var(--dim); font-size:12px; margin-bottom:8px}
+    .wcell .num b{color:var(--phos)}
+    .wcell h4{margin:0 0 6px; font-size:15px; color:var(--ink); font-weight:700}
+    .wcell p{margin:0; font-size:13px; color:var(--mut); line-height:1.6}
+
+    /* ── contact CTA (inline terminal form) ──────────────────── */
+    .cta-term{max-width:680px; margin:0 auto; border:1px solid var(--edge); border-radius:var(--r); background:linear-gradient(180deg,var(--panel),#0a110b); box-shadow:0 40px 90px -40px rgba(0,0,0,.9), 0 0 70px -34px rgba(70,240,140,.4); overflow:hidden}
+    .cta-bar{display:flex; align-items:center; gap:8px; padding:11px 14px; background:var(--titlebar); border-bottom:1px solid var(--hair)}
+    .cta-body{padding:22px 20px 24px}
+    .cta-body .greet{color:var(--mut); font-size:13.5px; margin:0 0 4px}
+    .cta-body .greet .sig{color:var(--phos)}
+    .cta-body h3{font-size:clamp(20px,3.4vw,27px); font-weight:800; letter-spacing:-.02em; margin:6px 0 6px; color:var(--ink)}
+    .cta-body h3 .amber{color:var(--amber)}
+    .cta-body .sub{color:var(--mut); font-size:14px; margin:0 0 20px; max-width:50ch}
+    .field{display:flex; gap:10px; flex-wrap:wrap; align-items:stretch}
+    .field-wrap{flex:1 1 260px; display:flex; align-items:center; gap:0; background:var(--bg); border:1px solid var(--edge); border-radius:var(--r-sm); padding:0 0 0 13px; transition:border-color .15s, box-shadow .15s}
+    .field-wrap:focus-within{border-color:var(--phos); box-shadow:0 0 0 3px rgba(70,240,140,.16)}
+    .field-wrap .ps{color:var(--phos); font-weight:700; padding-right:9px; white-space:nowrap}
+    .field-wrap input{flex:1; background:transparent; border:0; outline:none; color:var(--ink); font-family:var(--mono); font-size:15px; padding:14px 12px 14px 0; min-width:0}
+    .field-wrap input::placeholder{color:var(--dim)}
+    .field .btn{flex:0 0 auto}
+    .formnote{margin:14px 0 0; font-size:12.5px; color:var(--dim); display:flex; align-items:flex-start; gap:8px}
+    .formnote .c{color:var(--phos)}
+    .out{margin:16px 0 0; font-size:13.5px; min-height:0}
+    .out:empty{display:none}
+    .out.ok{color:var(--phos)} .out.err{color:var(--rose)}
+    .out .sig{color:var(--phos)}
+    .or{margin:16px 0 0; font-size:13px; color:var(--mut)}
+    .or a{color:var(--ink); border-bottom:1px solid var(--hair); transition:.15s}
+    .or a:hover{color:var(--phos); border-color:var(--phos)}
+
+    /* ── footer ──────────────────────────────────────────────── */
+    footer{border-top:1px solid var(--hair); margin-top:18px; padding:26px 0 38px}
+    .foot{display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:8px 14px; font-size:12.5px; color:var(--mut); text-align:center}
+    .foot .sep{color:var(--dim)}
+    .foot a{color:var(--ink)} .foot a:hover{color:var(--phos)}
+    .foot .wm .b{color:var(--phos); font-weight:800}
+    .foot .ps{color:var(--dim); width:100%; margin-top:4px}
+    .foot .ps .sig{color:var(--phos)}
+
+    /* file-tree hint (decorative, left rail on wide screens) */
+    .tree{font-size:12px; color:var(--dim); line-height:1.9; margin-top:18px}
+    .tree .d{color:var(--cyan)} .tree .f{color:var(--mut)} .tree .a{color:var(--amber)}
+  </style>
+</head>
+<body>
+
+  <!-- ── TOP BAR ──────────────────────────────────────────── -->
+  <div class="topbar">
+    <div class="wrap topbar-in">
+      <a class="wordmark" href="#top" aria-label="BANANAbyte home">
+        <span class="glyph" aria-hidden="true">~</span>
+        <span><span class="b">BANANA</span><span class="y">byte</span></span>
+      </a>
+      <nav class="topnav">
+        <a class="nlink" href="#services">services</a>
+        <a class="nlink" href="#work">work</a>
+        <a class="cta" href="#start">$ start-a-project</a>
+      </nav>
+    </div>
+  </div>
+
+  <main id="top">
+
+    <!-- ── HERO ───────────────────────────────────────────── -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="kicker rv" style="--d:.02s"><span class="dot-blink" aria-hidden="true"></span> Orlando, FL · solo web studio · open for projects</span>
+
+          <h1 class="rv" style="--d:.08s">
+            Websites that <span class="green">just work</span> — built fast, <span class="amber">no jargon</span>.
+          </h1>
+
+          <p class="prompt-line rv" style="--d:.14s"><span class="sig">gabe@bananabyte</span> ~ % <span class="typed" id="typed"></span><span class="cursor" id="hcursor" aria-hidden="true"></span></p>
+
+          <p class="lead rv" style="--d:.2s">
+            I&rsquo;m Gabe. I design and build clean, quick-loading websites for small businesses around Orlando —
+            <span class="mut">new sites, redesigns, fixes, simple online stores.</span> Fair flat pricing, fast turnaround, and you own everything when we&rsquo;re done.
+          </p>
+
+          <div class="hero-meta rv" style="--d:.26s">
+            <span><span class="ok">✓</span> flat quotes</span>
+            <span><span class="ok">✓</span> you own the site</span>
+            <span><span class="ok">✓</span> built for speed</span>
+            <span><span class="ok">✓</span> plain English</span>
+          </div>
+
+          <div class="btnrow rv" style="--d:.32s">
+            <a class="btn btn-primary" href="#start">Start a project <span class="arrow" aria-hidden="true">→</span></a>
+            <a class="btn btn-ghost" href="#work">See sample work</a>
+          </div>
+
+          <div class="tree rv" style="--d:.4s" aria-hidden="true">
+            <span class="d">your-business/</span><br>
+            &nbsp;&nbsp;├─ <span class="f">index.html</span> <span style="color:var(--dim)">— loads in under a second</span><br>
+            &nbsp;&nbsp;├─ <span class="d">store/</span> <span style="color:var(--dim)">— optional, takes real payments</span><br>
+            &nbsp;&nbsp;└─ <span class="a">you-own-all-of-it.txt</span>
+          </div>
+        </div>
+
+        <!-- faux terminal -->
+        <div class="rv" style="--d:.18s">
+          <div class="term" role="img" aria-label="Animated terminal building a website">
+            <div class="term-bar">
+              <span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span>
+              <span class="term-title">— <span class="fname">build — bananabyte</span> — 80×24</span>
+            </div>
+            <div class="term-body" id="termBody"></div>
+            <div class="term-foot">
+              <span><span class="branch">⎇ main</span> · clean</span>
+              <span>utf-8 · LF · ✓ ready to ship</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SERVICES ───────────────────────────────────────── -->
+    <section id="services">
+      <div class="wrap">
+        <p class="seclabel rv" style="--d:.02s"><span class="hash">##</span> What I do <span class="path">~/services</span></p>
+        <h2 class="sectitle rv" style="--d:.06s">Five things, done properly</h2>
+        <p class="secsub rv" style="--d:.1s">No big agency, no upsell ladder. Just the work most small businesses actually need — quoted as a flat price before we start.</p>
+
+        <div class="svc-grid">
+          <article class="svc rv" style="--d:.12s">
+            <p class="fn"><span class="kw">build</span>(<span class="br">"</span>new site<span class="br">"</span>)</p>
+            <h3>A brand-new website</h3>
+            <p>A site from scratch that looks sharp, reads clearly, and works on every phone. Up and running in days, not months.</p>
+            <span class="ret">→ returns <b>a site you&rsquo;re proud to share</b></span>
+          </article>
+
+          <article class="svc rv" style="--d:.16s">
+            <p class="fn"><span class="kw">redesign</span>(<span class="br">"</span>old site<span class="br">"</span>)</p>
+            <h3>Redesign &amp; refresh</h3>
+            <p>Got something dated or clunky? I rebuild it modern and mobile-friendly while keeping what already works for you.</p>
+            <span class="ret">→ returns <b>a fresh, current look</b></span>
+          </article>
+
+          <article class="svc rv" style="--d:.2s">
+            <p class="fn"><span class="kw">optimize</span>(<span class="br">"</span>speed<span class="br">"</span>)</p>
+            <h3>Speed-ups &amp; fixes</h3>
+            <p>Slow, broken, or throwing errors? I find what&rsquo;s wrong, make it fast, and get it loading the way it should.</p>
+            <span class="ret">→ returns <b>pages that load instantly</b></span>
+          </article>
+
+          <article class="svc rv" style="--d:.24s">
+            <p class="fn"><span class="kw">deploy</span>(<span class="br">"</span>store<span class="br">"</span>)</p>
+            <h3>Simple online stores</h3>
+            <p>Sell a handful of products without the headache. Clean checkout, real payments, easy for you to update.</p>
+            <span class="ret">→ returns <b>orders, not confusion</b></span>
+          </article>
+
+          <article class="svc rv" style="--d:.28s">
+            <p class="fn"><span class="kw">maintain</span>(<span class="br">"</span>site<span class="br">"</span>)</p>
+            <h3>Ongoing maintenance</h3>
+            <p>Updates, small changes, backups, and someone to text when something breaks. I keep it healthy so you don&rsquo;t think about it.</p>
+            <span class="ret">→ returns <b>peace of mind</b></span>
+          </article>
+
+          <article class="svc rv" style="--d:.32s">
+            <p class="fn"><span class="kw">help</span>() <span class="br">// not sure?</span></p>
+            <h3>Not sure what you need?</h3>
+            <p>Tell me about your business and I&rsquo;ll point you in the right direction — even if the answer is &ldquo;you don&rsquo;t need me yet.&rdquo;</p>
+            <span class="ret">→ returns <b>a straight answer</b></span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── WORK / PROOF ───────────────────────────────────── -->
+    <section id="work">
+      <div class="wrap">
+        <p class="seclabel rv" style="--d:.02s"><span class="hash">##</span> Recent builds <span class="path">~/work</span></p>
+        <h2 class="sectitle rv" style="--d:.06s">A few sites I&rsquo;ve shipped</h2>
+        <p class="secsub rv" style="--d:.1s">Real local businesses, real fast websites. Each one is hand-built, mobile-ready, and owned outright by the client.</p>
+
+        <div class="work-grid">
+          <article class="proj rv" style="--d:.12s">
+            <div class="pchrome"><span class="pdot"></span><span class="pdot"></span><span class="pdot"></span><span class="purl"><span class="lock">🔒</span> alohacafe.com</span></div>
+            <div class="pview pv1"><span class="mark">Aloha Café</span></div>
+            <div class="pbody">
+              <h4>Aloha Café</h4>
+              <p class="ptag">Neighborhood coffee &amp; brunch · new site + menu</p>
+              <div class="pmetrics">
+                <span class="chip">0.7s load</span>
+                <span class="chip">100 / 100 mobile</span>
+                <span class="chip amber">online menu</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="proj rv" style="--d:.18s">
+            <div class="pchrome"><span class="pdot"></span><span class="pdot"></span><span class="pdot"></span><span class="purl"><span class="lock">🔒</span> greenscapelawn.com</span></div>
+            <div class="pview pv2"><span class="mark">GreenScape<br>Lawn Care</span></div>
+            <div class="pbody">
+              <h4>GreenScape Lawn Care</h4>
+              <p class="ptag">Lawn &amp; landscaping · redesign + quote form</p>
+              <div class="pmetrics">
+                <span class="chip">0.9s load</span>
+                <span class="chip">+38% leads</span>
+                <span class="chip amber">quote form</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="proj rv" style="--d:.24s">
+            <div class="pchrome"><span class="pdot"></span><span class="pdot"></span><span class="pdot"></span><span class="purl"><span class="lock">🔒</span> orlandodental.co</span></div>
+            <div class="pview pv3"><span class="mark">Orlando<br>Dental</span></div>
+            <div class="pbody">
+              <h4>Orlando Dental</h4>
+              <p class="ptag">Family dentistry · new site + booking</p>
+              <div class="pmetrics">
+                <span class="chip">0.6s load</span>
+                <span class="chip">online booking</span>
+                <span class="chip amber">SEO ready</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- why me / process -->
+        <div class="why rv" style="--d:.3s">
+          <div class="why-head"><span class="c">$</span> cat why-work-with-me.md <span class="c"># the short version</span></div>
+          <div class="why-grid">
+            <div class="wcell">
+              <p class="num"><b>01.</b> /talk</p>
+              <h4>We talk first</h4>
+              <p>A quick, friendly chat about your business — no sales pitch, no jargon.</p>
+            </div>
+            <div class="wcell">
+              <p class="num"><b>02.</b> /quote</p>
+              <h4>One flat price</h4>
+              <p>You get a clear, fixed quote up front. No surprise invoices later.</p>
+            </div>
+            <div class="wcell">
+              <p class="num"><b>03.</b> /build</p>
+              <h4>I build it fast</h4>
+              <p>Hand-coded for speed, tested on real phones, ready in days.</p>
+            </div>
+            <div class="wcell">
+              <p class="num"><b>04.</b> /yours</p>
+              <h4>You own it all</h4>
+              <p>Domain, files, accounts — everything is yours. No lock-in, ever.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CONTACT CTA ────────────────────────────────────── -->
+    <section id="start">
+      <div class="wrap">
+        <div class="cta-term rv" style="--d:.04s">
+          <div class="cta-bar">
+            <span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span>
+            <span class="term-title">— <span class="fname">new-project — bananabyte</span> —</span>
+          </div>
+          <div class="cta-body">
+            <p class="greet"><span class="sig">gabe@bananabyte</span> ~ % ./start-a-project</p>
+            <h3>Let&rsquo;s build <span class="amber">your</span> site.</h3>
+            <p class="sub">Drop your email and I&rsquo;ll reach out — usually within a business day — to talk through what you need and what it&rsquo;ll cost. No pressure, no jargon.</p>
+
+            <form id="f" novalidate>
+              <div class="field">
+                <label class="field-wrap" for="email">
+                  <span class="ps" aria-hidden="true">›</span>
+                  <input id="email" name="email" type="email" inputmode="email" autocomplete="email" required placeholder="you@yourbusiness.com" aria-label="Your email address">
+                </label>
+                <button class="btn btn-primary" type="submit">Start a project <span class="arrow" aria-hidden="true">→</span></button>
+              </div>
+              <p class="formnote"><span class="c">#</span> I only use this to reply about your project — no spam, no list, ever.</p>
+              <p class="out" id="out" role="status" aria-live="polite"></p>
+            </form>
+
+            <p class="or">Rather skip the form? Email <a href="mailto:contact@bananabyte.io">contact@bananabyte.io</a> or text <a href="sms:+13212023732">(321)&nbsp;202-3732</a>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────── -->
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <span class="wm"><span class="b">BANANA</span>byte</span>
+        <span class="sep">·</span><span>Orlando, FL</span>
+        <span class="sep">·</span><a href="mailto:contact@bananabyte.io">contact@bananabyte.io</a>
+        <span class="sep">·</span><span>© 2026</span>
+        <span class="ps"><span class="sig">gabe@bananabyte</span> ~ % <span style="color:var(--mut)">echo &quot;made with 🍌 in Florida&quot;</span></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  (function(){
+    "use strict";
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* trigger staggered page-load reveal */
+    requestAnimationFrame(function(){ document.body.classList.add('lit'); });
+
+    /* ── hero command typing animation ──────────────────────── */
+    var typedEl = document.getElementById('typed');
+    var hcursor = document.getElementById('hcursor');
+    var cmds = [
+      'npx build-my-website',
+      'deploy --fast --mobile-ready',
+      'ship it 🍌'
+    ];
+    function typeLoop(){
+      if(reduce){ typedEl.textContent = 'npx build-my-website'; return; }
+      var ci = 0;
+      function run(){
+        var full = cmds[ci];
+        var i = 0;
+        var typing = setInterval(function(){
+          i++; typedEl.textContent = full.slice(0,i);
+          if(i >= full.length){
+            clearInterval(typing);
+            setTimeout(function(){
+              var del = setInterval(function(){
+                full = full.slice(0,-1); typedEl.textContent = full;
+                if(full.length === 0){ clearInterval(del); ci = (ci+1)%cmds.length; setTimeout(run, 260); }
+              }, 32);
+            }, 1500);
+          }
+        }, 62);
+      }
+      run();
+    }
+    if(typedEl){ setTimeout(typeLoop, 650); }
+
+    /* ── terminal build sequence ────────────────────────────── */
+    var body = document.getElementById('termBody');
+    var lines = [
+      {h:'<span class="tsig">gabe@bananabyte</span> <span class="tmut">~</span> % <span class="tcmd">npx <span class="flag">build-my-website</span></span>', d:0},
+      {h:'<span class="tmut">› resolving your goals…</span>', d:520},
+      {h:'<span class="tok">✓</span> <span class="tmut">design</span>      clean &amp; on-brand', d:980},
+      {h:'<span class="tok">✓</span> <span class="tmut">mobile</span>      looks great on every phone', d:1340},
+      {h:'<span class="tok">✓</span> <span class="tmut">speed</span>       loads in <span class="tbar">0.7s</span>', d:1720},
+      {h:'<span class="tok">✓</span> <span class="tmut">ownership</span>   100% yours', d:2080},
+      {h:'<span class="tprogress">building [<span class="tbar">██████████████████</span>] 100%</span>', d:2480},
+      {h:'<span class="tok">✓ done</span> <span class="tmut">in</span> <span class="tbar">3 days</span> <span class="tmut">·</span> <span class="tok">ready to ship 🍌</span>', d:2920},
+      {h:'<span class="tsig">gabe@bananabyte</span> <span class="tmut">~</span> % <span class="tcursor"></span>', d:3380, last:true}
+    ];
+    if(body){
+      if(reduce){
+        body.innerHTML = lines.map(function(l){ return '<div class="tline">'+l.h+'</div>'; }).join('');
+      } else {
+        lines.forEach(function(l){
+          setTimeout(function(){
+            // remove a trailing standalone cursor line if present
+            var div = document.createElement('div');
+            div.className = 'tline'; div.innerHTML = l.h;
+            div.style.opacity = '0'; div.style.transform = 'translateY(4px)';
+            div.style.transition = 'opacity .26s ease, transform .26s ease';
+            body.appendChild(div);
+            requestAnimationFrame(function(){ div.style.opacity='1'; div.style.transform='none'; });
+            body.scrollTop = body.scrollHeight;
+          }, 700 + l.d);
+        });
+      }
+    }
+
+    /* ── contact form (no real submit) ──────────────────────── */
+    var f = document.getElementById('f');
+    var out = document.getElementById('out');
+    var input = document.getElementById('email');
+    function set(cls, html){ out.className = 'out ' + (cls||''); out.innerHTML = html; }
+    if(f){
+      f.addEventListener('submit', function(e){
+        e.preventDefault();
+        var v = (input.value||'').trim();
+        var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+        if(!ok){ set('err', '<span style="color:var(--rose)">✗</span> That email doesn’t look right — mind double-checking?'); input.focus(); return; }
+        set('ok', '<span class="sig">✓ queued.</span> Thanks — I’ll be in touch within a business day. 🍌');
+        f.reset();
+      });
+    }
+  })();
+  </script>
+</body>
+</html>

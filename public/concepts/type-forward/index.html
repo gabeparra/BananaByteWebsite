@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>BANANAbyte — Web Design Studio, Orlando FL</title>
+<meta name="description" content="BANANAbyte builds fast, clean, no-nonsense websites for small businesses in Orlando, FL. New sites, redesigns, speed-ups, simple stores, and maintenance." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Syne:wght@600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --ink:#0A0A0A;
+    --paper:#FAF7EF;
+    --paper-2:#F1ECDD;
+    --banana:#F5C800;
+    --banana-bright:#FFE140;
+    --line:rgba(10,10,10,.14);
+    --display:'Anton', Impact, sans-serif;
+    --grotesk:'Syne', system-ui, sans-serif;
+    --mono:'Space Mono', ui-monospace, monospace;
+
+    --edge:clamp(16px,4.5vw,72px);
+    --reveal-dur:.9s;
+    --ease:cubic-bezier(.16,1,.3,1);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--grotesk);
+    overflow-x:hidden;
+    line-height:1.4;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  ::selection{background:var(--ink);color:var(--banana);}
+
+  /* ---------- film grain + paper texture ---------- */
+  body::before{
+    content:"";
+    position:fixed;inset:0;z-index:9999;pointer-events:none;
+    opacity:.05;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1400px;margin:0 auto;padding:0 var(--edge);}
+
+  /* ===================================================================
+     REVEAL ENGINE
+  ====================================================================*/
+  .rise{opacity:0;transform:translateY(34px);}
+  .clip{opacity:0;}
+  .clip > span{display:inline-block;transform:translateY(112%);}
+  .scalein{opacity:0;transform:scale(.86);}
+  .grow{transform:scaleX(0);transform-origin:left;}
+  .ready .rise,.ready .clip,.ready .scalein,.ready .grow{will-change:transform,opacity;}
+
+  .ready .rise.go{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .9s var(--ease);}
+  .ready .clip.go{opacity:1;}
+  .ready .clip.go > span{transform:none;transition:transform var(--reveal-dur) var(--ease);}
+  .ready .scalein.go{opacity:1;transform:none;transition:opacity .8s var(--ease),transform 1s var(--ease);}
+  .ready .grow.go{transform:scaleX(1);transition:transform 1s var(--ease);}
+
+  @media(prefers-reduced-motion:reduce){
+    .rise,.clip,.scalein,.grow{opacity:1!important;transform:none!important;}
+    .clip>span{transform:none!important;}
+  }
+
+  /* ===================================================================
+     TOP BAR
+  ====================================================================*/
+  header.bar{
+    position:fixed;top:0;left:0;right:0;z-index:200;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px var(--edge);
+    mix-blend-mode:multiply;
+    transition:transform .5s var(--ease);
+  }
+  .mark{
+    font-family:var(--display);
+    font-size:22px;letter-spacing:.5px;line-height:1;
+    display:flex;align-items:center;gap:9px;
+    text-transform:uppercase;
+  }
+  .mark .lo{ text-transform:lowercase;letter-spacing:0; }
+  .dot{
+    width:13px;height:13px;border-radius:50% 50% 50% 0;
+    background:var(--banana);display:inline-block;
+    transform:rotate(45deg);box-shadow:0 0 0 2px var(--ink);
+  }
+  .bar nav{display:flex;align-items:center;gap:26px;font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:1.5px;}
+  .bar nav a{position:relative;padding-bottom:3px;}
+  .bar nav a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--ink);transform:scaleX(0);transform-origin:right;transition:transform .35s var(--ease);}
+  .bar nav a:hover::after{transform:scaleX(1);transform-origin:left;}
+  .bar nav .hideMob{display:inline;}
+  @media(max-width:720px){.bar nav .hideMob{display:none;}}
+
+  /* ===================================================================
+     HERO — type-forward, oversized, bleeding off edges
+  ====================================================================*/
+  .hero{
+    position:relative;
+    min-height:100svh;
+    padding:118px var(--edge) 40px;
+    display:flex;flex-direction:column;justify-content:center;
+    overflow:hidden;
+  }
+  /* halftone / dot mesh atmosphere */
+  .hero::before{
+    content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(circle at 80% 8%, rgba(245,200,0,.35), transparent 42%),
+      radial-gradient(var(--line) 1.1px, transparent 1.2px);
+    background-size:auto, 22px 22px;
+    -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 60%,transparent 100%);
+            mask-image:linear-gradient(180deg,#000 0%,#000 60%,transparent 100%);
+    opacity:.6;
+  }
+  .hero .wrap{position:relative;z-index:2;width:100%;}
+
+  .kicker{
+    font-family:var(--mono);font-size:clamp(11px,1.4vw,14px);
+    text-transform:uppercase;letter-spacing:3px;
+    display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;
+    margin-bottom:clamp(14px,3vw,30px);
+  }
+  .kicker b{color:var(--ink);font-weight:700;}
+  .kicker .pill{background:var(--ink);color:var(--banana);padding:4px 10px;border-radius:2px;font-weight:700;letter-spacing:2px;}
+
+  /* The mega wordmark stack */
+  .mega{
+    font-family:var(--display);
+    text-transform:uppercase;
+    line-height:.82;
+    letter-spacing:-.01em;
+    margin:0;
+    font-weight:400;
+  }
+  .mega .line{display:block;overflow:hidden;}
+  .mega .line > span{display:inline-block;}
+  .l1{font-size:clamp(58px,15.5vw,232px);}
+  .l2{font-size:clamp(58px,15.5vw,232px);position:relative;}
+  .l3{
+    font-size:clamp(40px,8.3vw,126px);
+    display:flex;align-items:baseline;flex-wrap:wrap;gap:0 .22em;
+  }
+  /* let the giant word bleed past the right edge */
+  .bleed{margin-right:-8vw;}
+  .stroke{
+    color:transparent;
+    -webkit-text-stroke:2px var(--ink);
+    text-stroke:2px var(--ink);
+  }
+  .hl{position:relative;color:var(--ink);}
+  .hl .swipe{
+    position:absolute;left:-.04em;right:-.04em;top:8%;bottom:6%;
+    background:var(--banana);z-index:-1;border-radius:3px;
+    transform:scaleX(0);transform-origin:left;
+  }
+  .ready .hl.go .swipe{transform:scaleX(1);transition:transform .8s var(--ease) .25s;}
+
+  .l3 .lowbyte{ text-transform:lowercase; }
+
+  .heroFoot{
+    margin-top:clamp(22px,4.5vw,52px);
+    display:flex;flex-wrap:wrap;align-items:flex-end;gap:clamp(20px,4vw,60px);
+    justify-content:space-between;
+  }
+  .sub{
+    font-family:var(--grotesk);font-weight:600;
+    font-size:clamp(16px,2vw,23px);
+    max-width:30ch;line-height:1.3;
+  }
+  .sub .acc{ background:linear-gradient(transparent 62%,var(--banana) 0); }
+
+  /* primary CTA */
+  .cta{
+    --pad:18px 30px;
+    display:inline-flex;align-items:center;gap:14px;
+    font-family:var(--display);text-transform:uppercase;
+    font-size:clamp(18px,2.3vw,26px);letter-spacing:.5px;
+    background:var(--ink);color:var(--paper);
+    padding:var(--pad);border:2px solid var(--ink);
+    border-radius:2px;cursor:pointer;
+    box-shadow:7px 7px 0 var(--banana);
+    transition:transform .18s var(--ease),box-shadow .18s var(--ease),background .2s,color .2s;
+    white-space:nowrap;
+  }
+  .cta:hover{transform:translate(3px,3px);box-shadow:3px 3px 0 var(--banana);}
+  .cta:active{transform:translate(7px,7px);box-shadow:0 0 0 var(--banana);}
+  .cta .arr{display:inline-block;transition:transform .25s var(--ease);}
+  .cta:hover .arr{transform:translateX(6px);}
+  .cta.ghost{background:transparent;color:var(--ink);box-shadow:7px 7px 0 var(--ink);}
+  .cta.ghost:hover{background:var(--banana);}
+
+  /* marquee strip under hero */
+  .ticker{
+    border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);
+    background:var(--banana);color:var(--ink);
+    overflow:hidden;white-space:nowrap;
+    position:relative;z-index:3;
+  }
+  .ticker .row{
+    display:inline-block;padding:11px 0;
+    font-family:var(--display);text-transform:uppercase;
+    font-size:clamp(16px,2.1vw,26px);letter-spacing:1px;
+    animation:slide 26s linear infinite;
+  }
+  .ticker:hover .row{animation-play-state:paused;}
+  .ticker .row span{padding:0 26px;}
+  .ticker .row .o{color:transparent;-webkit-text-stroke:1.4px var(--ink);}
+  @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ===================================================================
+     SECTION FRAME
+  ====================================================================*/
+  section{padding:clamp(64px,10vw,140px) 0;position:relative;}
+  .secHead{
+    display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;
+    margin-bottom:clamp(28px,5vw,64px);
+  }
+  .secNum{font-family:var(--mono);font-size:13px;letter-spacing:2px;color:var(--ink);opacity:.55;}
+  .secTitle{
+    font-family:var(--display);text-transform:uppercase;
+    font-size:clamp(38px,8.5vw,118px);line-height:.86;letter-spacing:-.01em;
+  }
+  .secTitle .ksm{font-size:.4em;vertical-align:.5em;-webkit-text-stroke:1.5px var(--ink);color:transparent;}
+
+  /* ===================================================================
+     WHAT I DO — big numbered type rows
+  ====================================================================*/
+  .services{border-top:2px solid var(--ink);}
+  .svc{
+    border-bottom:2px solid var(--ink);
+    display:grid;grid-template-columns:auto 1fr auto;
+    align-items:center;gap:clamp(14px,4vw,48px);
+    padding:clamp(18px,3.2vw,38px) 4px;
+    position:relative;overflow:hidden;
+    transition:padding-left .35s var(--ease),color .3s;
+  }
+  .svc::before{
+    content:"";position:absolute;inset:0;z-index:0;
+    background:var(--ink);transform:translateY(101%);
+    transition:transform .4s var(--ease);
+  }
+  .svc:hover::before{transform:translateY(0);}
+  .svc:hover{color:var(--paper);padding-left:clamp(10px,2vw,28px);}
+  .svc > *{position:relative;z-index:1;}
+  .svcNo{font-family:var(--mono);font-size:clamp(12px,1.4vw,15px);letter-spacing:2px;opacity:.6;}
+  .svc:hover .svcNo{opacity:.85;}
+  .svcName{
+    font-family:var(--display);text-transform:uppercase;
+    font-size:clamp(26px,5.2vw,62px);line-height:.9;letter-spacing:-.01em;
+  }
+  .svcDesc{
+    font-family:var(--grotesk);font-weight:600;
+    font-size:clamp(13px,1.5vw,17px);max-width:34ch;text-align:right;line-height:1.35;
+    opacity:.78;
+  }
+  .svc:hover .svcDesc{opacity:1;}
+  .svc:hover .svcName .accw{color:var(--banana);}
+  @media(max-width:760px){
+    .svc{grid-template-columns:auto 1fr;}
+    .svcDesc{display:none;}
+  }
+
+  /* ===================================================================
+     SAMPLE WORK — placeholder project cards
+  ====================================================================*/
+  .work{background:var(--ink);color:var(--paper);}
+  .work .secNum{color:var(--paper);opacity:.6;}
+  .work .secTitle .ksm{-webkit-text-stroke:1.5px var(--banana);}
+  .work ::selection{background:var(--banana);color:var(--ink);}
+  .cards{
+    display:grid;gap:clamp(14px,2vw,22px);
+    grid-template-columns:repeat(3,1fr);
+  }
+  @media(max-width:880px){.cards{grid-template-columns:1fr;}}
+  .card{
+    background:var(--paper);color:var(--ink);
+    border-radius:4px;overflow:hidden;
+    border:2px solid var(--paper);
+    display:flex;flex-direction:column;
+    transition:transform .3s var(--ease),box-shadow .3s var(--ease);
+    box-shadow:0 0 0 rgba(245,200,0,0);
+  }
+  .card:hover{transform:translateY(-8px);box-shadow:0 18px 0 -6px var(--banana);}
+  .thumb{
+    aspect-ratio:4/3;position:relative;overflow:hidden;
+    display:flex;align-items:flex-end;justify-content:flex-start;
+    padding:18px;
+  }
+  .thumb .big{
+    font-family:var(--display);text-transform:uppercase;
+    font-size:clamp(34px,7vw,60px);line-height:.82;
+    color:var(--paper);position:relative;z-index:2;letter-spacing:-.01em;
+    mix-blend-mode:difference;
+  }
+  .thumb .grid{
+    position:absolute;inset:0;z-index:0;
+    background-image:radial-gradient(rgba(10,10,10,.22) 1.4px,transparent 1.5px);
+    background-size:16px 16px;
+  }
+  /* distinct gradient per card via vars */
+  .t1{background:linear-gradient(135deg,var(--banana),var(--banana-bright));}
+  .t2{background:linear-gradient(135deg,#0A0A0A,#2a2a2a);}
+  .t2 .big{color:var(--banana);mix-blend-mode:normal;}
+  .t3{background:linear-gradient(135deg,#FFE140,#F5C800 55%,#CC9900);}
+  .cardBody{padding:18px 20px 22px;display:flex;flex-direction:column;gap:10px;flex:1;}
+  .cardTop{display:flex;justify-content:space-between;align-items:baseline;gap:10px;}
+  .cardName{font-family:var(--grotesk);font-weight:800;font-size:clamp(17px,2vw,21px);}
+  .cardTag{font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;opacity:.55;}
+  .cardMeta{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;}
+  .chip{
+    font-family:var(--mono);font-size:11px;letter-spacing:.5px;text-transform:uppercase;
+    border:1.5px solid var(--ink);border-radius:99px;padding:3px 10px;
+  }
+  .placeNote{
+    font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+    opacity:.5;margin-top:18px;text-align:center;
+  }
+
+  /* ===================================================================
+     WHY ME row
+  ====================================================================*/
+  .why{}
+  .whyGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:2px solid var(--ink);}
+  @media(max-width:760px){.whyGrid{grid-template-columns:1fr;}}
+  .whyCell{
+    padding:clamp(22px,3.5vw,40px) clamp(16px,2.5vw,32px);
+    border-bottom:2px solid var(--ink);border-right:2px solid var(--ink);
+    transition:background .25s;
+  }
+  .whyCell:last-child{border-right:none;}
+  @media(max-width:760px){.whyCell{border-right:none;}}
+  .whyCell:hover{background:var(--banana);}
+  .whyBig{font-family:var(--display);font-size:clamp(46px,7vw,88px);line-height:.9;letter-spacing:-.01em;}
+  .whyBig small{font-size:.42em;vertical-align:.55em;}
+  .whyLbl{font-family:var(--grotesk);font-weight:700;font-size:clamp(15px,1.8vw,19px);margin-top:8px;}
+  .whyTxt{font-family:var(--mono);font-size:12.5px;line-height:1.55;margin-top:8px;opacity:.7;letter-spacing:.2px;}
+
+  /* ===================================================================
+     CONTACT
+  ====================================================================*/
+  .contact{position:relative;overflow:hidden;text-align:center;padding-bottom:clamp(70px,9vw,120px);}
+  .contact::before{
+    content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(circle at 50% 120%, rgba(245,200,0,.55), transparent 55%);
+  }
+  .contact .wrap{position:relative;z-index:2;}
+  .startBig{
+    font-family:var(--display);text-transform:uppercase;
+    font-size:clamp(54px,15vw,200px);line-height:.84;letter-spacing:-.015em;
+    margin-bottom:clamp(8px,2vw,18px);
+  }
+  .startBig .ob{color:transparent;-webkit-text-stroke:2px var(--ink);}
+  .contactSub{font-family:var(--grotesk);font-weight:600;font-size:clamp(16px,2vw,22px);max-width:40ch;margin:0 auto clamp(26px,4vw,40px);}
+  /* inline email field (non-submitting) */
+  .form{
+    display:flex;gap:0;max-width:560px;margin:0 auto;
+    border:2px solid var(--ink);border-radius:2px;background:var(--paper);
+    box-shadow:8px 8px 0 var(--ink);
+    overflow:hidden;flex-wrap:nowrap;
+  }
+  .form input{
+    flex:1;min-width:0;border:none;background:transparent;outline:none;
+    padding:16px 18px;font-family:var(--mono);font-size:15px;color:var(--ink);
+  }
+  .form input::placeholder{color:rgba(10,10,10,.45);}
+  .form button{
+    border:none;cursor:pointer;
+    font-family:var(--display);text-transform:uppercase;letter-spacing:.5px;
+    font-size:clamp(15px,2vw,19px);
+    background:var(--ink);color:var(--paper);
+    padding:0 clamp(18px,3vw,28px);white-space:nowrap;
+    transition:background .2s,color .2s;
+  }
+  .form button:hover{background:var(--banana);color:var(--ink);}
+  .formNote{font-family:var(--mono);font-size:12px;letter-spacing:1px;margin-top:16px;opacity:.6;min-height:1.2em;}
+  .formNote.ok{opacity:1;color:var(--ink);}
+  .or{font-family:var(--mono);font-size:12px;letter-spacing:1px;text-transform:uppercase;opacity:.55;margin:22px 0 12px;}
+  .mailto{
+    font-family:var(--display);text-transform:lowercase;font-size:clamp(20px,3vw,34px);
+    letter-spacing:.3px;border-bottom:3px solid var(--banana);
+    transition:border-color .25s,letter-spacing .25s;
+  }
+  .mailto:hover{border-color:var(--ink);letter-spacing:1px;}
+
+  /* ===================================================================
+     FOOTER
+  ====================================================================*/
+  footer{
+    border-top:2px solid var(--ink);
+    padding:clamp(26px,4vw,40px) var(--edge);
+    display:flex;flex-wrap:wrap;gap:14px 26px;align-items:center;justify-content:space-between;
+    font-family:var(--mono);font-size:12.5px;letter-spacing:1px;text-transform:uppercase;
+  }
+  footer .fmark{font-family:var(--display);font-size:18px;letter-spacing:.5px;display:flex;align-items:center;gap:8px;}
+  footer .fmark .lo{text-transform:lowercase;letter-spacing:0;}
+  footer .dot{width:11px;height:11px;}
+  footer .meta{display:flex;flex-wrap:wrap;gap:10px 22px;opacity:.7;}
+  footer a:hover{color:var(--banana);background:var(--ink);}
+
+</style>
+</head>
+
+<body>
+
+  <!-- ===================== TOP BAR ===================== -->
+  <header class="bar" id="bar">
+    <a href="#top" class="mark" aria-label="BANANAbyte home">
+      <span class="dot"></span><span>BANANA<span class="lo">byte</span></span>
+    </a>
+    <nav>
+      <a href="#work" class="hideMob">Work</a>
+      <a href="#services" class="hideMob">Services</a>
+      <a href="#start">Start &rarr;</a>
+    </nav>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <main id="top">
+  <section class="hero" aria-label="Intro">
+    <div class="wrap">
+      <p class="kicker rise" data-d="0">
+        <span class="pill">Orlando, FL</span>
+        <span><b>Web design studio.</b></span>
+        <span>One human &mdash; Gabe. Zero jargon.</span>
+      </p>
+
+      <h1 class="mega">
+        <span class="line clip" data-d="1"><span>Websites</span></span>
+        <span class="line clip l2 bleed" data-d="2"><span class="stroke">that just</span></span>
+        <span class="line l3" data-d="3">
+          <span class="clip"><span class="hl">work<span class="swipe"></span></span></span>
+          <span class="clip"><span class="lowbyte">.byte</span></span>
+        </span>
+      </h1>
+
+      <div class="heroFoot">
+        <p class="sub rise" data-d="4">
+          Fast, clean, no-nonsense sites for small businesses. New builds, redesigns,
+          speed-ups, simple stores &mdash; and <span class="acc">you own everything.</span>
+        </p>
+        <a href="#start" class="cta scalein" data-d="5">Start a project <span class="arr">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- running ticker -->
+  <div class="ticker" aria-hidden="true">
+    <div class="row">
+      <span>New Sites</span><span class="o">/</span><span>Redesigns</span><span class="o">/</span><span>Speed-Ups</span><span class="o">/</span><span>Online Stores</span><span class="o">/</span><span>Maintenance</span><span class="o">/</span><span>Fair Flat Pricing</span><span class="o">/</span><span>Fast Turnaround</span><span class="o">/</span>
+      <span>New Sites</span><span class="o">/</span><span>Redesigns</span><span class="o">/</span><span>Speed-Ups</span><span class="o">/</span><span>Online Stores</span><span class="o">/</span><span>Maintenance</span><span class="o">/</span><span>Fair Flat Pricing</span><span class="o">/</span><span>Fast Turnaround</span><span class="o">/</span>
+    </div>
+  </div>
+
+  <!-- ===================== WHAT I DO ===================== -->
+  <section id="services" aria-label="Services">
+    <div class="wrap">
+      <div class="secHead">
+        <span class="secNum rise" data-rv>(01)</span>
+        <h2 class="secTitle clip" data-rv><span>What I do<span class="ksm">/05</span></span></h2>
+      </div>
+
+      <div class="services">
+        <a class="svc rise" data-rv href="#start">
+          <span class="svcNo">001</span>
+          <span class="svcName">New <span class="accw">Websites</span></span>
+          <span class="svcDesc">A brand-new site built from scratch &mdash; structured around what actually gets you customers.</span>
+        </a>
+        <a class="svc rise" data-rv href="#start">
+          <span class="svcNo">002</span>
+          <span class="svcName"><span class="accw">Re</span>designs</span>
+          <span class="svcDesc">Take a dated or clunky site and make it fast, clear, and genuinely good on a phone.</span>
+        </a>
+        <a class="svc rise" data-rv href="#start">
+          <span class="svcNo">003</span>
+          <span class="svcName">Speed-Ups <span class="accw">&amp; Fixes</span></span>
+          <span class="svcDesc">Slow loads, broken forms, mobile mess &mdash; diagnosed and quietly fixed.</span>
+        </a>
+        <a class="svc rise" data-rv href="#start">
+          <span class="svcNo">004</span>
+          <span class="svcName">Simple <span class="accw">Stores</span></span>
+          <span class="svcDesc">A small online shop that takes payments without the bloat or the monthly headache.</span>
+        </a>
+        <a class="svc rise" data-rv href="#start">
+          <span class="svcNo">005</span>
+          <span class="svcName"><span class="accw">Ongoing</span> Care</span>
+          <span class="svcDesc">Updates, backups, and tweaks handled month to month so you never touch the code.</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SAMPLE WORK ===================== -->
+  <section id="work" class="work" aria-label="Sample work">
+    <div class="wrap">
+      <div class="secHead">
+        <span class="secNum rise" data-rv>(02)</span>
+        <h2 class="secTitle clip" data-rv><span>Recent<span class="ksm">/looks</span></span></h2>
+      </div>
+
+      <div class="cards">
+        <article class="card scalein" data-rv>
+          <div class="thumb t1">
+            <span class="grid"></span>
+            <span class="big">Aloha<br>Caf&eacute;</span>
+          </div>
+          <div class="cardBody">
+            <div class="cardTop">
+              <span class="cardName">Aloha Caf&eacute;</span>
+              <span class="cardTag">Cafe</span>
+            </div>
+            <div class="cardMeta">
+              <span class="chip">New Site</span>
+              <span class="chip">Menu</span>
+              <span class="chip">Mobile</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card scalein" data-rv data-d="1">
+          <div class="thumb t2">
+            <span class="grid"></span>
+            <span class="big">Green<br>Scape</span>
+          </div>
+          <div class="cardBody">
+            <div class="cardTop">
+              <span class="cardName">GreenScape Lawn Care</span>
+              <span class="cardTag">Service</span>
+            </div>
+            <div class="cardMeta">
+              <span class="chip">Redesign</span>
+              <span class="chip">Quotes</span>
+              <span class="chip">SEO</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card scalein" data-rv data-d="2">
+          <div class="thumb t3">
+            <span class="grid"></span>
+            <span class="big">Orlando<br>Dental</span>
+          </div>
+          <div class="cardBody">
+            <div class="cardTop">
+              <span class="cardName">Orlando Dental</span>
+              <span class="cardTag">Clinic</span>
+            </div>
+            <div class="cardMeta">
+              <span class="chip">Store-Free</span>
+              <span class="chip">Booking</span>
+              <span class="chip">Speed-Up</span>
+            </div>
+          </div>
+        </article>
+      </div>
+      <p class="placeNote rise" data-rv>&#9633; Placeholder concepts &mdash; real case studies drop in here.</p>
+    </div>
+  </section>
+
+  <!-- ===================== WHY ME ===================== -->
+  <section class="why" aria-label="Why me">
+    <div class="wrap">
+      <div class="secHead">
+        <span class="secNum rise" data-rv>(03)</span>
+        <h2 class="secTitle clip" data-rv><span>Why me<span class="ksm">/03</span></span></h2>
+      </div>
+      <div class="whyGrid">
+        <div class="whyCell rise" data-rv>
+          <div class="whyBig">1<small>:1</small></div>
+          <div class="whyLbl">You talk to the builder</div>
+          <p class="whyTxt">No account managers, no hand-offs. Gabe scopes it, builds it, and ships it &mdash; same person start to finish.</p>
+        </div>
+        <div class="whyCell rise" data-rv data-d="1">
+          <div class="whyBig">$<small>flat</small></div>
+          <div class="whyLbl">Fair, flat pricing</div>
+          <p class="whyTxt">One clear number agreed up front. No surprise invoices, no padded hours, no &ldquo;enterprise&rdquo; mark-up.</p>
+        </div>
+        <div class="whyCell rise" data-rv data-d="2">
+          <div class="whyBig">100<small>%</small></div>
+          <div class="whyLbl">You own it all</div>
+          <p class="whyTxt">Your domain, your files, your accounts. Nothing held hostage &mdash; walk away anytime with everything.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section id="start" class="contact" aria-label="Start a project">
+    <div class="wrap">
+      <h2 class="startBig clip" data-rv>
+        <span>Let&rsquo;s</span> <span class="ob">build</span> <span>it.</span>
+      </h2>
+      <p class="contactSub rise" data-rv>Tell me what your business does. I&rsquo;ll send back a plan, a price, and a timeline &mdash; usually within a day.</p>
+
+      <form class="form scalein" data-rv id="startForm" novalidate>
+        <input type="email" id="email" placeholder="you@yourbusiness.com" aria-label="Your email" autocomplete="email" />
+        <button type="submit">Start a project</button>
+      </form>
+      <p class="formNote" id="note" role="status">No spam &mdash; just a real reply from a real person.</p>
+
+      <p class="or">&mdash; or just email me &mdash;</p>
+      <a class="mailto" href="mailto:contact@bananabyte.io">contact@bananabyte.io</a>
+    </div>
+  </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <a href="#top" class="fmark"><span class="dot"></span>BANANA<span class="lo">byte</span></a>
+    <div class="meta">
+      <span>Orlando, FL</span>
+      <a href="mailto:contact@bananabyte.io">contact@bananabyte.io</a>
+      <span>&copy; 2026</span>
+    </div>
+  </footer>
+
+<script>
+(function(){
+  var body=document.body;
+
+  /* ---- choreographed page-load reveal (hero) ---- */
+  function play(){
+    body.classList.add('ready');
+    var hero=document.querySelectorAll('.hero [data-d], .hero .clip, .hero .hl');
+    document.querySelectorAll('.hero .clip,.hero .rise,.hero .scalein,.hero .hl').forEach(function(el){
+      var d=parseFloat(el.getAttribute('data-d')||'0');
+      setTimeout(function(){ el.classList.add('go'); }, 120 + d*130);
+    });
+  }
+  if(document.readyState!=='loading') requestAnimationFrame(play);
+  else window.addEventListener('DOMContentLoaded', function(){ requestAnimationFrame(play); });
+
+  /* ---- scroll-triggered reveals for everything else ---- */
+  body.classList.add('ready');
+  var items=document.querySelectorAll('[data-rv]');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          var el=e.target;
+          var d=parseFloat(el.getAttribute('data-d')||'0');
+          setTimeout(function(){ el.classList.add('go'); }, d*110);
+          io.unobserve(el);
+        }
+      });
+    },{rootMargin:'0px 0px -10% 0px',threshold:0.12});
+    items.forEach(function(el){ io.observe(el); });
+  } else {
+    items.forEach(function(el){ el.classList.add('go'); });
+  }
+
+  /* ---- hide top bar on scroll-down, show on scroll-up ---- */
+  var bar=document.getElementById('bar'),last=0;
+  window.addEventListener('scroll',function(){
+    var y=window.pageYOffset;
+    if(y>last && y>200) bar.style.transform='translateY(-110%)';
+    else bar.style.transform='translateY(0)';
+    last=y;
+  },{passive:true});
+
+  /* ---- inline form (non-submitting, friendly) ---- */
+  var form=document.getElementById('startForm'),
+      email=document.getElementById('email'),
+      note=document.getElementById('note');
+  if(form){
+    form.addEventListener('submit',function(ev){
+      ev.preventDefault();
+      var v=(email.value||'').trim();
+      var ok=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+      if(!ok){
+        note.textContent='Pop in a valid email and I&rsquo;ll reach out.';
+        note.className='formNote';
+        email.focus();
+        return;
+      }
+      note.innerHTML='Got it &mdash; I&rsquo;ll be in touch at <b>'+v.replace(/</g,'&lt;')+'</b> shortly.';
+      note.className='formNote ok';
+      email.value='';
+      email.blur();
+    });
+  }
+})();
+</script>
+</body>
+</html>
