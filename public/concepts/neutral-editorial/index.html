@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>BANANAbyte — Web studio in Orlando, FL</title>
+  <meta name="description" content="BANANAbyte is a one-person web studio in Orlando building fast, clean, custom websites and online stores for small businesses, shops, and performers. Flat pricing, quick turnaround, you own everything.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #F6F3EC;
+      --paper-2: #EFEBE0;
+      --ink: #1A1814;
+      --ink-soft: #4A463E;
+      --ink-faint: #6E695E;
+      --rule: #D9D3C4;
+      --rule-strong: #C5BDA9;
+      --banana: #F5C800;
+      --banana-deep: #C99E00;
+      --card: #FBF9F3;
+      --maxw: 1180px;
+      --gap: clamp(1.25rem, 4vw, 2.5rem);
+      --serif: "Fraunces", Georgia, "Times New Roman", serif;
+      --sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 17px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .display {
+      font-family: var(--serif);
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -0.015em;
+      margin: 0;
+    }
+
+    p { margin: 0 0 1rem; }
+    a { color: inherit; }
+
+    .wrap {
+      width: 100%;
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding-left: var(--gap);
+      padding-right: var(--gap);
+    }
+
+    /* ---- Skip link ---- */
+    .skip {
+      position: absolute;
+      left: -999px;
+      top: 0;
+      background: var(--ink);
+      color: var(--paper);
+      padding: 0.6rem 1rem;
+      z-index: 200;
+      border-radius: 0 0 4px 0;
+    }
+    .skip:focus { left: 0; }
+
+    /* ---- Focus ---- */
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+      outline: 2.5px solid var(--ink);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    /* ---- Wordmark ---- */
+    .wordmark {
+      font-family: var(--serif);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .wordmark .cap { text-transform: uppercase; letter-spacing: 0.01em; }
+    .wordmark .low { }
+    .wordmark .dot {
+      display: inline-block;
+      width: 0.42em;
+      height: 0.42em;
+      margin-left: 0.12em;
+      border-radius: 50%;
+      background: var(--banana);
+      vertical-align: 0.06em;
+    }
+
+    /* ---- Header ---- */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(246, 243, 236, 0.86);
+      backdrop-filter: saturate(140%) blur(8px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-top: 0.85rem;
+      padding-bottom: 0.85rem;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.45rem;
+      text-decoration: none;
+      font-size: 1.4rem;
+    }
+    .brand .emoji { font-size: 1.05rem; }
+
+    .nav {
+      display: none;
+      align-items: center;
+      gap: 1.75rem;
+    }
+    .nav a {
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--ink-soft);
+      letter-spacing: 0.01em;
+      position: relative;
+      padding-bottom: 2px;
+    }
+    .nav a::after {
+      content: "";
+      position: absolute;
+      left: 0; bottom: 0;
+      width: 100%;
+      height: 1.5px;
+      background: var(--ink);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.28s ease;
+    }
+    .nav a:hover { color: var(--ink); }
+    .nav a:hover::after { transform: scaleX(1); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1.5px solid var(--ink);
+      padding: 0.7rem 1.25rem;
+      border-radius: 2px;
+      background: var(--ink);
+      color: var(--paper);
+      transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 0 -2px var(--banana); }
+    .btn--accent {
+      background: var(--banana);
+      color: var(--ink);
+      border-color: var(--ink);
+    }
+    .btn--accent:hover { box-shadow: 0 6px 0 -2px var(--ink); background: var(--banana); }
+    .btn--ghost {
+      background: transparent;
+      color: var(--ink);
+    }
+    .btn--ghost:hover { box-shadow: 0 6px 0 -2px var(--banana); }
+    .btn--sm { padding: 0.62rem 1rem; font-size: 0.88rem; min-height: 44px; }
+
+    .header-cta { white-space: nowrap; }
+
+    /* ---- Section scaffolding ---- */
+    section { padding: clamp(3.5rem, 8vw, 6.5rem) 0; }
+    .eyebrow {
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 0 0 1.1rem;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 1.6rem;
+      height: 1.5px;
+      background: var(--banana-deep);
+    }
+
+    .lead { color: var(--ink-soft); font-size: 1.08rem; }
+
+    /* ---- Hero ---- */
+    .hero { padding-top: clamp(2.5rem, 6vw, 4.5rem); }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(2rem, 5vw, 3.5rem);
+      align-items: end;
+    }
+    .hero h1 {
+      font-size: clamp(2.6rem, 9vw, 5.25rem);
+      letter-spacing: -0.03em;
+    }
+    .hero h1 .accent {
+      font-style: italic;
+      font-weight: 400;
+      position: relative;
+    }
+    .hero h1 .mark {
+      background: linear-gradient(180deg, transparent 62%, var(--banana) 62%, var(--banana) 92%, transparent 92%);
+      padding: 0 0.04em;
+    }
+    .hero-lead {
+      max-width: 38ch;
+      font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+      color: var(--ink-soft);
+      margin-top: 1.5rem;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-top: 1.9rem;
+      align-items: center;
+    }
+    .hero-meta {
+      border-top: 1px solid var(--rule);
+      margin-top: 2.75rem;
+      padding-top: 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .hero-meta .stat .n {
+      font-family: var(--serif);
+      font-size: clamp(1.4rem, 4vw, 1.9rem);
+      font-weight: 500;
+      display: block;
+      line-height: 1;
+    }
+    .hero-meta .stat .l {
+      font-size: 0.8rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.02em;
+      margin-top: 0.35rem;
+      display: block;
+    }
+    .hero-aside {
+      border: 1px solid var(--rule-strong);
+      background: var(--card);
+      border-radius: 4px;
+      padding: 1.5rem;
+    }
+    .hero-aside .aside-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 1.1rem;
+    }
+    .who-list { list-style: none; margin: 0; padding: 0; }
+    .who-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      padding: 0.7rem 0;
+      border-top: 1px solid var(--rule);
+      font-size: 0.98rem;
+    }
+    .who-list li:first-child { border-top: 0; padding-top: 0; }
+    .who-list .tick {
+      color: var(--banana-deep);
+      font-weight: 700;
+      font-family: var(--serif);
+    }
+
+    @media (min-width: 880px) {
+      .nav { display: flex; }
+      .hero-grid { grid-template-columns: 1.55fr 1fr; }
+    }
+
+    /* ---- Services ---- */
+    .section-head {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+      margin-bottom: 2.75rem;
+      align-items: end;
+    }
+    .section-head h2 { font-size: clamp(1.9rem, 5vw, 2.8rem); }
+    .section-head .head-note {
+      color: var(--ink-soft);
+      max-width: 42ch;
+    }
+    @media (min-width: 760px) {
+      .section-head { grid-template-columns: 1.3fr 1fr; }
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: 1fr;
+      border-top: 1px solid var(--rule-strong);
+    }
+    .service {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.3rem 1.5rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--rule);
+      position: relative;
+      transition: background 0.25s ease, padding 0.25s ease;
+    }
+    .service .s-num {
+      font-family: var(--serif);
+      font-size: 0.95rem;
+      color: var(--ink-faint);
+    }
+    .service h3 {
+      font-size: clamp(1.3rem, 3.4vw, 1.7rem);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+    .service p { color: var(--ink-soft); margin: 0.35rem 0 0; max-width: 60ch; font-size: 0.98rem; }
+    .badge {
+      font-family: var(--sans);
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--banana);
+      color: var(--ink);
+      padding: 0.2rem 0.5rem;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+    .service:hover { background: var(--card); }
+    @media (min-width: 760px) {
+      .service { grid-template-columns: 3rem 1fr; align-items: start; gap: 0.4rem 1.75rem; }
+      .service .s-num { padding-top: 0.5rem; }
+      .service:hover { padding-left: 0.75rem; }
+    }
+
+    /* ---- Work ---- */
+    .work-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+    @media (min-width: 700px) { .work-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1000px) { .work-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .work-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-radius: 5px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+    }
+    .work-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 30px -18px rgba(26, 24, 20, 0.4);
+      border-color: var(--rule-strong);
+    }
+    .work-thumb {
+      aspect-ratio: 4 / 3;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--rule);
+    }
+    .work-thumb svg { display: block; width: 100%; height: 100%; }
+    .work-tag {
+      position: absolute;
+      top: 0.85rem;
+      left: 0.85rem;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--paper);
+      color: var(--ink);
+      border: 1px solid var(--rule-strong);
+      padding: 0.28rem 0.6rem;
+      border-radius: 2px;
+    }
+    .work-body { padding: 1.25rem 1.3rem 1.4rem; display: flex; flex-direction: column; flex: 1; }
+    .work-body h3 { font-size: 1.3rem; margin-bottom: 0.45rem; }
+    .work-body p { color: var(--ink-soft); font-size: 0.93rem; margin: 0 0 1rem; }
+    .work-foot {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.82rem;
+      color: var(--ink-faint);
+      border-top: 1px solid var(--rule);
+      padding-top: 0.85rem;
+    }
+    .work-foot .arrow { font-family: var(--serif); transition: transform 0.25s ease; }
+    .work-card:hover .work-foot .arrow { transform: translateX(4px); }
+
+    /* ---- Why strip ---- */
+    .why {
+      background: var(--ink);
+      color: var(--paper);
+    }
+    .why .eyebrow { color: #BBB3A0; }
+    .why .eyebrow::before { background: var(--banana); }
+    .why h2 { font-size: clamp(1.8rem, 4.5vw, 2.6rem); color: var(--paper); max-width: 18ch; }
+    .why-lead { color: #CFC8B8; max-width: 46ch; margin-top: 1rem; }
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: 2.75rem;
+    }
+    @media (min-width: 640px) { .why-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 980px) { .why-grid { grid-template-columns: repeat(4, 1fr); } }
+    .why-item {
+      border-top: 2px solid var(--banana);
+      padding-top: 1rem;
+    }
+    .why-item h3 { font-size: 1.2rem; color: var(--paper); margin-bottom: 0.4rem; }
+    .why-item p { color: #BFB8A8; font-size: 0.92rem; margin: 0; }
+
+    /* ---- Contact ---- */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(2rem, 5vw, 3.5rem);
+    }
+    @media (min-width: 860px) { .contact-grid { grid-template-columns: 0.85fr 1.15fr; } }
+
+    .contact-intro h2 { font-size: clamp(2rem, 5vw, 3rem); }
+    .contact-intro p { color: var(--ink-soft); max-width: 40ch; margin-top: 1.1rem; }
+    .email-line {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      margin-top: 1.5rem;
+      font-family: var(--serif);
+      font-size: clamp(1.15rem, 3vw, 1.5rem);
+      text-decoration: none;
+      border-bottom: 2px solid var(--banana);
+      padding: 0.4rem 0 0.3rem;
+      min-height: 44px;
+      transition: border-color 0.25s ease;
+    }
+    .email-line:hover { border-color: var(--ink); }
+
+    form { display: grid; gap: 1.15rem; }
+    .field { display: grid; gap: 0.4rem; }
+    .field-row { display: grid; grid-template-columns: 1fr; gap: 1.15rem; }
+    @media (min-width: 560px) { .field-row { grid-template-columns: 1fr 1fr; } }
+    label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--ink-soft);
+    }
+    .req { color: var(--ink-soft); }
+    input, select, textarea {
+      font-family: var(--sans);
+      font-size: 1rem;
+      color: var(--ink);
+      background: var(--card);
+      border: 1.5px solid var(--rule-strong);
+      border-radius: 3px;
+      padding: 0.8rem 0.85rem;
+      width: 100%;
+      min-height: 44px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    input::placeholder, textarea::placeholder { color: var(--ink-faint); opacity: 0.8; }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--ink);
+      box-shadow: 0 0 0 3px rgba(245, 200, 0, 0.28);
+      outline: none;
+    }
+    textarea { resize: vertical; min-height: 130px; }
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231A1814' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.95rem center;
+      padding-right: 2.25rem;
+    }
+    .form-foot {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .form-note { font-size: 0.82rem; color: var(--ink-faint); margin: 0; }
+
+    .form-success {
+      display: none;
+      border: 1.5px solid var(--banana-deep);
+      background: linear-gradient(0deg, rgba(245,200,0,0.1), rgba(245,200,0,0.1));
+      border-radius: 4px;
+      padding: 1.5rem 1.5rem;
+    }
+    .form-success.show { display: block; }
+    .form-success h3 { font-size: 1.35rem; margin-bottom: 0.4rem; }
+    .form-success p { color: var(--ink-soft); margin: 0; font-size: 0.95rem; }
+    .form-success .reset {
+      background: none;
+      border: none;
+      color: var(--ink);
+      text-decoration: underline;
+      cursor: pointer;
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      padding: 0;
+      margin-top: 0.85rem;
+    }
+
+    /* ---- Footer ---- */
+    footer {
+      border-top: 1px solid var(--rule-strong);
+      padding: 3rem 0 2.5rem;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+    @media (min-width: 720px) { .footer-top { grid-template-columns: 1.4fr 1fr 1fr; } }
+    .footer-brand .wordmark { font-size: 1.6rem; }
+    .footer-brand p { color: var(--ink-soft); max-width: 32ch; margin-top: 0.9rem; font-size: 0.92rem; }
+    .footer-col h4 {
+      font-family: var(--sans);
+      font-size: 0.74rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin: 0 0 0.9rem;
+      font-weight: 700;
+    }
+    .footer-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.15rem; }
+    .footer-col li { display: flex; }
+    .footer-col a, .footer-col li > span {
+      text-decoration: none;
+      color: var(--ink-soft);
+      font-size: 0.93rem;
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+    }
+    .footer-col a:hover { color: var(--ink); text-decoration: underline; }
+    .footer-bottom {
+      margin-top: 2.75rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.5rem;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.82rem;
+      color: var(--ink-faint);
+    }
+
+    /* ---- Reveal animation ---- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+      transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+      transition-delay: var(--d, 0ms);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+      .btn:hover, .work-card:hover { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="BANANAbyte home">
+        <span class="wordmark"><span class="cap">BANANA</span><span class="low">byte</span><span class="dot" aria-hidden="true"></span></span>
+        <span class="emoji" aria-hidden="true">🍌</span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#why">Why me</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="btn btn--accent btn--sm header-cta" href="#contact">Start a project</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <span id="top"></span>
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow reveal">Independent web studio · Orlando, FL</p>
+          <h1 id="hero-title" class="reveal" style="--d:80ms">
+            Websites that <span class="accent mark">earn their keep</span> — for shops, small businesses &amp; performers.
+          </h1>
+          <p class="hero-lead reveal" style="--d:160ms">
+            I'm Gabe. I design and build fast, clean, custom sites and online stores — then hand them over so you actually own everything. One person, flat pricing, plain language.
+          </p>
+          <div class="hero-actions reveal" style="--d:240ms">
+            <a class="btn btn--accent" href="#contact">Get a quote 🍌</a>
+            <a class="btn btn--ghost" href="#work">See the work</a>
+          </div>
+          <div class="hero-meta reveal" style="--d:320ms" aria-label="At a glance">
+            <div class="stat"><span class="n">1</span><span class="l">person, start to finish</span></div>
+            <div class="stat"><span class="n">2–3 wk</span><span class="l">typical turnaround</span></div>
+            <div class="stat"><span class="n">100%</span><span class="l">yours when it ships</span></div>
+          </div>
+        </div>
+
+        <aside class="hero-aside reveal" style="--d:400ms" aria-labelledby="who-label">
+          <p class="aside-label" id="who-label">Who it's for</p>
+          <ul class="who-list">
+            <li><span class="tick" aria-hidden="true">→</span> Online stores that need to sell, not just sit there</li>
+            <li><span class="tick" aria-hidden="true">→</span> Local businesses ready to look the part</li>
+            <li><span class="tick" aria-hidden="true">→</span> Performers who need a sharp, bookable home base</li>
+            <li><span class="tick" aria-hidden="true">→</span> Anyone tired of agency runaround</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" aria-labelledby="services-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">What I do</p>
+            <h2 id="services-title">A short, honest menu — no upsells, no jargon.</h2>
+          </div>
+          <p class="head-note">Pick what you need. Most projects mix a couple of these. Every one comes with a flat quote up front so there are no surprises at the end.</p>
+        </div>
+
+        <div class="services">
+          <article class="service reveal" style="--d:60ms">
+            <span class="s-num" aria-hidden="true">01</span>
+            <div>
+              <h3>New websites</h3>
+              <p>A custom site built from your goals up — designed, written-with, and coded to load quickly and read clearly on every screen.</p>
+            </div>
+          </article>
+
+          <article class="service reveal" style="--d:120ms">
+            <span class="s-num" aria-hidden="true">02</span>
+            <div>
+              <h3>Redesigns</h3>
+              <p>Keep what works, fix what doesn't. I rebuild dated or clunky sites into something modern, fast, and easy for you to update.</p>
+            </div>
+          </article>
+
+          <article class="service reveal" style="--d:180ms">
+            <span class="s-num" aria-hidden="true">03</span>
+            <div>
+              <h3>Online stores <span class="badge">For shop owners</span></h3>
+              <p>Full e-commerce — product pages, cart, secure checkout, shipping and payments wired up. Built so you can add products yourself without calling me.</p>
+            </div>
+          </article>
+
+          <article class="service reveal" style="--d:240ms">
+            <span class="s-num" aria-hidden="true">04</span>
+            <div>
+              <h3>Speed-ups &amp; fixes</h3>
+              <p>Slow loads, broken forms, mobile that looks wrong, "it just stopped working." I diagnose it and patch it — usually in days, not weeks.</p>
+            </div>
+          </article>
+
+          <article class="service reveal" style="--d:300ms">
+            <span class="s-num" aria-hidden="true">05</span>
+            <div>
+              <h3>Maintenance</h3>
+              <p>Optional ongoing care: updates, backups, small content changes, and a real human to email when something needs attention.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section id="work" aria-labelledby="work-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Selected work</p>
+            <h2 id="work-title">Three projects, three very different clients.</h2>
+          </div>
+          <p class="head-note">A shop, a neighborhood business, and a working performer — proof that the same studio fits all of them.</p>
+        </div>
+
+        <div class="work-grid">
+          <a class="work-card reveal" style="--d:80ms" href="#contact" aria-label="Case study: Citrus Grove Provisions online store">
+            <div class="work-thumb">
+              <span class="work-tag">Online store</span>
+              <svg viewBox="0 0 400 300" role="img" aria-label="Mockup of a clean grocery e-commerce storefront with a product grid">
+                <rect width="400" height="300" fill="#EFEBE0"/>
+                <rect x="0" y="0" width="400" height="46" fill="#1A1814"/>
+                <rect x="22" y="18" width="96" height="10" rx="5" fill="#F5C800"/>
+                <circle cx="356" cy="23" r="9" fill="#F6F3EC"/>
+                <rect x="320" y="19" width="22" height="8" rx="4" fill="#6E695E"/>
+                <rect x="22" y="70" width="356" height="64" rx="6" fill="#FBF9F3" stroke="#D9D3C4"/>
+                <rect x="40" y="88" width="150" height="12" rx="6" fill="#1A1814"/>
+                <rect x="40" y="108" width="100" height="8" rx="4" fill="#6E695E"/>
+                <rect x="300" y="92" width="60" height="22" rx="4" fill="#F5C800"/>
+                <g>
+                  <rect x="22" y="152" width="108" height="124" rx="6" fill="#FBF9F3" stroke="#D9D3C4"/>
+                  <rect x="36" y="166" width="80" height="58" rx="4" fill="#EFEBE0"/>
+                  <circle cx="76" cy="195" r="18" fill="#F5C800"/>
+                  <rect x="36" y="234" width="64" height="8" rx="4" fill="#1A1814"/>
+                  <rect x="36" y="250" width="40" height="7" rx="3.5" fill="#6E695E"/>
+                </g>
+                <g>
+                  <rect x="146" y="152" width="108" height="124" rx="6" fill="#FBF9F3" stroke="#D9D3C4"/>
+                  <rect x="160" y="166" width="80" height="58" rx="4" fill="#EFEBE0"/>
+                  <rect x="178" y="180" width="44" height="30" rx="4" fill="#C99E00"/>
+                  <rect x="160" y="234" width="64" height="8" rx="4" fill="#1A1814"/>
+                  <rect x="160" y="250" width="40" height="7" rx="3.5" fill="#6E695E"/>
+                </g>
+                <g>
+                  <rect x="270" y="152" width="108" height="124" rx="6" fill="#FBF9F3" stroke="#D9D3C4"/>
+                  <rect x="284" y="166" width="80" height="58" rx="4" fill="#EFEBE0"/>
+                  <circle cx="324" cy="195" r="18" fill="#1A1814"/>
+                  <rect x="284" y="234" width="64" height="8" rx="4" fill="#1A1814"/>
+                  <rect x="284" y="250" width="40" height="7" rx="3.5" fill="#6E695E"/>
+                </g>
+              </svg>
+            </div>
+            <div class="work-body">
+              <h3>Citrus Grove Provisions</h3>
+              <p>An e-commerce site for a Central Florida specialty grocer — full catalog, checkout, and self-serve product management.</p>
+              <span class="work-foot">E-commerce · Built in 3 weeks <span class="arrow" aria-hidden="true">→</span></span>
+            </div>
+          </a>
+
+          <a class="work-card reveal" style="--d:160ms" href="#contact" aria-label="Case study: Lake Eola Dental local business site">
+            <div class="work-thumb">
+              <span class="work-tag">Local business</span>
+              <svg viewBox="0 0 400 300" role="img" aria-label="Mockup of a calm local business site with a hero and booking button">
+                <rect width="400" height="300" fill="#F6F3EC"/>
+                <rect x="0" y="0" width="400" height="300" fill="#FBF9F3"/>
+                <rect x="0" y="0" width="400" height="40" fill="#F6F3EC"/>
+                <rect x="22" y="16" width="70" height="9" rx="4.5" fill="#1A1814"/>
+                <rect x="250" y="16" width="40" height="8" rx="4" fill="#6E695E"/>
+                <rect x="300" y="16" width="40" height="8" rx="4" fill="#6E695E"/>
+                <rect x="22" y="78" width="200" height="16" rx="8" fill="#1A1814"/>
+                <rect x="22" y="104" width="240" height="16" rx="8" fill="#1A1814"/>
+                <rect x="22" y="138" width="180" height="8" rx="4" fill="#6E695E"/>
+                <rect x="22" y="154" width="150" height="8" rx="4" fill="#6E695E"/>
+                <rect x="22" y="184" width="118" height="30" rx="4" fill="#F5C800"/>
+                <rect x="44" y="195" width="74" height="8" rx="4" fill="#1A1814"/>
+                <rect x="262" y="70" width="116" height="160" rx="8" fill="#EFEBE0"/>
+                <circle cx="320" cy="128" r="34" fill="#D9D3C4"/>
+                <rect x="282" y="180" width="76" height="9" rx="4.5" fill="#C5BDA9"/>
+                <rect x="282" y="196" width="56" height="9" rx="4.5" fill="#C5BDA9"/>
+              </svg>
+            </div>
+            <div class="work-body">
+              <h3>Lake Eola Family Dental</h3>
+              <p>A trustworthy, mobile-first site for a downtown Orlando practice, with online booking and clear directions front and center.</p>
+              <span class="work-foot">Local business · Redesign <span class="arrow" aria-hidden="true">→</span></span>
+            </div>
+          </a>
+
+          <a class="work-card reveal" style="--d:240ms" href="#contact" aria-label="Case study: Marco Reyes performer site">
+            <div class="work-thumb">
+              <span class="work-tag">Performer</span>
+              <svg viewBox="0 0 400 300" role="img" aria-label="Mockup of a bold performer site with a portrait and a show dates list">
+                <rect width="400" height="300" fill="#1A1814"/>
+                <rect x="22" y="60" width="170" height="180" rx="8" fill="#2A2620"/>
+                <circle cx="107" cy="120" r="34" fill="#4A463E"/>
+                <rect x="58" y="166" width="98" height="56" rx="6" fill="#3A352D"/>
+                <rect x="214" y="56" width="164" height="20" rx="6" fill="#F5C800"/>
+                <rect x="214" y="86" width="120" height="20" rx="6" fill="#F6F3EC"/>
+                <rect x="214" y="128" width="164" height="8" rx="4" fill="#BFB8A8"/>
+                <g>
+                  <rect x="214" y="160" width="164" height="22" rx="4" fill="#2A2620"/>
+                  <rect x="226" y="167" width="60" height="8" rx="4" fill="#F6F3EC"/>
+                  <rect x="330" y="167" width="34" height="8" rx="4" fill="#F5C800"/>
+                </g>
+                <g>
+                  <rect x="214" y="190" width="164" height="22" rx="4" fill="#2A2620"/>
+                  <rect x="226" y="197" width="60" height="8" rx="4" fill="#F6F3EC"/>
+                  <rect x="330" y="197" width="34" height="8" rx="4" fill="#F5C800"/>
+                </g>
+                <g>
+                  <rect x="214" y="220" width="164" height="22" rx="4" fill="#2A2620"/>
+                  <rect x="226" y="227" width="60" height="8" rx="4" fill="#F6F3EC"/>
+                  <rect x="330" y="227" width="34" height="8" rx="4" fill="#F5C800"/>
+                </g>
+              </svg>
+            </div>
+            <div class="work-body">
+              <h3>Marco Reyes — Live</h3>
+              <p>A bold, bookable home base for a touring comedian: tour dates, clips, press kit, and a contact line that goes straight to his manager.</p>
+              <span class="work-foot">Performer · New site <span class="arrow" aria-hidden="true">→</span></span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY -->
+    <section id="why" class="why" aria-labelledby="why-title">
+      <div class="wrap">
+        <div class="reveal">
+          <p class="eyebrow">Why work with me</p>
+          <h2 id="why-title">The whole point is that it's just me.</h2>
+          <p class="why-lead">No account managers, no handoffs, no mystery invoices. You talk to the person actually building your site — and you keep everything when it's done.</p>
+        </div>
+        <div class="why-grid">
+          <div class="why-item reveal" style="--d:60ms">
+            <h3>Solo, on purpose</h3>
+            <p>One builder who knows your project end to end. Email me and the person who replies wrote the code.</p>
+          </div>
+          <div class="why-item reveal" style="--d:120ms">
+            <h3>Flat pricing</h3>
+            <p>You get a fixed number before we start. Scope changes get re-quoted up front — never billed by surprise.</p>
+          </div>
+          <div class="why-item reveal" style="--d:180ms">
+            <h3>You own it</h3>
+            <p>Domain, hosting, code, content — all in your name. No platform lock-in, no holding your site hostage.</p>
+          </div>
+          <div class="why-item reveal" style="--d:240ms">
+            <h3>Plain language</h3>
+            <p>I explain the what and the why in words that make sense. You'll always know what you're paying for.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" aria-labelledby="contact-title">
+      <div class="wrap contact-grid">
+        <div class="contact-intro reveal">
+          <p class="eyebrow">Start a project</p>
+          <h2 id="contact-title">Tell me what you're building.</h2>
+          <p>A few sentences is plenty. I'll reply within a business day with honest next steps — and whether I'm the right fit. No pressure, no sales pitch.</p>
+          <a class="email-line" href="mailto:hello@bananabyte.io">hello@bananabyte.io 🍌</a>
+        </div>
+
+        <div class="reveal" style="--d:120ms">
+          <form id="contact-form" novalidate>
+            <div class="field-row">
+              <div class="field">
+                <label for="name">Name <span class="req" aria-hidden="true">*</span></label>
+                <input id="name" name="name" type="text" autocomplete="name" placeholder="Your name" required>
+              </div>
+              <div class="field">
+                <label for="email">Email <span class="req" aria-hidden="true">*</span></label>
+                <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="ptype">Project type</label>
+              <select id="ptype" name="ptype">
+                <option value="" selected>Choose one…</option>
+                <option value="new">New website</option>
+                <option value="store">Online store</option>
+                <option value="redesign">Redesign</option>
+                <option value="fix">Speed-up or fix</option>
+                <option value="maintenance">Maintenance</option>
+                <option value="other">Something else</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="message">Project details <span class="req" aria-hidden="true">*</span></label>
+              <textarea id="message" name="message" placeholder="What do you sell or do? Do you have a site now? Any rough timeline or budget in mind?" required></textarea>
+            </div>
+
+            <div class="form-foot">
+              <button class="btn btn--accent" type="submit">Send it over</button>
+              <p class="form-note">Demo form — it won't actually send. Email me directly above.</p>
+            </div>
+          </form>
+
+          <div class="form-success" id="form-success" role="status" aria-live="polite">
+            <h3>Got it — thanks! 🍌</h3>
+            <p>This is a demo, so nothing was actually sent. For real, drop me a line at <a href="mailto:hello@bananabyte.io">hello@bananabyte.io</a> and I'll get back within a business day.</p>
+            <button class="reset" type="button" id="form-reset">Send another</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="wordmark"><span class="cap">BANANA</span><span class="low">byte</span><span class="dot" aria-hidden="true"></span></span>
+          <p>A one-person web studio in Orlando, FL. Fast, clean, custom sites and online stores — built by the person you actually talk to.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Studio</h4>
+          <ul>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#work">Selected work</a></li>
+            <li><a href="#why">Why work with me</a></li>
+            <li><a href="#contact">Start a project</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@bananabyte.io">hello@bananabyte.io</a></li>
+            <li><a href="#contact">Project inquiry</a></li>
+            <li><span style="color:var(--ink-faint)">Orlando, Florida</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 BANANAbyte 🍌 — built in Orlando.</span>
+        <span>Fast sites, flat prices, you own everything.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var revealEls = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+
+      if (reduce || !('IntersectionObserver' in window)) {
+        revealEls.forEach(function (el) { el.classList.add('in'); });
+      } else {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+        revealEls.forEach(function (el) { io.observe(el); });
+      }
+
+      // Contact form: styled demo, never sends.
+      var form = document.getElementById('contact-form');
+      var success = document.getElementById('form-success');
+      var resetBtn = document.getElementById('form-reset');
+
+      if (form) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var name = document.getElementById('name');
+          var email = document.getElementById('email');
+          var message = document.getElementById('message');
+          var ok = true;
+          [name, email, message].forEach(function (f) {
+            if (!f.value.trim()) {
+              ok = false;
+              f.setAttribute('aria-invalid', 'true');
+            } else {
+              f.removeAttribute('aria-invalid');
+            }
+          });
+          if (!ok) {
+            (name.value.trim() ? (email.value.trim() ? message : email) : name).focus();
+            return;
+          }
+          form.style.display = 'none';
+          success.classList.add('show');
+          success.focus && success.setAttribute('tabindex', '-1');
+          success.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+        });
+      }
+
+      if (resetBtn) {
+        resetBtn.addEventListener('click', function () {
+          form.reset();
+          success.classList.remove('show');
+          form.style.display = 'grid';
+          document.getElementById('name').focus();
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

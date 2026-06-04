@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>BANANAbyte — Custom websites for small businesses, online stores &amp; performers (Orlando)</title>
+<meta name="description" content="BANANAbyte is a one-person web studio in Orlando, FL. Fast, clean, custom websites for small businesses, online stores, and performers. Flat pricing, quick turnaround, you own everything.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Familjen+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAFAF8;
+    --surface:#FFFFFF;
+    --panel:#F2F1EC;
+    --ink:#16171B;
+    --ink-soft:#42454C;
+    --ink-mute:#686B72;
+    --line:#E4E2DA;
+    --line-soft:#EDEBE4;
+    --banana:#F5C800;
+    --banana-deep:#C99E00;
+    --banana-wash:#FDF6D8;
+    --radius-lg:22px;
+    --radius:16px;
+    --radius-sm:11px;
+    --shadow-sm:0 1px 2px rgba(22,23,27,.05), 0 2px 8px rgba(22,23,27,.04);
+    --shadow:0 10px 30px -12px rgba(22,23,27,.16), 0 2px 8px rgba(22,23,27,.05);
+    --shadow-lift:0 22px 48px -18px rgba(22,23,27,.26), 0 4px 12px rgba(22,23,27,.07);
+    --maxw:1180px;
+    --ease:cubic-bezier(.22,.61,.36,1);
+    --sans:"Familjen Grotesk", ui-sans-serif, sans-serif;
+    --serif:"Fraunces", Georgia, serif;
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    font-family:var(--sans);
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.6;
+    font-size:clamp(15px,1vw + 13px,17px);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    background:
+      radial-gradient(60% 50% at 82% -8%, rgba(245,200,0,.10), transparent 60%),
+      radial-gradient(48% 42% at 4% 12%, rgba(245,200,0,.05), transparent 60%);
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  ::selection{background:var(--banana);color:var(--ink)}
+
+  .wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:clamp(18px,4vw,40px)}
+
+  h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.06;letter-spacing:-.01em;margin:0}
+  p{margin:0}
+
+  /* Focus */
+  a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,.work:focus-visible{
+    outline:3px solid var(--ink);
+    outline-offset:3px;
+    border-radius:6px;
+  }
+  .btn:focus-visible{outline-offset:4px}
+
+  /* Buttons */
+  .btn{
+    --b:var(--ink);--f:var(--bg);
+    display:inline-flex;align-items:center;gap:.55em;
+    font-family:var(--sans);font-weight:600;font-size:1rem;
+    line-height:1;letter-spacing:.005em;
+    padding:.92em 1.5em;border-radius:999px;
+    border:1.5px solid var(--b);background:var(--b);color:var(--f);
+    cursor:pointer;text-decoration:none;white-space:nowrap;
+    transition:transform .35s var(--ease), box-shadow .35s var(--ease), background .25s var(--ease), color .25s var(--ease);
+  }
+  .btn .arrow{transition:transform .35s var(--ease)}
+  .btn:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+  .btn:hover .arrow{transform:translateX(4px)}
+  .btn-primary{--b:var(--banana);--f:var(--ink);border-color:var(--banana-deep)}
+  .btn-primary:hover{box-shadow:0 14px 30px -10px rgba(201,158,0,.6)}
+  .btn-ghost{--b:transparent;--f:var(--ink);border-color:var(--line);background:var(--surface)}
+  .btn-ghost:hover{border-color:var(--ink)}
+
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:.55em;
+    font-family:var(--sans);font-weight:600;
+    font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ink-mute);
+  }
+  .eyebrow::before{
+    content:"";width:22px;height:2px;border-radius:2px;
+    background:var(--banana);
+  }
+
+  /* ---------- Header ---------- */
+  header.site{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:saturate(150%) blur(10px);
+    background:rgba(250,250,248,.78);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s var(--ease), box-shadow .3s var(--ease);
+  }
+  header.site.scrolled{border-color:var(--line);box-shadow:0 1px 0 rgba(22,23,27,.02)}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;height:68px}
+  .brand{
+    font-family:var(--serif);font-weight:600;font-size:clamp(1.18rem,4.2vw,1.4rem);
+    letter-spacing:-.02em;text-decoration:none;color:var(--ink);
+    display:inline-flex;align-items:baseline;gap:.12em;white-space:nowrap;
+  }
+  .brand .caps{text-transform:uppercase;letter-spacing:.01em}
+  .brand .byte{position:relative}
+  .brand .byte::after{
+    content:"";position:absolute;left:0;right:0;bottom:.06em;height:.28em;
+    background:var(--banana);z-index:-1;border-radius:3px;opacity:.85;
+  }
+  .brand .peel{font-size:.95em;transform:translateY(-.02em)}
+  .nav-links{display:none;align-items:center;gap:2rem;list-style:none;margin:0;padding:0}
+  .nav-links a{
+    text-decoration:none;color:var(--ink-soft);font-weight:500;font-size:.97rem;
+    position:relative;padding:.2em 0;
+  }
+  .nav-links a::after{
+    content:"";position:absolute;left:0;bottom:-2px;height:2px;width:100%;
+    background:var(--banana);transform:scaleX(0);transform-origin:left;
+    transition:transform .3s var(--ease);
+  }
+  .nav-links a:hover{color:var(--ink)}
+  .nav-links a:hover::after{transform:scaleX(1)}
+  .nav-cta{display:inline-flex;padding:.55em 1.1em;font-size:.92rem;min-height:44px}
+  .nav-cta .arrow{display:none}
+  @media(min-width:880px){
+    .nav-links{display:flex}
+    .nav-cta{padding:.92em 1.5em;font-size:1rem;min-height:0}
+    .nav-cta .arrow{display:inline}
+  }
+
+  /* ---------- Reveal animation ---------- */
+  .reveal{opacity:0;transform:translateY(18px)}
+  .ready .reveal{
+    animation:rise .8s var(--ease) forwards;
+    animation-delay:var(--d,0ms);
+  }
+  @keyframes rise{to{opacity:1;transform:none}}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;z-index:1;padding:clamp(48px,8vw,96px) 0 clamp(40px,6vw,70px)}
+  .hero-grid{display:grid;gap:clamp(34px,5vw,56px);grid-template-columns:1fr}
+  @media(min-width:980px){.hero-grid{grid-template-columns:1.08fr .92fr;align-items:center}}
+  .hero h1{
+    font-size:clamp(2.5rem,6.4vw,4.6rem);
+    margin:.5rem 0 .9rem;letter-spacing:-.025em;
+  }
+  .hero h1 .hl{position:relative;white-space:nowrap}
+  .hero h1 .hl::after{
+    content:"";position:absolute;left:-.05em;right:-.05em;bottom:.08em;height:.32em;
+    background:var(--banana);z-index:-1;border-radius:4px;
+  }
+  .hero h1 em{font-style:italic;font-weight:500;color:var(--ink-soft)}
+  .hero .lede{font-size:clamp(1.05rem,1.5vw,1.22rem);color:var(--ink-soft);max-width:34ch}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:.85rem;margin-top:1.8rem}
+  .hero-meta{
+    display:flex;flex-wrap:wrap;gap:1.4rem 2rem;margin-top:2.4rem;
+    padding-top:1.6rem;border-top:1px solid var(--line);
+  }
+  .hero-meta div{min-width:0}
+  .hero-meta .n{font-family:var(--serif);font-size:1.5rem;font-weight:600;line-height:1}
+  .hero-meta .l{font-size:.82rem;color:var(--ink-mute);margin-top:.3rem}
+
+  /* Hero visual: stacked browser preview cards */
+  .hero-art{position:relative;min-height:300px;overflow:hidden;padding:6px 12px 6px 6px}
+  .card-mock{
+    position:relative;background:var(--surface);border:1px solid var(--line);
+    border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;
+  }
+  .card-mock .bar{
+    display:flex;align-items:center;gap:.4rem;padding:.7rem .9rem;
+    border-bottom:1px solid var(--line-soft);background:var(--panel);
+  }
+  .card-mock .dot{width:9px;height:9px;border-radius:50%;background:#D6D3C8}
+  .card-mock .url{
+    margin-left:.6rem;font-size:.72rem;color:var(--ink-mute);
+    background:var(--surface);border:1px solid var(--line);border-radius:99px;
+    padding:.22em .8em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
+  .card-mock .body{padding:1.1rem 1.1rem 1.3rem}
+  .mock-main{position:relative;z-index:2}
+  .skel{height:11px;border-radius:6px;background:var(--line-soft)}
+  .skel.t{height:18px;width:62%;background:var(--ink);opacity:.9}
+  .skel.w70{width:70%}.skel.w90{width:90%}.skel.w45{width:45%}
+  .pill{display:inline-block;background:var(--banana);color:var(--ink);font-weight:600;
+    font-size:.7rem;padding:.32em .7em;border-radius:99px}
+  .mock-row{display:flex;gap:.5rem;margin-top:.9rem}
+  .mock-tile{flex:1;height:54px;border-radius:9px;background:var(--panel);border:1px solid var(--line-soft)}
+  .mock-tile.acc{background:var(--banana-wash);border-color:#F0E6B0}
+  .mock-back{
+    position:absolute;inset:auto 0 -10% 18%;z-index:1;
+    transform:rotate(3.5deg);opacity:.75;filter:saturate(.9);
+  }
+  .mock-back .body{padding:.9rem}
+  .mock-badge{
+    position:absolute;z-index:3;right:4px;bottom:18px;
+    background:var(--ink);color:var(--bg);font-weight:600;font-size:.78rem;
+    padding:.6em .95em;border-radius:13px;box-shadow:var(--shadow-lift);
+    display:flex;align-items:center;gap:.45em;
+  }
+  .mock-badge .star{color:var(--banana)}
+  @media(min-width:980px){.hero-art{min-height:380px}}
+
+  /* ---------- Logos / trust row ---------- */
+  .trust{padding:8px 0 4px;position:relative;z-index:1}
+  .trust .wrap{
+    display:flex;flex-wrap:wrap;align-items:center;gap:.7rem 1.6rem;
+    color:var(--ink-mute);font-size:.86rem;
+  }
+  .trust .lab{font-weight:600;color:var(--ink-soft)}
+  .trust .chip{display:inline-flex;align-items:center;gap:.45em;font-weight:500}
+  .trust .chip svg{flex:none}
+
+  /* ---------- Section scaffolding ---------- */
+  section{position:relative;z-index:1}
+  .section{padding:clamp(56px,8vw,104px) 0}
+  .section-head{max-width:60ch;margin-bottom:clamp(28px,4vw,44px)}
+  .section-head h2{font-size:clamp(1.9rem,3.6vw,2.9rem);margin:.7rem 0 .6rem;letter-spacing:-.02em}
+  .section-head p{color:var(--ink-soft);font-size:1.06rem;max-width:50ch}
+
+  /* ---------- Services ---------- */
+  .services{display:grid;gap:14px;grid-template-columns:1fr}
+  @media(min-width:620px){.services{grid-template-columns:1fr 1fr}}
+  @media(min-width:980px){.services{grid-template-columns:repeat(3,1fr)}}
+  .svc{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:1.5rem 1.4rem 1.55rem;box-shadow:var(--shadow-sm);
+    transition:transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s var(--ease);
+    position:relative;overflow:hidden;
+  }
+  .svc:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#D9D6CC}
+  .svc .ic{
+    width:42px;height:42px;border-radius:12px;display:grid;place-items:center;
+    background:var(--panel);border:1px solid var(--line-soft);margin-bottom:1rem;
+    transition:background .35s var(--ease);
+  }
+  .svc:hover .ic{background:var(--banana-wash)}
+  .svc .ic svg{width:21px;height:21px;stroke:var(--ink);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .svc h3{font-size:1.22rem;margin-bottom:.4rem}
+  .svc p{color:var(--ink-soft);font-size:.96rem}
+  .svc.feature{border-color:var(--banana-deep);background:linear-gradient(180deg,var(--banana-wash),var(--surface) 55%)}
+  .svc.feature .ic{background:var(--banana);border-color:var(--banana-deep)}
+  .svc .tag{
+    position:absolute;top:1.1rem;right:1.1rem;font-size:.66rem;font-weight:700;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--banana-deep);
+  }
+
+  /* ---------- Work ---------- */
+  .work-grid{display:grid;gap:18px;grid-template-columns:1fr}
+  @media(min-width:760px){.work-grid{grid-template-columns:1fr 1fr}}
+  @media(min-width:1040px){.work-grid{grid-template-columns:repeat(3,1fr)}}
+  .work{
+    display:block;text-decoration:none;color:inherit;
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);
+    overflow:hidden;box-shadow:var(--shadow-sm);
+    transition:transform .45s var(--ease), box-shadow .45s var(--ease);
+  }
+  .work:hover{transform:translateY(-5px);box-shadow:var(--shadow-lift)}
+  .work .thumb{
+    aspect-ratio:4/3;position:relative;overflow:hidden;
+    display:grid;place-items:center;border-bottom:1px solid var(--line-soft);
+  }
+  .work .thumb .scene{position:absolute;inset:0}
+  .work:hover .thumb .lift{transform:translateY(-6px) scale(1.015)}
+  .thumb .lift{transition:transform .5s var(--ease)}
+  .work .meta{padding:1.15rem 1.2rem 1.3rem}
+  .work .kind{
+    display:inline-flex;align-items:center;gap:.45em;
+    font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-mute);
+  }
+  .work .kind .d{width:7px;height:7px;border-radius:50%;background:var(--banana);}
+  .work h3{font-size:1.28rem;margin:.55rem 0 .4rem}
+  .work .blurb{color:var(--ink-soft);font-size:.93rem}
+  .work .go{
+    margin-top:.95rem;display:inline-flex;align-items:center;gap:.4em;
+    font-weight:600;font-size:.9rem;color:var(--ink);
+  }
+  .work .go .arrow{transition:transform .35s var(--ease)}
+  .work:hover .go .arrow{transform:translateX(4px)}
+
+  /* Thumb scenes (pure CSS art) */
+  .scene-shop{background:linear-gradient(150deg,#FFFDF4,#F2F1EC)}
+  .scene-local{background:linear-gradient(150deg,#F4F6F4,#ECEEEA)}
+  .scene-perf{background:linear-gradient(150deg,#F6F3F0,#EEEAE5)}
+  .pcard{
+    position:absolute;background:var(--surface);border:1px solid var(--line);
+    border-radius:12px;box-shadow:var(--shadow-sm);
+  }
+  /* shop */
+  .scene-shop .pcard{width:38%;height:54%;top:22%;left:14%}
+  .scene-shop .pcard.b{left:auto;right:14%;top:32%;transform:rotate(3deg)}
+  .scene-shop .price{position:absolute;bottom:14%;left:14%;background:var(--banana);
+    color:var(--ink);font-weight:700;font-size:.74rem;padding:.3em .7em;border-radius:8px}
+  .scene-shop .cart{position:absolute;top:16%;right:12%;width:34px;height:34px;border-radius:9px;
+    background:var(--ink);display:grid;place-items:center}
+  .scene-shop .cart svg{width:17px;height:17px;stroke:var(--banana);fill:none;stroke-width:1.8}
+  .ph-img{background:repeating-linear-gradient(135deg,#EFEDE5,#EFEDE5 7px,#F6F4EE 7px,#F6F4EE 14px)}
+  .scene-shop .pcard .top{height:58%;border-radius:11px 11px 0 0;
+    background:linear-gradient(160deg,#FBF4D6,#F2F1EC)}
+  .scene-shop .pcard .ln{height:6px;border-radius:3px;background:var(--line);margin:8px 10px 0}
+  .scene-shop .pcard .ln.s{width:50%}
+  /* local */
+  .scene-local .store{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    width:60%;height:62%}
+  .scene-local .awn{height:26%;border-radius:12px 12px 0 0;
+    background:repeating-linear-gradient(90deg,#2B6E4F,#2B6E4F 14px,#FBFBF8 14px,#FBFBF8 28px)}
+  .scene-local .front{height:74%;background:var(--surface);border:1px solid var(--line);
+    border-top:none;border-radius:0 0 12px 12px;position:relative}
+  .scene-local .door{position:absolute;left:50%;bottom:0;transform:translateX(-50%);
+    width:30%;height:62%;background:var(--panel);border:1px solid var(--line);border-radius:6px 6px 0 0}
+  .scene-local .win{position:absolute;top:16%;width:24%;height:40%;background:var(--banana-wash);
+    border:1px solid #EEE1A8;border-radius:5px}
+  .scene-local .win.l{left:9%}.scene-local .win.r{right:9%}
+  .scene-local .pin{position:absolute;top:14%;right:16%;width:30px;height:30px}
+  .scene-local .pin svg{stroke:var(--ink);fill:var(--banana);stroke-width:1.5}
+  /* performer / creator — clean profile + dates site, no theatrical motifs */
+  .scene-perf .profile{position:absolute;left:11%;top:18%;width:78%;height:64%;
+    background:var(--surface);border:1px solid var(--line);border-radius:13px;
+    box-shadow:var(--shadow-sm);padding:11% 11% 0;overflow:hidden}
+  .scene-perf .avatar{width:34px;height:34px;border-radius:50%;background:var(--ink-soft);
+    border:2px solid var(--surface);box-shadow:0 0 0 1px var(--line)}
+  .scene-perf .nm{height:9px;width:54%;border-radius:4px;background:var(--ink);margin-top:9px}
+  .scene-perf .role{height:6px;width:34%;border-radius:3px;background:var(--line);margin-top:6px}
+  .scene-perf .dates{margin-top:11px;display:grid;gap:6px}
+  .scene-perf .dt{display:flex;align-items:center;gap:7px}
+  .scene-perf .dt .day{width:26px;height:13px;border-radius:4px;background:var(--banana-wash);
+    border:1px solid #EEE1A8}
+  .scene-perf .dt .ln{flex:1;height:6px;border-radius:3px;background:var(--line)}
+  .scene-perf .play{position:absolute;right:13%;top:14%;width:30px;height:30px;border-radius:9px;
+    background:var(--ink);display:grid;place-items:center}
+  .scene-perf .play svg{width:14px;height:14px;fill:var(--banana);stroke:none}
+
+  /* ---------- Why strip ---------- */
+  .why{background:var(--ink);color:#F4F3EF;border-radius:clamp(20px,3vw,30px);
+    padding:clamp(34px,5vw,58px) clamp(24px,4vw,52px);position:relative;overflow:hidden}
+  .why::after{content:"";position:absolute;right:-60px;top:-60px;width:240px;height:240px;
+    border-radius:50%;background:radial-gradient(closest-side,rgba(245,200,0,.22),transparent);}
+  .why .section-head h2{color:#fff}
+  .why .section-head p{color:#C7C8CC}
+  .why .eyebrow{color:#A9AAB0}
+  .why-grid{display:grid;gap:22px 30px;grid-template-columns:1fr;margin-top:2rem;position:relative;z-index:1}
+  @media(min-width:680px){.why-grid{grid-template-columns:1fr 1fr}}
+  @media(min-width:1000px){.why-grid{grid-template-columns:repeat(4,1fr)}}
+  .why-item{border-top:1px solid rgba(255,255,255,.16);padding-top:1rem}
+  .why-item .num{font-family:var(--serif);font-size:1.05rem;color:var(--banana);font-weight:600}
+  .why-item h3{font-size:1.18rem;color:#fff;margin:.5rem 0 .35rem}
+  .why-item p{color:#BFC0C5;font-size:.93rem}
+
+  /* ---------- Contact ---------- */
+  .contact-grid{display:grid;gap:clamp(26px,4vw,48px);grid-template-columns:1fr;align-items:start}
+  @media(min-width:920px){.contact-grid{grid-template-columns:.92fr 1.08fr}}
+  .contact-aside .lede{color:var(--ink-soft);font-size:1.05rem;max-width:38ch;margin-top:.7rem}
+  .contact-card{
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:1.2rem 1.3rem;margin-top:1.6rem;
+  }
+  .contact-card a{color:var(--ink);font-weight:600;text-decoration:none;border-bottom:2px solid var(--banana)}
+  .contact-card a:hover{background:var(--banana-wash)}
+  .contact-card .lab{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);font-weight:600}
+  .contact-card .em{font-size:1.18rem;margin-top:.2rem;display:inline-block}
+  .contact-card .note{font-size:.88rem;color:var(--ink-soft);margin-top:.55rem}
+
+  form.cf{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);
+    padding:clamp(20px,3vw,30px);box-shadow:var(--shadow);
+  }
+  .field{margin-bottom:1.05rem}
+  .field label{display:block;font-weight:600;font-size:.9rem;margin-bottom:.4rem}
+  .field .req{color:var(--banana-deep)}
+  .row2{display:grid;gap:1.05rem;grid-template-columns:1fr}
+  @media(min-width:560px){.row2{grid-template-columns:1fr 1fr}}
+  .cf input,.cf select,.cf textarea{
+    width:100%;font-family:var(--sans);font-size:1rem;color:var(--ink);
+    background:var(--bg);border:1.5px solid var(--line);border-radius:var(--radius-sm);
+    padding:.85em .9em;min-height:46px;transition:border-color .25s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease);
+  }
+  .cf textarea{min-height:120px}
+  .cf textarea{resize:vertical;min-height:120px}
+  .cf select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2342454C' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right .95em center;padding-right:2.4em}
+  .cf input:focus,.cf select:focus,.cf textarea:focus{
+    outline:none;border-color:var(--ink);background:var(--surface);
+    box-shadow:0 0 0 4px rgba(245,200,0,.28);
+  }
+  .cf input::placeholder,.cf textarea::placeholder{color:#7E8086}
+  .cf .submit-row{display:flex;flex-wrap:wrap;align-items:center;gap:1rem;margin-top:.4rem}
+  .cf .fineprint{font-size:.83rem;color:var(--ink-mute);max-width:30ch}
+  .form-ok{
+    display:none;align-items:flex-start;gap:.9rem;
+    background:var(--banana-wash);border:1.5px solid #EEDF98;border-radius:var(--radius);
+    padding:1.1rem 1.2rem;
+  }
+  .form-ok.show{display:flex;animation:rise .55s var(--ease)}
+  .form-ok .check{flex:none;width:34px;height:34px;border-radius:50%;background:var(--banana);
+    display:grid;place-items:center}
+  .form-ok .check svg{width:18px;height:18px;stroke:var(--ink);stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .form-ok h3{font-size:1.12rem}
+  .form-ok p{color:var(--ink-soft);font-size:.93rem;margin-top:.2rem}
+
+  /* ---------- Footer ---------- */
+  footer.site{border-top:1px solid var(--line);margin-top:clamp(40px,6vw,80px);background:var(--bg);position:relative;z-index:1}
+  .foot{display:grid;gap:1.6rem;grid-template-columns:1fr;padding:clamp(36px,5vw,56px) 0 clamp(28px,4vw,40px)}
+  @media(min-width:760px){.foot{grid-template-columns:1.4fr 1fr 1fr}}
+  .foot .brand{font-size:1.5rem}
+  .foot p.tag{color:var(--ink-soft);font-size:.95rem;margin-top:.7rem;max-width:34ch}
+  .foot h4{font-family:var(--sans);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-mute);margin:0 0 .9rem;font-weight:700}
+  .foot ul{list-style:none;margin:0;padding:0;display:grid;gap:.6rem}
+  .foot a{text-decoration:none;color:var(--ink-soft);font-size:.96rem;transition:color .2s var(--ease)}
+  .foot a:hover{color:var(--ink)}
+  .foot-bottom{border-top:1px solid var(--line);padding:1.2rem 0 1.6rem;display:flex;flex-wrap:wrap;
+    gap:.6rem 1.2rem;justify-content:space-between;align-items:center;color:var(--ink-mute);font-size:.84rem}
+  .foot-bottom .made .pl{color:var(--banana-deep)}
+
+  /* skip link */
+  .skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:var(--bg);
+    padding:.7em 1.1em;border-radius:0 0 10px 0;z-index:200;font-weight:600}
+  .skip:focus{left:0}
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+    .reveal{opacity:1 !important;transform:none !important}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site" id="top">
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="BANANAbyte home">
+      <span class="peel" aria-hidden="true">🍌</span>
+      <span class="caps">BANANA</span><span class="byte">byte</span>
+    </a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#why">Why me</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-primary nav-cta" href="#contact">Start a project <span class="arrow" aria-hidden="true">→</span></a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow reveal" style="--d:60ms">Web studio · Orlando, FL</span>
+        <h1 id="hero-h" class="reveal" style="--d:140ms">
+          Websites that <span class="hl">earn their keep</span> — for shops, locals &amp; <em>everyone in between.</em>
+        </h1>
+        <p class="lede reveal" style="--d:230ms">
+          BANANAbyte is one person who builds fast, clean, custom sites — whether you sell online,
+          run a local storefront, or need a professional home base for your work. Clear pricing,
+          real timelines, and a site that's actually yours.
+        </p>
+        <div class="hero-actions reveal" style="--d:320ms">
+          <a class="btn btn-primary" href="#contact">Get a free quote <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn-ghost" href="#work">See the work</a>
+        </div>
+        <div class="hero-meta reveal" style="--d:410ms">
+          <div><div class="n">1</div><div class="l">person, start to finish</div></div>
+          <div><div class="n">~2&nbsp;wk</div><div class="l">typical turnaround</div></div>
+          <div><div class="n">Flat</div><div class="l">pricing, no surprises</div></div>
+          <div><div class="n">100%</div><div class="l">you own it</div></div>
+        </div>
+      </div>
+
+      <div class="hero-art reveal" style="--d:300ms" aria-hidden="true">
+        <!-- back card -->
+        <div class="card-mock mock-back">
+          <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="url">cocoa-roastery.com</span></div>
+          <div class="body">
+            <div class="skel" style="height:70px;border-radius:10px"></div>
+            <div class="mock-row"><div class="mock-tile"></div><div class="mock-tile acc"></div></div>
+          </div>
+        </div>
+        <!-- front card -->
+        <div class="card-mock mock-main">
+          <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="url">yourbusiness.com</span></div>
+          <div class="body">
+            <span class="pill">New &amp; live</span>
+            <div class="skel t" style="margin-top:.9rem"></div>
+            <div class="skel w90" style="margin-top:.7rem"></div>
+            <div class="skel w70" style="margin-top:.5rem"></div>
+            <div class="mock-row">
+              <div class="mock-tile"></div>
+              <div class="mock-tile"></div>
+              <div class="mock-tile acc"></div>
+            </div>
+            <div class="skel w45" style="margin-top:.9rem;height:30px;border-radius:9px;background:var(--ink)"></div>
+          </div>
+        </div>
+        <div class="mock-badge"><span class="star">★</span> Built by hand, not a template</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <div class="trust" aria-label="What I build for">
+    <div class="wrap reveal" style="--d:480ms">
+      <span class="lab">Made for</span>
+      <span class="chip">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#42454C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+        Online stores
+      </span>
+      <span class="chip">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#42454C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-6 9 6"/><path d="M5 9v11h14V9"/><path d="M9 20v-6h6v6"/></svg>
+        Local businesses
+      </span>
+      <span class="chip">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#42454C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M5 10a7 7 0 0 0 14 0"/><path d="M12 17v4"/></svg>
+        Performers &amp; creators
+      </span>
+      <span class="chip">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#42454C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H4z"/><path d="M2 20h20"/></svg>
+        Portfolios &amp; service sites
+      </span>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="section" id="services" aria-labelledby="svc-h">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">What I do</span>
+        <h2 id="svc-h">Whatever it takes to get you online — and keep you there.</h2>
+        <p>Pick where you are. New build, glow-up, online store, or just making the thing you already have faster.</p>
+      </div>
+      <div class="services">
+
+        <article class="svc reveal" style="--d:60ms">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 4v16"/><path d="M4 12h16"/><circle cx="12" cy="12" r="9"/></svg></div>
+          <h3>New websites</h3>
+          <p>Start from zero with a custom site that fits your business — not a recycled template everyone else is using.</p>
+        </article>
+
+        <article class="svc feature reveal" style="--d:130ms">
+          <span class="tag">Shop owners</span>
+          <div class="ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg></div>
+          <h3>Online stores &amp; e‑commerce</h3>
+          <p>Real shopping carts, secure checkout, product pages, and inventory you can update yourself. Sell while you sleep.</p>
+        </article>
+
+        <article class="svc reveal" style="--d:200ms">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></div>
+          <h3>Redesigns</h3>
+          <p>Got a site that looks like 2014? I'll keep what works, fix what doesn't, and make it look like you mean business.</p>
+        </article>
+
+        <article class="svc reveal" style="--d:270ms">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg></div>
+          <h3>Speed‑ups &amp; fixes</h3>
+          <p>Slow, broken, or scaring off mobile visitors? I diagnose it, fix it, and make pages load before they bounce.</p>
+        </article>
+
+        <article class="svc reveal" style="--d:340ms">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M20.5 7.5 12 12 3.5 7.5 12 3z"/><path d="M3.5 7.5v9L12 21l8.5-4.5v-9"/><path d="M12 12v9"/></svg></div>
+          <h3>Maintenance</h3>
+          <p>Updates, backups, small tweaks, and a real person who answers when something breaks. No ticket queue purgatory.</p>
+        </article>
+
+        <article class="svc reveal" style="--d:410ms">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-9-9"/><path d="M12 7v5l3 2"/></svg></div>
+          <h3>Always plain language</h3>
+          <p>No jargon walls. I tell you what it costs, what it does, and when it ships — in words that make sense.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="section" id="work" aria-labelledby="work-h" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Selected work</span>
+        <h2 id="work-h">Three projects, three very different briefs.</h2>
+        <p>Proof I can build for whoever you are — an online store, a local business, or an independent professional.</p>
+      </div>
+      <div class="work-grid">
+
+        <!-- Online store -->
+        <a class="work reveal" style="--d:80ms" href="#contact" aria-label="Cocoa Cartel online store — view project (demo)">
+          <div class="thumb scene-shop">
+            <div class="scene lift" aria-hidden="true">
+              <div class="cart"><svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg></div>
+              <div class="pcard"><div class="top"></div><div class="ln"></div><div class="ln s"></div></div>
+              <div class="pcard b"><div class="top"></div><div class="ln"></div><div class="ln s"></div></div>
+              <span class="price">Add to cart</span>
+            </div>
+          </div>
+          <div class="meta">
+            <span class="kind"><span class="d"></span>Online store</span>
+            <h3>Cocoa Cartel</h3>
+            <p class="blurb">Small-batch chocolate brand. Custom storefront, one-tap checkout, and self-serve product updates — orders up 38% in month one.</p>
+            <span class="go">View project <span class="arrow" aria-hidden="true">→</span></span>
+          </div>
+        </a>
+
+        <!-- Local business -->
+        <a class="work reveal" style="--d:160ms" href="#contact" aria-label="Lakeside Plumbing Co. local business site — view project (demo)">
+          <div class="thumb scene-local">
+            <div class="scene lift" aria-hidden="true">
+              <div class="store">
+                <div class="awn"></div>
+                <div class="front">
+                  <div class="win l"></div><div class="win r"></div>
+                  <div class="door"></div>
+                </div>
+              </div>
+              <div class="pin"><svg viewBox="0 0 24 24" width="30" height="30"><path d="M12 22s7-6.5 7-12A7 7 0 0 0 5 10c0 5.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5" fill="#16171B" stroke="none"/></svg></div>
+            </div>
+          </div>
+          <div class="meta">
+            <span class="kind"><span class="d"></span>Local business</span>
+            <h3>Lakeside Plumbing Co.</h3>
+            <p class="blurb">Family plumber in Winter Park. Click-to-call, service map, and a booking form that turns Google searches into morning appointments.</p>
+            <span class="go">View project <span class="arrow" aria-hidden="true">→</span></span>
+          </div>
+        </a>
+
+        <!-- Performer / creator -->
+        <a class="work reveal" style="--d:240ms" href="#contact" aria-label="Dez Marlow performer site — view project (demo)">
+          <div class="thumb scene-perf">
+            <div class="scene lift" aria-hidden="true">
+              <div class="profile">
+                <div class="avatar"></div>
+                <div class="nm"></div>
+                <div class="role"></div>
+                <div class="dates">
+                  <div class="dt"><span class="day"></span><span class="ln"></span></div>
+                  <div class="dt"><span class="day"></span><span class="ln"></span></div>
+                  <div class="dt"><span class="day"></span><span class="ln"></span></div>
+                </div>
+              </div>
+              <div class="play"><svg viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
+            </div>
+          </div>
+          <div class="meta">
+            <span class="kind"><span class="d"></span>Performer</span>
+            <h3>Dez Marlow, Musician</h3>
+            <p class="blurb">Touring musician's home base — a live date list, embedded video, and a mailing-list signup that grows the audience between shows.</p>
+            <span class="go">View project <span class="arrow" aria-hidden="true">→</span></span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="section" id="why" aria-labelledby="why-h" style="padding-top:0">
+    <div class="wrap">
+      <div class="why reveal">
+        <div class="section-head" style="margin-bottom:0">
+          <span class="eyebrow">Why work with me</span>
+          <h2 id="why-h">Big-agency results, without the agency.</h2>
+          <p>You hire a builder, not an account manager who forwards your emails to someone you'll never meet.</p>
+        </div>
+        <div class="why-grid">
+          <div class="why-item">
+            <span class="num">01</span>
+            <h3>It's just me</h3>
+            <p>The person you talk to is the person who builds it. Nothing gets lost in a hand-off, because there isn't one.</p>
+          </div>
+          <div class="why-item">
+            <span class="num">02</span>
+            <h3>Flat pricing</h3>
+            <p>One clear number, agreed up front. No mystery hourly bills, no "scope" surprises landing in your inbox.</p>
+          </div>
+          <div class="why-item">
+            <span class="num">03</span>
+            <h3>You own it</h3>
+            <p>The domain, the code, the accounts — all in your name. Walk away whenever you want; it goes with you.</p>
+          </div>
+          <div class="why-item">
+            <span class="num">04</span>
+            <h3>Plain language</h3>
+            <p>I explain things like a human. You'll always know what you're paying for and what it actually does.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact" aria-labelledby="contact-h" style="padding-top:0">
+    <div class="wrap contact-grid">
+      <div class="contact-aside reveal">
+        <span class="eyebrow">Let's build it</span>
+        <h2 id="contact-h" class="section-head" style="font-size:clamp(1.9rem,3.6vw,2.9rem);margin:.7rem 0 0;max-width:none">Tell me what you're making.</h2>
+        <p class="lede">Online store, local business, or personal brand — send a couple of lines about the project and I'll reply with honest next steps and a ballpark price. No pressure, no sales script.</p>
+        <div class="contact-card">
+          <div class="lab">Email me directly</div>
+          <a class="em" href="mailto:hello@bananabyte.io">hello@bananabyte.io</a>
+          <p class="note">Based in Orlando, FL · usually replies within a business day.</p>
+        </div>
+      </div>
+
+      <div class="reveal" style="--d:120ms">
+        <form class="cf" id="contactForm" novalidate>
+          <div class="row2">
+            <div class="field">
+              <label for="cf-name">Name <span class="req" aria-hidden="true">*</span></label>
+              <input id="cf-name" name="name" type="text" autocomplete="name" placeholder="Gabe Parra" required>
+            </div>
+            <div class="field">
+              <label for="cf-email">Email <span class="req" aria-hidden="true">*</span></label>
+              <input id="cf-email" name="email" type="email" autocomplete="email" placeholder="you@business.com" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="cf-type">Project type</label>
+            <select id="cf-type" name="projectType">
+              <option value="" selected>Pick the closest fit…</option>
+              <option value="online-store">Online store / e‑commerce</option>
+              <option value="new-site">New website</option>
+              <option value="redesign">Redesign of an existing site</option>
+              <option value="speedup">Speed‑up or fixes</option>
+              <option value="maintenance">Ongoing maintenance</option>
+              <option value="performer">Performer / creator site</option>
+              <option value="other">Something else</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="cf-msg">Project details <span class="req" aria-hidden="true">*</span></label>
+            <textarea id="cf-msg" name="message" placeholder="A line or two about what you sell or do, what you need, and any deadline you're working toward." required></textarea>
+          </div>
+          <div class="submit-row">
+            <button class="btn btn-primary" type="submit">Send it over <span class="arrow" aria-hidden="true">→</span></button>
+            <p class="fineprint">No spam, ever. This goes straight to my inbox.</p>
+          </div>
+        </form>
+
+        <div class="form-ok" id="formOk" role="status" aria-live="polite">
+          <div class="check" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div>
+            <h3>Got it — thanks!</h3>
+            <p id="formOkMsg">Your message is in. I'll reply from hello@bananabyte.io within a business day.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <a class="brand" href="#top" aria-label="BANANAbyte home">
+        <span class="peel" aria-hidden="true">🍌</span>
+        <span class="caps">BANANA</span><span class="byte">byte</span>
+      </a>
+      <p class="tag">A one-person web studio in Orlando. Fast, clean, custom sites for shops, locals, and performers — built by hand and owned by you.</p>
+    </div>
+    <div>
+      <h4>Studio</h4>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#work">Selected work</a></li>
+        <li><a href="#why">Why work with me</a></li>
+        <li><a href="#contact">Start a project</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Say hi</h4>
+      <ul>
+        <li><a href="mailto:hello@bananabyte.io">hello@bananabyte.io</a></li>
+        <li><a href="#contact">Get a free quote</a></li>
+        <li><span style="color:var(--ink-mute)">Orlando, FL · EST</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>© 2026 BANANAbyte. All rights reserved.</span>
+    <span class="made">Built by hand <span class="pl" aria-hidden="true">🍌</span> in Orlando, Florida.</span>
+  </div>
+</footer>
+
+<script>
+  // Staggered load reveal — gated so reduced-motion users see everything instantly.
+  (function(){
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(!reduce){
+      requestAnimationFrame(function(){ document.body.classList.add('ready'); });
+    }
+  })();
+
+  // Header shadow on scroll
+  (function(){
+    var header = document.querySelector('header.site');
+    var onScroll = function(){
+      header.classList.toggle('scrolled', window.scrollY > 8);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, {passive:true});
+  })();
+
+  // Contact form — styled demo only. Never sends.
+  (function(){
+    var form = document.getElementById('contactForm');
+    var ok = document.getElementById('formOk');
+    var okMsg = document.getElementById('formOkMsg');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if(!form.checkValidity()){ form.reportValidity(); return; }
+      var name = (document.getElementById('cf-name').value || '').trim().split(' ')[0];
+      var type = document.getElementById('cf-type');
+      var label = type.value ? type.options[type.selectedIndex].text : 'your project';
+      okMsg.textContent = (name ? 'Thanks, ' + name + '! ' : 'Thanks! ') +
+        'Your note about ' + label.toLowerCase().replace('…','') +
+        ' is in. I’ll reply from hello@bananabyte.io within a business day.';
+      form.style.display = 'none';
+      ok.classList.add('show');
+      ok.setAttribute('tabindex','-1');
+      ok.focus();
+    });
+  })();
+</script>
+</body>
+</html>
