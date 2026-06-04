@@ -93,15 +93,18 @@
     input::placeholder,textarea::placeholder{color:var(--mut); opacity:.7}
     input:focus,textarea:focus{outline:none; border-color:var(--yellow); box-shadow:0 0 0 3px rgba(245,200,0,.22)}
     .submit{
-      font-family:var(--mono); font-weight:800; font-size:14px; letter-spacing:.03em; cursor:pointer;
-      display:inline-flex; align-items:center; justify-content:center; gap:9px; min-height:54px;
+      font-family:var(--mono); font-weight:800; font-size:15px; letter-spacing:.04em; cursor:pointer;
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      width:100%; min-height:56px; padding:0 24px;
       border-radius:var(--radius-sm); background:var(--yellow); color:var(--on-yellow); border:1px solid var(--yellow);
-      transition:transform .08s, background .15s;
+      box-shadow:0 10px 24px -12px rgba(245,200,0,.55);
+      transition:transform .12s ease, background .15s, box-shadow .2s;
     }
-    .submit:hover{background:var(--bright); border-color:var(--bright)}
-    .submit:active{transform:translateY(1px)}
-    .submit[disabled]{opacity:.6; cursor:default}
-    .submit svg{width:18px; height:18px}
+    .submit:hover{background:var(--bright); border-color:var(--bright); box-shadow:0 14px 30px -12px rgba(245,200,0,.7)}
+    .submit:active{transform:translateY(1px); box-shadow:0 6px 16px -10px rgba(245,200,0,.5)}
+    .submit[disabled]{opacity:.6; cursor:default; box-shadow:none}
+    .submit svg{width:18px; height:18px; transition:transform .2s ease}
+    .submit:hover svg{transform:translate(3px,-3px)}
     #st{font-family:var(--mono); font-size:13px; font-weight:700; margin:2px 0 0; min-height:0}
     #st:empty{display:none}
     #st.ok{color:var(--yellow)} #st.err{color:#FF8A8E} #st.busy{color:var(--mut)}
