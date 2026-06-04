@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>Dani Cole — Stand-Up Comedian | Orlando, FL</title>
+<meta name="description" content="Dani Cole — Orlando-based stand-up comedian and crowd-work specialist. Tour dates, clips, press, and booking. Name in lights, jokes on point." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    /* ---- BLACK-FIRST BASE (true near-black, not brown) ---- */
+    --black-0:#0A0A0A;        /* deepest */
+    --black-1:#0C0B0A;        /* page base */
+    --black-2:#0E0D0B;        /* raised */
+    --panel:#121110;          /* near-black panel */
+    --panel-2:#17120C;        /* warm-brown seasoning panel (secondary only) */
+    --brown-housing:#1c160e;  /* marquee housing — the ONLY place brown shows */
+    --line:rgba(245,200,0,.16);
+    --line-soft:rgba(255,255,255,.07);
+
+    /* ---- PRIMARY ACCENT: BANANA YELLOW ---- */
+    --yellow:#F5C800;         /* signature */
+    --yellow-bright:#FFD42E;  /* brighter pop */
+    --gold-deep:#E0B11E;      /* hover / shadow gold */
+
+    /* ---- TEXT ---- */
+    --ink:#F4F1E9;            /* warm-white body */
+    --ink-soft:#CFC9BC;       /* muted body */
+    --ink-faint:#9b958a;      /* faint */
+
+    --glow:rgba(245,200,0,.55);
+    --glow-soft:rgba(245,200,0,.22);
+
+    --radius:16px;
+    --radius-sm:11px;
+    --maxw:1140px;
+    --shadow-deep:0 28px 70px -28px rgba(0,0,0,.9);
+    --ease:cubic-bezier(.22,.61,.36,1);
+
+    --font-display:"Archivo Black", "Arial Black", sans-serif;
+    --font-marquee:"Bebas Neue", "Archivo Black", sans-serif;
+    --font-body:"DM Sans", system-ui, sans-serif;
+  }
+
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
+
+  body{
+    margin:0;
+    font-family:var(--font-body);
+    color:var(--ink);
+    font-size:17px;
+    line-height:1.65;
+    background-color:var(--black-1);
+    background-image:
+      radial-gradient(1100px 560px at 50% -6%, rgba(245,200,0,.10), transparent 62%),
+      radial-gradient(820px 520px at 88% 10%, rgba(245,200,0,.05), transparent 60%),
+      radial-gradient(900px 700px at 50% 118%, rgba(224,177,30,.06), transparent 60%),
+      linear-gradient(180deg, var(--black-0), var(--black-1) 45%, var(--black-0));
+    background-attachment:fixed;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+    position:relative;
+  }
+
+  /* Dark film grain */
+  body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:9;
+    opacity:.045;
+    mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:clamp(18px,5vw,40px);}
+  section{position:relative;z-index:2;}
+
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+
+  :focus-visible{
+    outline:3px solid var(--yellow-bright);
+    outline-offset:3px;
+    border-radius:6px;
+  }
+
+  .skip-link{
+    position:absolute;left:-9999px;top:0;z-index:100;
+    background:var(--yellow);color:#0A0A0A;font-weight:700;
+    padding:.7rem 1.1rem;border-radius:0 0 10px 0;
+  }
+  .skip-link:focus{left:0;}
+
+  /* ---------- shared bits ---------- */
+  .eyebrow{
+    font-family:var(--font-body);
+    font-size:.72rem;
+    letter-spacing:.26em;
+    text-transform:uppercase;
+    color:var(--yellow);
+    font-weight:700;
+    display:inline-flex;
+    align-items:center;
+    gap:.55rem;
+  }
+  .eyebrow::before{
+    content:"";width:26px;height:2px;background:var(--yellow);display:inline-block;
+  }
+
+  h2.section-title{
+    font-family:var(--font-display);
+    font-weight:400;
+    font-size:clamp(1.9rem,5.4vw,3rem);
+    line-height:1.02;
+    letter-spacing:-.01em;
+    margin:.7rem 0 0;
+    text-transform:uppercase;
+  }
+  .section-title .pop{color:var(--yellow);}
+
+  .lede{
+    color:var(--ink-soft);
+    font-size:clamp(1rem,2.4vw,1.12rem);
+    max-width:56ch;
+    margin:1rem 0 0;
+  }
+
+  /* buttons */
+  .btn{
+    --bg:var(--yellow);--fg:#0A0A0A;
+    display:inline-flex;align-items:center;justify-content:center;gap:.55rem;
+    min-height:44px;
+    font-family:var(--font-body);font-weight:700;font-size:.96rem;
+    letter-spacing:.01em;
+    padding:.85rem 1.5rem;border-radius:999px;border:2px solid transparent;
+    background:var(--bg);color:var(--fg);cursor:pointer;
+    transition:transform .25s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease);
+    box-shadow:0 10px 30px -12px var(--glow);
+  }
+  .btn:hover{transform:translateY(-2px);background:var(--yellow-bright);box-shadow:0 16px 40px -12px var(--glow);}
+  .btn:active{transform:translateY(0);}
+  .btn--ghost{
+    --bg:transparent;--fg:var(--ink);
+    border-color:var(--line);
+    box-shadow:none;
+  }
+  .btn--ghost:hover{background:rgba(245,200,0,.08);border-color:var(--yellow);color:var(--yellow);box-shadow:none;}
+  .btn--sm{padding:.6rem 1.1rem;font-size:.85rem;}
+  .btn[disabled]{cursor:not-allowed;opacity:1;}
+
+  /* ============================================================
+     HEADER / NAV
+  ============================================================ */
+  .site-header{
+    position:sticky;top:0;z-index:40;
+    backdrop-filter:blur(10px);
+    background:linear-gradient(180deg, rgba(10,10,10,.92), rgba(10,10,10,.66));
+    border-bottom:1px solid var(--line-soft);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:.85rem;}
+  .brand{
+    font-family:var(--font-display);font-size:1.15rem;letter-spacing:.02em;
+    display:inline-flex;align-items:center;gap:.5rem;text-transform:uppercase;
+  }
+  .brand .star{color:var(--yellow);}
+  .nav-links{display:none;align-items:center;gap:1.7rem;}
+  .nav-links a{
+    font-size:.86rem;font-weight:600;color:var(--ink-soft);letter-spacing:.02em;
+    position:relative;padding:.2rem 0;transition:color .2s var(--ease);
+  }
+  .nav-links a::after{
+    content:"";position:absolute;left:0;bottom:-3px;height:2px;width:0;background:var(--yellow);
+    transition:width .25s var(--ease);
+  }
+  .nav-links a:hover{color:var(--ink);}
+  .nav-links a:hover::after{width:100%;}
+  /* Nav CTA stays visible on mobile — it's the only nav affordance until 900px */
+  .nav .btn{display:inline-flex;}
+  @media(min-width:900px){
+    .nav-links{display:flex;}
+  }
+
+  /* ============================================================
+     HERO MARQUEE
+  ============================================================ */
+  .hero{padding-top:clamp(2rem,6vw,4rem);padding-bottom:clamp(2.4rem,6vw,4rem);}
+
+  .marquee-sign{
+    position:relative;
+    background:
+      linear-gradient(180deg, var(--brown-housing), #14100a);
+    border:3px solid rgba(245,200,0,.28);
+    border-radius:22px;
+    padding:clamp(1.6rem,4.5vw,3rem) clamp(1.1rem,4vw,2.6rem);
+    box-shadow:
+      0 0 0 6px rgba(10,10,10,.9),
+      0 0 80px -20px var(--glow),
+      inset 0 0 60px rgba(0,0,0,.7);
+    overflow:hidden;
+  }
+  /* bulb rows on top & bottom of the housing */
+  .bulb-row{
+    display:flex;justify-content:center;gap:clamp(10px,3.2vw,20px);
+    padding-block:.35rem;flex-wrap:wrap;
+  }
+  .bulb{
+    width:11px;height:11px;border-radius:50%;
+    background:radial-gradient(circle at 38% 34%, #FFF3B0, var(--yellow) 46%, var(--gold-deep) 100%);
+    box-shadow:0 0 8px 2px var(--glow), 0 0 2px 1px rgba(255,212,46,.9);
+    animation:bulbPulse 2.4s ease-in-out infinite;
+  }
+  .bulb:nth-child(odd){animation-delay:.6s;}
+  .bulb:nth-child(3n){animation-delay:1.1s;}
+  .bulb:nth-child(4n){animation-delay:.3s;}
+  @keyframes bulbPulse{
+    0%,100%{opacity:1;box-shadow:0 0 9px 2px var(--glow),0 0 3px 1px rgba(255,212,46,.95);}
+    50%{opacity:.5;box-shadow:0 0 4px 1px var(--glow-soft);}
+  }
+
+  /* vertical bulb columns flanking the name (desktop) */
+  .marquee-inner{position:relative;text-align:center;padding-block:clamp(1rem,3vw,1.6rem);}
+  .marquee-tag{
+    display:inline-block;
+    font-family:var(--font-body);font-weight:700;font-size:.72rem;letter-spacing:.32em;
+    text-transform:uppercase;color:var(--yellow);
+    border:1px solid var(--line);border-radius:999px;padding:.4rem 1rem;margin-bottom:.4rem;
+  }
+  .marquee-name{
+    font-family:var(--font-marquee);
+    font-weight:400;
+    font-size:clamp(3.6rem,17vw,9.5rem);
+    line-height:.9;
+    letter-spacing:.02em;
+    margin:.3rem 0 .2rem;
+    color:#fff;
+    text-transform:uppercase;
+    text-shadow:
+      0 0 6px rgba(255,255,255,.5),
+      0 0 22px var(--glow),
+      0 0 52px var(--glow-soft);
+  }
+  .marquee-name .lit{
+    color:var(--yellow);
+    text-shadow:
+      0 0 8px rgba(255,212,46,.9),
+      0 0 30px var(--glow),
+      0 0 60px var(--glow);
+    animation:flicker 6s linear infinite;
+  }
+  @keyframes flicker{
+    0%,100%{opacity:1;}
+    2%{opacity:.6;}
+    4%{opacity:1;}
+    62%{opacity:1;}
+    63%{opacity:.45;}
+    64%{opacity:1;}
+  }
+  .marquee-sub{
+    font-family:var(--font-body);
+    color:var(--ink-soft);
+    font-size:clamp(1rem,3vw,1.35rem);
+    letter-spacing:.02em;
+    max-width:46ch;margin:.7rem auto 0;
+  }
+  .marquee-sub b{color:var(--yellow);font-weight:700;}
+
+  .hero-cta{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center;margin-top:1.5rem;}
+  .hero-meta{
+    display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;justify-content:center;
+    margin-top:1.3rem;color:var(--ink-faint);font-size:.84rem;letter-spacing:.04em;
+  }
+  .hero-meta span{display:inline-flex;align-items:center;gap:.4rem;}
+  .hero-meta .dot{width:6px;height:6px;border-radius:50%;background:var(--yellow);}
+
+  /* ============================================================
+     TICKER STRIP
+  ============================================================ */
+  .ticker{
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg, #100d08, var(--black-0));
+    overflow:hidden;white-space:nowrap;padding-block:.7rem;margin-top:clamp(1.4rem,4vw,2.2rem);
+  }
+  .ticker-track{
+    display:inline-flex;gap:2.4rem;align-items:center;
+    will-change:transform;animation:scroll-x 26s linear infinite;
+  }
+  .ticker:hover .ticker-track{animation-play-state:paused;}
+  .ticker-track span{
+    font-family:var(--font-marquee);font-size:1.05rem;letter-spacing:.12em;
+    color:var(--ink-soft);text-transform:uppercase;display:inline-flex;align-items:center;gap:1.2rem;
+  }
+  .ticker-track span::after{content:"\2605";color:var(--yellow);font-size:.9rem;}
+  @keyframes scroll-x{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* ============================================================
+     GENERIC SECTION SPACING
+  ============================================================ */
+  .band{padding-block:clamp(3rem,8vw,5.5rem);}
+  .band-head{margin-bottom:clamp(1.8rem,4vw,2.6rem);}
+
+  /* ============================================================
+     SHOWS — ticket stubs
+  ============================================================ */
+  .shows-list{display:flex;flex-direction:column;gap:1rem;}
+  .stub{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:1rem;
+    align-items:center;
+    background:var(--panel);
+    border:1px solid var(--line-soft);
+    border-radius:var(--radius);
+    padding:1.2rem 1.3rem;
+    position:relative;
+    transition:transform .28s var(--ease), border-color .28s var(--ease), box-shadow .28s var(--ease);
+  }
+  /* perforation notch */
+  .stub::before,.stub::after{
+    content:"";position:absolute;width:18px;height:18px;border-radius:50%;
+    background:var(--black-1);border:1px solid var(--line-soft);
+    left:74%;display:none;
+  }
+  .stub:hover{transform:translateY(-3px);border-color:var(--line);box-shadow:0 16px 40px -24px rgba(245,200,0,.4);}
+  .stub-date{
+    display:flex;align-items:baseline;gap:.5rem;
+  }
+  .stub-date .day{
+    font-family:var(--font-marquee);font-size:2.4rem;line-height:1;color:var(--yellow);
+  }
+  .stub-date .mo{
+    font-family:var(--font-body);font-weight:700;font-size:.78rem;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--ink-faint);
+  }
+  .stub-info h3{
+    margin:0;font-family:var(--font-body);font-weight:700;font-size:1.12rem;letter-spacing:.01em;
+  }
+  .stub-info p{margin:.25rem 0 0;color:var(--ink-soft);font-size:.92rem;}
+  .stub-action{display:flex;justify-content:flex-start;}
+  .soldout{
+    display:inline-flex;align-items:center;justify-content:center;gap:.4rem;
+    font-family:var(--font-body);font-weight:700;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--ink-faint);border:2px dashed rgba(255,255,255,.16);border-radius:999px;padding:.55rem 1.05rem;
+  }
+  @media(min-width:720px){
+    .stub{grid-template-columns:120px 1fr auto;gap:1.6rem;}
+    .stub::before,.stub::after{display:block;}
+    .stub::before{top:-9px;}
+    .stub::after{bottom:-9px;}
+    .stub-date{flex-direction:column;gap:.2rem;align-items:flex-start;}
+    .stub-action{justify-content:flex-end;}
+  }
+
+  /* ============================================================
+     WATCH — clip cards
+  ============================================================ */
+  .clips{
+    display:grid;gap:1.2rem;
+    grid-template-columns:1fr;
+  }
+  @media(min-width:640px){.clips{grid-template-columns:repeat(2,1fr);}}
+  @media(min-width:1000px){.clips{grid-template-columns:repeat(4,1fr);}}
+  .clip{
+    border:1px solid var(--line-soft);border-radius:var(--radius);overflow:hidden;
+    background:var(--panel);
+    transition:transform .3s var(--ease), border-color .3s var(--ease);
+  }
+  .clip:hover{transform:translateY(-4px);border-color:var(--line);}
+  .clip-thumb{
+    position:relative;aspect-ratio:16/10;
+    background:
+      radial-gradient(120% 90% at 50% 0%, rgba(245,200,0,.16), transparent 60%),
+      repeating-linear-gradient(135deg, #15120c 0 14px, #100d08 14px 28px);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .clip-thumb .play{
+    width:58px;height:58px;border-radius:50%;
+    background:var(--yellow);color:#0A0A0A;border:none;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 0 0 0 var(--glow);
+    transition:transform .25s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease);
+  }
+  .clip:hover .play{transform:scale(1.08);background:var(--yellow-bright);box-shadow:0 0 0 12px rgba(245,200,0,.12);}
+  .clip-thumb .play svg{margin-left:3px;}
+  .clip-len{
+    position:absolute;right:10px;bottom:10px;
+    font-family:var(--font-body);font-weight:600;font-size:.74rem;
+    background:rgba(10,10,10,.8);color:var(--ink);border:1px solid var(--line-soft);
+    padding:.2rem .5rem;border-radius:6px;letter-spacing:.04em;
+  }
+  .clip-body{padding:1rem 1.1rem 1.2rem;}
+  .clip-body h3{margin:0;font-family:var(--font-body);font-weight:700;font-size:1rem;}
+  .clip-body p{margin:.35rem 0 0;color:var(--ink-faint);font-size:.84rem;}
+
+  /* ============================================================
+     ABOUT
+  ============================================================ */
+  .about-grid{display:grid;gap:2rem;align-items:center;grid-template-columns:1fr;}
+  @media(min-width:860px){.about-grid{grid-template-columns:1.1fr .9fr;gap:3rem;}}
+  .about-copy p{color:var(--ink-soft);margin:1rem 0 0;}
+  .about-copy p:first-of-type{margin-top:1.2rem;}
+  .about-stats{
+    display:flex;flex-wrap:wrap;gap:1.4rem 2.2rem;margin-top:1.8rem;
+  }
+  .about-stats .stat .n{font-family:var(--font-marquee);font-size:2.2rem;color:var(--yellow);line-height:1;}
+  .about-stats .stat .l{font-size:.78rem;color:var(--ink-faint);letter-spacing:.08em;text-transform:uppercase;}
+  .about-card{
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:1.6rem;
+    position:relative;
+    box-shadow:var(--shadow-deep);
+  }
+  .about-card .marquee-mini{
+    display:flex;gap:7px;justify-content:center;margin-bottom:1rem;
+  }
+  .about-card .marquee-mini i{
+    width:8px;height:8px;border-radius:50%;
+    background:radial-gradient(circle at 38% 34%, #FFF3B0, var(--yellow) 50%, var(--gold-deep));
+    box-shadow:0 0 6px 1px var(--glow-soft);
+  }
+  .about-card blockquote{
+    margin:0;font-family:var(--font-display);font-weight:400;text-transform:uppercase;
+    font-size:1.35rem;line-height:1.1;text-align:center;color:#fff;
+  }
+  .about-card blockquote .y{color:var(--yellow);}
+  .about-card cite{
+    display:block;text-align:center;margin-top:.9rem;color:var(--ink-faint);
+    font-style:normal;font-size:.82rem;letter-spacing:.06em;
+  }
+
+  /* ============================================================
+     PRESS / AS SEEN AT
+  ============================================================ */
+  .press{
+    background:linear-gradient(180deg, var(--black-0), #100d08 60%, var(--black-0));
+    border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);
+  }
+  .quotes{display:grid;gap:1.2rem;grid-template-columns:1fr;}
+  @media(min-width:760px){.quotes{grid-template-columns:1fr 1fr;}}
+  .quote{
+    background:var(--panel);border:1px solid var(--line-soft);border-radius:var(--radius);
+    padding:1.6rem;position:relative;
+  }
+  .quote .mark{
+    font-family:var(--font-display);font-size:2.6rem;color:var(--yellow);line-height:.5;display:block;height:1rem;
+  }
+  .quote p{margin:.4rem 0 0;font-size:1.08rem;color:var(--ink);font-style:italic;}
+  .quote cite{display:block;margin-top:1rem;font-style:normal;color:var(--ink-faint);font-size:.84rem;letter-spacing:.04em;}
+  .quote cite b{color:var(--yellow);font-weight:700;}
+
+  .seenat{
+    display:flex;flex-wrap:wrap;gap:1.2rem 2.4rem;align-items:center;justify-content:center;
+    margin-top:2.4rem;padding-top:2rem;border-top:1px dashed var(--line);
+  }
+  .seenat span{
+    font-family:var(--font-display);text-transform:uppercase;font-size:1rem;letter-spacing:.04em;
+    color:var(--ink-faint);opacity:.85;transition:color .25s var(--ease), opacity .25s var(--ease);
+  }
+  .seenat span:hover{color:var(--yellow);opacity:1;}
+
+  /* ============================================================
+     BOOKING + NEWSLETTER
+  ============================================================ */
+  .book-grid{display:grid;gap:2.2rem;grid-template-columns:1fr;}
+  @media(min-width:920px){.book-grid{grid-template-columns:1.15fr .85fr;gap:3rem;}}
+
+  .form-card{
+    background:var(--panel);border:1px solid var(--line-soft);border-radius:var(--radius);
+    padding:clamp(1.3rem,3vw,2rem);
+  }
+  .field{margin-top:1.1rem;display:flex;flex-direction:column;gap:.4rem;}
+  .field:first-of-type{margin-top:0;}
+  .field label{font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);}
+  .field input,.field select,.field textarea{
+    font-family:var(--font-body);font-size:1rem;color:var(--ink);
+    background:var(--black-2);border:1px solid var(--line-soft);border-radius:10px;
+    padding:.8rem .9rem;width:100%;
+    transition:border-color .2s var(--ease), box-shadow .2s var(--ease);
+  }
+  .field input::placeholder,.field textarea::placeholder{color:var(--ink-faint);}
+  .field input:focus,.field select:focus,.field textarea:focus{
+    outline:none;border-color:var(--yellow);box-shadow:0 0 0 3px rgba(245,200,0,.18);
+  }
+  .field textarea{resize:vertical;min-height:110px;}
+  .field-row{display:grid;gap:1.1rem;grid-template-columns:1fr;}
+  @media(min-width:560px){.field-row{grid-template-columns:1fr 1fr;}}
+  .form-foot{display:flex;flex-wrap:wrap;align-items:center;gap:1rem;margin-top:1.4rem;}
+  .form-note{font-size:.82rem;color:var(--ink-faint);}
+  .form-note a{color:var(--yellow);font-weight:600;}
+
+  .form-success{
+    display:none;align-items:center;gap:.7rem;margin-top:1.2rem;
+    background:rgba(245,200,0,.1);border:1px solid var(--line);border-radius:12px;
+    padding:.9rem 1.1rem;color:var(--ink);font-size:.92rem;
+  }
+  .form-success.show{display:flex;}
+  .form-success .tick{
+    flex:none;width:26px;height:26px;border-radius:50%;background:var(--yellow);color:#0A0A0A;
+    display:flex;align-items:center;justify-content:center;font-weight:700;
+  }
+
+  .book-side .side-card{
+    background:var(--panel-2);border:1px solid var(--line);border-radius:var(--radius);
+    padding:1.6rem;
+  }
+  .book-side h3{margin:0 0 .3rem;font-family:var(--font-display);text-transform:uppercase;font-size:1.1rem;}
+  .book-side p{color:var(--ink-soft);font-size:.94rem;margin:.4rem 0 0;}
+  .book-email{
+    display:inline-flex;align-items:center;gap:.5rem;margin-top:1rem;
+    font-family:var(--font-body);font-weight:700;color:var(--yellow);font-size:1.02rem;word-break:break-all;
+  }
+  .book-email:hover{color:var(--yellow-bright);text-decoration:underline;}
+  .rider{margin-top:1.6rem;padding-top:1.4rem;border-top:1px solid var(--line-soft);}
+  .rider li{color:var(--ink-soft);font-size:.9rem;margin:.5rem 0;display:flex;gap:.6rem;list-style:none;}
+  .rider ul{padding:0;margin:.6rem 0 0;}
+  .rider li::before{content:"\2605";color:var(--yellow);flex:none;}
+
+  /* newsletter */
+  .news{
+    margin-top:clamp(2rem,5vw,3rem);
+    background:
+      radial-gradient(700px 300px at 50% 0%, rgba(245,200,0,.12), transparent 60%),
+      var(--panel);
+    border:1px solid var(--line);border-radius:var(--radius);
+    padding:clamp(1.6rem,4vw,2.6rem);text-align:center;
+  }
+  .news h3{font-family:var(--font-display);text-transform:uppercase;font-size:clamp(1.4rem,4vw,2rem);margin:.6rem 0 0;}
+  .news p{color:var(--ink-soft);max-width:48ch;margin:.7rem auto 0;}
+  .news-form{
+    display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;max-width:520px;margin:1.4rem auto 0;
+  }
+  .news-form .field{flex:1 1 240px;margin-top:0;text-align:left;}
+  .news .form-success{justify-content:center;max-width:520px;margin-inline:auto;}
+
+  /* ============================================================
+     SOCIAL + FOOTER
+  ============================================================ */
+  .socials{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center;margin-top:2rem;}
+  .soc{
+    display:inline-flex;align-items:center;gap:.55rem;
+    min-height:44px;
+    border:1px solid var(--line-soft);border-radius:999px;padding:.6rem 1.1rem;
+    font-size:.88rem;font-weight:600;color:var(--ink-soft);
+    transition:border-color .25s var(--ease), color .25s var(--ease), transform .25s var(--ease);
+  }
+  .soc:hover{border-color:var(--yellow);color:var(--yellow);transform:translateY(-2px);}
+  .soc svg{width:18px;height:18px;}
+
+  .site-footer{
+    margin-top:clamp(2.6rem,6vw,4rem);
+    border-top:1px solid var(--line-soft);
+    background:linear-gradient(180deg, var(--black-1), var(--black-0));
+  }
+  .footer-inner{
+    display:flex;flex-direction:column;gap:1.2rem;align-items:center;text-align:center;
+    padding-block:2.4rem;
+  }
+  .footer-brand{font-family:var(--font-display);text-transform:uppercase;font-size:1.2rem;letter-spacing:.02em;}
+  .footer-brand .star{color:var(--yellow);}
+  .footer-meta{color:var(--ink-faint);font-size:.84rem;}
+  .credit{
+    font-size:.9rem;color:var(--ink-soft);
+  }
+  .credit a{color:var(--yellow);font-weight:700;}
+  .credit a:hover{color:var(--yellow-bright);text-decoration:underline;}
+
+  /* ============================================================
+     STAGGERED LOAD REVEAL
+  ============================================================ */
+  .reveal{opacity:0;transform:translateY(18px);}
+  .reveal.in{
+    opacity:1;transform:none;
+    transition:opacity .7s var(--ease), transform .7s var(--ease);
+    transition-delay:var(--d,0ms);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    /* Disable ALL motion: animations, transitions, and scroll smoothing */
+    *,*::before,*::after{
+      animation-duration:.001ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:.001ms !important;
+      scroll-behavior:auto !important;
+    }
+    .reveal,.reveal.in{opacity:1 !important;transform:none !important;}
+    .bulb,.marquee-name .lit,.ticker-track{animation:none !important;}
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Dani Cole — home">
+      <span class="star" aria-hidden="true">&#9733;</span> DANI COLE
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#shows">Shows</a>
+      <a href="#watch">Watch</a>
+      <a href="#about">About</a>
+      <a href="#press">Press</a>
+      <a href="#booking">Booking</a>
+    </nav>
+    <a class="btn btn--sm" href="#shows">See Dates</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top" aria-labelledby="hero-name">
+    <div class="wrap">
+      <div class="marquee-sign reveal" style="--d:0ms">
+        <div class="bulb-row" aria-hidden="true">
+          <span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span>
+          <span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span>
+          <span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span>
+          <span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span>
+        </div>
+        <div class="marquee-inner">
+          <span class="marquee-tag">Now Appearing</span>
+          <h1 class="marquee-name" id="hero-name">DANI <span class="lit">COLE</span></h1>
+          <p class="marquee-sub">Orlando stand-up &amp; <b>crowd-work specialist</b>. If you sit in the front row, you are part of the show.</p>
+        </div>
+        <div class="bulb-row" aria-hidden="true">
+          <span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span>
+          <span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span>
+          <span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span>
+          <span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span>
+        </div>
+      </div>
+
+      <div class="hero-cta reveal" style="--d:140ms">
+        <a class="btn" href="#shows">Next Show: Jun 21 &rarr;</a>
+        <a class="btn btn--ghost" href="#shows">See All Dates</a>
+      </div>
+
+      <div class="hero-meta reveal" style="--d:240ms">
+        <span><i class="dot" aria-hidden="true"></i> Based in Orlando, FL</span>
+        <span><i class="dot" aria-hidden="true"></i> Touring the Southeast</span>
+        <span><i class="dot" aria-hidden="true"></i> Clubs, corporates &amp; theaters</span>
+      </div>
+    </div>
+
+    <!-- ticker -->
+    <div class="ticker reveal" style="--d:320ms" aria-hidden="true">
+      <div class="ticker-track">
+        <span>Two Drink Minimum &mdash; One Guaranteed Laugh</span>
+        <span>Now Booking Fall 2026</span>
+        <span>Best Crowd Work in Central Florida</span>
+        <span>Headlining The Improv &mdash; June 21</span>
+        <span>Two Drink Minimum &mdash; One Guaranteed Laugh</span>
+        <span>Now Booking Fall 2026</span>
+        <span>Best Crowd Work in Central Florida</span>
+        <span>Headlining The Improv &mdash; June 21</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SHOWS ============ -->
+  <section class="band" id="shows" aria-labelledby="shows-title">
+    <div class="wrap">
+      <div class="band-head reveal">
+        <span class="eyebrow">Upcoming</span>
+        <h2 class="section-title" id="shows-title">Tour <span class="pop">Dates</span></h2>
+        <p class="lede">Doors are usually 30 minutes before showtime. Front-row tickets sit closer to the jokes &mdash; consider yourself warned.</p>
+      </div>
+
+      <div class="shows-list">
+        <article class="stub reveal" style="--d:60ms">
+          <div class="stub-date"><span class="day">21</span><span class="mo">Jun &middot; Sat</span></div>
+          <div class="stub-info">
+            <h3>The Improv Orlando</h3>
+            <p>Orlando, FL &middot; 8:00 PM &middot; Headline set</p>
+          </div>
+          <div class="stub-action"><a class="btn btn--sm" href="#booking">Tickets</a></div>
+        </article>
+
+        <article class="stub reveal" style="--d:120ms">
+          <div class="stub-date"><span class="day">28</span><span class="mo">Jun &middot; Sat</span></div>
+          <div class="stub-info">
+            <h3>Tampa Improv</h3>
+            <p>Tampa, FL &middot; 7:30 PM &middot; Co-headline</p>
+          </div>
+          <div class="stub-action"><a class="btn btn--sm" href="#booking">Tickets</a></div>
+        </article>
+
+        <article class="stub reveal" style="--d:180ms">
+          <div class="stub-date"><span class="day">11</span><span class="mo">Jul &middot; Fri</span></div>
+          <div class="stub-info">
+            <h3>The Punch Line</h3>
+            <p>Atlanta, GA &middot; 9:00 PM &middot; Late show</p>
+          </div>
+          <div class="stub-action"><span class="soldout" aria-label="This show is sold out">&#9733; Sold Out</span></div>
+        </article>
+
+        <article class="stub reveal" style="--d:240ms">
+          <div class="stub-date"><span class="day">19</span><span class="mo">Jul &middot; Sat</span></div>
+          <div class="stub-info">
+            <h3>Cap City Comedy Club</h3>
+            <p>Austin, TX &middot; 8:00 PM &middot; Feature</p>
+          </div>
+          <div class="stub-action"><a class="btn btn--sm" href="#booking">Tickets</a></div>
+        </article>
+
+        <article class="stub reveal" style="--d:300ms">
+          <div class="stub-date"><span class="day">02</span><span class="mo">Aug &middot; Sat</span></div>
+          <div class="stub-info">
+            <h3>Zanies Nashville</h3>
+            <p>Nashville, TN &middot; 7:00 PM &middot; Headline set</p>
+          </div>
+          <div class="stub-action"><a class="btn btn--sm" href="#booking">Tickets</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WATCH ============ -->
+  <section class="band" id="watch" aria-labelledby="watch-title" style="padding-top:0;">
+    <div class="wrap">
+      <div class="band-head reveal">
+        <span class="eyebrow">Watch</span>
+        <h2 class="section-title" id="watch-title">Clips &amp; <span class="pop">Sets</span></h2>
+        <p class="lede">A few favorites from the last year. The crowd-work bits are all improvised &mdash; no, those people are not plants.</p>
+      </div>
+
+      <div class="clips">
+        <article class="clip reveal" style="--d:60ms">
+          <div class="clip-thumb">
+            <button class="play" type="button" aria-label="Play clip: Front Row Regrets">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+            <span class="clip-len">3:42</span>
+          </div>
+          <div class="clip-body">
+            <h3>Front Row Regrets</h3>
+            <p>Crowd work &middot; The Improv Orlando</p>
+          </div>
+        </article>
+
+        <article class="clip reveal" style="--d:120ms">
+          <div class="clip-thumb">
+            <button class="play" type="button" aria-label="Play clip: My Mom Has Notes">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+            <span class="clip-len">2:18</span>
+          </div>
+          <div class="clip-body">
+            <h3>My Mom Has Notes</h3>
+            <p>Stand-up &middot; Tampa Improv</p>
+          </div>
+        </article>
+
+        <article class="clip reveal" style="--d:180ms">
+          <div class="clip-thumb">
+            <button class="play" type="button" aria-label="Play clip: The Group Chat Bit">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+            <span class="clip-len">4:05</span>
+          </div>
+          <div class="clip-body">
+            <h3>The Group Chat Bit</h3>
+            <p>Stand-up &middot; Zanies Nashville</p>
+          </div>
+        </article>
+
+        <article class="clip reveal" style="--d:240ms">
+          <div class="clip-thumb">
+            <button class="play" type="button" aria-label="Play clip: Corporate Gig Gone Right">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+            <span class="clip-len">1:54</span>
+          </div>
+          <div class="clip-body">
+            <h3>Corporate Gig Gone Right</h3>
+            <p>Highlight reel &middot; 2026</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="band" id="about" aria-labelledby="about-title" style="padding-top:0;">
+    <div class="wrap about-grid">
+      <div class="about-copy reveal">
+        <span class="eyebrow">About</span>
+        <h2 class="section-title" id="about-title">Hi, I'm <span class="pop">Dani</span></h2>
+        <p>I started doing open mics in a Mills 50 dive bar that smelled like spilled beer and ambition, and somehow that turned into a career. Six years later I'm headlining clubs across the Southeast &mdash; still chasing the same thing: the room where everyone forgets their week for an hour.</p>
+        <p>My specialty is crowd work. I'd rather find out you're an orthodontist from Sanford who hates cilantro than run the exact same set twice. Every show is a little different, which is terrifying and also the whole point.</p>
+        <p>When I'm not on the road, I produce a monthly showcase in Orlando and teach a beginner stand-up workshop for people brave enough to bomb in public. Come say hi after a set &mdash; I'm nicer than I look on stage.</p>
+        <div class="about-stats">
+          <div class="stat"><div class="n">280+</div><div class="l">Shows / Year</div></div>
+          <div class="stat"><div class="n">6</div><div class="l">Years On Stage</div></div>
+          <div class="stat"><div class="n">38</div><div class="l">Cities Toured</div></div>
+        </div>
+      </div>
+      <aside class="about-card reveal" style="--d:120ms" aria-label="Audience quote">
+        <div class="marquee-mini" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <blockquote>"She roasted my <span class="y">hat</span> for ten minutes and I'd buy a ticket to watch it again."</blockquote>
+        <cite>&mdash; an actual front-row survivor</cite>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ PRESS ============ -->
+  <section class="band press" id="press" aria-labelledby="press-title">
+    <div class="wrap">
+      <div class="band-head reveal">
+        <span class="eyebrow">Press</span>
+        <h2 class="section-title" id="press-title">In The <span class="pop">Spotlight</span></h2>
+      </div>
+
+      <div class="quotes">
+        <figure class="quote reveal" style="--d:60ms">
+          <span class="mark" aria-hidden="true">&ldquo;</span>
+          <p>Cole is the rare comic who makes improvisation look effortless &mdash; her crowd work is sharp, generous, and never punches down.</p>
+          <cite><b>Orlando Weekly</b> &middot; Comedy Feature</cite>
+        </figure>
+        <figure class="quote reveal" style="--d:140ms">
+          <span class="mark" aria-hidden="true">&ldquo;</span>
+          <p>A genuine headliner in the making. By the end of the night the whole room felt like an inside joke we were all in on.</p>
+          <cite><b>Funny Florida Podcast</b> &middot; Live Review</cite>
+        </figure>
+      </div>
+
+      <div class="seenat reveal" style="--d:200ms" aria-label="Venues and festivals">
+        <span>The Improv</span>
+        <span>Zanies</span>
+        <span>Cap City</span>
+        <span>The Punch Line</span>
+        <span>Orlando Fringe</span>
+        <span>SoFla Comedy Fest</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BOOKING ============ -->
+  <section class="band" id="booking" aria-labelledby="booking-title">
+    <div class="wrap">
+      <div class="band-head reveal">
+        <span class="eyebrow">Booking</span>
+        <h2 class="section-title" id="booking-title">Book The <span class="pop">Show</span></h2>
+        <p class="lede">Clubs, theaters, festivals, private &amp; corporate events. Tell me the room and the date &mdash; I'll bring the punchlines.</p>
+      </div>
+
+      <div class="book-grid">
+        <!-- form -->
+        <form class="form-card reveal" id="booking-form" novalidate>
+          <div class="field-row">
+            <div class="field">
+              <label for="bk-name">Your Name</label>
+              <input id="bk-name" name="name" type="text" autocomplete="name" placeholder="Alex Rivera" required />
+            </div>
+            <div class="field">
+              <label for="bk-org">Venue / Company</label>
+              <input id="bk-org" name="org" type="text" autocomplete="organization" placeholder="The Improv Orlando" required />
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="bk-email">Email</label>
+              <input id="bk-email" name="email" type="email" autocomplete="email" placeholder="bookings@venue.com" required />
+            </div>
+            <div class="field">
+              <label for="bk-date">Event Date</label>
+              <input id="bk-date" name="date" type="date" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="bk-type">Type of Event</label>
+            <select id="bk-type" name="type">
+              <option>Comedy club &mdash; headline</option>
+              <option>Comedy club &mdash; feature</option>
+              <option>Theater / festival</option>
+              <option>Corporate event</option>
+              <option>Private / special event</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="bk-msg">Details</label>
+            <textarea id="bk-msg" name="message" placeholder="Room size, set length, budget range, anything else I should know."></textarea>
+          </div>
+
+          <div class="form-foot">
+            <button class="btn" type="submit">Send Booking Request</button>
+            <p class="form-note">Prefer email? <a href="mailto:bookings@danicole.com">bookings@danicole.com</a></p>
+          </div>
+
+          <div class="form-success" id="booking-success" role="status" aria-live="polite">
+            <span class="tick" aria-hidden="true">&check;</span>
+            <span>Thanks &mdash; your request is in. Dani's team usually replies within two business days. (Demo form: nothing was actually sent.)</span>
+          </div>
+        </form>
+
+        <!-- side -->
+        <aside class="book-side reveal" style="--d:120ms">
+          <div class="side-card">
+            <h3>Direct Booking</h3>
+            <p>For dates, availability, and rates, reach out anytime. Serious inquiries get a fast, real reply.</p>
+            <a class="book-email" href="mailto:bookings@danicole.com">&#9733; bookings@danicole.com</a>
+
+            <div class="rider">
+              <p style="margin:0;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);">Quick Facts</p>
+              <ul>
+                <li>Clean or club sets available on request</li>
+                <li>Travels from Orlando &middot; will tour nationally</li>
+                <li>Sets from 15 to 75 minutes</li>
+                <li>Can MC, feature, or headline</li>
+              </ul>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <!-- newsletter -->
+      <div class="news reveal" style="--d:120ms" aria-labelledby="news-title">
+        <span class="eyebrow" style="justify-content:center;">Stay In The Loop</span>
+        <h3 id="news-title">Never Miss A Show</h3>
+        <p>New tour dates, surprise pop-up sets, and the occasional bad pun. No spam, unsubscribe anytime.</p>
+        <form class="news-form" id="news-form" novalidate>
+          <div class="field">
+            <label for="nl-email">Email address</label>
+            <input id="nl-email" name="email" type="email" autocomplete="email" placeholder="you@email.com" required />
+          </div>
+          <button class="btn" type="submit">Sign Me Up</button>
+        </form>
+        <div class="form-success" id="news-success" role="status" aria-live="polite">
+          <span class="tick" aria-hidden="true">&check;</span>
+          <span>You're on the list! Watch your inbox for the next date drop. (Demo form: nothing was actually sent.)</span>
+        </div>
+      </div>
+
+      <!-- socials -->
+      <nav class="socials reveal" style="--d:160ms" aria-label="Social links">
+        <a class="soc" href="#top" aria-label="Dani Cole on Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          Instagram
+        </a>
+        <a class="soc" href="#top" aria-label="Dani Cole on TikTok">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 3c.3 2.2 1.7 3.9 4 4.2v3c-1.5 0-2.9-.5-4-1.3V15a5.5 5.5 0 1 1-5.5-5.5c.3 0 .6 0 .9.1v3.1a2.5 2.5 0 1 0 1.6 2.3V3H14z"/></svg>
+          TikTok
+        </a>
+        <a class="soc" href="#top" aria-label="Dani Cole on YouTube">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 8.2a3 3 0 0 0-2.1-2.1C18 5.5 12 5.5 12 5.5s-6 0-7.9.6A3 3 0 0 0 2 8.2 31 31 0 0 0 1.6 12 31 31 0 0 0 2 15.8a3 3 0 0 0 2.1 2.1c1.9.6 7.9.6 7.9.6s6 0 7.9-.6a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .4-3.8 31 31 0 0 0-.4-3.8zM10 15V9l5 3z"/></svg>
+          YouTube
+        </a>
+        <a class="soc" href="#top" aria-label="Dani Cole on X">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.2 3h2.9l-6.4 7.3L22 21h-5.9l-4.2-5.5L7 21H4.1l6.9-7.9L3 3h6l3.8 5 4.4-5zm-1 16.2h1.6L8.1 4.7H6.4l10.8 14.5z"/></svg>
+          X / Twitter
+        </a>
+      </nav>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand"><span class="star" aria-hidden="true">&#9733;</span> DANI COLE</div>
+    <p class="footer-meta">Orlando, FL &middot; Stand-up comedian &amp; crowd-work specialist &middot; &copy; 2026 Dani Cole</p>
+    <p class="credit">Site by <a href="https://bananabyte.io" target="_blank" rel="noopener">BANANAbyte 🍌</a></p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ---- staggered reveal on scroll ---- */
+    var revealEls = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+    if (reduce || !('IntersectionObserver' in window)) {
+      revealEls.forEach(function(el){ el.classList.add('in'); });
+    } else {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      revealEls.forEach(function(el){ io.observe(el); });
+      /* ensure hero reveals immediately on load */
+      window.addEventListener('load', function(){
+        document.querySelectorAll('.hero .reveal').forEach(function(el){ el.classList.add('in'); });
+      });
+    }
+
+    /* ---- demo forms: preventDefault + inline success ---- */
+    function wireForm(formId, successId){
+      var form = document.getElementById(formId);
+      var ok = document.getElementById(successId);
+      if (!form || !ok) return;
+      form.addEventListener('submit', function(ev){
+        ev.preventDefault();
+        if (form.checkValidity && !form.checkValidity()){
+          form.reportValidity();
+          return;
+        }
+        ok.classList.add('show');
+        form.querySelectorAll('input, textarea, select, button[type="submit"]').forEach(function(el){
+          el.disabled = true;
+        });
+        try { ok.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' }); } catch(e){}
+      });
+    }
+    wireForm('booking-form', 'booking-success');
+    wireForm('news-form', 'news-success');
+
+    /* ---- clip play buttons: visual feedback only (no real embeds) ---- */
+    document.querySelectorAll('.clip .play').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var card = btn.closest('.clip');
+        var title = card && card.querySelector('h3') ? card.querySelector('h3').textContent : 'clip';
+        btn.setAttribute('aria-label', 'Playing clip: ' + title);
+        var len = card ? card.querySelector('.clip-len') : null;
+        if (len && !len.dataset.playing){
+          len.dataset.playing = '1';
+          len.textContent = '▶ Now playing';
+        }
+      });
+    });
+  })();
+</script>
+</body>
+</html>

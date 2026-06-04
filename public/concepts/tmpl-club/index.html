@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Dani Cole — Stand-Up Comedy, Orlando</title>
+<meta name="description" content="Dani Cole — Orlando stand-up comedian and crowd-work specialist. Tour dates, clips, and booking.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bricolage+Grotesque:wght@600;800&family=Sora:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ---------- Tokens ---------- */
+  :root{
+    --black:#0A0A0A;
+    --black-2:#0C0B0A;
+    --black-3:#0E0D0B;
+    --panel:#121110;
+    --brick:#17120C;        /* warm-brown brick, texture/seasoning only */
+    --brick-line:#241a11;
+    --line:#221f1a;
+    --line-soft:#1a1815;
+    --ink:#F4EFE6;          /* near-white body */
+    --ink-dim:#C9C2B4;      /* dimmed body, still AA on dark */
+    --ink-faint:#938C7E;
+    --yellow:#F5C800;       /* banana primary */
+    --yellow-bright:#FFD42E;
+    --gold-deep:#E0B11E;    /* hover/shadow gold */
+    --radius:14px;
+    --maxw:1200px;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--black);
+    color:var(--ink);
+    font-family:'Sora',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    position:relative;
+    min-height:100vh;
+  }
+
+  /* ---------- Atmosphere: film grain + restrained gold glow ---------- */
+  body::before{
+    content:"";
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(900px 520px at 50% -8%, rgba(245,200,0,.10), transparent 60%),
+      radial-gradient(700px 600px at 12% 12%, rgba(224,177,30,.05), transparent 55%);
+  }
+  body::after{
+    content:"";
+    position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap{position:relative;z-index:2}
+
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+
+  .container{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 20px}
+
+  /* ---------- Accessibility ---------- */
+  :focus-visible{outline:3px solid var(--yellow-bright);outline-offset:3px;border-radius:6px}
+  .skip{
+    position:absolute;left:12px;top:-60px;z-index:50;
+    background:var(--yellow);color:#1a1405;padding:10px 16px;border-radius:8px;
+    font-weight:700;transition:top .2s var(--ease);
+  }
+  .skip:focus{top:12px}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+  /* ---------- Headings ---------- */
+  .display{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;line-height:.9;letter-spacing:.5px}
+  h2.section-title{
+    font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:1px;
+    font-size:clamp(1.9rem,5.5vw,3rem);line-height:1;color:var(--ink);
+  }
+  .eyebrow{
+    font-family:'Bricolage Grotesque',sans-serif;font-weight:800;text-transform:uppercase;
+    letter-spacing:.28em;font-size:.72rem;color:var(--yellow);
+    display:inline-flex;align-items:center;gap:.6em;margin-bottom:.85rem;
+  }
+  .eyebrow::before{content:"";width:26px;height:2px;background:var(--yellow);display:inline-block}
+
+  /* ---------- Marquee bulb strip ---------- */
+  .bulbs{
+    height:14px;width:100%;
+    background:repeating-linear-gradient(90deg,
+      var(--yellow) 0 7px, transparent 7px 22px);
+    -webkit-mask:radial-gradient(circle 4px at center,#000 98%,transparent) center/22px 14px repeat-x;
+            mask:radial-gradient(circle 4px at center,#000 98%,transparent) center/22px 14px repeat-x;
+    filter:drop-shadow(0 0 6px rgba(245,200,0,.55));
+    opacity:.92;
+  }
+
+  /* ---------- Nav ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:30;
+    background:rgba(10,10,10,.82);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:.55rem;font-family:'Anton',sans-serif;font-size:1.25rem;letter-spacing:1px;text-transform:uppercase}
+  .brand .dot{width:11px;height:11px;border-radius:50%;background:var(--yellow);box-shadow:0 0 10px var(--yellow);flex:none}
+  .brand b{color:var(--yellow)}
+  .nav-links{display:none;gap:1.6rem;align-items:center}
+  .nav-links a{font-size:.9rem;color:var(--ink-dim);font-weight:500;transition:color .2s var(--ease)}
+  .nav-links a:hover{color:var(--yellow)}
+  .nav-cta{
+    font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:.85rem;
+    background:var(--yellow);color:#1a1405;padding:.55rem 1.1rem;border-radius:999px;
+    text-transform:uppercase;letter-spacing:.04em;transition:transform .18s var(--ease),box-shadow .18s var(--ease);
+  }
+  .nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(245,200,0,.25)}
+  @media(min-width:860px){.nav-links{display:flex}}
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+    font-family:'Bricolage Grotesque',sans-serif;font-weight:800;text-transform:uppercase;
+    letter-spacing:.04em;font-size:.92rem;padding:.85rem 1.5rem;border-radius:999px;
+    border:2px solid transparent;cursor:pointer;transition:transform .18s var(--ease),box-shadow .18s var(--ease),background .18s var(--ease),color .18s var(--ease);
+  }
+  .btn-primary{background:var(--yellow);color:#1a1405}
+  .btn-primary:hover{background:var(--yellow-bright);transform:translateY(-2px);box-shadow:0 10px 26px rgba(245,200,0,.28)}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line);}
+  .btn-ghost:hover{border-color:var(--yellow);color:var(--yellow);transform:translateY(-2px)}
+  .btn-sm{padding:.55rem 1.05rem;font-size:.8rem;min-height:44px}
+
+  /* Guarantee >=44px tap targets on touch / coarse pointers */
+  @media (pointer:coarse){
+    .btn,.nav-cta,.social a,.seenat .logo,.nav-links a{
+      min-height:44px;display:inline-flex;align-items:center;justify-content:center;
+    }
+    .seenat .logo,.nav-links a{padding-top:.4rem;padding-bottom:.4rem}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;overflow:hidden;padding:clamp(3rem,9vw,6rem) 0 clamp(2.5rem,6vw,4rem);}
+  /* brick wall texture (brown lives here, dark) */
+  .hero::before{
+    content:"";position:absolute;inset:0;z-index:0;opacity:.5;
+    background-color:var(--black);
+    background-image:
+      linear-gradient(rgba(36,26,17,.55) 2px, transparent 2px),
+      linear-gradient(90deg, rgba(36,26,17,.5) 2px, transparent 2px),
+      linear-gradient(90deg, rgba(36,26,17,.5) 2px, transparent 2px);
+    background-size:100% 44px, 130px 44px, 130px 44px;
+    background-position:0 0, 0 0, 65px 22px;
+  }
+  /* single yellow spotlight cone */
+  .spotlight{
+    position:absolute;top:-12%;left:50%;transform:translateX(-50%);
+    width:min(120%,720px);height:140%;z-index:0;pointer-events:none;
+    background:radial-gradient(ellipse 48% 70% at 50% 0%, rgba(245,200,0,.20), rgba(245,200,0,.07) 38%, transparent 64%);
+    -webkit-mask:linear-gradient(to bottom,#000,transparent 92%);
+            mask:linear-gradient(to bottom,#000,transparent 92%);
+  }
+  .hero-inner{position:relative;z-index:2;text-align:center}
+  .hero .tag-pill{
+    display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;font-weight:600;letter-spacing:.04em;
+    color:var(--ink-dim);border:1px solid var(--line);background:rgba(18,17,16,.6);
+    padding:.45rem 1rem;border-radius:999px;margin-bottom:1.4rem;
+  }
+  .hero .tag-pill .live{width:8px;height:8px;border-radius:50%;background:var(--yellow);box-shadow:0 0 8px var(--yellow)}
+  .hero h1{
+    font-family:'Anton',sans-serif;text-transform:uppercase;
+    font-size:clamp(3.4rem,17vw,9.5rem);line-height:.82;letter-spacing:1px;
+    color:var(--ink);margin:0;
+  }
+  .hero h1 .lit{color:var(--yellow);text-shadow:0 0 28px rgba(245,200,0,.45),0 0 64px rgba(245,200,0,.18)}
+  .hero .tagline{
+    font-family:'Bricolage Grotesque',sans-serif;font-weight:600;
+    font-size:clamp(1.05rem,3vw,1.5rem);color:var(--ink-dim);
+    margin:1.3rem auto 0;max-width:40ch;
+  }
+  .hero-cta{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;margin-top:2rem}
+  .hero-next{
+    margin-top:2.4rem;display:inline-flex;flex-wrap:wrap;gap:.4rem .9rem;justify-content:center;align-items:center;
+    font-size:.86rem;color:var(--ink-dim);
+  }
+  .hero-next b{color:var(--yellow);font-family:'Bricolage Grotesque',sans-serif}
+  .hero-next .sep{color:var(--ink-faint)}
+
+  /* ---------- Section base ---------- */
+  section{position:relative;padding:clamp(3.2rem,8vw,5.5rem) 0}
+  .section-head{margin-bottom:2.2rem;max-width:60ch}
+  .lead{color:var(--ink-dim);font-size:1.05rem;margin-top:.4rem}
+
+  /* ---------- Shows / tour dates ---------- */
+  .shows-list{display:flex;flex-direction:column;gap:.75rem}
+  .show{
+    display:grid;grid-template-columns:1fr;gap:.65rem;align-items:center;
+    background:linear-gradient(180deg,var(--panel),var(--black-2));
+    border:1px solid var(--line);border-left:3px solid var(--gold-deep);
+    border-radius:var(--radius);padding:1.15rem 1.25rem;
+    transition:border-color .2s var(--ease),transform .2s var(--ease),box-shadow .2s var(--ease);
+  }
+  .show:hover{border-color:#3a342a;border-left-color:var(--yellow);transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,.5)}
+  .show .when{display:flex;align-items:baseline;gap:.6rem}
+  .show .date{font-family:'Anton',sans-serif;font-size:1.5rem;color:var(--yellow);line-height:1;letter-spacing:.5px}
+  .show .yr{font-size:.78rem;color:var(--ink-faint);letter-spacing:.1em;font-weight:600}
+  .show .where{min-width:0}
+  .show .city{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.12rem;color:var(--ink)}
+  .show .venue{font-size:.9rem;color:var(--ink-dim)}
+  .show .act{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+  .badge{
+    font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+    padding:.28rem .6rem;border-radius:999px;border:1px solid var(--line);color:var(--ink-dim);
+  }
+  .badge.soldout{color:var(--ink-faint);border-color:var(--brick-line);background:var(--brick);text-decoration:line-through;text-decoration-thickness:1px}
+  @media(min-width:720px){
+    .show{grid-template-columns:auto 1fr auto;gap:1.4rem;padding:1.25rem 1.5rem}
+    .show .when{flex-direction:column;align-items:flex-start;gap:.15rem;min-width:96px}
+  }
+
+  /* ---------- Watch / clips ---------- */
+  .clip-grid{display:grid;grid-template-columns:1fr;gap:1.1rem}
+  @media(min-width:620px){.clip-grid{grid-template-columns:1fr 1fr}}
+  @media(min-width:1000px){.clip-grid{grid-template-columns:repeat(4,1fr)}}
+  .clip{
+    position:relative;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+    background:var(--brick);cursor:pointer;
+    transition:transform .22s var(--ease),border-color .22s var(--ease),box-shadow .22s var(--ease);
+  }
+  .clip:hover{transform:translateY(-4px);border-color:var(--yellow);box-shadow:0 16px 34px rgba(0,0,0,.55)}
+  .clip .thumb{
+    aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;position:relative;
+    background:
+      radial-gradient(circle at 50% 38%, rgba(245,200,0,.16), transparent 60%),
+      repeating-linear-gradient(115deg, rgba(255,255,255,.018) 0 2px, transparent 2px 12px),
+      linear-gradient(160deg,#1d160e,#0c0a08);
+  }
+  .clip .play{
+    width:56px;height:56px;border-radius:50%;background:var(--yellow);color:#1a1405;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 0 0 6px rgba(245,200,0,.16),0 8px 24px rgba(0,0,0,.45);
+    transition:transform .22s var(--ease),background .22s var(--ease);
+  }
+  .clip:hover .play{transform:scale(1.08);background:var(--yellow-bright)}
+  .clip .runtime{position:absolute;bottom:8px;right:8px;font-size:.72rem;font-weight:700;background:rgba(8,7,6,.78);color:var(--ink);padding:.2rem .5rem;border-radius:6px;letter-spacing:.04em}
+  .clip .meta{padding:.9rem 1rem 1.05rem}
+  .clip .meta h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.02rem;line-height:1.2}
+  .clip .meta p{font-size:.83rem;color:var(--ink-dim);margin-top:.3rem}
+
+  /* ---------- About ---------- */
+  .about{
+    background:
+      linear-gradient(180deg,transparent, rgba(23,18,12,.5), transparent);
+  }
+  .about-grid{display:grid;grid-template-columns:1fr;gap:2rem;align-items:center}
+  @media(min-width:880px){.about-grid{grid-template-columns:1.05fr .95fr;gap:3rem}}
+  .about p{color:var(--ink-dim);margin-bottom:1rem;font-size:1.04rem}
+  .about p strong{color:var(--ink)}
+  /* stool + mic + spotlight illustration */
+  .stage-card{
+    position:relative;border:1px solid var(--line);border-radius:18px;overflow:hidden;
+    background:linear-gradient(180deg,#15100a,#0a0806);min-height:300px;
+  }
+  .stage-card .brickbg{
+    position:absolute;inset:0;opacity:.6;
+    background-image:
+      linear-gradient(rgba(36,26,17,.5) 2px, transparent 2px),
+      linear-gradient(90deg, rgba(36,26,17,.45) 2px, transparent 2px);
+    background-size:100% 38px, 110px 38px;
+  }
+  .stage-card .cone{
+    position:absolute;top:-6%;left:50%;transform:translateX(-50%);
+    width:75%;height:118%;
+    background:radial-gradient(ellipse 50% 64% at 50% 0%, rgba(245,200,0,.34), rgba(245,200,0,.08) 42%, transparent 66%);
+    -webkit-mask:linear-gradient(to bottom,#000,transparent 90%);mask:linear-gradient(to bottom,#000,transparent 90%);
+  }
+  .stage-svg{position:relative;z-index:2;width:100%;height:auto;display:block}
+  .stage-card figcaption{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:.78rem;color:var(--ink-faint);z-index:3}
+
+  /* ---------- Press / as seen at ---------- */
+  .press-grid{display:grid;grid-template-columns:1fr;gap:1.1rem}
+  @media(min-width:760px){.press-grid{grid-template-columns:1fr 1fr}}
+  .quote{
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:1.6rem 1.5rem;position:relative;
+  }
+  .quote .mark{font-family:'Anton',sans-serif;font-size:3rem;color:var(--yellow);line-height:.6;opacity:.85}
+  .quote blockquote{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:1.12rem;color:var(--ink);margin:.4rem 0 .9rem;line-height:1.45}
+  .quote cite{font-style:normal;font-size:.85rem;color:var(--ink-dim);font-weight:600}
+  .seenat{
+    margin-top:2rem;border-top:1px solid var(--line);padding-top:1.6rem;
+    display:flex;flex-wrap:wrap;gap:.7rem 1.8rem;align-items:center;justify-content:center;
+  }
+  .seenat span:first-child{width:100%;text-align:center;font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;margin-bottom:.3rem}
+  .seenat .logo{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:1rem;letter-spacing:1px;color:var(--ink-dim);opacity:.78;transition:color .2s var(--ease),opacity .2s var(--ease)}
+  .seenat .logo:hover{color:var(--yellow);opacity:1}
+
+  /* ---------- Booking + Newsletter ---------- */
+  .duo{display:grid;grid-template-columns:1fr;gap:1.5rem}
+  @media(min-width:920px){.duo{grid-template-columns:1.25fr .75fr;align-items:start}}
+  .card{
+    background:linear-gradient(180deg,var(--panel),var(--black-2));
+    border:1px solid var(--line);border-radius:18px;padding:1.6rem 1.5rem;
+  }
+  .card h3{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:1.5rem;letter-spacing:.5px;margin-bottom:.4rem}
+  .card .sub{color:var(--ink-dim);font-size:.95rem;margin-bottom:1.3rem}
+  .field{margin-bottom:1rem}
+  .field label{display:block;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:.4rem}
+  .field input,.field textarea,.field select{
+    width:100%;background:#0b0a09;border:1px solid var(--line);border-radius:10px;
+    color:var(--ink);font-family:'Sora',sans-serif;font-size:.95rem;padding:.75rem .85rem;
+    transition:border-color .18s var(--ease),box-shadow .18s var(--ease);
+  }
+  .field input::placeholder,.field textarea::placeholder{color:#6f685c}
+  .field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--yellow);box-shadow:0 0 0 3px rgba(245,200,0,.18)}
+  .field textarea{resize:vertical;min-height:96px}
+  .row2{display:grid;grid-template-columns:1fr;gap:0 1rem}
+  @media(min-width:560px){.row2{grid-template-columns:1fr 1fr}}
+  .form-note{font-size:.78rem;color:var(--ink-faint);margin-top:.2rem}
+  .bookmail{margin-top:1.1rem;font-size:.92rem;color:var(--ink-dim)}
+  .bookmail a{color:var(--yellow);font-weight:700}
+  .success{
+    display:none;align-items:flex-start;gap:.7rem;
+    background:rgba(245,200,0,.06);border:1px solid rgba(245,200,0,.35);border-radius:12px;
+    padding:1rem 1.1rem;color:var(--ink);font-size:.95rem;margin-top:.4rem;
+  }
+  .success.show{display:flex;animation:popin .4s var(--ease) both}
+  .success .ck{flex:none;width:26px;height:26px;border-radius:50%;background:var(--yellow);color:#1a1405;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.95rem}
+  @keyframes popin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  .news-inline{display:flex;gap:.6rem;flex-direction:column}
+  @media(min-width:420px){.news-inline{flex-direction:row}}
+  .news-inline input{flex:1}
+
+  /* ---------- Social ---------- */
+  .social{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.2rem}
+  .social a{
+    display:inline-flex;align-items:center;gap:.5rem;font-size:.88rem;font-weight:600;
+    border:1px solid var(--line);border-radius:999px;padding:.5rem 1rem;color:var(--ink-dim);
+    transition:border-color .18s var(--ease),color .18s var(--ease),transform .18s var(--ease);
+  }
+  .social a:hover{border-color:var(--yellow);color:var(--yellow);transform:translateY(-2px)}
+  .social svg{width:16px;height:16px}
+
+  /* ---------- Footer ---------- */
+  footer{border-top:1px solid var(--line);padding:2.4rem 0 3rem;position:relative}
+  .foot-grid{display:flex;flex-direction:column;gap:1.2rem;align-items:center;text-align:center}
+  @media(min-width:760px){.foot-grid{flex-direction:row;justify-content:space-between;text-align:left}}
+  .foot-brand{font-family:'Anton',sans-serif;font-size:1.4rem;text-transform:uppercase;letter-spacing:1px}
+  .foot-brand b{color:var(--yellow)}
+  .foot-meta{font-size:.85rem;color:var(--ink-faint)}
+  .byline{
+    font-size:.9rem;color:var(--ink-dim);
+  }
+  .byline a{color:var(--yellow);font-weight:700;transition:color .18s var(--ease)}
+  .byline a:hover{color:var(--yellow-bright)}
+
+  /* ---------- Load reveal animation ---------- */
+  [data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  [data-reveal].in{opacity:1;transform:none}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation:none !important;transition:none !important}
+    [data-reveal]{opacity:1 !important;transform:none !important}
+    .btn:hover,.clip:hover,.show:hover,.social a:hover,.nav-cta:hover{transform:none !important}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+
+  <!-- ===== Marquee bulb strip ===== -->
+  <div class="bulbs" aria-hidden="true"></div>
+
+  <!-- ===== Nav ===== -->
+  <header class="nav">
+    <nav class="container nav-inner" aria-label="Primary">
+      <a class="brand" href="#top" aria-label="Dani Cole home">
+        <span class="dot" aria-hidden="true"></span>
+        DANI <b>COLE</b>
+      </a>
+      <div class="nav-links">
+        <a href="#shows">Shows</a>
+        <a href="#watch">Watch</a>
+        <a href="#about">About</a>
+        <a href="#press">Press</a>
+        <a href="#booking">Booking</a>
+      </div>
+      <a class="nav-cta" href="#shows">See Dates</a>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- ===== Hero ===== -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <span class="spotlight" aria-hidden="true"></span>
+      <div class="container hero-inner">
+        <span class="tag-pill" data-reveal><span class="live" aria-hidden="true"></span> Orlando, FL — on tour now</span>
+        <h1 id="hero-title" data-reveal>DANI <span class="lit">COLE</span></h1>
+        <p class="tagline" data-reveal>Stand-up comedian and crowd-work specialist. Front row, you're not safe — but you're in good hands.</p>
+        <div class="hero-cta" data-reveal>
+          <a class="btn btn-primary" href="#shows">See Dates</a>
+          <a class="btn btn-ghost" href="#watch">Watch a Clip</a>
+        </div>
+        <p class="hero-next" data-reveal>
+          <b>Next show:</b>
+          <span>Fri, Jun 13 — Orlando, FL</span>
+          <span class="sep" aria-hidden="true">•</span>
+          <span>The Abbey</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== Shows / Tour dates ===== -->
+    <section id="shows" aria-labelledby="shows-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">On The Road</span>
+          <h2 class="section-title" id="shows-title">Upcoming Shows</h2>
+          <p class="lead">Clubs, theaters, and the occasional brewery. Grab tickets before your hometown sells out — they have before.</p>
+        </div>
+
+        <div class="shows-list">
+          <article class="show" data-reveal>
+            <div class="when"><span class="date">JUN 13</span><span class="yr">2026 · FRI</span></div>
+            <div class="where">
+              <div class="city">Orlando, FL</div>
+              <div class="venue">The Abbey · 8:00 PM &amp; 10:30 PM</div>
+            </div>
+            <div class="act">
+              <span class="badge">2 shows</span>
+              <a class="btn btn-primary btn-sm" href="#booking">Tickets</a>
+            </div>
+          </article>
+
+          <article class="show" data-reveal>
+            <div class="when"><span class="date">JUN 21</span><span class="yr">2026 · SAT</span></div>
+            <div class="where">
+              <div class="city">Tampa, FL</div>
+              <div class="venue">Side Splitters Comedy Club</div>
+            </div>
+            <div class="act">
+              <span class="badge soldout">Sold Out</span>
+              <a class="btn btn-ghost btn-sm" href="#newsletter" aria-label="Join the waitlist for Tampa">Waitlist</a>
+            </div>
+          </article>
+
+          <article class="show" data-reveal>
+            <div class="when"><span class="date">JUL 02</span><span class="yr">2026 · WED</span></div>
+            <div class="where">
+              <div class="city">Atlanta, GA</div>
+              <div class="venue">The Punchline</div>
+            </div>
+            <div class="act">
+              <a class="btn btn-primary btn-sm" href="#booking">Tickets</a>
+            </div>
+          </article>
+
+          <article class="show" data-reveal>
+            <div class="when"><span class="date">JUL 11</span><span class="yr">2026 · FRI</span></div>
+            <div class="where">
+              <div class="city">Nashville, TN</div>
+              <div class="venue">Zanies Comedy Night Club</div>
+            </div>
+            <div class="act">
+              <a class="btn btn-primary btn-sm" href="#booking">Tickets</a>
+            </div>
+          </article>
+
+          <article class="show" data-reveal>
+            <div class="when"><span class="date">JUL 19</span><span class="yr">2026 · SAT</span></div>
+            <div class="where">
+              <div class="city">Austin, TX</div>
+              <div class="venue">Cap City Comedy Club</div>
+            </div>
+            <div class="act">
+              <span class="badge">Late show</span>
+              <a class="btn btn-primary btn-sm" href="#booking">Tickets</a>
+            </div>
+          </article>
+
+          <article class="show" data-reveal>
+            <div class="when"><span class="date">AUG 01</span><span class="yr">2026 · FRI</span></div>
+            <div class="where">
+              <div class="city">Chicago, IL</div>
+              <div class="venue">The Laugh Factory</div>
+            </div>
+            <div class="act">
+              <a class="btn btn-primary btn-sm" href="#booking">Tickets</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Watch / clips ===== -->
+    <section id="watch" aria-labelledby="watch-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Roll The Tape</span>
+          <h2 class="section-title" id="watch-title">Watch</h2>
+          <p class="lead">A few sets that went exactly to plan, and a couple that didn't. Both are funny.</p>
+        </div>
+
+        <div class="clip-grid">
+          <button class="clip" data-reveal type="button" aria-label="Play clip: First Date, Last Row">
+            <span class="thumb">
+              <span class="play" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+              <span class="runtime">3:42</span>
+            </span>
+            <span class="meta">
+              <h3>First Date, Last Row</h3>
+              <p>An accountant in row one regrets everything.</p>
+            </span>
+          </button>
+
+          <button class="clip" data-reveal type="button" aria-label="Play clip: My Landlord, The Comedian">
+            <span class="thumb">
+              <span class="play" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+              <span class="runtime">5:08</span>
+            </span>
+            <span class="meta">
+              <h3>My Landlord, The Comedian</h3>
+              <p>Crowd work spirals into a Zillow tragedy.</p>
+            </span>
+          </button>
+
+          <button class="clip" data-reveal type="button" aria-label="Play clip: Orlando Things">
+            <span class="thumb">
+              <span class="play" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+              <span class="runtime">4:21</span>
+            </span>
+            <span class="meta">
+              <h3>Orlando Things</h3>
+              <p>Theme parks, toll roads, and emotional damage.</p>
+            </span>
+          </button>
+
+          <button class="clip" data-reveal type="button" aria-label="Play clip: The Heckler Folder">
+            <span class="thumb">
+              <span class="play" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+              <span class="runtime">2:57</span>
+            </span>
+            <span class="meta">
+              <h3>The Heckler Folder</h3>
+              <p>Best of the people who said something first.</p>
+            </span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== About ===== -->
+    <section id="about" class="about" aria-labelledby="about-title">
+      <div class="container about-grid">
+        <div data-reveal>
+          <span class="eyebrow">The Deal</span>
+          <h2 class="section-title" id="about-title">About Dani</h2>
+          <p style="margin-top:1.2rem"><strong>Dani Cole is an Orlando stand-up</strong> who treats the front row like a scene partner — and the back row like a jury. After ten years of open mics, bar shows, and the occasional wedding she swears she was invited to, she's built a reputation for turning a quiet Tuesday crowd into the loudest room in the building.</p>
+          <p>Her comedy lives in the small stuff: the group chat that won't die, the self-checkout that calls for help, the friend who's "doing great" in a tone that says otherwise. No bit is too local; no audience is too tired. If you've got a story, she's already three jokes ahead of it.</p>
+          <p>She headlines clubs across the Southeast, hosts the monthly <strong>"Cole Open"</strong> showcase in Orlando, and is currently developing an hour about turning thirty-something and meaning it.</p>
+        </div>
+
+        <figure class="stage-card" data-reveal>
+          <span class="brickbg" aria-hidden="true"></span>
+          <span class="cone" aria-hidden="true"></span>
+          <svg class="stage-svg" viewBox="0 0 400 300" role="img" aria-label="A single stool and microphone on a stand under a yellow spotlight on a club stage.">
+            <!-- stage floor -->
+            <ellipse cx="200" cy="262" rx="150" ry="20" fill="rgba(245,200,0,.10)"/>
+            <!-- stool legs -->
+            <line x1="172" y1="200" x2="158" y2="258" stroke="#3a342a" stroke-width="5" stroke-linecap="round"/>
+            <line x1="228" y1="200" x2="242" y2="258" stroke="#3a342a" stroke-width="5" stroke-linecap="round"/>
+            <line x1="178" y1="200" x2="198" y2="258" stroke="#2c281f" stroke-width="5" stroke-linecap="round"/>
+            <line x1="222" y1="200" x2="202" y2="258" stroke="#2c281f" stroke-width="5" stroke-linecap="round"/>
+            <!-- stool rung -->
+            <line x1="166" y1="228" x2="234" y2="228" stroke="#2c281f" stroke-width="4" stroke-linecap="round"/>
+            <!-- stool seat -->
+            <ellipse cx="200" cy="198" rx="38" ry="11" fill="#1a1610" stroke="#4a4232" stroke-width="2"/>
+            <ellipse cx="200" cy="195" rx="38" ry="11" fill="#241d12"/>
+            <!-- mic stand base -->
+            <ellipse cx="120" cy="256" rx="26" ry="7" fill="#26221a"/>
+            <!-- mic pole -->
+            <line x1="120" y1="256" x2="120" y2="120" stroke="#4a4232" stroke-width="5" stroke-linecap="round"/>
+            <!-- boom -->
+            <line x1="120" y1="124" x2="156" y2="104" stroke="#4a4232" stroke-width="5" stroke-linecap="round"/>
+            <!-- mic head -->
+            <circle cx="162" cy="100" r="11" fill="#0d0b08" stroke="var(--yellow)" stroke-width="2.5"/>
+            <circle cx="162" cy="100" r="5" fill="#3a342a"/>
+            <!-- bulb accents top -->
+            <circle cx="70" cy="40" r="5" fill="var(--yellow)" opacity=".9"/>
+            <circle cx="200" cy="28" r="5" fill="var(--yellow)" opacity=".9"/>
+            <circle cx="330" cy="40" r="5" fill="var(--yellow)" opacity=".9"/>
+          </svg>
+          <figcaption>One stool. One mic. One spotlight. The whole job.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===== Press / as seen at ===== -->
+    <section id="press" aria-labelledby="press-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">The Reviews Are In</span>
+          <h2 class="section-title" id="press-title">Press</h2>
+        </div>
+
+        <div class="press-grid">
+          <figure class="quote" data-reveal>
+            <div class="mark" aria-hidden="true">&ldquo;</div>
+            <blockquote>"Cole reads a room faster than the room reads itself. Her crowd work alone is worth the cover."</blockquote>
+            <cite>— Orlando Weekly</cite>
+          </figure>
+          <figure class="quote" data-reveal>
+            <div class="mark" aria-hidden="true">&ldquo;</div>
+            <blockquote>"A genuinely fearless headliner. We watched her turn a heckle into a five-minute closer and bring the house down."</blockquote>
+            <cite>— The Comedy Bureau</cite>
+          </figure>
+        </div>
+
+        <div class="seenat" data-reveal>
+          <span>As Seen At</span>
+          <a class="logo" href="#shows">The Abbey</a>
+          <a class="logo" href="#shows">Side Splitters</a>
+          <a class="logo" href="#shows">The Punchline</a>
+          <a class="logo" href="#shows">Zanies</a>
+          <a class="logo" href="#shows">Cap City</a>
+          <a class="logo" href="#shows">Laugh Factory</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Booking + Newsletter ===== -->
+    <section id="booking" aria-labelledby="booking-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Let's Talk</span>
+          <h2 class="section-title" id="booking-title">Booking &amp; Contact</h2>
+          <p class="lead">Running a club, festival, corporate night, or private event? Send the details and you'll hear back within two business days.</p>
+        </div>
+
+        <div class="duo">
+          <!-- Booking form -->
+          <div class="card" data-reveal>
+            <h3>Book Dani</h3>
+            <p class="sub">For venues &amp; bookers. Tell us about the room.</p>
+            <form id="bookingForm" novalidate>
+              <div class="row2">
+                <div class="field">
+                  <label for="bk-name">Your Name</label>
+                  <input id="bk-name" name="name" type="text" autocomplete="name" placeholder="Jordan Reyes" required>
+                </div>
+                <div class="field">
+                  <label for="bk-org">Venue / Organization</label>
+                  <input id="bk-org" name="org" type="text" autocomplete="organization" placeholder="The Comedy Cellar" required>
+                </div>
+              </div>
+              <div class="row2">
+                <div class="field">
+                  <label for="bk-email">Email</label>
+                  <input id="bk-email" name="email" type="email" autocomplete="email" placeholder="you@venue.com" required>
+                </div>
+                <div class="field">
+                  <label for="bk-date">Event Date</label>
+                  <input id="bk-date" name="date" type="date" required>
+                </div>
+              </div>
+              <div class="field">
+                <label for="bk-type">Type of Event</label>
+                <select id="bk-type" name="type" required>
+                  <option value="" disabled selected>Choose one…</option>
+                  <option>Club headline / feature</option>
+                  <option>Theater show</option>
+                  <option>Comedy festival</option>
+                  <option>Corporate / private event</option>
+                  <option>Host / emcee</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="bk-msg">Details</label>
+                <textarea id="bk-msg" name="message" placeholder="Room size, set length, dates you're considering, budget range…"></textarea>
+                <p class="form-note">This is a demo form — nothing is actually sent.</p>
+              </div>
+              <button class="btn btn-primary" type="submit" style="width:100%">Send Booking Request</button>
+              <div class="success" id="bookingSuccess" role="status" aria-live="polite">
+                <span class="ck" aria-hidden="true">✓</span>
+                <span><strong>Request received.</strong> Thanks — Dani's team will get back to you within two business days. (Demo: no message was sent.)</span>
+              </div>
+            </form>
+            <p class="bookmail">Prefer email? Reach the booking team directly at <a href="mailto:booking@danicole.com">booking@danicole.com</a>.</p>
+          </div>
+
+          <!-- Newsletter + social -->
+          <div class="card" id="newsletter" data-reveal>
+            <h3>Stay In The Loop</h3>
+            <p class="sub">New dates, presale codes, and the occasional bad pun. No spam, ever.</p>
+            <form id="newsForm" novalidate>
+              <div class="field">
+                <label for="news-email">Email Address</label>
+                <div class="news-inline">
+                  <input id="news-email" name="email" type="email" autocomplete="email" placeholder="you@email.com" required>
+                  <button class="btn btn-primary" type="submit">Sign Up</button>
+                </div>
+                <p class="form-note">Demo only — your inbox stays untouched.</p>
+              </div>
+              <div class="success" id="newsSuccess" role="status" aria-live="polite">
+                <span class="ck" aria-hidden="true">✓</span>
+                <span><strong>You're on the list.</strong> Watch your inbox for tour announcements. (Demo: nothing was sent.)</span>
+              </div>
+            </form>
+
+            <h3 style="font-size:1.2rem;margin-top:1.6rem">Follow Along</h3>
+            <div class="social">
+              <a href="#top" aria-label="Dani Cole on Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                Instagram
+              </a>
+              <a href="#top" aria-label="Dani Cole on TikTok">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 3c.5 2.2 1.9 3.6 4 4v3c-1.5 0-2.9-.4-4-1.1V15a6 6 0 1 1-6-6c.3 0 .7 0 1 .1V12a3 3 0 1 0 2 2.8V3h3z"/></svg>
+                TikTok
+              </a>
+              <a href="#top" aria-label="Dani Cole on YouTube">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 8.2a3 3 0 0 0-2.1-2.1C18 5.5 12 5.5 12 5.5s-6 0-7.9.6A3 3 0 0 0 2 8.2 31 31 0 0 0 1.7 12 31 31 0 0 0 2 15.8a3 3 0 0 0 2.1 2.1c1.9.6 7.9.6 7.9.6s6 0 7.9-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22.3 12 31 31 0 0 0 22 8.2zM10 15V9l5 3-5 3z"/></svg>
+                YouTube
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <div class="container foot-grid">
+      <div>
+        <div class="foot-brand">DANI <b>COLE</b></div>
+        <p class="foot-meta">Stand-up comedy · Orlando, FL · Available for touring &amp; private events</p>
+      </div>
+      <div>
+        <p class="byline">Site by <a href="https://bananabyte.io" target="_blank" rel="noopener">🍌 BANANAbyte</a></p>
+        <p class="foot-meta">© <span id="yr">2026</span> Dani Cole. All bits reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  // Year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // ---- Staggered load reveal (IntersectionObserver, reduced-motion safe) ----
+  (function(){
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var items = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
+    if (reduce || !('IntersectionObserver' in window)) {
+      items.forEach(function(el){ el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries, obs){
+      // Stagger within a batch that enters together
+      var visible = entries.filter(function(e){ return e.isIntersecting; });
+      visible.forEach(function(entry, i){
+        var el = entry.target;
+        setTimeout(function(){ el.classList.add('in'); }, Math.min(i,6) * 80);
+        obs.unobserve(el);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    items.forEach(function(el){ io.observe(el); });
+  })();
+
+  // ---- Form demos: preventDefault + inline success ----
+  function wireForm(formId, successId){
+    var form = document.getElementById(formId);
+    var success = document.getElementById(successId);
+    if(!form) return;
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      // Basic native validity check without sending
+      if(!form.checkValidity()){
+        form.reportValidity();
+        return;
+      }
+      success.classList.add('show');
+      form.querySelectorAll('input,textarea,select,button').forEach(function(el){
+        if(el.type !== 'submit') el.value = el.tagName === 'SELECT' ? '' : '';
+      });
+      success.scrollIntoView({behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto':'smooth', block:'nearest'});
+    });
+  }
+  wireForm('bookingForm','bookingSuccess');
+  wireForm('newsForm','newsSuccess');
+
+  // ---- Clip cards: friendly inline feedback (no real embed) ----
+  document.querySelectorAll('.clip').forEach(function(clip){
+    clip.addEventListener('click', function(){
+      var rt = clip.querySelector('.runtime');
+      if(rt && rt.dataset.locked !== '1'){
+        rt.dataset.original = rt.textContent;
+        rt.textContent = 'Demo clip';
+        rt.dataset.locked = '1';
+        setTimeout(function(){ rt.textContent = rt.dataset.original; rt.dataset.locked=''; }, 1600);
+      }
+    });
+  });
+</script>
+</body>
+</html>
