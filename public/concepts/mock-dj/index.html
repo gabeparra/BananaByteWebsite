@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en" class="nojs">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>NOVA — Electronic Live Sets &amp; Mixes</title>
+<meta name="description" content="NOVA — electronic music DJ &amp; producer. Upcoming gigs, mixes, bookings." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --black:#05050c;
+    --indigo:#0a0a1f;
+    --indigo-2:#12102e;
+    --panel:#0e0d24;
+    --cyan:#22f1ff;
+    --magenta:#ff2bd6;
+    --acid:#b6ff3c;
+    --violet:#7a4dff;
+    --ink:#eef0ff;
+    --muted:#a3a6d6;
+    --line:rgba(122,77,255,.28);
+    --glow-cyan:0 0 18px rgba(34,241,255,.55);
+    --glow-mag:0 0 18px rgba(255,43,214,.55);
+    --rad:16px;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
+  body{
+    margin:0;
+    background:var(--black);
+    color:var(--ink);
+    font-family:"Chakra Petch",ui-monospace,monospace;
+    line-height:1.6;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:"Syne","Chakra Petch",sans-serif;
+    line-height:1.02;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  a{color:inherit}
+  img{max-width:100%}
+  .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 20px}
+  .eyebrow{
+    font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;
+    color:var(--cyan);font-weight:600;
+  }
+  .neon-cyan{color:var(--cyan)}
+  .neon-mag{color:var(--magenta)}
+  .neon-acid{color:var(--acid)}
+
+  /* ---- skip + focus ---- */
+  .skip{
+    position:absolute;left:-999px;top:0;z-index:200;
+    background:var(--cyan);color:#04040a;padding:10px 16px;font-weight:700;border-radius:8px;
+  }
+  .skip:focus{left:12px;top:12px}
+  a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,summary:focus-visible{
+    outline:3px solid var(--acid);
+    outline-offset:3px;
+    border-radius:6px;
+  }
+
+  /* ---- animated background field ---- */
+  .bgfield{position:fixed;inset:0;z-index:-2;background:
+    radial-gradient(120% 90% at 80% -10%, #1a0f3a 0%, transparent 55%),
+    radial-gradient(120% 90% at 0% 0%, #0a1a3a 0%, transparent 50%),
+    var(--black);
+  }
+  .blob{position:fixed;z-index:-1;border-radius:50%;filter:blur(70px);opacity:.5;pointer-events:none;will-change:transform}
+  .blob.a{width:46vw;height:46vw;background:radial-gradient(circle,var(--magenta),transparent 70%);top:-8vw;right:-10vw;animation:drift1 22s ease-in-out infinite}
+  .blob.b{width:42vw;height:42vw;background:radial-gradient(circle,var(--cyan),transparent 70%);bottom:-12vw;left:-8vw;animation:drift2 26s ease-in-out infinite}
+  .blob.c{width:30vw;height:30vw;background:radial-gradient(circle,var(--violet),transparent 70%);top:40%;left:55%;animation:drift1 30s ease-in-out infinite reverse}
+  @keyframes drift1{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(-6vw,5vw,0) scale(1.12)}}
+  @keyframes drift2{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(7vw,-4vw,0) scale(1.15)}}
+
+  /* ---- header ---- */
+  header{position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(12px);
+    background:linear-gradient(180deg,rgba(5,5,12,.85),rgba(5,5,12,.45));
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 20px;max-width:var(--maxw);margin:0 auto}
+  .brand{display:flex;align-items:center;gap:12px;font-family:"Syne";font-weight:800;font-size:1.25rem;letter-spacing:.18em;text-decoration:none}
+  .brand .dot{width:11px;height:11px;border-radius:50%;background:var(--cyan);box-shadow:var(--glow-cyan);animation:pulseDot 1.4s ease-in-out infinite}
+  @keyframes pulseDot{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.55}}
+  .navlinks{display:none;gap:26px;align-items:center}
+  .navlinks a{text-decoration:none;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);transition:color .2s,text-shadow .2s}
+  .navlinks a:hover{color:var(--cyan);text-shadow:var(--glow-cyan)}
+  @media(min-width:900px){.navlinks{display:flex}}
+
+  /* ---- buttons ---- */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:9px;
+    font-family:"Chakra Petch";font-weight:700;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;
+    padding:13px 22px;min-height:44px;border-radius:999px;border:1px solid transparent;cursor:pointer;text-decoration:none;
+    transition:transform .18s ease, box-shadow .25s ease, background .25s ease;
+    background:transparent;color:var(--ink);
+  }
+  .btn:hover{transform:translateY(-2px)}
+  .btn-cyan{background:var(--cyan);color:#03030a;box-shadow:var(--glow-cyan)}
+  .btn-cyan:hover{box-shadow:0 0 30px rgba(34,241,255,.85)}
+  .btn-mag{background:var(--magenta);color:#0a0011;box-shadow:var(--glow-mag)}
+  .btn-mag:hover{box-shadow:0 0 30px rgba(255,43,214,.85)}
+  .btn-ghost{border-color:var(--violet);color:var(--ink);background:rgba(122,77,255,.08)}
+  .btn-ghost:hover{border-color:var(--cyan);box-shadow:var(--glow-cyan)}
+  .btn[disabled]{opacity:.5;cursor:not-allowed;transform:none;filter:grayscale(.4)}
+
+  /* ---- hero ---- */
+  .hero{position:relative;padding:72px 0 56px;overflow:hidden}
+  .hero .wrap{position:relative}
+  .hero .eyebrow{display:flex;align-items:center;gap:12px}
+  .hero h1{
+    font-size:clamp(3.4rem,17vw,9rem);
+    font-weight:800;margin:14px 0 6px;
+    text-transform:uppercase;letter-spacing:-.02em;
+    background:linear-gradient(92deg,var(--cyan),var(--magenta) 55%,var(--violet));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    text-shadow:0 0 40px rgba(122,77,255,.25);
+  }
+  .hero .tagline{font-size:clamp(1.05rem,3.6vw,1.5rem);color:var(--ink);max-width:34ch;margin:0 0 10px;font-weight:500}
+  .hero .meta{color:var(--muted);font-size:.9rem;letter-spacing:.06em;margin-bottom:26px}
+  .hero .cta{display:flex;flex-wrap:wrap;gap:14px}
+  /* beat-pulsing ring behind name */
+  .pulse-ring{position:absolute;top:46%;left:8%;width:230px;height:230px;border-radius:50%;
+    border:2px solid rgba(34,241,255,.4);pointer-events:none;z-index:0;
+    animation:beat 1.05s ease-out infinite}
+  .pulse-ring.two{left:auto;right:6%;top:62%;border-color:rgba(255,43,214,.4);animation-delay:.5s}
+  @keyframes beat{0%{transform:scale(.4);opacity:.9}70%{opacity:0}100%{transform:scale(1.6);opacity:0}}
+
+  /* equalizer strip */
+  .eq{display:flex;align-items:flex-end;gap:4px;height:64px;margin-top:34px}
+  .eq span{flex:1;max-width:14px;background:linear-gradient(180deg,var(--cyan),var(--magenta));border-radius:4px 4px 0 0;height:30%;
+    transform-origin:bottom;animation:eqbar 1s ease-in-out infinite}
+  .eq span:nth-child(1){animation-delay:-.9s}
+  .eq span:nth-child(2){animation-delay:-.7s}
+  .eq span:nth-child(3){animation-delay:-.5s}
+  .eq span:nth-child(4){animation-delay:-.3s}
+  .eq span:nth-child(5){animation-delay:-.1s}
+  .eq span:nth-child(6){animation-delay:-.6s}
+  .eq span:nth-child(7){animation-delay:-.2s}
+  .eq span:nth-child(8){animation-delay:-.8s}
+  .eq span:nth-child(9){animation-delay:-.4s}
+  .eq span:nth-child(10){animation-delay:0s}
+  .eq span:nth-child(11){animation-delay:-.55s}
+  .eq span:nth-child(12){animation-delay:-.25s}
+  .eq span:nth-child(13){animation-delay:-.75s}
+  .eq span:nth-child(14){animation-delay:-.35s}
+  @keyframes eqbar{0%,100%{height:18%}25%{height:90%}50%{height:42%}75%{height:100%}}
+
+  /* ---- section frame ---- */
+  section{padding:62px 0;position:relative}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:34px}
+  .sec-head h2{font-size:clamp(1.9rem,6vw,3.1rem);text-transform:uppercase;font-weight:800}
+  .sec-head h2 span{color:var(--magenta)}
+  .sec-head p{color:var(--muted);max-width:40ch;margin:8px 0 0}
+
+  /* ---- gigs ---- */
+  .gigs{display:flex;flex-direction:column;gap:14px}
+  .gig{
+    display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;
+    padding:18px 20px;border:1px solid var(--line);border-radius:var(--rad);
+    background:linear-gradient(120deg,rgba(18,16,46,.7),rgba(10,10,31,.7));
+    transition:transform .2s,border-color .2s,box-shadow .25s;
+  }
+  .gig:hover{transform:translateY(-3px);border-color:var(--cyan);box-shadow:0 10px 40px -18px rgba(34,241,255,.6)}
+  .gig .date{text-align:center;min-width:62px}
+  .gig .date .d{font-family:"Syne";font-weight:800;font-size:1.7rem;line-height:1;color:var(--cyan)}
+  .gig .date .m{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+  .gig .info .club{font-family:"Syne";font-weight:700;font-size:1.15rem}
+  .gig .info .city{color:var(--muted);font-size:.86rem;letter-spacing:.05em}
+  .gig.sold{opacity:.72}
+  .badge{display:inline-block;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;padding:5px 11px;border-radius:999px;font-weight:700;border:1px solid var(--magenta);color:var(--magenta);white-space:nowrap}
+  @media(max-width:560px){
+    .gig{grid-template-columns:auto 1fr;grid-template-areas:"date info" "btn btn";row-gap:14px}
+    .gig .date{grid-area:date}.gig .info{grid-area:info}.gig .act{grid-area:btn}
+    .gig .act .btn{width:100%}
+  }
+
+  /* ---- mixes ---- */
+  .mixgrid{display:grid;gap:20px;grid-template-columns:1fr}
+  @media(min-width:640px){.mixgrid{grid-template-columns:1fr 1fr}}
+  @media(min-width:980px){.mixgrid{grid-template-columns:1fr 1fr}}
+  .mix{
+    border:1px solid var(--line);border-radius:var(--rad);overflow:hidden;
+    background:linear-gradient(160deg,rgba(18,16,46,.85),rgba(8,8,20,.9));
+    position:relative;transition:transform .2s,box-shadow .25s,border-color .2s;
+  }
+  .mix:hover{transform:translateY(-4px);border-color:var(--magenta);box-shadow:0 16px 50px -22px rgba(255,43,214,.7)}
+  .mix .art{height:120px;position:relative;background:
+    conic-gradient(from 0deg,var(--violet),var(--cyan),var(--magenta),var(--violet));
+    background-size:200% 200%;animation:artshift 9s ease infinite}
+  @keyframes artshift{0%,100%{background-position:0% 0%}50%{background-position:100% 100%}}
+  .mix .art::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 40%,transparent,rgba(5,5,12,.7))}
+  .mix .body{padding:18px 20px 22px}
+  .mix .tag{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--acid)}
+  .mix h3{font-size:1.3rem;margin:6px 0 4px;font-weight:700}
+  .mix .len{color:var(--muted);font-size:.82rem}
+  .player{display:flex;align-items:center;gap:14px;margin-top:16px}
+  .play{
+    flex:none;width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;
+    background:var(--cyan);color:#03030a;display:grid;place-items:center;
+    box-shadow:var(--glow-cyan);transition:transform .15s,box-shadow .2s;
+  }
+  .play:hover{transform:scale(1.08)}
+  .play svg{width:18px;height:18px}
+  /* animated waveform */
+  .wave{flex:1;display:flex;align-items:center;gap:3px;height:40px}
+  .wave i{flex:1;max-width:6px;background:linear-gradient(180deg,var(--cyan),var(--violet));border-radius:3px;height:22%;transform-origin:center;
+    animation:wv 1.1s ease-in-out infinite;animation-play-state:paused}
+  .mix.playing .wave i{animation-play-state:running}
+  .mix.playing .play{background:var(--magenta);box-shadow:var(--glow-mag)}
+  .wave i:nth-child(2n){animation-duration:.9s}
+  .wave i:nth-child(3n){animation-duration:1.3s}
+  .wave i:nth-child(4n){animation-duration:.75s}
+  .wave i:nth-child(odd){animation-delay:-.4s}
+  @keyframes wv{0%,100%{height:18%}50%{height:96%}}
+
+  /* ---- bio ---- */
+  .bio{display:grid;gap:28px;align-items:center;grid-template-columns:1fr}
+  @media(min-width:820px){.bio{grid-template-columns:1.1fr .9fr}}
+  .bio p{color:var(--muted);font-size:1.02rem}
+  .bio p strong{color:var(--ink)}
+  .portrait{aspect-ratio:1/1;border-radius:20px;border:1px solid var(--line);overflow:hidden;position:relative;
+    background:radial-gradient(circle at 50% 35%,#23114d,#06061a 70%)}
+  .portrait .mono{position:absolute;inset:0;display:grid;place-items:center;font-family:"Syne";font-weight:800;font-size:8rem;
+    background:linear-gradient(120deg,var(--cyan),var(--magenta));-webkit-background-clip:text;background-clip:text;color:transparent;opacity:.92}
+  .portrait .scan{position:absolute;left:0;right:0;height:30%;
+    background:linear-gradient(180deg,transparent,rgba(34,241,255,.18),transparent);animation:scan 4s linear infinite}
+  @keyframes scan{0%{top:-30%}100%{top:100%}}
+  .stats{display:flex;gap:22px;flex-wrap:wrap;margin-top:22px}
+  .stats div b{font-family:"Syne";font-size:1.8rem;color:var(--cyan);display:block;line-height:1}
+  .stats div span{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+
+  /* ---- clubs strip ---- */
+  .clubs{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:30px 0;overflow:hidden}
+  .clubs .label{text-align:center;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+  .marquee{display:flex;gap:54px;width:max-content;animation:slide 26s linear infinite}
+  .marquee:hover{animation-play-state:paused}
+  .marquee .logo{font-family:"Syne";font-weight:800;font-size:1.25rem;letter-spacing:.1em;color:var(--muted);
+    white-space:nowrap;opacity:.7;transition:color .2s,opacity .2s,text-shadow .2s}
+  .marquee .logo:hover{color:var(--cyan);opacity:1;text-shadow:var(--glow-cyan)}
+  @keyframes slide{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+  /* ---- forms ---- */
+  .forms{display:grid;gap:30px;grid-template-columns:1fr}
+  @media(min-width:880px){.forms{grid-template-columns:1.3fr .7fr}}
+  .card{
+    border:1px solid var(--line);border-radius:20px;padding:28px 24px;
+    background:linear-gradient(160deg,rgba(18,16,46,.7),rgba(8,8,20,.85));
+  }
+  .card h3{font-size:1.5rem;text-transform:uppercase;margin-bottom:6px}
+  .card .sub{color:var(--muted);font-size:.9rem;margin-bottom:20px}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:7px;font-weight:600}
+  .field input,.field textarea,.field select{
+    width:100%;padding:13px 14px;border-radius:11px;border:1px solid var(--line);
+    background:rgba(4,4,12,.7);color:var(--ink);font-family:"Chakra Petch";font-size:.95rem;
+    transition:border-color .2s,box-shadow .2s;
+  }
+  .field input::placeholder,.field textarea::placeholder{color:#9092bf}
+  .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(34,241,255,.15);outline:none}
+  .field textarea{min-height:110px;resize:vertical}
+  .row2{display:grid;gap:16px;grid-template-columns:1fr}
+  @media(min-width:520px){.row2{grid-template-columns:1fr 1fr}}
+  .formmsg{margin-top:14px;padding:13px 15px;border-radius:11px;font-size:.9rem;display:none;font-weight:600}
+  .formmsg.show{display:block;animation:pop .35s ease}
+  .formmsg.ok{background:rgba(182,255,60,.12);border:1px solid var(--acid);color:var(--acid)}
+  @keyframes pop{from{transform:translateY(6px);opacity:0}to{transform:translateY(0);opacity:1}}
+
+  /* newsletter inline */
+  .news .inline{display:flex;gap:10px;flex-wrap:wrap}
+  .news .inline input{flex:1;min-width:0}
+  .news .inline .btn{flex:none}
+
+  /* ---- footer ---- */
+  footer{padding:46px 0 38px;border-top:1px solid var(--line);text-align:center}
+  footer .ft-brand{font-family:"Syne";font-weight:800;font-size:1.5rem;letter-spacing:.2em;background:linear-gradient(92deg,var(--cyan),var(--magenta));-webkit-background-clip:text;background-clip:text;color:transparent}
+  footer .socials{display:flex;gap:18px;justify-content:center;margin:18px 0;flex-wrap:wrap}
+  footer .socials a{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s;display:inline-flex;align-items:center;min-height:44px;padding:0 4px}
+  footer .socials a:hover{color:var(--cyan)}
+  .byb{margin-top:18px;font-size:.82rem;color:var(--muted)}
+  .byb a{color:var(--acid);text-decoration:none;font-weight:700}
+  .byb a:hover{text-decoration:underline}
+  footer .copy{margin-top:10px;font-size:.72rem;color:#9092bf;letter-spacing:.05em}
+
+  /* ---- no-JS: give waveforms a static stepped shape so they read as intentional ---- */
+  .nojs .wave i{height:40%}
+  .nojs .wave i:nth-child(3n){height:70%}
+  .nojs .wave i:nth-child(3n+1){height:25%}
+  .nojs .wave i:nth-child(4n){height:90%}
+  .nojs .nojs-note{display:block}
+  .nojs-note{display:none;margin-top:14px;font-size:.8rem;color:var(--muted);text-align:center}
+
+  /* ---- reduced motion: kill ALL animation ---- */
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{
+      animation:none !important;
+      transition:none !important;
+    }
+    .blob{opacity:.35}
+    .eq span{height:55%}
+    .wave i{height:48%}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="bgfield" aria-hidden="true"></div>
+<div class="blob a" aria-hidden="true"></div>
+<div class="blob b" aria-hidden="true"></div>
+<div class="blob c" aria-hidden="true"></div>
+
+<header>
+  <nav class="nav" aria-label="Primary">
+    <a class="brand" href="#top" aria-label="NOVA home">
+      <span class="dot" aria-hidden="true"></span>NOVA
+    </a>
+    <div class="navlinks">
+      <a href="#gigs">Gigs</a>
+      <a href="#mixes">Mixes</a>
+      <a href="#bio">Bio</a>
+      <a href="#booking">Booking</a>
+      <a href="#mixes" class="btn btn-mag" style="padding:9px 18px">Listen</a>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero" id="top" aria-labelledby="hero-name">
+    <div class="pulse-ring" aria-hidden="true"></div>
+    <div class="pulse-ring two" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="eyebrow"><span class="dot" style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--magenta);box-shadow:var(--glow-mag)" aria-hidden="true"></span>DJ / Producer · Live Electronic</p>
+      <h1 id="hero-name">NOVA</h1>
+      <p class="tagline">Neon-drenched techno &amp; melodic house for rooms that don't sleep.</p>
+      <p class="meta">Next set — <span class="neon-cyan">JUN 21 · Pulse, Miami</span> · Doors 23:00</p>
+      <div class="cta">
+        <a class="btn btn-cyan" href="#gigs">Next Set →</a>
+        <a class="btn btn-ghost" href="#mixes">▸ Listen Now</a>
+      </div>
+      <div class="eq" role="img" aria-label="Animated audio equalizer visualizer">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- GIGS -->
+  <section id="gigs" aria-labelledby="gigs-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <p class="eyebrow">On Tour</p>
+          <h2 id="gigs-h">Upcoming <span>Gigs</span></h2>
+        </div>
+        <p>Catch NOVA live across the circuit. Tickets move fast — grab yours before lights out.</p>
+      </div>
+
+      <div class="gigs">
+        <article class="gig">
+          <div class="date"><div class="d">21</div><div class="m">Jun</div></div>
+          <div class="info"><div class="club">Pulse</div><div class="city">Miami, USA · Headline</div></div>
+          <div class="act"><a class="btn btn-cyan" href="#booking">Tickets</a></div>
+        </article>
+
+        <article class="gig">
+          <div class="date"><div class="d">28</div><div class="m">Jun</div></div>
+          <div class="info"><div class="club">Hangar 9</div><div class="city">Berlin, DE · Closing set</div></div>
+          <div class="act"><a class="btn btn-cyan" href="#booking">Tickets</a></div>
+        </article>
+
+        <article class="gig sold">
+          <div class="date"><div class="d">05</div><div class="m">Jul</div></div>
+          <div class="info"><div class="club">Fabric Room 1</div><div class="city">London, UK · Late</div></div>
+          <div class="act"><span class="badge">Sold Out</span></div>
+        </article>
+
+        <article class="gig">
+          <div class="date"><div class="d">19</div><div class="m">Jul</div></div>
+          <div class="info"><div class="club">Warehouse 23</div><div class="city">Barcelona, ES · B2B</div></div>
+          <div class="act"><a class="btn btn-cyan" href="#booking">Tickets</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- MIXES -->
+  <section id="mixes" aria-labelledby="mix-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <p class="eyebrow">Sound</p>
+          <h2 id="mix-h">Mixes <span>&amp; Tracks</span></h2>
+        </div>
+        <p>Hit play to feel the waveform move. Full sets stream on all major platforms.</p>
+      </div>
+      <p class="nojs-note">Enable JavaScript to preview waveforms. Full mixes stream on SoundCloud, Spotify and all major platforms.</p>
+
+      <div class="mixgrid">
+        <article class="mix">
+          <div class="art" aria-hidden="true"></div>
+          <div class="body">
+            <span class="tag">Melodic Techno</span>
+            <h3>Midnight Voltage</h3>
+            <div class="len">Live Set · 62:18</div>
+            <div class="player">
+              <button class="play" type="button" aria-pressed="false" aria-label="Play Midnight Voltage">
+                <svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                <svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:none"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
+              </button>
+              <div class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="mix">
+          <div class="art" aria-hidden="true"></div>
+          <div class="body">
+            <span class="tag">Acid House</span>
+            <h3>Chrome Rain</h3>
+            <div class="len">Single · 6:42</div>
+            <div class="player">
+              <button class="play" type="button" aria-pressed="false" aria-label="Play Chrome Rain">
+                <svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                <svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:none"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
+              </button>
+              <div class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="mix">
+          <div class="art" aria-hidden="true"></div>
+          <div class="body">
+            <span class="tag">Progressive</span>
+            <h3>Neon Cathedral</h3>
+            <div class="len">EP Cut · 8:05</div>
+            <div class="player">
+              <button class="play" type="button" aria-pressed="false" aria-label="Play Neon Cathedral">
+                <svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                <svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:none"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
+              </button>
+              <div class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="mix">
+          <div class="art" aria-hidden="true"></div>
+          <div class="body">
+            <span class="tag">Dark Disco</span>
+            <h3>Afterhours Mirage</h3>
+            <div class="len">Radio Mix · 58:40</div>
+            <div class="player">
+              <button class="play" type="button" aria-pressed="false" aria-label="Play Afterhours Mirage">
+                <svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                <svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:none"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
+              </button>
+              <div class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- BIO -->
+  <section id="bio" aria-labelledby="bio-h">
+    <div class="wrap">
+      <div class="bio">
+        <div>
+          <p class="eyebrow">Who</p>
+          <h2 id="bio-h" style="font-size:clamp(1.9rem,6vw,3rem);text-transform:uppercase;font-weight:800;margin:6px 0 16px">The Signal Behind <span class="neon-mag">NOVA</span></h2>
+          <p><strong>NOVA</strong> is the electronic alias of a producer who treats the dancefloor like a circuit board — every kick a voltage spike, every breakdown a held breath before the surge.</p>
+          <p>Born out of late-night warehouse sessions and a love for modular synths, NOVA's sound fuses hypnotic melodic techno with raw acid energy. Six years deep, a residency at Pulse, and a discography that keeps the bass bins humming till sunrise.</p>
+          <div class="stats">
+            <div><b>6+</b><span>Years live</span></div>
+            <div><b>140</b><span>Shows played</span></div>
+            <div><b>23</b><span>Countries</span></div>
+          </div>
+        </div>
+        <div class="portrait" role="img" aria-label="Stylized neon monogram portrait of NOVA">
+          <div class="scan" aria-hidden="true"></div>
+          <div class="mono" aria-hidden="true">N</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLUBS STRIP -->
+  <section class="clubs" aria-label="Clubs NOVA has played" style="padding-top:30px;padding-bottom:30px">
+    <p class="label">Played At</p>
+    <div class="marquee" aria-hidden="true">
+      <span class="logo">PULSE</span>
+      <span class="logo">HANGAR 9</span>
+      <span class="logo">FABRIC</span>
+      <span class="logo">WAREHOUSE 23</span>
+      <span class="logo">OUTPUT</span>
+      <span class="logo">BERGHAIN×</span>
+      <span class="logo">CITADEL</span>
+      <span class="logo">PULSE</span>
+      <span class="logo">HANGAR 9</span>
+      <span class="logo">FABRIC</span>
+      <span class="logo">WAREHOUSE 23</span>
+      <span class="logo">OUTPUT</span>
+      <span class="logo">BERGHAIN×</span>
+      <span class="logo">CITADEL</span>
+    </div>
+    <p class="wrap" style="position:absolute;left:-9999px">Clubs include Pulse, Hangar 9, Fabric, Warehouse 23, Output, Berghain-adjacent venues, and Citadel.</p>
+  </section>
+
+  <!-- FORMS -->
+  <section id="booking" aria-labelledby="book-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <p class="eyebrow">Promoters</p>
+          <h2 id="book-h">Book <span>NOVA</span></h2>
+        </div>
+        <p>Running a night? Send the details and the agency will get back within 48 hours.</p>
+      </div>
+
+      <div class="forms">
+        <!-- BOOKING -->
+        <div class="card">
+          <h3>Booking Enquiry</h3>
+          <p class="sub">For club nights, festivals &amp; private events.</p>
+          <form id="bookForm" novalidate>
+            <div class="row2">
+              <div class="field">
+                <label for="bk-name">Promoter / Org</label>
+                <input id="bk-name" name="name" type="text" placeholder="Your name or company" required autocomplete="organization" />
+              </div>
+              <div class="field">
+                <label for="bk-email">Email</label>
+                <input id="bk-email" name="email" type="email" placeholder="you@venue.com" required autocomplete="email" />
+              </div>
+            </div>
+            <div class="row2">
+              <div class="field">
+                <label for="bk-date">Event Date</label>
+                <input id="bk-date" name="date" type="date" required />
+              </div>
+              <div class="field">
+                <label for="bk-type">Event Type</label>
+                <select id="bk-type" name="type">
+                  <option>Club night</option>
+                  <option>Festival</option>
+                  <option>Private event</option>
+                  <option>Brand activation</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="bk-msg">Details</label>
+              <textarea id="bk-msg" name="message" placeholder="Venue, city, capacity, set length, budget range…"></textarea>
+            </div>
+            <button class="btn btn-mag" type="submit">Send Enquiry →</button>
+            <p class="formmsg ok" id="bookMsg" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+
+        <!-- NEWSLETTER -->
+        <div class="card news">
+          <h3>Stay Lit</h3>
+          <p class="sub">New mixes, tour drops &amp; secret-show codes. No spam, just signal.</p>
+          <form id="newsForm" novalidate>
+            <div class="field">
+              <label for="nl-email">Email Address</label>
+              <div class="inline">
+                <input id="nl-email" name="email" type="email" placeholder="you@email.com" required autocomplete="email" />
+                <button class="btn btn-cyan" type="submit">Join →</button>
+              </div>
+            </div>
+            <p class="formmsg ok" id="newsMsg" role="status" aria-live="polite"></p>
+          </form>
+          <div style="margin-top:26px;border-top:1px solid var(--line);padding-top:20px">
+            <p class="eyebrow" style="margin-bottom:10px">Follow</p>
+            <div class="news inline" style="gap:10px">
+              <a class="btn btn-ghost" href="#mixes" style="padding:10px 16px;font-size:.74rem">SoundCloud</a>
+              <a class="btn btn-ghost" href="#mixes" style="padding:10px 16px;font-size:.74rem">Spotify</a>
+              <a class="btn btn-ghost" href="#mixes" style="padding:10px 16px;font-size:.74rem">Instagram</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="ft-brand">NOVA</div>
+    <div class="socials">
+      <a href="#mixes">SoundCloud</a>
+      <a href="#mixes">Spotify</a>
+      <a href="#mixes">Instagram</a>
+      <a href="#booking">Bookings</a>
+    </div>
+    <p class="byb">Site by <a href="https://bananabyte.io" target="_blank" rel="noopener">🍌 BANANAbyte</a></p>
+    <p class="copy">© 2026 NOVA. All rights reserved. Demo concept — fictional artist.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  // JS is on: drop the no-JS fallback styling
+  document.documentElement.classList.remove('nojs');
+
+  // ---- Mix players: toggle one-at-a-time waveform animation ----
+  var mixes = document.querySelectorAll('.mix');
+  mixes.forEach(function(mix){
+    var btn = mix.querySelector('.play');
+    var icPlay = mix.querySelector('.ic-play');
+    var icPause = mix.querySelector('.ic-pause');
+    if(!btn) return;
+    btn.addEventListener('click', function(){
+      var wasPlaying = mix.classList.contains('playing');
+      // stop all others
+      mixes.forEach(function(m){
+        m.classList.remove('playing');
+        var b = m.querySelector('.play');
+        var p = m.querySelector('.ic-play');
+        var q = m.querySelector('.ic-pause');
+        if(b) b.setAttribute('aria-pressed','false');
+        if(p) p.style.display='';
+        if(q) q.style.display='none';
+      });
+      if(!wasPlaying){
+        mix.classList.add('playing');
+        btn.setAttribute('aria-pressed','true');
+        if(icPlay) icPlay.style.display='none';
+        if(icPause) icPause.style.display='';
+      }
+    });
+  });
+
+  // ---- Form demo handlers (preventDefault + inline feedback) ----
+  function wire(formId, msgId, build){
+    var form = document.getElementById(formId);
+    var msg = document.getElementById(msgId);
+    if(!form || !msg) return;
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      // light validation
+      var email = form.querySelector('input[type="email"]');
+      if(email && (!email.value || email.value.indexOf('@') === -1)){
+        msg.textContent = '⚠ Please enter a valid email address.';
+        msg.classList.add('show');
+        msg.classList.remove('ok');
+        msg.style.borderColor = 'var(--magenta)';
+        msg.style.color = 'var(--magenta)';
+        msg.style.background = 'rgba(255,43,214,.1)';
+        email.focus();
+        return;
+      }
+      msg.style.borderColor = '';
+      msg.style.color = '';
+      msg.style.background = '';
+      msg.classList.add('ok');
+      msg.textContent = build(form);
+      msg.classList.add('show');
+      form.reset();
+    });
+  }
+
+  wire('bookForm','bookMsg', function(f){
+    var n = (f.querySelector('#bk-name')||{}).value || 'there';
+    return '✓ Thanks, ' + n + ' — your enquiry is in. The booking team will reply within 48 hours.';
+  });
+  wire('newsForm','newsMsg', function(){
+    return '✓ You’re on the list. Watch your inbox for the next drop.';
+  });
+})();
+</script>
+</body>
+</html>

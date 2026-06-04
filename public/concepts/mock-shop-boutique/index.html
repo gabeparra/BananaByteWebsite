@@ -4,29 +4,28 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="noindex, nofollow" />
-<title>Wildflower &amp; Co. — Considered clothing for the everyday wild</title>
-<meta name="description" content="Wildflower & Co. — a small-batch fashion boutique offering elevated everyday apparel and accessories in soft, sophisticated tones." />
+<title>VIOLETTE — Bold-cut fashion for people who arrive</title>
+<meta name="description" content="VIOLETTE — a high-fashion label cutting confident, runway-charged apparel and accessories in electric purple and hot magenta." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;0,6..96,800;0,6..96,900;1,6..96,500;1,6..96,700&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet" />
 <style>
   :root {
-    --bg: #f7f3ec;
-    --bg-card: #fdfbf7;
-    --ink: #34302a;
-    --ink-soft: #5e574d;
-    --line: #e3dcd0;
-    --blush: #d9b8ad;
-    --blush-deep: #b98579;
-    --sage: #8d9b82;
-    --sage-deep: #6f7d64;
-    --clay: #c0735a;
-    --plum: #6b5560;
-    --gold: #b9985a;
-    --eyebrow: #94594c;
-    --shadow: 0 18px 40px -24px rgba(52, 48, 42, 0.45);
-    --radius: 14px;
-    --maxw: 1280px;
+    --bg: #efe9f7;            /* soft lilac base */
+    --bg-2: #e6ddf3;          /* deeper lavender */
+    --bg-card: #ffffff;
+    --ink: #15101f;           /* near-black plum */
+    --ink-soft: #534a63;      /* muted violet-grey */
+    --line: #d8cdec;
+    --magenta: #e6007e;       /* bold magenta primary */
+    --magenta-deep: #b8005f;
+    --violet: #6d28d9;        /* electric purple */
+    --violet-deep: #4c1d95;
+    --lilac: #c4b1ec;
+    --shadow: 0 26px 60px -32px rgba(21, 16, 31, 0.55);
+    --shadow-mag: 0 22px 50px -26px rgba(230, 0, 126, 0.5);
+    --radius: 4px;
+    --maxw: 1320px;
   }
 
   * { box-sizing: border-box; }
@@ -37,18 +36,18 @@
     margin: 0;
     background: var(--bg);
     color: var(--ink);
-    font-family: 'Jost', sans-serif;
-    font-size: 17px;
-    line-height: 1.65;
+    font-family: 'Archivo', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
 
-  h1, h2, h3, .serif {
-    font-family: 'Fraunces', Georgia, serif;
-    font-weight: 400;
-    line-height: 1.12;
-    letter-spacing: -0.01em;
+  h1, h2, h3, .display {
+    font-family: 'Bodoni Moda', Didot, 'Times New Roman', serif;
+    font-weight: 800;
+    line-height: 0.98;
+    letter-spacing: -0.012em;
     color: var(--ink);
   }
 
@@ -60,16 +59,16 @@
     width: 100%;
     max-width: var(--maxw);
     margin: 0 auto;
-    padding: 0 clamp(18px, 5vw, 56px);
+    padding: 0 clamp(18px, 5vw, 60px);
   }
 
   .eyebrow {
-    font-family: 'Jost', sans-serif;
+    font-family: 'Archivo', sans-serif;
     text-transform: uppercase;
-    letter-spacing: 0.32em;
-    font-size: 0.72rem;
-    font-weight: 600;
-    color: var(--eyebrow);
+    letter-spacing: 0.4em;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--magenta-deep);
   }
 
   /* ---------- Focus ---------- */
@@ -77,45 +76,54 @@
   button:focus-visible,
   input:focus-visible,
   summary:focus-visible {
-    outline: 2.5px solid var(--plum);
+    outline: 3px solid var(--violet);
     outline-offset: 3px;
-    border-radius: 4px;
+    border-radius: 2px;
   }
 
   .skip-link {
     position: absolute;
     left: 12px;
-    top: -56px;
+    top: -60px;
     background: var(--ink);
-    color: var(--bg);
-    padding: 10px 18px;
-    border-radius: 8px;
+    color: #fff;
+    padding: 11px 20px;
+    border-radius: 2px;
     z-index: 200;
     transition: top 0.2s ease;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 700;
+    letter-spacing: 0.04em;
   }
   .skip-link:focus { top: 12px; }
 
   /* ---------- Announcement bar ---------- */
   .announce {
     background: var(--ink);
-    color: var(--bg);
+    color: #fff;
     text-align: center;
-    font-size: 0.78rem;
-    letter-spacing: 0.18em;
+    font-size: 0.74rem;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
-    padding: 9px 16px;
+    font-weight: 600;
+    padding: 11px 16px;
   }
-  .announce strong { color: var(--blush); font-weight: 500; }
+  .announce strong {
+    color: var(--bg-card);
+    font-weight: 700;
+    background: var(--magenta);
+    padding: 2px 8px;
+    border-radius: 2px;
+    margin: 0 2px;
+  }
 
   /* ---------- Header ---------- */
   header {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(247, 243, 236, 0.86);
-    backdrop-filter: blur(10px);
+    background: rgba(239, 233, 247, 0.82);
+    backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--line);
   }
   .nav {
@@ -123,72 +131,79 @@
     align-items: center;
     justify-content: space-between;
     gap: 18px;
-    min-height: 72px;
+    min-height: 74px;
   }
   .brand {
     display: flex;
     align-items: center;
-    gap: 11px;
+    gap: 12px;
     text-decoration: none;
     flex-shrink: 0;
+    min-height: 44px;
   }
   .brand-mark {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background:
-      radial-gradient(circle at 50% 50%, var(--blush) 0 22%, transparent 23%),
-      conic-gradient(from 0deg, var(--blush-deep), var(--sage), var(--gold), var(--clay), var(--blush-deep));
+    width: 40px;
+    height: 40px;
+    border-radius: 2px;
+    background: linear-gradient(135deg, var(--violet) 0%, var(--magenta) 100%);
     position: relative;
     flex-shrink: 0;
-  }
-  .brand-mark::after {
-    content: "";
-    position: absolute;
-    inset: 5px;
-    border-radius: 50%;
-    background: var(--bg);
-    border: 1px solid var(--line);
+    overflow: hidden;
   }
   .brand-mark span {
     position: absolute;
     inset: 0;
     display: grid;
     place-items: center;
-    font-family: 'Fraunces', serif;
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 900;
     font-style: italic;
-    font-size: 1rem;
-    color: var(--blush-deep);
+    font-size: 1.25rem;
+    color: #fff;
     z-index: 2;
   }
+  .brand-mark::after {
+    content: "";
+    position: absolute;
+    left: -40%;
+    top: -40%;
+    width: 60%;
+    height: 180%;
+    background: rgba(255,255,255,0.22);
+    transform: rotate(20deg);
+  }
   .brand-name {
-    font-family: 'Fraunces', serif;
-    font-size: 1.32rem;
-    letter-spacing: 0.01em;
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    letter-spacing: -0.01em;
     color: var(--ink);
     line-height: 1;
   }
   .brand-name small {
     display: block;
-    font-family: 'Jost', sans-serif;
-    font-size: 0.56rem;
-    letter-spacing: 0.34em;
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: 0.52rem;
+    letter-spacing: 0.4em;
     text-transform: uppercase;
-    color: var(--ink-soft);
-    margin-top: 3px;
+    color: var(--magenta-deep);
+    margin-top: 4px;
   }
 
   .nav-links {
     display: none;
-    gap: 30px;
+    gap: 32px;
     list-style: none;
     margin: 0;
     padding: 0;
   }
   .nav-links a {
     text-decoration: none;
-    font-size: 0.92rem;
-    letter-spacing: 0.04em;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
     color: var(--ink-soft);
     position: relative;
     padding: 4px 0;
@@ -198,10 +213,10 @@
     content: "";
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: -1px;
     width: 100%;
-    height: 1.5px;
-    background: var(--blush-deep);
+    height: 2px;
+    background: var(--magenta);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.3s ease;
@@ -212,7 +227,7 @@
   .nav-actions {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     flex-shrink: 0;
   }
   .icon-btn {
@@ -223,28 +238,28 @@
     width: 44px;
     height: 44px;
     padding: 0;
-    border-radius: 50%;
+    border-radius: 2px;
     display: grid;
     place-items: center;
-    transition: background 0.2s ease, transform 0.2s ease;
+    transition: background 0.2s ease, color 0.2s ease;
   }
-  .icon-btn:hover { background: rgba(185, 133, 121, 0.14); }
+  .icon-btn:hover { background: var(--ink); color: #fff; }
   .icon-btn svg { width: 21px; height: 21px; }
 
   .cart-btn { position: relative; }
   .cart-count {
     position: absolute;
-    top: 1px;
-    right: 1px;
+    top: 0px;
+    right: 0px;
     min-width: 19px;
     height: 19px;
     padding: 0 4px;
-    background: var(--clay);
+    background: var(--magenta);
     color: #fff;
     border-radius: 999px;
     font-size: 0.66rem;
-    font-weight: 600;
-    font-family: 'Jost', sans-serif;
+    font-weight: 800;
+    font-family: 'Archivo', sans-serif;
     display: grid;
     place-items: center;
     line-height: 1;
@@ -255,38 +270,59 @@
   .cart-count.bump { animation: bump 0.4s ease; }
   @keyframes bump {
     0% { transform: scale(1); }
-    35% { transform: scale(1.45); }
+    35% { transform: scale(1.5); }
     100% { transform: scale(1); }
   }
 
   /* ---------- Hero ---------- */
   .hero {
     position: relative;
-    padding: clamp(40px, 7vw, 88px) 0 clamp(48px, 7vw, 96px);
+    padding: clamp(38px, 6vw, 84px) 0 clamp(48px, 7vw, 100px);
     overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -180px;
+    right: -120px;
+    width: 520px;
+    height: 520px;
+    background: radial-gradient(circle, rgba(109,40,217,0.16), transparent 70%);
+    z-index: 0;
+    pointer-events: none;
   }
   .hero-inner {
     display: grid;
     gap: clamp(28px, 5vw, 56px);
     align-items: center;
+    position: relative;
+    z-index: 1;
   }
   @media (min-width: 880px) {
-    .hero-inner { grid-template-columns: 1.05fr 1fr; }
+    .hero-inner { grid-template-columns: 1.08fr 1fr; }
   }
-  .hero-copy { max-width: 540px; }
+  .hero-copy { max-width: 560px; }
   .hero h1 {
-    font-size: clamp(2.6rem, 7vw, 4.7rem);
-    margin: 18px 0 0;
+    font-size: clamp(3rem, 9vw, 6rem);
+    margin: 20px 0 0;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 0.9;
   }
   .hero h1 em {
     font-style: italic;
-    color: var(--blush-deep);
+    font-weight: 700;
+    text-transform: none;
+    color: var(--magenta);
+    display: block;
+    letter-spacing: -0.015em;
   }
   .hero-lede {
-    margin: 22px 0 0;
+    margin: 26px 0 0;
     color: var(--ink-soft);
-    font-size: 1.07rem;
-    max-width: 44ch;
+    font-size: 1.06rem;
+    max-width: 46ch;
   }
   .hero-cta {
     display: flex;
@@ -297,46 +333,54 @@
   .btn {
     display: inline-flex;
     align-items: center;
-    gap: 9px;
-    font-family: 'Jost', sans-serif;
-    font-size: 0.92rem;
-    letter-spacing: 0.06em;
+    gap: 10px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    font-weight: 500;
-    padding: 14px 28px;
-    border-radius: 999px;
-    border: 1px solid var(--ink);
+    font-weight: 700;
+    padding: 15px 30px;
+    border-radius: 2px;
+    border: 2px solid var(--ink);
     background: var(--ink);
-    color: var(--bg);
+    color: #fff;
     cursor: pointer;
     text-decoration: none;
-    transition: transform 0.2s ease, background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+    transition: transform 0.2s ease, background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   }
-  .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .btn:hover { transform: translateY(-3px); }
+  .btn--primary {
+    background: var(--magenta);
+    border-color: var(--magenta);
+  }
+  .btn--primary:hover { box-shadow: var(--shadow-mag); background: var(--magenta-deep); border-color: var(--magenta-deep); }
   .btn--ghost {
     background: transparent;
     color: var(--ink);
     border-color: var(--ink);
   }
-  .btn--ghost:hover { background: var(--ink); color: var(--bg); }
+  .btn--ghost:hover { background: var(--ink); color: #fff; box-shadow: var(--shadow); }
 
   .hero-stats {
     display: flex;
-    gap: clamp(22px, 4vw, 40px);
-    margin-top: 44px;
+    gap: clamp(20px, 4vw, 44px);
+    margin-top: 46px;
     flex-wrap: wrap;
   }
+  .hero-stats div { border-left: 2px solid var(--magenta); padding-left: 14px; }
   .hero-stats div strong {
     display: block;
-    font-family: 'Fraunces', serif;
-    font-size: 1.7rem;
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 800;
+    font-size: 2rem;
     color: var(--ink);
     line-height: 1;
   }
   .hero-stats div span {
-    font-size: 0.78rem;
-    letter-spacing: 0.1em;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
+    font-weight: 600;
     color: var(--ink-soft);
   }
 
@@ -344,118 +388,130 @@
   .hero-art {
     position: relative;
     aspect-ratio: 5 / 6;
-    max-width: 460px;
+    max-width: 470px;
     width: 100%;
     margin: 0 auto;
   }
   .hero-frame {
     position: absolute;
-    border-radius: 220px 220px 18px 18px;
+    border-radius: 2px;
     overflow: hidden;
     box-shadow: var(--shadow);
   }
   .hero-frame.main {
-    inset: 0 18% 8% 0;
+    inset: 0 16% 8% 0;
     background:
-      radial-gradient(120% 70% at 50% 0%, rgba(253,251,247,0.5), transparent 60%),
-      linear-gradient(165deg, var(--blush) 0%, var(--blush-deep) 55%, var(--plum) 100%);
+      radial-gradient(120% 80% at 30% 0%, rgba(255,255,255,0.28), transparent 55%),
+      linear-gradient(155deg, var(--violet) 0%, var(--violet-deep) 50%, var(--ink) 100%);
   }
   .hero-frame.main::after {
     content: "";
     position: absolute;
     left: 50%;
     bottom: -2px;
-    width: 62%;
-    height: 64%;
+    width: 58%;
+    height: 66%;
     transform: translateX(-50%);
     background:
-      linear-gradient(180deg, rgba(253,251,247,0.16), rgba(52,48,42,0.18));
+      linear-gradient(180deg, rgba(255,255,255,0.16), rgba(21,16,31,0.3));
     clip-path: polygon(50% 0, 78% 30%, 70% 100%, 30% 100%, 22% 30%);
   }
   .hero-frame.accent {
-    width: 44%;
+    width: 46%;
     aspect-ratio: 3 / 4;
     right: 0;
     bottom: 0;
-    border-radius: 130px 130px 14px 14px;
-    background: linear-gradient(160deg, var(--sage) 0%, var(--sage-deep) 100%);
-    border: 5px solid var(--bg);
+    border-radius: 2px;
+    background: linear-gradient(150deg, var(--magenta) 0%, var(--magenta-deep) 100%);
+    border: 6px solid var(--bg);
   }
   .hero-frame.accent::after {
     content: "";
     position: absolute;
-    inset: 18% 24% 0;
-    background: linear-gradient(180deg, rgba(253,251,247,0.22), transparent 70%);
+    inset: 16% 24% 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.3), transparent 70%);
     clip-path: polygon(50% 0, 70% 40%, 62% 100%, 38% 100%, 30% 40%);
   }
   .hero-tag {
     position: absolute;
-    top: 14px;
-    left: -8px;
+    top: 16px;
+    left: -10px;
     background: var(--bg-card);
     border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 9px 16px 9px 12px;
+    border-left: 4px solid var(--magenta);
+    border-radius: 2px;
+    padding: 10px 16px 10px 13px;
     display: flex;
     align-items: center;
     gap: 9px;
     box-shadow: var(--shadow);
-    font-size: 0.82rem;
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
     z-index: 4;
   }
   .hero-tag .dot {
-    width: 10px; height: 10px; border-radius: 50%;
-    background: var(--sage); flex-shrink: 0;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--magenta); flex-shrink: 0;
   }
-  .hero-petal {
+  .hero-orbit {
     position: absolute;
-    width: 90px; height: 90px;
-    background:
-      radial-gradient(circle at 50% 50%, var(--gold) 0 16%, transparent 17%),
-      conic-gradient(from 18deg, var(--blush) 0 25%, transparent 0 50%, var(--blush) 0 75%, transparent 0);
+    width: 84px; height: 84px;
+    border: 3px solid var(--violet);
     border-radius: 50%;
-    top: -28px; right: 8%;
-    opacity: 0.55;
+    top: -24px; right: 6%;
+    opacity: 0.7;
     z-index: 1;
+  }
+  .hero-orbit::after {
+    content: "";
+    position: absolute;
+    inset: 16px;
+    border-radius: 50%;
+    background: var(--magenta);
   }
 
   /* ---------- Section heads ---------- */
-  .section { padding: clamp(48px, 7vw, 96px) 0; }
+  .section { padding: clamp(50px, 7vw, 100px) 0; }
   .section-head {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-end;
     justify-content: space-between;
     gap: 16px;
-    margin-bottom: clamp(28px, 4vw, 48px);
+    margin-bottom: clamp(30px, 4vw, 50px);
   }
   .section-head h2 {
-    font-size: clamp(1.9rem, 4.4vw, 3rem);
-    margin: 10px 0 0;
+    font-size: clamp(2.2rem, 5.6vw, 3.8rem);
+    margin: 12px 0 0;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
   }
   .section-head p {
-    margin: 6px 0 0;
+    margin: 8px 0 0;
     color: var(--ink-soft);
     max-width: 46ch;
   }
   .link-arrow {
     text-decoration: none;
-    font-size: 0.9rem;
-    letter-spacing: 0.06em;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
+    font-weight: 700;
     color: var(--ink);
-    border-bottom: 1.5px solid var(--blush-deep);
+    border-bottom: 2px solid var(--magenta);
     padding-bottom: 3px;
     white-space: nowrap;
-    transition: color 0.2s ease, gap 0.2s ease;
+    transition: color 0.2s ease;
   }
-  .link-arrow:hover { color: var(--blush-deep); }
+  .link-arrow:hover { color: var(--magenta); }
 
   /* ---------- Product grid ---------- */
   .grid-products {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: clamp(14px, 2.6vw, 30px);
+    gap: clamp(14px, 2.6vw, 28px);
   }
   @media (min-width: 760px) {
     .grid-products { grid-template-columns: repeat(3, 1fr); }
@@ -474,9 +530,9 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   }
   .card:hover {
-    transform: translateY(-6px);
+    transform: translateY(-7px);
     box-shadow: var(--shadow);
-    border-color: var(--blush);
+    border-color: var(--magenta);
   }
   .card-img {
     position: relative;
@@ -488,7 +544,7 @@
     inset: 0;
     transition: transform 0.55s ease;
   }
-  .card:hover .card-img .scene { transform: scale(1.045); }
+  .card:hover .card-img .scene { transform: scale(1.05); }
   /* CSS "garment" placeholder shapes */
   .scene::before {
     content: "";
@@ -498,17 +554,17 @@
     width: 60%;
     height: 78%;
     transform: translateX(-50%);
-    background: linear-gradient(180deg, rgba(253,251,247,0.28), rgba(52,48,42,0.16));
+    background: linear-gradient(180deg, rgba(255,255,255,0.26), rgba(21,16,31,0.22));
     clip-path: polygon(50% 0, 76% 26%, 68% 100%, 32% 100%, 24% 26%);
   }
-  .scene.s1 { background: linear-gradient(160deg, #e7cdc4, #c89888); }
-  .scene.s2 { background: linear-gradient(160deg, #c4cbb6, #8d9b82); }
-  .scene.s3 { background: linear-gradient(160deg, #d9c9b0, #b9985a); }
-  .scene.s4 { background: linear-gradient(160deg, #cdbcc6, #6b5560); }
-  .scene.s5 { background: linear-gradient(160deg, #e2c0b6, #b98579); }
-  .scene.s6 { background: linear-gradient(160deg, #cdd0c6, #6f7d64); }
-  .scene.s7 { background: linear-gradient(160deg, #e6d4c0, #c0735a); }
-  .scene.s8 { background: linear-gradient(160deg, #d2c4cf, #846a78); }
+  .scene.s1 { background: linear-gradient(155deg, #f06ab0, var(--magenta)); }
+  .scene.s2 { background: linear-gradient(155deg, #9d6bf0, var(--violet)); }
+  .scene.s3 { background: linear-gradient(155deg, #c4b1ec, var(--violet-deep)); }
+  .scene.s4 { background: linear-gradient(155deg, #4a4458, var(--ink)); }
+  .scene.s5 { background: linear-gradient(155deg, #ff7ab8, var(--magenta-deep)); }
+  .scene.s6 { background: linear-gradient(155deg, #7b4bd1, var(--violet-deep)); }
+  .scene.s7 { background: linear-gradient(155deg, #e07ad0, #a01b8d); }
+  .scene.s8 { background: linear-gradient(155deg, #6d6480, #2a2438); }
 
   .badge {
     position: absolute;
@@ -516,17 +572,17 @@
     left: 12px;
     z-index: 3;
     background: var(--bg-card);
-    border: 1px solid var(--line);
+    border: 1px solid var(--ink);
     color: var(--ink);
-    font-size: 0.66rem;
-    letter-spacing: 0.14em;
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: 700;
     padding: 5px 11px;
-    border-radius: 999px;
+    border-radius: 2px;
   }
-  .badge.sale { background: var(--clay); color: #fff; border-color: var(--clay); }
-  .badge.new { background: var(--sage-deep); color: #fff; border-color: var(--sage-deep); }
+  .badge.sale { background: var(--magenta); color: #fff; border-color: var(--magenta); }
+  .badge.new { background: var(--violet); color: #fff; border-color: var(--violet); }
 
   .card-body {
     padding: 16px 16px 18px;
@@ -536,63 +592,68 @@
     flex: 1;
   }
   .card-cat {
-    font-size: 0.68rem;
-    letter-spacing: 0.16em;
+    font-size: 0.64rem;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--ink-soft);
+    font-weight: 700;
+    color: var(--magenta-deep);
   }
   .card-name {
-    font-family: 'Fraunces', serif;
-    font-size: 1.18rem;
-    line-height: 1.2;
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 600;
+    font-size: 1.16rem;
+    line-height: 1.15;
     margin: 0;
+    letter-spacing: -0.01em;
   }
   .card-price {
     display: flex;
     align-items: baseline;
     gap: 9px;
-    font-family: 'Jost', sans-serif;
+    font-family: 'Archivo', sans-serif;
     margin-top: 2px;
   }
-  .card-price .now { font-size: 1.08rem; font-weight: 600; color: var(--ink); }
+  .card-price .now { font-size: 1.08rem; font-weight: 800; color: var(--ink); }
   .card-price .was {
     font-size: 0.9rem;
     color: var(--ink-soft);
     text-decoration: line-through;
+    font-weight: 500;
   }
   .swatches { display: flex; gap: 6px; margin-top: 4px; }
   .swatches span {
     width: 15px; height: 15px; border-radius: 50%;
-    border: 1.5px solid var(--bg-card);
+    border: 2px solid var(--bg-card);
     box-shadow: 0 0 0 1px var(--line);
   }
   .add-btn {
     margin-top: auto;
     width: 100%;
-    font-family: 'Jost', sans-serif;
-    font-size: 0.84rem;
-    letter-spacing: 0.08em;
+    font-family: 'Archivo', sans-serif;
+    font-size: 0.74rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    font-weight: 500;
-    padding: 12px 14px;
-    border-radius: 999px;
-    border: 1px solid var(--ink);
+    font-weight: 700;
+    padding: 13px 14px;
+    border-radius: 2px;
+    border: 2px solid var(--ink);
     background: transparent;
     color: var(--ink);
     cursor: pointer;
-    transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease;
+    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
   }
-  .add-btn:hover { background: var(--ink); color: var(--bg); }
+  .add-btn:hover { background: var(--ink); color: #fff; }
   .add-btn.added {
-    background: var(--sage-deep);
-    border-color: var(--sage-deep);
+    background: var(--violet);
+    border-color: var(--violet);
     color: #fff;
   }
 
   /* ---------- Featured bestseller ---------- */
   .featured {
-    background: linear-gradient(150deg, #efe6da 0%, #e7dccd 100%);
-    border-radius: clamp(16px, 3vw, 30px);
+    background: var(--ink);
+    color: #fff;
+    border-radius: var(--radius);
     overflow: hidden;
   }
   .featured-grid {
@@ -604,10 +665,10 @@
   }
   .featured-art {
     position: relative;
-    min-height: 320px;
+    min-height: 340px;
     background:
-      radial-gradient(110% 80% at 30% 10%, rgba(253,251,247,0.4), transparent 55%),
-      linear-gradient(165deg, var(--blush) 0%, var(--blush-deep) 60%, var(--plum) 100%);
+      radial-gradient(110% 90% at 25% 5%, rgba(255,255,255,0.18), transparent 50%),
+      linear-gradient(155deg, var(--magenta) 0%, var(--violet) 55%, var(--violet-deep) 100%);
     overflow: hidden;
   }
   .featured-art::after {
@@ -618,7 +679,7 @@
     width: 50%;
     height: 80%;
     transform: translateX(-50%);
-    background: linear-gradient(180deg, rgba(253,251,247,0.24), rgba(52,48,42,0.2));
+    background: linear-gradient(180deg, rgba(255,255,255,0.28), rgba(21,16,31,0.28));
     clip-path: polygon(50% 0, 74% 24%, 66% 100%, 34% 100%, 26% 24%);
   }
   .featured-ribbon {
@@ -626,63 +687,68 @@
     top: 20px; left: 20px;
     z-index: 3;
     background: var(--bg-card);
-    border-radius: 999px;
-    padding: 7px 16px;
-    font-size: 0.72rem;
-    letter-spacing: 0.16em;
+    border-radius: 2px;
+    padding: 8px 16px;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    font-weight: 500;
-    color: var(--clay);
+    font-weight: 700;
+    color: var(--magenta-deep);
     box-shadow: var(--shadow);
   }
   .featured-body {
-    padding: clamp(28px, 5vw, 56px);
+    padding: clamp(28px, 5vw, 60px);
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
+  .featured-body .eyebrow { color: var(--lilac); }
   .featured-body h3 {
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-    margin: 14px 0 0;
+    font-size: clamp(2rem, 4.6vw, 3.2rem);
+    margin: 16px 0 0;
+    color: #fff;
+    font-weight: 800;
+    letter-spacing: -0.02em;
   }
   .featured-body .price {
-    font-family: 'Fraunces', serif;
-    font-size: 1.6rem;
-    margin: 16px 0 0;
-    color: var(--ink);
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 700;
+    font-size: 1.7rem;
+    margin: 18px 0 0;
+    color: #fff;
   }
   .featured-desc {
     margin: 16px 0 0;
-    color: var(--ink-soft);
+    color: #cfc4e3;
     max-width: 46ch;
   }
   .feature-list {
     list-style: none;
     padding: 0;
-    margin: 22px 0 0;
+    margin: 24px 0 0;
     display: grid;
-    gap: 9px;
+    gap: 10px;
   }
   .feature-list li {
     display: flex;
     align-items: center;
-    gap: 11px;
-    font-size: 0.96rem;
+    gap: 12px;
+    font-size: 0.94rem;
+    color: #e4ddf0;
   }
   .feature-list li::before {
     content: "";
-    width: 22px; height: 22px;
-    border-radius: 50%;
+    width: 20px; height: 20px;
+    border-radius: 2px;
     flex-shrink: 0;
-    background: var(--sage) radial-gradient(circle at 50% 45%, transparent 38%, transparent 38%);
-    position: relative;
+    background: var(--magenta);
     background-image:
       linear-gradient(45deg, transparent 44%, #fff 44% 56%, transparent 56%),
       linear-gradient(-45deg, transparent 44%, #fff 44% 56%, transparent 56%);
   }
-  .featured-cta { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-  .stars { color: var(--gold); letter-spacing: 2px; font-size: 1rem; }
-  .featured-rating { font-size: 0.86rem; color: var(--ink-soft); }
+  .featured-cta { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .stars { color: var(--magenta); letter-spacing: 2px; font-size: 1rem; }
+  .featured-rating { font-size: 0.84rem; color: #cfc4e3; font-weight: 600; }
 
   /* ---------- Category tiles ---------- */
   .grid-cats {
@@ -702,50 +768,53 @@
     color: #fff;
     display: flex;
     align-items: flex-end;
-    padding: 18px;
+    padding: 20px;
     isolation: isolate;
+    border: 1px solid var(--line);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
+  .cat-tile:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
   .cat-tile .cat-bg {
     position: absolute;
     inset: 0;
     z-index: -1;
     transition: transform 0.5s ease;
   }
-  .cat-tile:hover .cat-bg { transform: scale(1.06); }
+  .cat-tile:hover .cat-bg { transform: scale(1.07); }
   .cat-tile::after {
     content: "";
     position: absolute;
     inset: 0;
     z-index: 0;
-    background: linear-gradient(180deg, transparent 40%, rgba(40,36,31,0.6) 100%);
+    background: linear-gradient(180deg, transparent 35%, rgba(21,16,31,0.7) 100%);
   }
-  .c1 { background: linear-gradient(160deg, var(--blush), var(--blush-deep)); }
-  .c2 { background: linear-gradient(160deg, var(--sage), var(--sage-deep)); }
-  .c3 { background: linear-gradient(160deg, var(--gold), var(--clay)); }
-  .c4 { background: linear-gradient(160deg, #9c8590, var(--plum)); }
+  .c1 { background: linear-gradient(150deg, #f06ab0, var(--magenta)); }
+  .c2 { background: linear-gradient(150deg, #9d6bf0, var(--violet)); }
+  .c3 { background: linear-gradient(150deg, #c4b1ec, var(--violet-deep)); }
+  .c4 { background: linear-gradient(150deg, #4a4458, var(--ink)); }
   .cat-tile span {
     position: relative;
     z-index: 1;
   }
   .cat-tile .cat-name {
-    font-family: 'Fraunces', serif;
-    font-size: 1.35rem;
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 700;
+    font-size: 1.4rem;
     display: block;
+    letter-spacing: -0.01em;
   }
   .cat-tile .cat-count {
-    font-size: 0.74rem;
-    letter-spacing: 0.12em;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    opacity: 0.9;
+    font-weight: 700;
+    opacity: 0.92;
     display: block;
-    margin-top: 2px;
+    margin-top: 4px;
   }
 
   /* ---------- Reviews strip ---------- */
-  .reviews { background: var(--ink); color: var(--bg); }
-  .reviews .section-head h2 { color: var(--bg); }
-  .reviews .section-head p { color: #cdc6bb; }
-  .reviews .eyebrow { color: var(--blush); }
+  .reviews { background: var(--bg-2); }
   .grid-reviews {
     display: grid;
     grid-template-columns: 1fr;
@@ -755,36 +824,40 @@
     .grid-reviews { grid-template-columns: repeat(3, 1fr); }
   }
   .review {
-    background: #3e3933;
-    border: 1px solid #4a443d;
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--magenta);
     border-radius: var(--radius);
-    padding: 26px 24px;
+    padding: 28px 26px;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 16px;
   }
   .review .stars { font-size: 0.95rem; }
   .review blockquote {
     margin: 0;
-    font-family: 'Fraunces', serif;
-    font-size: 1.15rem;
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 1.18rem;
     line-height: 1.4;
-    color: #f3ede3;
+    color: var(--ink);
   }
   .review-by { display: flex; align-items: center; gap: 12px; margin-top: auto; }
   .review-av {
-    width: 42px; height: 42px; border-radius: 50%;
+    width: 44px; height: 44px; border-radius: 2px;
     display: grid; place-items: center;
-    font-family: 'Fraunces', serif;
-    font-size: 1.05rem;
-    color: var(--ink);
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #fff;
     flex-shrink: 0;
   }
-  .av1 { background: var(--blush); }
-  .av2 { background: var(--sage); }
-  .av3 { background: var(--gold); }
-  .review-by strong { display: block; font-weight: 500; font-size: 0.95rem; color: var(--bg); }
-  .review-by span { font-size: 0.78rem; color: #b6afa4; }
+  .av1 { background: var(--magenta); }
+  .av2 { background: var(--violet); }
+  .av3 { background: var(--violet-deep); }
+  .review-by strong { display: block; font-weight: 700; font-size: 0.92rem; color: var(--ink); }
+  .review-by span { font-size: 0.76rem; color: var(--ink-soft); }
 
   .proof-bar {
     display: flex;
@@ -792,29 +865,32 @@
     gap: 14px clamp(20px, 5vw, 56px);
     justify-content: center;
     align-items: center;
-    margin-top: clamp(30px, 5vw, 48px);
-    padding-top: clamp(28px, 4vw, 40px);
-    border-top: 1px solid #4a443d;
+    margin-top: clamp(32px, 5vw, 50px);
+    padding-top: clamp(30px, 4vw, 44px);
+    border-top: 2px solid var(--line);
   }
   .proof-bar div { text-align: center; }
   .proof-bar strong {
-    font-family: 'Fraunces', serif;
-    font-size: 1.8rem;
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 800;
+    font-size: 2rem;
     display: block;
-    color: var(--blush);
+    color: var(--magenta-deep);
   }
   .proof-bar span {
-    font-size: 0.74rem;
-    letter-spacing: 0.12em;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: #cdc6bb;
+    font-weight: 600;
+    color: var(--ink-soft);
   }
 
   /* ---------- Newsletter ---------- */
   .newsletter {
-    background: linear-gradient(150deg, #efe6da, #e6d9c8);
-    border-radius: clamp(16px, 3vw, 30px);
-    padding: clamp(36px, 6vw, 72px) clamp(24px, 5vw, 64px);
+    background: linear-gradient(150deg, var(--violet) 0%, var(--violet-deep) 50%, var(--ink) 100%);
+    color: #fff;
+    border-radius: var(--radius);
+    padding: clamp(38px, 6vw, 76px) clamp(24px, 5vw, 64px);
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -824,68 +900,78 @@
     content: "";
     position: absolute;
     border-radius: 50%;
-    background: radial-gradient(circle at 50% 50%, var(--gold) 0 14%, transparent 15%),
-      conic-gradient(from 0deg, var(--blush) 0 25%, transparent 0 50%, var(--blush) 0 75%, transparent 0);
-    opacity: 0.4;
+    background: radial-gradient(circle, var(--magenta) 0 30%, transparent 31%);
+    opacity: 0.5;
   }
-  .newsletter::before { width: 150px; height: 150px; top: -50px; left: -40px; }
-  .newsletter::after { width: 110px; height: 110px; bottom: -40px; right: -30px; }
+  .newsletter::before { width: 220px; height: 220px; top: -90px; left: -70px; }
+  .newsletter::after { width: 160px; height: 160px; bottom: -70px; right: -50px; }
+  .newsletter .eyebrow { color: var(--lilac); position: relative; }
   .newsletter h2 {
-    font-size: clamp(1.9rem, 4.5vw, 3rem);
-    margin: 12px 0 0;
+    font-size: clamp(2.2rem, 5.2vw, 3.6rem);
+    margin: 14px 0 0;
     position: relative;
+    color: #fff;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
   }
   .newsletter p {
-    margin: 14px auto 0;
+    margin: 16px auto 0;
     max-width: 48ch;
-    color: var(--ink-soft);
+    color: #ddd3ef;
     position: relative;
   }
   .nl-form {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
-    max-width: 520px;
-    margin: 30px auto 0;
+    max-width: 540px;
+    margin: 32px auto 0;
     position: relative;
   }
   .nl-field { flex: 1 1 220px; text-align: left; }
   .nl-field label {
     display: block;
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--ink-soft);
-    margin-bottom: 6px;
+    font-weight: 700;
+    color: #ece4fb;
+    margin-bottom: 7px;
   }
   .nl-form input[type="email"] {
     width: 100%;
-    padding: 14px 18px;
-    border-radius: 999px;
-    border: 1px solid var(--line);
+    padding: 15px 18px;
+    border-radius: 2px;
+    border: 2px solid transparent;
     background: var(--bg-card);
-    font-family: 'Jost', sans-serif;
+    font-family: 'Archivo', sans-serif;
     font-size: 1rem;
     color: var(--ink);
   }
-  .nl-form input::placeholder { color: #857c6e; }
-  .nl-form button { flex: 0 0 auto; align-self: flex-end; }
+  .nl-form input[type="email"]::placeholder { color: #6f6486; }
+  .nl-form button {
+    flex: 0 0 auto;
+    align-self: flex-end;
+    background: var(--magenta);
+    border-color: var(--magenta);
+  }
+  .nl-form button:hover { background: #fff; color: var(--ink); border-color: #fff; box-shadow: none; }
   .nl-note {
-    margin: 14px 0 0;
-    font-size: 0.82rem;
-    color: var(--ink-soft);
+    margin: 16px 0 0;
+    font-size: 0.8rem;
+    color: #e3daf3;
     position: relative;
   }
   .nl-success {
-    margin: 20px auto 0;
+    margin: 22px auto 0;
     max-width: 480px;
     background: var(--bg-card);
-    border: 1px solid var(--sage);
-    border-left: 4px solid var(--sage-deep);
-    border-radius: 12px;
+    border-left: 4px solid var(--magenta);
+    border-radius: 2px;
     padding: 16px 20px;
-    color: var(--sage-deep);
-    font-weight: 500;
+    color: var(--ink);
+    font-weight: 600;
     text-align: left;
     display: none;
     position: relative;
@@ -903,31 +989,33 @@
     bottom: 24px;
     transform: translate(-50%, 130%);
     background: var(--ink);
-    color: var(--bg);
+    color: #fff;
     padding: 14px 22px;
-    border-radius: 999px;
+    border-radius: 2px;
+    border-left: 4px solid var(--magenta);
     box-shadow: var(--shadow);
     z-index: 300;
     display: flex;
     align-items: center;
     gap: 11px;
-    font-size: 0.92rem;
+    font-size: 0.9rem;
+    font-weight: 600;
     max-width: calc(100vw - 32px);
     transition: transform 0.4s cubic-bezier(.34,1.4,.64,1);
   }
   .toast.show { transform: translate(-50%, 0); }
   .toast .tdot {
-    width: 22px; height: 22px; border-radius: 50%;
-    background: var(--sage); flex-shrink: 0;
+    width: 22px; height: 22px; border-radius: 2px;
+    background: var(--magenta); flex-shrink: 0;
     display: grid; place-items: center;
     color: #fff; font-size: 0.8rem;
   }
 
   /* ---------- Footer ---------- */
   footer {
-    background: #2c2823;
-    color: #d6cfc4;
-    padding: clamp(48px, 6vw, 80px) 0 0;
+    background: var(--ink);
+    color: #cfc4e3;
+    padding: clamp(48px, 6vw, 84px) 0 0;
   }
   .foot-grid {
     display: grid;
@@ -937,57 +1025,57 @@
   @media (min-width: 720px) {
     .foot-grid { grid-template-columns: 1.6fr 1fr 1fr 1fr; }
   }
-  .foot-brand .brand-name { color: #f4efe6; }
-  .foot-brand p { color: #b1a99d; max-width: 34ch; margin: 16px 0 0; font-size: 0.95rem; }
-  .foot-soc { display: flex; gap: 10px; margin-top: 20px; }
+  .foot-brand .brand-name { color: #fff; }
+  .foot-brand p { color: #b3a8c9; max-width: 34ch; margin: 16px 0 0; font-size: 0.94rem; }
+  .foot-soc { display: flex; gap: 10px; margin-top: 22px; }
   .foot-soc a {
-    width: 40px; height: 40px; border-radius: 50%;
-    border: 1px solid #4a443d;
+    width: 44px; height: 44px; border-radius: 2px;
+    border: 1px solid #3a3350;
     display: grid; place-items: center;
-    color: #d6cfc4;
+    color: #cfc4e3;
     text-decoration: none;
-    transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
   }
-  .foot-soc a:hover { background: var(--blush); color: var(--ink); transform: translateY(-2px); }
+  .foot-soc a:hover { background: var(--magenta); color: #fff; transform: translateY(-3px); border-color: var(--magenta); }
   .foot-soc svg { width: 18px; height: 18px; }
   .foot-col h4 {
-    font-family: 'Jost', sans-serif;
-    font-size: 0.76rem;
-    letter-spacing: 0.18em;
+    font-family: 'Archivo', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: #f4efe6;
-    margin: 0 0 16px;
-    font-weight: 600;
+    color: #fff;
+    margin: 0 0 18px;
+    font-weight: 700;
   }
-  .foot-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
-  .foot-col a { text-decoration: none; color: #b1a99d; font-size: 0.94rem; transition: color 0.2s ease; }
-  .foot-col a:hover { color: #f4efe6; }
+  .foot-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 11px; }
+  .foot-col a { text-decoration: none; color: #b3a8c9; font-size: 0.92rem; transition: color 0.2s ease; }
+  .foot-col a:hover { color: var(--magenta); }
   .foot-bottom {
-    margin-top: clamp(40px, 5vw, 64px);
-    border-top: 1px solid #43403a;
-    padding: 22px 0 30px;
+    margin-top: clamp(42px, 5vw, 66px);
+    border-top: 1px solid #2c2640;
+    padding: 24px 0 32px;
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
     justify-content: space-between;
     align-items: center;
-    font-size: 0.84rem;
-    color: #9b9389;
+    font-size: 0.82rem;
+    color: #8d83a3;
   }
   .credit {
     text-decoration: none;
-    color: #c9c0b5;
-    font-weight: 500;
-    border-bottom: 1px solid #5a544c;
+    color: #cfc4e3;
+    font-weight: 600;
+    border-bottom: 1px solid #4a4263;
     padding-bottom: 2px;
     transition: color 0.2s ease, border-color 0.2s ease;
   }
-  .credit:hover { color: var(--blush); border-color: var(--blush); }
+  .credit:hover { color: var(--magenta); border-color: var(--magenta); }
 
   /* ---------- Reveal animation ---------- */
   .reveal {
     opacity: 0;
-    transform: translateY(26px);
+    transform: translateY(28px);
   }
   .reveal.in {
     opacity: 1;
@@ -1003,10 +1091,10 @@
   /* Keep the nav comfortable on the smallest screens */
   @media (max-width: 420px) {
     .nav { gap: 8px; }
-    .brand { gap: 8px; min-width: 0; }
-    .brand-name { font-size: 1.12rem; }
+    .brand { gap: 9px; min-width: 0; }
+    .brand-name { font-size: 1.16rem; }
     .brand-name small { display: none; }
-    .nav-actions { gap: 2px; }
+    .nav-actions { gap: 0px; }
     .wrap { padding-left: 14px; padding-right: 14px; }
   }
 
@@ -1022,19 +1110,25 @@
     .cart-count { transition: none; }
   }
 </style>
+<noscript>
+<style>
+  /* Without JS, scroll-reveal never fires — force all content visible. */
+  .reveal { opacity: 1 !important; transform: none !important; }
+</style>
+</noscript>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
 
   <div class="announce" role="region" aria-label="Store announcement">
-    Complimentary shipping on orders over <strong>$95</strong> &nbsp;·&nbsp; New: The Meadow Edit is here
+    Express shipping on orders over <strong>$120</strong> &nbsp;·&nbsp; Drop 04: HYPERVIOLET is live
   </div>
 
   <header>
     <nav class="wrap nav" aria-label="Primary">
-      <a class="brand" href="#main" aria-label="Wildflower and Co. home">
-        <span class="brand-mark" aria-hidden="true"><span>W</span></span>
-        <span class="brand-name">Wildflower &amp; Co.<small>Considered Apparel</small></span>
+      <a class="brand" href="#main" aria-label="Violette home">
+        <span class="brand-mark" aria-hidden="true"><span>V</span></span>
+        <span class="brand-name">VIOLETTE<small>Bold-Cut Fashion</small></span>
       </a>
 
       <ul class="nav-links">
@@ -1042,7 +1136,7 @@
         <li><a href="#featured">Bestseller</a></li>
         <li><a href="#categories">Collections</a></li>
         <li><a href="#reviews">Reviews</a></li>
-        <li><a href="#newsletter">Journal</a></li>
+        <li><a href="#newsletter">The Drop</a></li>
       </ul>
 
       <div class="nav-actions">
@@ -1073,29 +1167,29 @@
     <section class="hero" aria-labelledby="hero-h">
       <div class="wrap hero-inner">
         <div class="hero-copy">
-          <p class="eyebrow reveal" style="--d:0ms">The Meadow Edit · Spring 2026</p>
-          <h1 id="hero-h" class="reveal" style="--d:90ms">Considered clothing for the <em>everyday wild.</em></h1>
+          <p class="eyebrow reveal" style="--d:0ms">Drop 04 · HYPERVIOLET · SS26</p>
+          <h1 id="hero-h" class="reveal" style="--d:90ms">Dress like you <em>own the room.</em></h1>
           <p class="hero-lede reveal" style="--d:180ms">
-            Small-batch apparel and accessories in soft, lived-in fabrics — designed in our studio,
-            made to be worn loose, layered, and loved for seasons to come.
+            Sharp tailoring, electric colour, zero apologies. VIOLETTE cuts bold silhouettes
+            for people who arrive — limited runs, runway energy, built to turn heads in any light.
           </p>
           <div class="hero-cta reveal" style="--d:270ms">
-            <a class="btn" href="#shop">Shop the edit</a>
+            <a class="btn btn--primary" href="#shop">Shop the drop</a>
             <a class="btn btn--ghost" href="#featured">View bestseller</a>
           </div>
           <div class="hero-stats reveal" style="--d:360ms">
             <div><strong>4.9</strong><span>Avg. rating</span></div>
-            <div><strong>12k+</strong><span>Happy makers</span></div>
-            <div><strong>100%</strong><span>Ethically sourced</span></div>
+            <div><strong>40k+</strong><span>On the list</span></div>
+            <div><strong>48h</strong><span>Drops sell out</span></div>
           </div>
         </div>
 
         <div class="hero-art reveal" style="--d:240ms" aria-hidden="true">
-          <span class="hero-petal"></span>
+          <span class="hero-orbit"></span>
           <div class="hero-frame main"></div>
           <div class="hero-frame accent"></div>
           <div class="hero-tag">
-            <span class="dot"></span> Linen &amp; Tencel · Studio-dyed
+            <span class="dot"></span> Structured wool · Statement cut
           </div>
         </div>
       </div>
@@ -1106,15 +1200,82 @@
       <div class="wrap">
         <div class="section-head">
           <div>
-            <p class="eyebrow reveal" style="--d:0ms">The Edit</p>
-            <h2 id="shop-h" class="reveal" style="--d:60ms">New &amp; noteworthy</h2>
-            <p class="reveal" style="--d:120ms">Hand-picked pieces from our latest drop — each cut, dyed, and finished in limited runs.</p>
+            <p class="eyebrow reveal" style="--d:0ms">The Drop</p>
+            <h2 id="shop-h" class="reveal" style="--d:60ms">New &amp; loud</h2>
+            <p class="reveal" style="--d:120ms">The full HYPERVIOLET line-up — bold cuts and electric colour, produced in strictly limited runs.</p>
           </div>
           <a class="link-arrow reveal" style="--d:160ms" href="#categories">Browse all collections →</a>
         </div>
 
         <div class="grid-products" id="productGrid">
-          <!-- Cards injected via JS for clean add-to-cart wiring -->
+          <!-- Cards injected via JS for clean add-to-cart wiring; static fallback below for no-JS -->
+          <noscript>
+            <article class="card">
+              <div class="card-img"><span class="badge new">New</span><div class="scene s2" role="img" aria-label="Voltage Satin Shirt product photo"></div></div>
+              <div class="card-body">
+                <span class="card-cat">Tops</span>
+                <h3 class="card-name">Voltage Satin Shirt</h3>
+                <div class="card-price"><span class="now">$118.00</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-img"><div class="scene s6" role="img" aria-label="Static Mohair Sweater product photo"></div></div>
+              <div class="card-body">
+                <span class="card-cat">Knits</span>
+                <h3 class="card-name">Static Mohair Sweater</h3>
+                <div class="card-price"><span class="now">$164.00</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-img"><div class="scene s3" role="img" aria-label="Bias-Cut Slip Skirt product photo"></div></div>
+              <div class="card-body">
+                <span class="card-cat">Tailoring</span>
+                <h3 class="card-name">Bias-Cut Slip Skirt</h3>
+                <div class="card-price"><span class="now">$136.00</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-img"><span class="badge sale">Sale</span><div class="scene s1" role="img" aria-label="Magenta Wrap Blouse product photo"></div></div>
+              <div class="card-body">
+                <span class="card-cat">Tops</span>
+                <h3 class="card-name">Magenta Wrap Blouse</h3>
+                <div class="card-price"><span class="now">$98.00</span><span class="was">$128.00</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-img"><div class="scene s4" role="img" aria-label="Sharp Wide-Leg Trouser product photo"></div></div>
+              <div class="card-body">
+                <span class="card-cat">Tailoring</span>
+                <h3 class="card-name">Sharp Wide-Leg Trouser</h3>
+                <div class="card-price"><span class="now">$152.00</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-img"><span class="badge new">New</span><div class="scene s7" role="img" aria-label="Liquid Silk Scarf product photo"></div></div>
+              <div class="card-body">
+                <span class="card-cat">Accessories</span>
+                <h3 class="card-name">Liquid Silk Scarf</h3>
+                <div class="card-price"><span class="now">$68.00</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-img"><div class="scene s8" role="img" aria-label="Volume Puffer Coat product photo"></div></div>
+              <div class="card-body">
+                <span class="card-cat">Outerwear</span>
+                <h3 class="card-name">Volume Puffer Coat</h3>
+                <div class="card-price"><span class="now">$268.00</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-img"><span class="badge sale">Sale</span><div class="scene s5" role="img" aria-label="Hardware Strap Tote product photo"></div></div>
+              <div class="card-body">
+                <span class="card-cat">Accessories</span>
+                <h3 class="card-name">Hardware Strap Tote</h3>
+                <div class="card-price"><span class="now">$92.00</span><span class="was">$124.00</span></div>
+              </div>
+            </article>
+            <p style="grid-column:1/-1;margin:8px 0 0;color:var(--ink-soft);font-size:0.9rem;">Enable JavaScript to add items to your cart in this demo.</p>
+          </noscript>
         </div>
       </div>
     </section>
@@ -1128,23 +1289,23 @@
               <span class="featured-ribbon">★ Bestseller</span>
             </div>
             <div class="featured-body">
-              <p class="eyebrow">Most loved this season</p>
-              <h3 id="feat-h">The Marigold Wrap Dress</h3>
+              <p class="eyebrow">The one that sells out</p>
+              <h3 id="feat-h">The Hyperviolet Power Blazer</h3>
               <p class="featured-desc">
-                Our signature silhouette, reimagined in a butter-soft Tencel twill. A true-wrap
-                bodice, deep side pockets, and a tie that cinches just so — it photographs like
-                couture and feels like a Sunday morning.
+                Our signature silhouette, sharpened. A structured shoulder, nipped waist, and
+                a single bold-magenta button line — cut from Italian wool-crepe that holds its
+                edge from boardroom to afterparty. It photographs like couture and moves like armour.
               </p>
               <ul class="feature-list">
-                <li>OEKO-TEX certified Tencel, machine washable</li>
-                <li>Adjustable wrap fits sizes XS–3X</li>
-                <li>Studio-dyed in our signature Marigold</li>
+                <li>Italian wool-crepe, fully lined and tailored</li>
+                <li>Sculpted shoulder, sizes XS–3X</li>
+                <li>Limited run of 300 — numbered inside the collar</li>
               </ul>
-              <p class="price">$148.00 <span style="font-size:0.95rem;color:var(--ink-soft);text-decoration:line-through;font-family:'Jost',sans-serif;">$179.00</span></p>
+              <p class="price">$248.00 <span style="font-size:0.95rem;color:#cfc4e3;text-decoration:line-through;font-family:'Archivo',sans-serif;font-weight:500;">$298.00</span></p>
               <div class="featured-cta">
-                <button class="btn" type="button"
-                  data-name="The Marigold Wrap Dress" data-price="148">
-                  Add to cart — $148
+                <button class="btn btn--primary" type="button"
+                  data-name="The Hyperviolet Power Blazer" data-price="248">
+                  Add to cart — $248
                 </button>
                 <span class="stars" aria-hidden="true">★★★★★</span>
                 <span class="featured-rating">4.9 · 842 reviews</span>
@@ -1160,24 +1321,24 @@
       <div class="wrap">
         <div class="section-head">
           <div>
-            <p class="eyebrow reveal" style="--d:0ms">Shop by mood</p>
+            <p class="eyebrow reveal" style="--d:0ms">Shop by attitude</p>
             <h2 id="cat-h" class="reveal" style="--d:60ms">Collections</h2>
           </div>
-          <a class="link-arrow reveal" style="--d:120ms" href="#shop">Back to the edit →</a>
+          <a class="link-arrow reveal" style="--d:120ms" href="#shop">Back to the drop →</a>
         </div>
 
         <div class="grid-cats">
           <a class="cat-tile reveal" style="--d:0ms" href="#shop">
             <span class="cat-bg c1" aria-hidden="true"></span>
             <span>
-              <span class="cat-name">Dresses</span>
+              <span class="cat-name">Tailoring</span>
               <span class="cat-count">38 styles</span>
             </span>
           </a>
           <a class="cat-tile reveal" style="--d:90ms" href="#shop">
             <span class="cat-bg c2" aria-hidden="true"></span>
             <span>
-              <span class="cat-name">Knits &amp; Layers</span>
+              <span class="cat-name">Statement Knits</span>
               <span class="cat-count">26 styles</span>
             </span>
           </a>
@@ -1191,7 +1352,7 @@
           <a class="cat-tile reveal" style="--d:270ms" href="#shop">
             <span class="cat-bg c4" aria-hidden="true"></span>
             <span>
-              <span class="cat-name">The Sale Garden</span>
+              <span class="cat-name">The Outlet</span>
               <span class="cat-count">19 styles</span>
             </span>
           </a>
@@ -1204,46 +1365,46 @@
       <div class="wrap">
         <div class="section-head">
           <div>
-            <p class="eyebrow reveal" style="--d:0ms">Loved out loud</p>
-            <h2 id="rev-h" class="reveal" style="--d:60ms">What our makers say</h2>
-            <p class="reveal" style="--d:120ms">Real words from the Wildflower community — over 9,000 verified reviews and counting.</p>
+            <p class="eyebrow reveal" style="--d:0ms">Said out loud</p>
+            <h2 id="rev-h" class="reveal" style="--d:60ms">What the front row says</h2>
+            <p class="reveal" style="--d:120ms">Real words from the VIOLETTE community — over 9,000 verified reviews and counting.</p>
           </div>
         </div>
 
         <div class="grid-reviews">
           <figure class="review reveal" style="--d:0ms">
             <span class="stars" aria-hidden="true">★★★★★</span>
-            <blockquote>"The Marigold Wrap is the first dress in years I've bought a second of. The fabric only gets softer."</blockquote>
+            <blockquote>"Wore the Power Blazer to a pitch and closed the deal. The cut does half the talking for you."</blockquote>
             <figcaption class="review-by">
               <span class="review-av av1" aria-hidden="true">S</span>
-              <span><strong>Sienna R.</strong><span>Verified buyer · Portland</span></span>
+              <span><strong>Sienna R.</strong><span>Verified buyer · New York</span></span>
             </figcaption>
           </figure>
 
           <figure class="review reveal" style="--d:120ms">
             <span class="stars" aria-hidden="true">★★★★★</span>
-            <blockquote>"Packaging like a gift, fit like it was made for me. Wildflower is my whole closet now."</blockquote>
+            <blockquote>"The colour is unreal in person and the tailoring is sharp. VIOLETTE is my whole going-out wardrobe now."</blockquote>
             <figcaption class="review-by">
               <span class="review-av av2" aria-hidden="true">M</span>
-              <span><strong>Maya T.</strong><span>Verified buyer · Austin</span></span>
+              <span><strong>Maya T.</strong><span>Verified buyer · London</span></span>
             </figcaption>
           </figure>
 
           <figure class="review reveal" style="--d:240ms">
             <span class="stars" aria-hidden="true">★★★★★</span>
-            <blockquote>"You can feel the care in the seams. I've recommended it to every friend who asks where it's from."</blockquote>
+            <blockquote>"Got stopped three times the first night. Every piece feels like it was built to be photographed."</blockquote>
             <figcaption class="review-by">
               <span class="review-av av3" aria-hidden="true">J</span>
-              <span><strong>Jordan P.</strong><span>Verified buyer · Brooklyn</span></span>
+              <span><strong>Jordan P.</strong><span>Verified buyer · Milan</span></span>
             </figcaption>
           </figure>
         </div>
 
         <div class="proof-bar reveal" style="--d:200ms">
           <div><strong>9,300+</strong><span>5-star reviews</span></div>
-          <div><strong>48 hrs</strong><span>Avg. dispatch</span></div>
+          <div><strong>24 hrs</strong><span>Express dispatch</span></div>
           <div><strong>60-day</strong><span>Easy returns</span></div>
-          <div><strong>Carbon</strong><span>Neutral shipping</span></div>
+          <div><strong>Numbered</strong><span>Limited runs</span></div>
         </div>
       </div>
     </section>
@@ -1252,21 +1413,21 @@
     <section class="section" id="newsletter" aria-labelledby="nl-h">
       <div class="wrap">
         <div class="newsletter reveal" style="--d:0ms">
-          <p class="eyebrow">The Wildflower Journal</p>
-          <h2 id="nl-h">Get the first bloom</h2>
-          <p>Early access to new drops, styling notes, and a little something for your first order. No noise — just the good stuff, twice a month.</p>
+          <p class="eyebrow">Join the list</p>
+          <h2 id="nl-h">First in line for the drop</h2>
+          <p>Early access to every drop before it sells out, plus 15% off your first order. No noise — just the next bold thing, twice a month.</p>
 
           <form class="nl-form" id="nlForm" novalidate>
             <div class="nl-field">
               <label for="nlEmail">Email address</label>
               <input type="email" id="nlEmail" name="email" placeholder="you@example.com" autocomplete="email" required />
             </div>
-            <button class="btn" type="submit">Subscribe</button>
+            <button class="btn btn--primary" type="submit">Subscribe</button>
           </form>
           <p class="nl-note">By subscribing you agree to receive marketing emails. Unsubscribe anytime.</p>
 
           <p class="nl-success" id="nlSuccess" role="status" aria-live="polite">
-            Welcome to the meadow! Check your inbox for 15% off your first order. 🌼
+            You're on the list. Check your inbox for 15% off your first order. ⚡
           </p>
         </div>
       </div>
@@ -1277,20 +1438,20 @@
     <div class="wrap">
       <div class="foot-grid">
         <div class="foot-brand">
-          <span class="brand-name">Wildflower &amp; Co.</span>
-          <p>Small-batch, considered apparel made in limited runs. Designed in Asheville, dyed by hand, shipped with care.</p>
+          <span class="brand-name">VIOLETTE</span>
+          <p>Bold-cut fashion in strictly limited runs. Designed in our studio, tailored in Italian wool, shipped to arrive.</p>
           <div class="foot-soc">
-            <a href="#newsletter" aria-label="Wildflower and Co. on Instagram">
+            <a href="#newsletter" aria-label="Violette on Instagram">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
                 <rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle>
               </svg>
             </a>
-            <a href="#newsletter" aria-label="Wildflower and Co. on Pinterest">
+            <a href="#newsletter" aria-label="Violette on Pinterest">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
                 <circle cx="12" cy="12" r="9"></circle><path d="M9.5 19c.6-1.8 1.6-5.4 2-7 .4-1.6 2-3.2 4-2.4 2 .8 1.7 3.6.4 5.2-1 1.3-3 1.4-3.6-.2"></path>
               </svg>
             </a>
-            <a href="#newsletter" aria-label="Wildflower and Co. on TikTok">
+            <a href="#newsletter" aria-label="Violette on TikTok">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
                 <path d="M14 4v9.5a3.5 3.5 0 1 1-3-3.46"></path><path d="M14 6.5A4.5 4.5 0 0 0 18.5 11"></path>
               </svg>
@@ -1304,7 +1465,7 @@
             <li><a href="#shop">New Arrivals</a></li>
             <li><a href="#featured">Bestsellers</a></li>
             <li><a href="#categories">Collections</a></li>
-            <li><a href="#categories">The Sale Garden</a></li>
+            <li><a href="#categories">The Outlet</a></li>
           </ul>
         </div>
 
@@ -1323,14 +1484,14 @@
           <ul>
             <li><a href="#newsletter">Our Story</a></li>
             <li><a href="#newsletter">Sustainability</a></li>
-            <li><a href="#newsletter">The Journal</a></li>
+            <li><a href="#newsletter">Lookbook</a></li>
             <li><a href="#newsletter">Stockists</a></li>
           </ul>
         </div>
       </div>
 
       <div class="foot-bottom">
-        <span>© 2026 Wildflower &amp; Co. · Asheville, NC · A demo storefront.</span>
+        <span>© 2026 VIOLETTE · A demo storefront.</span>
         <span>Site by <a class="credit" href="https://bananabyte.io" target="_blank" rel="noopener">🍌 BANANAbyte</a></span>
       </div>
     </div>
@@ -1348,14 +1509,14 @@
 
       /* ---------- Product data ---------- */
       var products = [
-        { name: "Wildmeadow Linen Shirt", cat: "Tops", price: 88, scene: "s2", badge: "new", swatches: ["#8d9b82","#d9c9b0","#34302a"] },
-        { name: "Juniper Knit Cardigan", cat: "Knits", price: 124, scene: "s6", badge: null, swatches: ["#6f7d64","#c0735a","#6b5560"] },
-        { name: "Honeyfield Slip Skirt", cat: "Bottoms", price: 96, scene: "s3", badge: null, swatches: ["#b9985a","#c4cbb6"] },
-        { name: "Clover Tie Blouse", cat: "Tops", price: 78, was: 98, scene: "s1", badge: "sale", swatches: ["#d9b8ad","#cdd0c6","#34302a"] },
-        { name: "Thistle Wide-Leg Trouser", cat: "Bottoms", price: 132, scene: "s4", badge: null, swatches: ["#6b5560","#34302a","#8d9b82"] },
-        { name: "Petalwork Silk Scarf", cat: "Accessories", price: 46, scene: "s7", badge: "new", swatches: ["#c0735a","#b9985a","#d9b8ad"] },
-        { name: "Fernlight Quilted Jacket", cat: "Outerwear", price: 168, scene: "s8", badge: null, swatches: ["#846a78","#6f7d64"] },
-        { name: "Daisy Chain Tote", cat: "Accessories", price: 64, was: 82, scene: "s5", badge: "sale", swatches: ["#b98579","#d9c9b0"] }
+        { name: "Voltage Satin Shirt", cat: "Tops", price: 118, scene: "s2", badge: "new", swatches: ["#6d28d9","#c4b1ec","#15101f"] },
+        { name: "Static Mohair Sweater", cat: "Knits", price: 164, scene: "s6", badge: null, swatches: ["#4c1d95","#e6007e","#6d28d9"] },
+        { name: "Bias-Cut Slip Skirt", cat: "Tailoring", price: 136, scene: "s3", badge: null, swatches: ["#c4b1ec","#4c1d95"] },
+        { name: "Magenta Wrap Blouse", cat: "Tops", price: 98, was: 128, scene: "s1", badge: "sale", swatches: ["#e6007e","#c4b1ec","#15101f"] },
+        { name: "Sharp Wide-Leg Trouser", cat: "Tailoring", price: 152, scene: "s4", badge: null, swatches: ["#15101f","#6d28d9","#e6007e"] },
+        { name: "Liquid Silk Scarf", cat: "Accessories", price: 68, scene: "s7", badge: "new", swatches: ["#e6007e","#a01b8d","#c4b1ec"] },
+        { name: "Volume Puffer Coat", cat: "Outerwear", price: 268, scene: "s8", badge: null, swatches: ["#4a4458","#6d28d9"] },
+        { name: "Hardware Strap Tote", cat: "Accessories", price: 92, was: 124, scene: "s5", badge: "sale", swatches: ["#b8005f","#c4b1ec"] }
       ];
 
       var grid = document.getElementById("productGrid");
@@ -1443,7 +1604,7 @@
 
       cartBtn.addEventListener("click", function () {
         showToast(cartCount === 0
-          ? "Your cart is empty — start with the Meadow Edit"
+          ? "Your cart is empty — start with the HYPERVIOLET drop"
           : "Cart: " + cartCount + " item" + (cartCount === 1 ? "" : "s") + " (demo checkout)");
       });
 

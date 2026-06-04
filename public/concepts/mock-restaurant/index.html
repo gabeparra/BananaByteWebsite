@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>El Coyote — Taquería &amp; Bar · Orlando</title>
+<meta name="description" content="El Coyote — a lively Mexican taquería and bar in Orlando. Tacos, agave cocktails, late-night happy hour. Book a table." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --sun:#ffcc1f;        /* sun yellow */
+    --chili:#e8332a;      /* chili red */
+    --chili-deep:#9c1b14; /* deep chili for text backgrounds · AA */
+    --cactus:#15663f;     /* cactus green (deep enough for cream text · AA) */
+    --cactus-bright:#1faa6a; /* lighter cactus for decorative gradients */
+    --pink:#ff3d8b;       /* hot pink */
+    --teal:#0fb6c4;       /* agua fresca teal */
+    --ink:#1a0f17;        /* near-black warm */
+    --ink2:#3a2630;
+    --cream:#fff6e9;      /* warm off-white for cards/text */
+    --base:#16100f;       /* confident dark base */
+    --base2:#221715;
+    --line:rgba(255,246,233,.16);
+    --shadow:0 10px 0 rgba(0,0,0,.35);
+    --r:18px;
+    --maxw:1180px;
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+
+  body{
+    margin:0;
+    font-family:"Bricolage Grotesque", "Trebuchet MS", sans-serif;
+    color:var(--cream);
+    background:var(--base);
+    background-image:
+      radial-gradient(circle at 12% -5%, rgba(255,61,139,.20), transparent 40%),
+      radial-gradient(circle at 92% 8%, rgba(15,182,196,.18), transparent 42%),
+      radial-gradient(circle at 50% 120%, rgba(255,204,31,.14), transparent 50%);
+    line-height:1.55;
+    overflow-x:hidden;
+    -webkit-text-size-adjust:100%;
+  }
+  img{max-width:100%}
+  a{color:inherit}
+
+  .wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:clamp(16px,4vw,32px)}
+
+  /* ---------- typographic helpers ---------- */
+  .display{font-family:"Bagel Fat One", system-ui, sans-serif;font-weight:400;line-height:.95;letter-spacing:-.01em}
+  .mono{font-family:"DM Mono", ui-monospace, monospace}
+  .eyebrow{
+    font-family:"DM Mono", monospace;
+    text-transform:uppercase;letter-spacing:.28em;font-size:.72rem;
+    color:var(--sun);
+  }
+  .kicker{font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+
+  /* ---------- skip + focus ---------- */
+  .skip{position:absolute;left:-9999px;top:0;background:var(--sun);color:var(--ink);padding:.7rem 1rem;border-radius:0 0 12px 0;font-weight:800;z-index:200}
+  .skip:focus{left:0}
+  a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{
+    outline:3px solid var(--teal);outline-offset:3px;border-radius:6px;
+  }
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;gap:.55em;
+    font-family:"Bricolage Grotesque",sans-serif;font-weight:800;
+    font-size:1rem;text-decoration:none;cursor:pointer;
+    padding:.85em 1.4em;border-radius:999px;border:3px solid var(--ink);
+    transition:transform .14s ease, box-shadow .14s ease, background .14s ease;
+    box-shadow:0 5px 0 var(--ink);
+  }
+  .btn:active{transform:translateY(4px);box-shadow:0 1px 0 var(--ink)}
+  .btn-sun{background:var(--sun);color:var(--ink)}
+  .btn-pink{background:var(--pink);color:var(--ink)}
+  .btn-cactus{background:var(--cactus);color:var(--cream)}
+  .btn-ghost{background:transparent;color:var(--cream);border-color:var(--cream);box-shadow:0 5px 0 rgba(255,246,233,.25)}
+  .btn-ghost:hover{background:var(--cream);color:var(--ink)}
+  .btn-sun:hover,.btn-pink:hover,.btn-cactus:hover{transform:translateY(-2px);box-shadow:0 7px 0 var(--ink)}
+  @media (prefers-reduced-motion: reduce){ .btn,.btn:hover,.btn:active{transition:none;transform:none} }
+
+  /* ---------- header ---------- */
+  header.site{position:sticky;top:0;z-index:100;background:rgba(22,16,15,.86);backdrop-filter:blur(10px);border-bottom:3px solid var(--ink)}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:.6rem}
+  .brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--cream)}
+  .brand .glyph{
+    width:42px;height:42px;border-radius:12px;flex:none;
+    background:
+      radial-gradient(circle at 50% 38%, var(--sun) 0 7px, transparent 8px),
+      linear-gradient(135deg,var(--chili),var(--pink));
+    border:3px solid var(--ink);position:relative;display:grid;place-items:center;
+    box-shadow:0 4px 0 var(--ink);
+  }
+  .brand .glyph::after{content:"🐺";font-size:1.05rem;line-height:1;transform:translateY(1px)}
+  .brand b{font-family:"Bagel Fat One",sans-serif;font-weight:400;font-size:1.25rem;letter-spacing:.01em}
+  .brand b span{color:var(--sun)}
+  nav ul{list-style:none;display:flex;gap:.35rem;margin:0;padding:0;align-items:center}
+  .nav-links{display:none}
+  .nav-links a{text-decoration:none;font-weight:600;padding:.45rem .7rem;border-radius:10px}
+  .nav-links a:hover{background:rgba(255,246,233,.1)}
+  .nav-cta{display:none}
+  .menu-toggle{
+    display:inline-flex;align-items:center;min-height:44px;
+    background:var(--sun);color:var(--ink);border:3px solid var(--ink);border-radius:10px;
+    font-weight:800;padding:.5rem .9rem;cursor:pointer;box-shadow:0 4px 0 var(--ink);font-family:inherit;
+  }
+  #nav-drawer{display:none}
+  #nav-drawer ul{flex-direction:column;align-items:stretch;gap:.25rem;padding:.5rem 0 1rem}
+  #nav-drawer a{display:flex;align-items:center;min-height:44px;padding:.7rem .8rem;border-radius:10px;text-decoration:none;font-weight:700;border:2px solid transparent}
+  #nav-drawer a:hover{border-color:var(--line);background:rgba(255,246,233,.06)}
+  #nav-toggle:checked ~ #nav-drawer{display:block}
+
+  @media(min-width:880px){
+    .menu-toggle{display:none}
+    .nav-links{display:flex}
+    .nav-cta{display:inline-flex}
+    #nav-drawer{display:none !important}
+  }
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;padding-block:clamp(2.5rem,7vw,5rem) clamp(2.5rem,6vw,4.5rem);overflow:hidden}
+  .hero .papel{position:absolute;inset:0 0 auto 0;height:40px;pointer-events:none;opacity:.95}
+  .hero-grid{display:grid;gap:2rem;align-items:center}
+  @media(min-width:920px){ .hero-grid{grid-template-columns:1.15fr .85fr} }
+  .hero h1{
+    font-size:clamp(2.6rem,11vw,7rem);margin:.2rem 0 .4rem;
+    color:var(--cream);text-shadow:5px 5px 0 var(--chili), 10px 10px 0 rgba(0,0,0,.3);
+    overflow-wrap:break-word;word-break:break-word;hyphens:auto;
+  }
+  .hero h1 .y{color:var(--sun);text-shadow:5px 5px 0 var(--pink),10px 10px 0 rgba(0,0,0,.3)}
+  .hero .lede{font-size:clamp(1.05rem,2.6vw,1.3rem);max-width:46ch;color:#ffeede}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.5rem}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.6rem}
+  .chip{
+    font-family:"DM Mono",monospace;font-size:.78rem;
+    background:rgba(255,246,233,.08);border:2px solid var(--line);
+    padding:.4rem .7rem;border-radius:999px;display:inline-flex;gap:.4rem;align-items:center;
+  }
+  .chip b{color:var(--sun);font-weight:500}
+
+  /* plate art (CSS) */
+  .plate{
+    position:relative;aspect-ratio:1;max-width:430px;margin-inline:auto;width:100%;
+    border-radius:50%;
+    background:
+      radial-gradient(circle at 50% 50%, #fff 0 46%, transparent 47%),
+      conic-gradient(from 0deg, var(--sun), var(--pink), var(--teal), var(--cactus-bright), var(--chili), var(--sun));
+    border:6px solid var(--ink);box-shadow:0 18px 0 rgba(0,0,0,.4);
+    display:grid;place-items:center;animation:spin 32s linear infinite;
+  }
+  .plate::before{
+    content:"";position:absolute;inset:14%;border-radius:50%;background:#fffaf0;border:4px solid #ffe2b0;
+  }
+  .plate .tacos{position:relative;z-index:2;font-size:clamp(3.5rem,12vw,6rem);filter:drop-shadow(0 6px 6px rgba(0,0,0,.25));text-align:center}
+  .plate .stamp{
+    position:absolute;z-index:3;bottom:6%;right:2%;
+    width:118px;height:118px;border-radius:50%;
+    background:var(--chili);color:var(--cream);border:4px solid var(--ink);
+    display:grid;place-items:center;text-align:center;line-height:1.05;
+    font-family:"Bagel Fat One",sans-serif;font-size:.92rem;transform:rotate(-12deg);
+    box-shadow:0 6px 0 var(--ink);padding:.4rem;
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @media (prefers-reduced-motion: reduce){ .plate{animation:none} }
+
+  /* marquee strip */
+  .strip{background:var(--sun);color:var(--ink);border-block:3px solid var(--ink);overflow:hidden;white-space:nowrap}
+  .strip .track{display:inline-flex;gap:2.5rem;padding-block:.6rem;font-family:"Bagel Fat One",sans-serif;font-size:1.1rem;animation:slide 22s linear infinite}
+  .strip .track span{display:inline-flex;gap:2.5rem}
+  .strip .track i{font-style:normal;color:var(--chili)}
+  @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion: reduce){ .strip .track{animation:none;white-space:normal;flex-wrap:wrap} }
+
+  /* ---------- section scaffolding ---------- */
+  section{padding-block:clamp(3rem,7vw,5rem)}
+  .sec-head{max-width:60ch;margin-bottom:2rem}
+  .sec-head h2{font-size:clamp(2.1rem,6vw,3.4rem);margin:.4rem 0 .3rem;color:var(--cream);line-height:1}
+  .sec-head p{color:#f4e4d4;opacity:.9;margin:.3rem 0 0}
+
+  /* ---------- menu ---------- */
+  #menu{background:var(--base2);border-block:3px solid var(--ink)}
+  .menu-cats{display:grid;gap:1.4rem}
+  @media(min-width:760px){ .menu-cats{grid-template-columns:repeat(2,1fr)} }
+  .cat{
+    background:var(--cream);color:var(--ink);border:4px solid var(--ink);border-radius:var(--r);
+    padding:1.4rem 1.4rem 1.5rem;box-shadow:0 9px 0 rgba(0,0,0,.4);
+  }
+  .cat h3{font-family:"Bagel Fat One",sans-serif;font-weight:400;font-size:1.5rem;margin:.1rem 0 1rem;display:flex;align-items:center;gap:.5rem}
+  .cat h3 .tag{
+    font-family:"DM Mono",monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;
+    background:var(--ink);color:var(--sun);padding:.25rem .5rem;border-radius:999px;
+  }
+  .dish{display:flex;gap:.8rem;align-items:baseline;padding:.7rem 0;border-top:2px dashed rgba(26,15,23,.18)}
+  .dish:first-of-type{border-top:0}
+  .dish .d-main{flex:1;min-width:0}
+  .dish .d-name{font-weight:800;display:flex;align-items:center;gap:.45rem;flex-wrap:wrap}
+  .dish .d-desc{font-size:.86rem;color:#5c4750;margin-top:.1rem}
+  .dish .d-price{font-family:"DM Mono",monospace;font-weight:500;color:#c41f17;white-space:nowrap;font-size:1rem}
+  .badge{font-size:.6rem;font-family:"DM Mono",monospace;text-transform:uppercase;letter-spacing:.1em;padding:.12rem .4rem;border-radius:6px;border:2px solid currentColor}
+  .badge.spicy{color:var(--chili)}
+  .badge.veg{color:var(--cactus)}
+  .menu-note{margin-top:1.6rem;font-family:"DM Mono",monospace;font-size:.82rem;color:#f0dcc8;opacity:.85}
+
+  /* ---------- hours / location ---------- */
+  .hl-grid{display:grid;gap:1.6rem}
+  @media(min-width:860px){ .hl-grid{grid-template-columns:1fr 1.1fr;align-items:stretch} }
+  .hours-card{
+    background:var(--cactus);color:var(--cream);border:4px solid var(--ink);border-radius:var(--r);
+    padding:1.6rem;box-shadow:0 9px 0 rgba(0,0,0,.4);
+  }
+  .hours-card h3{font-family:"Bagel Fat One",sans-serif;font-weight:400;font-size:1.7rem;margin:0 0 1rem}
+  .hours-row{display:flex;justify-content:space-between;gap:1rem;padding:.55rem 0;border-bottom:2px solid rgba(255,246,233,.25);font-weight:600}
+  .hours-row:last-of-type{border-bottom:0}
+  .hours-row .day{font-family:"DM Mono",monospace}
+  .hours-row.now{background:rgba(255,246,233,.16);margin-inline:-.6rem;padding-inline:.6rem;border-radius:10px;border-bottom:0}
+  .open-pill{display:inline-flex;align-items:center;gap:.5rem;background:var(--sun);color:var(--ink);font-weight:800;padding:.35rem .8rem;border-radius:999px;border:3px solid var(--ink);margin-top:1.2rem}
+  .open-pill .dot{width:11px;height:11px;border-radius:50%;background:var(--chili);box-shadow:0 0 0 3px rgba(232,51,42,.3);animation:pulse 1.8s ease-in-out infinite}
+  @keyframes pulse{50%{opacity:.4}}
+  @media (prefers-reduced-motion: reduce){ .open-pill .dot{animation:none} }
+  .addr{margin-top:1.2rem;font-size:.95rem;line-height:1.5}
+  .addr a{color:var(--sun);font-weight:700}
+
+  /* stylized map */
+  .map{
+    position:relative;border:4px solid var(--ink);border-radius:var(--r);overflow:hidden;min-height:300px;
+    background:
+      linear-gradient(115deg, rgba(15,182,196,.18), rgba(31,170,106,.18)),
+      #10302f;
+    box-shadow:0 9px 0 rgba(0,0,0,.4);
+  }
+  .map svg{position:absolute;inset:0;width:100%;height:100%}
+  .map .pin{
+    position:absolute;left:50%;top:46%;transform:translate(-50%,-100%);
+    z-index:3;text-align:center;
+  }
+  .map .pin .dot{
+    width:38px;height:38px;border-radius:50% 50% 50% 2px;transform:rotate(45deg);
+    background:var(--chili);border:4px solid var(--cream);margin:0 auto;box-shadow:0 8px 14px rgba(0,0,0,.4);
+    animation:bob 2.4s ease-in-out infinite;
+  }
+  .map .pin .lbl{transform:translateY(.5rem);font-family:"Bagel Fat One",sans-serif;font-size:.95rem;color:var(--cream);text-shadow:2px 2px 0 var(--ink)}
+  @keyframes bob{50%{transform:rotate(45deg) translate(-3px,-3px)}}
+  @media (prefers-reduced-motion: reduce){ .map .pin .dot{animation:none} }
+  .map .legend{position:absolute;left:12px;bottom:12px;z-index:3;font-family:"DM Mono",monospace;font-size:.7rem;background:rgba(16,16,15,.7);color:var(--cream);padding:.4rem .6rem;border-radius:8px;border:2px solid var(--line)}
+
+  /* ---------- booking form ---------- */
+  #reserve{background:linear-gradient(160deg,#b4201a,#8f1812);border-block:3px solid var(--ink)}
+  .reserve-grid{display:grid;gap:1.8rem}
+  @media(min-width:900px){ .reserve-grid{grid-template-columns:.9fr 1.1fr;align-items:start} }
+  .reserve-intro h2{color:var(--cream)}
+  .reserve-intro .phone{
+    display:inline-flex;align-items:center;gap:.6rem;margin-top:1.2rem;text-decoration:none;
+    background:var(--sun);color:var(--ink);font-family:"Bagel Fat One",sans-serif;font-size:1.25rem;
+    padding:.6rem 1.1rem;border-radius:14px;border:3px solid var(--ink);box-shadow:0 6px 0 var(--ink);
+  }
+  .reserve-intro .walkin{margin-top:1.2rem;color:#ffe2cf;font-size:.92rem}
+  form.booking{
+    background:var(--cream);color:var(--ink);border:4px solid var(--ink);border-radius:var(--r);
+    padding:1.5rem;box-shadow:0 10px 0 rgba(0,0,0,.4);
+  }
+  .field{margin-bottom:1rem}
+  .field-row{display:grid;gap:1rem}
+  @media(min-width:560px){ .field-row{grid-template-columns:1fr 1fr} }
+  label{display:block;font-weight:800;font-size:.85rem;margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.03em}
+  input,select{
+    width:100%;font-family:inherit;font-size:1rem;padding:.75rem .85rem;
+    border:3px solid var(--ink);border-radius:12px;background:#fff;color:var(--ink);
+  }
+  input::placeholder{color:#9b8a92}
+  .form-feedback{
+    display:none;margin-top:1rem;padding:1rem;border-radius:12px;border:3px solid var(--ink);
+    background:var(--cactus);color:var(--cream);font-weight:700;
+  }
+  .form-feedback.show{display:block}
+  .form-feedback .small{display:block;font-weight:500;font-size:.85rem;margin-top:.25rem;color:#eafff4}
+
+  /* ---------- gallery ---------- */
+  .gallery{display:grid;gap:.9rem;grid-template-columns:repeat(2,1fr)}
+  @media(min-width:680px){ .gallery{grid-template-columns:repeat(3,1fr)} }
+  @media(min-width:1000px){ .gallery{grid-template-columns:repeat(4,1fr)} }
+  .tile{
+    position:relative;aspect-ratio:1;border-radius:16px;border:4px solid var(--ink);overflow:hidden;
+    box-shadow:0 7px 0 rgba(0,0,0,.35);display:grid;place-items:center;
+    transition:transform .18s ease;
+  }
+  .tile:hover{transform:rotate(-2deg) scale(1.03)}
+  @media (prefers-reduced-motion: reduce){ .tile,.tile:hover{transition:none;transform:none} }
+  .tile .emoji{font-size:clamp(2.2rem,7vw,3.4rem);filter:drop-shadow(0 4px 4px rgba(0,0,0,.3))}
+  .tile .cap{position:absolute;left:0;right:0;bottom:0;padding:.45rem .6rem;font-family:"DM Mono",monospace;font-size:.7rem;background:rgba(16,16,15,.7);color:var(--cream)}
+  .tile.t1{background:linear-gradient(135deg,var(--sun),var(--chili))}
+  .tile.t2{background:linear-gradient(135deg,var(--teal),var(--cactus-bright))}
+  .tile.t3{background:linear-gradient(135deg,var(--pink),var(--chili))}
+  .tile.t4{background:linear-gradient(135deg,var(--cactus-bright),var(--sun))}
+  .tile.t5{background:linear-gradient(135deg,var(--pink),var(--teal))}
+  .tile.t6{background:linear-gradient(135deg,var(--chili),var(--pink))}
+  .tile.t7{background:linear-gradient(135deg,var(--sun),var(--cactus-bright))}
+  .tile.t8{background:linear-gradient(135deg,var(--teal),var(--pink))}
+
+  /* ---------- reviews ---------- */
+  #reviews{background:var(--base2);border-block:3px solid var(--ink)}
+  .reviews-grid{display:grid;gap:1.2rem}
+  @media(min-width:780px){ .reviews-grid{grid-template-columns:repeat(3,1fr)} }
+  .review{
+    background:var(--cream);color:var(--ink);border:4px solid var(--ink);border-radius:var(--r);
+    padding:1.3rem;box-shadow:0 8px 0 rgba(0,0,0,.4);position:relative;
+  }
+  .review .stars{color:var(--sun);font-size:1.1rem;letter-spacing:.1em;-webkit-text-stroke:1px var(--ink)}
+  .review blockquote{margin:.6rem 0 1rem;font-size:1.02rem;line-height:1.5;font-weight:600}
+  .review .who{display:flex;align-items:center;gap:.7rem}
+  .review .av{width:42px;height:42px;border-radius:50%;border:3px solid var(--ink);display:grid;place-items:center;font-family:"Bagel Fat One",sans-serif;color:var(--cream);font-size:1.1rem;flex:none}
+  .review .who b{display:block;font-size:.92rem}
+  .review .who span{font-family:"DM Mono",monospace;font-size:.72rem;color:#6b5560}
+
+  /* ---------- events / happy hour ---------- */
+  .hh{
+    position:relative;overflow:hidden;
+    background:
+      repeating-linear-gradient(45deg, rgba(255,61,139,.12) 0 22px, transparent 22px 44px),
+      linear-gradient(160deg,#2a0f1b,#140a12);
+  }
+  .hh-card{
+    background:var(--sun);color:var(--ink);border:5px solid var(--ink);border-radius:24px;
+    padding:clamp(1.6rem,4vw,2.6rem);box-shadow:0 12px 0 rgba(0,0,0,.4);
+    display:grid;gap:1.5rem;
+  }
+  @media(min-width:820px){ .hh-card{grid-template-columns:1.3fr .7fr;align-items:center} }
+  .hh-card .eyebrow{color:var(--chili)}
+  .hh-card h2{font-family:"Bagel Fat One",sans-serif;font-weight:400;font-size:clamp(2rem,6vw,3.2rem);margin:.4rem 0;line-height:1;color:var(--ink)}
+  .hh-card p{font-weight:600;max-width:48ch}
+  .hh-when{
+    background:var(--ink);color:var(--sun);border-radius:18px;padding:1.2rem;text-align:center;border:4px solid var(--chili);
+  }
+  .hh-when .big{font-family:"Bagel Fat One",sans-serif;font-size:2.2rem;line-height:1;display:block;color:var(--cream)}
+  .hh-when .lbl{font-family:"DM Mono",monospace;font-size:.74rem;text-transform:uppercase;letter-spacing:.16em;display:block;margin-top:.5rem}
+  .hh-events{margin-top:1.4rem;display:grid;gap:.7rem}
+  @media(min-width:680px){ .hh-events{grid-template-columns:repeat(3,1fr)} }
+  .ev{display:flex;gap:.8rem;align-items:center;background:rgba(255,246,233,.06);border:2px solid var(--line);border-radius:14px;padding:.8rem}
+  .ev .date{font-family:"Bagel Fat One",sans-serif;background:var(--pink);color:var(--ink);border-radius:10px;padding:.4rem .6rem;text-align:center;line-height:1;border:3px solid var(--ink);flex:none}
+  .ev .date b{display:block;font-size:1.3rem}
+  .ev .date span{font-size:.62rem;font-family:"DM Mono",monospace;text-transform:uppercase;letter-spacing:.1em}
+  .ev .info b{display:block;font-weight:800}
+  .ev .info span{font-size:.82rem;color:#e9d7c6}
+
+  /* ---------- newsletter ---------- */
+  .news{background:var(--teal);color:var(--ink);border-block:3px solid var(--ink)}
+  .news-inner{display:grid;gap:1.4rem;align-items:center}
+  @media(min-width:780px){ .news-inner{grid-template-columns:1fr 1fr} }
+  .news h2{font-family:"Bagel Fat One",sans-serif;font-weight:400;font-size:clamp(1.8rem,5vw,2.6rem);margin:0;color:var(--ink)}
+  .news p{font-weight:600;margin:.4rem 0 0}
+  form.news-form{display:flex;flex-wrap:wrap;gap:.7rem}
+  form.news-form .field{margin:0;flex:1;min-width:200px}
+  form.news-form label{color:var(--ink)}
+  .news-feedback{display:none;width:100%;font-weight:800;background:var(--ink);color:var(--sun);padding:.7rem 1rem;border-radius:12px;border:3px solid var(--ink)}
+  .news-feedback.show{display:block}
+
+  /* ---------- social + footer ---------- */
+  footer.site{background:var(--ink);color:var(--cream);border-top:4px solid var(--chili);padding-block:2.5rem 1.5rem}
+  .foot-grid{display:grid;gap:1.6rem}
+  @media(min-width:760px){ .foot-grid{grid-template-columns:1.4fr 1fr 1fr} }
+  footer .brand b{color:var(--cream)}
+  footer .brand b span{color:var(--sun)}
+  .foot-col h4{font-family:"DM Mono",monospace;text-transform:uppercase;letter-spacing:.18em;font-size:.72rem;color:var(--sun);margin:0 0 .7rem}
+  .foot-col a{display:flex;align-items:center;min-height:44px;color:#f0e2d4;text-decoration:none;padding:.3rem 0}
+  .foot-col a:hover{color:var(--sun)}
+  .socials{display:flex;gap:.6rem;margin-top:1rem;flex-wrap:wrap}
+  .socials a{
+    width:44px;height:44px;border-radius:12px;border:3px solid var(--cream);display:grid;place-items:center;
+    text-decoration:none;font-weight:800;font-size:.85rem;transition:transform .14s ease,background .14s ease;
+  }
+  .socials a:hover{background:var(--sun);color:var(--ink);transform:translateY(-3px)}
+  @media (prefers-reduced-motion: reduce){ .socials a:hover{transform:none} }
+  .foot-bottom{margin-top:2rem;padding-top:1.3rem;border-top:2px solid rgba(255,246,233,.15);display:flex;flex-wrap:wrap;gap:.8rem;justify-content:space-between;align-items:center;font-size:.85rem;color:#cdbcae}
+  .bbcredit{display:inline-flex;align-items:center;min-height:44px;gap:.4rem;text-decoration:none;color:#cdbcae;font-weight:700}
+  .bbcredit:hover{color:var(--sun)}
+  .bbcredit b{color:var(--sun)}
+
+  .lede,.muted{color:#f4e4d4}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+
+<!-- ================= HEADER ================= -->
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="El Coyote, home">
+      <span class="glyph" role="img" aria-label="El Coyote coyote emblem"></span>
+      <b>El&nbsp;<span>Coyote</span></b>
+    </a>
+
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#visit">Visit</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#happyhour">Happy&nbsp;Hour</a></li>
+      </ul>
+    </nav>
+
+    <a class="btn btn-sun nav-cta" href="#reserve">Book a table</a>
+
+    <input type="checkbox" id="nav-toggle" hidden />
+    <label class="menu-toggle" for="nav-toggle" aria-label="Toggle navigation menu">☰ Menu</label>
+  </div>
+
+  <div id="nav-drawer" class="wrap">
+    <ul>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#visit">Visit &amp; Hours</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#happyhour">Happy Hour &amp; Events</a></li>
+      <li><a class="btn btn-sun" href="#reserve" style="justify-content:center;margin-top:.4rem">Book a table</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+  <span id="top"></span>
+
+  <!-- ================= HERO ================= -->
+  <section class="hero" aria-labelledby="hero-title">
+    <svg class="papel" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <pattern id="flags" width="120" height="40" patternUnits="userSpaceOnUse">
+          <line x1="0" y1="6" x2="120" y2="6" stroke="rgba(255,246,233,.4)" stroke-width="2"/>
+          <polygon points="6,7 54,7 30,34" fill="#ffcc1f"/>
+          <polygon points="66,7 114,7 90,34" fill="#ff3d8b"/>
+        </pattern>
+      </defs>
+      <rect width="1200" height="40" fill="url(#flags)"/>
+    </svg>
+
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Taquería &amp; agave bar · Mills 50, Orlando</p>
+        <h1 id="hero-title" class="display">¡Bienvenido a <span class="y">El&nbsp;Coyote!</span></h1>
+        <p class="lede">Mesquite-grilled tacos, smoky salsas, and a back bar stacked with mezcal. Loud music, cold micheladas, and the best damn al pastor on Mills Ave. Pull up a stool — the party already started.</p>
+        <div class="hero-cta">
+          <a class="btn btn-sun" href="#reserve">Book a table 🪑</a>
+          <a class="btn btn-ghost" href="#menu">See the menu 🌮</a>
+        </div>
+        <div class="hero-meta" aria-label="At a glance">
+          <span class="chip"><b>★ 4.8</b> · 1,240 reviews</span>
+          <span class="chip"><b>Happy hour</b> 3–6pm daily</span>
+          <span class="chip"><b>Open</b> till midnight</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="plate" role="img" aria-label="A colorful plate of tacos spinning on a festive table">
+          <div class="tacos" aria-hidden="true">🌮🌮</div>
+          <div class="stamp" aria-hidden="true">SINCE<br>2014</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MARQUEE ================= -->
+  <div class="strip" aria-hidden="true">
+    <div class="track">
+      <span>TACOS&nbsp;<i>★</i>&nbsp;MEZCAL&nbsp;<i>★</i>&nbsp;MARGARITAS&nbsp;<i>★</i>&nbsp;ELOTE&nbsp;<i>★</i>&nbsp;CHURROS&nbsp;<i>★</i>&nbsp;MICHELADAS&nbsp;<i>★</i>&nbsp;</span>
+      <span>TACOS&nbsp;<i>★</i>&nbsp;MEZCAL&nbsp;<i>★</i>&nbsp;MARGARITAS&nbsp;<i>★</i>&nbsp;ELOTE&nbsp;<i>★</i>&nbsp;CHURROS&nbsp;<i>★</i>&nbsp;MICHELADAS&nbsp;<i>★</i>&nbsp;</span>
+    </div>
+  </div>
+
+  <!-- ================= MENU ================= -->
+  <section id="menu" aria-labelledby="menu-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">From the comal</p>
+        <h2 id="menu-title" class="display">The Menu</h2>
+        <p>Everything made in-house daily — tortillas pressed to order, salsas roasted on the comal. Ask your server about today's specials.</p>
+      </div>
+
+      <div class="menu-cats">
+        <!-- Tacos -->
+        <article class="cat">
+          <h3>🌮 Tacos <span class="tag">3 for $13</span></h3>
+          <div class="dish">
+            <div class="d-main">
+              <div class="d-name">Al Pastor <span class="badge spicy">Spicy</span></div>
+              <p class="d-desc">Adobo-marinated pork off the trompo, charred pineapple, onion &amp; cilantro.</p>
+            </div>
+            <div class="d-price">$5</div>
+          </div>
+          <div class="dish">
+            <div class="d-main">
+              <div class="d-name">Carne Asada</div>
+              <p class="d-desc">Mesquite-grilled skirt steak, avocado crema, lime.</p>
+            </div>
+            <div class="d-price">$6</div>
+          </div>
+          <div class="dish">
+            <div class="d-main">
+              <div class="d-name">Baja Fish</div>
+              <p class="d-desc">Beer-battered mahi, cabbage slaw, chipotle aioli.</p>
+            </div>
+            <div class="d-price">$6</div>
+          </div>
+          <div class="dish">
+            <div class="d-main">
+              <div class="d-name">Hongos <span class="badge veg">Veg</span></div>
+              <p class="d-desc">Roasted wild mushrooms, salsa verde, queso fresco.</p>
+            </div>
+            <div class="d-price">$5</div>
+          </div>
+        </article>
+
+        <!-- Para Picar -->
+        <article class="cat">
+          <h3>🫓 Para Picar <span class="tag">Snacks</span></h3>
+          <div class="dish">
+            <div class="d-main">
+              <div class="d-name">Street Elote</div>
+              <p class="d-desc">Grilled corn, cotija, chili-lime mayo, tajín.</p>
+            </div>
+            <div class="d-price">$7</div>
+          </div>
+          <div class="dish">
+            <div class="d-main">
+              <div class="d-name">Guac &amp; Chips</div>
+              <p class="d-desc">Smashed-to-order avocado, serrano, lime, warm totopos.</p>
+            </div>
+            <div class="d-price">$9</div>
+          </div>
+          <div class="dish">
+            <div class="d-main">
+              <div class="d-name">Queso Fundido <span class="badge spicy">Spicy</span></div>
+              <p class="d-desc">Melted Oaxaca cheese, chorizo, fresh tortillas.</p>
+            </div>
+            <div class="d-price">$11</div>
+          </div>
+          <div class="dish">
+            <div class="d-main">
+              <div class="d-name">Esquites Cup <span class="badge veg">Veg</span></div>
+              <p class="d-desc">Corn off the cob, crema, cotija, hot sauce.</p>
+            </div>
+            <div class="d-price">$6</div>
+          </div>
+        </article>
+
+        <!-- Platos -->
+        <article class="cat">
+          <h3>🍽️ Platos Grandes <span class="tag">Hungry?</span></h3>
+          <div class="dish">
+            <div class="d-main">
+              <div class="d-name">Birria Bowl <span class="badge spicy">Spicy</span></div>
+              <p class="d-desc">Slow-braised beef, rich consomé, onion, cilantro, lime.</p>
+            </div>
+            <div class="d-price">$16</div>
+          </div>
+          <div class="dish">
+            <div class="d-main">
+              <div class="d-name">Enchiladas Verdes</div>
+              <p class="d-desc">Chicken, tomatillo salsa, crema, queso, rice &amp; beans.</p>
+            </div>
+            <div class="d-price">$15</div>
+          </div>
+          <div class="dish">
+            <div class="d-main">
+              <div class="d-name">Chile Relleno <span class="badge veg">Veg</span></div>
+              <p class="d-desc">Roasted poblano, three cheeses, ranchera sauce.</p>
+            </div>
+            <div class="d-price">$14</div>
+          </div>
+        </article>
+
+        <!-- Bar -->
+        <article class="cat">
+          <h3>🍹 De la Cantina <span class="tag">21+</span></h3>
+          <div class="dish">
+            <div class="d-main">
+              <div class="d-name">Coyote Margarita</div>
+              <p class="d-desc">Blanco tequila, fresh lime, agave, tajín rim.</p>
+            </div>
+            <div class="d-price">$12</div>
+          </div>
+          <div class="dish">
+            <div class="d-main">
+              <div class="d-name">Michelada</div>
+              <p class="d-desc">Mexican lager, clamato, chili, lime, salty rim.</p>
+            </div>
+            <div class="d-price">$9</div>
+          </div>
+          <div class="dish">
+            <div class="d-main">
+              <div class="d-name">Mezcal Flight</div>
+              <p class="d-desc">Three small-batch pours, orange &amp; sal de gusano.</p>
+            </div>
+            <div class="d-price">$18</div>
+          </div>
+          <div class="dish">
+            <div class="d-main">
+              <div class="d-name">Agua de Jamaica <span class="badge veg">N/A</span></div>
+              <p class="d-desc">House hibiscus agua fresca, lightly sweet.</p>
+            </div>
+            <div class="d-price">$4</div>
+          </div>
+        </article>
+      </div>
+
+      <p class="menu-note">// Vegetarian &amp; gluten-free options available · split-check friendly · 18% gratuity on parties of 6+</p>
+    </div>
+  </section>
+
+  <!-- ================= HOURS / LOCATION ================= -->
+  <section id="visit" aria-labelledby="visit-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Find us</p>
+        <h2 id="visit-title" class="display">Hours &amp; Location</h2>
+        <p>Right in the heart of the Mills 50 district. Patio seating, free street parking after 6, and you can hear us before you see us.</p>
+      </div>
+
+      <div class="hl-grid">
+        <div class="hours-card">
+          <h3>Open hours</h3>
+          <div class="hours-row"><span class="day">Mon</span><span>11am – 11pm</span></div>
+          <div class="hours-row"><span class="day">Tue</span><span>11am – 11pm</span></div>
+          <div class="hours-row"><span class="day">Wed</span><span>11am – 11pm</span></div>
+          <div class="hours-row now"><span class="day">Thu — today</span><span>11am – 12am</span></div>
+          <div class="hours-row"><span class="day">Fri</span><span>11am – 1am</span></div>
+          <div class="hours-row"><span class="day">Sat</span><span>10am – 1am</span></div>
+          <div class="hours-row"><span class="day">Sun</span><span>10am – 10pm</span></div>
+          <span class="open-pill"><span class="dot" aria-hidden="true"></span> Open now · kitchen till 11pm</span>
+
+          <p class="addr">
+            <strong>El Coyote Taquería</strong><br>
+            1148 N Mills Ave, Orlando, FL 32803<br>
+            <a href="#visit">Get directions →</a>
+          </p>
+        </div>
+
+        <div class="map" role="img" aria-label="Stylized map showing El Coyote located on North Mills Avenue near East Colonial Drive in Orlando.">
+          <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="400" height="300" fill="#10302f"/>
+            <!-- park blocks -->
+            <rect x="20" y="30" width="90" height="70" rx="8" fill="rgba(31,170,106,.35)"/>
+            <rect x="280" y="180" width="100" height="90" rx="8" fill="rgba(15,182,196,.25)"/>
+            <!-- roads -->
+            <line x1="0" y1="150" x2="400" y2="150" stroke="#ffcc1f" stroke-width="14" opacity=".85"/>
+            <line x1="200" y1="0" x2="200" y2="300" stroke="#fff6e9" stroke-width="10" opacity=".55"/>
+            <line x1="60" y1="0" x2="60" y2="300" stroke="#fff6e9" stroke-width="5" opacity=".3"/>
+            <line x1="340" y1="0" x2="340" y2="300" stroke="#fff6e9" stroke-width="5" opacity=".3"/>
+            <line x1="0" y1="240" x2="400" y2="240" stroke="#fff6e9" stroke-width="5" opacity=".3"/>
+            <!-- dashed lane -->
+            <line x1="0" y1="150" x2="400" y2="150" stroke="#16100f" stroke-width="2" stroke-dasharray="14 12"/>
+          </svg>
+          <div class="pin">
+            <span class="dot" aria-hidden="true"></span>
+            <span class="lbl">El Coyote</span>
+          </div>
+          <span class="legend">N Mills Ave × E Colonial Dr</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= RESERVE ================= -->
+  <section id="reserve" aria-labelledby="reserve-title">
+    <div class="wrap reserve-grid">
+      <div class="reserve-intro">
+        <p class="eyebrow" style="color:var(--sun)">Grab a spot</p>
+        <h2 id="reserve-title" class="display">Reserve a table</h2>
+        <p style="color:#ffe2cf;font-weight:600;max-width:42ch">Big group, date night, or just hungry — book ahead and skip the wait. We hold tables for 15 minutes past your time.</p>
+        <a class="phone" href="tel:+14075550199" aria-label="Call El Coyote at 407 555 0199">📞 (407) 555-0199</a>
+        <p class="walkin">Walk-ins always welcome at the bar. For parties of 10+, call us directly.</p>
+      </div>
+
+      <form class="booking" id="bookingForm" novalidate aria-describedby="booking-feedback">
+        <div class="field-row">
+          <div class="field">
+            <label for="bk-name">Name</label>
+            <input id="bk-name" name="name" type="text" autocomplete="name" placeholder="Maria López" required />
+          </div>
+          <div class="field">
+            <label for="bk-phone">Phone</label>
+            <input id="bk-phone" name="phone" type="tel" autocomplete="tel" placeholder="(407) 555-0123" required />
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="bk-date">Date</label>
+            <input id="bk-date" name="date" type="date" required />
+          </div>
+          <div class="field">
+            <label for="bk-time">Time</label>
+            <select id="bk-time" name="time" required>
+              <option value="" selected disabled>Pick a time</option>
+              <option>5:00 PM</option>
+              <option>6:00 PM</option>
+              <option>7:00 PM</option>
+              <option>8:00 PM</option>
+              <option>9:00 PM</option>
+              <option>10:00 PM</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="bk-party">Party size</label>
+            <select id="bk-party" name="party" required>
+              <option value="" selected disabled>How many?</option>
+              <option>1 guest</option>
+              <option>2 guests</option>
+              <option>3 guests</option>
+              <option>4 guests</option>
+              <option>5 guests</option>
+              <option>6 guests</option>
+              <option>7+ (we'll call you)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="bk-seat">Seating</label>
+            <select id="bk-seat" name="seating">
+              <option>No preference</option>
+              <option>Patio</option>
+              <option>Bar</option>
+              <option>Booth</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="btn btn-cactus" type="submit" style="width:100%;justify-content:center">Request table 🌵</button>
+
+        <p class="form-feedback" id="booking-feedback" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ================= GALLERY ================= -->
+  <section id="gallery" aria-labelledby="gallery-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">On the table</p>
+        <h2 id="gallery-title" class="display">From our kitchen</h2>
+        <p>A taste of what's coming out of the comal tonight. Tag us <span class="mono" style="color:var(--pink)">#ElCoyoteMKT</span> and we might feature you.</p>
+      </div>
+
+      <div class="gallery">
+        <div class="tile t1" role="img" aria-label="Plate of al pastor tacos with pineapple"><span class="emoji" aria-hidden="true">🌮</span><span class="cap">Al pastor, fresh off the trompo</span></div>
+        <div class="tile t2" role="img" aria-label="Frosted margarita with lime"><span class="emoji" aria-hidden="true">🍹</span><span class="cap">House margarita</span></div>
+        <div class="tile t3" role="img" aria-label="Grilled street corn elote"><span class="emoji" aria-hidden="true">🌽</span><span class="cap">Street elote</span></div>
+        <div class="tile t4" role="img" aria-label="Bowl of guacamole and chips"><span class="emoji" aria-hidden="true">🥑</span><span class="cap">Guac, smashed to order</span></div>
+        <div class="tile t5" role="img" aria-label="Spicy red chili peppers"><span class="emoji" aria-hidden="true">🌶️</span><span class="cap">Salsa roja, roasted daily</span></div>
+        <div class="tile t6" role="img" aria-label="Cinnamon sugar churros"><span class="emoji" aria-hidden="true">🥖</span><span class="cap">Churros con chocolate</span></div>
+        <div class="tile t7" role="img" aria-label="Glass of agua fresca"><span class="emoji" aria-hidden="true">🍋</span><span class="cap">Agua de jamaica</span></div>
+        <div class="tile t8" role="img" aria-label="Birria bowl with consommé"><span class="emoji" aria-hidden="true">🍲</span><span class="cap">Birria &amp; consomé</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= REVIEWS ================= -->
+  <section id="reviews" aria-labelledby="reviews-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Word on Mills Ave</p>
+        <h2 id="reviews-title" class="display">People are talking</h2>
+      </div>
+
+      <div class="reviews-grid">
+        <article class="review">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote>"The al pastor ruined every other taco for me. The trompo char, the pineapple — unreal. We come back weekly now."</blockquote>
+          <div class="who">
+            <span class="av" aria-hidden="true" style="background:var(--chili)">D</span>
+            <div><b>Diego R.</b><span>Local Guide · 2 weeks ago</span></div>
+          </div>
+        </article>
+
+        <article class="review">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote>"Loud, colorful, and the margaritas actually taste like lime, not sour mix. Best happy hour in Mills 50, full stop."</blockquote>
+          <div class="who">
+            <span class="av" aria-hidden="true" style="background:var(--cactus)">S</span>
+            <div><b>Sam &amp; Tia</b><span>★ Reviewer · 1 month ago</span></div>
+          </div>
+        </article>
+
+        <article class="review">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote>"Booked a birthday for 8 — staff brought out churros with sparklers and the whole bar sang. Felt like a fiesta. We'll be back."</blockquote>
+          <div class="who">
+            <span class="av" aria-hidden="true" style="background:var(--pink)">A</span>
+            <div><b>Ana M.</b><span>Orlando · 3 days ago</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= HAPPY HOUR / EVENTS ================= -->
+  <section id="happyhour" class="hh" aria-labelledby="hh-title">
+    <div class="wrap">
+      <div class="hh-card">
+        <div>
+          <p class="eyebrow">Daily · 3–6pm &amp; late night</p>
+          <h2 id="hh-title">Happy Hour at the Coyote</h2>
+          <p>$2 off every taco, half-price guac, $6 house margaritas and $5 micheladas. Then we crank the music back up for late-night specials after 10pm. Come thirsty.</p>
+
+          <div class="hh-events">
+            <div class="ev">
+              <div class="date"><b>06</b><span>Jun</span></div>
+              <div class="info"><b>Mezcal Tasting</b><span>5 pours + tacos · $35</span></div>
+            </div>
+            <div class="ev">
+              <div class="date"><b>13</b><span>Jun</span></div>
+              <div class="info"><b>Live Mariachi</b><span>Fri 8pm · no cover</span></div>
+            </div>
+            <div class="ev">
+              <div class="date"><b>20</b><span>Jun</span></div>
+              <div class="info"><b>Taco Tuesday XL</b><span>$2 tacos all night</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hh-when" role="group" aria-label="Happy hour times">
+          <span class="big">3–6 PM</span>
+          <span class="lbl">Every day</span>
+          <hr style="border:0;border-top:2px solid rgba(255,246,233,.2);margin:1rem 0" />
+          <span class="big">10 PM+</span>
+          <span class="lbl">Late night Thu–Sat</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= NEWSLETTER ================= -->
+  <section class="news" aria-labelledby="news-title">
+    <div class="wrap news-inner">
+      <div>
+        <h2 id="news-title">Get the inside scoop</h2>
+        <p>Join the Coyote list for secret specials, event invites, and a free guac on your birthday. No spam, just snacks.</p>
+      </div>
+
+      <form class="news-form" id="newsForm" novalidate aria-describedby="news-feedback">
+        <div class="field">
+          <label for="nl-email">Email address</label>
+          <input id="nl-email" name="email" type="email" autocomplete="email" placeholder="you@email.com" required />
+        </div>
+        <button class="btn btn-pink" type="submit" style="align-self:flex-end">Join the list 🌶️</button>
+        <p class="news-feedback" id="news-feedback" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#top" aria-label="El Coyote, back to top">
+          <span class="glyph" role="img" aria-label="El Coyote emblem"></span>
+          <b>El&nbsp;<span>Coyote</span></b>
+        </a>
+        <p style="max-width:34ch;color:#e6d6c6;margin-top:.9rem">A lively Mexican taquería &amp; agave bar in the Mills 50 district, Orlando. Tacos, mezcal, good trouble.</p>
+        <div class="socials" aria-label="Social media">
+          <a href="#happyhour" aria-label="El Coyote on Instagram">IG</a>
+          <a href="#happyhour" aria-label="El Coyote on TikTok">TT</a>
+          <a href="#happyhour" aria-label="El Coyote on Facebook">FB</a>
+          <a href="#reviews" aria-label="El Coyote on Yelp">Yp</a>
+        </div>
+      </div>
+
+      <div class="foot-col">
+        <h4>Visit</h4>
+        <a href="#menu">Menu</a>
+        <a href="#visit">Hours &amp; location</a>
+        <a href="#reserve">Reservations</a>
+        <a href="#gallery">Gallery</a>
+      </div>
+
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="tel:+14075550199">(407) 555-0199</a>
+        <a href="#reserve">1148 N Mills Ave</a>
+        <a href="#reserve">Orlando, FL 32803</a>
+        <a href="#happyhour">Private events</a>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span>© 2026 El Coyote Taquería. All rights reserved. · Drink responsibly. 21+ at the bar.</span>
+      <a class="bbcredit" href="https://bananabyte.io" target="_blank" rel="noopener">Site by <b>BANANAbyte</b> 🍌</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    "use strict";
+
+    // Close mobile nav drawer after choosing a link
+    var navToggle = document.getElementById('nav-toggle');
+    var drawer = document.getElementById('nav-drawer');
+    if (drawer && navToggle){
+      drawer.addEventListener('click', function(e){
+        if (e.target.closest('a')){ navToggle.checked = false; }
+      });
+    }
+
+    // Set min date on booking to today
+    var dateInput = document.getElementById('bk-date');
+    if (dateInput){
+      var t = new Date();
+      var iso = t.getFullYear() + '-' +
+        String(t.getMonth()+1).padStart(2,'0') + '-' +
+        String(t.getDate()).padStart(2,'0');
+      dateInput.min = iso;
+    }
+
+    // Booking form — styled demo, no navigation
+    var booking = document.getElementById('bookingForm');
+    var bookFb = document.getElementById('booking-feedback');
+    if (booking && bookFb){
+      booking.addEventListener('submit', function(e){
+        e.preventDefault();
+        var name = (document.getElementById('bk-name').value || '').trim();
+        var time = document.getElementById('bk-time').value;
+        var party = document.getElementById('bk-party').value;
+
+        if (!name || !time || !party){
+          bookFb.style.background = 'var(--chili-deep)';
+          bookFb.innerHTML = '⚠️ Almost! Please add your name, a time, and party size.';
+          bookFb.classList.add('show');
+          return;
+        }
+        var first = name.split(' ')[0];
+        bookFb.style.background = 'var(--cactus)';
+        bookFb.innerHTML = '🎉 ¡Gracias, ' + escapeHtml(first) + '! Table request received for ' +
+          escapeHtml(party) + ' at ' + escapeHtml(time) + '.' +
+          '<span class="small">This is a demo — we\'ll text you to confirm. ¡Nos vemos pronto!</span>';
+        bookFb.classList.add('show');
+        booking.reset();
+      });
+    }
+
+    // Newsletter — styled demo
+    var news = document.getElementById('newsForm');
+    var newsFb = document.getElementById('news-feedback');
+    if (news && newsFb){
+      news.addEventListener('submit', function(e){
+        e.preventDefault();
+        var email = (document.getElementById('nl-email').value || '').trim();
+        if (!email || email.indexOf('@') < 1){
+          newsFb.style.background = 'var(--chili-deep)';
+          newsFb.textContent = '⚠️ Pop in a valid email and try again.';
+          newsFb.classList.add('show');
+          return;
+        }
+        newsFb.style.background = 'var(--ink)';
+        newsFb.innerHTML = '🌮 You\'re on the list! Watch your inbox for that free guac. <em style="font-weight:500">(Demo only — nothing was sent.)</em>';
+        newsFb.classList.add('show');
+        news.reset();
+      });
+    }
+
+    function escapeHtml(s){
+      return String(s).replace(/[&<>"']/g, function(c){
+        return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+      });
+    }
+  })();
+</script>
+</body>
+</html>
