@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Dani Cole — Crowd-Work Comedian | Orlando, FL</title>
+<meta name="description" content="Dani Cole is an Orlando crowd-work comedian. Tour dates, clips, press, and venue booking. Loud opinions, low ticket prices." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<noscript>
+  <style>
+    /* If JS is unavailable, never keep content hidden */
+    .reveal { opacity: 1 !important; transform: none !important; }
+  </style>
+</noscript>
+
+<style>
+  :root {
+    --ink: #1a0e2e;
+    --paper: #fff4e6;
+    --paper-2: #ffe8cc;
+    --hot: #ff2d75;       /* hot pink */
+    --hot-ink: #d10f53;   /* darker pink for small text on light bg (AA) */
+    --tang: #ff7a00;      /* tangerine */
+    --acid: #b6ff3d;      /* acid lime */
+    --grape: #5b21b6;     /* deep grape */
+    --cream: #fffaf2;
+    --shadow: 6px 6px 0 var(--ink);
+    --shadow-lg: 10px 10px 0 var(--ink);
+    --radius: 18px;
+    --ease: cubic-bezier(.2,.9,.25,1.1);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background:
+      radial-gradient(circle at 12% 8%, rgba(255,122,0,.18), transparent 38%),
+      radial-gradient(circle at 88% 0%, rgba(255,45,117,.16), transparent 40%),
+      var(--paper);
+    color: var(--ink);
+    font-family: "Bricolage Grotesque", "Trebuchet MS", sans-serif;
+    font-size: clamp(16px, 1rem + .2vw, 18px);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; }
+
+  h1, h2, h3 { line-height: 1.02; margin: 0; font-weight: 800; }
+
+  .display {
+    font-family: "Bricolage Grotesque", sans-serif;
+    letter-spacing: -.02em;
+  }
+
+  .serif {
+    font-family: "Fraunces", Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  .mono {
+    font-family: "DM Mono", "Courier New", monospace;
+    letter-spacing: .02em;
+  }
+
+  /* ---------- Skip link ---------- */
+  .skip {
+    position: absolute;
+    left: -999px;
+    top: 0;
+    background: var(--ink);
+    color: var(--cream);
+    padding: .7rem 1.1rem;
+    border-radius: 0 0 12px 0;
+    z-index: 200;
+    font-weight: 600;
+  }
+  .skip:focus { left: 0; }
+
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* ---------- Focus visibility ---------- */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible,
+  summary:focus-visible {
+    outline: 3px solid var(--grape);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  /* ---------- Layout helpers ---------- */
+  .wrap {
+    width: min(1140px, 100% - 2.4rem);
+    margin-inline: auto;
+  }
+
+  section { padding-block: clamp(3.2rem, 8vw, 6rem); }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    font-family: "DM Mono", monospace;
+    font-size: .8rem;
+    text-transform: uppercase;
+    letter-spacing: .18em;
+    background: var(--ink);
+    color: var(--acid);
+    padding: .35rem .8rem;
+    border-radius: 999px;
+    font-weight: 500;
+  }
+
+  .section-head { max-width: 46ch; margin-bottom: 2.4rem; }
+  .section-head h2 {
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    margin-top: 1rem;
+    text-wrap: balance;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .55rem;
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: -.01em;
+    padding: .85rem 1.4rem;
+    min-height: 44px;
+    border: 3px solid var(--ink);
+    border-radius: 999px;
+    background: var(--cream);
+    color: var(--ink);
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform .18s var(--ease), box-shadow .18s var(--ease), background .18s ease;
+  }
+  .btn:hover { transform: translate(-2px,-2px); box-shadow: var(--shadow-lg); }
+  .btn:active { transform: translate(3px,3px); box-shadow: 2px 2px 0 var(--ink); }
+  .btn--hot { background: var(--hot); color: var(--cream); }
+  .btn--lime { background: var(--acid); }
+  .btn--tang { background: var(--tang); color: var(--ink); }
+  .btn--ghost { background: transparent; box-shadow: none; }
+  .btn--ghost:hover { background: var(--paper-2); box-shadow: var(--shadow); }
+  .btn[disabled] {
+    cursor: not-allowed;
+    background: var(--paper-2);
+    color: #8a7f8e;
+    box-shadow: none;
+    border-style: dashed;
+    transform: none;
+  }
+  .btn--sm { padding: .55rem 1rem; font-size: .9rem; }
+
+  /* ---------- Header / Nav ---------- */
+  header.site {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,244,230,.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 3px solid var(--ink);
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: .7rem;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1.15rem;
+    letter-spacing: -.02em;
+  }
+  .brand .dot {
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    background: var(--hot);
+    border: 3px solid var(--ink);
+    display: grid;
+    place-items: center;
+    color: var(--cream);
+    font-size: 1rem;
+    transform: rotate(-6deg);
+  }
+  .nav-links {
+    display: none;
+    gap: 1.5rem;
+    align-items: center;
+    list-style: none;
+    margin: 0; padding: 0;
+  }
+  .nav-links a {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: .95rem;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: -4px;
+    width: 100%; height: 3px;
+    background: var(--hot);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .22s var(--ease);
+  }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .nav-cta { display: none; }
+  @media (min-width: 880px) {
+    .nav-links { display: flex; }
+    .nav-cta { display: inline-flex; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero { position: relative; overflow: hidden; padding-top: clamp(2.5rem, 6vw, 4rem); }
+  .hero-grid {
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  @media (min-width: 940px) {
+    .hero-grid { grid-template-columns: 1.15fr .85fr; }
+  }
+  .hero .tag {
+    font-family: "DM Mono", monospace;
+    font-size: .85rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--grape);
+    font-weight: 500;
+  }
+  .hero h1 {
+    font-size: clamp(3.4rem, 16vw, 9rem);
+    letter-spacing: -.04em;
+    margin: .4rem 0 .2rem;
+    text-transform: uppercase;
+  }
+  .hero h1 .stroke {
+    color: transparent;
+    -webkit-text-stroke: 2.5px var(--ink);
+    text-stroke: 2.5px var(--ink);
+  }
+  .hero h1 .fill { color: var(--hot); display: inline-block; }
+  .hero .tagline {
+    font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+    max-width: 30ch;
+    margin: 1.2rem 0 1.8rem;
+    font-weight: 600;
+  }
+  .hero .tagline em { font-family: "Fraunces", serif; font-weight: 500; color: var(--grape); }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: .9rem; }
+
+  /* Next show card */
+  .next-show {
+    background: var(--ink);
+    color: var(--cream);
+    border-radius: var(--radius);
+    border: 3px solid var(--ink);
+    padding: 1.6rem;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+  }
+  .next-show::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(45deg, transparent 0 14px, rgba(255,122,0,.08) 14px 28px);
+    pointer-events: none;
+  }
+  .next-show .label {
+    font-family: "DM Mono", monospace;
+    font-size: .75rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--acid);
+  }
+  .next-show .date-big {
+    font-size: clamp(2.4rem, 7vw, 3.4rem);
+    font-weight: 800;
+    letter-spacing: -.03em;
+    margin: .4rem 0 .1rem;
+    line-height: .95;
+  }
+  .next-show .venue { font-weight: 600; font-size: 1.05rem; }
+  .next-show .city { color: var(--tang); font-weight: 600; }
+  .next-show .meta {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    margin: 1.1rem 0 1.3rem;
+    font-family: "DM Mono", monospace;
+    font-size: .82rem;
+  }
+  .next-show .meta span { display: inline-flex; gap: .4rem; align-items: center; }
+  .mic {
+    position: absolute;
+    right: -10px; bottom: -10px;
+    width: 120px; height: 120px;
+    opacity: .9;
+  }
+
+  /* marquee strip */
+  .ticker {
+    background: var(--acid);
+    border-block: 3px solid var(--ink);
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .ticker-track {
+    display: inline-flex;
+    gap: 2.5rem;
+    padding-block: .7rem;
+    font-family: "DM Mono", monospace;
+    font-weight: 500;
+    font-size: .95rem;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    will-change: transform;
+    animation: scroll 26s linear infinite;
+  }
+  .ticker-track span { display: inline-flex; align-items: center; gap: 2.5rem; }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ---------- Tour dates ---------- */
+  .dates-list { display: grid; gap: 1rem; }
+  .date-row {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1rem 1.2rem;
+    background: var(--cream);
+    border: 3px solid var(--ink);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.3rem;
+    box-shadow: var(--shadow);
+    transition: transform .18s var(--ease), box-shadow .18s var(--ease);
+  }
+  .date-row:hover { transform: translate(-3px,-3px); box-shadow: var(--shadow-lg); }
+  .date-row.sold .date-block { opacity: .55; }
+  .date-block {
+    text-align: center;
+    border-right: 3px dashed var(--ink);
+    padding-right: 1.1rem;
+    min-width: 74px;
+  }
+  .date-block .mon {
+    font-family: "DM Mono", monospace;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    font-size: .8rem;
+    color: var(--hot-ink);
+    font-weight: 600;
+  }
+  .date-block .day { font-size: 2rem; font-weight: 800; line-height: 1; }
+  .date-block .yr { font-size: .75rem; color: #6b5e73; }
+  .date-info .city-line {
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: -.01em;
+  }
+  .date-info .venue-line {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    color: var(--grape);
+    font-size: 1rem;
+  }
+  .date-info .note {
+    font-family: "DM Mono", monospace;
+    font-size: .75rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: #6b5e73;
+    margin-top: .25rem;
+  }
+  .badge-sold {
+    background: var(--ink);
+    color: var(--hot);
+    font-family: "DM Mono", monospace;
+    font-size: .72rem;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    padding: .55rem .9rem;
+    border-radius: 999px;
+    border: 3px solid var(--ink);
+    white-space: nowrap;
+  }
+  @media (max-width: 560px) {
+    .date-row { grid-template-columns: auto 1fr; }
+    .date-row .ticket-cell { grid-column: 1 / -1; }
+    .ticket-cell .btn { width: 100%; }
+  }
+
+  /* ---------- Watch ---------- */
+  .clip-grid {
+    display: grid;
+    gap: 1.4rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) { .clip-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 980px) { .clip-grid { grid-template-columns: repeat(4, 1fr); } }
+  .clip {
+    border: 3px solid var(--ink);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--cream);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    transition: transform .18s var(--ease), box-shadow .18s var(--ease);
+  }
+  .clip:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+  .clip-thumb {
+    aspect-ratio: 4 / 3;
+    position: relative;
+    display: grid;
+    place-items: center;
+    border-bottom: 3px solid var(--ink);
+  }
+  .clip:nth-child(1) .clip-thumb { background: linear-gradient(135deg, var(--hot), var(--tang)); }
+  .clip:nth-child(2) .clip-thumb { background: linear-gradient(135deg, var(--grape), var(--hot)); }
+  .clip:nth-child(3) .clip-thumb { background: linear-gradient(135deg, var(--tang), var(--acid)); }
+  .clip:nth-child(4) .clip-thumb { background: linear-gradient(135deg, #2b1066, var(--grape)); }
+  .clip-thumb::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent 0 11px, rgba(0,0,0,.07) 11px 12px);
+    pointer-events: none;
+  }
+  .play-btn {
+    width: 62px; height: 62px;
+    border-radius: 50%;
+    border: 3px solid var(--ink);
+    background: var(--cream);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: transform .18s var(--ease);
+    position: relative;
+    z-index: 2;
+  }
+  .play-btn:hover { transform: scale(1.08); }
+  .play-btn svg { margin-left: 3px; }
+  .clip-body { padding: 1rem 1.1rem 1.2rem; }
+  .clip-body .dur {
+    font-family: "DM Mono", monospace;
+    font-size: .72rem;
+    color: var(--hot-ink);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+  }
+  .clip-body h3 { font-size: 1.12rem; margin: .35rem 0 .3rem; }
+  .clip-body p { margin: 0; font-size: .9rem; color: #4d4156; }
+
+  /* ---------- Bio ---------- */
+  .bio-grid { display: grid; gap: 2.4rem; align-items: center; }
+  @media (min-width: 860px) { .bio-grid { grid-template-columns: .9fr 1.1fr; } }
+  .bio-portrait {
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius);
+    border: 3px solid var(--ink);
+    box-shadow: var(--shadow-lg);
+    background:
+      radial-gradient(circle at 50% 34%, var(--paper-2) 0 22%, transparent 22%),
+      linear-gradient(160deg, var(--tang), var(--hot) 55%, var(--grape));
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+  }
+  .bio-portrait .mono-mark {
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-weight: 800;
+    font-size: clamp(5rem, 18vw, 9rem);
+    color: var(--cream);
+    -webkit-text-stroke: 3px var(--ink);
+    text-stroke: 3px var(--ink);
+    letter-spacing: -.05em;
+    z-index: 2;
+  }
+  .bio-portrait::after {
+    content: "ORLANDO, FL";
+    position: absolute;
+    bottom: 14px;
+    font-family: "DM Mono", monospace;
+    font-size: .75rem;
+    letter-spacing: .25em;
+    color: var(--ink);
+    background: var(--acid);
+    padding: .25rem .7rem;
+    border-radius: 999px;
+    border: 2px solid var(--ink);
+  }
+  .bio-text h2 { font-size: clamp(1.9rem, 4.5vw, 3rem); margin-bottom: 1rem; }
+  .bio-text p { margin: 0 0 1rem; max-width: 54ch; }
+  .bio-text .lead {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--grape);
+  }
+  .bio-facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem;
+    margin-top: 1.2rem;
+  }
+  .bio-facts li {
+    list-style: none;
+    font-family: "DM Mono", monospace;
+    font-size: .8rem;
+    background: var(--paper-2);
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+    padding: .35rem .8rem;
+  }
+  .bio-facts { padding: 0; margin-left: 0; }
+
+  /* ---------- Press ---------- */
+  .press { background: var(--ink); color: var(--cream); }
+  .press .eyebrow { background: var(--acid); color: var(--ink); }
+  .press .section-head h2 { color: var(--cream); }
+  .quote-grid { display: grid; gap: 1.4rem; grid-template-columns: 1fr; }
+  @media (min-width: 760px) { .quote-grid { grid-template-columns: 1fr 1fr; } }
+  blockquote.pull {
+    margin: 0;
+    background: rgba(255,255,255,.04);
+    border: 3px solid rgba(255,255,255,.18);
+    border-left: 6px solid var(--hot);
+    border-radius: var(--radius);
+    padding: 1.6rem 1.7rem;
+    transition: transform .2s var(--ease), border-color .2s ease;
+  }
+  blockquote.pull:hover { transform: translateY(-4px); border-color: var(--tang); }
+  blockquote.pull p {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    line-height: 1.35;
+    margin: 0 0 1rem;
+  }
+  blockquote.pull footer {
+    font-family: "DM Mono", monospace;
+    font-size: .8rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--acid);
+  }
+  .stars { color: var(--tang); letter-spacing: .15em; margin-bottom: .6rem; display: block; }
+
+  .seen-strip {
+    margin-top: 2.6rem;
+    border-top: 2px dashed rgba(255,255,255,.25);
+    padding-top: 1.8rem;
+  }
+  .seen-strip .lab {
+    font-family: "DM Mono", monospace;
+    font-size: .75rem;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    color: rgba(255,244,230,.6);
+    text-align: center;
+    margin-bottom: 1.2rem;
+  }
+  .seen-logos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem 2rem;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    list-style: none;
+    margin: 0;
+  }
+  .seen-logos li {
+    font-weight: 800;
+    font-size: clamp(1rem, 2.6vw, 1.45rem);
+    letter-spacing: -.02em;
+    color: rgba(255,244,230,.85);
+    opacity: .8;
+    transition: opacity .2s ease, color .2s ease;
+  }
+  .seen-logos li:hover { opacity: 1; color: var(--acid); }
+  .seen-logos li .serif { font-style: italic; }
+
+  /* ---------- Booking + Newsletter ---------- */
+  .book-grid { display: grid; gap: 2rem; }
+  @media (min-width: 960px) { .book-grid { grid-template-columns: 1.05fr .95fr; } }
+
+  .form-card {
+    background: var(--cream);
+    border: 3px solid var(--ink);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    padding: clamp(1.4rem, 4vw, 2.2rem);
+  }
+  .form-card h2 { font-size: clamp(1.6rem, 4vw, 2.4rem); }
+  .form-card .sub { margin: .6rem 0 1.6rem; color: #4d4156; }
+
+  .field { margin-bottom: 1.1rem; }
+  .field label {
+    display: block;
+    font-weight: 600;
+    font-size: .9rem;
+    margin-bottom: .4rem;
+  }
+  .field label .req { color: var(--hot); }
+  .field input,
+  .field select,
+  .field textarea {
+    width: 100%;
+    font: inherit;
+    font-size: 1rem;
+    padding: .8rem .9rem;
+    border: 3px solid var(--ink);
+    border-radius: 12px;
+    background: var(--paper);
+    color: var(--ink);
+    transition: box-shadow .15s ease, transform .15s ease;
+  }
+  .field input::placeholder,
+  .field textarea::placeholder { color: #6f6575; opacity: 1; }
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
+    box-shadow: 4px 4px 0 var(--hot);
+    transform: translate(-1px,-1px);
+  }
+  .field textarea { resize: vertical; min-height: 110px; }
+  .field-row { display: grid; gap: 1.1rem; }
+  @media (min-width: 520px) { .field-row { grid-template-columns: 1fr 1fr; } }
+
+  .form-note {
+    font-family: "DM Mono", monospace;
+    font-size: .78rem;
+    color: #6b5e73;
+    margin-top: .8rem;
+  }
+
+  .form-status {
+    margin-top: 1rem;
+    padding: 1rem 1.2rem;
+    border-radius: 12px;
+    border: 3px solid var(--ink);
+    background: var(--acid);
+    font-weight: 600;
+    display: none;
+  }
+  .form-status.show { display: block; animation: pop .4s var(--ease); }
+  @keyframes pop {
+    from { transform: scale(.94); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  /* Newsletter card */
+  .news-card {
+    background: linear-gradient(160deg, var(--hot), var(--grape));
+    color: var(--cream);
+    border: 3px solid var(--ink);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    padding: clamp(1.4rem, 4vw, 2.2rem);
+    align-self: start;
+    position: relative;
+    overflow: hidden;
+  }
+  .news-card::before {
+    content: "★";
+    position: absolute;
+    top: -20px; right: -10px;
+    font-size: 9rem;
+    color: rgba(255,255,255,.12);
+    transform: rotate(12deg);
+  }
+  .news-card h2 { font-size: clamp(1.5rem, 4vw, 2.2rem); }
+  .news-card p { max-width: 36ch; }
+  .news-form {
+    display: flex;
+    gap: .7rem;
+    flex-wrap: wrap;
+    margin-top: 1.2rem;
+  }
+  .news-form .field { margin: 0; flex: 1 1 200px; }
+  .news-form input {
+    background: rgba(255,255,255,.95);
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+  .news-form input:focus { box-shadow: 4px 4px 0 var(--acid); }
+  .news-status {
+    margin-top: .9rem;
+    font-weight: 700;
+    display: none;
+    background: var(--acid);
+    color: var(--ink);
+    padding: .6rem .9rem;
+    border-radius: 10px;
+    border: 2px solid var(--ink);
+  }
+  .news-status.show { display: inline-block; animation: pop .4s var(--ease); }
+  .news-perks { margin: 1.2rem 0 0; padding: 0; list-style: none; display: grid; gap: .4rem; }
+  .news-perks li { font-size: .9rem; display: flex; gap: .55rem; }
+  .news-perks li::before { content: "→"; color: var(--acid); font-weight: 800; }
+
+  /* ---------- Footer ---------- */
+  footer.site {
+    background: var(--ink);
+    color: var(--cream);
+    border-top: 4px solid var(--hot);
+    padding-block: 3rem 2rem;
+  }
+  .foot-grid {
+    display: grid;
+    gap: 1.6rem;
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  @media (min-width: 720px) { .foot-grid { grid-template-columns: 1.4fr 1fr 1fr; } }
+  .foot-brand .brand { color: var(--cream); font-size: 1.4rem; }
+  .foot-brand p { color: rgba(255,244,230,.7); max-width: 34ch; font-size: .92rem; }
+  .foot-col h3 {
+    font-family: "DM Mono", monospace;
+    font-size: .78rem;
+    text-transform: uppercase;
+    letter-spacing: .16em;
+    color: var(--acid);
+    margin-bottom: .8rem;
+    font-weight: 500;
+  }
+  .foot-col ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .2rem; }
+  .foot-col a {
+    color: rgba(255,244,230,.85);
+    text-decoration: none;
+    font-size: .95rem;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .foot-col a:hover { color: var(--hot); }
+  .foot-col a:focus-visible { color: var(--acid); }
+  .foot-bottom {
+    margin-top: 2.4rem;
+    padding-top: 1.4rem;
+    border-top: 1px solid rgba(255,255,255,.14);
+    display: flex;
+    flex-wrap: wrap;
+    gap: .8rem 1.4rem;
+    justify-content: space-between;
+    align-items: center;
+    font-size: .85rem;
+    color: rgba(255,244,230,.6);
+  }
+  .credit {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    text-decoration: none;
+    color: rgba(255,244,230,.75);
+    border: 2px solid rgba(255,255,255,.2);
+    padding: .35rem .8rem;
+    border-radius: 999px;
+    transition: border-color .2s ease, color .2s ease;
+    font-weight: 600;
+  }
+  .credit:hover { border-color: var(--acid); color: var(--acid); }
+
+  /* ---------- Reveal animation ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  .reveal.in {
+    animation: reveal-up .7s var(--ease) forwards;
+    animation-delay: var(--d, 0ms);
+  }
+  @keyframes reveal-up {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Mic line-art bob */
+  .mic { animation: bob 4s ease-in-out infinite; }
+  @keyframes bob {
+    0%,100% { transform: translateY(0) rotate(-4deg); }
+    50% { transform: translateY(-8px) rotate(2deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: .001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: .001ms !important;
+    }
+    .reveal { opacity: 1; transform: none; }
+    .ticker-track { animation: none; }
+    .mic { animation: none; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Dani Cole, home">
+      <span class="dot" aria-hidden="true">!</span>
+      <span>DANI COLE</span>
+    </a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="#dates">Tour</a></li>
+        <li><a href="#watch">Watch</a></li>
+        <li><a href="#bio">Bio</a></li>
+        <li><a href="#press">Press</a></li>
+        <li><a href="#book">Booking</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--hot btn--sm nav-cta" href="#dates">See Dates</a>
+  </div>
+</header>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="tag reveal" style="--d:60ms">Live · Loud · Unscripted — Orlando, FL</p>
+        <h1 class="display reveal" style="--d:140ms">
+          <span class="fill">DANI</span><br />
+          <span class="stroke">COLE</span>
+        </h1>
+        <p class="tagline reveal" style="--d:240ms">
+          The crowd-work comic who talks to <em>you</em> — yes, you in row three with the nachos. No two shows alike. <em>That's the bit.</em>
+        </p>
+        <div class="hero-cta reveal" style="--d:340ms">
+          <a class="btn btn--hot" href="#dates">
+            Next Show
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn--lime" href="#dates">See Dates</a>
+          <a class="btn btn--ghost" href="#watch">Watch a Clip</a>
+        </div>
+      </div>
+
+      <aside class="next-show reveal" style="--d:420ms" aria-label="Next show">
+        <p class="label">★ Next Show</p>
+        <p class="date-big">FRI · JUN 13</p>
+        <p class="venue">The Improv — Downtown</p>
+        <p class="city">Orlando, FL</p>
+        <div class="meta">
+          <span aria-hidden="true">🕘</span><span>Doors 8:00 PM</span>
+          <span aria-hidden="true">🎟️</span><span>From $22</span>
+          <span aria-hidden="true">🔞</span><span>18+ / Two-item min</span>
+        </div>
+        <a class="btn btn--lime" href="#dates">Grab Tickets</a>
+        <svg class="mic" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+          <circle cx="50" cy="32" r="20" stroke="#b6ff3d" stroke-width="3"/>
+          <path d="M50 14v36" stroke="#b6ff3d" stroke-width="3"/>
+          <path d="M30 32h40" stroke="#b6ff3d" stroke-width="2" opacity=".5"/>
+          <path d="M50 52v22M38 88c0-7 5-14 12-14s12 7 12 14" stroke="#ff7a00" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </aside>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>★ NEW HOUR · "NACHO PROBLEM" ★ NOW TOURING ★ AS HEARD ON ORLANDO LATE ★ "DON'T SIT FRONT ROW" — EVERYONE ★ NEW HOUR · "NACHO PROBLEM" ★ NOW TOURING ★ AS HEARD ON ORLANDO LATE ★ "DON'T SIT FRONT ROW" — EVERYONE ★</span>
+    </div>
+  </div>
+
+  <!-- TOUR DATES -->
+  <section id="dates">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">🎤 On The Road</span>
+        <h2 class="display">Upcoming tour dates</h2>
+        <p>Bringing the same heckle-friendly chaos to a venue near you. Get tickets before your hometown shows me up with a better crowd.</p>
+      </div>
+
+      <div class="dates-list">
+        <article class="date-row reveal" style="--d:60ms">
+          <div class="date-block">
+            <div class="mon">Jun</div>
+            <div class="day">13</div>
+            <div class="yr">2026</div>
+          </div>
+          <div class="date-info">
+            <div class="city-line">Orlando, FL</div>
+            <div class="venue-line">The Improv — Downtown</div>
+            <div class="note">8:00 PM · Two shows added</div>
+          </div>
+          <div class="ticket-cell">
+            <button class="btn btn--hot btn--sm" data-ticket data-show="Orlando · Jun 13">Tickets</button>
+          </div>
+        </article>
+
+        <article class="date-row sold reveal" style="--d:120ms">
+          <div class="date-block">
+            <div class="mon">Jun</div>
+            <div class="day">20</div>
+            <div class="yr">2026</div>
+          </div>
+          <div class="date-info">
+            <div class="city-line">Tampa, FL</div>
+            <div class="venue-line">Side Splitters Comedy Club</div>
+            <div class="note">Late show · 21+</div>
+          </div>
+          <div class="ticket-cell">
+            <span class="badge-sold" aria-label="This show is sold out">Sold Out</span>
+          </div>
+        </article>
+
+        <article class="date-row reveal" style="--d:180ms">
+          <div class="date-block">
+            <div class="mon">Jun</div>
+            <div class="day">28</div>
+            <div class="yr">2026</div>
+          </div>
+          <div class="date-info">
+            <div class="city-line">Atlanta, GA</div>
+            <div class="venue-line">The Punchline</div>
+            <div class="note">7:30 PM · All ages welcome</div>
+          </div>
+          <div class="ticket-cell">
+            <button class="btn btn--hot btn--sm" data-ticket data-show="Atlanta · Jun 28">Tickets</button>
+          </div>
+        </article>
+
+        <article class="date-row reveal" style="--d:240ms">
+          <div class="date-block">
+            <div class="mon">Jul</div>
+            <div class="day">11</div>
+            <div class="yr">2026</div>
+          </div>
+          <div class="date-info">
+            <div class="city-line">Nashville, TN</div>
+            <div class="venue-line">Zanies Comedy Night Club</div>
+            <div class="note">9:45 PM · Festival set</div>
+          </div>
+          <div class="ticket-cell">
+            <button class="btn btn--hot btn--sm" data-ticket data-show="Nashville · Jul 11">Tickets</button>
+          </div>
+        </article>
+
+        <article class="date-row reveal" style="--d:300ms">
+          <div class="date-block">
+            <div class="mon">Jul</div>
+            <div class="day">26</div>
+            <div class="yr">2026</div>
+          </div>
+          <div class="date-info">
+            <div class="city-line">Miami, FL</div>
+            <div class="venue-line">Villain Theater</div>
+            <div class="note">8:15 PM · Crowd-work taping</div>
+          </div>
+          <div class="ticket-cell">
+            <button class="btn btn--hot btn--sm" data-ticket data-show="Miami · Jul 26">Tickets</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- WATCH -->
+  <section id="watch">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">▶ Roll The Tape</span>
+        <h2 class="display">Watch some chaos</h2>
+        <p>Clips from real shows, real strangers, real regret about sitting up front. Press play if you dare.</p>
+      </div>
+
+      <div class="clip-grid">
+        <article class="clip reveal" style="--d:60ms">
+          <div class="clip-thumb">
+            <button class="play-btn" data-play="The Nacho Incident" aria-label="Play clip: The Nacho Incident">
+              <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5v14l12-7L7 5Z" fill="#1a0e2e"/></svg>
+            </button>
+          </div>
+          <div class="clip-body">
+            <span class="dur">▶ 2:14</span>
+            <h3>The Nacho Incident</h3>
+            <p>A man, his nachos, and a question he was not ready for.</p>
+          </div>
+        </article>
+
+        <article class="clip reveal" style="--d:130ms">
+          <div class="clip-thumb">
+            <button class="play-btn" data-play="So… What Do You Do?" aria-label="Play clip: So What Do You Do">
+              <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5v14l12-7L7 5Z" fill="#1a0e2e"/></svg>
+            </button>
+          </div>
+          <div class="clip-body">
+            <span class="dur">▶ 3:48</span>
+            <h3>"So… What Do You Do?"</h3>
+            <p>Eight minutes from one accountant's honest answer.</p>
+          </div>
+        </article>
+
+        <article class="clip reveal" style="--d:200ms">
+          <div class="clip-thumb">
+            <button class="play-btn" data-play="First Date in Row One" aria-label="Play clip: First Date in Row One">
+              <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5v14l12-7L7 5Z" fill="#1a0e2e"/></svg>
+            </button>
+          </div>
+          <div class="clip-body">
+            <span class="dur">▶ 1:57</span>
+            <h3>First Date in Row One</h3>
+            <p>They will not be returning for a second date. I helped.</p>
+          </div>
+        </article>
+
+        <article class="clip reveal" style="--d:270ms">
+          <div class="clip-thumb">
+            <button class="play-btn" data-play="Closing the Bar Tab" aria-label="Play clip: Closing the Bar Tab">
+              <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5v14l12-7L7 5Z" fill="#1a0e2e"/></svg>
+            </button>
+          </div>
+          <div class="clip-body">
+            <span class="dur">▶ 4:31</span>
+            <h3>Closing the Bar Tab</h3>
+            <p>A full set built backward from one heckle at 11:58 PM.</p>
+          </div>
+        </article>
+      </div>
+      <p id="clip-feedback" class="form-note" role="status" aria-live="polite" style="margin-top:1.2rem;"></p>
+    </div>
+  </section>
+
+  <!-- BIO -->
+  <section id="bio">
+    <div class="wrap bio-grid">
+      <div class="bio-portrait reveal" role="img" aria-label="Stylized portrait monogram of Dani Cole on a stage-lit gradient">
+        <span class="mono-mark" aria-hidden="true">DC</span>
+      </div>
+      <div class="bio-text">
+        <span class="eyebrow reveal" style="--d:40ms">🙋 The Short Version</span>
+        <h2 class="display reveal" style="--d:120ms">Hi, I'm Dani. I talk to strangers for a living.</h2>
+        <p class="lead reveal" style="--d:180ms">Some comics write five years of jokes. I write five years of jokes and then ignore them the second a guy named Brad makes eye contact.</p>
+        <p class="reveal" style="--d:240ms">Born and raised in Orlando, I cut my teeth at open mics between theme-park shifts, learned that the best material is sitting in row two pretending not to make eye contact, and never looked back. My sets are part stand-up, part interview, part group therapy nobody signed up for.</p>
+        <p class="reveal" style="--d:300ms">These days I headline clubs and festivals across the Southeast with a brand-new hour, <em class="serif">"Nacho Problem."</em> It's a different show every night, because you're a different crowd every night. Come early, sit close, and absolutely do not lie about your job.</p>
+        <ul class="bio-facts reveal" style="--d:360ms">
+          <li># Orlando native</li>
+          <li># 400+ shows</li>
+          <li># New hour 2026</li>
+          <li># Yes, that was improvised</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRESS -->
+  <section id="press" class="press">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">💬 Kind Words & Threats</span>
+        <h2 class="display">What people are saying</h2>
+      </div>
+
+      <div class="quote-grid">
+        <blockquote class="pull reveal" style="--d:60ms">
+          <span class="stars" aria-label="Five out of five stars">★★★★★</span>
+          <p>"Dani turns a room full of strangers into the funniest dinner party you've ever crashed. I haven't laughed that hard since my divorce got finalized."</p>
+          <footer>— Orlando Weekly</footer>
+        </blockquote>
+
+        <blockquote class="pull reveal" style="--d:130ms">
+          <span class="stars" aria-label="Five out of five stars">★★★★★</span>
+          <p>"The rare crowd-work comic who's actually <em>nice</em> about it. You leave roasted, but somehow flattered."</p>
+          <footer>— The Comedy Bureau</footer>
+        </blockquote>
+
+        <blockquote class="pull reveal" style="--d:200ms">
+          <span class="stars" aria-label="Five out of five stars">★★★★★</span>
+          <p>"A booking we re-book every quarter. Sells the bar out, fills the seats, and the staff actually want to work the night."</p>
+          <footer>— Side Splitters, Talent Buyer</footer>
+        </blockquote>
+
+        <blockquote class="pull reveal" style="--d:270ms">
+          <span class="stars" aria-label="Four out of five stars">★★★★☆</span>
+          <p>"Five stars for the show. Minus one because she found out where I work. Loved it. Terrified."</p>
+          <footer>— Brad, Row Two</footer>
+        </blockquote>
+      </div>
+
+      <div class="seen-strip reveal">
+        <p class="lab">As seen at</p>
+        <ul class="seen-logos">
+          <li>The Improv</li>
+          <li><span class="serif">Zanies</span></li>
+          <li>SideSplitters</li>
+          <li>The Punchline</li>
+          <li><span class="serif">Villain</span> Theater</li>
+          <li>Orlando Fringe</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING + NEWSLETTER -->
+  <section id="book">
+    <div class="wrap book-grid">
+      <!-- Booking form -->
+      <div class="form-card reveal">
+        <span class="eyebrow">🎟️ Venues & Bookers</span>
+        <h2 class="display" style="margin-top:.8rem;">Book Dani</h2>
+        <p class="sub">Clubs, festivals, corporate nights that secretly want chaos — tell me about the room. I'll get back within two business days (sober ones).</p>
+
+        <form id="booking-form" novalidate>
+          <div class="field-row">
+            <div class="field">
+              <label for="b-name">Your name <span class="req" aria-hidden="true">*</span></label>
+              <input id="b-name" name="name" type="text" autocomplete="name" placeholder="Talent buyer name" required />
+            </div>
+            <div class="field">
+              <label for="b-venue">Venue / Organization <span class="req" aria-hidden="true">*</span></label>
+              <input id="b-venue" name="venue" type="text" autocomplete="organization" placeholder="The room with the bad sightlines" required />
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="b-email">Email <span class="req" aria-hidden="true">*</span></label>
+              <input id="b-email" name="email" type="email" autocomplete="email" placeholder="booking@yourvenue.com" required />
+            </div>
+            <div class="field">
+              <label for="b-date">Show date (approx.)</label>
+              <input id="b-date" name="date" type="date" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="b-type">Type of event</label>
+            <select id="b-type" name="type">
+              <option>Comedy club headline</option>
+              <option>Festival set</option>
+              <option>Corporate / private event</option>
+              <option>Theater / theater run</option>
+              <option>I have no idea, help</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="b-msg">Tell me about the gig</label>
+            <textarea id="b-msg" name="message" placeholder="Capacity, vibe, budget range, how feral the crowd usually gets…"></textarea>
+          </div>
+
+          <button class="btn btn--hot" type="submit">
+            Send booking request
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <p class="form-note">This is a demo form — nothing is actually sent.</p>
+          <p class="form-status" id="booking-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+
+      <!-- Newsletter -->
+      <aside class="news-card reveal" style="--d:120ms" aria-label="Newsletter signup">
+        <span class="eyebrow" style="background:var(--acid);color:var(--ink);">✉️ The List</span>
+        <h2 class="display" style="margin-top:.8rem;">Join the front row</h2>
+        <p>New dates, secret late shows, and the occasional clip too cursed for the internet. One email a month, max — I'm a comic, not a spammer.</p>
+
+        <ul class="news-perks">
+          <li>First dibs on tickets before they go public</li>
+          <li>Members-only Orlando pop-up shows</li>
+          <li>Zero "buy my course" energy, ever</li>
+        </ul>
+
+        <form id="news-form" class="news-form" novalidate>
+          <div class="field">
+            <label for="n-email" class="sr-only" style="color:var(--cream);">Email address</label>
+            <input id="n-email" name="email" type="email" autocomplete="email" placeholder="you@email.com" required aria-label="Email address" />
+          </div>
+          <button class="btn btn--lime" type="submit">Sign me up</button>
+        </form>
+        <p class="news-status" id="news-status" role="status" aria-live="polite"></p>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#top">
+          <span class="dot" aria-hidden="true">!</span>
+          <span>DANI COLE</span>
+        </a>
+        <p style="margin-top:.8rem;">Orlando crowd-work comedy. Loud opinions, low ticket prices, no two shows alike. Don't sit front row.</p>
+      </div>
+
+      <div class="foot-col">
+        <h3>Explore</h3>
+        <ul>
+          <li><a href="#dates">Tour Dates</a></li>
+          <li><a href="#watch">Watch Clips</a></li>
+          <li><a href="#bio">About Dani</a></li>
+          <li><a href="#book">Book a Show</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h3>Follow Along</h3>
+        <ul>
+          <li><a href="#watch">Instagram @danicolelive</a></li>
+          <li><a href="#watch">TikTok @danicole</a></li>
+          <li><a href="#watch">YouTube — Dani Cole</a></li>
+          <li><a href="#book">Press / EPK</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span>© 2026 Dani Cole Comedy · Orlando, FL · All shows subject to one (1) very confident heckler.</span>
+      <a class="credit" href="https://bananabyte.io" target="_blank" rel="noopener">🍌 Site by BANANAbyte</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    "use strict";
+
+    /* ---- Staggered load reveal via IntersectionObserver ---- */
+    var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var revealEls = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+
+    if (reduced || !("IntersectionObserver" in window)) {
+      revealEls.forEach(function (el) { el.classList.add("in"); });
+    } else {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in");
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+      revealEls.forEach(function (el) { io.observe(el); });
+    }
+
+    /* ---- Tickets buttons (demo) ---- */
+    document.querySelectorAll("[data-ticket]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var original = btn.textContent;
+        var show = btn.getAttribute("data-show") || "this show";
+        btn.disabled = true;
+        btn.textContent = "✓ On hold!";
+        btn.style.background = "var(--acid)";
+        btn.style.color = "var(--ink)";
+        setTimeout(function () {
+          btn.disabled = false;
+          btn.textContent = original;
+          btn.style.background = "";
+          btn.style.color = "";
+        }, 2200);
+      });
+    });
+
+    /* ---- Clip play buttons (demo) ---- */
+    var clipFeedback = document.getElementById("clip-feedback");
+    document.querySelectorAll("[data-play]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var title = btn.getAttribute("data-play") || "that clip";
+        clipFeedback.textContent = "▶ Now playing: “" + title + "” — (demo player — clips drop here on the live site)";
+        btn.setAttribute("aria-pressed", "true");
+        document.querySelectorAll("[data-play]").forEach(function (b) {
+          if (b !== btn) b.removeAttribute("aria-pressed");
+        });
+      });
+    });
+
+    /* ---- Booking form (demo) ---- */
+    var bookingForm = document.getElementById("booking-form");
+    var bookingStatus = document.getElementById("booking-status");
+    bookingForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var name = document.getElementById("b-name");
+      var venue = document.getElementById("b-venue");
+      var email = document.getElementById("b-email");
+
+      if (!name.value.trim() || !venue.value.trim() || !email.checkValidity()) {
+        bookingStatus.textContent = "Hold up — add your name, venue, and a valid email so I can actually reply.";
+        bookingStatus.style.background = "#ffd6e2";
+        bookingStatus.classList.add("show");
+        var firstBad = !name.value.trim() ? name : (!venue.value.trim() ? venue : email);
+        firstBad.focus();
+        return;
+      }
+
+      bookingStatus.textContent = "🎉 Got it, " + name.value.trim().split(" ")[0] +
+        "! Your request for " + venue.value.trim() + " is in. I'll reply within two business days. (Demo — nothing was sent.)";
+      bookingStatus.style.background = "var(--acid)";
+      bookingStatus.classList.add("show");
+      bookingForm.reset();
+    });
+
+    /* ---- Newsletter (demo) ---- */
+    var newsForm = document.getElementById("news-form");
+    var newsStatus = document.getElementById("news-status");
+    newsForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var email = document.getElementById("n-email");
+      if (!email.checkValidity() || !email.value.trim()) {
+        newsStatus.textContent = "That email looks off — try again?";
+        newsStatus.classList.add("show");
+        email.focus();
+        return;
+      }
+      newsStatus.textContent = "✓ You're on the list. Save me a seat. (Demo signup.)";
+      newsStatus.classList.add("show");
+      newsForm.reset();
+    });
+  })();
+</script>
+</body>
+</html>

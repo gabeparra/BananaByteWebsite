@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Marcus Webb — Leadership &amp; Career Coaching</title>
+<meta name="description" content="Marcus Webb helps managers, founders, and mid-career professionals lead with clarity and grow into the next version of their careers. Book a free call." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    /* deep-jewel warm palette */
+    --ink: #221a16;
+    --ink-soft: #4a3f38;
+    --cream: #faf4ec;
+    --cream-2: #f3e8da;
+    --teal: #16524c;        /* deep jewel green */
+    --teal-deep: #0f3b37;
+    --teal-soft: #2c6f68;
+    --terracotta: #d96f4a;  /* friendly warm accent */
+    --terracotta-deep: #b9542f;
+    --gold: #e2a541;
+    --line: rgba(34, 26, 22, 0.12);
+    --card: #ffffff;
+    --shadow-sm: 0 2px 8px rgba(34, 26, 22, 0.06);
+    --shadow-md: 0 14px 40px rgba(15, 59, 55, 0.12);
+    --shadow-lg: 0 28px 70px rgba(15, 59, 55, 0.18);
+    --radius: 18px;
+    --radius-lg: 28px;
+    --maxw: 1160px;
+    --display: "Fraunces", Georgia, "Times New Roman", serif;
+    --body: "Mulish", -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    font-family: var(--body);
+    color: var(--ink);
+    background: var(--cream);
+    line-height: 1.65;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  img { max-width: 100%; display: block; }
+
+  a { color: var(--terracotta-deep); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  h1, h2, h3, h4 {
+    font-family: var(--display);
+    font-weight: 600;
+    line-height: 1.1;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin: 0 0 0.4em;
+  }
+
+  p { margin: 0 0 1em; }
+
+  .wrap {
+    width: 100%;
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .eyebrow {
+    font-family: var(--body);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: var(--teal-soft);
+    margin: 0 0 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 26px;
+    height: 2px;
+    background: var(--terracotta);
+    border-radius: 2px;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: var(--body);
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 15px 26px;
+    border-radius: 999px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease;
+    text-decoration: none;
+    line-height: 1;
+  }
+  .btn:hover { text-decoration: none; }
+  .btn-primary {
+    background: var(--terracotta);
+    color: #fff;
+    box-shadow: 0 10px 26px rgba(185, 84, 47, 0.32);
+  }
+  .btn-primary:hover {
+    background: var(--terracotta-deep);
+    transform: translateY(-3px);
+    box-shadow: 0 16px 34px rgba(185, 84, 47, 0.42);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--teal);
+    border-color: rgba(22, 82, 76, 0.35);
+  }
+  .btn-ghost:hover {
+    background: rgba(22, 82, 76, 0.07);
+    transform: translateY(-3px);
+    border-color: var(--teal);
+  }
+  .btn-light {
+    background: var(--cream);
+    color: var(--teal-deep);
+  }
+  .btn-light:hover {
+    background: #fff;
+    transform: translateY(-3px);
+  }
+  .btn .arrow { font-size: 1.15em; transition: transform 0.25s ease; }
+  .btn:hover .arrow { transform: translateX(4px); }
+
+  /* ---------- Header ---------- */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(250, 244, 236, 0.82);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 0;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .brand:hover { text-decoration: none; }
+  .brand .mark {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: linear-gradient(140deg, var(--teal), var(--teal-deep));
+    color: var(--cream);
+    display: grid;
+    place-items: center;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 1.05rem;
+    box-shadow: inset 0 0 0 1.5px rgba(226, 165, 65, 0.5);
+  }
+  .brand small {
+    display: block;
+    font-family: var(--body);
+    font-weight: 600;
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--teal-soft);
+    margin-top: 2px;
+  }
+  .nav-links {
+    display: none;
+    align-items: center;
+    gap: 26px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-links a {
+    color: var(--ink-soft);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    padding: 12px 2px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: 9px;
+    width: 0; height: 2px;
+    background: var(--terracotta);
+    transition: width 0.25s ease;
+    border-radius: 2px;
+  }
+  .nav-links a:hover { color: var(--ink); text-decoration: none; }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta { display: none; }
+
+  @media (min-width: 860px) {
+    .nav-links { display: flex; }
+    .nav-cta { display: inline-flex; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: 56px 0 64px;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -180px; right: -160px;
+    width: 520px; height: 520px;
+    background: radial-gradient(circle at center, rgba(217, 111, 74, 0.22), transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 44px;
+    align-items: center;
+  }
+  .hero h1 {
+    font-size: clamp(2.3rem, 8vw, 4rem);
+    font-weight: 600;
+    margin-bottom: 0.5em;
+  }
+  .hero h1 .accent {
+    font-style: italic;
+    color: var(--terracotta-deep);
+  }
+  .hero-lede {
+    font-size: 1.18rem;
+    color: var(--ink-soft);
+    max-width: 34ch;
+    margin-bottom: 1.6em;
+  }
+  .hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+  }
+  .hero-trust {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    align-items: center;
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+  }
+  .hero-trust .stars { color: var(--gold); letter-spacing: 1px; }
+  .hero-trust strong { color: var(--ink); }
+
+  /* hero portrait/visual */
+  .hero-visual {
+    position: relative;
+    justify-self: center;
+    width: 100%;
+    max-width: 420px;
+  }
+  .portrait {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius-lg);
+    background:
+      radial-gradient(120% 90% at 70% 10%, rgba(226, 165, 65, 0.35), transparent 60%),
+      linear-gradient(160deg, var(--teal-soft), var(--teal-deep));
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    display: grid;
+    place-items: end center;
+  }
+  /* CSS-built portrait silhouette */
+  .portrait .figure {
+    width: 78%;
+    height: 88%;
+    position: relative;
+    align-self: end;
+  }
+  .portrait .head {
+    position: absolute;
+    left: 50%;
+    top: 8%;
+    transform: translateX(-50%);
+    width: 38%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: linear-gradient(160deg, #f0d6bb, #d9b491);
+    box-shadow: inset -6px -8px 16px rgba(120, 80, 50, 0.25);
+  }
+  .portrait .shoulders {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 96%;
+    height: 56%;
+    border-radius: 46% 46% 0 0 / 90% 90% 0 0;
+    background: linear-gradient(160deg, #2e2823, #1c1814);
+  }
+  .portrait .collar {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 30%;
+    height: 30%;
+    background: linear-gradient(160deg, #f6efe6, #e3d5c4);
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+    border-radius: 8px;
+  }
+  .badge-card {
+    position: absolute;
+    background: var(--card);
+    border-radius: 16px;
+    padding: 12px 16px;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.82rem;
+    line-height: 1.25;
+  }
+  .badge-card .ico {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    font-size: 1.1rem;
+    flex: none;
+  }
+  .badge-card strong { display: block; font-family: var(--display); font-size: 1rem; }
+  .badge-1 {
+    top: 22px; left: -14px;
+  }
+  .badge-1 .ico { background: rgba(217, 111, 74, 0.16); }
+  .badge-2 {
+    bottom: 26px; right: -14px;
+  }
+  .badge-2 .ico { background: rgba(22, 82, 76, 0.14); }
+
+  /* ---------- Logo strip ---------- */
+  .clients {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: var(--cream-2);
+    padding: 26px 0;
+  }
+  .clients-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 16px 30px;
+  }
+  .clients .label {
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--ink-soft);
+    margin-bottom: 4px;
+  }
+  .logo-chip {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    opacity: 0.78;
+    letter-spacing: -0.01em;
+    transition: opacity 0.25s ease, color 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .logo-chip:hover { opacity: 1; color: var(--teal); }
+  .logo-chip span { font-size: 1.4rem; }
+
+  /* ---------- Sections ---------- */
+  section { scroll-margin-top: 80px; }
+  .section { padding: 76px 0; }
+  .section-head { max-width: 640px; margin-bottom: 44px; }
+  .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+  .section-head h2 {
+    font-size: clamp(1.9rem, 5vw, 2.8rem);
+  }
+  .section-head p {
+    font-size: 1.1rem;
+    color: var(--ink-soft);
+    margin-bottom: 0;
+  }
+
+  /* ---------- About ---------- */
+  .about { background: var(--cream); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 44px;
+    align-items: center;
+  }
+  .about-portrait {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    max-width: 380px;
+    border-radius: var(--radius-lg);
+    background:
+      radial-gradient(110% 80% at 30% 20%, rgba(226, 165, 65, 0.4), transparent 55%),
+      linear-gradient(150deg, var(--terracotta), var(--terracotta-deep));
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    display: grid;
+    place-items: end center;
+  }
+  .about-portrait .figure { width: 76%; height: 90%; position: relative; align-self: end; }
+  .about-portrait .head {
+    position: absolute; left: 50%; top: 10%; transform: translateX(-50%);
+    width: 40%; aspect-ratio: 1; border-radius: 50%;
+    background: linear-gradient(160deg, #f0d6bb, #d9b491);
+    box-shadow: inset -6px -8px 16px rgba(120,80,50,0.25);
+  }
+  .about-portrait .shoulders {
+    position: absolute; left: 50%; bottom: 0; transform: translateX(-50%);
+    width: 96%; height: 52%;
+    border-radius: 46% 46% 0 0 / 90% 90% 0 0;
+    background: linear-gradient(160deg, #243a37, #14211f);
+  }
+  .credentials {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin: 28px 0 8px;
+  }
+  .cred {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 16px 16px;
+    box-shadow: var(--shadow-sm);
+  }
+  .cred .num {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: var(--teal);
+    line-height: 1;
+    display: block;
+  }
+  .cred .lbl { font-size: 0.86rem; color: var(--ink-soft); }
+  .signature {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 1.6rem;
+    color: var(--teal);
+    margin-top: 18px;
+  }
+
+  /* ---------- Programs ---------- */
+  .programs { background: var(--teal-deep); color: var(--cream); }
+  .programs .eyebrow { color: var(--gold); }
+  .programs .eyebrow::before { background: var(--gold); }
+  .programs .section-head h2 { color: #fff; }
+  .programs .section-head p { color: rgba(250, 244, 236, 0.78); }
+  .program-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .program {
+    background: rgba(250, 244, 236, 0.04);
+    border: 1px solid rgba(250, 244, 236, 0.14);
+    border-radius: var(--radius-lg);
+    padding: 30px 26px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+    position: relative;
+  }
+  .program:hover {
+    transform: translateY(-6px);
+    border-color: rgba(226, 165, 65, 0.5);
+    background: rgba(250, 244, 236, 0.07);
+  }
+  .program.featured {
+    background: var(--cream);
+    color: var(--ink);
+    border-color: transparent;
+    box-shadow: var(--shadow-lg);
+  }
+  .program .tier {
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .program.featured .tier { color: var(--terracotta-deep); }
+  .program .ribbon {
+    position: absolute;
+    top: 22px; right: 22px;
+    background: var(--terracotta);
+    color: #fff;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 5px 11px;
+    border-radius: 999px;
+  }
+  .program h3 { font-size: 1.55rem; color: inherit; }
+  .program .price {
+    font-family: var(--display);
+    font-size: 2.1rem;
+    font-weight: 700;
+    margin: 6px 0 4px;
+    color: inherit;
+  }
+  .program .price small {
+    font-family: var(--body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    opacity: 0.7;
+  }
+  .program .blurb { color: inherit; opacity: 0.82; margin-bottom: 20px; }
+  .program ul {
+    list-style: none;
+    margin: 0 0 26px;
+    padding: 0;
+    flex: 1;
+  }
+  .program li {
+    display: flex;
+    gap: 11px;
+    padding: 7px 0;
+    font-size: 0.96rem;
+    align-items: flex-start;
+  }
+  .program li .check {
+    flex: none;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    margin-top: 3px;
+    background: rgba(226, 165, 65, 0.25);
+    color: var(--gold);
+  }
+  .program.featured li .check { background: rgba(22, 82, 76, 0.14); color: var(--teal); }
+  .program .btn { width: 100%; }
+
+  /* ---------- Testimonials ---------- */
+  .testimonials { background: var(--cream-2); }
+  .quote-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .quote {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 28px 26px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--line);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+  }
+  .quote:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+  .quote .mark {
+    font-family: var(--display);
+    font-size: 3.4rem;
+    line-height: 0.5;
+    color: var(--terracotta);
+    opacity: 0.35;
+    height: 26px;
+    display: block;
+  }
+  .quote .stars { color: var(--gold); font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 10px; }
+  .quote p { font-size: 1.02rem; color: var(--ink); margin-bottom: 18px; }
+  .quote .who {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .quote .avatar {
+    width: 46px; height: 46px; border-radius: 50%;
+    flex: none;
+    display: grid; place-items: center;
+    font-family: var(--display);
+    font-weight: 700;
+    color: #fff;
+    font-size: 1.05rem;
+  }
+  .quote .who strong { display: block; font-size: 0.95rem; }
+  .quote .who span { font-size: 0.82rem; color: var(--ink-soft); }
+
+  /* ---------- Lead magnet / newsletter ---------- */
+  .lead {
+    background: linear-gradient(150deg, var(--teal), var(--teal-deep));
+    color: var(--cream);
+  }
+  .lead-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 36px;
+    align-items: center;
+  }
+  .lead .eyebrow { color: var(--gold); }
+  .lead .eyebrow::before { background: var(--gold); }
+  .lead h2 { color: #fff; font-size: clamp(1.8rem, 5vw, 2.6rem); }
+  .lead p { color: rgba(250, 244, 236, 0.84); }
+  .lead-visual {
+    position: relative;
+    justify-self: center;
+  }
+  .ebook {
+    width: 190px;
+    aspect-ratio: 3 / 4;
+    border-radius: 6px 12px 12px 6px;
+    background: linear-gradient(135deg, var(--cream), var(--cream-2));
+    box-shadow: var(--shadow-lg);
+    border-left: 8px solid var(--terracotta-deep);
+    padding: 24px 20px;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    transform: rotate(-4deg);
+    transition: transform 0.4s ease;
+  }
+  .ebook:hover { transform: rotate(0deg) scale(1.02); }
+  .ebook .kicker {
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--terracotta-deep);
+  }
+  .ebook .title {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 1.3rem;
+    line-height: 1.05;
+    margin-top: auto;
+  }
+  .ebook .by { font-size: 0.72rem; color: var(--ink-soft); margin-top: 10px; }
+
+  .lead-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 460px;
+    margin-top: 22px;
+  }
+  .lead-form .row { display: flex; flex-direction: column; gap: 12px; }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: rgba(250, 244, 236, 0.9);
+  }
+  .lead-form input {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1.5px solid rgba(250, 244, 236, 0.25);
+    background: rgba(250, 244, 236, 0.1);
+    color: #fff;
+    font-family: var(--body);
+    font-size: 1rem;
+  }
+  .lead-form input::placeholder { color: rgba(250, 244, 236, 0.55); }
+  .lead-form input:focus { outline: none; border-color: var(--gold); background: rgba(250, 244, 236, 0.16); }
+  .lead-note { font-size: 0.8rem; color: rgba(250, 244, 236, 0.7); margin: 4px 0 0; }
+  .form-success {
+    background: rgba(226, 165, 65, 0.16);
+    border: 1.5px solid var(--gold);
+    border-radius: 12px;
+    padding: 16px 18px;
+    color: #fff;
+    font-weight: 600;
+    display: none;
+    align-items: center;
+    gap: 12px;
+  }
+  .form-success.show { display: flex; }
+  .form-success .tick {
+    flex: none; width: 30px; height: 30px; border-radius: 50%;
+    background: var(--gold); color: var(--teal-deep);
+    display: grid; place-items: center; font-weight: 800;
+  }
+
+  /* ---------- Booking / contact ---------- */
+  .booking { background: var(--cream); }
+  .booking-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .booking-info ul { list-style: none; margin: 24px 0 0; padding: 0; }
+  .booking-info li {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: flex-start;
+  }
+  .booking-info li:last-child { border-bottom: none; }
+  .booking-info .ico {
+    flex: none; width: 42px; height: 42px; border-radius: 12px;
+    background: rgba(22, 82, 76, 0.1);
+    color: var(--teal);
+    display: grid; place-items: center; font-size: 1.2rem;
+  }
+  .booking-info strong { display: block; font-family: var(--display); font-size: 1.05rem; }
+  .booking-info span { font-size: 0.92rem; color: var(--ink-soft); }
+
+  .contact-card {
+    background: var(--card);
+    border-radius: var(--radius-lg);
+    padding: 30px 28px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--line);
+  }
+  .contact-card h3 { font-size: 1.5rem; }
+  .contact-card .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .contact-card .field input,
+  .contact-card .field select,
+  .contact-card .field textarea {
+    width: 100%;
+    padding: 13px 15px;
+    border-radius: 12px;
+    border: 1.5px solid var(--line);
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1rem;
+  }
+  .contact-card .field label { color: var(--ink); }
+  .contact-card .field input:focus,
+  .contact-card .field select:focus,
+  .contact-card .field textarea:focus {
+    outline: none;
+    border-color: var(--teal-soft);
+    background: #fff;
+  }
+  .contact-card textarea { resize: vertical; min-height: 110px; }
+  .contact-card .btn { width: 100%; margin-top: 6px; }
+  .contact-success {
+    display: none;
+    text-align: center;
+    padding: 14px;
+  }
+  .contact-success.show { display: block; }
+  .contact-success .big {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: rgba(22, 82, 76, 0.12); color: var(--teal);
+    display: grid; place-items: center; margin: 0 auto 16px;
+    font-size: 1.8rem;
+  }
+
+  /* visible focus everywhere */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  .btn:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
+    border-radius: 8px;
+  }
+
+  .skip-link {
+    position: absolute;
+    left: -999px;
+    top: 8px;
+    background: var(--teal);
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 8px;
+    z-index: 200;
+    font-weight: 700;
+  }
+  .skip-link:focus { left: 12px; text-decoration: none; }
+
+  /* ---------- Footer ---------- */
+  .site-footer {
+    background: var(--ink);
+    color: rgba(250, 244, 236, 0.78);
+    padding: 54px 0 28px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-bottom: 36px;
+  }
+  .site-footer .brand { color: var(--cream); }
+  .site-footer .brand small { color: rgba(226, 165, 65, 0.9); }
+  .footer-about { max-width: 36ch; margin-top: 14px; font-size: 0.95rem; }
+  .footer-col h4 {
+    color: var(--cream);
+    font-family: var(--body);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 14px;
+  }
+  .footer-col ul { list-style: none; margin: 0; padding: 0; }
+  .footer-col li { margin-bottom: 2px; }
+  .footer-col a {
+    color: rgba(250, 244, 236, 0.78);
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+  }
+  .footer-col a:hover { color: var(--cream); }
+  .footer-bottom {
+    border-top: 1px solid rgba(250, 244, 236, 0.14);
+    padding-top: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 0.86rem;
+  }
+  .credit {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: rgba(250, 244, 236, 0.7);
+    font-weight: 600;
+  }
+  .credit a { color: var(--gold); font-weight: 700; }
+  .social { display: flex; gap: 10px; }
+  .social a {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: rgba(250, 244, 236, 0.08);
+    display: grid; place-items: center;
+    color: rgba(250, 244, 236, 0.85);
+    font-size: 0.85rem; font-weight: 700;
+    transition: background 0.25s ease, transform 0.25s ease;
+  }
+  .social a:hover { background: var(--terracotta); color: #fff; transform: translateY(-3px); text-decoration: none; }
+
+  /* ---------- Reveal animation ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+    transition-delay: var(--delay, 0ms);
+  }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ---------- Responsive ---------- */
+  @media (min-width: 700px) {
+    .lead-card { grid-template-columns: 1fr 1.2fr; }
+    .lead-form .row { flex-direction: row; }
+    .lead-form .row .field { flex: 1; }
+    .contact-card .grid-2 { grid-template-columns: 1fr 1fr; }
+    .program-grid { grid-template-columns: repeat(3, 1fr); }
+    .quote-grid { grid-template-columns: repeat(3, 1fr); }
+    .footer-grid { grid-template-columns: 1.4fr 1fr 1fr; }
+    .footer-bottom { flex-direction: row; justify-content: space-between; align-items: center; }
+  }
+  @media (min-width: 900px) {
+    .hero { padding: 80px 0 90px; }
+    .hero-grid { grid-template-columns: 1.05fr 0.95fr; }
+    .about-grid { grid-template-columns: 0.85fr 1.15fr; }
+    .booking-grid { grid-template-columns: 0.9fr 1.1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      transition-delay: 0ms !important;
+      scroll-behavior: auto !important;
+    }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    .btn:hover, .program:hover, .quote:hover, .social a:hover, .ebook:hover,
+    .btn-primary:hover, .btn-ghost:hover, .btn-light:hover { transform: none !important; }
+  }
+</style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- ===== Header ===== -->
+  <header class="site-header">
+    <div class="wrap nav">
+      <a href="#top" class="brand" aria-label="Marcus Webb — home">
+        <span class="mark" aria-hidden="true">MW</span>
+        <span>Marcus Webb<small>Leadership &amp; Career Coaching</small></span>
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#programs">Programs</a></li>
+          <li><a href="#testimonials">Results</a></li>
+          <li><a href="#resource">Free Guide</a></li>
+        </ul>
+      </nav>
+      <a href="#booking" class="btn btn-primary nav-cta">Book a free call <span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+  </header>
+
+  <main id="main">
+    <span id="top"></span>
+
+    <!-- ===== Hero ===== -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow reveal" style="--delay:0ms">Executive &amp; career coaching</p>
+          <h1 id="hero-title" class="reveal" style="--delay:80ms">
+            Lead with clarity. <span class="accent">Grow on purpose.</span>
+          </h1>
+          <p class="hero-lede reveal" style="--delay:160ms">
+            I help managers, founders, and mid-career professionals get unstuck —
+            so you make bolder decisions, lead a team people trust, and step into
+            the role you actually want.
+          </p>
+          <div class="hero-cta reveal" style="--delay:240ms">
+            <a href="#booking" class="btn btn-primary">Book a free call <span class="arrow" aria-hidden="true">→</span></a>
+            <a href="#programs" class="btn btn-ghost">See coaching programs</a>
+          </div>
+          <div class="hero-trust reveal" style="--delay:320ms">
+            <span class="stars" aria-hidden="true">★★★★★</span>
+            <span><strong>4.9/5</strong> from 180+ clients coached</span>
+            <span>·</span>
+            <span><strong>14 years</strong> leading teams</span>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal" style="--delay:300ms">
+          <div class="portrait" role="img" aria-label="Portrait of Marcus Webb, leadership and career coach, smiling in a dark blazer">
+            <div class="figure">
+              <span class="head" aria-hidden="true"></span>
+              <span class="shoulders" aria-hidden="true"></span>
+              <span class="collar" aria-hidden="true"></span>
+            </div>
+          </div>
+          <div class="badge-card badge-1" aria-hidden="true">
+            <span class="ico">🎯</span>
+            <span><strong>92%</strong> hit their<br>90-day goal</span>
+          </div>
+          <div class="badge-card badge-2" aria-hidden="true">
+            <span class="ico">🤝</span>
+            <span><strong>ICF</strong> certified<br>PCC coach</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Client / placement strip ===== -->
+    <section class="clients" aria-label="Where my clients work">
+      <div class="wrap clients-inner reveal">
+        <span class="label">Clients now lead teams at</span>
+        <span class="logo-chip"><span aria-hidden="true">◆</span>Northwind</span>
+        <span class="logo-chip"><span aria-hidden="true">◐</span>Brightside</span>
+        <span class="logo-chip"><span aria-hidden="true">▲</span>Verdant Labs</span>
+        <span class="logo-chip"><span aria-hidden="true">●</span>Harbor &amp; Co.</span>
+        <span class="logo-chip"><span aria-hidden="true">✦</span>Meridian</span>
+      </div>
+    </section>
+
+    <!-- ===== About / credentials ===== -->
+    <section class="section about" id="about" aria-labelledby="about-title">
+      <div class="wrap about-grid">
+        <div class="about-portrait reveal" role="img" aria-label="Marcus Webb leaning against a desk during a coaching session">
+          <div class="figure">
+            <span class="head" aria-hidden="true"></span>
+            <span class="shoulders" aria-hidden="true"></span>
+          </div>
+        </div>
+        <div>
+          <p class="eyebrow reveal">Meet your coach</p>
+          <h2 id="about-title" class="reveal" style="--delay:60ms">
+            Fourteen years in leadership.<br>One job now: yours.
+          </h2>
+          <p class="reveal" style="--delay:120ms">
+            I&rsquo;m Marcus &mdash; a former VP of Operations who spent over a decade
+            building and leading teams through scale, restructures, and the messy
+            middle of growth. Along the way I learned that the people who rise
+            aren&rsquo;t the loudest in the room. They&rsquo;re the ones with clarity,
+            steady nerves, and a plan.
+          </p>
+          <p class="reveal" style="--delay:160ms">
+            Now I coach the people I wish I&rsquo;d had in my corner: leaders ready
+            for the next level, and professionals who feel stalled and want a
+            direction worth committing to. Practical, warm, and honest &mdash; no
+            buzzwords, just progress you can feel.
+          </p>
+
+          <div class="credentials reveal" style="--delay:200ms">
+            <div class="cred">
+              <span class="num">180+</span>
+              <span class="lbl">leaders &amp; professionals coached</span>
+            </div>
+            <div class="cred">
+              <span class="num">PCC</span>
+              <span class="lbl">ICF-certified coach credential</span>
+            </div>
+            <div class="cred">
+              <span class="num">14 yrs</span>
+              <span class="lbl">in operations &amp; people leadership</span>
+            </div>
+            <div class="cred">
+              <span class="num">3x</span>
+              <span class="lbl">named team builder of the year</span>
+            </div>
+          </div>
+          <p class="signature reveal" style="--delay:240ms">Marcus Webb</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Programs ===== -->
+    <section class="section programs" id="programs" aria-labelledby="programs-title">
+      <div class="wrap">
+        <div class="section-head center">
+          <p class="eyebrow reveal">Ways to work together</p>
+          <h2 id="programs-title" class="reveal" style="--delay:60ms">Coaching built around where you are</h2>
+          <p class="reveal" style="--delay:120ms">
+            Every engagement starts with a free call so we&rsquo;re sure it&rsquo;s the
+            right fit. No long contracts, no pressure.
+          </p>
+        </div>
+
+        <div class="program-grid">
+          <!-- Program 1 -->
+          <article class="program reveal" style="--delay:0ms" aria-labelledby="prog1-title">
+            <span class="tier">Get unstuck</span>
+            <h3 id="prog1-title">Clarity Intensive</h3>
+            <p class="price">$690 <small>/ 3 sessions</small></p>
+            <p class="blurb">A focused sprint to name what&rsquo;s really holding you back and leave with a plan you&rsquo;ll actually follow.</p>
+            <ul>
+              <li><span class="check" aria-hidden="true">✓</span> Three 60-minute deep-dive sessions</li>
+              <li><span class="check" aria-hidden="true">✓</span> Personal strengths &amp; values map</li>
+              <li><span class="check" aria-hidden="true">✓</span> A written 90-day action plan</li>
+              <li><span class="check" aria-hidden="true">✓</span> Email support between sessions</li>
+            </ul>
+            <a href="#booking" class="btn btn-light" data-program="Clarity Intensive">Start here</a>
+          </article>
+
+          <!-- Program 2 (featured) -->
+          <article class="program featured reveal" style="--delay:90ms" aria-labelledby="prog2-title">
+            <span class="ribbon">Most popular</span>
+            <span class="tier">Level up</span>
+            <h3 id="prog2-title">Leadership Accelerator</h3>
+            <p class="price">$2,400 <small>/ 12 weeks</small></p>
+            <p class="blurb">My signature 3-month partnership for managers and founders stepping into bigger responsibility.</p>
+            <ul>
+              <li><span class="check" aria-hidden="true">✓</span> Bi-weekly 1:1 coaching (6 sessions)</li>
+              <li><span class="check" aria-hidden="true">✓</span> 360° feedback &amp; leadership profile</li>
+              <li><span class="check" aria-hidden="true">✓</span> Difficult-conversation playbooks</li>
+              <li><span class="check" aria-hidden="true">✓</span> Voice-note access between calls</li>
+              <li><span class="check" aria-hidden="true">✓</span> Quarterly progress review</li>
+            </ul>
+            <a href="#booking" class="btn btn-primary" data-program="Leadership Accelerator">Apply to join</a>
+          </article>
+
+          <!-- Program 3 -->
+          <article class="program reveal" style="--delay:180ms" aria-labelledby="prog3-title">
+            <span class="tier">Go all in</span>
+            <h3 id="prog3-title">Executive Partnership</h3>
+            <p class="price">$5,800 <small>/ 6 months</small></p>
+            <p class="blurb">An on-call thinking partner for senior leaders navigating high-stakes change and growth.</p>
+            <ul>
+              <li><span class="check" aria-hidden="true">✓</span> Weekly 1:1 strategic coaching</li>
+              <li><span class="check" aria-hidden="true">✓</span> Stakeholder &amp; team alignment work</li>
+              <li><span class="check" aria-hidden="true">✓</span> Real-time decision support</li>
+              <li><span class="check" aria-hidden="true">✓</span> Optional team workshop</li>
+            </ul>
+            <a href="#booking" class="btn btn-light" data-program="Executive Partnership">Enquire now</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Testimonials ===== -->
+    <section class="section testimonials" id="testimonials" aria-labelledby="testi-title">
+      <div class="wrap">
+        <div class="section-head center">
+          <p class="eyebrow reveal">In their words</p>
+          <h2 id="testi-title" class="reveal" style="--delay:60ms">Real shifts, from real clients</h2>
+        </div>
+        <div class="quote-grid">
+          <figure class="quote reveal" style="--delay:0ms">
+            <span class="mark" aria-hidden="true">&ldquo;</span>
+            <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+            <blockquote><p>&ldquo;I came in burnt out and second-guessing every decision. Twelve weeks later I&rsquo;d been promoted and, more importantly, I trusted myself again. Marcus is the calm in the storm.&rdquo;</p></blockquote>
+            <figcaption class="who">
+              <span class="avatar" style="background:linear-gradient(140deg,#16524c,#0f3b37)" aria-hidden="true">DK</span>
+              <span><strong>Dana Kessler</strong><span>Engineering Manager, Verdant Labs</span></span>
+            </figcaption>
+          </figure>
+
+          <figure class="quote reveal" style="--delay:90ms">
+            <span class="mark" aria-hidden="true">&ldquo;</span>
+            <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+            <blockquote><p>&ldquo;Marcus helped me figure out what I actually wanted out of my career instead of chasing the next title. I left my role, found work that fits, and took a raise on the way out.&rdquo;</p></blockquote>
+            <figcaption class="who">
+              <span class="avatar" style="background:linear-gradient(140deg,#d96f4a,#b9542f)" aria-hidden="true">RA</span>
+              <span><strong>Rafael Ansa</strong><span>Product Lead, Brightside</span></span>
+            </figcaption>
+          </figure>
+
+          <figure class="quote reveal" style="--delay:180ms">
+            <span class="mark" aria-hidden="true">&ldquo;</span>
+            <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+            <blockquote><p>&ldquo;As a first-time founder I needed someone honest, not a cheerleader. Marcus asked the questions no one else would and made me a sharper, steadier leader for my team.&rdquo;</p></blockquote>
+            <figcaption class="who">
+              <span class="avatar" style="background:linear-gradient(140deg,#e2a541,#b9842a)" aria-hidden="true">PN</span>
+              <span><strong>Priya Nadkarni</strong><span>Founder &amp; CEO, Harbor &amp; Co.</span></span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Lead magnet / newsletter ===== -->
+    <section class="section lead" id="resource" aria-labelledby="lead-title">
+      <div class="wrap lead-card">
+        <div class="lead-visual reveal">
+          <div class="ebook" aria-hidden="true">
+            <span class="kicker">Free Guide</span>
+            <span class="title">The First 90 Days of a Bigger Role</span>
+            <span class="by">A field guide by Marcus Webb</span>
+          </div>
+        </div>
+        <div>
+          <p class="eyebrow reveal">Free resource</p>
+          <h2 id="lead-title" class="reveal" style="--delay:60ms">Get the &ldquo;First 90 Days&rdquo; guide</h2>
+          <p class="reveal" style="--delay:120ms">
+            The exact framework I use with clients to start strong in a new role
+            or level &mdash; what to prioritize, what to ignore, and how to build
+            trust fast. Plus a short monthly note with one practical idea you can use.
+          </p>
+
+          <form class="lead-form reveal" id="leadForm" style="--delay:160ms" novalidate>
+            <div class="row">
+              <div class="field">
+                <label for="lead-name">First name</label>
+                <input type="text" id="lead-name" name="name" placeholder="Jordan" autocomplete="given-name" required />
+              </div>
+              <div class="field">
+                <label for="lead-email">Email address</label>
+                <input type="email" id="lead-email" name="email" placeholder="you@email.com" autocomplete="email" required />
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Send me the guide <span class="arrow" aria-hidden="true">→</span></button>
+            <p class="lead-note">No spam, ever. Unsubscribe in one click. (This is a demo form.)</p>
+          </form>
+          <div class="form-success" id="leadSuccess" role="status" aria-live="polite">
+            <span class="tick" aria-hidden="true">✓</span>
+            <span>Done! Check your inbox &mdash; your guide is on the way.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Booking / contact ===== -->
+    <section class="section booking" id="booking" aria-labelledby="booking-title">
+      <div class="wrap booking-grid">
+        <div class="booking-info">
+          <p class="eyebrow reveal">Let&rsquo;s talk</p>
+          <h2 id="booking-title" class="reveal" style="--delay:60ms">Book your free 30-minute call</h2>
+          <p class="reveal" style="--delay:120ms">
+            No script, no hard sell &mdash; just an honest conversation about where
+            you are and whether coaching is the right next step. Tell me a little
+            below and I&rsquo;ll personally reply within one business day.
+          </p>
+          <ul class="reveal" style="--delay:160ms">
+            <li>
+              <span class="ico" aria-hidden="true">⏱</span>
+              <span><strong>30 minutes, free</strong><span>A relaxed video or phone call.</span></span>
+            </li>
+            <li>
+              <span class="ico" aria-hidden="true">✉</span>
+              <span><strong>hello@marcuswebb.coach</strong><span>Prefer email? I read every one.</span></span>
+            </li>
+            <li>
+              <span class="ico" aria-hidden="true">🌎</span>
+              <span><strong>Remote worldwide</strong><span>Based in Denver · sessions over Zoom.</span></span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="contact-card">
+          <h3>Request your call</h3>
+          <p style="color:var(--ink-soft);">Fill this in and I&rsquo;ll be in touch with a couple of times that work.</p>
+          <form id="contactForm" novalidate>
+            <div class="grid-2">
+              <div class="field">
+                <label for="c-name">Your name</label>
+                <input type="text" id="c-name" name="name" placeholder="Full name" autocomplete="name" required />
+              </div>
+              <div class="field">
+                <label for="c-email">Email</label>
+                <input type="email" id="c-email" name="email" placeholder="you@email.com" autocomplete="email" required />
+              </div>
+            </div>
+            <div class="grid-2" style="margin-top:16px;">
+              <div class="field">
+                <label for="c-program">Interested in</label>
+                <select id="c-program" name="program">
+                  <option value="">Choose a program…</option>
+                  <option>Clarity Intensive</option>
+                  <option>Leadership Accelerator</option>
+                  <option>Executive Partnership</option>
+                  <option>Not sure yet</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="c-stage">Where you are</label>
+                <select id="c-stage" name="stage">
+                  <option value="">Choose one…</option>
+                  <option>New manager</option>
+                  <option>Experienced leader</option>
+                  <option>Founder / owner</option>
+                  <option>Career crossroads</option>
+                </select>
+              </div>
+            </div>
+            <div class="field" style="margin-top:16px;">
+              <label for="c-msg">What&rsquo;s on your mind?</label>
+              <textarea id="c-msg" name="message" placeholder="A sentence or two about what you'd like to work on…"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Book a free call <span class="arrow" aria-hidden="true">→</span></button>
+          </form>
+          <div class="contact-success" id="contactSuccess" role="status" aria-live="polite">
+            <div class="big" aria-hidden="true">✓</div>
+            <h3>Thanks &mdash; request received!</h3>
+            <p style="color:var(--ink-soft);margin:0;">I&rsquo;ll personally email you within one business day with a few times to talk. Looking forward to it.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <a href="#top" class="brand">
+            <span class="mark" aria-hidden="true">MW</span>
+            <span>Marcus Webb<small>Leadership &amp; Career Coaching</small></span>
+          </a>
+          <p class="footer-about">
+            Warm, practical coaching for leaders and professionals ready for
+            their next chapter. Remote worldwide, based in Denver.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#about">About Marcus</a></li>
+            <li><a href="#programs">Coaching programs</a></li>
+            <li><a href="#testimonials">Client results</a></li>
+            <li><a href="#resource">Free guide</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="#booking">Book a free call</a></li>
+            <li><a href="#booking">hello@marcuswebb.coach</a></li>
+          </ul>
+          <div class="social" style="margin-top:8px;" aria-label="Social links">
+            <a href="#" aria-label="Marcus Webb on LinkedIn">in</a>
+            <a href="#" aria-label="Marcus Webb on Instagram">ig</a>
+            <a href="#" aria-label="Marcus Webb newsletter">✉</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Marcus Webb Coaching. All rights reserved.</span>
+        <span class="credit">Site by <a href="https://bananabyte.io" target="_blank" rel="noopener">🍌 BANANAbyte</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      /* ---- Staggered scroll reveal ---- */
+      var revealEls = document.querySelectorAll(".reveal");
+      if (reduceMotion || !("IntersectionObserver" in window)) {
+        revealEls.forEach(function (el) { el.classList.add("in"); });
+      } else {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in");
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+        revealEls.forEach(function (el) { io.observe(el); });
+      }
+
+      /* ---- Lead magnet form (demo) ---- */
+      var leadForm = document.getElementById("leadForm");
+      var leadSuccess = document.getElementById("leadSuccess");
+      if (leadForm) {
+        leadForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var email = document.getElementById("lead-email");
+          if (!email.value || !email.checkValidity()) {
+            email.focus();
+            email.reportValidity && email.reportValidity();
+            return;
+          }
+          leadForm.style.display = "none";
+          leadSuccess.classList.add("show");
+          leadSuccess.focus && leadSuccess.focus();
+        });
+      }
+
+      /* ---- Contact / booking form (demo) ---- */
+      var contactForm = document.getElementById("contactForm");
+      var contactSuccess = document.getElementById("contactSuccess");
+      if (contactForm) {
+        contactForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var name = document.getElementById("c-name");
+          var email = document.getElementById("c-email");
+          if (!name.value.trim()) { name.focus(); return; }
+          if (!email.value || !email.checkValidity()) {
+            email.focus();
+            email.reportValidity && email.reportValidity();
+            return;
+          }
+          contactForm.style.display = "none";
+          contactSuccess.classList.add("show");
+        });
+      }
+
+      /* ---- Program CTAs prefill the contact select ---- */
+      var programLinks = document.querySelectorAll("[data-program]");
+      var programSelect = document.getElementById("c-program");
+      programLinks.forEach(function (link) {
+        link.addEventListener("click", function () {
+          if (programSelect) {
+            var val = link.getAttribute("data-program");
+            for (var i = 0; i < programSelect.options.length; i++) {
+              if (programSelect.options[i].value === val || programSelect.options[i].text === val) {
+                programSelect.selectedIndex = i;
+                break;
+              }
+            }
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

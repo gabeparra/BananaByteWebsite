@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Ember &amp; Oak — Hand-Poured Candles &amp; Specialty Coffee</title>
+<meta name="description" content="Small-batch candles hand-poured in coconut-soy wax and single-origin coffee roasted in small lots. Made slow, made well, in Asheville, North Carolina." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --kraft:#e9ddc7;
+    --kraft-deep:#ddccae;
+    --paper:#f6efe2;
+    --paper-warm:#fbf6ec;
+    --ink:#2e2117;
+    --ink-soft:#544334;
+    --ember:#bb4d2a;
+    --ember-deep:#9a3d20;
+    --clay:#c87a4a;
+    --oak:#6f5638;
+    --moss:#5b6442;
+    --gold:#c79a3d;
+    --line:#cdbb9d;
+    --line-soft:#d9cab0;
+    --ok:#4d6a3a;
+    --shadow:rgba(46,33,23,.16);
+    --radius:14px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    font-family:"Spectral",Georgia,serif;
+    font-size:17px;
+    line-height:1.65;
+    color:var(--ink);
+    background:var(--paper);
+    background-image:
+      radial-gradient(circle at 12% 8%, rgba(200,122,74,.08), transparent 42%),
+      radial-gradient(circle at 88% 92%, rgba(91,100,66,.08), transparent 46%);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3,h4{
+    font-family:"Fraunces","Spectral",serif;
+    font-weight:600;
+    line-height:1.08;
+    margin:0;
+    color:var(--ink);
+    letter-spacing:-.01em;
+  }
+
+  p{margin:0 0 1rem;}
+  a{color:inherit;}
+
+  img{max-width:100%;display:block;}
+
+  .wrap{width:100%;max-width:1180px;margin:0 auto;padding:0 22px;}
+
+  .eyebrow{
+    font-family:"DM Mono",monospace;
+    text-transform:uppercase;
+    letter-spacing:.22em;
+    font-size:.7rem;
+    color:var(--ember-deep);
+    margin:0 0 .9rem;
+    font-weight:500;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;gap:.55em;justify-content:center;
+    font-family:"DM Mono",monospace;
+    font-size:.82rem;
+    letter-spacing:.04em;
+    text-decoration:none;
+    border:1.5px solid var(--ink);
+    background:var(--ink);
+    color:var(--paper-warm);
+    padding:.78em 1.5em;
+    min-height:44px;
+    border-radius:999px;
+    cursor:pointer;
+    transition:transform .25s ease, background .25s ease, color .25s ease, box-shadow .25s ease;
+  }
+  .btn:hover{background:var(--ember-deep);border-color:var(--ember-deep);transform:translateY(-2px);box-shadow:0 8px 22px var(--shadow);}
+  .btn--ghost{background:transparent;color:var(--ink);}
+  .btn--ghost:hover{background:var(--ink);color:var(--paper-warm);border-color:var(--ink);}
+
+  a:focus-visible,button:focus-visible,input:focus-visible,
+  .btn:focus-visible,.cart-btn:focus-visible,summary:focus-visible{
+    outline:3px solid var(--clay);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+
+  .skip{
+    position:absolute;left:-999px;top:0;z-index:200;
+    background:var(--ink);color:var(--paper-warm);
+    padding:.7em 1.2em;border-radius:0 0 10px 0;
+    font-family:"DM Mono",monospace;font-size:.8rem;text-decoration:none;
+  }
+  .skip:focus{left:0;}
+
+  /* ---------- Header ---------- */
+  header.site{
+    position:sticky;top:0;z-index:100;
+    background:rgba(246,239,226,.86);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:14px;padding-top:14px;padding-bottom:14px;
+  }
+  .brand{display:flex;align-items:center;gap:.6em;text-decoration:none;color:var(--ink);}
+  .brand .mark{
+    width:38px;height:38px;border-radius:50%;flex:none;
+    background:
+      radial-gradient(circle at 50% 30%, #ffd9a0 0 14%, rgba(255,217,160,0) 36%),
+      conic-gradient(from 210deg, var(--ember) 0 60%, var(--oak) 60% 100%);
+    display:grid;place-items:center;
+    box-shadow:inset 0 0 0 2px rgba(255,255,255,.25), 0 2px 6px var(--shadow);
+    position:relative;
+  }
+  .brand .mark::after{
+    content:"";position:absolute;width:5px;height:11px;top:5px;left:50%;
+    transform:translateX(-50%);border-radius:50% 50% 48% 48%/60% 60% 40% 40%;
+    background:linear-gradient(#fff3cf,#ffb14e);
+    box-shadow:0 0 8px 2px rgba(255,180,80,.7);
+  }
+  .brand .name{display:flex;flex-direction:column;line-height:1;}
+  .brand .name b{font-family:"Fraunces",serif;font-weight:600;font-size:1.18rem;letter-spacing:-.01em;}
+  .brand .name span{font-family:"DM Mono",monospace;font-size:.56rem;letter-spacing:.32em;text-transform:uppercase;color:var(--oak);margin-top:3px;}
+
+  .nav-links{display:none;gap:26px;align-items:center;}
+  .nav-links a{
+    text-decoration:none;font-family:"DM Mono",monospace;font-size:.78rem;
+    letter-spacing:.05em;color:var(--ink-soft);position:relative;padding:4px 0;
+  }
+  .nav-links a::after{
+    content:"";position:absolute;left:0;bottom:-2px;height:1.5px;width:0;
+    background:var(--ember);transition:width .28s ease;
+  }
+  .nav-links a:hover{color:var(--ink);}
+  .nav-links a:hover::after{width:100%;}
+
+  .cart-btn{
+    display:inline-flex;align-items:center;gap:.5em;
+    font-family:"DM Mono",monospace;font-size:.76rem;letter-spacing:.04em;
+    background:var(--kraft);border:1.5px solid var(--line);
+    color:var(--ink);border-radius:999px;padding:.5em 1em;min-height:44px;cursor:pointer;
+    transition:background .2s ease, border-color .2s ease, transform .2s ease;
+  }
+  .cart-btn:hover{background:var(--kraft-deep);border-color:var(--oak);transform:translateY(-1px);}
+  .cart-btn svg{width:17px;height:17px;}
+  .cart-count{
+    min-width:21px;height:21px;border-radius:999px;
+    background:var(--ember);color:#fff;font-size:.72rem;
+    display:inline-grid;place-items:center;padding:0 5px;
+    transition:transform .3s cubic-bezier(.3,1.6,.5,1);
+  }
+  .cart-count.bump{transform:scale(1.45);}
+
+  /* ---------- Reveal animation ---------- */
+  .reveal{opacity:0;transform:translateY(20px);}
+  .revealed .reveal{
+    opacity:1;transform:none;
+    transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.3,1);
+    transition-delay:var(--d,0ms);
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;padding:64px 0 56px;overflow:hidden;}
+  .hero-grid{display:grid;gap:40px;align-items:center;}
+  .hero h1{font-size:clamp(2.4rem,8.5vw,4.6rem);font-weight:600;margin:.2rem 0 1.1rem;}
+  .hero h1 em{font-style:italic;color:var(--ember-deep);font-weight:500;}
+  .hero p.lead{font-size:1.12rem;color:var(--ink-soft);max-width:30ch;margin-bottom:1.7rem;}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:14px;}
+  .hero-meta{
+    display:flex;gap:26px;margin-top:30px;flex-wrap:wrap;
+    border-top:1px dashed var(--line);padding-top:22px;
+  }
+  .hero-meta div b{font-family:"Fraunces",serif;font-size:1.35rem;display:block;}
+  .hero-meta div span{font-family:"DM Mono",monospace;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--oak);}
+
+  /* hero art */
+  .hero-art{position:relative;aspect-ratio:1/1;max-width:440px;margin:0 auto;width:100%;}
+  .jar{
+    position:absolute;border-radius:16px 16px 18px 18px;
+    box-shadow:0 16px 40px var(--shadow),inset 0 0 0 2px rgba(255,255,255,.18);
+    overflow:hidden;
+  }
+  .jar .label{
+    position:absolute;left:50%;top:46%;transform:translateX(-50%);
+    width:74%;background:var(--paper-warm);border:1px solid var(--line);
+    border-radius:5px;text-align:center;padding:8px 4px;
+    font-family:"DM Mono",monospace;font-size:.56rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--oak);line-height:1.5;
+  }
+  .jar .flame{
+    position:absolute;left:50%;top:-13px;transform:translateX(-50%);
+    width:13px;height:26px;border-radius:50% 50% 46% 46%/65% 65% 35% 35%;
+    background:linear-gradient(#fff6d4,#ffae3e 60%,#ff7a1a);
+    box-shadow:0 0 18px 5px rgba(255,168,62,.55);
+    transform-origin:50% 100%;
+  }
+  .jar-a{width:54%;height:60%;left:4%;bottom:6%;
+    background:linear-gradient(160deg,#d99a5f,#a96b3c);}
+  .jar-b{width:46%;height:50%;right:3%;bottom:2%;
+    background:linear-gradient(160deg,#7c8059,#545a3a);}
+  .bean{
+    position:absolute;width:34px;height:24px;border-radius:50%;
+    background:linear-gradient(150deg,#5b3a23,#3a2516);
+    box-shadow:0 4px 9px var(--shadow);
+  }
+  .bean::after{content:"";position:absolute;inset:0;border-radius:50%;
+    background:linear-gradient(transparent 47%,rgba(255,255,255,.18) 48% 52%,transparent 53%);}
+  .bean-1{top:6%;right:18%;transform:rotate(-18deg);}
+  .bean-2{top:20%;right:4%;transform:rotate(22deg);width:28px;height:20px;}
+  .hero-art .ring{
+    position:absolute;inset:0;border-radius:50%;
+    border:1.5px dashed var(--line);opacity:.7;
+    transform-origin:center;
+  }
+
+  @keyframes flicker{0%,100%{transform:translateX(-50%) rotate(-3deg) scaleY(1);}
+    50%{transform:translateX(-50%) rotate(3deg) scaleY(1.08);}}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .flame{animation:flicker 2.4s ease-in-out infinite;}
+  .hero-art .ring{animation:spin 60s linear infinite;}
+
+  /* ---------- Section base ---------- */
+  section{padding:62px 0;}
+  .sec-head{margin-bottom:34px;max-width:54ch;}
+  .sec-head h2{font-size:clamp(1.7rem,5vw,2.7rem);margin-bottom:.5rem;}
+  .sec-head p{color:var(--ink-soft);}
+  .sec-flex{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:14px;}
+
+  /* ---------- Product grid ---------- */
+  #shop{background:var(--paper-warm);border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);}
+  .grid{display:grid;grid-template-columns:1fr;gap:26px;}
+  .card{
+    background:var(--paper);border:1px solid var(--line-soft);
+    border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;
+    transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+  }
+  .card:hover{transform:translateY(-5px);box-shadow:0 18px 38px var(--shadow);border-color:var(--line);}
+  .thumb{aspect-ratio:4/3;position:relative;overflow:hidden;}
+  .thumb .glyph{
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    font-family:"Fraunces",serif;font-size:2.5rem;color:rgba(255,255,255,.85);
+    text-shadow:0 2px 8px rgba(0,0,0,.2);
+  }
+  .thumb .badge{
+    position:absolute;top:12px;left:12px;
+    font-family:"DM Mono",monospace;font-size:.6rem;letter-spacing:.12em;
+    text-transform:uppercase;background:var(--paper-warm);color:var(--ember-deep);
+    padding:.35em .7em;border-radius:999px;border:1px solid var(--line);
+  }
+  .card-body{padding:18px 18px 20px;display:flex;flex-direction:column;flex:1;}
+  .card h3{font-size:1.22rem;margin-bottom:.15rem;}
+  .card .scent{font-family:"DM Mono",monospace;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--oak);margin-bottom:.6rem;}
+  .card p.desc{font-size:.94rem;color:var(--ink-soft);margin-bottom:1rem;flex:1;}
+  .card-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto;}
+  .price{font-family:"Fraunces",serif;font-size:1.35rem;font-weight:600;}
+  .price s{font-size:.85rem;color:var(--oak);font-weight:400;margin-right:.35em;opacity:.7;}
+  .add{
+    display:inline-flex;align-items:center;justify-content:center;
+    font-family:"DM Mono",monospace;font-size:.74rem;letter-spacing:.03em;
+    border:1.5px solid var(--ink);background:transparent;color:var(--ink);
+    border-radius:999px;padding:.55em 1.1em;min-height:44px;cursor:pointer;white-space:nowrap;
+    transition:background .22s ease,color .22s ease,transform .22s ease;
+  }
+  .add:hover{background:var(--ink);color:var(--paper-warm);transform:translateY(-1px);}
+  .add.added{background:var(--ok);border-color:var(--ok);color:#fff;}
+  /* featured CTA: solid primary that keeps the .add JS hook */
+  .add.btn{background:var(--ink);color:var(--paper-warm);}
+  .add.btn:hover{background:var(--ember-deep);border-color:var(--ember-deep);color:var(--paper-warm);}
+  .add.btn.added{background:var(--ok);border-color:var(--ok);color:#fff;}
+
+  /* thumbnail gradients */
+  .t-spice{background:linear-gradient(150deg,#c97e44,#8a4a23);}
+  .t-cedar{background:linear-gradient(150deg,#7d6a45,#4f4327);}
+  .t-roast{background:linear-gradient(150deg,#5a3a23,#2f1d12);}
+  .t-fig{background:linear-gradient(150deg,#7a5470,#473147);}
+  .t-moss{background:linear-gradient(150deg,#6b7549,#3f482b);}
+  .t-honey{background:linear-gradient(150deg,#d6a23f,#a06d1d);}
+  .thumb::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.22),transparent 55%);
+  }
+
+  /* ---------- Featured ---------- */
+  #featured{background:linear-gradient(180deg,var(--kraft),var(--kraft-deep));}
+  .feat{display:grid;gap:38px;align-items:center;}
+  .feat-art{position:relative;aspect-ratio:5/4;border-radius:var(--radius);overflow:hidden;
+    background:linear-gradient(160deg,#b6753f,#7c4a25);box-shadow:0 20px 44px var(--shadow);}
+  .feat-art .big-jar{
+    position:absolute;left:50%;bottom:0;transform:translateX(-50%);
+    width:46%;height:64%;border-radius:14px 14px 18px 18px;
+    background:linear-gradient(165deg,#f1e2c4,#d8c19a);
+    box-shadow:inset 0 0 0 2px rgba(255,255,255,.3),0 12px 26px rgba(0,0,0,.25);
+  }
+  .feat-art .big-jar .ribbon{
+    position:absolute;left:0;right:0;top:38%;height:30%;
+    background:linear-gradient(#3a2c1d,#2a1f14);display:grid;place-items:center;
+    font-family:"DM Mono",monospace;font-size:.6rem;letter-spacing:.2em;color:#e9ddc7;text-transform:uppercase;
+  }
+  .feat-art .glow{
+    position:absolute;left:50%;bottom:60%;transform:translateX(-50%);
+    width:16px;height:30px;border-radius:50% 50% 46% 46%/65% 65% 35% 35%;
+    background:linear-gradient(#fff6d4,#ffae3e 60%,#ff7a1a);
+    box-shadow:0 0 26px 9px rgba(255,168,62,.5);transform-origin:50% 100%;
+  }
+  .feat-art .glow{animation:flicker 2.6s ease-in-out infinite;}
+  .feat-info .price-row{display:flex;align-items:baseline;gap:14px;margin:.4rem 0 1rem;}
+  .feat-info .price-row .price{font-size:1.8rem;}
+  .specs{list-style:none;padding:0;margin:1.2rem 0 1.6rem;display:grid;gap:0;}
+  .specs li{
+    display:flex;justify-content:space-between;gap:14px;padding:.7em 0;
+    border-bottom:1px dashed var(--line);font-size:.95rem;
+  }
+  .specs li span:first-child{font-family:"DM Mono",monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--oak);}
+  .specs li span:last-child{text-align:right;color:var(--ink);}
+  .feat-buy{display:flex;flex-wrap:wrap;gap:14px;align-items:center;}
+  .stars{color:var(--gold);letter-spacing:2px;font-size:1rem;}
+  .stars small{color:var(--ink-soft);font-family:"DM Mono",monospace;font-size:.7rem;letter-spacing:.04em;margin-left:.5em;}
+
+  /* ---------- Story ---------- */
+  #story{background:var(--paper);}
+  .story-grid{display:grid;gap:34px;align-items:center;}
+  .story-art{
+    aspect-ratio:1/1;border-radius:50%;position:relative;max-width:360px;width:100%;margin:0 auto;
+    background:
+      repeating-conic-gradient(from 0deg, #cdb389 0 8deg, #c2a679 8deg 16deg);
+    box-shadow:0 16px 40px var(--shadow);overflow:hidden;
+  }
+  .story-art .inner{
+    position:absolute;inset:14%;border-radius:50%;
+    background:radial-gradient(circle at 38% 32%,#fbf3e2,#ddc7a3);
+    display:grid;place-items:center;text-align:center;
+    box-shadow:inset 0 0 0 2px rgba(255,255,255,.4);
+  }
+  .story-art .inner b{font-family:"Fraunces",serif;font-size:2.6rem;color:var(--oak);}
+  .story-art .inner span{font-family:"DM Mono",monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ember-deep);margin-top:6px;}
+  .story-points{display:grid;gap:18px;margin-top:1.4rem;}
+  .story-points div{display:flex;gap:14px;}
+  .story-points .ic{
+    flex:none;width:42px;height:42px;border-radius:12px;
+    background:var(--kraft);border:1px solid var(--line);
+    display:grid;place-items:center;color:var(--ember-deep);
+  }
+  .story-points h4{font-size:1.05rem;margin-bottom:.15rem;}
+  .story-points p{font-size:.92rem;color:var(--ink-soft);margin:0;}
+  blockquote.story-q{
+    font-family:"Fraunces",serif;font-style:italic;font-size:1.4rem;
+    line-height:1.4;color:var(--ink);margin:0 0 1.2rem;border-left:3px solid var(--ember);padding-left:18px;
+  }
+
+  /* ---------- Subscription ---------- */
+  #refill{background:linear-gradient(165deg,#3a2c1d,#26190f);color:var(--kraft);}
+  #refill h2,#refill h3{color:var(--paper-warm);}
+  #refill .eyebrow{color:var(--clay);}
+  .refill-grid{display:grid;gap:34px;align-items:center;}
+  .refill-info p{color:#d6c4a8;}
+  .plan{
+    background:rgba(233,221,199,.06);border:1px solid rgba(233,221,199,.18);
+    border-radius:var(--radius);padding:26px;
+  }
+  .plan .tag{font-family:"DM Mono",monospace;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--clay);}
+  .plan .pr{font-family:"Fraunces",serif;font-size:2.2rem;color:var(--paper-warm);margin:.3rem 0;}
+  .plan .pr small{font-size:.9rem;color:#cbb691;font-family:"DM Mono",monospace;letter-spacing:.02em;}
+  .plan ul{list-style:none;padding:0;margin:1rem 0 1.4rem;display:grid;gap:.6rem;}
+  .plan ul li{display:flex;gap:.6em;font-size:.95rem;color:#e3d5ba;}
+  .plan ul li::before{content:"◦";color:var(--clay);font-size:1.1em;line-height:1;}
+  .plan .btn{background:var(--clay);border-color:var(--clay);color:#26190f;width:100%;}
+  .plan .btn:hover{background:var(--ember);border-color:var(--ember);color:#fff;}
+
+  /* ---------- Reviews ---------- */
+  #reviews{background:var(--paper-warm);border-top:1px solid var(--line-soft);}
+  .review-grid{display:grid;gap:24px;grid-template-columns:1fr;}
+  .review{
+    background:var(--paper);border:1px solid var(--line-soft);border-radius:var(--radius);
+    padding:24px;display:flex;flex-direction:column;gap:12px;
+    transition:transform .3s ease,box-shadow .3s ease;
+  }
+  .review:hover{transform:translateY(-4px);box-shadow:0 14px 30px var(--shadow);}
+  .review p{font-family:"Fraunces",serif;font-style:italic;font-size:1.06rem;color:var(--ink);margin:0;line-height:1.45;}
+  .review .who{display:flex;align-items:center;gap:12px;margin-top:auto;}
+  .review .av{
+    width:40px;height:40px;border-radius:50%;flex:none;display:grid;place-items:center;
+    font-family:"Fraunces",serif;font-weight:600;color:#fff;font-size:1rem;
+  }
+  .av-1{background:linear-gradient(140deg,#bb4d2a,#8a3419);}
+  .av-2{background:linear-gradient(140deg,#5b6442,#3f482b);}
+  .av-3{background:linear-gradient(140deg,#c79a3d,#9a6f1d);}
+  .review .who b{display:block;font-family:"Spectral",serif;font-size:.95rem;font-style:normal;}
+  .review .who span{font-family:"DM Mono",monospace;font-size:.66rem;letter-spacing:.06em;color:var(--oak);}
+
+  /* ---------- Newsletter ---------- */
+  #newsletter{background:var(--paper);}
+  .news-card{
+    background:linear-gradient(160deg,var(--kraft),var(--kraft-deep));
+    border:1px solid var(--line);border-radius:20px;
+    padding:44px 30px;text-align:center;position:relative;overflow:hidden;
+  }
+  .news-card::before{
+    content:"";position:absolute;inset:0;
+    background:repeating-linear-gradient(45deg,transparent 0 18px,rgba(255,255,255,.05) 18px 19px);
+    pointer-events:none;
+  }
+  .news-card h2{font-size:clamp(1.7rem,5vw,2.6rem);margin-bottom:.5rem;position:relative;}
+  .news-card p{color:var(--ink-soft);max-width:46ch;margin:0 auto 1.6rem;position:relative;}
+  .news-form{
+    display:flex;flex-wrap:wrap;gap:12px;justify-content:center;
+    max-width:480px;margin:0 auto;position:relative;
+  }
+  .news-form .field{flex:1 1 220px;min-width:0;text-align:left;}
+  .news-form label{display:block;font-family:"DM Mono",monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--oak);margin-bottom:6px;}
+  .news-form input{
+    width:100%;font-family:"Spectral",serif;font-size:1rem;
+    padding:.85em 1em;border:1.5px solid var(--line);border-radius:10px;
+    background:var(--paper-warm);color:var(--ink);
+  }
+  .news-form input::placeholder{color:#9a8a72;}
+  .news-form .btn{flex:1 1 160px;align-self:flex-end;}
+  .news-note{font-family:"DM Mono",monospace;font-size:.66rem;letter-spacing:.04em;color:var(--oak);margin-top:1rem;position:relative;}
+  .form-success{
+    display:none;position:relative;margin-top:1rem;
+    font-family:"Fraunces",serif;font-style:italic;font-size:1.15rem;color:var(--ember-deep);
+  }
+  .form-success.show{display:block;animation:fade .5s ease;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+
+  /* ---------- Footer ---------- */
+  footer.site{background:#26190f;color:#cbb691;padding:54px 0 30px;}
+  footer.site h4{color:var(--paper-warm);font-size:1rem;margin-bottom:1rem;font-family:"Fraunces",serif;}
+  .foot-grid{display:grid;gap:34px;grid-template-columns:1fr;}
+  .foot-brand .brand .name b{color:var(--paper-warm);}
+  .foot-brand p{font-size:.92rem;color:#bba887;margin-top:1rem;max-width:34ch;}
+  .foot-col ul{list-style:none;padding:0;margin:0;display:grid;gap:.6rem;}
+  .foot-col a{text-decoration:none;color:#cbb691;font-size:.92rem;transition:color .2s ease;}
+  .foot-col a:hover{color:var(--clay);}
+  .foot-bottom{
+    display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;
+    border-top:1px solid rgba(233,221,199,.14);margin-top:40px;padding-top:24px;
+    font-family:"DM Mono",monospace;font-size:.72rem;letter-spacing:.03em;color:#a89372;
+  }
+  .foot-bottom a{color:#a89372;}
+  .byline a{color:var(--clay);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s ease;}
+  .byline a:hover{border-color:var(--clay);}
+
+  /* ---------- Toast ---------- */
+  .toast{
+    position:fixed;left:50%;bottom:22px;transform:translate(-50%,140%);
+    background:var(--ink);color:var(--paper-warm);
+    font-family:"DM Mono",monospace;font-size:.8rem;letter-spacing:.02em;
+    padding:.85em 1.3em;border-radius:999px;box-shadow:0 10px 30px var(--shadow);
+    z-index:300;display:flex;align-items:center;gap:.6em;
+    transition:transform .4s cubic-bezier(.2,.8,.3,1);max-width:90vw;
+  }
+  .toast.show{transform:translate(-50%,0);}
+  .toast b{color:var(--clay);}
+
+  /* ---------- Responsive ---------- */
+  @media(min-width:680px){
+    .grid{grid-template-columns:repeat(2,1fr);}
+    .review-grid{grid-template-columns:repeat(3,1fr);}
+  }
+  @media(min-width:880px){
+    body{font-size:18px;}
+    .nav-links{display:flex;}
+    .hero-grid{grid-template-columns:1.05fr .95fr;}
+    .grid{grid-template-columns:repeat(3,1fr);}
+    .feat{grid-template-columns:1fr 1fr;}
+    .story-grid{grid-template-columns:.9fr 1.1fr;}
+    .refill-grid{grid-template-columns:1.1fr .9fr;}
+    .foot-grid{grid-template-columns:1.6fr 1fr 1fr 1fr;}
+    section{padding:80px 0;}
+    .hero{padding:84px 0 70px;}
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto !important;}
+    *,*::before,*::after{
+      animation-duration:.001ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:.001ms !important;
+      scroll-behavior:auto !important;
+    }
+    .reveal{opacity:1 !important;transform:none !important;}
+    .flame,.feat-art .glow,.hero-art .ring{animation:none !important;}
+    .card:hover,.review:hover,.btn:hover,.add:hover,.cart-btn:hover{transform:none !important;}
+    /* keep the toast resting at its visible position with no slide */
+    .toast{transform:translate(-50%,140%) !important;}
+    .toast.show{transform:translate(-50%,0) !important;}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#shop">Skip to products</a>
+
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Ember and Oak — home">
+      <span class="mark" aria-hidden="true"></span>
+      <span class="name"><b>Ember&nbsp;&amp;&nbsp;Oak</b><span>Candles · Coffee</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#shop">Shop</a>
+      <a href="#featured">Featured</a>
+      <a href="#story">Our Story</a>
+      <a href="#refill">Refills</a>
+      <a href="#reviews">Reviews</a>
+    </nav>
+    <button class="cart-btn" id="cartBtn" type="button" aria-label="View cart, 0 items">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+        <path d="M3 4h2l2.4 12.2a1.5 1.5 0 0 0 1.5 1.2h8.3a1.5 1.5 0 0 0 1.5-1.2L21 8H6" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="9.5" cy="20.5" r="1.2"/><circle cx="18" cy="20.5" r="1.2"/>
+      </svg>
+      Cart <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" id="hero" aria-labelledby="hero-title">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow reveal" style="--d:0ms">Hand-poured in Asheville, NC</p>
+        <h1 class="reveal" id="hero-title" style="--d:90ms">Light it slow. <em>Brew it slower.</em></h1>
+        <p class="lead reveal" style="--d:180ms">Coconut-soy candles and single-origin coffee, made in small batches by people who actually use them. No shortcuts, no synthetic fillers — just a warm room and a good cup.</p>
+        <div class="hero-cta reveal" style="--d:260ms">
+          <a class="btn" href="#shop">Shop the bestsellers</a>
+          <a class="btn btn--ghost" href="#story">How it's made</a>
+        </div>
+        <div class="hero-meta reveal" style="--d:340ms">
+          <div><b>60+</b><span>hours burn time</span></div>
+          <div><b>14</b><span>scents in rotation</span></div>
+          <div><b>100%</b><span>cotton wicks</span></div>
+        </div>
+      </div>
+      <div class="hero-art reveal" style="--d:240ms" aria-hidden="true">
+        <span class="ring"></span>
+        <span class="bean bean-1"></span>
+        <span class="bean bean-2"></span>
+        <div class="jar jar-a">
+          <span class="flame"></span>
+          <div class="label">Smoked<br>Cedar</div>
+        </div>
+        <div class="jar jar-b">
+          <span class="flame" style="animation-delay:.6s"></span>
+          <div class="label">Wild<br>Fig</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT GRID -->
+  <section id="shop" aria-labelledby="shop-title">
+    <div class="wrap">
+      <div class="sec-head sec-flex reveal">
+        <div>
+          <p class="eyebrow">The shelf favorites</p>
+          <h2 id="shop-title">Bestsellers this season</h2>
+          <p>The ones we restock the most. Small batches mean we sometimes sell out — sorry in advance.</p>
+        </div>
+        <a class="btn btn--ghost" href="#newsletter">Get restock alerts</a>
+      </div>
+
+      <div class="grid">
+
+        <article class="card reveal" style="--d:0ms">
+          <div class="thumb t-spice"><span class="badge">Bestseller</span><span class="glyph" aria-hidden="true">A</span></div>
+          <div class="card-body">
+            <h3>Autumn Hearth</h3>
+            <p class="scent">Clove · Amber · Roasted Chestnut</p>
+            <p class="desc">A crackling-fireplace candle for people without a fireplace. Spiced, golden, and a little smoky.</p>
+            <div class="card-foot">
+              <span class="price">$28</span>
+              <button class="add" type="button" data-name="Autumn Hearth" data-price="28">Add to cart</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal" style="--d:80ms">
+          <div class="thumb t-cedar"><span class="glyph" aria-hidden="true">C</span></div>
+          <div class="card-body">
+            <h3>Smoked Cedar</h3>
+            <p class="scent">Cedarwood · Vetiver · Black Tea</p>
+            <p class="desc">Dry, woody, grounding. The candle we light first thing on a slow Sunday morning.</p>
+            <div class="card-foot">
+              <span class="price">$28</span>
+              <button class="add" type="button" data-name="Smoked Cedar" data-price="28">Add to cart</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal" style="--d:160ms">
+          <div class="thumb t-roast"><span class="badge">Small lot</span><span class="glyph" aria-hidden="true">E</span></div>
+          <div class="card-body">
+            <h3>Ember Roast — Whole Bean</h3>
+            <p class="scent">Ethiopia Guji · Light-Medium · 12oz</p>
+            <p class="desc">Blueberry, honey, a clean cocoa finish. Roasted in 9-lb lots and bagged within 48 hours.</p>
+            <div class="card-foot">
+              <span class="price">$19</span>
+              <button class="add" type="button" data-name="Ember Roast — Whole Bean" data-price="19">Add to cart</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal" style="--d:0ms">
+          <div class="thumb t-fig"><span class="glyph" aria-hidden="true">F</span></div>
+          <div class="card-body">
+            <h3>Wild Fig &amp; Oak</h3>
+            <p class="scent">Fig · Oakmoss · Warm Vanilla</p>
+            <p class="desc">Sweet but not sugary — ripe fig over a base of weathered oak. Our most-gifted scent.</p>
+            <div class="card-foot">
+              <span class="price">$30</span>
+              <button class="add" type="button" data-name="Wild Fig &amp; Oak" data-price="30">Add to cart</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal" style="--d:80ms">
+          <div class="thumb t-moss"><span class="glyph" aria-hidden="true">M</span></div>
+          <div class="card-body">
+            <h3>Morning Moss</h3>
+            <p class="scent">Eucalyptus · Mint · Petrichor</p>
+            <p class="desc">Cool and green, like the woods after rain. The one customers buy for their bathroom.</p>
+            <div class="card-foot">
+              <span class="price">$26</span>
+              <button class="add" type="button" data-name="Morning Moss" data-price="26">Add to cart</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal" style="--d:160ms">
+          <div class="thumb t-honey"><span class="badge">New</span><span class="glyph" aria-hidden="true">H</span></div>
+          <div class="card-body">
+            <h3>Honey &amp; Tobacco Leaf</h3>
+            <p class="scent">Wildflower Honey · Tonka · Leather</p>
+            <p class="desc">Rich, golden, grown-up. A cozy library of a candle for cold-weather evenings.</p>
+            <div class="card-foot">
+              <span class="price">$30</span>
+              <button class="add" type="button" data-name="Honey &amp; Tobacco Leaf" data-price="30">Add to cart</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCT -->
+  <section id="featured" aria-labelledby="feat-title">
+    <div class="wrap feat">
+      <div class="feat-art reveal" aria-hidden="true">
+        <span class="glow"></span>
+        <div class="big-jar"><div class="ribbon">Ember &amp; Oak</div></div>
+      </div>
+      <div class="feat-info reveal" style="--d:120ms">
+        <p class="eyebrow">Featured this month</p>
+        <h2 id="feat-title">The Hearthkeeper Trio</h2>
+        <div class="stars" aria-hidden="true">★★★★★ <small>4.9 · 212 reviews</small></div>
+        <p class="visually-hidden">Rated 4.9 out of 5 stars across 212 reviews.</p>
+        <div class="price-row">
+          <span class="price"><s>$84</s>$72</span>
+          <span class="scent" style="color:var(--ember-deep)">Save $12 on the set</span>
+        </div>
+        <p>Our three warmest scents, boxed together in a kraft gift sleeve with a hand-stamped wax seal. Autumn Hearth, Smoked Cedar, and Honey &amp; Tobacco Leaf — the trio that smells like a cabin in October.</p>
+        <ul class="specs">
+          <li><span>Wax</span><span>Coconut-soy blend, phthalate-free</span></li>
+          <li><span>Wick</span><span>Braided cotton, lead-free</span></li>
+          <li><span>Burn time</span><span>180+ hours combined</span></li>
+          <li><span>Poured</span><span>By hand in Asheville, NC</span></li>
+        </ul>
+        <div class="feat-buy">
+          <button class="btn add" type="button" data-name="The Hearthkeeper Trio" data-price="72">Add trio — $72</button>
+          <span class="news-note" style="margin:0;color:var(--oak)">Ships free over $50</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section id="story" aria-labelledby="story-title">
+    <div class="wrap story-grid">
+      <div class="story-art reveal" aria-hidden="true">
+        <div class="inner"><b>E&amp;O</b><span>Est. 2019</span></div>
+      </div>
+      <div class="story-copy reveal" style="--d:120ms">
+        <p class="eyebrow">Our story</p>
+        <h2 id="story-title">Made slow, made by hand</h2>
+        <blockquote class="story-q">"We started in a garage with a single thermometer and a thrift-store percolator. The recipe hasn't changed much — and neither has the patience."</blockquote>
+        <p>Ember &amp; Oak began when Nora and Theo Vance couldn't find a candle that smelled like their grandmother's kitchen — or a coffee worth pairing it with. So they made both. Every candle is still poured in small batches, cooled overnight, and trimmed by hand before it ever reaches a shelf.</p>
+        <div class="story-points">
+          <div>
+            <span class="ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3c-3 4-5 6-5 9a5 5 0 0 0 10 0c0-3-2-5-5-9Z" stroke-linejoin="round"/></svg>
+            </span>
+            <div><h4>Clean-burning wax</h4><p>Coconut-soy blend with cotton wicks — no paraffin, no synthetic dye.</p></div>
+          </div>
+          <div>
+            <span class="ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 19h13a4 4 0 0 0 0-8h-1M5 11V6h11v5M5 11h11" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 3v2M12 3v2M15 3v2" stroke-linecap="round"/></svg>
+            </span>
+            <div><h4>Roasted in small lots</h4><p>Coffee roasted weekly in 9-lb batches and shipped within 48 hours.</p></div>
+          </div>
+          <div>
+            <span class="ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 10c0 6-9 11-9 11S3 16 3 10a5 5 0 0 1 9-3 5 5 0 0 1 9 3Z" stroke-linejoin="round"/></svg>
+            </span>
+            <div><h4>Refill, don't replace</h4><p>Send back your empty vessel and we'll re-pour it for less.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBSCRIPTION / REFILL -->
+  <section id="refill" aria-labelledby="refill-title">
+    <div class="wrap refill-grid">
+      <div class="refill-info reveal">
+        <p class="eyebrow">The Refill Club</p>
+        <h2 id="refill-title">A new scent on your shelf every month</h2>
+        <p>Pick candle, coffee, or both. We send a fresh small-batch pour (or a 12oz bag of just-roasted beans) to your door each month — and refilling your jar costs less than buying new. Pause or cancel any time; no fine print.</p>
+        <p style="color:#cbb691;font-family:'DM Mono',monospace;font-size:.78rem;letter-spacing:.04em;">Members save 15% on everything else in the shop.</p>
+      </div>
+      <div class="plan reveal" style="--d:120ms">
+        <span class="tag">Most popular</span>
+        <div class="pr">$24<small> / month</small></div>
+        <p style="color:#cbb691;margin:0 0 .4rem;">The Candle + Coffee box</p>
+        <ul>
+          <li>One hand-poured candle, member's choice of scent</li>
+          <li>One 12oz bag of single-origin beans</li>
+          <li>Free shipping &amp; first refill on us</li>
+          <li>Early access to seasonal drops</li>
+        </ul>
+        <button class="btn" id="joinClub" type="button">Start my box</button>
+        <p class="form-success" id="clubSuccess">You're on the list, friend — check your inbox for a welcome note. 🕯️</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews" aria-labelledby="rev-title">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">Kind words</p>
+        <h2 id="rev-title">What the regulars say</h2>
+      </div>
+      <div class="review-grid">
+        <article class="review reveal" style="--d:0ms">
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <p>"Autumn Hearth makes my whole apartment smell like a cabin in the woods. I've bought it four times and I'm not stopping."</p>
+          <div class="who"><span class="av av-1" aria-hidden="true">M</span><div><b>Maya R.</b><span>Verified buyer · Portland, OR</span></div></div>
+        </article>
+        <article class="review reveal" style="--d:90ms">
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <p>"The Ember Roast beans are the freshest mail-order coffee I've had. You can tell it was bagged days ago, not months."</p>
+          <div class="who"><span class="av av-2" aria-hidden="true">D</span><div><b>Darnell K.</b><span>Verified buyer · Austin, TX</span></div></div>
+        </article>
+        <article class="review reveal" style="--d:180ms">
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <p>"Sent back my empty jar for a refill and it came back perfect. Love that I'm not tossing glass every month. Genuinely thoughtful shop."</p>
+          <div class="who"><span class="av av-3" aria-hidden="true">P</span><div><b>Priya S.</b><span>Refill Club member · Brooklyn, NY</span></div></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section id="newsletter" aria-labelledby="news-title">
+    <div class="wrap">
+      <div class="news-card reveal">
+        <p class="eyebrow">Slow mail, good company</p>
+        <h2 id="news-title">Be first to the next pour</h2>
+        <p>We send one short letter a month: new scents, restock dates, a brewing tip, and the occasional members-only discount. No spam — that'd be against everything we stand for.</p>
+        <form class="news-form" id="newsForm" novalidate>
+          <div class="field">
+            <label for="news-email">Email address</label>
+            <input type="email" id="news-email" name="email" placeholder="you@example.com" autocomplete="email" required />
+          </div>
+          <button class="btn" type="submit">Sign me up</button>
+        </form>
+        <p class="news-note">Join 6,400+ readers · unsubscribe any time.</p>
+        <p class="form-success" id="newsSuccess" role="status">Welcome to the porch. ☕ Your first letter is on its way.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site" aria-labelledby="foot-title">
+  <div class="wrap">
+    <h2 id="foot-title" class="visually-hidden">Footer</h2>
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#top" aria-label="Ember and Oak — home">
+          <span class="mark" aria-hidden="true"></span>
+          <span class="name"><b>Ember&nbsp;&amp;&nbsp;Oak</b><span>Candles · Coffee</span></span>
+        </a>
+        <p>Hand-poured candles and small-lot coffee, made slow in Asheville, North Carolina since 2019.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#shop">Candles</a></li>
+          <li><a href="#shop">Coffee</a></li>
+          <li><a href="#featured">Gift sets</a></li>
+          <li><a href="#refill">Refill Club</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#story">Our story</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#newsletter">Journal</a></li>
+          <li><a href="#refill">Wholesale</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Visit</h4>
+        <ul>
+          <li>41 Lexington Ave</li>
+          <li>Asheville, NC 28801</li>
+          <li><a href="#top">hello@emberandoak.co</a></li>
+          <li>Wed–Sun · 9–5</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Ember &amp; Oak. Made by hand, sold with care.</span>
+      <span class="byline">Site by <a href="https://bananabyte.io" target="_blank" rel="noopener">🍌 BANANAbyte</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ----- Staggered reveal on load + scroll ----- */
+  var body = document.body;
+  function reveal(){ body.classList.add("revealed"); }
+  if (window.requestAnimationFrame){ requestAnimationFrame(function(){ requestAnimationFrame(reveal); }); }
+  else { reveal(); }
+
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if ("IntersectionObserver" in window && !reduce){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.style.opacity=""; e.target.style.transform=""; } });
+    },{threshold:0.08});
+    document.querySelectorAll("section .reveal").forEach(function(el){ io.observe(el); });
+  }
+
+  /* ----- Cart count + add-to-cart demo ----- */
+  var count = 0;
+  var cartCount = document.getElementById("cartCount");
+  var cartBtn = document.getElementById("cartBtn");
+  var toast = document.getElementById("toast");
+  var toastTimer;
+
+  function showToast(name){
+    toast.innerHTML = "Added <b>" + name + "</b> to your cart 🧺";
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.classList.remove("show"); }, 2600);
+  }
+
+  function updateCart(){
+    cartCount.textContent = count;
+    cartBtn.setAttribute("aria-label","View cart, " + count + (count===1?" item":" items"));
+    cartCount.classList.remove("bump");
+    void cartCount.offsetWidth; /* restart animation */
+    cartCount.classList.add("bump");
+  }
+
+  document.querySelectorAll(".add").forEach(function(btn){
+    btn.addEventListener("click", function(e){
+      e.preventDefault();
+      count++;
+      updateCart();
+      var name = btn.getAttribute("data-name") || "Item";
+      showToast(name);
+      var original = btn.textContent;
+      btn.classList.add("added");
+      btn.textContent = "Added ✓";
+      btn.disabled = true;
+      setTimeout(function(){
+        btn.classList.remove("added");
+        btn.textContent = original;
+        btn.disabled = false;
+      }, 1500);
+    });
+  });
+
+  cartBtn.addEventListener("click", function(){
+    if(count===0){ toast.innerHTML="Your cart is empty — go pick a scent 🕯️"; }
+    else { toast.innerHTML = "Cart: <b>" + count + (count===1?" item":" items") + "</b> · this is a demo checkout"; }
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.classList.remove("show"); }, 2600);
+  });
+
+  /* ----- Newsletter form demo ----- */
+  var newsForm = document.getElementById("newsForm");
+  var newsSuccess = document.getElementById("newsSuccess");
+  newsForm.addEventListener("submit", function(e){
+    e.preventDefault();
+    var input = document.getElementById("news-email");
+    if(!input.value || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(input.value)){
+      input.focus();
+      newsSuccess.textContent = "Hmm — that email doesn't look right. Try again?";
+      newsSuccess.style.color = "var(--ember-deep)";
+      newsSuccess.classList.add("show");
+      return;
+    }
+    newsForm.style.display = "none";
+    newsSuccess.textContent = "Welcome to the porch. ☕ Your first letter is on its way.";
+    newsSuccess.classList.add("show");
+  });
+
+  /* ----- Refill club demo ----- */
+  var joinBtn = document.getElementById("joinClub");
+  var clubSuccess = document.getElementById("clubSuccess");
+  joinBtn.addEventListener("click", function(e){
+    e.preventDefault();
+    joinBtn.style.display = "none";
+    clubSuccess.classList.add("show");
+  });
+})();
+</script>
+<style>
+  .visually-hidden{
+    position:absolute !important;width:1px;height:1px;padding:0;margin:-1px;
+    overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+  }
+</style>
+</body>
+</html>
