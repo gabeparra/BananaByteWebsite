@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>Dani Cole — Stand-Up Comedian | Orlando, FL</title>
+<meta name="description" content="Dani Cole — Orlando-based stand-up comedian and crowd-work specialist. Tour dates, clips, press, and booking." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    /* warm stage-black base */
+    --bg-0: #14100c;      /* deepest warm near-black */
+    --bg-1: #1d1813;      /* espresso */
+    --bg-2: #261f18;      /* warm charcoal panel */
+    --bg-3: #322820;      /* raised panel */
+    --line: #43352a;      /* warm hairline */
+    --line-soft: #36291f;
+
+    --ink: #f6ead9;       /* warm cream body */
+    --ink-soft: #d8c4ac;  /* warm muted */
+    --ink-faint: #a08a72; /* faint */
+
+    /* warm accents */
+    --amber: #ffb24d;     /* honey amber */
+    --amber-hot: #ff9a3d; /* hot spotlight */
+    --peach: #ffcaa0;
+    --coral: #f08a5a;
+    --coral2: #ef8a5b;
+    --gold: #e9b964;
+
+    --glow: rgba(255, 168, 71, 0.5);
+
+    --radius: 16px;
+    --radius-sm: 11px;
+    --maxw: 1120px;
+
+    --shadow-deep: 0 28px 70px -28px rgba(0,0,0,0.85);
+    --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background-color: var(--bg-0);
+    color: var(--ink);
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* warm radial atmosphere behind everything */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(120% 80% at 50% -10%, rgba(255,154,61,0.16), transparent 55%),
+      radial-gradient(90% 60% at 85% 110%, rgba(239,138,91,0.10), transparent 60%),
+      linear-gradient(180deg, var(--bg-0), #110d09 60%, var(--bg-0));
+  }
+
+  /* film grain */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .wrap {
+    width: 100%;
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 22px;
+    position: relative;
+    z-index: 2;
+  }
+
+  a { color: inherit; }
+
+  h1, h2, h3 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 900;
+    line-height: 1.02;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  ::selection { background: var(--amber); color: #1a120a; }
+
+  /* ---------- focus ---------- */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 3px;
+    border-radius: 8px;
+  }
+
+  .skip {
+    position: absolute;
+    left: -999px;
+    top: 8px;
+    background: var(--amber);
+    color: #1a120a;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-weight: 700;
+    z-index: 100;
+    text-decoration: none;
+  }
+  .skip:focus { left: 16px; }
+
+  /* ---------- buttons ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55em;
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-weight: 700;
+    font-size: 0.98rem;
+    text-decoration: none;
+    padding: 0.85em 1.4em;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), background 0.35s var(--ease), color 0.35s var(--ease), border-color 0.35s var(--ease);
+    line-height: 1;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--amber), var(--amber-hot));
+    color: #20140a;
+    box-shadow: 0 12px 30px -12px var(--glow);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 40px -12px var(--glow);
+  }
+  .btn-ghost {
+    background: rgba(255,255,255,0.02);
+    color: var(--ink);
+    border-color: var(--line);
+  }
+  .btn-ghost:hover {
+    transform: translateY(-2px);
+    border-color: var(--amber);
+    color: var(--amber);
+    background: rgba(255,168,71,0.06);
+  }
+  .btn-ticket {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--line);
+    padding: 0.6em 1.05em;
+    font-size: 0.88rem;
+  }
+  .btn-ticket:hover {
+    transform: translateY(-2px);
+    background: var(--amber);
+    color: #20140a;
+    border-color: var(--amber);
+  }
+  .btn-ticket[aria-disabled="true"] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  /* ---------- header ---------- */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    backdrop-filter: blur(10px);
+    background: rgba(20,16,12,0.62);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 22px;
+    max-width: var(--maxw);
+    margin: 0 auto;
+    gap: 16px;
+  }
+  .brand {
+    font-family: "Fraunces", serif;
+    font-weight: 900;
+    font-size: 1.18rem;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    color: var(--ink);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    white-space: nowrap;
+  }
+  .brand .dot {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--amber);
+    box-shadow: 0 0 14px 2px var(--glow);
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    list-style: none;
+    margin: 0; padding: 0;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 9px;
+    transition: color 0.25s var(--ease), background 0.25s var(--ease);
+  }
+  .nav-links a:hover { color: var(--amber); background: rgba(255,168,71,0.06); }
+  .nav-cta { display: none; }
+  @media (min-width: 760px) { .nav-cta { display: inline-flex; } }
+
+  .nav-mobile-link { display: inline-flex; }
+  @media (min-width: 760px) {
+    .nav-mobile-link { display: none; }
+  }
+  .nav-desktop { display: none; }
+  @media (min-width: 760px) {
+    .nav-desktop { display: flex; }
+  }
+
+  /* ---------- hero ---------- */
+  .hero {
+    position: relative;
+    text-align: center;
+    padding: clamp(72px, 14vw, 150px) 0 clamp(56px, 9vw, 100px);
+    overflow: hidden;
+  }
+  /* the single dramatic spotlight cone */
+  .spotlight {
+    position: absolute;
+    left: 50%;
+    top: -8%;
+    width: min(150%, 900px);
+    height: 120%;
+    transform: translateX(-50%);
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(60% 70% at 50% 18%, rgba(255,178,77,0.30), rgba(255,154,61,0.10) 42%, transparent 70%);
+    filter: blur(6px);
+  }
+  .spotlight::before {
+    /* cone */
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -30%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 130%;
+    border-left: 28vw solid transparent;
+    border-right: 28vw solid transparent;
+    border-bottom: 0;
+    background: conic-gradient(from 180deg at 50% 0%, transparent 0deg, rgba(255,170,72,0.12) 12deg, transparent 24deg);
+  }
+  .hero-inner { position: relative; z-index: 2; }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    font-family: "DM Mono", monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: clamp(18px, 4vw, 30px);
+    padding: 7px 14px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: rgba(255,168,71,0.05);
+  }
+  .eyebrow .pulse {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--amber);
+    box-shadow: 0 0 10px 1px var(--glow);
+  }
+
+  .hero h1 {
+    font-size: clamp(4rem, 23vw, 16rem);
+    line-height: 0.84;
+    letter-spacing: -0.03em;
+    margin: 0;
+    color: var(--ink);
+    /* "in lights" warm glow */
+    text-shadow:
+      0 0 1px rgba(255,228,190,0.9),
+      0 0 28px rgba(255,168,71,0.45),
+      0 0 70px rgba(255,154,61,0.30),
+      0 14px 50px rgba(0,0,0,0.6);
+  }
+  .hero h1 .lit {
+    background: linear-gradient(180deg, #fff3df 0%, var(--amber) 55%, var(--coral2) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero .tagline {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(1.1rem, 3.4vw, 1.6rem);
+    color: var(--peach);
+    margin: clamp(20px, 4vw, 30px) auto 0;
+    max-width: 30ch;
+    line-height: 1.35;
+  }
+  .hero-meta {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.02em;
+  }
+  .hero-cta {
+    margin-top: clamp(30px, 5vw, 42px);
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .next-show {
+    margin-top: clamp(34px, 6vw, 52px);
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px 16px;
+    padding: 14px 22px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: linear-gradient(180deg, rgba(50,40,32,0.55), rgba(29,24,19,0.3));
+    font-size: 0.95rem;
+  }
+  .next-show .label {
+    font-family: "DM Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+  .next-show .place { color: var(--ink); font-weight: 600; }
+  .next-show .when { color: var(--ink-soft); }
+
+  /* ---------- sections ---------- */
+  section { position: relative; z-index: 2; }
+  .block { padding: clamp(64px, 11vw, 120px) 0; }
+
+  .section-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: clamp(34px, 6vw, 54px);
+  }
+  .section-kicker {
+    font-family: "DM Mono", monospace;
+    font-size: 0.76rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--amber);
+    display: flex;
+    align-items: center;
+    gap: 0.7em;
+    margin-bottom: 14px;
+  }
+  .section-kicker::before {
+    content: "";
+    width: 26px; height: 1px;
+    background: var(--amber);
+    opacity: 0.7;
+  }
+  .section-title {
+    font-size: clamp(2rem, 6.5vw, 3.4rem);
+  }
+  .section-sub {
+    color: var(--ink-soft);
+    max-width: 42ch;
+    margin-top: 12px;
+    font-size: 1.02rem;
+  }
+
+  /* ---------- tour dates / ticket stubs ---------- */
+  .shows { display: grid; gap: 16px; }
+  .stub {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 18px;
+    background:
+      linear-gradient(180deg, var(--bg-3), var(--bg-2));
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 18px 22px 18px 0;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s var(--ease), border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
+  }
+  .stub:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255,168,71,0.5);
+    box-shadow: 0 22px 50px -28px rgba(0,0,0,0.9);
+  }
+  /* perforation / tear edge */
+  .stub-date {
+    position: relative;
+    background: linear-gradient(180deg, rgba(255,168,71,0.16), rgba(239,138,91,0.10));
+    padding: 16px 22px;
+    text-align: center;
+    min-width: 96px;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 2px dashed var(--line);
+  }
+  .stub-date::after {
+    /* punched holes on the dashed seam */
+    content: "";
+    position: absolute;
+    right: -7px;
+    top: 50%;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--bg-1);
+    transform: translateY(-50%);
+    box-shadow: 0 0 0 1px var(--line);
+  }
+  .stub-month {
+    font-family: "DM Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+  .stub-day {
+    font-family: "Fraunces", serif;
+    font-weight: 900;
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .stub-year { font-size: 0.7rem; color: var(--ink-faint); font-family: "DM Mono", monospace; }
+  .stub-info { min-width: 0; }
+  .stub-city {
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: var(--ink);
+  }
+  .stub-venue { color: var(--ink-soft); font-size: 0.95rem; }
+  .stub-tag {
+    display: inline-block;
+    margin-top: 6px;
+    font-family: "DM Mono", monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--amber);
+    border: 1px solid var(--line);
+    padding: 2px 8px;
+    border-radius: 6px;
+  }
+  .stub-tag.sold { color: var(--coral2); border-color: rgba(239,138,91,0.4); }
+  .stub-action { padding-right: 4px; white-space: nowrap; }
+
+  @media (max-width: 620px) {
+    .stub {
+      grid-template-columns: auto 1fr;
+      padding: 0 18px 16px 0;
+      row-gap: 14px;
+    }
+    .stub-action {
+      grid-column: 1 / -1;
+      padding: 0 0 0 18px;
+    }
+    .btn-ticket { width: 100%; justify-content: center; }
+  }
+
+  /* ---------- watch / clips ---------- */
+  .clips {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr));
+    gap: 18px;
+  }
+  .clip {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--bg-2);
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.4s var(--ease), border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
+  }
+  .clip:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255,168,71,0.5);
+    box-shadow: var(--shadow-deep);
+  }
+  .clip-thumb {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    background: var(--bg-3);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+  }
+  .clip-thumb::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(20,16,12,0.55));
+  }
+  .clip:nth-child(1) .clip-thumb { background: radial-gradient(120% 120% at 30% 20%, #4a2f1c, #241912); }
+  .clip:nth-child(2) .clip-thumb { background: radial-gradient(120% 120% at 70% 30%, #5a3417, #261813); }
+  .clip:nth-child(3) .clip-thumb { background: radial-gradient(120% 120% at 40% 70%, #43301d, #1f1711); }
+  .clip:nth-child(4) .clip-thumb { background: radial-gradient(120% 120% at 60% 40%, #523619, #221811); }
+  .play {
+    position: relative;
+    z-index: 2;
+    width: 58px; height: 58px;
+    border-radius: 50%;
+    background: rgba(20,16,12,0.55);
+    border: 1px solid rgba(255,200,140,0.55);
+    display: grid;
+    place-items: center;
+    backdrop-filter: blur(3px);
+    transition: transform 0.4s var(--ease), background 0.4s var(--ease), box-shadow 0.4s var(--ease);
+  }
+  .clip:hover .play {
+    transform: scale(1.08);
+    background: var(--amber);
+    box-shadow: 0 0 30px -4px var(--glow);
+  }
+  .play svg { width: 20px; height: 20px; margin-left: 3px; fill: var(--peach); transition: fill 0.4s var(--ease); }
+  .clip:hover .play svg { fill: #20140a; }
+  .clip-dur {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 3;
+    font-family: "DM Mono", monospace;
+    font-size: 0.72rem;
+    color: var(--ink);
+    background: rgba(20,16,12,0.7);
+    padding: 3px 8px;
+    border-radius: 6px;
+    border: 1px solid var(--line);
+  }
+  .clip-body { padding: 16px 18px 18px; }
+  .clip-title {
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+    font-size: 1.08rem;
+    color: var(--ink);
+    line-height: 1.25;
+  }
+  .clip-meta {
+    font-family: "DM Mono", monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-faint);
+    margin-top: 7px;
+  }
+
+  /* ---------- about ---------- */
+  .about-grid {
+    display: grid;
+    gap: clamp(28px, 5vw, 56px);
+    align-items: center;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 860px) {
+    .about-grid { grid-template-columns: 0.85fr 1.15fr; }
+  }
+  .portrait {
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background:
+      radial-gradient(80% 60% at 50% 25%, rgba(255,168,71,0.22), transparent 60%),
+      linear-gradient(160deg, #3a2818, #1c140d);
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+  }
+  .portrait .silhouette {
+    font-family: "Fraunces", serif;
+    font-weight: 900;
+    font-size: clamp(4rem, 14vw, 7rem);
+    color: rgba(255,178,77,0.18);
+    line-height: 1;
+    text-align: center;
+  }
+  .portrait .mic-note {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    font-family: "DM Mono", monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.05em;
+    color: var(--peach);
+  }
+  .about-body p {
+    color: var(--ink-soft);
+    margin: 0 0 1.05em;
+  }
+  .about-body p strong { color: var(--ink); font-weight: 600; }
+  .about-body p.lead {
+    font-family: "Fraunces", serif;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    line-height: 1.4;
+    color: var(--ink);
+    margin-bottom: 0.8em;
+  }
+  .facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px 34px;
+    margin-top: 26px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line-soft);
+  }
+  .fact .num {
+    font-family: "Fraunces", serif;
+    font-weight: 900;
+    font-size: 1.9rem;
+    color: var(--amber);
+    line-height: 1;
+  }
+  .fact .lbl {
+    font-size: 0.82rem;
+    color: var(--ink-faint);
+    margin-top: 4px;
+  }
+
+  /* ---------- press strip ---------- */
+  .press { border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); }
+  .quotes {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 760px) { .quotes { grid-template-columns: 1fr 1fr; } }
+  .quote {
+    border-left: 2px solid var(--amber);
+    padding: 4px 0 4px 22px;
+  }
+  .quote p {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-size: clamp(1.15rem, 2.6vw, 1.45rem);
+    line-height: 1.4;
+    color: var(--ink);
+    margin: 0 0 12px;
+  }
+  .quote cite {
+    font-style: normal;
+    font-family: "DM Mono", monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    color: var(--amber);
+  }
+  .seen-at {
+    margin-top: clamp(40px, 7vw, 60px);
+  }
+  .seen-label {
+    text-align: center;
+    font-family: "DM Mono", monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 22px;
+  }
+  .logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 18px 34px;
+  }
+  .logos span {
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+    font-size: clamp(1rem, 2.6vw, 1.35rem);
+    color: var(--ink-soft);
+    opacity: 0.8;
+    letter-spacing: 0.01em;
+    transition: color 0.3s var(--ease), opacity 0.3s var(--ease);
+  }
+  .logos span:hover { color: var(--amber); opacity: 1; }
+
+  /* ---------- booking / forms ---------- */
+  .booking-grid {
+    display: grid;
+    gap: clamp(26px, 5vw, 48px);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 920px) {
+    .booking-grid { grid-template-columns: 1fr 1fr; align-items: start; }
+  }
+  .panel {
+    background: linear-gradient(180deg, var(--bg-2), var(--bg-1));
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: clamp(24px, 4vw, 34px);
+  }
+  .booking-intro p { color: var(--ink-soft); }
+  .contact-card {
+    margin-top: 22px;
+    display: grid;
+    gap: 14px;
+  }
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    border: 1px solid var(--line-soft);
+    border-radius: var(--radius-sm);
+    background: rgba(255,255,255,0.015);
+  }
+  .contact-row .ic {
+    flex: none;
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    display: grid; place-items: center;
+    background: rgba(255,168,71,0.1);
+    color: var(--amber);
+  }
+  .contact-row .ic svg { width: 18px; height: 18px; fill: currentColor; }
+  .contact-row .k { font-size: 0.78rem; color: var(--ink-faint); }
+  .contact-row .v { color: var(--ink); font-weight: 600; text-decoration: none; word-break: break-word; }
+  .contact-row a.v:hover { color: var(--amber); }
+
+  form { display: grid; gap: 16px; }
+  .field { display: grid; gap: 7px; }
+  .field-row { display: grid; gap: 16px; grid-template-columns: 1fr; }
+  @media (min-width: 520px) { .field-row { grid-template-columns: 1fr 1fr; } }
+  label {
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+    letter-spacing: 0.01em;
+  }
+  .req { color: var(--amber); }
+  input, textarea, select {
+    width: 100%;
+    background: var(--bg-0);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    color: var(--ink);
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-size: 0.98rem;
+    padding: 12px 14px;
+    transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease), background 0.3s var(--ease);
+  }
+  textarea { resize: vertical; min-height: 110px; }
+  input::placeholder, textarea::placeholder { color: var(--ink-faint); }
+  input:hover, textarea:hover, select:hover { border-color: #5a4736; }
+  input:focus, textarea:focus, select:focus {
+    border-color: var(--amber);
+    box-shadow: 0 0 0 3px rgba(255,168,71,0.14);
+    background: #171108;
+  }
+  select { appearance: none; -webkit-appearance: none; cursor: pointer; }
+  .select-wrap { position: relative; }
+  .select-wrap::after {
+    content: "";
+    position: absolute;
+    right: 16px; top: 50%;
+    width: 8px; height: 8px;
+    border-right: 2px solid var(--amber);
+    border-bottom: 2px solid var(--amber);
+    transform: translateY(-70%) rotate(45deg);
+    pointer-events: none;
+  }
+  .form-foot {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+  .form-note { font-size: 0.8rem; color: var(--ink-faint); }
+
+  .form-success {
+    display: none;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 18px 18px;
+    border: 1px solid rgba(255,168,71,0.4);
+    border-radius: var(--radius-sm);
+    background: rgba(255,168,71,0.08);
+  }
+  .form-success.show { display: flex; animation: pop 0.5s var(--ease); }
+  .form-success .ic {
+    flex: none; width: 34px; height: 34px;
+    border-radius: 50%;
+    background: var(--amber);
+    color: #20140a;
+    display: grid; place-items: center;
+    font-weight: 900;
+  }
+  .form-success strong { color: var(--ink); display: block; }
+  .form-success span { color: var(--ink-soft); font-size: 0.92rem; }
+  @keyframes pop {
+    from { opacity: 0; transform: translateY(8px) scale(0.98); }
+    to { opacity: 1; transform: none; }
+  }
+
+  /* ---------- newsletter ---------- */
+  .news {
+    margin-top: 26px;
+    padding-top: 26px;
+    border-top: 1px solid var(--line-soft);
+  }
+  .news h3 {
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin-bottom: 6px;
+  }
+  .news p { color: var(--ink-soft); font-size: 0.94rem; margin: 0 0 16px; }
+  .news-form {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 460px) {
+    .news-form { grid-template-columns: 1fr auto; align-items: end; }
+  }
+  .news-success {
+    display: none;
+    margin-top: 12px;
+    font-size: 0.92rem;
+    color: var(--amber);
+  }
+  .news-success.show { display: block; animation: pop 0.5s var(--ease); }
+
+  /* ---------- footer ---------- */
+  .site-footer {
+    border-top: 1px solid var(--line-soft);
+    padding: clamp(46px, 8vw, 72px) 0 38px;
+    position: relative;
+    z-index: 2;
+  }
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  .footer-brand .big {
+    font-family: "Fraunces", serif;
+    font-weight: 900;
+    font-size: clamp(2rem, 7vw, 3rem);
+    color: var(--ink);
+    line-height: 0.95;
+  }
+  .footer-brand p { color: var(--ink-faint); margin: 10px 0 0; max-width: 32ch; font-size: 0.94rem; }
+  .socials {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .social {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    display: grid; place-items: center;
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: transform 0.3s var(--ease), border-color 0.3s var(--ease), color 0.3s var(--ease), background 0.3s var(--ease);
+  }
+  .social svg { width: 19px; height: 19px; fill: currentColor; }
+  .social:hover {
+    transform: translateY(-3px);
+    border-color: var(--amber);
+    color: var(--amber);
+    background: rgba(255,168,71,0.06);
+  }
+  .footer-bottom {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line-soft);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 0.86rem;
+    color: var(--ink-faint);
+  }
+  .credit {
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45em;
+    padding: 6px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    transition: color 0.3s var(--ease), border-color 0.3s var(--ease), transform 0.3s var(--ease);
+  }
+  .credit:hover { color: var(--amber); border-color: var(--amber); transform: translateY(-2px); }
+
+  /* ---------- reveal animation ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  }
+  /* hero load stagger */
+  .h-anim {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  body.loaded .h-anim {
+    animation: heroIn 0.9s var(--ease) forwards;
+  }
+  .h-anim.d1 { animation-delay: 0.05s; }
+  .h-anim.d2 { animation-delay: 0.18s; }
+  .h-anim.d3 { animation-delay: 0.34s; }
+  .h-anim.d4 { animation-delay: 0.5s; }
+  .h-anim.d5 { animation-delay: 0.64s; }
+  .h-anim.d6 { animation-delay: 0.78s; }
+  @keyframes heroIn {
+    to { opacity: 1; transform: none; }
+  }
+  /* spotlight fade-up */
+  .spotlight { opacity: 0; }
+  body.loaded .spotlight { animation: lightUp 1.5s var(--ease) 0.1s forwards; }
+  @keyframes lightUp {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal, .h-anim, .spotlight { opacity: 1 !important; transform: none !important; animation: none !important; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+</style>
+<noscript>
+  <style>
+    /* No-JS failsafe: scroll-reveal + hero stagger elements must be fully visible */
+    .reveal, .h-anim, .spotlight { opacity: 1 !important; transform: none !important; animation: none !important; }
+  </style>
+</noscript>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <nav class="nav" aria-label="Primary">
+    <a class="brand" href="#top">
+      <span class="dot" aria-hidden="true"></span>
+      Dani&nbsp;Cole
+    </a>
+    <ul class="nav-links nav-desktop">
+      <li><a href="#shows">Shows</a></li>
+      <li><a href="#watch">Watch</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#press">Press</a></li>
+      <li><a href="#booking">Booking</a></li>
+    </ul>
+    <a class="btn btn-primary nav-cta" href="#booking">Book Dani</a>
+    <a class="btn btn-ghost nav-mobile-link" href="#shows">Dates</a>
+  </nav>
+</header>
+
+<main id="main">
+  <a id="top"></a>
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-name">
+    <div class="spotlight" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+      <span class="eyebrow h-anim d1">
+        <span class="pulse" aria-hidden="true"></span>
+        Stand-up &middot; Orlando, FL
+      </span>
+      <h1 id="hero-name" class="h-anim d2">
+        <span class="lit">Dani Cole</span>
+      </h1>
+      <p class="tagline h-anim d3">
+        She came for the front row. They left in the wreckage. Lovingly.
+      </p>
+      <p class="hero-meta h-anim d3">Crowd-work specialist &middot; clean enough for the work party, mean enough to be fun.</p>
+      <div class="hero-cta h-anim d4">
+        <a class="btn btn-primary" href="#shows">See dates</a>
+        <a class="btn btn-ghost" href="#watch">Watch a clip</a>
+      </div>
+      <div class="next-show h-anim d5" aria-label="Next show">
+        <span class="label">Next show</span>
+        <span class="when">Fri, Jun 13</span>
+        <span aria-hidden="true">&middot;</span>
+        <span class="place">The Abbey, Orlando FL</span>
+        <a class="btn btn-ticket" href="#shows" style="margin-left:4px">Get tickets</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOWS -->
+  <section class="block" id="shows" aria-labelledby="shows-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-kicker">On the road</div>
+          <h2 class="section-title" id="shows-title">Upcoming shows</h2>
+          <p class="section-sub">Catch a set live. Front row is encouraged. Probably fine.</p>
+        </div>
+        <a class="btn btn-ghost" href="#booking">Bring Dani to your room</a>
+      </div>
+
+      <div class="shows">
+        <article class="stub reveal">
+          <div class="stub-date">
+            <span class="stub-month">Jun</span>
+            <span class="stub-day">13</span>
+            <span class="stub-year">2026</span>
+          </div>
+          <div class="stub-info">
+            <div class="stub-city">Orlando, FL</div>
+            <div class="stub-venue">The Abbey &middot; Headline set, 8:00 PM</div>
+            <span class="stub-tag">Few left</span>
+          </div>
+          <div class="stub-action"><a class="btn btn-ticket" href="#booking">Tickets</a></div>
+        </article>
+
+        <article class="stub reveal">
+          <div class="stub-date">
+            <span class="stub-month">Jun</span>
+            <span class="stub-day">21</span>
+            <span class="stub-year">2026</span>
+          </div>
+          <div class="stub-info">
+            <div class="stub-city">Atlanta, GA</div>
+            <div class="stub-venue">The Punchline &middot; Two shows, 7 &amp; 9:30 PM</div>
+            <span class="stub-tag sold">Sold out</span>
+          </div>
+          <div class="stub-action"><a class="btn btn-ticket" href="#booking" aria-disabled="true" tabindex="-1">Waitlist</a></div>
+        </article>
+
+        <article class="stub reveal">
+          <div class="stub-date">
+            <span class="stub-month">Jul</span>
+            <span class="stub-day">09</span>
+            <span class="stub-year">2026</span>
+          </div>
+          <div class="stub-info">
+            <div class="stub-city">Nashville, TN</div>
+            <div class="stub-venue">Zanies &middot; Headline set, 8:00 PM</div>
+            <span class="stub-tag">On sale</span>
+          </div>
+          <div class="stub-action"><a class="btn btn-ticket" href="#booking">Tickets</a></div>
+        </article>
+
+        <article class="stub reveal">
+          <div class="stub-date">
+            <span class="stub-month">Jul</span>
+            <span class="stub-day">26</span>
+            <span class="stub-year">2026</span>
+          </div>
+          <div class="stub-info">
+            <div class="stub-city">Austin, TX</div>
+            <div class="stub-venue">Cap City Comedy Club &middot; 7:30 PM</div>
+            <span class="stub-tag">On sale</span>
+          </div>
+          <div class="stub-action"><a class="btn btn-ticket" href="#booking">Tickets</a></div>
+        </article>
+
+        <article class="stub reveal">
+          <div class="stub-date">
+            <span class="stub-month">Aug</span>
+            <span class="stub-day">15</span>
+            <span class="stub-year">2026</span>
+          </div>
+          <div class="stub-info">
+            <div class="stub-city">Chicago, IL</div>
+            <div class="stub-venue">The Lincoln Lodge &middot; Late show, 10:00 PM</div>
+            <span class="stub-tag">On sale</span>
+          </div>
+          <div class="stub-action"><a class="btn btn-ticket" href="#booking">Tickets</a></div>
+        </article>
+
+        <article class="stub reveal">
+          <div class="stub-date">
+            <span class="stub-month">Aug</span>
+            <span class="stub-day">29</span>
+            <span class="stub-year">2026</span>
+          </div>
+          <div class="stub-info">
+            <div class="stub-city">Brooklyn, NY</div>
+            <div class="stub-venue">Union Hall &middot; Headline set, 8:30 PM</div>
+            <span class="stub-tag">Few left</span>
+          </div>
+          <div class="stub-action"><a class="btn btn-ticket" href="#booking">Tickets</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- WATCH -->
+  <section class="block" id="watch" aria-labelledby="watch-title" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-kicker">Watch</div>
+          <h2 class="section-title" id="watch-title">Clips &amp; the reel</h2>
+          <p class="section-sub">A few minutes that explain everything better than a bio could.</p>
+        </div>
+      </div>
+
+      <div class="clips">
+        <a class="clip reveal" href="#watch" aria-label="Play clip: Talking to the front row (a love story)">
+          <div class="clip-thumb">
+            <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            <span class="clip-dur">2:41</span>
+          </div>
+          <div class="clip-body">
+            <div class="clip-title">Talking to the front row (a love story)</div>
+            <div class="clip-meta">CROWD WORK &middot; ORLANDO</div>
+          </div>
+        </a>
+
+        <a class="clip reveal" href="#watch" aria-label="Play clip: My mom found out I do comedy">
+          <div class="clip-thumb">
+            <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            <span class="clip-dur">3:08</span>
+          </div>
+          <div class="clip-body">
+            <div class="clip-title">My mom found out I do comedy</div>
+            <div class="clip-meta">CROWD WORK &middot; ATLANTA</div>
+          </div>
+        </a>
+
+        <a class="clip reveal" href="#watch" aria-label="Play clip: Roasting a bachelorette party, gently">
+          <div class="clip-thumb">
+            <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            <span class="clip-dur">4:12</span>
+          </div>
+          <div class="clip-body">
+            <div class="clip-title">Roasting a bachelorette party, gently</div>
+            <div class="clip-meta">BIT &middot; NASHVILLE</div>
+          </div>
+        </a>
+
+        <a class="clip reveal" href="#watch" aria-label="Play the full 2026 sizzle reel">
+          <div class="clip-thumb">
+            <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            <span class="clip-dur">1:55</span>
+          </div>
+          <div class="clip-body">
+            <div class="clip-title">The 2026 sizzle reel</div>
+            <div class="clip-meta">HIGHLIGHTS &middot; FULL TOUR</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="block" id="about" aria-labelledby="about-title">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="portrait reveal" role="img" aria-label="Portrait of Dani Cole on stage under a warm spotlight">
+          <span class="silhouette" aria-hidden="true">DC</span>
+          <span class="mic-note">Live at The Abbey, Orlando &middot; photo by Reyes</span>
+        </div>
+        <div class="about-body reveal">
+          <div class="section-kicker">About</div>
+          <h2 class="section-title" id="about-title" style="margin-bottom:18px">The warm one with teeth</h2>
+          <p class="lead">Dani Cole is an Orlando-based stand-up who turns a quiet Tuesday crowd into the best night out a stranger has had in months.</p>
+          <p>Raised between Florida and "wherever the work was," Dani built a reputation the slow way: a thousand open mics, a few brutal road weeks, and a knack for reading a room faster than the room can read itself. She is best known for <strong>crowd work</strong> that feels less like a roast and more like getting adopted by the funniest person at the bar.</p>
+          <p>Her sets are warm but sharp, clean enough for a corporate gala and loose enough for a 10pm basement show. She has opened for national headliners, sold out hometown rooms, and made at least one wedding toast that people still bring up.</p>
+          <div class="facts">
+            <div class="fact"><div class="num">600+</div><div class="lbl">live sets</div></div>
+            <div class="fact"><div class="num">11</div><div class="lbl">cities this tour</div></div>
+            <div class="fact"><div class="num">0</div><div class="lbl">hecklers survived*</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRESS -->
+  <section class="block press" id="press" aria-labelledby="press-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-kicker">Press</div>
+          <h2 class="section-title" id="press-title">What they're saying</h2>
+        </div>
+      </div>
+
+      <div class="quotes">
+        <blockquote class="quote reveal">
+          <p>"Cole works a room like she owns the lease. Effortless, generous, and genuinely, helplessly funny."</p>
+          <cite>— Orlando Weekly</cite>
+        </blockquote>
+        <blockquote class="quote reveal">
+          <p>"The rare comic who can roast you and make you feel chosen. We'd book her again tomorrow."</p>
+          <cite>— The Punchline, Atlanta</cite>
+        </blockquote>
+        <blockquote class="quote reveal">
+          <p>"A crowd-work clinic. I came in skeptical and left texting people about it."</p>
+          <cite>— Sunshine State Comedy Festival</cite>
+        </blockquote>
+        <blockquote class="quote reveal">
+          <p>"Warm, fast, and razor-clean when it counts. A booker's dream."</p>
+          <cite>— Laugh Track Podcast</cite>
+        </blockquote>
+      </div>
+
+      <div class="seen-at reveal">
+        <div class="seen-label">As seen at</div>
+        <div class="logos" aria-label="Venues and festivals">
+          <span>The Punchline</span>
+          <span>Zanies</span>
+          <span>Cap City Comedy</span>
+          <span>Union Hall</span>
+          <span>The Lincoln Lodge</span>
+          <span>Sunshine State Comedy Fest</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING -->
+  <section class="block" id="booking" aria-labelledby="booking-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-kicker">Booking &amp; contact</div>
+          <h2 class="section-title" id="booking-title">Bring Dani to your room</h2>
+          <p class="section-sub">Clubs, festivals, corporate, private events. Tell me about the night and I'll tell you if I'm the right kind of trouble.</p>
+        </div>
+      </div>
+
+      <div class="booking-grid">
+        <div class="booking-intro reveal">
+          <div class="panel">
+            <p style="margin-top:0">Quick and human is best. Drop the date, the city, the room size, and the vibe. Most inquiries hear back within two business days.</p>
+            <div class="contact-card">
+              <div class="contact-row">
+                <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></span>
+                <div>
+                  <div class="k">Booking email</div>
+                  <a class="v" href="mailto:booking@danicolecomedy.com">booking@danicolecomedy.com</a>
+                </div>
+              </div>
+              <div class="contact-row">
+                <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></span>
+                <div>
+                  <div class="k">Home base</div>
+                  <div class="v">Orlando, FL &middot; touring nationally</div>
+                </div>
+              </div>
+              <div class="contact-row">
+                <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2h4a1 1 0 0 1 1 .8l1 5a1 1 0 0 1-.3 1L9 12a13 13 0 0 0 5 5l2-1.7a1 1 0 0 1 1-.2l5 1a1 1 0 0 1 .8 1z"/></svg></span>
+                <div>
+                  <div class="k">Press &amp; media kit</div>
+                  <a class="v" href="mailto:press@danicolecomedy.com">press@danicolecomedy.com</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <div class="panel">
+            <form id="booking-form" novalidate>
+              <div class="field-row">
+                <div class="field">
+                  <label for="bf-name">Your name <span class="req" aria-hidden="true">*</span></label>
+                  <input id="bf-name" name="name" type="text" autocomplete="name" placeholder="Jordan Avery" required />
+                </div>
+                <div class="field">
+                  <label for="bf-org">Venue / organization</label>
+                  <input id="bf-org" name="org" type="text" autocomplete="organization" placeholder="The Comedy Cellar" />
+                </div>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label for="bf-email">Email <span class="req" aria-hidden="true">*</span></label>
+                  <input id="bf-email" name="email" type="email" autocomplete="email" placeholder="you@venue.com" required />
+                </div>
+                <div class="field">
+                  <label for="bf-type">Event type</label>
+                  <div class="select-wrap">
+                    <select id="bf-type" name="type">
+                      <option>Club / theater show</option>
+                      <option>Festival</option>
+                      <option>Corporate / private event</option>
+                      <option>Opener / feature slot</option>
+                      <option>Press / media</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label for="bf-date">Target date</label>
+                  <input id="bf-date" name="date" type="text" placeholder="e.g. Sat, Sep 12 2026" />
+                </div>
+                <div class="field">
+                  <label for="bf-city">City</label>
+                  <input id="bf-city" name="city" type="text" autocomplete="address-level2" placeholder="Tampa, FL" />
+                </div>
+              </div>
+              <div class="field">
+                <label for="bf-msg">Tell me about the night <span class="req" aria-hidden="true">*</span></label>
+                <textarea id="bf-msg" name="message" placeholder="Room size, crowd, set length, budget range, anything I should know..." required></textarea>
+              </div>
+
+              <div class="form-foot">
+                <button type="submit" class="btn btn-primary">Send inquiry</button>
+                <span class="form-note">This is a demo form. Nothing is actually sent.</span>
+              </div>
+
+              <div class="form-success" id="booking-success" role="status" aria-live="polite">
+                <span class="ic" aria-hidden="true">&#10003;</span>
+                <div>
+                  <strong>Got it &mdash; inquiry received.</strong>
+                  <span>Dani (or her very organized inbox) will get back to you within two business days. Thanks for thinking of her.</span>
+                </div>
+              </div>
+            </form>
+
+            <!-- NEWSLETTER -->
+            <div class="news">
+              <h3>Tour list</h3>
+              <p>New cities, presale codes, and the occasional bad pun. No spam, just dates.</p>
+              <form class="news-form" id="news-form" novalidate>
+                <div class="field">
+                  <label for="nf-email">Email address</label>
+                  <input id="nf-email" name="email" type="email" autocomplete="email" placeholder="you@email.com" required />
+                </div>
+                <button type="submit" class="btn btn-ghost">Join the list</button>
+              </form>
+              <p class="news-success" id="news-success" role="status" aria-live="polite">You're on the list. See you in the front row.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="big">Dani Cole</div>
+        <p>Stand-up comedian &middot; crowd-work specialist &middot; Orlando, FL. Available for clubs, festivals, and the occasional very brave wedding.</p>
+      </div>
+      <nav class="socials" aria-label="Social media">
+        <a class="social" href="#booking" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.8.07 1.2.05 1.8.25 2.2.42.6.22 1 .5 1.4.95.45.4.73.83.95 1.4.17.4.37 1 .42 2.2.06 1.2.07 1.6.07 4.8s0 3.6-.07 4.8c-.05 1.2-.25 1.8-.42 2.2a3.8 3.8 0 0 1-.95 1.4c-.4.45-.83.73-1.4.95-.4.17-1 .37-2.2.42-1.2.06-1.6.07-4.8.07s-3.6 0-4.8-.07c-1.2-.05-1.8-.25-2.2-.42a3.8 3.8 0 0 1-1.4-.95 3.8 3.8 0 0 1-.95-1.4c-.17-.4-.37-1-.42-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.8c.05-1.2.25-1.8.42-2.2.22-.6.5-1 .95-1.4.4-.45.83-.73 1.4-.95.4-.17 1-.37 2.2-.42C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.07-.9.04-1.4.2-1.7.32-.43.17-.74.37-1.06.7-.32.3-.52.62-.7 1.05-.12.3-.28.8-.32 1.7C3.45 9 3.45 9.4 3.45 12s0 3 .07 4.2c.04.9.2 1.4.32 1.7.17.43.37.74.7 1.06.3.32.62.52 1.05.7.3.12.8.28 1.7.32 1.2.06 1.6.07 4.7.07s3.5 0 4.7-.07c.9-.04 1.4-.2 1.7-.32.43-.17.74-.37 1.06-.7.32-.3.52-.62.7-1.05.12-.3.28-.8.32-1.7.06-1.2.07-1.6.07-4.2s0-3-.07-4.2c-.04-.9-.2-1.4-.32-1.7a2.8 2.8 0 0 0-.7-1.06 2.8 2.8 0 0 0-1.05-.7c-.3-.12-.8-.28-1.7-.32C15.5 4 15.1 4 12 4zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8zm0 1.8a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2zm5-2.6a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3z"/></svg>
+        </a>
+        <a class="social" href="#booking" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 3c.3 2.1 1.5 3.6 3.5 3.9v2.4c-1.3.1-2.5-.3-3.6-1v6.3c0 3.2-2.4 5.4-5.4 5.4-2.9 0-5.2-2.1-5.2-4.9 0-3 2.4-5 5.3-4.7v2.6c-.4-.1-.8-.2-1.2-.1-1.2.2-2 1.1-1.9 2.4.1 1.2 1.1 2 2.3 2 1.3 0 2.2-1 2.2-2.5V3h3z"/></svg>
+        </a>
+        <a class="social" href="#booking" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 7.5a3 3 0 0 0-2.1-2.1C19 5 12 5 12 5s-7 0-8.9.4A3 3 0 0 0 1 7.5C.6 9.4.6 12 .6 12s0 2.6.4 4.5a3 3 0 0 0 2.1 2.1C5 19 12 19 12 19s7 0 8.9-.4a3 3 0 0 0 2.1-2.1c.4-1.9.4-4.5.4-4.5s0-2.6-.4-4.5zM9.8 15.3V8.7l5.7 3.3-5.7 3.3z"/></svg>
+        </a>
+        <a class="social" href="#booking" aria-label="X (Twitter)">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.2 3h3.3l-7.2 8.3L22.7 21h-6.6l-5.2-6.8L4.9 21H1.6l7.7-8.8L1.3 3h6.8l4.7 6.2L18.2 3zm-1.2 16h1.8L7.1 4.9H5.2L17 19z"/></svg>
+        </a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Dani Cole Comedy. All rights reserved. *Hecklers are technically fine.</span>
+      <a class="credit" href="https://bananabyte.io" target="_blank" rel="noopener">Site by BANANAbyte <span aria-hidden="true">🍌</span></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    // hero load reveal
+    window.addEventListener("load", function () {
+      document.body.classList.add("loaded");
+    });
+    // fallback if load already fired
+    if (document.readyState === "complete") {
+      document.body.classList.add("loaded");
+    }
+
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // scroll reveal
+    var items = document.querySelectorAll(".reveal");
+    if (reduce || !("IntersectionObserver" in window)) {
+      items.forEach(function (el) { el.classList.add("in"); });
+    } else {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry, i) {
+          if (entry.isIntersecting) {
+            var el = entry.target;
+            // small stagger for siblings in view
+            el.style.transitionDelay = Math.min(i * 60, 240) + "ms";
+            el.classList.add("in");
+            io.unobserve(el);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+      items.forEach(function (el) { io.observe(el); });
+    }
+
+    // booking form demo
+    var bForm = document.getElementById("booking-form");
+    var bSuccess = document.getElementById("booking-success");
+    if (bForm) {
+      bForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var name = bForm.querySelector("#bf-name");
+        var email = bForm.querySelector("#bf-email");
+        var msg = bForm.querySelector("#bf-msg");
+        if (!name.value.trim() || !email.value.trim() || !msg.value.trim()) {
+          // nudge the first empty required field
+          [name, email, msg].some(function (f) {
+            if (!f.value.trim()) { f.focus(); return true; }
+            return false;
+          });
+          return;
+        }
+        bForm.querySelector(".form-foot").style.display = "none";
+        bSuccess.classList.add("show");
+        bSuccess.focus && bSuccess.focus();
+      });
+    }
+
+    // newsletter form demo
+    var nForm = document.getElementById("news-form");
+    var nSuccess = document.getElementById("news-success");
+    if (nForm) {
+      nForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var email = nForm.querySelector("#nf-email");
+        if (!email.value.trim()) { email.focus(); return; }
+        nForm.style.display = "none";
+        nSuccess.classList.add("show");
+      });
+    }
+  })();
+</script>
+</body>
+</html>
