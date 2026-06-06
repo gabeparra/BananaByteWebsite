@@ -313,23 +313,43 @@
   .hero-art .frame {
     position: absolute;
     inset: 14px;
-    border: 1px solid var(--sage-deep);
+    border: 1px solid rgba(255, 255, 255, 0.45);
     border-radius: 12px;
     pointer-events: none;
+    z-index: 3;
   }
   .hero-art svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  /* Real photo fills the specimen frame; cover keeps the 4:5 ratio stable. */
+  .hero-art > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+  /* Dark scrim over the photo keeps the overlaid caption AA-readable. */
+  .hero-art::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(31, 58, 44, 0) 38%, rgba(31, 58, 44, 0.78) 100%);
+  }
   .hero-art .caption {
     position: absolute;
     left: 0; bottom: 0; right: 0;
+    z-index: 3;
     padding: 1.4rem 1.1rem 0.95rem;
     font-family: 'Spectral', serif;
     font-style: italic;
     font-size: 0.78rem;
     letter-spacing: 0.02em;
-    color: var(--forest-soft);
-    background: linear-gradient(180deg, transparent, rgba(238, 245, 234, 0.92));
+    color: rgba(243, 248, 240, 0.92);
+    text-shadow: 0 1px 8px rgba(31, 58, 44, 0.55);
   }
-  .hero-art .caption b { font-style: normal; font-family: 'Mulish', sans-serif; font-weight: 800; font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--clay-deep); display: block; margin-bottom: 2px; }
+  .hero-art .caption b { font-style: normal; font-family: 'Mulish', sans-serif; font-weight: 800; font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--butter); display: block; margin-bottom: 2px; }
 
   @media (min-width: 880px) {
     .hero-grid {
@@ -411,6 +431,17 @@
     display: block;
   }
   .card-thumb svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  /* Real photo fills the 16:10 thumb; the gradient class stays as fallback. */
+  .card-thumb > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    transition: transform 0.5s cubic-bezier(.2,.7,.2,1);
+  }
+  .card:hover .card-thumb > img { transform: scale(1.045); }
   .card-thumb .glyph {
     position: absolute;
     inset: 0;
@@ -419,8 +450,17 @@
     font-family: 'Spectral', serif;
     font-size: 2.8rem;
     color: rgba(255,255,255,0.92);
-    text-shadow: 0 2px 14px rgba(31,58,44,0.3);
+    text-shadow: 0 2px 14px rgba(31,58,44,0.55);
+    z-index: 3;
+  }
+  /* Soft scrim under the glyph so it reads over any photo. */
+  .card-thumb::after {
+    content: "";
+    position: absolute;
+    inset: 0;
     z-index: 2;
+    pointer-events: none;
+    background: radial-gradient(circle at 50% 50%, rgba(31, 58, 44, 0.32), rgba(31, 58, 44, 0.06) 62%, transparent 78%);
   }
   .thumb-a { background: linear-gradient(140deg, #7fa478, #3c5a44); }
   .thumb-b { background: linear-gradient(140deg, #9cbf8f, #5a7a52); }
@@ -929,7 +969,8 @@
             </div>
             <a class="text-btn reveal" href="#read" style="--d:380ms">Read the essay <span class="arrow" aria-hidden="true">→</span></a>
           </div>
-          <figure class="hero-art reveal" style="--d:240ms" role="img" aria-label="A botanical study of a eucalyptus sprig framed like a pressed specimen.">
+          <figure class="hero-art reveal" style="--d:240ms">
+            <img src="img/hero.webp" alt="A loaf of fresh sourdough bread" loading="eager" fetchpriority="high" width="1400" height="933" decoding="async" />
             <svg viewBox="0 0 320 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
               <!-- main stem -->
               <path d="M160 360 C150 280 150 200 158 120 C162 90 168 70 172 52" stroke="#3c5a44" stroke-width="3" fill="none" stroke-linecap="round"/>
@@ -973,6 +1014,7 @@
 
           <article class="card reveal" style="--d:80ms">
             <a class="card-thumb thumb-a" href="#read" aria-hidden="true" tabindex="-1">
+              <img src="img/g1.webp" alt="A slow morning coffee" loading="lazy" width="800" height="800" />
               <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice"><g opacity="0.4" stroke="#eaf3e6" stroke-width="1.5" fill="none"><path d="M40 170 C60 120 60 80 90 50"/><path d="M55 130 L75 120 M52 105 L72 98 M55 82 L74 78"/></g></svg>
               <span class="glyph">❦</span>
             </a>
@@ -986,6 +1028,7 @@
 
           <article class="card reveal" style="--d:160ms">
             <a class="card-thumb thumb-b" href="#read" aria-hidden="true" tabindex="-1">
+              <img src="img/g2.webp" alt="A cozy home corner" loading="lazy" width="800" height="800" />
               <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice"><g opacity="0.4" stroke="#eaf3e6" stroke-width="1.5" fill="none"><circle cx="240" cy="70" r="34"/><path d="M240 36 L240 104 M206 70 L274 70 M216 46 L264 94 M264 46 L216 94"/></g></svg>
               <span class="glyph">✿</span>
             </a>
@@ -999,6 +1042,7 @@
 
           <article class="card reveal" style="--d:240ms">
             <a class="card-thumb thumb-c" href="#read" aria-hidden="true" tabindex="-1">
+              <img src="img/g3.webp" alt="Reading by the window" loading="lazy" width="800" height="800" />
               <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice"><g opacity="0.45" stroke="#fff" stroke-width="1.5" fill="none"><path d="M150 150 C150 110 170 90 200 80 M150 150 C150 120 130 95 100 88"/><circle cx="150" cy="150" r="4" fill="#fff"/></g></svg>
               <span class="glyph">☕</span>
             </a>
@@ -1012,6 +1056,7 @@
 
           <article class="card reveal" style="--d:320ms">
             <a class="card-thumb thumb-d" href="#read" aria-hidden="true" tabindex="-1">
+              <img src="img/g4.webp" alt="Plants on the sill" loading="lazy" width="800" height="800" />
               <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice"><g opacity="0.4" stroke="#fff5ec" stroke-width="1.5" fill="none"><circle cx="120" cy="90" r="20"/><circle cx="170" cy="120" r="16"/><circle cx="200" cy="70" r="13"/></g></svg>
               <span class="glyph">❀</span>
             </a>
@@ -1025,6 +1070,7 @@
 
           <article class="card reveal" style="--d:400ms">
             <a class="card-thumb thumb-e" href="#read" aria-hidden="true" tabindex="-1">
+              <img src="img/g5.webp" alt="In the kitchen" loading="lazy" width="800" height="800" />
               <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice"><g opacity="0.4" stroke="#eaf3e6" stroke-width="1.5" fill="none"><path d="M80 160 L80 70 L160 40 L240 70 L240 160"/><path d="M80 100 L240 100 M130 160 L130 110 L190 110 L190 160"/></g></svg>
               <span class="glyph">✦</span>
             </a>
@@ -1038,6 +1084,7 @@
 
           <article class="card reveal" style="--d:480ms">
             <a class="card-thumb thumb-f" href="#read" aria-hidden="true" tabindex="-1">
+              <img src="img/g6.webp" alt="A quiet evening candle" loading="lazy" width="800" height="800" />
               <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice"><g opacity="0.4" stroke="#eaf3e6" stroke-width="1.5" fill="none"><path d="M160 30 C140 80 140 130 160 175 C180 130 180 80 160 30 Z"/><path d="M160 50 L160 165 M160 80 L142 90 M160 80 L178 90 M160 110 L140 122 M160 110 L180 122"/></g></svg>
               <span class="glyph">❧</span>
             </a>

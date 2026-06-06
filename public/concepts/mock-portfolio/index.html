@@ -347,6 +347,15 @@
     border: 1px solid var(--line);
   }
   .frame .tile-grain { position: absolute; inset: 0; opacity: .25; mix-blend-mode: overlay; }
+  /* real photos fill their frame without changing layout */
+  .frame > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
   .frame-main {
     inset: 0 16% 12% 0;
     background:
@@ -354,6 +363,9 @@
       linear-gradient(155deg, #1f3a44 0%, #0f2630 48%, #0a1418 100%);
     box-shadow: 0 0 0 1px rgba(22,227,255,.12), 0 40px 80px rgba(0,0,0,.6);
   }
+  /* cyan tint + dark scrim over the hero photo so any overlay stays readable */
+  .frame-main > img { z-index: 0; }
+  .frame-main .tile-grain { z-index: 2; }
   .frame-main .figure {
     position: absolute;
     left: 50%; bottom: 0;
@@ -379,7 +391,13 @@
   }
   .frame-sub .label {
     position: absolute;
+    z-index: 3;
     left: 12px; bottom: 11px;
+    padding: 3px 8px;
+    border-radius: 2px;
+    background: rgba(5,6,9,.55);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
     font-family: 'JetBrains Mono', monospace;
     color: var(--accent);
     font-size: 12px;
@@ -502,7 +520,29 @@
     .work-card.span-2 { grid-column: span 2; aspect-ratio: 3 / 4; }
   }
   .work-visual { position: absolute; inset: 0; }
-  .work-visual .grain { position: absolute; inset: 0; opacity: .22; mix-blend-mode: overlay; }
+  /* real photo fills the card; scale subtly on hover to match the lift motion */
+  .work-visual > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    z-index: 0;
+    transition: transform .5s cubic-bezier(.2,.7,.2,1);
+  }
+  .work-card:hover .work-visual > img,
+  .work-card:focus-visible .work-visual > img { transform: scale(1.04); }
+  /* readability scrim over the photo, sits under the grain + meta */
+  .work-visual > img + .scrim,
+  .work-visual .scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(5,6,9,.05) 0%, rgba(5,6,9,.0) 38%, rgba(5,6,9,.55) 100%);
+    pointer-events: none;
+  }
+  .work-visual .grain { position: absolute; inset: 0; opacity: .22; mix-blend-mode: overlay; z-index: 2; }
   .w1 { background: linear-gradient(155deg,#163840 0%, #0e2a33 55%, #07151b 100%); }
   .w2 { background: linear-gradient(160deg,#23242e 0%, #15161d 60%, #0b0c11 100%); }
   .w3 { background: linear-gradient(150deg,#1a3c44 0%, #112e36 55%, #081a20 100%); }
@@ -1085,10 +1125,11 @@
             </svg>
           </div>
           <div class="frame frame-main">
-            <div class="figure"></div>
+            <img src="img/hero.webp" alt="A dramatic studio portrait" loading="eager" fetchpriority="high" width="867" height="1300" />
             <div class="tile-grain" style="filter:url(#grain)"></div>
           </div>
           <div class="frame frame-sub">
+            <img src="img/g6.webp" alt="Black-and-white street photography" loading="lazy" width="900" height="900" />
             <span class="label">NO.01</span>
             <div class="tile-grain" style="filter:url(#grain)"></div>
           </div>
@@ -1120,12 +1161,8 @@
         <div class="work-grid">
           <a class="work-card span-3 reveal" style="--d:0ms" href="#contact" aria-label="View project: Sun-Warmed — editorial">
             <div class="work-visual w1">
-              <div class="work-shape">
-                <svg viewBox="0 0 100 100" fill="none" aria-hidden="true">
-                  <circle cx="50" cy="40" r="22" stroke="#16e3ff" stroke-width="1.4" opacity=".85"/>
-                  <path d="M20 78 Q50 58 80 78" stroke="#16e3ff" stroke-width="1.4" opacity=".85"/>
-                </svg>
-              </div>
+              <img src="img/g1.webp" alt="Portrait photography" loading="lazy" width="900" height="900" />
+              <div class="scrim"></div>
               <div class="grain" style="filter:url(#grain)"></div>
             </div>
             <div class="meta">
@@ -1137,12 +1174,8 @@
 
           <a class="work-card span-3 reveal" style="--d:90ms" href="#contact" aria-label="View project: Field Notes — brand campaign">
             <div class="work-visual w2">
-              <div class="work-shape">
-                <svg viewBox="0 0 100 100" fill="none" aria-hidden="true">
-                  <rect x="26" y="26" width="48" height="48" stroke="#16e3ff" stroke-width="1.4" opacity=".85"/>
-                  <line x1="26" y1="50" x2="74" y2="50" stroke="#16e3ff" stroke-width="1.4" opacity=".85"/>
-                </svg>
-              </div>
+              <img src="img/g2.webp" alt="A landscape study" loading="lazy" width="900" height="900" />
+              <div class="scrim"></div>
               <div class="grain" style="filter:url(#grain)"></div>
             </div>
             <div class="meta">
@@ -1154,12 +1187,8 @@
 
           <a class="work-card span-2 reveal" style="--d:180ms" href="#contact" aria-label="View project: The Long Take — portrait series">
             <div class="work-visual w3">
-              <div class="work-shape">
-                <svg viewBox="0 0 100 100" fill="none" aria-hidden="true">
-                  <circle cx="50" cy="50" r="26" stroke="#16e3ff" stroke-width="1.4" opacity=".85"/>
-                  <circle cx="50" cy="50" r="6" fill="#16e3ff" opacity=".85"/>
-                </svg>
-              </div>
+              <img src="img/g3.webp" alt="Architecture photography" loading="lazy" width="900" height="900" />
+              <div class="scrim"></div>
               <div class="grain" style="filter:url(#grain)"></div>
             </div>
             <div class="meta">
@@ -1171,11 +1200,8 @@
 
           <a class="work-card span-2 reveal" style="--d:240ms" href="#contact" aria-label="View project: Citrus Hour — product still life">
             <div class="work-visual w6">
-              <div class="work-shape">
-                <svg viewBox="0 0 100 100" fill="none" aria-hidden="true">
-                  <path d="M30 70 L50 30 L70 70 Z" stroke="#16e3ff" stroke-width="1.4" opacity=".85"/>
-                </svg>
-              </div>
+              <img src="img/g4.webp" alt="A still-life composition" loading="lazy" width="900" height="900" />
+              <div class="scrim"></div>
               <div class="grain" style="filter:url(#grain)"></div>
             </div>
             <div class="meta">
@@ -1187,12 +1213,8 @@
 
           <a class="work-card span-2 reveal" style="--d:300ms" href="#contact" aria-label="View project: After Hours — lookbook">
             <div class="work-visual w5">
-              <div class="work-shape">
-                <svg viewBox="0 0 100 100" fill="none" aria-hidden="true">
-                  <path d="M25 25 L75 75 M75 25 L25 75" stroke="#16e3ff" stroke-width="1.4" opacity=".75"/>
-                  <circle cx="50" cy="50" r="18" stroke="#16e3ff" stroke-width="1.4" opacity=".85"/>
-                </svg>
-              </div>
+              <img src="img/g5.webp" alt="Fashion editorial work" loading="lazy" width="900" height="900" />
+              <div class="scrim"></div>
               <div class="grain" style="filter:url(#grain)"></div>
             </div>
             <div class="meta">
@@ -1204,12 +1226,8 @@
 
           <a class="work-card span-2 reveal" style="--d:360ms" href="#contact" aria-label="View project: Quiet Coast — personal series">
             <div class="work-visual w4">
-              <div class="work-shape">
-                <svg viewBox="0 0 100 100" fill="none" aria-hidden="true">
-                  <path d="M18 60 Q40 40 50 58 T82 56" stroke="#16e3ff" stroke-width="1.4" opacity=".85" fill="none"/>
-                  <circle cx="68" cy="30" r="9" stroke="#16e3ff" stroke-width="1.4" opacity=".85"/>
-                </svg>
-              </div>
+              <img src="img/g6.webp" alt="Black-and-white street photography" loading="lazy" width="900" height="900" />
+              <div class="scrim"></div>
               <div class="grain" style="filter:url(#grain)"></div>
             </div>
             <div class="meta">

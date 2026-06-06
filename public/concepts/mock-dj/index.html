@@ -115,7 +115,13 @@
 
   /* ---- hero ---- */
   .hero{position:relative;padding:72px 0 56px;overflow:hidden}
-  .hero .wrap{position:relative}
+  /* hero photo backdrop + dark scrim for AA-readable overlay text */
+  .hero-photo{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+  .hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%;opacity:.55}
+  .hero-photo::after{content:"";position:absolute;inset:0;background:
+    linear-gradient(180deg,rgba(5,5,12,.55) 0%,rgba(5,5,12,.35) 38%,rgba(5,5,12,.82) 100%),
+    radial-gradient(120% 80% at 15% 40%,rgba(5,5,12,.7),transparent 60%)}
+  .hero .wrap{position:relative;z-index:1}
   .hero .eyebrow{display:flex;align-items:center;gap:12px}
   .hero h1{
     font-size:clamp(3.4rem,17vw,9rem);
@@ -194,11 +200,15 @@
     position:relative;transition:transform .2s,box-shadow .25s,border-color .2s;
   }
   .mix:hover{transform:translateY(-4px);border-color:var(--magenta);box-shadow:0 16px 50px -22px rgba(255,43,214,.7)}
-  .mix .art{height:120px;position:relative;background:
+  .mix .art{height:120px;position:relative;overflow:hidden;background:
     conic-gradient(from 0deg,var(--violet),var(--cyan),var(--magenta),var(--violet));
     background-size:200% 200%;animation:artshift 9s ease infinite}
   @keyframes artshift{0%,100%{background-position:0% 0%}50%{background-position:100% 100%}}
-  .mix .art::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 40%,transparent,rgba(5,5,12,.7))}
+  /* real cover photo sits over the animated gradient (gradient shows as a neon edge accent) */
+  .mix .art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:1}
+  .mix .art::after{content:"";position:absolute;inset:0;z-index:2;background:
+    linear-gradient(160deg,rgba(34,241,255,.18),transparent 45%,rgba(255,43,214,.2)),
+    radial-gradient(circle at 30% 40%,transparent,rgba(5,5,12,.7))}
   .mix .body{padding:18px 20px 22px}
   .mix .tag{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--acid)}
   .mix h3{font-size:1.3rem;margin:6px 0 4px;font-weight:700}
@@ -337,6 +347,9 @@
 <main id="main">
   <!-- HERO -->
   <section class="hero" id="top" aria-labelledby="hero-name">
+    <div class="hero-photo" aria-hidden="true">
+      <img src="img/hero.webp" alt="NOVA at the decks" loading="eager" fetchpriority="high" width="1400" height="933" />
+    </div>
     <div class="pulse-ring" aria-hidden="true"></div>
     <div class="pulse-ring two" aria-hidden="true"></div>
     <div class="wrap">
@@ -407,7 +420,7 @@
 
       <div class="mixgrid">
         <article class="mix">
-          <div class="art" aria-hidden="true"></div>
+          <div class="art" aria-hidden="true"><img src="img/c1.webp" alt="A packed floor" loading="lazy" width="800" height="800" /></div>
           <div class="body">
             <span class="tag">Melodic Techno</span>
             <h3>Midnight Voltage</h3>
@@ -423,7 +436,7 @@
         </article>
 
         <article class="mix">
-          <div class="art" aria-hidden="true"></div>
+          <div class="art" aria-hidden="true"><img src="img/c2.webp" alt="Stage lights" loading="lazy" width="800" height="800" /></div>
           <div class="body">
             <span class="tag">Acid House</span>
             <h3>Chrome Rain</h3>
@@ -439,7 +452,7 @@
         </article>
 
         <article class="mix">
-          <div class="art" aria-hidden="true"></div>
+          <div class="art" aria-hidden="true"><img src="img/c3.webp" alt="The mixer" loading="lazy" width="800" height="800" /></div>
           <div class="body">
             <span class="tag">Progressive</span>
             <h3>Neon Cathedral</h3>
@@ -455,7 +468,7 @@
         </article>
 
         <article class="mix">
-          <div class="art" aria-hidden="true"></div>
+          <div class="art" aria-hidden="true"><img src="img/c4.webp" alt="After dark" loading="lazy" width="800" height="800" /></div>
           <div class="body">
             <span class="tag">Dark Disco</span>
             <h3>Afterhours Mirage</h3>

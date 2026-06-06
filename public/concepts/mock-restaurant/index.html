@@ -147,20 +147,30 @@
   }
   .chip b{color:var(--sun);font-weight:500}
 
-  /* plate art (CSS) */
+  /* plate art (photo on a festive ring) */
   .plate{
     position:relative;aspect-ratio:1;max-width:430px;margin-inline:auto;width:100%;
     border-radius:50%;
     background:
-      radial-gradient(circle at 50% 50%, #fff 0 46%, transparent 47%),
       conic-gradient(from 0deg, var(--sun), var(--pink), var(--teal), var(--cactus-bright), var(--chili), var(--sun));
     border:6px solid var(--ink);box-shadow:0 18px 0 rgba(0,0,0,.4);
-    display:grid;place-items:center;animation:spin 32s linear infinite;
+    display:grid;place-items:center;
+    animation:spin 60s linear infinite;
   }
-  .plate::before{
-    content:"";position:absolute;inset:14%;border-radius:50%;background:#fffaf0;border:4px solid #ffe2b0;
+  .plate .plate-photo{
+    position:absolute;inset:9%;z-index:2;border-radius:50%;overflow:hidden;
+    border:5px solid #fffaf0;box-shadow:0 0 0 4px var(--ink) inset;
   }
-  .plate .tacos{position:relative;z-index:2;font-size:clamp(3.5rem,12vw,6rem);filter:drop-shadow(0 6px 6px rgba(0,0,0,.25));text-align:center}
+  .plate .plate-photo img{
+    width:100%;height:100%;display:block;object-fit:cover;
+    /* counter-rotate so the photo stays upright while the ring spins */
+    animation:spin-rev 60s linear infinite;
+  }
+  .plate .plate-photo::after{
+    /* subtle scrim toward the stamp corner for legibility */
+    content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;
+    background:radial-gradient(circle at 78% 84%, rgba(0,0,0,.34), transparent 42%);
+  }
   .plate .stamp{
     position:absolute;z-index:3;bottom:6%;right:2%;
     width:118px;height:118px;border-radius:50%;
@@ -170,7 +180,8 @@
     box-shadow:0 6px 0 var(--ink);padding:.4rem;
   }
   @keyframes spin{to{transform:rotate(360deg)}}
-  @media (prefers-reduced-motion: reduce){ .plate{animation:none} }
+  @keyframes spin-rev{to{transform:rotate(-360deg)}}
+  @media (prefers-reduced-motion: reduce){ .plate,.plate .plate-photo img{animation:none} }
 
   /* marquee strip */
   .strip{background:var(--sun);color:var(--ink);border-block:3px solid var(--ink);overflow:hidden;white-space:nowrap}
@@ -295,7 +306,8 @@
   .tile:hover{transform:rotate(-2deg) scale(1.03)}
   @media (prefers-reduced-motion: reduce){ .tile,.tile:hover{transition:none;transform:none} }
   .tile .emoji{font-size:clamp(2.2rem,7vw,3.4rem);filter:drop-shadow(0 4px 4px rgba(0,0,0,.3))}
-  .tile .cap{position:absolute;left:0;right:0;bottom:0;padding:.45rem .6rem;font-family:"DM Mono",monospace;font-size:.7rem;background:rgba(16,16,15,.7);color:var(--cream)}
+  .tile .photo{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;display:block}
+  .tile .cap{position:absolute;z-index:2;left:0;right:0;bottom:0;padding:.45rem .6rem;font-family:"DM Mono",monospace;font-size:.7rem;background:rgba(16,16,15,.7);color:var(--cream)}
   .tile.t1{background:linear-gradient(135deg,var(--sun),var(--chili))}
   .tile.t2{background:linear-gradient(135deg,var(--teal),var(--cactus-bright))}
   .tile.t3{background:linear-gradient(135deg,var(--pink),var(--chili))}
@@ -458,8 +470,10 @@
       </div>
 
       <div>
-        <div class="plate" role="img" aria-label="A colorful plate of tacos spinning on a festive table">
-          <div class="tacos" aria-hidden="true">🌮🌮</div>
+        <div class="plate">
+          <div class="plate-photo">
+            <img src="img/hero.webp" alt="Street tacos" loading="eager" fetchpriority="high" width="1400" height="933" />
+          </div>
           <div class="stamp" aria-hidden="true">SINCE<br>2014</div>
         </div>
       </div>
@@ -751,11 +765,11 @@
       </div>
 
       <div class="gallery">
-        <div class="tile t1" role="img" aria-label="Plate of al pastor tacos with pineapple"><span class="emoji" aria-hidden="true">🌮</span><span class="cap">Al pastor, fresh off the trompo</span></div>
-        <div class="tile t2" role="img" aria-label="Frosted margarita with lime"><span class="emoji" aria-hidden="true">🍹</span><span class="cap">House margarita</span></div>
-        <div class="tile t3" role="img" aria-label="Grilled street corn elote"><span class="emoji" aria-hidden="true">🌽</span><span class="cap">Street elote</span></div>
-        <div class="tile t4" role="img" aria-label="Bowl of guacamole and chips"><span class="emoji" aria-hidden="true">🥑</span><span class="cap">Guac, smashed to order</span></div>
-        <div class="tile t5" role="img" aria-label="Spicy red chili peppers"><span class="emoji" aria-hidden="true">🌶️</span><span class="cap">Salsa roja, roasted daily</span></div>
+        <div class="tile t1"><img class="photo" src="img/d1.webp" alt="Fresh guacamole" loading="lazy" width="800" height="800" /><span class="cap">Guac, smashed to order</span></div>
+        <div class="tile t2"><img class="photo" src="img/d2.webp" alt="House margarita" loading="lazy" width="800" height="800" /><span class="cap">House margarita</span></div>
+        <div class="tile t3"><img class="photo" src="img/d3.webp" alt="The dining room" loading="lazy" width="800" height="603" /><span class="cap">Inside the cantina</span></div>
+        <div class="tile t4"><img class="photo" src="img/d4.webp" alt="Loaded nachos" loading="lazy" width="800" height="800" /><span class="cap">Loaded nachos</span></div>
+        <div class="tile t5"><img class="photo" src="img/d5.webp" alt="Tacos al pastor" loading="lazy" width="800" height="800" /><span class="cap">Al pastor, fresh off the trompo</span></div>
         <div class="tile t6" role="img" aria-label="Cinnamon sugar churros"><span class="emoji" aria-hidden="true">🥖</span><span class="cap">Churros con chocolate</span></div>
         <div class="tile t7" role="img" aria-label="Glass of agua fresca"><span class="emoji" aria-hidden="true">🍋</span><span class="cap">Agua de jamaica</span></div>
         <div class="tile t8" role="img" aria-label="Birria bowl with consommé"><span class="emoji" aria-hidden="true">🍲</span><span class="cap">Birria &amp; consomé</span></div>

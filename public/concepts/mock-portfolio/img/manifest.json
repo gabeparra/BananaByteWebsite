@@ -1,0 +1,44 @@
+{
+ "hero": {
+  "file": "img/hero.webp",
+  "w": 867,
+  "h": 1300,
+  "alt": "A dramatic studio portrait"
+ },
+ "g1": {
+  "file": "img/g1.webp",
+  "w": 900,
+  "h": 900,
+  "alt": "Portrait photography"
+ },
+ "g2": {
+  "file": "img/g2.webp",
+  "w": 900,
+  "h": 900,
+  "alt": "A landscape study"
+ },
+ "g3": {
+  "file": "img/g3.webp",
+  "w": 900,
+  "h": 900,
+  "alt": "Architecture photography"
+ },
+ "g4": {
+  "file": "img/g4.webp",
+  "w": 900,
+  "h": 900,
+  "alt": "A still-life composition"
+ },
+ "g5": {
+  "file": "img/g5.webp",
+  "w": 900,
+  "h": 900,
+  "alt": "Fashion editorial work"
+ },
+ "g6": {
+  "file": "img/g6.webp",
+  "w": 900,
+  "h": 900,
+  "alt": "Black-and-white street photography"
+ }
+}

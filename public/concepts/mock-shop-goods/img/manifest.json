@@ -1,0 +1,44 @@
+{
+ "hero": {
+  "file": "img/hero.webp",
+  "w": 1300,
+  "h": 867,
+  "alt": "Hand-poured candles"
+ },
+ "p1": {
+  "file": "img/p1.webp",
+  "w": 800,
+  "h": 800,
+  "alt": "A signature candle"
+ },
+ "p2": {
+  "file": "img/p2.webp",
+  "w": 800,
+  "h": 800,
+  "alt": "Whole-bean coffee"
+ },
+ "p3": {
+  "file": "img/p3.webp",
+  "w": 800,
+  "h": 800,
+  "alt": "A fresh cup"
+ },
+ "p4": {
+  "file": "img/p4.webp",
+  "w": 800,
+  "h": 800,
+  "alt": "Handmade soap"
+ },
+ "p5": {
+  "file": "img/p5.webp",
+  "w": 800,
+  "h": 800,
+  "alt": "Loose-leaf tea"
+ },
+ "p6": {
+  "file": "img/p6.webp",
+  "w": 800,
+  "h": 800,
+  "alt": "Incense"
+ }
+}

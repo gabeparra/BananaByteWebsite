@@ -1,0 +1,32 @@
+{
+ "hero": {
+  "file": "img/hero.webp",
+  "w": 1400,
+  "h": 933,
+  "alt": "NOVA at the decks"
+ },
+ "c1": {
+  "file": "img/c1.webp",
+  "w": 800,
+  "h": 800,
+  "alt": "A packed floor"
+ },
+ "c2": {
+  "file": "img/c2.webp",
+  "w": 800,
+  "h": 800,
+  "alt": "Stage lights"
+ },
+ "c3": {
+  "file": "img/c3.webp",
+  "w": 800,
+  "h": 800,
+  "alt": "The mixer"
+ },
+ "c4": {
+  "file": "img/c4.webp",
+  "w": 800,
+  "h": 800,
+  "alt": "After dark"
+ }
+}

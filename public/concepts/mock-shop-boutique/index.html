@@ -404,17 +404,22 @@
       radial-gradient(120% 80% at 30% 0%, rgba(255,255,255,0.28), transparent 55%),
       linear-gradient(155deg, var(--violet) 0%, var(--violet-deep) 50%, var(--ink) 100%);
   }
+  .hero-frame.main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 18%;
+  }
+  /* Dark scrim over the hero photo so the overlaid tag/copy stay readable */
   .hero-frame.main::after {
     content: "";
     position: absolute;
-    left: 50%;
-    bottom: -2px;
-    width: 58%;
-    height: 66%;
-    transform: translateX(-50%);
+    inset: 0;
     background:
-      linear-gradient(180deg, rgba(255,255,255,0.16), rgba(21,16,31,0.3));
-    clip-path: polygon(50% 0, 78% 30%, 70% 100%, 30% 100%, 22% 30%);
+      linear-gradient(155deg, rgba(76,29,149,0.32) 0%, transparent 42%),
+      linear-gradient(0deg, rgba(21,16,31,0.5) 0%, transparent 46%);
+    z-index: 2;
+    pointer-events: none;
   }
   .hero-frame.accent {
     width: 46%;
@@ -425,12 +430,19 @@
     background: linear-gradient(150deg, var(--magenta) 0%, var(--magenta-deep) 100%);
     border: 6px solid var(--bg);
   }
+  .hero-frame.accent img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
   .hero-frame.accent::after {
     content: "";
     position: absolute;
-    inset: 16% 24% 0;
-    background: linear-gradient(180deg, rgba(255,255,255,0.3), transparent 70%);
-    clip-path: polygon(50% 0, 70% 40%, 62% 100%, 38% 100%, 30% 40%);
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.18), rgba(184,0,95,0.22) 100%);
+    z-index: 2;
+    pointer-events: none;
   }
   .hero-tag {
     position: absolute;
@@ -545,8 +557,16 @@
     transition: transform 0.55s ease;
   }
   .card:hover .card-img .scene { transform: scale(1.05); }
-  /* CSS "garment" placeholder shapes */
-  .scene::before {
+  /* Real product photo fills the scene container */
+  .scene img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+  /* CSS "garment" placeholder shapes — only on cards without a photo */
+  .scene:not(.has-img)::before {
     content: "";
     position: absolute;
     left: 50%;
@@ -671,16 +691,25 @@
       linear-gradient(155deg, var(--magenta) 0%, var(--violet) 55%, var(--violet-deep) 100%);
     overflow: hidden;
   }
+  /* Real bestseller photo fills the art block */
+  .featured-art img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+  }
+  /* Brand-tinted scrim keeps the ribbon + corners readable over the photo */
   .featured-art::after {
     content: "";
     position: absolute;
-    left: 50%;
-    bottom: -6%;
-    width: 50%;
-    height: 80%;
-    transform: translateX(-50%);
-    background: linear-gradient(180deg, rgba(255,255,255,0.28), rgba(21,16,31,0.28));
-    clip-path: polygon(50% 0, 74% 24%, 66% 100%, 34% 100%, 26% 24%);
+    inset: 0;
+    z-index: 1;
+    background:
+      linear-gradient(150deg, rgba(230,0,126,0.22) 0%, transparent 45%),
+      linear-gradient(180deg, rgba(21,16,31,0.35) 0%, transparent 35%, transparent 60%, rgba(21,16,31,0.4) 100%);
+    pointer-events: none;
   }
   .featured-ribbon {
     position: absolute;
@@ -1186,8 +1215,12 @@
 
         <div class="hero-art reveal" style="--d:240ms" aria-hidden="true">
           <span class="hero-orbit"></span>
-          <div class="hero-frame main"></div>
-          <div class="hero-frame accent"></div>
+          <div class="hero-frame main">
+            <img src="img/hero.webp" alt="" width="867" height="1300" loading="eager" fetchpriority="high" />
+          </div>
+          <div class="hero-frame accent">
+            <img src="img/p5.webp" alt="" width="800" height="1200" loading="lazy" />
+          </div>
           <div class="hero-tag">
             <span class="dot"></span> Structured wool · Statement cut
           </div>
@@ -1211,7 +1244,7 @@
           <!-- Cards injected via JS for clean add-to-cart wiring; static fallback below for no-JS -->
           <noscript>
             <article class="card">
-              <div class="card-img"><span class="badge new">New</span><div class="scene s2" role="img" aria-label="Voltage Satin Shirt product photo"></div></div>
+              <div class="card-img"><span class="badge new">New</span><div class="scene has-img s2"><img src="img/p6.webp" alt="A silk blouse" loading="lazy" width="800" height="800" /></div></div>
               <div class="card-body">
                 <span class="card-cat">Tops</span>
                 <h3 class="card-name">Voltage Satin Shirt</h3>
@@ -1219,7 +1252,7 @@
               </div>
             </article>
             <article class="card">
-              <div class="card-img"><div class="scene s6" role="img" aria-label="Static Mohair Sweater product photo"></div></div>
+              <div class="card-img"><div class="scene has-img s6"><img src="img/p5.webp" alt="A knit piece" loading="lazy" width="800" height="1200" /></div></div>
               <div class="card-body">
                 <span class="card-cat">Knits</span>
                 <h3 class="card-name">Static Mohair Sweater</h3>
@@ -1227,7 +1260,7 @@
               </div>
             </article>
             <article class="card">
-              <div class="card-img"><div class="scene s3" role="img" aria-label="Bias-Cut Slip Skirt product photo"></div></div>
+              <div class="card-img"><div class="scene has-img s3"><img src="img/p1.webp" alt="A signature dress" loading="lazy" width="800" height="1200" /></div></div>
               <div class="card-body">
                 <span class="card-cat">Tailoring</span>
                 <h3 class="card-name">Bias-Cut Slip Skirt</h3>
@@ -1235,7 +1268,7 @@
               </div>
             </article>
             <article class="card">
-              <div class="card-img"><span class="badge sale">Sale</span><div class="scene s1" role="img" aria-label="Magenta Wrap Blouse product photo"></div></div>
+              <div class="card-img"><span class="badge sale">Sale</span><div class="scene has-img s1"><img src="img/p6.webp" alt="A silk blouse" loading="lazy" width="800" height="800" /></div></div>
               <div class="card-body">
                 <span class="card-cat">Tops</span>
                 <h3 class="card-name">Magenta Wrap Blouse</h3>
@@ -1243,7 +1276,7 @@
               </div>
             </article>
             <article class="card">
-              <div class="card-img"><div class="scene s4" role="img" aria-label="Sharp Wide-Leg Trouser product photo"></div></div>
+              <div class="card-img"><div class="scene has-img s4"><img src="img/p5.webp" alt="A knit piece" loading="lazy" width="800" height="1200" /></div></div>
               <div class="card-body">
                 <span class="card-cat">Tailoring</span>
                 <h3 class="card-name">Sharp Wide-Leg Trouser</h3>
@@ -1251,7 +1284,7 @@
               </div>
             </article>
             <article class="card">
-              <div class="card-img"><span class="badge new">New</span><div class="scene s7" role="img" aria-label="Liquid Silk Scarf product photo"></div></div>
+              <div class="card-img"><span class="badge new">New</span><div class="scene has-img s7"><img src="img/p4.webp" alt="Gold jewelry" loading="lazy" width="800" height="800" /></div></div>
               <div class="card-body">
                 <span class="card-cat">Accessories</span>
                 <h3 class="card-name">Liquid Silk Scarf</h3>
@@ -1259,7 +1292,7 @@
               </div>
             </article>
             <article class="card">
-              <div class="card-img"><div class="scene s8" role="img" aria-label="Volume Puffer Coat product photo"></div></div>
+              <div class="card-img"><div class="scene has-img s8"><img src="img/p3.webp" alt="Heeled shoes" loading="lazy" width="800" height="800" /></div></div>
               <div class="card-body">
                 <span class="card-cat">Outerwear</span>
                 <h3 class="card-name">Volume Puffer Coat</h3>
@@ -1267,7 +1300,7 @@
               </div>
             </article>
             <article class="card">
-              <div class="card-img"><span class="badge sale">Sale</span><div class="scene s5" role="img" aria-label="Hardware Strap Tote product photo"></div></div>
+              <div class="card-img"><span class="badge sale">Sale</span><div class="scene has-img s5"><img src="img/p2.webp" alt="A leather handbag" loading="lazy" width="800" height="800" /></div></div>
               <div class="card-body">
                 <span class="card-cat">Accessories</span>
                 <h3 class="card-name">Hardware Strap Tote</h3>
@@ -1285,7 +1318,8 @@
       <div class="wrap">
         <div class="featured reveal" style="--d:0ms">
           <div class="featured-grid">
-            <div class="featured-art" aria-hidden="true">
+            <div class="featured-art">
+              <img src="img/p1.webp" alt="A signature dress" loading="lazy" width="800" height="1200" />
               <span class="featured-ribbon">★ Bestseller</span>
             </div>
             <div class="featured-body">
@@ -1509,14 +1543,22 @@
 
       /* ---------- Product data ---------- */
       var products = [
-        { name: "Voltage Satin Shirt", cat: "Tops", price: 118, scene: "s2", badge: "new", swatches: ["#6d28d9","#c4b1ec","#15101f"] },
-        { name: "Static Mohair Sweater", cat: "Knits", price: 164, scene: "s6", badge: null, swatches: ["#4c1d95","#e6007e","#6d28d9"] },
-        { name: "Bias-Cut Slip Skirt", cat: "Tailoring", price: 136, scene: "s3", badge: null, swatches: ["#c4b1ec","#4c1d95"] },
-        { name: "Magenta Wrap Blouse", cat: "Tops", price: 98, was: 128, scene: "s1", badge: "sale", swatches: ["#e6007e","#c4b1ec","#15101f"] },
-        { name: "Sharp Wide-Leg Trouser", cat: "Tailoring", price: 152, scene: "s4", badge: null, swatches: ["#15101f","#6d28d9","#e6007e"] },
-        { name: "Liquid Silk Scarf", cat: "Accessories", price: 68, scene: "s7", badge: "new", swatches: ["#e6007e","#a01b8d","#c4b1ec"] },
-        { name: "Volume Puffer Coat", cat: "Outerwear", price: 268, scene: "s8", badge: null, swatches: ["#4a4458","#6d28d9"] },
-        { name: "Hardware Strap Tote", cat: "Accessories", price: 92, was: 124, scene: "s5", badge: "sale", swatches: ["#b8005f","#c4b1ec"] }
+        { name: "Voltage Satin Shirt", cat: "Tops", price: 118, scene: "s2", badge: "new", swatches: ["#6d28d9","#c4b1ec","#15101f"],
+          img: "img/p6.webp", alt: "A silk blouse", w: 800, h: 800 },
+        { name: "Static Mohair Sweater", cat: "Knits", price: 164, scene: "s6", badge: null, swatches: ["#4c1d95","#e6007e","#6d28d9"],
+          img: "img/p5.webp", alt: "A knit piece", w: 800, h: 1200 },
+        { name: "Bias-Cut Slip Skirt", cat: "Tailoring", price: 136, scene: "s3", badge: null, swatches: ["#c4b1ec","#4c1d95"],
+          img: "img/p1.webp", alt: "A signature dress", w: 800, h: 1200 },
+        { name: "Magenta Wrap Blouse", cat: "Tops", price: 98, was: 128, scene: "s1", badge: "sale", swatches: ["#e6007e","#c4b1ec","#15101f"],
+          img: "img/p6.webp", alt: "A silk blouse", w: 800, h: 800 },
+        { name: "Sharp Wide-Leg Trouser", cat: "Tailoring", price: 152, scene: "s4", badge: null, swatches: ["#15101f","#6d28d9","#e6007e"],
+          img: "img/p5.webp", alt: "A knit piece", w: 800, h: 1200 },
+        { name: "Liquid Silk Scarf", cat: "Accessories", price: 68, scene: "s7", badge: "new", swatches: ["#e6007e","#a01b8d","#c4b1ec"],
+          img: "img/p4.webp", alt: "Gold jewelry", w: 800, h: 800 },
+        { name: "Volume Puffer Coat", cat: "Outerwear", price: 268, scene: "s8", badge: null, swatches: ["#4a4458","#6d28d9"],
+          img: "img/p3.webp", alt: "Heeled shoes", w: 800, h: 800 },
+        { name: "Hardware Strap Tote", cat: "Accessories", price: 92, was: 124, scene: "s5", badge: "sale", swatches: ["#b8005f","#c4b1ec"],
+          img: "img/p2.webp", alt: "A leather handbag", w: 800, h: 800 }
       ];
 
       var grid = document.getElementById("productGrid");
@@ -1539,10 +1581,16 @@
           return '<span style="background:' + c + '"></span>';
         }).join("");
 
+        var sceneHtml = p.img
+          ? '<div class="scene has-img ' + p.scene + '">' +
+              '<img src="' + p.img + '" alt="' + p.alt + '" loading="lazy" width="' + p.w + '" height="' + p.h + '" />' +
+            '</div>'
+          : '<div class="scene ' + p.scene + '" role="img" aria-label="' + p.name + ' product photo"></div>';
+
         card.innerHTML =
           '<div class="card-img">' +
             badgeHtml +
-            '<div class="scene ' + p.scene + '" role="img" aria-label="' + p.name + ' product photo"></div>' +
+            sceneHtml +
           '</div>' +
           '<div class="card-body">' +
             '<span class="card-cat">' + p.cat + '</span>' +

@@ -1,0 +1,32 @@
+{
+ "hero": {
+  "file": "img/hero.webp",
+  "w": 867,
+  "h": 1300,
+  "alt": "Marveau on stage"
+ },
+ "c1": {
+  "file": "img/c1.webp",
+  "w": 800,
+  "h": 532,
+  "alt": "A card flourish"
+ },
+ "c2": {
+  "file": "img/c2.webp",
+  "w": 800,
+  "h": 533,
+  "alt": "The theatre"
+ },
+ "c3": {
+  "file": "img/c3.webp",
+  "w": 800,
+  "h": 500,
+  "alt": "Mystery and smoke"
+ },
+ "c4": {
+  "file": "img/c4.webp",
+  "w": 800,
+  "h": 534,
+  "alt": "Sleight of hand"
+ }
+}

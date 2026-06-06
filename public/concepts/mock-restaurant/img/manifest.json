@@ -1,0 +1,38 @@
+{
+ "hero": {
+  "file": "img/hero.webp",
+  "w": 1400,
+  "h": 933,
+  "alt": "Street tacos"
+ },
+ "d1": {
+  "file": "img/d1.webp",
+  "w": 800,
+  "h": 800,
+  "alt": "Fresh guacamole"
+ },
+ "d2": {
+  "file": "img/d2.webp",
+  "w": 800,
+  "h": 800,
+  "alt": "House margarita"
+ },
+ "d3": {
+  "file": "img/d3.webp",
+  "w": 800,
+  "h": 603,
+  "alt": "The dining room"
+ },
+ "d4": {
+  "file": "img/d4.webp",
+  "w": 800,
+  "h": 800,
+  "alt": "Loaded nachos"
+ },
+ "d5": {
+  "file": "img/d5.webp",
+  "w": 800,
+  "h": 800,
+  "alt": "Tacos al pastor"
+ }
+}

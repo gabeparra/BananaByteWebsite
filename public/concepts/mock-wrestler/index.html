@@ -625,11 +625,22 @@
     place-items: center;
     overflow: hidden;
   }
+  .clip-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
   .clip-thumb::before {
     content: "";
     position: absolute;
     inset: 0;
+    z-index: 1;
+    pointer-events: none;
     background-image:
+      linear-gradient(to top, rgba(10,12,16,0.55), rgba(10,12,16,0.12) 45%, rgba(10,12,16,0.18)),
       repeating-linear-gradient(115deg, rgba(255,255,255,0.04) 0 3px, transparent 3px 22px);
   }
   .ct-1 { background: linear-gradient(135deg, #2a313f, #11141b 70%), radial-gradient(circle at 30% 30%, rgba(231,181,60,0.25), transparent 50%); }
@@ -711,8 +722,25 @@
     line-height: 0.8;
     position: relative;
   }
+  .portrait-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  .portrait::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(to top, rgba(10,12,16,0.78) 0%, rgba(10,12,16,0.32) 28%, transparent 52%);
+  }
   .portrait .tape {
     position: absolute;
+    z-index: 2;
     bottom: 18px; left: 18px; right: 18px;
     background: rgba(10,12,16,0.7);
     border-left: 3px solid var(--gold);
@@ -1392,6 +1420,7 @@
 
         <a class="clip reveal" style="--d:0ms" href="#highlights" data-clip="Cold Front Powerbomb — Title Win">
           <div class="clip-thumb ct-1">
+            <img class="clip-photo" src="img/c1.webp" alt="Ringside" loading="lazy" width="800" height="497" />
             <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
             <span class="clip-dur">2:41</span>
           </div>
@@ -1403,6 +1432,7 @@
 
         <a class="clip reveal" style="--d:90ms" href="#highlights" data-clip="60-Minute Iron Man Draw">
           <div class="clip-thumb ct-2">
+            <img class="clip-photo" src="img/c2.webp" alt="A roaring crowd" loading="lazy" width="800" height="528" />
             <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
             <span class="clip-dur">3:18</span>
           </div>
@@ -1414,6 +1444,7 @@
 
         <a class="clip reveal" style="--d:180ms" href="#highlights" data-clip="Cage Dive Onto the Champ">
           <div class="clip-thumb ct-3">
+            <img class="clip-photo" src="img/c3.webp" alt="Training day" loading="lazy" width="800" height="534" />
             <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
             <span class="clip-dur">1:54</span>
           </div>
@@ -1425,6 +1456,7 @@
 
         <a class="clip reveal" style="--d:270ms" href="#highlights" data-clip="Rumble Final Two">
           <div class="clip-thumb ct-4">
+            <img class="clip-photo" src="img/c4.webp" alt="The championship" loading="lazy" width="800" height="533" />
             <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
             <span class="clip-dur">2:07</span>
           </div>
@@ -1442,8 +1474,8 @@
   <section class="band" id="bio" aria-labelledby="bio-title">
     <div class="wrap">
       <div class="bio-grid">
-        <div class="portrait reveal" role="img" aria-label="Stylized portrait placeholder of Rico 'The Avalanche' Marsh, a heavyweight wrestler">
-          <span class="portrait-mark" aria-hidden="true">RM</span>
+        <div class="portrait reveal">
+          <img class="portrait-photo" src="img/hero.webp" alt="The Avalanche" loading="eager" fetchpriority="high" width="867" height="1300" />
           <div class="tape" aria-hidden="true">
             <strong>RICO MARSH</strong>
             <span>The Avalanche · #34</span>

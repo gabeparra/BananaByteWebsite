@@ -179,14 +179,27 @@
     animation:breathe 7s ease-in-out infinite;
   }
   .float-card{
-    position:relative; z-index:3;
-    width:min(190px,46vw); aspect-ratio:5/7; border-radius:14px;
+    position:relative; z-index:3; overflow:hidden;
+    width:min(230px,56vw); aspect-ratio:5/7; border-radius:14px;
     background:linear-gradient(155deg, #2a1659, #150a33 60%, #0c0722);
     border:1px solid rgba(217,179,107,.55);
     box-shadow:var(--shadow), inset 0 0 30px rgba(141,94,196,.25);
     display:grid; place-items:center;
     animation:levitate 5.5s ease-in-out infinite;
   }
+  .float-card .hero-photo{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; object-position:50% 28%;
+    z-index:1;
+  }
+  /* Dark scrim over the hero photo so the gold corner pips read AA-clear */
+  .float-card::after{
+    content:""; position:absolute; inset:0; z-index:2; pointer-events:none;
+    background:
+      linear-gradient(180deg, rgba(6,6,15,.34) 0%, transparent 28% 64%, rgba(6,6,15,.58) 100%),
+      radial-gradient(120% 90% at 50% 30%, transparent 55%, rgba(6,6,15,.45));
+  }
+  .float-card .corner, .float-card .satellite, .float-card .satellite2{ z-index:3; }
   .float-card .corner{ position:absolute; font-family:"Cinzel Decorative",serif; font-weight:900; color:var(--gold); font-size:1.4rem; }
   .float-card .corner.tl{ top:.6rem; left:.7rem; }
   .float-card .corner.br{ bottom:.6rem; right:.7rem; transform:rotate(180deg); }
@@ -282,6 +295,12 @@
   .vid-2 .scene{ background:radial-gradient(circle at 50% 38%, #3a64b8, #14224f 55%, #07101f); }
   .vid-3 .scene{ background:radial-gradient(circle at 50% 38%, #b06a8c, #4a1d3e 55%, #14071a); }
   .vid-4 .scene{ background:radial-gradient(circle at 50% 38%, #c79a4e, #5a3c14 55%, #1a1206); }
+  .vid-card .scene img{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; object-position:center;
+    display:block;
+  }
+  .vid-card:hover .scene img{ transform:none; }
   .vid-card .scene::after{
     content:""; position:absolute; inset:0;
     background:repeating-linear-gradient(115deg, rgba(255,255,255,.05) 0 1px, transparent 1px 9px);
@@ -521,19 +540,19 @@
       </div>
 
       <div class="hero-visual">
-        <div class="stage" role="img" aria-label="A levitating playing card glowing with a golden ace, surrounded by twinkling gold sparkles.">
+        <div class="stage">
           <div class="orb" aria-hidden="true"></div>
           <span class="sparkle s1" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.4 8.1L22 12l-7.6 3.9L12 24l-2.4-8.1L2 12l7.6-3.9z"/></svg></span>
           <span class="sparkle s2" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.4 8.1L22 12l-7.6 3.9L12 24l-2.4-8.1L2 12l7.6-3.9z"/></svg></span>
           <span class="sparkle s3" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.4 8.1L22 12l-7.6 3.9L12 24l-2.4-8.1L2 12l7.6-3.9z"/></svg></span>
           <span class="sparkle s4" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.4 8.1L22 12l-7.6 3.9L12 24l-2.4-8.1L2 12l7.6-3.9z"/></svg></span>
           <span class="sparkle s5" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.4 8.1L22 12l-7.6 3.9L12 24l-2.4-8.1L2 12l7.6-3.9z"/></svg></span>
-          <div class="float-card" aria-hidden="true">
-            <span class="corner tl">A&#9824;</span>
-            <span class="pip">&#9824;</span>
-            <span class="corner br">A&#9824;</span>
-            <span class="satellite"></span>
-            <span class="satellite2"></span>
+          <div class="float-card">
+            <img class="hero-photo" src="img/hero.webp" alt="Marveau on stage" loading="eager" fetchpriority="high" width="867" height="1300" />
+            <span class="corner tl" aria-hidden="true">A&#9824;</span>
+            <span class="corner br" aria-hidden="true">A&#9824;</span>
+            <span class="satellite" aria-hidden="true"></span>
+            <span class="satellite2" aria-hidden="true"></span>
           </div>
         </div>
       </div>
@@ -613,7 +632,7 @@
 
       <div class="watch-grid">
         <article class="vid-card vid-1">
-          <div class="scene" aria-hidden="true"></div>
+          <div class="scene"><img src="img/c1.webp" alt="A card flourish" loading="lazy" width="800" height="532" /></div>
           <span class="runtime">3:12</span>
           <button class="play" type="button" aria-pressed="false" aria-label="Play the illusion: The Borrowed Ring">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
@@ -626,7 +645,7 @@
         </article>
 
         <article class="vid-card vid-2">
-          <div class="scene" aria-hidden="true"></div>
+          <div class="scene"><img src="img/c2.webp" alt="The theatre" loading="lazy" width="800" height="533" /></div>
           <span class="runtime">2:48</span>
           <button class="play" type="button" aria-pressed="false" aria-label="Play the illusion: The Floating Quill">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
@@ -639,7 +658,7 @@
         </article>
 
         <article class="vid-card vid-3">
-          <div class="scene" aria-hidden="true"></div>
+          <div class="scene"><img src="img/c3.webp" alt="Mystery and smoke" loading="lazy" width="800" height="500" /></div>
           <span class="runtime">4:05</span>
           <button class="play" type="button" aria-pressed="false" aria-label="Play the illusion: The Mind Reader's Deck">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
@@ -652,7 +671,7 @@
         </article>
 
         <article class="vid-card vid-4">
-          <div class="scene" aria-hidden="true"></div>
+          <div class="scene"><img src="img/c4.webp" alt="Sleight of hand" loading="lazy" width="800" height="534" /></div>
           <span class="runtime">5:30</span>
           <button class="play" type="button" aria-pressed="false" aria-label="Play the illusion: The Vanishing Hour">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>

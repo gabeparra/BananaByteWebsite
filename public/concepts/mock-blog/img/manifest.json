@@ -1,0 +1,44 @@
+{
+ "hero": {
+  "file": "img/hero.webp",
+  "w": 1400,
+  "h": 933,
+  "alt": "A loaf of fresh sourdough bread"
+ },
+ "g1": {
+  "file": "img/g1.webp",
+  "w": 800,
+  "h": 800,
+  "alt": "A slow morning coffee"
+ },
+ "g2": {
+  "file": "img/g2.webp",
+  "w": 800,
+  "h": 800,
+  "alt": "A cozy home corner"
+ },
+ "g3": {
+  "file": "img/g3.webp",
+  "w": 800,
+  "h": 800,
+  "alt": "Reading by the window"
+ },
+ "g4": {
+  "file": "img/g4.webp",
+  "w": 800,
+  "h": 800,
+  "alt": "Plants on the sill"
+ },
+ "g5": {
+  "file": "img/g5.webp",
+  "w": 800,
+  "h": 800,
+  "alt": "In the kitchen"
+ },
+ "g6": {
+  "file": "img/g6.webp",
+  "w": 800,
+  "h": 800,
+  "alt": "A quiet evening candle"
+ }
+}

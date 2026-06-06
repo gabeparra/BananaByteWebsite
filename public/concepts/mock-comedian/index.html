@@ -245,6 +245,41 @@
 
   /* ---------- Hero ---------- */
   .hero { position: relative; overflow: hidden; padding-top: clamp(2.5rem, 6vw, 4rem); }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      /* light paper-tinted scrim keeps dark ink text AA-readable over the photo */
+      linear-gradient(100deg, rgba(255,244,230,.96) 0%, rgba(255,244,230,.9) 38%, rgba(255,244,230,.55) 62%, rgba(255,244,230,.32) 100%),
+      url('img/hero.webp');
+    background-size: cover;
+    background-position: center right;
+    background-repeat: no-repeat;
+    z-index: 0;
+    pointer-events: none;
+  }
+  @media (max-width: 939px) {
+    /* single-column: stronger scrim so text stays readable over the full-bleed photo */
+    .hero::before {
+      background-image:
+        linear-gradient(180deg, rgba(255,244,230,.93) 0%, rgba(255,244,230,.86) 55%, rgba(255,244,230,.9) 100%),
+        url('img/hero.webp');
+      background-position: center top;
+    }
+  }
+  .hero > .hero-grid { position: relative; z-index: 1; }
+  /* High-priority loader for the hero background; visually hidden, no layout impact */
+  .hero-preload {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+    top: 0;
+    left: 0;
+  }
   .hero-grid {
     display: grid;
     gap: 2.5rem;
@@ -457,12 +492,24 @@
   .clip:nth-child(2) .clip-thumb { background: linear-gradient(135deg, var(--grape), var(--hot)); }
   .clip:nth-child(3) .clip-thumb { background: linear-gradient(135deg, var(--tang), var(--acid)); }
   .clip:nth-child(4) .clip-thumb { background: linear-gradient(135deg, #2b1066, var(--grape)); }
+  .clip-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    z-index: 0;
+  }
   .clip-thumb::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: repeating-linear-gradient(0deg, transparent 0 11px, rgba(0,0,0,.07) 11px 12px);
+    background:
+      repeating-linear-gradient(0deg, transparent 0 11px, rgba(0,0,0,.07) 11px 12px),
+      radial-gradient(circle at 50% 50%, rgba(26,14,46,.18), rgba(26,14,46,.42));
     pointer-events: none;
+    z-index: 1;
   }
   .play-btn {
     width: 62px; height: 62px;
@@ -861,6 +908,7 @@
 <main id="main">
   <!-- HERO -->
   <section class="hero" id="top">
+    <img src="img/hero.webp" alt="" aria-hidden="true" loading="eager" fetchpriority="high" width="1400" height="935" class="hero-preload" />
     <div class="wrap hero-grid">
       <div>
         <p class="tag reveal" style="--d:60ms">Live · Loud · Unscripted — Orlando, FL</p>
@@ -1014,6 +1062,7 @@
       <div class="clip-grid">
         <article class="clip reveal" style="--d:60ms">
           <div class="clip-thumb">
+            <img src="img/c1.webp" alt="A laughing crowd" loading="lazy" width="800" height="533" class="clip-img" />
             <button class="play-btn" data-play="The Nacho Incident" aria-label="Play clip: The Nacho Incident">
               <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5v14l12-7L7 5Z" fill="#1a0e2e"/></svg>
             </button>
@@ -1027,6 +1076,7 @@
 
         <article class="clip reveal" style="--d:130ms">
           <div class="clip-thumb">
+            <img src="img/c2.webp" alt="The mic, ready" loading="lazy" width="800" height="532" class="clip-img" />
             <button class="play-btn" data-play="So… What Do You Do?" aria-label="Play clip: So What Do You Do">
               <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5v14l12-7L7 5Z" fill="#1a0e2e"/></svg>
             </button>
@@ -1040,6 +1090,7 @@
 
         <article class="clip reveal" style="--d:200ms">
           <div class="clip-thumb">
+            <img src="img/c3.webp" alt="The spotlight" loading="lazy" width="800" height="631" class="clip-img" />
             <button class="play-btn" data-play="First Date in Row One" aria-label="Play clip: First Date in Row One">
               <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5v14l12-7L7 5Z" fill="#1a0e2e"/></svg>
             </button>
@@ -1053,6 +1104,7 @@
 
         <article class="clip reveal" style="--d:270ms">
           <div class="clip-thumb">
+            <img src="img/c4.webp" alt="A packed room" loading="lazy" width="800" height="590" class="clip-img" />
             <button class="play-btn" data-play="Closing the Bar Tab" aria-label="Play clip: Closing the Bar Tab">
               <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5v14l12-7L7 5Z" fill="#1a0e2e"/></svg>
             </button>

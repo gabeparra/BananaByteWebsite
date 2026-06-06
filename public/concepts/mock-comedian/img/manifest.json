@@ -1,0 +1,32 @@
+{
+ "hero": {
+  "file": "img/hero.webp",
+  "w": 1400,
+  "h": 935,
+  "alt": "On stage at the mic"
+ },
+ "c1": {
+  "file": "img/c1.webp",
+  "w": 800,
+  "h": 533,
+  "alt": "A laughing crowd"
+ },
+ "c2": {
+  "file": "img/c2.webp",
+  "w": 800,
+  "h": 532,
+  "alt": "The mic, ready"
+ },
+ "c3": {
+  "file": "img/c3.webp",
+  "w": 800,
+  "h": 631,
+  "alt": "The spotlight"
+ },
+ "c4": {
+  "file": "img/c4.webp",
+  "w": 800,
+  "h": 590,
+  "alt": "A packed room"
+ }
+}

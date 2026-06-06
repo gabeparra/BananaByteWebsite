@@ -1,0 +1,44 @@
+{
+ "hero": {
+  "file": "img/hero.webp",
+  "w": 867,
+  "h": 1300,
+  "alt": "Model wearing the collection"
+ },
+ "p1": {
+  "file": "img/p1.webp",
+  "w": 800,
+  "h": 1200,
+  "alt": "A signature dress"
+ },
+ "p2": {
+  "file": "img/p2.webp",
+  "w": 800,
+  "h": 800,
+  "alt": "A leather handbag"
+ },
+ "p3": {
+  "file": "img/p3.webp",
+  "w": 800,
+  "h": 800,
+  "alt": "Heeled shoes"
+ },
+ "p4": {
+  "file": "img/p4.webp",
+  "w": 800,
+  "h": 800,
+  "alt": "Gold jewelry"
+ },
+ "p5": {
+  "file": "img/p5.webp",
+  "w": 800,
+  "h": 1200,
+  "alt": "A knit piece"
+ },
+ "p6": {
+  "file": "img/p6.webp",
+  "w": 800,
+  "h": 800,
+  "alt": "A silk blouse"
+ }
+}

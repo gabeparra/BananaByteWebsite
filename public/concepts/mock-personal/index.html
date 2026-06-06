@@ -331,53 +331,23 @@
     display: grid;
     place-items: end center;
   }
+  .portrait .photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
   .portrait::before {
     content: "";
     position: absolute;
     inset: 0;
-    background:
-      radial-gradient(circle at 22% 78%, rgba(255, 90, 71, 0.35), transparent 42%);
-    pointer-events: none;
-  }
-  /* CSS-built portrait silhouette */
-  .portrait .figure {
-    width: 78%;
-    height: 88%;
-    position: relative;
-    align-self: end;
     z-index: 1;
-  }
-  .portrait .head {
-    position: absolute;
-    left: 50%;
-    top: 8%;
-    transform: translateX(-50%);
-    width: 38%;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background: linear-gradient(160deg, #ffe0c6, #e9b48f);
-    box-shadow: inset -6px -8px 16px rgba(120, 80, 50, 0.25);
-  }
-  .portrait .shoulders {
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%);
-    width: 96%;
-    height: 56%;
-    border-radius: 46% 46% 0 0 / 90% 90% 0 0;
-    background: linear-gradient(160deg, #2b2f6e, #181a40);
-  }
-  .portrait .collar {
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%);
-    width: 30%;
-    height: 30%;
-    background: linear-gradient(160deg, #ffffff, #e7ebfb);
-    clip-path: polygon(50% 0, 100% 100%, 0 100%);
-    border-radius: 8px;
+    background:
+      radial-gradient(circle at 22% 78%, rgba(255, 90, 71, 0.22), transparent 42%),
+      linear-gradient(to top, rgba(27, 29, 82, 0.42), rgba(27, 29, 82, 0.04) 42%, transparent 62%);
+    pointer-events: none;
   }
   .badge-card {
     position: absolute;
@@ -486,25 +456,21 @@
     display: grid;
     place-items: end center;
   }
+  .about-portrait .photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
   .about-portrait::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 80% 88%, rgba(27, 29, 82, 0.28), transparent 46%);
+    z-index: 1;
+    background: radial-gradient(circle at 80% 88%, rgba(27, 29, 82, 0.18), transparent 46%);
     pointer-events: none;
-  }
-  .about-portrait .figure { width: 76%; height: 90%; position: relative; align-self: end; z-index: 1; }
-  .about-portrait .head {
-    position: absolute; left: 50%; top: 10%; transform: translateX(-50%);
-    width: 40%; aspect-ratio: 1; border-radius: 50%;
-    background: linear-gradient(160deg, #ffe0c6, #e9b48f);
-    box-shadow: inset -6px -8px 16px rgba(120,80,50,0.25);
-  }
-  .about-portrait .shoulders {
-    position: absolute; left: 50%; bottom: 0; transform: translateX(-50%);
-    width: 96%; height: 52%;
-    border-radius: 46% 46% 0 0 / 90% 90% 0 0;
-    background: linear-gradient(160deg, #2b2f6e, #181a40);
   }
   .credentials {
     display: grid;
@@ -1047,12 +1013,8 @@
         </div>
 
         <div class="hero-visual reveal" style="--delay:300ms">
-          <div class="portrait" role="img" aria-label="Portrait of Marcus Webb, leadership and career coach, smiling in a dark blazer">
-            <div class="figure">
-              <span class="head" aria-hidden="true"></span>
-              <span class="shoulders" aria-hidden="true"></span>
-              <span class="collar" aria-hidden="true"></span>
-            </div>
+          <div class="portrait">
+            <img class="photo" src="img/portrait.webp" alt="A professional portrait of the coach" loading="eager" fetchpriority="high" width="867" height="1300" />
           </div>
           <div class="badge-card badge-1" aria-hidden="true">
             <span class="ico">🎯</span>
@@ -1081,11 +1043,8 @@
     <!-- ===== About / credentials ===== -->
     <section class="section about" id="about" aria-labelledby="about-title">
       <div class="wrap about-grid">
-        <div class="about-portrait reveal" role="img" aria-label="Marcus Webb leaning against a desk during a coaching session">
-          <div class="figure">
-            <span class="head" aria-hidden="true"></span>
-            <span class="shoulders" aria-hidden="true"></span>
-          </div>
+        <div class="about-portrait reveal">
+          <img class="photo" src="img/about.webp" alt="A coaching conversation" loading="lazy" width="1100" height="733" />
         </div>
         <div>
           <p class="eyebrow reveal">Meet your coach</p>

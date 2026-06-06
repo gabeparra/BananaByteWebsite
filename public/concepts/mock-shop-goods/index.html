@@ -234,6 +234,16 @@
     box-shadow:8px 8px 0 var(--mustard);
     overflow:hidden;
   }
+  .hero-art .panel img{
+    position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;display:block;
+  }
+  /* dark scrim over hero photo for depth + AA-readable overlays */
+  .hero-art .panel::after{
+    content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:linear-gradient(160deg,rgba(12,43,37,.18) 0%,rgba(12,43,37,0) 38%,rgba(12,43,37,.42) 100%);
+  }
+  .hero-art .panel .arc{z-index:2;}
   .hero-art .arc{
     position:absolute;width:62%;aspect-ratio:1/.5;left:50%;top:-1px;transform:translateX(-50%);
     background:var(--mustard);border-radius:0 0 999px 999px;
@@ -304,13 +314,19 @@
   }
   .card:hover{transform:translate(-3px,-3px);box-shadow:7px 7px 0 var(--teal);}
   .thumb{aspect-ratio:4/3;position:relative;overflow:hidden;border-bottom:2px solid var(--pine);}
+  .thumb img{
+    position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;display:block;z-index:1;
+    transition:transform .35s ease;
+  }
+  .card:hover .thumb img{transform:scale(1.04);}
   .thumb .glyph{
     position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
     font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:3rem;color:rgba(255,255,255,.9);
     text-shadow:0 3px 0 rgba(12,43,37,.35);
   }
   .thumb .badge{
-    position:absolute;top:12px;left:12px;
+    position:absolute;top:12px;left:12px;z-index:3;
     font-family:"DM Mono",monospace;font-size:.6rem;letter-spacing:.1em;
     text-transform:uppercase;background:var(--tomato);color:var(--cream-warm);
     padding:.38em .7em;border-radius:999px;border:2px solid var(--pine);
@@ -346,10 +362,10 @@
   .t-moss{background:linear-gradient(150deg,#5e8a4a,var(--pine));}
   .t-honey{background:linear-gradient(150deg,var(--mustard),var(--mustard-deep));}
   .thumb::before{
-    content:"";position:absolute;inset:0;z-index:1;
+    content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
     background:
-      radial-gradient(circle at 50% 120%, rgba(250,243,225,.35), transparent 46%),
-      radial-gradient(circle at 30% 22%,rgba(255,255,255,.22),transparent 52%);
+      radial-gradient(circle at 50% 120%, rgba(250,243,225,.18), transparent 46%),
+      radial-gradient(circle at 30% 22%,rgba(255,255,255,.12),transparent 52%);
   }
 
   /* ---------- Featured ---------- */
@@ -639,6 +655,7 @@
       </div>
       <div class="hero-art reveal" style="--d:240ms" aria-hidden="true">
         <div class="panel">
+          <img src="img/hero.webp" alt="Hand-poured candles" loading="eager" fetchpriority="high" width="1300" height="867" />
           <span class="arc"></span>
         </div>
         <span class="bean bean-1"></span>
@@ -671,7 +688,7 @@
       <div class="grid">
 
         <article class="card reveal" style="--d:0ms">
-          <div class="thumb t-spice"><span class="badge">Bestseller</span><span class="glyph" aria-hidden="true">A</span></div>
+          <div class="thumb t-spice"><img src="img/p1.webp" alt="A signature candle" loading="lazy" width="800" height="800" /><span class="badge">Bestseller</span></div>
           <div class="card-body">
             <h3>Autumn Hearth</h3>
             <p class="scent">Clove · Amber · Roasted Chestnut</p>
@@ -684,7 +701,7 @@
         </article>
 
         <article class="card reveal" style="--d:80ms">
-          <div class="thumb t-cedar"><span class="glyph" aria-hidden="true">C</span></div>
+          <div class="thumb t-cedar"><img src="img/p2.webp" alt="Whole-bean coffee" loading="lazy" width="800" height="800" /></div>
           <div class="card-body">
             <h3>Smoked Cedar</h3>
             <p class="scent">Cedarwood · Vetiver · Black Tea</p>
@@ -697,7 +714,7 @@
         </article>
 
         <article class="card reveal" style="--d:160ms">
-          <div class="thumb t-roast"><span class="badge">Small lot</span><span class="glyph" aria-hidden="true">E</span></div>
+          <div class="thumb t-roast"><img src="img/p3.webp" alt="A fresh cup" loading="lazy" width="800" height="800" /><span class="badge">Small lot</span></div>
           <div class="card-body">
             <h3>Ember Roast — Whole Bean</h3>
             <p class="scent">Ethiopia Guji · Light-Medium · 12oz</p>
@@ -710,7 +727,7 @@
         </article>
 
         <article class="card reveal" style="--d:0ms">
-          <div class="thumb t-fig"><span class="glyph" aria-hidden="true">F</span></div>
+          <div class="thumb t-fig"><img src="img/p4.webp" alt="Handmade soap" loading="lazy" width="800" height="800" /></div>
           <div class="card-body">
             <h3>Wild Fig &amp; Oak</h3>
             <p class="scent">Fig · Oakmoss · Warm Vanilla</p>
@@ -723,7 +740,7 @@
         </article>
 
         <article class="card reveal" style="--d:80ms">
-          <div class="thumb t-moss"><span class="glyph" aria-hidden="true">M</span></div>
+          <div class="thumb t-moss"><img src="img/p5.webp" alt="Loose-leaf tea" loading="lazy" width="800" height="800" /></div>
           <div class="card-body">
             <h3>Morning Moss</h3>
             <p class="scent">Eucalyptus · Mint · Petrichor</p>
@@ -736,7 +753,7 @@
         </article>
 
         <article class="card reveal" style="--d:160ms">
-          <div class="thumb t-honey"><span class="badge">New</span><span class="glyph" aria-hidden="true">H</span></div>
+          <div class="thumb t-honey"><img src="img/p6.webp" alt="Incense" loading="lazy" width="800" height="800" /><span class="badge">New</span></div>
           <div class="card-body">
             <h3>Honey &amp; Tobacco Leaf</h3>
             <p class="scent">Wildflower Honey · Tonka · Leather</p>

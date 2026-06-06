@@ -1,0 +1,32 @@
+{
+ "hero": {
+  "file": "img/hero.webp",
+  "w": 867,
+  "h": 1300,
+  "alt": "The Avalanche"
+ },
+ "c1": {
+  "file": "img/c1.webp",
+  "w": 800,
+  "h": 497,
+  "alt": "Ringside"
+ },
+ "c2": {
+  "file": "img/c2.webp",
+  "w": 800,
+  "h": 528,
+  "alt": "A roaring crowd"
+ },
+ "c3": {
+  "file": "img/c3.webp",
+  "w": 800,
+  "h": 534,
+  "alt": "Training day"
+ },
+ "c4": {
+  "file": "img/c4.webp",
+  "w": 800,
+  "h": 533,
+  "alt": "The championship"
+ }
+}
