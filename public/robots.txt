@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /concepts/
+Disallow: /api/
 
 Sitemap: https://bananabyte.io/sitemap.xml
