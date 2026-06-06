@@ -508,8 +508,9 @@
   html[data-mode="performer"] .work{background:linear-gradient(170deg,var(--panel-2),var(--panel))}
   .work:hover{transform:translateY(-5px);border-color:var(--line-strong)}
   html[data-mode="performer"] .work:hover{box-shadow:var(--shadow)}
-  .work-shot{position:relative;aspect-ratio:16/11;overflow:hidden;border-bottom:1px solid var(--line)}
+  .work-shot{position:relative;aspect-ratio:16/10;overflow:hidden;border-bottom:1px solid var(--line)}
   .work-shot svg{width:100%;height:100%;display:block}
+  .work-shot img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
   .work-cat{
     position:absolute;left:12px;top:12px;z-index:2;
     font-family:var(--font-display);font-weight:600;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
@@ -540,9 +541,10 @@
   .work-body h3{font-size:1.14rem;font-weight:600}
   html[data-mode="performer"] .work-body h3{font-family:var(--font-fraunces);font-size:1.28rem}
   .work-body p{color:var(--ink-soft);font-size:.92rem;margin-top:8px;flex:1}
-  .work-stat{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:.82rem;color:var(--ink-mute)}
-  .work-stat b{color:var(--accent);font-family:var(--font-display);font-size:.95rem}
-  html[data-mode="performer"] .work-stat b{color:var(--ink-soft);font-family:var(--font-body)}
+  .work-view{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-family:var(--font-display);font-weight:600;font-size:.85rem;color:var(--accent)}
+  html[data-mode="performer"] .work-view{font-family:var(--font-body);color:var(--honey,var(--accent))}
+  .work-view .arrow{transition:transform .25s var(--ease)}
+  .work:hover .work-view .arrow{transform:translateX(3px)}
   .work-more{margin-top:clamp(28px,4vw,40px);display:flex;justify-content:flex-start}
 
   /* ============================================================
@@ -921,99 +923,49 @@
       <div class="wrap">
         <div class="sec-head" data-reveal>
           <span class="eyebrow">Selected work</span>
-          <h2 id="b-work-h">An online store and a local business — both fast, both owned.</h2>
-          <p>Two real projects with very different needs, built one-on-one with the same care.</p>
+          <h2 id="b-work-h">Sample builds you can click into.</h2>
+          <p>A few demo sites built to show the range — open any to explore the real thing (opens in a new tab).</p>
         </div>
         <div class="work-grid">
 
           <!-- Online store -->
-          <article class="work" data-reveal>
+          <a class="work" href="/concepts/mock-shop-goods/" target="_blank" rel="noopener" data-reveal>
             <div class="work-shot">
               <span class="work-cat shop">Online store</span>
-              <svg viewBox="0 0 320 220" role="img" aria-label="Mockup of the Reedy Creek Coffee Co. online store: a product grid with prices and an Add to cart button.">
-                <rect width="320" height="220" fill="#1B1E24"/>
-                <rect x="0" y="0" width="320" height="34" fill="#15181D"/>
-                <rect x="18" y="13" width="64" height="9" rx="3" fill="#3a3f49"/>
-                <rect x="250" y="11" width="52" height="14" rx="4" fill="#F5C800"/>
-                <rect x="18" y="50" width="84" height="76" rx="8" fill="#23272f" stroke="rgba(255,255,255,.09)"/>
-                <rect x="118" y="50" width="84" height="76" rx="8" fill="#23272f" stroke="rgba(255,255,255,.09)"/>
-                <rect x="218" y="50" width="84" height="76" rx="8" fill="#23272f" stroke="rgba(245,200,0,.45)"/>
-                <circle cx="60" cy="80" r="16" fill="#2f343d"/><circle cx="160" cy="80" r="16" fill="#2f343d"/><circle cx="260" cy="80" r="16" fill="#3a3320"/>
-                <rect x="30" y="106" width="40" height="6" rx="3" fill="#4a505b"/>
-                <rect x="130" y="106" width="40" height="6" rx="3" fill="#4a505b"/>
-                <rect x="230" y="106" width="40" height="6" rx="3" fill="#F5C800"/>
-                <rect x="18" y="146" width="284" height="52" rx="9" fill="#15181D" stroke="rgba(255,255,255,.09)"/>
-                <rect x="32" y="162" width="120" height="8" rx="4" fill="#4a505b"/>
-                <rect x="32" y="178" width="80" height="7" rx="3" fill="#33373f"/>
-                <rect x="214" y="160" width="74" height="24" rx="6" fill="#F5C800"/>
-              </svg>
+              <img src="/work/thumbs/mock-shop-goods.jpg" alt="Ember &amp; Oak demo site" loading="lazy" width="1280" height="800">
             </div>
             <div class="work-body">
-              <h3>Reedy Creek Coffee Co.</h3>
-              <p>A small-batch roaster going from a paper order list to a real shop. Product pages, subscriptions, and one-tap checkout that finally works on mobile.</p>
-              <div class="work-stat"><b>+38%</b> online orders in the first month</div>
+              <h3>Ember &amp; Oak</h3>
+              <p>A warm, retro candle &amp; coffee shop with a product grid, cart and subscriptions.</p>
+              <span class="work-view">View demo <span class="arrow" aria-hidden="true">→</span></span>
             </div>
-          </article>
+          </a>
 
-          <!-- Local business -->
-          <article class="work" data-reveal>
+          <!-- Restaurant -->
+          <a class="work" href="/concepts/mock-restaurant/" target="_blank" rel="noopener" data-reveal>
             <div class="work-shot">
-              <span class="work-cat">Local business</span>
-              <svg viewBox="0 0 320 220" role="img" aria-label="Mockup of Mills Ave Dental homepage: a hero headline, a Book appointment button, and a map block.">
-                <rect width="320" height="220" fill="#1B1E24"/>
-                <rect x="0" y="0" width="320" height="34" fill="#15181D"/>
-                <rect x="18" y="13" width="58" height="9" rx="3" fill="#3a3f49"/>
-                <rect x="200" y="13" width="30" height="8" rx="3" fill="#33373f"/>
-                <rect x="240" y="13" width="30" height="8" rx="3" fill="#33373f"/>
-                <rect x="18" y="54" width="170" height="13" rx="4" fill="#4a505b"/>
-                <rect x="18" y="74" width="130" height="13" rx="4" fill="#4a505b"/>
-                <rect x="18" y="100" width="200" height="7" rx="3" fill="#33373f"/>
-                <rect x="18" y="113" width="160" height="7" rx="3" fill="#33373f"/>
-                <rect x="18" y="138" width="96" height="26" rx="7" fill="#F5C800"/>
-                <rect x="232" y="54" width="70" height="110" rx="10" fill="#23272f" stroke="rgba(255,255,255,.09)"/>
-                <path d="M232 120 L256 96 L280 120 L302 100 L302 164 L232 164 Z" fill="#2b3038"/>
-                <circle cx="267" cy="100" r="7" fill="#F5C800"/>
-                <rect x="18" y="184" width="284" height="20" rx="6" fill="#15181D" stroke="rgba(255,255,255,.09)"/>
-              </svg>
+              <span class="work-cat">Restaurant</span>
+              <img src="/work/thumbs/mock-restaurant.jpg" alt="Taco Loco demo site" loading="lazy" width="1280" height="800">
             </div>
             <div class="work-body">
-              <h3>Mills Ave Dental</h3>
-              <p>A neighborhood dental office that needed to look as modern as it is. Clear services, online booking, and directions that load instantly on a phone in the waiting room.</p>
-              <div class="work-stat"><b>2.4×</b> more booking requests</div>
+              <h3>Taco Loco</h3>
+              <p>A vibrant taqueria site with the menu, a photo gallery and table reservations.</p>
+              <span class="work-view">View demo <span class="arrow" aria-hidden="true">→</span></span>
             </div>
-          </article>
+          </a>
 
-          <!-- Service business -->
-          <article class="work" data-reveal>
+          <!-- Coaching -->
+          <a class="work" href="/concepts/mock-personal/" target="_blank" rel="noopener" data-reveal>
             <div class="work-shot">
-              <span class="work-cat">Service business</span>
-              <svg viewBox="0 0 320 220" role="img" aria-label="Mockup of Lakeside HVAC site: a headline, a Request a quote button, and a list of service rows.">
-                <rect width="320" height="220" fill="#1B1E24"/>
-                <rect x="0" y="0" width="320" height="34" fill="#15181D"/>
-                <rect x="18" y="13" width="70" height="9" rx="3" fill="#3a3f49"/>
-                <rect x="244" y="11" width="58" height="14" rx="4" fill="#F5C800"/>
-                <rect x="18" y="52" width="150" height="12" rx="4" fill="#4a505b"/>
-                <rect x="18" y="70" width="110" height="12" rx="4" fill="#4a505b"/>
-                <rect x="18" y="102" width="284" height="26" rx="7" fill="#15181D" stroke="rgba(255,255,255,.09)"/>
-                <rect x="30" y="111" width="44" height="8" rx="3" fill="#F5C800"/>
-                <rect x="90" y="111" width="110" height="8" rx="3" fill="#4a505b"/>
-                <rect x="244" y="108" width="46" height="14" rx="5" fill="#2f343d"/>
-                <rect x="18" y="136" width="284" height="26" rx="7" fill="#15181D" stroke="rgba(255,255,255,.09)"/>
-                <rect x="30" y="145" width="44" height="8" rx="3" fill="#5a606b"/>
-                <rect x="90" y="145" width="96" height="8" rx="3" fill="#4a505b"/>
-                <rect x="244" y="142" width="46" height="14" rx="5" fill="#2f343d"/>
-                <rect x="18" y="170" width="284" height="26" rx="7" fill="#15181D" stroke="rgba(255,255,255,.09)"/>
-                <rect x="30" y="179" width="44" height="8" rx="3" fill="#5a606b"/>
-                <rect x="90" y="179" width="86" height="8" rx="3" fill="#4a505b"/>
-                <rect x="244" y="176" width="46" height="14" rx="5" fill="#2f343d"/>
-              </svg>
+              <span class="work-cat">Coaching</span>
+              <img src="/work/thumbs/mock-personal.jpg" alt="Marcus Webb demo site" loading="lazy" width="1280" height="800">
             </div>
             <div class="work-body">
-              <h3>Lakeside HVAC</h3>
-              <p>A home-services company drowning in phone tag. Now: clear service pages, a quote request form that lands in their inbox, and trust signals that close the deal before the first call.</p>
-              <div class="work-stat"><b>+61%</b> quote requests per month</div>
+              <h3>Marcus Webb</h3>
+              <p>A bright personal-brand site for a coach: clear packages, testimonials and booking.</p>
+              <span class="work-view">View demo <span class="arrow" aria-hidden="true">→</span></span>
             </div>
-          </article>
+          </a>
 
         </div>
         <div class="work-more" data-reveal>
@@ -1154,55 +1106,46 @@
       <div class="wrap">
         <div class="sec-head" data-reveal>
           <span class="eyebrow">Headliners</span>
-          <h2 id="p-work-h">A touring comic who stopped losing fans to broken links.</h2>
-          <p>A small, honest sample — each one fast, owned outright, and built one-on-one with no account managers in between.</p>
+          <h2 id="p-work-h">Demo sites built for the stage.</h2>
+          <p>Sample sites for performers — tap any to open the live demo.</p>
         </div>
         <div class="work-grid">
 
-          <article class="work" data-reveal>
+          <a class="work" href="/concepts/mock-comedian/" target="_blank" rel="noopener" data-reveal>
             <div class="work-shot">
               <span class="work-cat spotlight">Stand-up comedian</span>
-              <div class="stage t-comedy" role="img" aria-label="Preview of Theo Vance's stand-up comedy site">
-                <span class="marquee-edge" aria-hidden="true"></span>
-                <span class="stage-title">Theo Vance<br>Live!</span>
-              </div>
+              <img src="/work/thumbs/mock-comedian.jpg" alt="Dani Cole demo site" loading="lazy" width="1280" height="800">
             </div>
             <div class="work-body">
-              <h3>Theo Vance — personal site</h3>
-              <p>A touring stand-up who kept losing fans to broken ticket links. Now: a self-updating tour list, embedded clips, a press kit, and one button that always points to the right show.</p>
-              <div class="work-stat"><b>0</b> dead links since launch</div>
+              <h3>Dani Cole</h3>
+              <p>A high-energy comedian site with tour dates, clips and venue booking.</p>
+              <span class="work-view">View demo <span class="arrow" aria-hidden="true">→</span></span>
             </div>
-          </article>
+          </a>
 
-          <article class="work" data-reveal>
+          <a class="work" href="/concepts/mock-dj/" target="_blank" rel="noopener" data-reveal>
             <div class="work-shot">
-              <span class="work-cat">Comedy club</span>
-              <div class="stage t-club" role="img" aria-label="Preview of The Side Door comedy club site">
-                <span class="marquee-edge" aria-hidden="true"></span>
-                <span class="stage-title">The<br>Side Door</span>
-              </div>
+              <span class="work-cat">DJ / producer</span>
+              <img src="/work/thumbs/mock-dj.jpg" alt="NOVA demo site" loading="lazy" width="1280" height="800">
             </div>
             <div class="work-body">
-              <h3>The Side Door (comedy club)</h3>
-              <p>A neighborhood club that needed a lineup people could read on their phones, plus tickets for the weekend rush. Tonight’s show is always one tap away.</p>
-              <div class="work-stat"><b>3×</b> online ticket sales</div>
+              <h3>NOVA</h3>
+              <p>A neon nightclub site with an animated visualizer, gig list and bookings.</p>
+              <span class="work-view">View demo <span class="arrow" aria-hidden="true">→</span></span>
             </div>
-          </article>
+          </a>
 
-          <article class="work" data-reveal>
+          <a class="work" href="/concepts/mock-wrestler/" target="_blank" rel="noopener" data-reveal>
             <div class="work-shot">
-              <span class="work-cat">Musician / DJ</span>
-              <div class="stage t-studio" role="img" aria-label="Preview of Halcyon (musician) site">
-                <span class="marquee-edge" aria-hidden="true"></span>
-                <span class="stage-title">Halcyon<br>Live Sets</span>
-              </div>
+              <span class="work-cat">Pro wrestler</span>
+              <img src="/work/thumbs/mock-wrestler.jpg" alt="Rico Marsh demo site" loading="lazy" width="1280" height="800">
             </div>
             <div class="work-body">
-              <h3>Halcyon — live sets &amp; bookings</h3>
-              <p>A portfolio-forward home for a DJ: embedded mixes, a gig calendar, and a booking request form, all in a vibe that matches the act instead of fighting it.</p>
-              <div class="work-stat"><b>+50%</b> booking inquiries</div>
+              <h3>Rico Marsh</h3>
+              <p>A larger-than-life wrestler site with the match schedule, highlights and merch.</p>
+              <span class="work-view">View demo <span class="arrow" aria-hidden="true">→</span></span>
             </div>
-          </article>
+          </a>
 
         </div>
         <div class="work-more" data-reveal>
