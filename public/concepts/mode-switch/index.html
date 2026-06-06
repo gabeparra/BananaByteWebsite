@@ -210,6 +210,11 @@
   }
   html[data-mode="performer"] .nav-cta:hover{transform:translateY(-2px);box-shadow:0 14px 30px -8px rgba(245,200,0,.7)}
   @media(min-width:980px){.nav-links{display:flex}[data-mobile-cta]{display:none}}
+  /* mobile: center the wordmark + Business/Performer toggle on their own rows */
+  @media(max-width:979px){
+    .nav{justify-content:center}
+    .nav-left{flex:1 1 100%;justify-content:center;row-gap:10px}
+  }
 
   /* segmented mode control — real radio group */
   .mode-toggle{

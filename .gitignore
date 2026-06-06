@@ -38,3 +38,6 @@ mockups/
 
 # local backup of the full multi-page home (restore from git history)
 _full-home-backup.html
+
+# local backup of the coming-soon landing
+_coming-soon-backup.html
