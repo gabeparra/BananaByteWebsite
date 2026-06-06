@@ -1,43 +1,60 @@
-# BananaByte Website
+# BANANAbyte — bananabyte.io
 
-Professional company website for BananaByte LLC, built with Astro and deployed to Cloudflare Pages.
+Marketing + portfolio site for **BANANAbyte**, a solo web design & development studio in Orlando, FL.
 
-## Tech Stack
+> Brand rule: the wordmark is **BANANA**byte — `BANANA` in caps, `byte` lowercase.
 
-- Astro 5
-- Tailwind CSS 4
-- TypeScript (strict)
-- Cloudflare Pages (static output)
-- Brand fonts: Inter + JetBrains Mono
+## Stack
 
-## Development
+- **Astro 5** (`output: 'static'`) — bundles to `dist/`. The live pages are hand-written, self-contained HTML/CSS/JS in `public/` (no Tailwind, no components); Astro just emits the static output.
+- **Cloudflare Worker** (`bananabytewebsite`) serves the static assets **and** a small `/api/*` Worker. This is a Worker deployment, **not** Cloudflare Pages.
+- Fonts load per-page via Google Fonts; the brand uses **Archivo Black** + **JetBrains Mono**.
+
+## Project layout
+
+- `public/index.html` — homepage
+- `public/work/` — public portfolio page (`/work/`) + preview thumbnails
+- `public/concepts/` — internal **noindex** gallery: design concepts, the audience-gate prototype (`mode-switch/`), and 10 client mockups (`mock-*`)
+- `worker/index.js` — the `/api/*` Worker:
+  - `/api/contact` — Turnstile-gated → Resend email + Telegram notify
+  - `/api/event` + `/api/stats` — first-party KV analytics (token-gated dashboard)
+- `wrangler.toml` — Worker config: `[assets]` (serves `dist/`, `run_worker_first=["/api/*"]`), `[vars]`, rate-limit + KV bindings
+- `public/robots.txt`, `public/sitemap.xml`, `public/_headers`*
+
+\* `_headers` is kept for reference / Pages-portability but is **not honored on Worker-served sites**. Security headers + image caching are applied via a Cloudflare **response Transform Rule** instead.
+
+## Develop
 
 ```sh
-nvm use
 npm install
-npm run dev
+npm run dev        # http://localhost:4321
 ```
 
-Open `http://localhost:4321`.
-
-## Build
+## Build & deploy
 
 ```sh
-npm run build
-npm run preview
-
-## Deploy (Cloudflare Pages)
-
-- Framework preset: `Astro`
-- Build command: `npm run build`
-- Build output directory: `dist`
-- Node version: `20`
+npm run build      # -> dist/
+CLOUDFLARE_API_TOKEN=<scoped-token> npx wrangler@4 deploy
 ```
 
-## Brand Palette
+This deploys the Worker plus the `dist/` static assets to the `bananabytewebsite` Worker. (The Cloudflare Git-build auto-deploy is misconfigured; deploy manually with the command above.)
 
-- Deep Black: `#0A0A0A`
-- Bright Yellow: `#FFE140`
-- Brand Yellow: `#F5C800`
-- Dark Gold: `#CC9900`
-- White: `#FFFFFF`
+## Email & contact form
+
+- The contact form POSTs to `/api/contact`, which verifies **Cloudflare Turnstile**, then sends a notification via **Resend** (to the business inbox + a personal Gmail) and pings **Telegram**. Succeeds if either notify channel does.
+- **Receiving:** `contact@bananabyte.io` is a **Google Workspace** mailbox (MX → `smtp.google.com`; SPF/DKIM via Cloudflare DNS). DMARC is `p=quarantine`.
+- Resend sends from the `send.bananabyte.io` subdomain — a separate lane from the Workspace inbox, so the two don't conflict.
+
+## Secrets (set on the Worker, never committed)
+
+`RESEND_API_KEY`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `TURNSTILE_SECRET`, `STATS_TOKEN` — set via `wrangler secret put <NAME>`.
+
+## Brand palette
+
+| Token | Hex |
+|---|---|
+| Near-black base | `#0A0A0A` |
+| Banana yellow (primary) | `#F5C800` |
+| Bright yellow | `#FFD42E` |
+| Deep gold (hover/shadow) | `#E0B11E` |
+| Bone / ink text | `#ECECEE` |
