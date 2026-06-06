@@ -89,9 +89,10 @@ async function notifyTelegram(env, fields) {
 async function notifyResend(env, fields) {
   const key = env.RESEND_API_KEY;
   const from = env.MAIL_FROM; // must be on the Resend-verified bananabyte.io
-  const to = env.MAIL_TO;     // owner inbox (gabpar49@gmail.com)
+  // MAIL_TO may be a comma-separated list of recipients (business inbox + personal).
+  const to = String(env.MAIL_TO || "").split(",").map((s) => s.trim()).filter(Boolean);
   // Skip cleanly if unconfigured or the key is obviously malformed.
-  if (!key || !key.startsWith("re_") || !from || !to) return false;
+  if (!key || !key.startsWith("re_") || !from || to.length === 0) return false;
 
   const subject = `New inquiry from ${fields.name}`.slice(0, 180);
   const text =
@@ -116,7 +117,7 @@ async function notifyResend(env, fields) {
     },
     body: JSON.stringify({
       from,
-      to: [to],
+      to,
       reply_to: fields.email, // visitor's address — hit Reply to answer them
       subject,
       text,

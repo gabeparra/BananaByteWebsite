@@ -16,7 +16,7 @@ run_worker_first = [ "/api/*" ]
 [vars]
 ALLOWED_ORIGIN = "https://bananabyte.io"
 MAIL_FROM = "BananaByte <contact@bananabyte.io>"   # must be on the Resend-verified domain
-MAIL_TO = "gabpar49@gmail.com"                      # owner inbox
+MAIL_TO = "contact@bananabyte.io, gabpar49@gmail.com"  # business inbox + personal
 
 # --- Native rate limiting (GA): 5 submissions / 60s per client IP ---
 [[ratelimits]]
