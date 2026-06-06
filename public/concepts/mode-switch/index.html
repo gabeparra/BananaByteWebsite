@@ -225,10 +225,10 @@
     margin:0;min-inline-size:0;max-width:100%;
   }
   .mode-toggle .lbl{
-    position:relative;display:inline-flex;align-items:center;gap:.4rem;
-    font-family:var(--font-display);font-weight:600;font-size:.82rem;
-    padding:7px 14px;border-radius:999px;cursor:pointer;color:var(--ink-soft);
-    transition:color .25s var(--ease),background .25s var(--ease);white-space:nowrap;min-height:38px;
+    position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.4rem;
+    font-family:var(--font-display);font-weight:600;font-size:.82rem;line-height:1;
+    padding:11px 16px;margin-block:auto;border-radius:999px;cursor:pointer;color:var(--ink-soft);
+    transition:color .25s var(--ease),background .25s var(--ease);white-space:nowrap;
   }
   .mode-toggle input{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}
   .mode-toggle .lbl:hover{color:var(--ink)}
@@ -736,9 +736,9 @@
         <span><span class="banana">BANANA</span><span class="byte">byte</span></span>
         <span aria-hidden="true" style="font-size:.95em">🍌</span>
       </a>
-      <fieldset class="mode-toggle" id="mode-toggle" aria-label="Choose audience mode">
+      <div class="mode-toggle" id="mode-toggle" role="radiogroup" aria-label="Choose audience mode">
         <!-- radio inputs injected here from the MODES map -->
-      </fieldset>
+      </div>
     </div>
     <nav class="nav-links" aria-label="Primary">
       <a href="#services">Services</a>
