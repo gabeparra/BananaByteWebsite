@@ -577,14 +577,68 @@
   .why-item p{color:var(--ink-soft);font-size:.9rem;margin-top:6px}
 
   /* ============================================================
+     PRICING  (ONE shared section — restyles per mode via vars)
+     ============================================================ */
+  .price-grid{display:grid;grid-template-columns:1fr;gap:18px;align-items:stretch}
+  @media(min-width:760px){.price-grid{grid-template-columns:repeat(3,1fr)}}
+  .price-card{
+    position:relative;display:flex;flex-direction:column;
+    border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);
+    padding:26px 24px 28px;overflow:hidden;
+    transition:transform .3s var(--ease),border-color .3s var(--ease),background .3s var(--ease),box-shadow .3s var(--ease);
+  }
+  html[data-mode="performer"] .price-card{background:linear-gradient(165deg,var(--panel-2),var(--panel))}
+  .price-card:hover{transform:translateY(-4px);border-color:var(--line-strong);background:var(--panel-2)}
+  html[data-mode="performer"] .price-card:hover{box-shadow:var(--shadow)}
+  /* MOST POPULAR — accent border + lift, mode-aware via --accent */
+  .price-card.featured{
+    border-color:var(--accent-line);
+    background:linear-gradient(165deg,rgba(245,200,0,.07),var(--panel));
+    box-shadow:var(--shadow);
+  }
+  @media(min-width:760px){.price-card.featured{transform:scale(1.035)}.price-card.featured:hover{transform:scale(1.035) translateY(-4px)}}
+  .price-badge{
+    position:absolute;right:16px;top:16px;z-index:2;
+    font-family:var(--font-body);font-size:.62rem;font-weight:600;
+    text-transform:uppercase;letter-spacing:.12em;color:var(--on-accent);
+    background:var(--accent);padding:4px 9px;border-radius:999px;
+  }
+  html[data-mode="performer"] .price-badge{background:linear-gradient(135deg,var(--honey),var(--accent) 60%,var(--gold))}
+  .price-tier{font-size:1.12rem;font-weight:600;font-family:var(--font-display)}
+  html[data-mode="performer"] .price-tier{font-family:var(--font-fraunces);font-size:1.32rem}
+  .price-amount{
+    display:flex;align-items:baseline;gap:8px;margin-top:14px;
+    font-family:var(--font-display);color:var(--ink);line-height:1;
+  }
+  html[data-mode="performer"] .price-amount{font-family:var(--font-fraunces)}
+  .price-amount .from{font-family:var(--font-body);font-size:.8rem;font-weight:500;color:var(--ink-mute);letter-spacing:.02em}
+  .price-amount .cur{font-size:1.15rem;font-weight:600;color:var(--ink-soft);align-self:flex-start;margin-top:.18em}
+  .price-amount .num{font-size:clamp(2.2rem,6.5vw,2.9rem);font-weight:800;letter-spacing:-.02em}
+  html[data-mode="performer"] .price-amount .num{font-weight:900;font-style:italic}
+  .price-card.featured .price-amount .num{color:var(--accent)}
+  .price-desc{color:var(--ink-soft);font-size:.95rem;margin-top:12px}
+  .price-feats{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:11px}
+  .price-feats li{display:flex;gap:11px;color:var(--ink-soft);font-size:.92rem;align-items:flex-start}
+  .price-feats .ck{color:var(--accent);flex:none;margin-top:1px}
+  html[data-mode="performer"] .price-feats .ck{color:var(--honey,var(--accent))}
+  .price-cta{margin-top:24px;padding-top:4px}
+  .price-cta .btn{width:100%;justify-content:center}
+  .price-note{
+    color:var(--ink-mute);font-size:.86rem;margin-top:clamp(22px,3vw,30px);
+    display:flex;gap:9px;align-items:flex-start;max-width:62ch;
+  }
+  .price-note svg{width:15px;height:15px;flex:none;color:var(--accent);margin-top:3px}
+
+  /* ============================================================
      CONTACT  (ONE shared section — restyles per mode via vars)
      ============================================================ */
   .contact-grid{display:grid;grid-template-columns:1fr;gap:clamp(28px,5vw,52px)}
+  .contact-grid>*{min-width:0}
   @media(min-width:920px){.contact-grid{grid-template-columns:.82fr 1.18fr}}
   .contact-aside h2{font-size:clamp(1.7rem,4.4vw,2.5rem)}
   .contact-aside p{color:var(--ink-soft);margin-top:16px}
   .contact-mail{
-    display:inline-flex;align-items:center;gap:10px;margin-top:24px;
+    display:inline-flex;align-items:center;gap:10px;margin-top:24px;max-width:100%;overflow-wrap:anywhere;
     font-family:var(--font-display);font-weight:600;font-size:1.05rem;color:var(--ink);
     border:1px solid var(--line-strong);border-radius:11px;padding:12px 16px;
     transition:border-color .25s var(--ease),background .25s var(--ease),color .25s var(--ease);
@@ -805,6 +859,7 @@
     <nav class="nav-links" aria-label="Primary">
       <a href="#services">Services</a>
       <a href="/work/">Work</a>
+      <a href="#pricing">Pricing</a>
       <a href="#why">Why me</a>
       <a href="#contact" class="nav-cta">Start a project</a>
     </nav>
@@ -1195,6 +1250,91 @@
   </div><!-- /performer panel -->
 
   <!-- ============================================================
+       PRICING — ONE shared section for BOTH modes. Restyles per mode
+       via the CSS variables (cool slate in business, black + banana
+       showbiz in performer), exactly like the contact section below.
+       Placed AFTER both mode panels, BEFORE #contact.
+       ============================================================ -->
+  <section id="pricing" aria-labelledby="pricing-h">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <span class="eyebrow">Pricing</span>
+        <h2 id="pricing-h">Simple, flat pricing.</h2>
+        <p>One clear number before we start — pick the scope that fits, and the rest is on me.</p>
+      </div>
+
+      <div class="price-grid">
+
+        <!-- Starter -->
+        <article class="price-card" data-reveal aria-labelledby="price-starter">
+          <h3 class="price-tier" id="price-starter">Starter</h3>
+          <p class="price-amount" aria-label="from 900 US dollars">
+            <span class="from" aria-hidden="true">from</span>
+            <span class="cur" aria-hidden="true">$</span><span class="num" aria-hidden="true">900</span>
+          </p>
+          <p class="price-desc">A clean, fast site to get you online.</p>
+          <ul class="price-feats">
+            <li><span class="ck" aria-hidden="true">✓</span> Up to ~4 pages</li>
+            <li><span class="ck" aria-hidden="true">✓</span> Custom, mobile-first design</li>
+            <li><span class="ck" aria-hidden="true">✓</span> Contact form</li>
+            <li><span class="ck" aria-hidden="true">✓</span> Launch in about a week</li>
+          </ul>
+          <div class="price-cta">
+            <a href="#contact" class="btn btn-ghost">Start a project <span class="arrow" aria-hidden="true">→</span></a>
+          </div>
+        </article>
+
+        <!-- Business — MOST POPULAR -->
+        <article class="price-card featured" data-reveal aria-labelledby="price-business">
+          <span class="price-badge">Most popular</span>
+          <h3 class="price-tier" id="price-business">Business</h3>
+          <p class="price-amount" aria-label="from 1,800 US dollars">
+            <span class="from" aria-hidden="true">from</span>
+            <span class="cur" aria-hidden="true">$</span><span class="num" aria-hidden="true">1,800</span>
+          </p>
+          <p class="price-desc">A bigger custom site that does more.</p>
+          <ul class="price-feats">
+            <li><span class="ck" aria-hidden="true">✓</span> More pages</li>
+            <li><span class="ck" aria-hidden="true">✓</span> Custom design + copy help</li>
+            <li><span class="ck" aria-hidden="true">✓</span> Lead / booking forms</li>
+            <li><span class="ck" aria-hidden="true">✓</span> Easy-to-edit content</li>
+            <li><span class="ck" aria-hidden="true">✓</span> SEO basics</li>
+          </ul>
+          <div class="price-cta">
+            <a href="#contact" class="btn btn-primary">Start a project <span class="arrow" aria-hidden="true">→</span></a>
+          </div>
+        </article>
+
+        <!-- Online store -->
+        <article class="price-card" data-reveal aria-labelledby="price-store">
+          <h3 class="price-tier" id="price-store">Online store</h3>
+          <p class="price-amount" aria-label="from 2,500 US dollars">
+            <span class="from" aria-hidden="true">from</span>
+            <span class="cur" aria-hidden="true">$</span><span class="num" aria-hidden="true">2,500</span>
+          </p>
+          <p class="price-desc">Sell online with a clean, trustworthy storefront.</p>
+          <ul class="price-feats">
+            <li><span class="ck" aria-hidden="true">✓</span> Product catalog</li>
+            <li><span class="ck" aria-hidden="true">✓</span> Secure checkout</li>
+            <li><span class="ck" aria-hidden="true">✓</span> Payments + shipping set up</li>
+            <li><span class="ck" aria-hidden="true">✓</span> Mobile-first</li>
+            <li><span class="ck" aria-hidden="true">✓</span> You own it all</li>
+          </ul>
+          <div class="price-cta">
+            <a href="#contact" class="btn btn-ghost">Start a project <span class="arrow" aria-hidden="true">→</span></a>
+          </div>
+        </article>
+
+      </div>
+
+      <p class="price-note" data-reveal>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+        <span>Starting prices — every project gets one flat quote upfront. No hourly meter, no surprises.</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
        CONTACT — ONE shared section for BOTH modes. Restyles per mode
        via the CSS variables; the headline / copy / email framing swap
        via [data-contact-mode]. This is the ONE real form: it POSTs
@@ -1305,6 +1445,7 @@
       <nav class="foot-nav" aria-label="Footer">
         <a href="#services">Services</a>
         <a href="/work/">Selected work</a>
+        <a href="#pricing">Pricing</a>
         <a href="#why">Why me</a>
         <a href="#contact">Contact</a>
         <a href="mailto:contact@bananabyte.io">contact@bananabyte.io</a>
