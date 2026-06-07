@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<!--
+  BANANAbyte — /services/redesign-refresh/  (Website Redesign & Refresh)
+
+  ONE mode-agnostic service page. The copy reads for both audiences
+  (business + performer) and restyles automatically via the design-system
+  CSS custom properties — there are no separate per-mode copy panels here.
+  Shared /assets/site.css + /assets/site.js drive the gate, bilingual
+  swap, mode toggle, mobile drawer and reveal-on-scroll: do NOT remove the
+  IDs / classes / data-es attributes they depend on. Built from
+  .page-skeleton.html.
+
+  TURNSTILE: this page does NOT load the Cloudflare Turnstile api.js. Only a
+  page with the contact form needs it — see the comment in <head>.
+-->
+<html lang="en" data-mode="business">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Set <html lang> as early as possible from the saved language choice, so
+     a returning Spanish visitor doesn't get a flash of the wrong lang attr.
+     The full copy swap happens synchronously at the end of <body>. -->
+<script>try{var _l=localStorage.getItem('bb-lang');if(_l==='es'||_l==='en'){document.documentElement.lang=_l;document.documentElement.classList.add('lang-'+_l);}}catch(e){}</script>
+<title>Website Redesign &amp; Refresh · BANANAbyte</title>
+<meta name="description" content="Got a site that looks dated, isn’t mobile-friendly, or loads slow? BANANAbyte rebuilds it modern, fast, and easy to update — keeping what works, fixing what doesn’t.">
+<link rel="canonical" href="https://bananabyte.io/services/redesign-refresh/">
+<meta name="theme-color" content="#16181C">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BANANAbyte">
+<meta property="og:title" content="Website Redesign &amp; Refresh · BANANAbyte">
+<meta property="og:description" content="Got a site that looks dated, isn’t mobile-friendly, or loads slow? BANANAbyte rebuilds it modern, fast, and easy to update — keeping what works, fixing what doesn’t.">
+<meta property="og:url" content="https://bananabyte.io/services/redesign-refresh/">
+<meta property="og:image" content="https://bananabyte.io/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Website Redesign &amp; Refresh · BANANAbyte">
+<meta name="twitter:description" content="Got a site that looks dated, isn’t mobile-friendly, or loads slow? BANANAbyte rebuilds it modern, fast, and easy to update — keeping what works, fixing what doesn’t.">
+<meta name="twitter:image" content="https://bananabyte.io/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=Sora:wght@300;400;500;600;700;800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<!-- TURNSTILE: only the contact page needs the widget. If this page has the
+     contact form, add the api.js script here:
+     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script> -->
+<link rel="stylesheet" href="/assets/site.css">
+
+<!-- ============================================================
+     PAGE-SCOPED STYLES — small layout helpers for THIS page only.
+     Every value uses the design-system var(--…) tokens so the page
+     restyles cleanly in both business (slate+yellow) and performer
+     (black+gold) modes. No hard-coded brand colors.
+     ============================================================ -->
+<style>
+  /* hero before/after compare — two stacked browser frames */
+  .rr-compare{display:grid;grid-template-columns:1fr;gap:16px}
+  .rr-frame{
+    position:relative;border:1px solid var(--line);border-radius:var(--radius);
+    background:linear-gradient(160deg,var(--panel-2),var(--panel));
+    overflow:hidden;box-shadow:var(--shadow);
+  }
+  .rr-frame .rr-bar{
+    display:flex;align-items:center;gap:7px;padding:10px 12px;
+    border-bottom:1px solid var(--line);background:var(--panel-2);
+  }
+  .rr-frame .rr-bar .d{width:9px;height:9px;border-radius:50%;background:var(--ink-mute);opacity:.5}
+  .rr-frame .rr-tag{
+    margin-left:auto;font-family:var(--font-display);font-weight:600;font-size:.62rem;
+    letter-spacing:.12em;text-transform:uppercase;padding:3px 9px;border-radius:999px;
+  }
+  .rr-frame .rr-body{padding:16px 16px 18px;display:grid;gap:9px}
+  .rr-line{height:11px;border-radius:5px;background:var(--line-strong)}
+  /* "before": cramped, muted, off-grid bars = the dated site */
+  .rr-before .rr-tag{color:var(--ink-mute);border:1px solid var(--line-strong)}
+  .rr-before .rr-line{opacity:.55}
+  .rr-before .rr-line.w1{width:84%}
+  .rr-before .rr-line.w2{width:96%}
+  .rr-before .rr-line.w3{width:73%}
+  .rr-before .rr-cluster{display:flex;gap:7px;margin-top:3px}
+  .rr-before .rr-cluster span{height:34px;flex:1;border-radius:7px;background:var(--line);opacity:.6}
+  /* "after": clean grid, an accent hero block, breathing room */
+  .rr-after .rr-tag{color:var(--on-accent);background:var(--accent)}
+  .rr-after .rr-hero{height:46px;border-radius:9px;background:var(--accent-soft);border:1px solid var(--accent-line)}
+  .rr-after .rr-line.w1{width:52%}
+  .rr-after .rr-line.w2{width:68%}
+  .rr-after .rr-cluster{display:flex;gap:9px;margin-top:4px}
+  .rr-after .rr-cluster span{height:38px;flex:1;border-radius:8px;background:var(--panel-2);border:1px solid var(--line)}
+  .rr-after .rr-cluster span:first-child{background:var(--accent-soft);border-color:var(--accent-line)}
+  .rr-arrow{
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    font-family:var(--font-display);font-weight:600;font-size:.74rem;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--ink-mute);
+  }
+  .rr-arrow::before,.rr-arrow::after{content:"";height:1px;flex:1;max-width:60px;background:var(--line-strong)}
+  .rr-arrow .b{color:var(--accent)}
+
+  /* "Signs you need this" — symptom checklist cards */
+  .rr-signs{display:grid;grid-template-columns:1fr;gap:14px}
+  @media(min-width:600px){.rr-signs{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:960px){.rr-signs{grid-template-columns:repeat(3,1fr)}}
+  .rr-sign{
+    position:relative;border:1px solid var(--line);border-radius:var(--radius);
+    background:var(--panel);padding:22px 20px;overflow:hidden;
+    transition:transform .3s var(--ease),border-color .3s var(--ease),background .3s var(--ease),box-shadow .3s var(--ease);
+  }
+  html[data-mode="performer"] .rr-sign{background:linear-gradient(165deg,var(--panel-2),var(--panel))}
+  .rr-sign::after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);transform:scaleY(0);transform-origin:top;transition:transform .3s var(--ease)}
+  .rr-sign:hover{transform:translateY(-4px);border-color:var(--line-strong);background:var(--panel-2)}
+  .rr-sign:hover::after{transform:scaleY(1)}
+  html[data-mode="performer"] .rr-sign:hover{box-shadow:var(--shadow)}
+  .rr-sign .rr-ico{
+    width:40px;height:40px;border-radius:11px;display:grid;place-items:center;
+    background:var(--panel-2);border:1px solid var(--line);margin-bottom:14px;color:var(--accent);
+  }
+  html[data-mode="performer"] .rr-sign .rr-ico{display:none}
+  .rr-sign h3{font-size:1.06rem;font-weight:600}
+  html[data-mode="performer"] .rr-sign h3{font-family:var(--font-fraunces);font-size:1.22rem}
+  .rr-sign p{color:var(--ink-soft);font-size:.92rem;margin-top:8px}
+
+  /* "How it works" — numbered process steps */
+  .rr-steps{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  @media(min-width:680px){.rr-steps{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:1000px){.rr-steps{grid-template-columns:repeat(4,1fr)}}
+  html[data-mode="performer"] .rr-steps{background:transparent;border:0;gap:18px}
+  @media(min-width:680px) and (max-width:999px){html[data-mode="performer"] .rr-steps{gap:18px}}
+  .rr-step{background:var(--panel-2);padding:24px 22px;position:relative}
+  html[data-mode="performer"] .rr-step{
+    background:linear-gradient(165deg,var(--panel-2),var(--panel));
+    border:1px solid var(--line-strong);border-radius:var(--radius);
+  }
+  .rr-step .rr-n{
+    font-family:var(--font-display);font-weight:700;font-size:.82rem;letter-spacing:.06em;color:var(--accent);
+  }
+  html[data-mode="performer"] .rr-step .rr-n{font-family:var(--font-fraunces);font-style:italic;font-size:1.15rem}
+  .rr-step h3{font-size:1.06rem;font-weight:600;margin-top:10px}
+  html[data-mode="performer"] .rr-step h3{font-family:var(--font-fraunces);font-size:1.2rem}
+  .rr-step p{color:var(--ink-soft);font-size:.9rem;margin-top:8px}
+
+  /* "What you get" reuses the shared .svc-grid / .svc component as-is */
+  /* quote band reuses .price-note / .price-actions tokens */
+  .rr-quote{
+    border:1px solid var(--line-strong);border-radius:var(--radius-lg);
+    background:linear-gradient(160deg,var(--panel-2),var(--panel));
+    box-shadow:var(--shadow);padding:clamp(26px,5vw,44px);
+  }
+  html[data-mode="performer"] .rr-quote{
+    background:
+      radial-gradient(100% 120% at 100% 0%, rgba(245,200,0,.1), transparent 55%),
+      linear-gradient(160deg,var(--panel-2),var(--panel));
+  }
+  .rr-quote h2{font-size:clamp(1.55rem,4vw,2.3rem)}
+  .rr-quote p{color:var(--ink-soft);margin-top:14px;max-width:60ch}
+</style>
+
+<!-- ============================================================
+     NO-JS FALLBACK: with JavaScript disabled, the reveal-on-scroll
+     elements would otherwise stay at opacity:0 and the page would
+     look blank. This forces all [data-reveal] content fully visible
+     and keeps the gate hidden, so the default BUSINESS homepage is
+     shown and never blocked when JS is off.
+     ============================================================ -->
+<noscript>
+<style>
+  [data-reveal]{opacity:1 !important;transform:none !important}
+  .gate{display:none !important}
+</style>
+</noscript>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ============================================================
+     INTRO GATE — hidden by default; JS opens it on first visit only.
+     With JS disabled it stays display:none, so the default business
+     content below is never blocked. Cards are filled from MODES map.
+     ============================================================ -->
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-h" aria-describedby="gate-sub" hidden>
+  <div class="gate-card">
+    <div class="gate-brand">
+      <span class="wm" aria-label="BANANAbyte"><span class="b1">BANANA</span><span class="b2">byte</span><span class="dot" aria-hidden="true">.</span></span>
+      <span aria-hidden="true">🍌</span>
+    </div>
+    <h2 id="gate-h" data-es="¿Qué te trae por aquí?">What brings you here?</h2>
+    <p class="gate-sub" id="gate-sub" data-es="Elige la versión de BANANAbyte que mejor te encaje. Puedes cambiar cuando quieras.">Pick the version of BANANAbyte that fits you. You can switch anytime.</p>
+    <div class="gate-choices" id="gate-choices" role="group" aria-label="Choose your experience" data-es-aria-label="Elige tu experiencia">
+      <!-- choice cards injected here from the MODES map -->
+    </div>
+    <div class="gate-foot">
+      <button type="button" class="gate-skip" id="gate-skip" data-es="Solo estoy mirando — muéstrame la versión normal">Just looking — show me the default</button>
+      <p class="gate-note" data-es="Puedes cambiar cuando quieras desde el menú de arriba.">You can switch anytime from the menu at the top.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     HEADER (shared shell; toggle built from MODES map)
+     ============================================================ -->
+<header class="site">
+  <div class="wrap nav">
+    <div class="nav-left">
+      <a class="wordmark" href="/" aria-label="BANANAbyte home" data-es-aria-label="BANANAbyte inicio">
+        <span class="nana" aria-hidden="true">.</span>
+        <span><span class="banana">BANANA</span><span class="byte">byte</span></span>
+        <span aria-hidden="true" style="font-size:.95em">🍌</span>
+      </a>
+      <div class="mode-toggle" id="mode-toggle" role="radiogroup" aria-label="Choose audience mode" data-es-aria-label="Elige el modo de público">
+        <!-- radio inputs injected here from the MODES map -->
+      </div>
+    </div>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/services/" data-es="Servicios">Services</a>
+      <a href="/work/" data-es="Proyectos">Work</a>
+      <a href="/pricing/" data-es="Precios">Pricing</a>
+      <a href="/contact/" class="nav-cta" data-es="Empezar un proyecto">Start a project</a>
+    </nav>
+    <!-- mobile-only: opens the slide-in menu drawer below -->
+    <button class="hamburger" id="hamburger" type="button"
+            aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="hb-lines" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============================================================
+     MOBILE MENU — slide-in drawer (≤979px). The #mode-toggle node
+     is physically MOVED into #menu-toggle-slot on mobile and back into
+     .nav-left on desktop (see placeMode() in the script), so there is
+     never a duplicate radio group to desync state.
+     ============================================================ -->
+<div class="nav-backdrop" id="nav-backdrop" hidden></div>
+<aside class="mobile-menu" id="mobile-menu" aria-label="Menu" aria-hidden="true" hidden>
+  <div class="mm-inner">
+    <div class="mm-slot" id="menu-toggle-slot"><!-- #mode-toggle relocated here on mobile --></div>
+    <nav class="mm-links" aria-label="Mobile">
+      <a href="/services/" data-es="Servicios">Services</a>
+      <a href="/work/" data-es="Proyectos">Work</a>
+      <a href="/pricing/" data-es="Precios">Pricing</a>
+      <a href="/contact/" data-es="Contacto">Contact</a>
+    </nav>
+    <a href="/contact/" class="btn btn-primary mm-cta" data-es="Empezar un proyecto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Start a project <span class="arrow" aria-hidden="true">→</span></a>
+    <div class="mm-lang-slot" id="menu-lang-slot"><!-- .lang-toggle relocated here on mobile --></div>
+  </div>
+</aside>
+
+<main id="main">
+
+  <!-- ============================================================
+       HERO — your site works against you; let's fix that.
+       ============================================================ -->
+  <section class="hero" aria-labelledby="rr-hero-h">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="tag" data-reveal data-es="&lt;span class=&quot;pulse&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt; Rediseños y renovaciones · BANANAbyte"><span class="pulse" aria-hidden="true"></span> Redesigns &amp; refreshes · BANANAbyte</span>
+        <h1 id="rr-hero-h" data-reveal data-es="Tu sitio &lt;span class=&quot;mark&quot;&gt;trabaja en tu contra.&lt;/span&gt; Vamos a arreglarlo.">Your site is working <span class="mark">against you.</span> Let’s fix that.</h1>
+        <p class="hero-lede" data-reveal data-es="Un sitio lento, anticuado o que no se ve bien en el móvil hace que la gente se vaya antes de saber lo bueno que eres. BANANAbyte 🍌 reconstruye lo que ya tienes — moderno, rápido y fácil de actualizar — conservando lo que funciona y arreglando lo que no.">A slow, dated, or not-mobile-friendly site sends people away before they ever see how good you are. BANANAbyte 🍌 rebuilds what you’ve already got — modern, fast, and easy to update — keeping what works and fixing what doesn’t.</p>
+        <div class="hero-actions" data-reveal>
+          <a href="/contact/" class="btn btn-primary" data-es="Empezar un proyecto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Start a project <span class="arrow" aria-hidden="true">→</span></a>
+          <a href="/pricing/" class="btn btn-ghost" data-es="Ver precios">See pricing</a>
+        </div>
+        <div class="hero-meta" data-reveal>
+          <span data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Auditoría honesta primero"><span class="ck" aria-hidden="true">✓</span> Honest audit first</span>
+          <span data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Tu contenido se conserva"><span class="ck" aria-hidden="true">✓</span> Your content carried over</span>
+          <span data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Precio cerrado por adelantado"><span class="ck" aria-hidden="true">✓</span> One flat quote upfront</span>
+        </div>
+      </div>
+
+      <!-- before/after compare visual -->
+      <div class="rr-compare" data-reveal aria-hidden="true">
+        <div class="rr-frame rr-before">
+          <div class="rr-bar">
+            <span class="d"></span><span class="d"></span><span class="d"></span>
+            <span class="rr-tag" data-es="Antes">Before</span>
+          </div>
+          <div class="rr-body">
+            <div class="rr-line w1"></div>
+            <div class="rr-line w2"></div>
+            <div class="rr-line w3"></div>
+            <div class="rr-cluster"><span></span><span></span><span></span><span></span></div>
+          </div>
+        </div>
+        <div class="rr-arrow">
+          <span data-es="Reconstruido">Rebuilt</span> <span class="b" aria-hidden="true">→</span>
+        </div>
+        <div class="rr-frame rr-after">
+          <div class="rr-bar">
+            <span class="d"></span><span class="d"></span><span class="d"></span>
+            <span class="rr-tag" data-es="Después">After</span>
+          </div>
+          <div class="rr-body">
+            <div class="rr-hero"></div>
+            <div class="rr-line w1"></div>
+            <div class="rr-line w2"></div>
+            <div class="rr-cluster"><span></span><span></span><span></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHAT YOU GET
+       ============================================================ -->
+  <section id="what-you-get" aria-labelledby="rr-get-h">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <span class="eyebrow" data-es="Lo que incluye">What you get</span>
+        <h2 id="rr-get-h" data-es="Una reconstrucción cuidada — no un borrón y cuenta nueva.">A careful rebuild — not a wipe-and-pray.</h2>
+        <p data-es="Una renovación debería arreglar lo que está roto sin tirar lo que ya te funciona. Esto es lo que viene en cada proyecto de rediseño:">A refresh should fix what’s broken without throwing away what already works for you. Here’s what comes with every redesign:</p>
+      </div>
+      <div class="svc-grid">
+
+        <article class="svc" data-reveal>
+          <div class="ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m21 21-4.3-4.3"/><circle cx="11" cy="11" r="7"/></svg>
+          </div>
+          <h3 data-es="Una auditoría rápida y honesta">A quick, honest audit</h3>
+          <p data-es="Empiezo mirando tu sitio actual con ojos frescos: qué confunde a la gente, qué carga lento, qué se rompe en el móvil. Recibes un resumen claro en lenguaje normal — sin tecnicismos para asentir.">I start by looking at your current site with fresh eyes: what confuses people, what loads slow, what breaks on phones. You get a plain-language summary — no jargon to nod along to.</p>
+        </article>
+
+        <article class="svc feature" data-reveal>
+          <div class="ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18"/><path d="M9 18v3"/><path d="M15 18v3"/><path d="M8 21h8"/></svg>
+          </div>
+          <h3 data-es="Rediseño moderno y responsive">Modern, responsive redesign</h3>
+          <p data-es="Reconstruyo el sitio con un diseño limpio y actual que se ve igual de bien en un teléfono que en una pantalla grande. Diseño tu marca alrededor de cómo te encuentran tus clientes de verdad, no de una plantilla genérica.">I rebuild the site with a clean, current design that looks just as sharp on a phone as on a big screen. I design around how customers actually find you — not a generic template.</p>
+        </article>
+
+        <article class="svc" data-reveal>
+          <div class="ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg>
+          </div>
+          <h3 data-es="Velocidad y arreglos en el móvil">Speed &amp; mobile fixes</h3>
+          <p data-es="Imágenes pesadas, código inflado y formularios rotos hacen que la gente rebote. Aprieto los tiempos de carga, arreglo el diseño en pantallas pequeñas y dejo cada botón y formulario funcionando como debe.">Heavy images, bloated code, and broken forms make people bounce. I tighten load times, fix the layout on small screens, and get every button and form working the way it should.</p>
+        </article>
+
+        <article class="svc" data-reveal>
+          <div class="ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5a2 2 0 0 1 2-2h9l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M15 3v5h5"/><path d="M9 13h6"/><path d="M9 17h4"/></svg>
+          </div>
+          <h3 data-es="Tu contenido, conservado">Content carried over</h3>
+          <p data-es="Tu texto, tus fotos, tus reseñas y tu posicionamiento en Google se traen al sitio nuevo — limpios y reorganizados, no abandonados. No empiezas de cero ni pierdes lo que ya rankea.">Your copy, photos, reviews, and Google ranking come across to the new site — cleaned up and reorganized, not abandoned. You don’t start from zero or lose what already ranks.</p>
+        </article>
+
+        <article class="svc" data-reveal>
+          <div class="ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          </div>
+          <h3 data-es="Se queda lo que funciona">Keep what’s working</h3>
+          <p data-es="Si una página ya te trae clientes o una sección que te encanta, no la toco solo por tocarla. Conservo lo que rinde y reconstruyo lo que estorba — tú decides qué entra en cada cubo.">If a page already brings you customers, or there’s a section you love, I don’t touch it just to touch it. I keep what performs and rebuild what gets in the way — you decide what goes in each bucket.</p>
+        </article>
+
+        <article class="svc" data-reveal>
+          <div class="ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1V18h6v-1.2c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"/></svg>
+          </div>
+          <h3 data-es="Llamados a la acción más claros">Clearer calls-to-action</h3>
+          <p data-es="Un sitio bonito que no le dice a la gente qué hacer es solo decoración. Pongo botones claros — llamar, reservar, comprar, escribir — exactamente donde la gente está lista para actuar, para que más visitas se vuelvan clientes reales.">A pretty site that doesn’t tell people what to do is just decoration. I add clear buttons — call, book, buy, message — right where people are ready to act, so more visitors turn into real leads.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SIGNS YOU NEED THIS
+       ============================================================ -->
+  <section id="signs" class="why" aria-labelledby="rr-signs-h">
+    <div class="wrap why-inner" style="display:block">
+      <div class="sec-head" data-reveal style="max-width:680px">
+        <span class="eyebrow" data-es="¿Te suena?">Sound familiar?</span>
+        <h2 id="rr-signs-h" data-es="Señales de que tu sitio necesita una renovación.">Signs your site needs a refresh.</h2>
+        <p data-es="Si una o más de estas te resultan demasiado familiares, tu sitio probablemente te está costando trabajo en vez de traértelo.">If one or more of these hit a little too close to home, your site is probably costing you work instead of bringing it in.</p>
+      </div>
+      <div class="rr-signs">
+
+        <article class="rr-sign" data-reveal>
+          <div class="rr-ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          </div>
+          <h3 data-es="Se ve anticuado">It looks dated</h3>
+          <p data-es="Tu sitio parece de hace diez años, y eso le dice a la gente que tu negocio quizá también lo sea. Un diseño desfasado genera dudas antes de que digas una palabra.">Your site looks ten years old, and that tells people your business might be too. A dated design plants doubt before you’ve said a word.</p>
+        </article>
+
+        <article class="rr-sign" data-reveal>
+          <div class="rr-ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>
+          </div>
+          <h3 data-es="No funciona bien en el móvil">It’s not mobile-friendly</h3>
+          <p data-es="Más de la mitad de tus visitas llegan desde un teléfono. Si tienen que pellizcar, hacer zoom y arrastrar para leerte, la mayoría simplemente se va.">More than half your visitors arrive on a phone. If they have to pinch, zoom, and drag just to read you, most of them simply leave.</p>
+        </article>
+
+        <article class="rr-sign" data-reveal>
+          <div class="rr-ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg>
+          </div>
+          <h3 data-es="Carga lento">It loads slow</h3>
+          <p data-es="Cada segundo extra de carga manda visitantes a la competencia. Si tu página tarda en aparecer, los estás perdiendo antes de que vean nada.">Every extra second of load time sends visitors to a competitor. If your page is slow to show up, you’re losing people before they see anything.</p>
+        </article>
+
+        <article class="rr-sign" data-reveal>
+          <div class="rr-ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+          </div>
+          <h3 data-es="Es difícil de actualizar">It’s hard to update</h3>
+          <p data-es="Cambiar un precio, una hora o una foto se ha vuelto tan complicado que ya ni lo intentas. Tu sitio debería ser fácil de mantener al día, no un dolor de cabeza.">Changing a price, an hour, or a photo has become such a hassle that you’ve stopped bothering. Your site should be easy to keep current, not a headache.</p>
+        </article>
+
+        <article class="rr-sign" data-reveal>
+          <div class="rr-ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/></svg>
+          </div>
+          <h3 data-es="No te trae clientes">It’s not bringing leads</h3>
+          <p data-es="Tienes un sitio, pero el teléfono no suena y el formulario no llega. Si no genera llamadas, reservas o mensajes, no está haciendo su trabajo.">You have a site, but the phone isn’t ringing and the inbox is quiet. If it isn’t generating calls, bookings, or messages, it isn’t doing its job.</p>
+        </article>
+
+        <article class="rr-sign" data-reveal>
+          <div class="rr-ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.3a2 2 0 0 1 3.4 0l7.3 12.6a2 2 0 0 1-1.7 3H4.7a2 2 0 0 1-1.7-3z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+          </div>
+          <h3 data-es="Cada vez que entras, te incomoda">It makes you wince</h3>
+          <p data-es="Evitas mandar el enlace de tu propio sitio porque no representa lo bueno que de verdad eres. Esa sensación es razón suficiente para arreglarlo.">You avoid sending people your own link because it doesn’t represent how good you actually are. That feeling alone is reason enough to fix it.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       HOW IT WORKS — audit → plan → redesign → launch
+       ============================================================ -->
+  <section id="how-it-works" aria-labelledby="rr-how-h">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <span class="eyebrow" data-es="Cómo funciona">How it works</span>
+        <h2 id="rr-how-h" data-es="Cuatro pasos claros, sin sorpresas.">Four clear steps, no surprises.</h2>
+        <p data-es="Sabes exactamente qué pasa y cuándo, de principio a fin. Sin desaparecer durante semanas y volver con algo que no pediste.">You know exactly what’s happening and when, start to finish. No vanishing for weeks and coming back with something you didn’t ask for.</p>
+      </div>
+      <div class="rr-steps" data-reveal>
+
+        <div class="rr-step">
+          <span class="rr-n" data-es="Paso 01">Step 01</span>
+          <h3 data-es="Auditoría">Audit</h3>
+          <p data-es="Reviso tu sitio actual y te digo, en lenguaje claro, qué funciona, qué está roto y qué te está costando clientes — sin compromiso de seguir.">I go through your current site and tell you, in plain language, what works, what’s broken, and what’s costing you customers — with no obligation to continue.</p>
+        </div>
+
+        <div class="rr-step">
+          <span class="rr-n" data-es="Paso 02">Step 02</span>
+          <h3 data-es="Plan">Plan</h3>
+          <p data-es="Acordamos qué se conserva, qué se reconstruye y cómo debe verse el resultado. Recibes el alcance completo y un presupuesto cerrado antes de que empiece nada.">We agree on what stays, what gets rebuilt, and how the result should look and feel. You get the full scope and one flat quote before any work begins.</p>
+        </div>
+
+        <div class="rr-step">
+          <span class="rr-n" data-es="Paso 03">Step 03</span>
+          <h3 data-es="Rediseño">Redesign</h3>
+          <p data-es="Reconstruyo el sitio — moderno, rápido y responsive — trayendo tu contenido y afinando los detalles. Lo revisas en vivo y me dices qué ajustar.">I rebuild the site — modern, fast, and responsive — bringing your content across and sweating the details. You review it live and tell me what to tweak.</p>
+        </div>
+
+        <div class="rr-step">
+          <span class="rr-n" data-es="Paso 04">Step 04</span>
+          <h3 data-es="Lanzamiento">Launch</h3>
+          <p data-es="Publicamos el sitio nuevo con cuidado para no perder tu tráfico ni tu posicionamiento, y te entrego las llaves. Es tuyo, con código y cuentas incluidos.">We launch the new site carefully so you don’t lose traffic or ranking, and I hand you the keys. It’s yours, code and accounts included.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FLAT QUOTE + CTA → /contact/
+       ============================================================ -->
+  <section id="quote" aria-labelledby="rr-quote-h">
+    <div class="wrap">
+      <div class="rr-quote" data-reveal>
+        <span class="eyebrow" data-es="Precio">Pricing</span>
+        <h2 id="rr-quote-h" style="margin-top:14px" data-es="Un presupuesto cerrado, dimensionado a tu sitio.">One flat quote, sized to your site.</h2>
+        <p data-es="Una renovación cuesta menos que un sitio nuevo desde cero, porque partimos de lo que ya tienes. El precio depende de cuántas páginas hay que reconstruir y qué hay que arreglar — pero siempre recibes un número cerrado por adelantado, sin reloj por horas y sin sorpresas. Echa un vistazo a &lt;a href=&quot;/pricing/&quot;&gt;la página de precios&lt;/a&gt; para ver dónde encaja una renovación.">A refresh costs less than a brand-new build, because we start from what you’ve already got. The price depends on how many pages need rebuilding and what needs fixing — but you always get one flat number upfront, no hourly meter and no surprises. Take a look at <a href="/pricing/">the pricing page</a> to see where a refresh fits.</p>
+        <p class="price-note" style="margin-top:20px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+          <span data-es="Sin pago por adelantado: te muestro el plan y el precio primero, y me gano tu confianza antes de cobrar nada.">No upfront payment: I show you the plan and the price first, and earn your trust before you pay a thing.</span>
+        </p>
+        <div class="price-actions">
+          <a href="/contact/" class="btn btn-primary" data-es="Empezar un proyecto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Start a project <span class="arrow" aria-hidden="true">→</span></a>
+          <a href="/pricing/" class="btn btn-ghost" data-es="Ver precios">See pricing</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="wordmark" href="/" aria-label="BANANAbyte home" data-es-aria-label="BANANAbyte inicio">
+          <span class="nana" aria-hidden="true">.</span>
+          <span><span class="banana">BANANA</span><span class="byte">byte</span></span>
+          <span aria-hidden="true" style="font-size:.95em">🍌</span>
+        </a>
+        <p class="foot-blurb" data-es="Un estudio web en Orlando, FL. Sitios web rápidos, limpios y a medida, bien hechos. 🍌">A web studio in Orlando, FL. Fast, clean, custom websites, built right. 🍌</p>
+      </div>
+      <nav class="foot-nav" aria-label="Footer">
+        <a href="/services/" data-es="Servicios">Services</a>
+        <a href="/work/" data-es="Proyectos">Work</a>
+        <a href="/pricing/" data-es="Precios">Pricing</a>
+        <a href="/contact/" data-es="Contacto">Contact</a>
+        <a href="mailto:contact@bananabyte.io">contact@bananabyte.io</a>
+      </nav>
+    </div>
+    <p class="foot-disclaimer" data-es="Los sitios de ejemplo que se muestran son conceptos de demostración; cualquier trabajo real con clientes se muestra solo con el permiso de su dueño.">Example sites shown are demo concepts; any real client work is displayed only with the owner’s permission.</p>
+    <div class="foot-bottom">
+      <span data-es="© &lt;span id=&quot;year&quot;&gt;2026&lt;/span&gt; BANANAbyte LLC — Orlando, FL. &lt;span class=&quot;foot-built&quot;&gt;Hecho por Gabe, un desarrollador de Orlando.&lt;/span&gt;">© <span id="year">2026</span> BANANAbyte LLC — Orlando, FL. <span class="foot-built">Built by Gabe, an Orlando developer.</span></span>
+      <div class="lang-toggle" role="group" aria-label="Language / Idioma">
+        <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+      </div>
+      <span class="made" data-es="¿No eres tú? &lt;button type=&quot;button&quot; class=&quot;reopen-gate&quot; id=&quot;reopen-gate&quot;&gt;Elegir de nuevo&lt;/button&gt;">Not you? <button type="button" class="reopen-gate" id="reopen-gate">Choose again</button></span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/site.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "0928fb51dad843818b6718b55b31e615"}'></script>
+</body>
+</html>

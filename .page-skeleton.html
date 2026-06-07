@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<!--
+  BANANAbyte — REUSABLE PAGE SKELETON for sibling sub-pages.
+
+  This file lives OUTSIDE public/ so it is never served. Copy it to build a
+  new page (e.g. public/services/index.html) and fill in the placeholders:
+
+    __TITLE__  — the page <title> + OG/Twitter title
+    __DESC__   — the meta description + OG/Twitter description
+    __PATH__   — the site-root-relative path WITH leading slash and trailing
+                 slash, e.g. /services/  (used for canonical + og:url)
+
+  Then write the page body inside <main id="main"> where the
+  "<!-- PAGE CONTENT -->" comment is.
+
+  Shared assets (/assets/site.css + /assets/site.js) drive the gate,
+  bilingual swap, mode toggle, mobile drawer and reveal-on-scroll — DO NOT
+  remove the IDs/classes/data-es attributes they depend on.
+
+  TURNSTILE: this skeleton does NOT load the Cloudflare Turnstile api.js.
+  Only a page with the contact form needs it — see the comment in <head>.
+-->
+<html lang="en" data-mode="business">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Set <html lang> as early as possible from the saved language choice, so
+     a returning Spanish visitor doesn't get a flash of the wrong lang attr.
+     The full copy swap happens synchronously at the end of <body>. -->
+<script>try{var _l=localStorage.getItem('bb-lang');if(_l==='es'||_l==='en'){document.documentElement.lang=_l;document.documentElement.classList.add('lang-'+_l);}}catch(e){}</script>
+<title>__TITLE__</title>
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="https://bananabyte.io__PATH__">
+<meta name="theme-color" content="#16181C">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BANANAbyte">
+<meta property="og:title" content="__TITLE__">
+<meta property="og:description" content="__DESC__">
+<meta property="og:url" content="https://bananabyte.io__PATH__">
+<meta property="og:image" content="https://bananabyte.io/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="__TITLE__">
+<meta name="twitter:description" content="__DESC__">
+<meta name="twitter:image" content="https://bananabyte.io/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=Sora:wght@300;400;500;600;700;800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<!-- TURNSTILE: only the contact page needs the widget. If this page has the
+     contact form, add the api.js script here:
+     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script> -->
+<link rel="stylesheet" href="/assets/site.css">
+
+<!-- ============================================================
+     NO-JS FALLBACK: with JavaScript disabled, the reveal-on-scroll
+     elements would otherwise stay at opacity:0 and the page would
+     look blank. This forces all [data-reveal] content fully visible
+     and keeps the gate hidden, so the default BUSINESS homepage is
+     shown and never blocked when JS is off.
+     ============================================================ -->
+<noscript>
+<style>
+  [data-reveal]{opacity:1 !important;transform:none !important}
+  .gate{display:none !important}
+</style>
+</noscript>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ============================================================
+     INTRO GATE — hidden by default; JS opens it on first visit only.
+     With JS disabled it stays display:none, so the default business
+     content below is never blocked. Cards are filled from MODES map.
+     ============================================================ -->
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-h" aria-describedby="gate-sub" hidden>
+  <div class="gate-card">
+    <div class="gate-brand">
+      <span class="wm" aria-label="BANANAbyte"><span class="b1">BANANA</span><span class="b2">byte</span><span class="dot" aria-hidden="true">.</span></span>
+      <span aria-hidden="true">🍌</span>
+    </div>
+    <h2 id="gate-h" data-es="¿Qué te trae por aquí?">What brings you here?</h2>
+    <p class="gate-sub" id="gate-sub" data-es="Elige la versión de BANANAbyte que mejor te encaje. Puedes cambiar cuando quieras.">Pick the version of BANANAbyte that fits you. You can switch anytime.</p>
+    <div class="gate-choices" id="gate-choices" role="group" aria-label="Choose your experience" data-es-aria-label="Elige tu experiencia">
+      <!-- choice cards injected here from the MODES map -->
+    </div>
+    <div class="gate-foot">
+      <button type="button" class="gate-skip" id="gate-skip" data-es="Solo estoy mirando — muéstrame la versión normal">Just looking — show me the default</button>
+      <p class="gate-note" data-es="Puedes cambiar cuando quieras desde el menú de arriba.">You can switch anytime from the menu at the top.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     HEADER (shared shell; toggle built from MODES map)
+     ============================================================ -->
+<header class="site">
+  <div class="wrap nav">
+    <div class="nav-left">
+      <a class="wordmark" href="/" aria-label="BANANAbyte home" data-es-aria-label="BANANAbyte inicio">
+        <span class="nana" aria-hidden="true">.</span>
+        <span><span class="banana">BANANA</span><span class="byte">byte</span></span>
+        <span aria-hidden="true" style="font-size:.95em">🍌</span>
+      </a>
+      <div class="mode-toggle" id="mode-toggle" role="radiogroup" aria-label="Choose audience mode" data-es-aria-label="Elige el modo de público">
+        <!-- radio inputs injected here from the MODES map -->
+      </div>
+    </div>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/services/" data-es="Servicios">Services</a>
+      <a href="/work/" data-es="Proyectos">Work</a>
+      <a href="/pricing/" data-es="Precios">Pricing</a>
+      <a href="/contact/" class="nav-cta" data-es="Empezar un proyecto">Start a project</a>
+    </nav>
+    <!-- mobile-only: opens the slide-in menu drawer below -->
+    <button class="hamburger" id="hamburger" type="button"
+            aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="hb-lines" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============================================================
+     MOBILE MENU — slide-in drawer (≤979px). The #mode-toggle node
+     is physically MOVED into #menu-toggle-slot on mobile and back into
+     .nav-left on desktop (see placeMode() in the script), so there is
+     never a duplicate radio group to desync state.
+     ============================================================ -->
+<div class="nav-backdrop" id="nav-backdrop" hidden></div>
+<aside class="mobile-menu" id="mobile-menu" aria-label="Menu" aria-hidden="true" hidden>
+  <div class="mm-inner">
+    <div class="mm-slot" id="menu-toggle-slot"><!-- #mode-toggle relocated here on mobile --></div>
+    <nav class="mm-links" aria-label="Mobile">
+      <a href="/services/" data-es="Servicios">Services</a>
+      <a href="/work/" data-es="Proyectos">Work</a>
+      <a href="/pricing/" data-es="Precios">Pricing</a>
+      <a href="/contact/" data-es="Contacto">Contact</a>
+    </nav>
+    <a href="/contact/" class="btn btn-primary mm-cta" data-es="Empezar un proyecto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Start a project <span class="arrow" aria-hidden="true">→</span></a>
+    <div class="mm-lang-slot" id="menu-lang-slot"><!-- .lang-toggle relocated here on mobile --></div>
+  </div>
+</aside>
+
+<main id="main">
+<!-- PAGE CONTENT -->
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="wordmark" href="/" aria-label="BANANAbyte home" data-es-aria-label="BANANAbyte inicio">
+          <span class="nana" aria-hidden="true">.</span>
+          <span><span class="banana">BANANA</span><span class="byte">byte</span></span>
+          <span aria-hidden="true" style="font-size:.95em">🍌</span>
+        </a>
+        <p class="foot-blurb" data-es="Un estudio web en Orlando, FL. Sitios web rápidos, limpios y a medida, bien hechos. 🍌">A web studio in Orlando, FL. Fast, clean, custom websites, built right. 🍌</p>
+      </div>
+      <nav class="foot-nav" aria-label="Footer">
+        <a href="/services/" data-es="Servicios">Services</a>
+        <a href="/work/" data-es="Proyectos">Work</a>
+        <a href="/pricing/" data-es="Precios">Pricing</a>
+        <a href="/contact/" data-es="Contacto">Contact</a>
+        <a href="mailto:contact@bananabyte.io">contact@bananabyte.io</a>
+      </nav>
+    </div>
+    <p class="foot-disclaimer" data-es="Los sitios de ejemplo que se muestran son conceptos de demostración; cualquier trabajo real con clientes se muestra solo con el permiso de su dueño.">Example sites shown are demo concepts; any real client work is displayed only with the owner’s permission.</p>
+    <div class="foot-bottom">
+      <span data-es="© &lt;span id=&quot;year&quot;&gt;2026&lt;/span&gt; BANANAbyte LLC — Orlando, FL. &lt;span class=&quot;foot-built&quot;&gt;Hecho por Gabe, un desarrollador de Orlando.&lt;/span&gt;">© <span id="year">2026</span> BANANAbyte LLC — Orlando, FL. <span class="foot-built">Built by Gabe, an Orlando developer.</span></span>
+      <div class="lang-toggle" role="group" aria-label="Language / Idioma">
+        <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+      </div>
+      <span class="made" data-es="¿No eres tú? &lt;button type=&quot;button&quot; class=&quot;reopen-gate&quot; id=&quot;reopen-gate&quot;&gt;Elegir de nuevo&lt;/button&gt;">Not you? <button type="button" class="reopen-gate" id="reopen-gate">Choose again</button></span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/site.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "0928fb51dad843818b6718b55b31e615"}'></script>
+</body>
+</html>

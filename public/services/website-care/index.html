@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<!--
+  BANANAbyte — /services/website-care/  (Website Care & Maintenance)
+
+  Shared assets (/assets/site.css + /assets/site.js) drive the gate,
+  bilingual swap, mode toggle, mobile drawer and reveal-on-scroll — DO NOT
+  remove the IDs/classes/data-es attributes they depend on. Page-specific
+  layout lives in the small scoped <style> in <head> and uses only the
+  existing var(--...) design tokens so it adapts to both modes.
+-->
+<html lang="en" data-mode="business">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Set <html lang> as early as possible from the saved language choice, so
+     a returning Spanish visitor doesn't get a flash of the wrong lang attr.
+     The full copy swap happens synchronously at the end of <body>. -->
+<script>try{var _l=localStorage.getItem('bb-lang');if(_l==='es'||_l==='en'){document.documentElement.lang=_l;document.documentElement.classList.add('lang-'+_l);}}catch(e){}</script>
+<title>Website Care &amp; Maintenance · BANANAbyte</title>
+<meta name="description" content="Set it and forget it. BANANAbyte keeps your site healthy with updates, backups, security, uptime monitoring, monthly content edits, and priority support — a simple monthly plan, cancel anytime.">
+<link rel="canonical" href="https://bananabyte.io/services/website-care/">
+<meta name="theme-color" content="#16181C">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BANANAbyte">
+<meta property="og:title" content="Website Care &amp; Maintenance · BANANAbyte">
+<meta property="og:description" content="Set it and forget it. BANANAbyte keeps your site healthy with updates, backups, security, uptime monitoring, monthly content edits, and priority support — a simple monthly plan, cancel anytime.">
+<meta property="og:url" content="https://bananabyte.io/services/website-care/">
+<meta property="og:image" content="https://bananabyte.io/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Website Care &amp; Maintenance · BANANAbyte">
+<meta name="twitter:description" content="A simple monthly plan that keeps your site healthy — updates, backups, security, uptime monitoring, content edits, and priority support. Cancel anytime.">
+<meta name="twitter:image" content="https://bananabyte.io/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=Sora:wght@300;400;500;600;700;800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<!-- TURNSTILE: only the contact page needs the widget. If this page has the
+     contact form, add the api.js script here:
+     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script> -->
+<link rel="stylesheet" href="/assets/site.css">
+
+<!-- ============================================================
+     PAGE-SCOPED LAYOUT — uses ONLY existing site.css tokens
+     (var(--...)) so it adapts to both business + performer modes.
+     No hard-coded brand colors. Reuses generic component patterns.
+     ============================================================ -->
+<style>
+  /* breadcrumb back to the services hub */
+  .crumbs{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:.82rem;color:var(--ink-mute);margin-bottom:18px}
+  .crumbs a{color:var(--ink-soft);border-bottom:1px solid transparent;transition:color .2s var(--ease),border-color .2s var(--ease)}
+  .crumbs a:hover{color:var(--accent);border-color:var(--accent-line)}
+  .crumbs .sep{opacity:.6}
+  .crumbs [aria-current]{color:var(--ink-soft)}
+
+  /* hero recurring-plan badge row */
+  .care-pills{display:flex;flex-wrap:wrap;gap:9px;margin-top:26px}
+  .care-pill{
+    display:inline-flex;align-items:center;gap:8px;
+    border:1px solid var(--line);border-radius:999px;background:var(--panel);
+    padding:7px 14px;font-size:.82rem;color:var(--ink-soft);font-weight:500;
+  }
+  .care-pill .ck{color:var(--accent)}
+  html[data-mode="performer"] .care-pill{background:linear-gradient(160deg,var(--panel-2),var(--panel))}
+
+  /* "What's covered" — feature cards (mirror the .svc grid behaviour) */
+  .cover-grid{display:grid;grid-template-columns:1fr;gap:14px}
+  @media(min-width:640px){.cover-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:1000px){.cover-grid{grid-template-columns:repeat(3,1fr)}}
+  .cover{
+    position:relative;border:1px solid var(--line);border-radius:var(--radius);
+    background:var(--panel);padding:24px 22px 22px;overflow:hidden;
+    transition:transform .3s var(--ease),border-color .3s var(--ease),background .3s var(--ease),box-shadow .3s var(--ease);
+  }
+  html[data-mode="performer"] .cover{background:linear-gradient(165deg,var(--panel-2),var(--panel))}
+  .cover::after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);transform:scaleY(0);transform-origin:top;transition:transform .3s var(--ease)}
+  .cover:hover{transform:translateY(-4px);border-color:var(--line-strong);background:var(--panel-2)}
+  .cover:hover::after{transform:scaleY(1)}
+  html[data-mode="performer"] .cover:hover{box-shadow:var(--shadow)}
+  .cover .ico{
+    width:42px;height:42px;border-radius:11px;display:grid;place-items:center;
+    background:var(--panel-2);border:1px solid var(--line);margin-bottom:16px;color:var(--accent);
+  }
+  html[data-mode="performer"] .cover .ico{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+  .cover h3{font-size:1.12rem;font-weight:600;margin-top:2px}
+  html[data-mode="performer"] .cover h3{font-size:1.3rem;font-family:var(--font-fraunces)}
+  .cover p{color:var(--ink-soft);margin-top:10px;font-size:.95rem}
+  .cover .quota{
+    display:inline-flex;align-items:center;gap:7px;margin-top:14px;
+    font-family:var(--font-display);font-weight:600;font-size:.74rem;letter-spacing:.04em;
+    color:var(--accent);background:var(--accent-soft);border:1px solid var(--accent-line);
+    border-radius:999px;padding:5px 11px;
+  }
+  html[data-mode="performer"] .cover .quota{font-family:var(--font-body)}
+
+  /* "Who it's for" — two-column list of fits */
+  .fit-grid{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  @media(min-width:560px){.fit-grid{grid-template-columns:1fr 1fr}}
+  html[data-mode="performer"] .fit-grid{background:transparent;border:0;gap:16px;grid-template-columns:1fr}
+  @media(min-width:560px){html[data-mode="performer"] .fit-grid{grid-template-columns:1fr 1fr}}
+  .fit{background:var(--panel-2);padding:22px;display:flex;gap:13px;align-items:flex-start}
+  html[data-mode="performer"] .fit{background:linear-gradient(165deg,var(--panel-2),var(--panel));border:1px solid var(--line-strong);border-radius:var(--radius)}
+  .fit .ck{color:var(--accent);flex:none;margin-top:2px}
+  .fit h4{font-size:1.02rem;font-weight:600}
+  html[data-mode="performer"] .fit h4{font-family:var(--font-fraunces);font-size:1.14rem}
+  .fit p{color:var(--ink-soft);font-size:.9rem;margin-top:6px}
+
+  /* "How it works" — numbered steps */
+  .steps{display:grid;grid-template-columns:1fr;gap:16px;counter-reset:step}
+  @media(min-width:760px){.steps{grid-template-columns:repeat(3,1fr)}}
+  .step{
+    position:relative;border:1px solid var(--line);border-radius:var(--radius);
+    background:var(--panel);padding:24px 22px 22px;
+  }
+  html[data-mode="performer"] .step{background:linear-gradient(165deg,var(--panel-2),var(--panel))}
+  .step .n{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:34px;height:34px;border-radius:10px;margin-bottom:14px;
+    font-family:var(--font-display);font-weight:700;font-size:1rem;
+    color:var(--on-accent);background:var(--accent);
+  }
+  html[data-mode="performer"] .step .n{border-radius:50%;font-family:var(--font-fraunces);font-style:italic;background:linear-gradient(135deg,var(--honey),var(--accent) 55%,var(--gold))}
+  .step h3{font-size:1.08rem;font-weight:600}
+  html[data-mode="performer"] .step h3{font-family:var(--font-fraunces);font-size:1.22rem}
+  .step p{color:var(--ink-soft);font-size:.93rem;margin-top:9px}
+
+  /* recurring-plan callout band */
+  .recur{
+    border:1px solid var(--line-strong);border-radius:var(--radius-lg);
+    background:linear-gradient(160deg,var(--panel-2),var(--panel));
+    padding:clamp(24px,4vw,38px);box-shadow:var(--shadow);
+    display:flex;flex-direction:column;gap:14px;
+  }
+  @media(min-width:760px){.recur{flex-direction:row;align-items:center;justify-content:space-between;gap:32px}}
+  html[data-mode="performer"] .recur{
+    background:
+      radial-gradient(100% 120% at 100% 0%, rgba(245,200,0,.1), transparent 55%),
+      linear-gradient(160deg,var(--panel-2),var(--panel));
+    border-color:var(--accent-line);
+  }
+  .recur .rc-ico{
+    width:48px;height:48px;flex:none;border-radius:13px;display:grid;place-items:center;
+    background:var(--accent-soft);border:1px solid var(--accent-line);color:var(--accent);
+  }
+  .recur-text{flex:1;min-width:0}
+  .recur-text h3{font-size:1.22rem;font-weight:600}
+  html[data-mode="performer"] .recur-text h3{font-family:var(--font-fraunces);font-size:1.42rem}
+  .recur-text p{color:var(--ink-soft);margin-top:8px;font-size:.95rem}
+  .recur-text a.inline{color:var(--accent);border-bottom:1px solid var(--accent-line);font-weight:600}
+  .recur-text a.inline:hover{border-color:var(--accent)}
+  .recur-actions{display:flex;flex-wrap:wrap;gap:12px;flex:none}
+
+  /* closing CTA block */
+  .care-cta{
+    border:1px solid var(--line);border-radius:var(--radius-lg);
+    background:var(--panel);padding:clamp(30px,5vw,52px);text-align:center;
+  }
+  html[data-mode="performer"] .care-cta{background:linear-gradient(165deg,var(--panel-2),var(--panel));border-color:var(--line-strong)}
+  .care-cta h2{font-size:clamp(1.7rem,4.4vw,2.5rem)}
+  .care-cta p{color:var(--ink-soft);margin:16px auto 0;max-width:54ch}
+  .care-cta .care-cta-actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:28px}
+</style>
+
+<!-- ============================================================
+     NO-JS FALLBACK: with JavaScript disabled, the reveal-on-scroll
+     elements would otherwise stay at opacity:0 and the page would
+     look blank. This forces all [data-reveal] content fully visible
+     and keeps the gate hidden, so the default BUSINESS homepage is
+     shown and never blocked when JS is off.
+     ============================================================ -->
+<noscript>
+<style>
+  [data-reveal]{opacity:1 !important;transform:none !important}
+  .gate{display:none !important}
+</style>
+</noscript>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ============================================================
+     INTRO GATE — hidden by default; JS opens it on first visit only.
+     With JS disabled it stays display:none, so the default business
+     content below is never blocked. Cards are filled from MODES map.
+     ============================================================ -->
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-h" aria-describedby="gate-sub" hidden>
+  <div class="gate-card">
+    <div class="gate-brand">
+      <span class="wm" aria-label="BANANAbyte"><span class="b1">BANANA</span><span class="b2">byte</span><span class="dot" aria-hidden="true">.</span></span>
+      <span aria-hidden="true">🍌</span>
+    </div>
+    <h2 id="gate-h" data-es="¿Qué te trae por aquí?">What brings you here?</h2>
+    <p class="gate-sub" id="gate-sub" data-es="Elige la versión de BANANAbyte que mejor te encaje. Puedes cambiar cuando quieras.">Pick the version of BANANAbyte that fits you. You can switch anytime.</p>
+    <div class="gate-choices" id="gate-choices" role="group" aria-label="Choose your experience" data-es-aria-label="Elige tu experiencia">
+      <!-- choice cards injected here from the MODES map -->
+    </div>
+    <div class="gate-foot">
+      <button type="button" class="gate-skip" id="gate-skip" data-es="Solo estoy mirando — muéstrame la versión normal">Just looking — show me the default</button>
+      <p class="gate-note" data-es="Puedes cambiar cuando quieras desde el menú de arriba.">You can switch anytime from the menu at the top.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     HEADER (shared shell; toggle built from MODES map)
+     ============================================================ -->
+<header class="site">
+  <div class="wrap nav">
+    <div class="nav-left">
+      <a class="wordmark" href="/" aria-label="BANANAbyte home" data-es-aria-label="BANANAbyte inicio">
+        <span class="nana" aria-hidden="true">.</span>
+        <span><span class="banana">BANANA</span><span class="byte">byte</span></span>
+        <span aria-hidden="true" style="font-size:.95em">🍌</span>
+      </a>
+      <div class="mode-toggle" id="mode-toggle" role="radiogroup" aria-label="Choose audience mode" data-es-aria-label="Elige el modo de público">
+        <!-- radio inputs injected here from the MODES map -->
+      </div>
+    </div>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/services/" data-es="Servicios">Services</a>
+      <a href="/work/" data-es="Proyectos">Work</a>
+      <a href="/pricing/" data-es="Precios">Pricing</a>
+      <a href="/contact/" class="nav-cta" data-es="Empezar un proyecto">Start a project</a>
+    </nav>
+    <!-- mobile-only: opens the slide-in menu drawer below -->
+    <button class="hamburger" id="hamburger" type="button"
+            aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="hb-lines" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============================================================
+     MOBILE MENU — slide-in drawer (≤979px). The #mode-toggle node
+     is physically MOVED into #menu-toggle-slot on mobile and back into
+     .nav-left on desktop (see placeMode() in the script), so there is
+     never a duplicate radio group to desync state.
+     ============================================================ -->
+<div class="nav-backdrop" id="nav-backdrop" hidden></div>
+<aside class="mobile-menu" id="mobile-menu" aria-label="Menu" aria-hidden="true" hidden>
+  <div class="mm-inner">
+    <div class="mm-slot" id="menu-toggle-slot"><!-- #mode-toggle relocated here on mobile --></div>
+    <nav class="mm-links" aria-label="Mobile">
+      <a href="/services/" data-es="Servicios">Services</a>
+      <a href="/work/" data-es="Proyectos">Work</a>
+      <a href="/pricing/" data-es="Precios">Pricing</a>
+      <a href="/contact/" data-es="Contacto">Contact</a>
+    </nav>
+    <a href="/contact/" class="btn btn-primary mm-cta" data-es="Empezar un proyecto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Start a project <span class="arrow" aria-hidden="true">→</span></a>
+    <div class="mm-lang-slot" id="menu-lang-slot"><!-- .lang-toggle relocated here on mobile --></div>
+  </div>
+</aside>
+
+<main id="main">
+
+  <!-- ============================================================
+       HERO — set it and forget it
+       ============================================================ -->
+  <section class="hero" aria-labelledby="care-hero-h">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb" data-reveal>
+        <a href="/services/" data-es="Servicios">Services</a>
+        <span class="sep" aria-hidden="true">/</span>
+        <span aria-current="page" data-es="Cuidado del sitio">Website care</span>
+      </nav>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="tag" data-reveal data-es="&lt;span class=&quot;pulse&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt; Plan mensual · cancela cuando quieras"><span class="pulse" aria-hidden="true"></span> Monthly plan · cancel anytime</span>
+          <h1 id="care-hero-h" data-reveal data-es="Tú a lo tuyo. Yo mantengo &lt;span class=&quot;mark&quot;&gt;tu sitio sano.&lt;/span&gt;">Set it and forget it. I keep your site <span class="mark">healthy.</span></h1>
+          <p class="hero-lede" data-reveal data-es="Un sitio web no es un cuadro que cuelgas una vez y te olvidas — necesita actualizaciones, copias de seguridad y un ojo encima. Con un plan de cuidado de BANANAbyte 🍌 yo me encargo de todo eso en silencio, en segundo plano, para que tu sitio se mantenga rápido, seguro y al día — sin que tengas que pensar en ello.">A website isn’t a painting you hang once and forget — it needs updates, backups, and a watchful eye. With a BANANAbyte 🍌 care plan, I quietly handle all of that in the background, so your site stays fast, secure, and up to date — without you ever having to think about it.</p>
+          <div class="hero-actions" data-reveal>
+            <a href="/contact/" class="btn btn-primary" data-es="Empezar un proyecto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Start a project <span class="arrow" aria-hidden="true">→</span></a>
+            <a href="/pricing/" class="btn btn-ghost" data-es="Ver precios">See pricing</a>
+          </div>
+          <div class="care-pills" data-reveal>
+            <span class="care-pill" data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Sin contratos atados"><span class="ck" aria-hidden="true">✓</span> No locked-in contracts</span>
+            <span class="care-pill" data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Una persona real, no un ticket"><span class="ck" aria-hidden="true">✓</span> A real person, not a ticket queue</span>
+            <span class="care-pill" data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Reportes mensuales claros"><span class="ck" aria-hidden="true">✓</span> Plain monthly check-ins</span>
+          </div>
+        </div>
+
+        <div class="hero-panel" data-reveal aria-hidden="true">
+          <div class="browser">
+            <div class="browser-bar">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="url">yoursite.com · status: healthy</span>
+            </div>
+            <div class="browser-body">
+              <div class="sk-row"><div class="skeleton" style="width:40%"></div></div>
+              <div class="sk-row"><div class="skeleton" style="width:66%;height:9px"></div></div>
+              <div class="sk-row" style="margin-bottom:16px"><div class="skeleton" style="width:54%;height:9px"></div></div>
+              <div class="sk-row">
+                <div class="sk-block sk-accent" style="flex:1"></div>
+                <div class="sk-block" style="flex:1"></div>
+                <div class="sk-block" style="flex:1"></div>
+              </div>
+            </div>
+          </div>
+          <div class="panel-badge" data-es="&lt;b&gt;100%&lt;/b&gt; tiempo activo este mes"><b>100%</b> uptime this month</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHAT'S COVERED
+       ============================================================ -->
+  <section id="covered" aria-labelledby="covered-h">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <span class="eyebrow" data-es="Lo que cubre">What’s covered</span>
+        <h2 id="covered-h" data-es="Todo lo aburrido pero importante — hecho por ti.">All the boring-but-important stuff — handled for you.</h2>
+        <p data-es="Cada plan incluye lo de abajo. Nada de letra pequeña ni «extras» sorpresa: si entra en el cuidado del sitio, entra en el plan.">Every plan includes the items below. No fine print, no surprise “add-ons” — if it’s part of caring for your site, it’s part of the plan.</p>
+      </div>
+
+      <div class="cover-grid">
+
+        <article class="cover" data-reveal>
+          <div class="ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v5h-5"/></svg>
+          </div>
+          <h3 data-es="Actualizaciones de software y plugins">Software &amp; plugin updates</h3>
+          <p data-es="El núcleo del sitio, los temas y los plugins se mantienen al día — probados antes de aplicarlos para que una actualización nunca rompa tu página en vivo.">Your site’s core, themes, and plugins stay current — tested before they go live, so an update never breaks your real page.</p>
+        </article>
+
+        <article class="cover" data-reveal>
+          <div class="ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <h3 data-es="Seguridad y copias de seguridad">Security &amp; backups</h3>
+          <p data-es="Copias automáticas con regularidad y protecciones de seguridad activas. Si algo sale mal, restauro una versión limpia rápido — sin perder tu contenido.">Automatic backups on a regular schedule plus active security hardening. If anything goes sideways, I restore a clean version fast — no lost content.</p>
+        </article>
+
+        <article class="cover" data-reveal>
+          <div class="ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2 6 4-12 2 6h6"/></svg>
+          </div>
+          <h3 data-es="Monitoreo de tiempo activo">Uptime monitoring</h3>
+          <p data-es="Tu sitio se revisa las 24 horas. Si alguna vez se cae, yo me entero primero — normalmente antes que tú — y ya estoy arreglándolo cuando tú aún ni lo notas.">Your site is checked around the clock. If it ever goes down, I hear about it first — usually before you do — and I’m already on the fix while you’re still none the wiser.</p>
+        </article>
+
+        <article class="cover feature" data-reveal>
+          <div class="ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+          </div>
+          <h3 data-es="Ediciones de contenido cada mes">Monthly content edits</h3>
+          <p data-es="¿Cambió un horario, un precio, una foto o un párrafo? Me escribes y yo lo hago. Cada plan incluye una cantidad fija de ediciones pequeñas al mes — sin abrir tickets ni esperar.">New hours, a price change, a swapped photo, a reworded paragraph? You text me and I make it happen. Every plan includes a set amount of small edits each month — no tickets, no waiting.</p>
+          <span class="quota" data-es="Cantidad fija incluida cada mes">A set amount included each month</span>
+        </article>
+
+        <article class="cover" data-reveal>
+          <div class="ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h3 data-es="Soporte prioritario">Priority support</h3>
+          <p data-es="Eres cliente con plan, así que vas al frente de la fila. Escríbeme por correo o mensaje y recibes una respuesta de una persona real — no un bot, no «espera 5 a 7 días hábiles».">As a plan client you go to the front of the line. Email or text me and you get a reply from a real human — not a bot, not “please allow 5–7 business days.”</p>
+        </article>
+
+        <article class="cover" data-reveal>
+          <div class="ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg>
+          </div>
+          <h3 data-es="Un reporte que de verdad entiendes">A report you actually understand</h3>
+          <p data-es="Una vez al mes recibes un resumen breve y en lenguaje normal: qué se actualizó, qué se respaldó y cómo va tu sitio. Sin paneles confusos ni jerga.">Once a month you get a short, plain-English summary: what got updated, what got backed up, and how your site is doing. No confusing dashboards, no jargon.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHO IT'S FOR
+       ============================================================ -->
+  <section id="who" aria-labelledby="who-h">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <span class="eyebrow" data-es="Para quién es">Who it’s for</span>
+        <h2 id="who-h" data-es="Para cualquiera que no quiera estar cuidando su sitio.">For anyone who doesn’t want to babysit their site.</h2>
+        <p data-es="Si tu sitio es importante para ti pero mantenerlo no es tu trabajo — ni tu idea de un buen rato — un plan de cuidado es para ti.">If your site matters to you but maintaining it isn’t your job — or your idea of a good time — a care plan is for you.</p>
+      </div>
+
+      <div class="fit-grid" data-reveal>
+        <div class="fit">
+          <span class="ck" aria-hidden="true">✓</span>
+          <div>
+            <h4 data-es="Dueños de negocio ocupados">Busy business owners</h4>
+            <p data-es="Tienes un negocio que atender. Lo último que quieres es enterarte de que tu sitio lleva una semana caído porque venció un plugin.">You’ve got a business to run. The last thing you want is to discover your site’s been down for a week because a plugin expired.</p>
+          </div>
+        </div>
+        <div class="fit">
+          <span class="ck" aria-hidden="true">✓</span>
+          <div>
+            <h4 data-es="Artistas y creadores">Performers &amp; creators</h4>
+            <p data-es="Tu sitio es tu cartelera. Tiene que estar en pie y verse impecable la noche que un contratante o un fan lo abre — no «pronto».">Your site is your marquee. It needs to be up and looking sharp the night a booker or fan pulls it up — not “soon.”</p>
+          </div>
+        </div>
+        <div class="fit">
+          <span class="ck" aria-hidden="true">✓</span>
+          <div>
+            <h4 data-es="Tiendas online">Online stores</h4>
+            <p data-es="Cada minuto que tu tienda está caída o insegura es dinero que se va. El cuidado mantiene el pago funcionando y tus datos a salvo.">Every minute your shop is down or insecure is money walking away. Care keeps checkout working and your data safe.</p>
+          </div>
+        </div>
+        <div class="fit">
+          <span class="ck" aria-hidden="true">✓</span>
+          <div>
+            <h4 data-es="Cualquiera al que «la tecnología no es lo suyo»">Anyone who “isn’t a tech person”</h4>
+            <p data-es="No tienes que aprender nada. Tú me dices qué quieres cambiar en lenguaje normal y yo me encargo del resto entre bambalinas.">You don’t have to learn a thing. You tell me what you want changed in plain words, and I handle the rest behind the curtain.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       HOW IT WORKS
+       ============================================================ -->
+  <section id="how" aria-labelledby="how-h">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <span class="eyebrow" data-es="Cómo funciona">How it works</span>
+        <h2 id="how-h" data-es="Simple por diseño. Un plan mensual, cancela cuando quieras.">Simple by design. One monthly plan, cancel anytime.</h2>
+        <p data-es="Sin amarres largos ni penalizaciones por irte. Pagas mes a mes y te quedas porque funciona, no porque estés atrapado.">No long lock-ins, no penalties for leaving. You pay month to month and stay because it works, not because you’re trapped.</p>
+      </div>
+
+      <div class="steps" data-reveal>
+        <div class="step">
+          <span class="n" aria-hidden="true">1</span>
+          <h3 data-es="Elegimos un plan">We pick a plan</h3>
+          <p data-es="Miramos tu sitio juntos y elegimos un nivel de cuidado que encaje con su tamaño y con lo activo que es. Sin paquetes que no necesitas.">We look at your site together and pick a care level that fits its size and how busy it is. No packages full of stuff you don’t need.</p>
+        </div>
+        <div class="step">
+          <span class="n" aria-hidden="true">2</span>
+          <h3 data-es="Yo me encargo, en silencio">I handle it, quietly</h3>
+          <p data-es="Cada mes hago las actualizaciones, las copias y los chequeos en segundo plano, y aplico tus ediciones cuando me las pides. Tú no haces nada.">Each month I run the updates, backups, and checks in the background, and make your edits whenever you send them. You do nothing.</p>
+        </div>
+        <div class="step">
+          <span class="n" aria-hidden="true">3</span>
+          <h3 data-es="Cancela cuando quieras">Cancel anytime</h3>
+          <p data-es="¿Cambian tus necesidades? Súbete, bájate o cancela con un solo mensaje. Tu sitio siempre es tuyo — no se queda de rehén.">Needs change? Move up, move down, or cancel with a single message. Your site is always yours — it’s never held hostage.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       RECURRING-PLAN HONESTY BAND (not the one-time build)
+       ============================================================ -->
+  <section id="recurring" aria-labelledby="recurring-h">
+    <div class="wrap">
+      <div class="recur" data-reveal>
+        <div class="rc-ico" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>
+        </div>
+        <div class="recur-text">
+          <h3 id="recurring-h" data-es="Esto es un plan mensual recurrente — no el sitio en sí.">This is a recurring monthly plan — not the build itself.</h3>
+          <p data-es="El cuidado del sitio es una cuota mensual aparte del proyecto de una sola vez para construir o rediseñar tu sitio. ¿Cuánto cuesta? Depende del tamaño del sitio, si es una tienda y cuánto se mueve — así que te doy un número claro y cerrado antes de empezar. Mira los &lt;a class=&quot;inline&quot; href=&quot;/pricing/&quot;&gt;precios&lt;/a&gt; o &lt;a class=&quot;inline&quot; href=&quot;/contact/&quot;&gt;pídeme un presupuesto&lt;/a&gt;.">Website care is a separate monthly fee from the one-time project to build or redesign your site. What does it cost? It depends on the size of the site, whether it’s a store, and how busy it is — so I give you one clear, flat number before anything starts. See <a class="inline" href="/pricing/">pricing</a> or <a class="inline" href="/contact/">ask me for a quote</a>.</p>
+        </div>
+        <div class="recur-actions">
+          <a href="/pricing/" class="btn btn-ghost" data-es="Ver precios">See pricing</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CLOSING CTA → /contact/
+       ============================================================ -->
+  <section id="care-cta" aria-labelledby="care-cta-h">
+    <div class="wrap">
+      <div class="care-cta" data-reveal>
+        <span class="eyebrow" style="justify-content:center" data-es="¿Listo?">Ready?</span>
+        <h2 id="care-cta-h" data-es="Deja de cuidar tu sitio. Deja que yo lo haga.">Stop babysitting your site. Let me do it.</h2>
+        <p data-es="Cuéntame sobre tu sitio y dónde te gustaría preocuparte menos. Te respondo en un día hábil con un plan honesto y un número claro — incluso si la respuesta es «todavía no lo necesitas».">Tell me about your site and where you’d like to worry less. I’ll reply within one business day with an honest plan and a clear number — even if the answer is “you don’t need this yet.”</p>
+        <div class="care-cta-actions">
+          <a href="/contact/" class="btn btn-primary" data-es="Empezar un proyecto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Start a project <span class="arrow" aria-hidden="true">→</span></a>
+          <a href="/pricing/" class="btn btn-ghost" data-es="Ver precios">See pricing</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="wordmark" href="/" aria-label="BANANAbyte home" data-es-aria-label="BANANAbyte inicio">
+          <span class="nana" aria-hidden="true">.</span>
+          <span><span class="banana">BANANA</span><span class="byte">byte</span></span>
+          <span aria-hidden="true" style="font-size:.95em">🍌</span>
+        </a>
+        <p class="foot-blurb" data-es="Un estudio web en Orlando, FL. Sitios web rápidos, limpios y a medida, bien hechos. 🍌">A web studio in Orlando, FL. Fast, clean, custom websites, built right. 🍌</p>
+      </div>
+      <nav class="foot-nav" aria-label="Footer">
+        <a href="/services/" data-es="Servicios">Services</a>
+        <a href="/work/" data-es="Proyectos">Work</a>
+        <a href="/pricing/" data-es="Precios">Pricing</a>
+        <a href="/contact/" data-es="Contacto">Contact</a>
+        <a href="mailto:contact@bananabyte.io">contact@bananabyte.io</a>
+      </nav>
+    </div>
+    <p class="foot-disclaimer" data-es="Los sitios de ejemplo que se muestran son conceptos de demostración; cualquier trabajo real con clientes se muestra solo con el permiso de su dueño.">Example sites shown are demo concepts; any real client work is displayed only with the owner’s permission.</p>
+    <div class="foot-bottom">
+      <span data-es="© &lt;span id=&quot;year&quot;&gt;2026&lt;/span&gt; BANANAbyte LLC — Orlando, FL. &lt;span class=&quot;foot-built&quot;&gt;Hecho por Gabe, un desarrollador de Orlando.&lt;/span&gt;">© <span id="year">2026</span> BANANAbyte LLC — Orlando, FL. <span class="foot-built">Built by Gabe, an Orlando developer.</span></span>
+      <div class="lang-toggle" role="group" aria-label="Language / Idioma">
+        <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+      </div>
+      <span class="made" data-es="¿No eres tú? &lt;button type=&quot;button&quot; class=&quot;reopen-gate&quot; id=&quot;reopen-gate&quot;&gt;Elegir de nuevo&lt;/button&gt;">Not you? <button type="button" class="reopen-gate" id="reopen-gate">Choose again</button></span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/site.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "0928fb51dad843818b6718b55b31e615"}'></script>
+</body>
+</html>

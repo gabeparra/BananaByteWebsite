@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<!--
+  BANANAbyte — Website Design & Build service page (/services/website-design/).
+
+  ONE set of content for BOTH audiences (business + performer). It restyles
+  automatically via the design-system CSS custom properties: slate + yellow in
+  business mode, black + gold in performer mode when the visitor toggles. No
+  separate copy panels — generic component classes (.hero, .svc-grid, .why,
+  .eyebrow, .btn, .price-anchor) plus a small page-scoped <style> that only
+  uses var(--…) tokens, so nothing is hard-coded to one palette.
+
+  Shared assets (/assets/site.css + /assets/site.js) drive the gate, bilingual
+  swap, mode toggle, mobile drawer and reveal-on-scroll — the gate/header/
+  footer/scripts shell and every id/class/data-es attribute they depend on are
+  unchanged from the page skeleton.
+-->
+<html lang="en" data-mode="business">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Set <html lang> as early as possible from the saved language choice, so
+     a returning Spanish visitor doesn't get a flash of the wrong lang attr.
+     The full copy swap happens synchronously at the end of <body>. -->
+<script>try{var _l=localStorage.getItem('bb-lang');if(_l==='es'||_l==='en'){document.documentElement.lang=_l;document.documentElement.classList.add('lang-'+_l);}}catch(e){}</script>
+<title>Website Design &amp; Build · BANANAbyte</title>
+<meta name="description" content="Custom website design and build for Orlando businesses, professionals and individuals. Fast, mobile-first, with lead forms, on-page SEO, and you own everything. From $900, one flat quote.">
+<link rel="canonical" href="https://bananabyte.io/services/website-design/">
+<meta name="theme-color" content="#16181C">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BANANAbyte">
+<meta property="og:title" content="Website Design &amp; Build · BANANAbyte">
+<meta property="og:description" content="Custom website design and build for Orlando businesses, professionals and individuals. Fast, mobile-first, with lead forms, on-page SEO, and you own everything. From $900, one flat quote.">
+<meta property="og:url" content="https://bananabyte.io/services/website-design/">
+<meta property="og:image" content="https://bananabyte.io/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Website Design &amp; Build · BANANAbyte">
+<meta name="twitter:description" content="Custom website design and build for Orlando businesses, professionals and individuals. Fast, mobile-first, with lead forms, on-page SEO, and you own everything. From $900, one flat quote.">
+<meta name="twitter:image" content="https://bananabyte.io/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=Sora:wght@300;400;500;600;700;800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<!-- TURNSTILE: only the contact page needs the widget. If this page has the
+     contact form, add the api.js script here:
+     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script> -->
+<link rel="stylesheet" href="/assets/site.css">
+
+<!-- ============================================================
+     NO-JS FALLBACK: with JavaScript disabled, the reveal-on-scroll
+     elements would otherwise stay at opacity:0 and the page would
+     look blank. This forces all [data-reveal] content fully visible
+     and keeps the gate hidden, so the default BUSINESS homepage is
+     shown and never blocked when JS is off.
+     ============================================================ -->
+<noscript>
+<style>
+  [data-reveal]{opacity:1 !important;transform:none !important}
+  .gate{display:none !important}
+</style>
+</noscript>
+
+<!-- ============================================================
+     PAGE-SCOPED LAYOUT — only var(--…) tokens, never hard-coded
+     brand colors, so every block restyles with the mode toggle.
+     ============================================================ -->
+<style>
+  /* lede paragraph under a section heading, slightly wider than .sec-head */
+  .wd-lede{color:var(--ink-soft);max-width:60ch;margin-top:14px;font-size:1.02rem}
+
+  /* "What you get" — feature list with a check glyph per row */
+  .feat-grid{display:grid;grid-template-columns:1fr;gap:14px}
+  @media(min-width:640px){.feat-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:1000px){.feat-grid{grid-template-columns:repeat(3,1fr)}}
+  .feat{
+    position:relative;border:1px solid var(--line);border-radius:var(--radius);
+    background:var(--panel);padding:22px 22px 20px;
+    transition:transform .3s var(--ease),border-color .3s var(--ease),background .3s var(--ease),box-shadow .3s var(--ease);
+  }
+  html[data-mode="performer"] .feat{background:linear-gradient(165deg,var(--panel-2),var(--panel))}
+  .feat:hover{transform:translateY(-3px);border-color:var(--line-strong);background:var(--panel-2)}
+  html[data-mode="performer"] .feat:hover{box-shadow:var(--shadow)}
+  .feat .fk{
+    width:34px;height:34px;border-radius:9px;display:grid;place-items:center;
+    background:var(--accent-soft);border:1px solid var(--accent-line);color:var(--accent);margin-bottom:14px;
+  }
+  .feat h3{font-size:1.06rem;font-weight:600}
+  html[data-mode="performer"] .feat h3{font-family:var(--font-fraunces);font-size:1.24rem}
+  .feat p{color:var(--ink-soft);font-size:.93rem;margin-top:8px}
+
+  /* "Who it's for" — compact tag chips that wrap cleanly at 360px */
+  .who-tags{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+  .who-chip{
+    display:inline-flex;align-items:center;gap:9px;
+    border:1px solid var(--line-strong);border-radius:999px;
+    padding:10px 16px;background:var(--panel);
+    font-family:var(--font-display);font-weight:500;font-size:.92rem;color:var(--ink-soft);
+    transition:border-color .25s var(--ease),background .25s var(--ease),color .25s var(--ease);
+  }
+  html[data-mode="performer"] .who-chip{font-family:var(--font-body)}
+  .who-chip:hover{border-color:var(--accent-line);background:var(--accent-soft);color:var(--ink)}
+  .who-chip .wd{width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none}
+
+  /* "How it works" — numbered steps with a connecting rail */
+  .steps{display:grid;grid-template-columns:1fr;gap:16px;counter-reset:step}
+  @media(min-width:720px){.steps{grid-template-columns:repeat(4,1fr)}}
+  .step{
+    position:relative;border:1px solid var(--line);border-radius:var(--radius);
+    background:var(--panel);padding:22px 20px 20px;
+  }
+  html[data-mode="performer"] .step{background:linear-gradient(165deg,var(--panel-2),var(--panel))}
+  .step .sn{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:34px;height:34px;border-radius:50%;margin-bottom:14px;
+    font-family:var(--font-display);font-weight:700;font-size:.95rem;
+    background:var(--accent);color:var(--on-accent);
+  }
+  html[data-mode="performer"] .step .sn{font-family:var(--font-fraunces);font-style:italic;background:linear-gradient(135deg,var(--honey),var(--accent) 55%,var(--gold))}
+  .step h3{font-size:1.04rem;font-weight:600}
+  html[data-mode="performer"] .step h3{font-family:var(--font-fraunces);font-size:1.18rem}
+  .step p{color:var(--ink-soft);font-size:.9rem;margin-top:7px}
+  /* connecting rail between steps on the 4-col desktop layout */
+  @media(min-width:720px){
+    .step:not(:last-child)::after{
+      content:"";position:absolute;top:39px;right:-9px;width:18px;height:1px;
+      background:var(--accent-line);z-index:1;
+    }
+  }
+
+  /* price teaser — one shared panel, restyles per mode via vars */
+  .price-teaser{
+    border:1px solid var(--accent-line);border-radius:var(--radius-lg);
+    background:linear-gradient(165deg,var(--accent-soft),var(--panel));
+    padding:clamp(26px,4vw,40px);box-shadow:var(--shadow);
+    display:flex;flex-direction:column;gap:18px;align-items:flex-start;
+  }
+  @media(min-width:760px){.price-teaser{flex-direction:row;align-items:center;justify-content:space-between;gap:30px}}
+  .price-teaser .pt-copy{max-width:54ch}
+  .price-teaser h2{font-size:clamp(1.5rem,4vw,2.2rem)}
+  .price-teaser p{color:var(--ink-soft);margin-top:12px}
+  .price-teaser .pt-actions{display:flex;flex-wrap:wrap;gap:14px;flex:none}
+
+  /* closing CTA band */
+  .cta-band{text-align:center;max-width:640px;margin-inline:auto}
+  .cta-band h2{font-size:clamp(1.7rem,4.4vw,2.55rem)}
+  .cta-band p{color:var(--ink-soft);margin-top:14px;font-size:1.02rem}
+  .cta-band .cta-actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:clamp(26px,4vw,34px)}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ============================================================
+     INTRO GATE — hidden by default; JS opens it on first visit only.
+     With JS disabled it stays display:none, so the default business
+     content below is never blocked. Cards are filled from MODES map.
+     ============================================================ -->
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-h" aria-describedby="gate-sub" hidden>
+  <div class="gate-card">
+    <div class="gate-brand">
+      <span class="wm" aria-label="BANANAbyte"><span class="b1">BANANA</span><span class="b2">byte</span><span class="dot" aria-hidden="true">.</span></span>
+      <span aria-hidden="true">🍌</span>
+    </div>
+    <h2 id="gate-h" data-es="¿Qué te trae por aquí?">What brings you here?</h2>
+    <p class="gate-sub" id="gate-sub" data-es="Elige la versión de BANANAbyte que mejor te encaje. Puedes cambiar cuando quieras.">Pick the version of BANANAbyte that fits you. You can switch anytime.</p>
+    <div class="gate-choices" id="gate-choices" role="group" aria-label="Choose your experience" data-es-aria-label="Elige tu experiencia">
+      <!-- choice cards injected here from the MODES map -->
+    </div>
+    <div class="gate-foot">
+      <button type="button" class="gate-skip" id="gate-skip" data-es="Solo estoy mirando — muéstrame la versión normal">Just looking — show me the default</button>
+      <p class="gate-note" data-es="Puedes cambiar cuando quieras desde el menú de arriba.">You can switch anytime from the menu at the top.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     HEADER (shared shell; toggle built from MODES map)
+     ============================================================ -->
+<header class="site">
+  <div class="wrap nav">
+    <div class="nav-left">
+      <a class="wordmark" href="/" aria-label="BANANAbyte home" data-es-aria-label="BANANAbyte inicio">
+        <span class="nana" aria-hidden="true">.</span>
+        <span><span class="banana">BANANA</span><span class="byte">byte</span></span>
+        <span aria-hidden="true" style="font-size:.95em">🍌</span>
+      </a>
+      <div class="mode-toggle" id="mode-toggle" role="radiogroup" aria-label="Choose audience mode" data-es-aria-label="Elige el modo de público">
+        <!-- radio inputs injected here from the MODES map -->
+      </div>
+    </div>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/services/" data-es="Servicios">Services</a>
+      <a href="/work/" data-es="Proyectos">Work</a>
+      <a href="/pricing/" data-es="Precios">Pricing</a>
+      <a href="/contact/" class="nav-cta" data-es="Empezar un proyecto">Start a project</a>
+    </nav>
+    <!-- mobile-only: opens the slide-in menu drawer below -->
+    <button class="hamburger" id="hamburger" type="button"
+            aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="hb-lines" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============================================================
+     MOBILE MENU — slide-in drawer (≤979px). The #mode-toggle node
+     is physically MOVED into #menu-toggle-slot on mobile and back into
+     .nav-left on desktop (see placeMode() in the script), so there is
+     never a duplicate radio group to desync state.
+     ============================================================ -->
+<div class="nav-backdrop" id="nav-backdrop" hidden></div>
+<aside class="mobile-menu" id="mobile-menu" aria-label="Menu" aria-hidden="true" hidden>
+  <div class="mm-inner">
+    <div class="mm-slot" id="menu-toggle-slot"><!-- #mode-toggle relocated here on mobile --></div>
+    <nav class="mm-links" aria-label="Mobile">
+      <a href="/services/" data-es="Servicios">Services</a>
+      <a href="/work/" data-es="Proyectos">Work</a>
+      <a href="/pricing/" data-es="Precios">Pricing</a>
+      <a href="/contact/" data-es="Contacto">Contact</a>
+    </nav>
+    <a href="/contact/" class="btn btn-primary mm-cta" data-es="Empezar un proyecto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Start a project <span class="arrow" aria-hidden="true">→</span></a>
+    <div class="mm-lang-slot" id="menu-lang-slot"><!-- .lang-toggle relocated here on mobile --></div>
+  </div>
+</aside>
+
+<main id="main">
+
+  <!-- ============================================================
+       HERO — ONE value prop that reads for businesses AND performers;
+       restyles slate/yellow ↔ black/gold via the design tokens.
+       ============================================================ -->
+  <section class="hero" aria-labelledby="wd-hero-h">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="tag" data-reveal data-es="&lt;span class=&quot;pulse&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt; Diseño y desarrollo web · Orlando, FL"><span class="pulse" aria-hidden="true"></span> Website design &amp; build · Orlando, FL</span>
+        <h1 id="wd-hero-h" data-reveal data-es="Un sitio &lt;span class=&quot;mark&quot;&gt;a medida&lt;/span&gt; que de verdad te trae trabajo.">A custom site that <span class="mark">actually brings in business.</span></h1>
+        <p class="hero-lede" data-reveal data-es="No una plantilla más. BANANAbyte 🍌 diseña y construye desde cero un sitio rápido y limpio, hecho en torno a lo que ofreces y a cómo te encuentran tus clientes — para que más visitas se conviertan en llamadas, reservas y pedidos. Precio cerrado, y todo es tuyo cuando lanzamos.">Not another template. BANANAbyte 🍌 designs and builds a fast, clean site from scratch — shaped around what you offer and how people find you — so more visitors turn into calls, bookings, and orders. One flat price, and you own everything when it ships.</p>
+        <div class="hero-actions" data-reveal>
+          <a href="/contact/" class="btn btn-primary" data-es="Empezar un proyecto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Start a project <span class="arrow" aria-hidden="true">→</span></a>
+          <a href="/work/" class="btn btn-ghost" data-es="Ver los proyectos">See the work</a>
+        </div>
+        <div class="hero-meta" data-reveal>
+          <span data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Desde $900, presupuesto cerrado"><span class="ck" aria-hidden="true">✓</span> From $900, one flat quote</span>
+          <span data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Online en ~2–3 semanas"><span class="ck" aria-hidden="true">✓</span> Live in ~2–3 weeks</span>
+          <span data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Eres dueño de todo"><span class="ck" aria-hidden="true">✓</span> You own everything</span>
+        </div>
+      </div>
+
+      <div class="hero-panel" data-reveal aria-hidden="true">
+        <div class="browser">
+          <div class="browser-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="url">yoursite.com</span>
+          </div>
+          <div class="browser-body">
+            <div class="sk-row"><div class="skeleton" style="width:42%"></div></div>
+            <div class="sk-row"><div class="skeleton" style="width:70%;height:9px"></div></div>
+            <div class="sk-row" style="margin-bottom:16px"><div class="skeleton" style="width:58%;height:9px"></div></div>
+            <div class="sk-row">
+              <div class="sk-block sk-accent" style="flex:1"></div>
+              <div class="sk-block" style="flex:1"></div>
+              <div class="sk-block" style="flex:1"></div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-badge" data-es="&lt;b&gt;98&lt;/b&gt; en rendimiento Lighthouse"><b>98</b> Lighthouse performance</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHAT YOU GET — the concrete deliverables, no lock-in.
+       ============================================================ -->
+  <section id="what-you-get" aria-labelledby="wd-what-h">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <span class="eyebrow" data-es="Lo que recibes">What you get</span>
+        <h2 id="wd-what-h" data-es="Todo lo que necesita un sitio para hacer su trabajo — y nada de relleno.">Everything a site needs to do its job — and none of the filler.</h2>
+        <p class="wd-lede" data-es="Cada sitio sale con estas bases. Sin complementos sorpresa ni cuotas que aparecen después: lo que ves aquí es lo que se construye.">Every site ships with these foundations. No surprise add-ons, no fees that show up later — what you see here is what gets built.</p>
+      </div>
+
+      <div class="feat-grid">
+        <article class="feat" data-reveal>
+          <div class="fk" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2.5"/><path d="M11 18h2"/></svg>
+          </div>
+          <h3 data-es="Diseño a medida, mobile-first">Custom, mobile-first design</h3>
+          <p data-es="Diseñado desde cero en torno a tu marca y tus clientes — no una plantilla reciclada. Se ve y funciona perfecto primero en el teléfono, donde está la mayoría de tu tráfico.">Designed from scratch around your brand and your customers — never a recycled template. It looks and works right on the phone first, where most of your traffic already is.</p>
+        </article>
+
+        <article class="feat" data-reveal>
+          <div class="fk" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg>
+          </div>
+          <h3 data-es="Carga rápida de verdad">Genuinely fast load</h3>
+          <p data-es="Construido con código limpio y ligero, no con un constructor inflado. Las páginas que cargan rápido mantienen a la gente — y a Google — contentos.">Built with clean, lightweight code instead of a bloated page builder. Pages that load fast keep people — and Google — happy, and keep visitors from bouncing.</p>
+        </article>
+
+        <article class="feat" data-reveal>
+          <div class="fk" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v12H8l-4 4z"/><path d="M8 9h8M8 13h5"/></svg>
+          </div>
+          <h3 data-es="Formularios de contacto y captación">Contact &amp; lead forms</h3>
+          <p data-es="Formularios que llegan directo a tu correo con protección anti-spam — para que cada consulta, reserva o cotización aterrice donde la verás, no en un panel que nunca abres.">Forms that land straight in your inbox with spam protection built in — so every inquiry, booking, or quote request reaches you where you’ll see it, not in a dashboard you never open.</p>
+        </article>
+
+        <article class="feat" data-reveal>
+          <div class="fk" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          </div>
+          <h3 data-es="SEO on-page básico">Basic on-page SEO</h3>
+          <p data-es="Títulos, descripciones, estructura limpia y velocidad — la base que ayuda a que Google entienda tu sitio y te muestre cuando alguien busca lo que ofreces.">Titles, descriptions, clean structure, and speed — the groundwork that helps Google understand your site and show it when someone searches for what you offer.</p>
+        </article>
+
+        <article class="feat" data-reveal>
+          <div class="fk" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>
+          </div>
+          <h3 data-es="Mapa, horario y datos del negocio">Map, hours &amp; business info</h3>
+          <p data-es="Google Maps integrado, tu dirección, horario y teléfono bien colocados — para que la gente local te encuentre, sepa cuándo estás y llegue sin perderse.">An embedded Google Map, plus your address, hours, and phone placed where they belong — so local folks can find you, know when you’re open, and get there without hunting.</p>
+        </article>
+
+        <article class="feat" data-reveal>
+          <div class="fk" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10V7a5 5 0 0 1 10 0v3"/><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M12 14v3"/></svg>
+          </div>
+          <h3 data-es="Eres dueño de todo — sin ataduras">You own everything — no lock-in</h3>
+          <p data-es="Código, dominio, cuentas y contenido quedan a tu nombre. Sin plataformas que te tengan de rehén ni cuotas mensuales obligatorias. Si algún día te vas, te llevas todo contigo.">Code, domain, accounts, and content are all in your name. No platform holding you hostage, no mandatory monthly fee. If you ever move on, you take the whole thing with you.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHO IT'S FOR — chips + a short framing line.
+       ============================================================ -->
+  <section id="who-its-for" class="why" aria-labelledby="wd-who-h">
+    <div class="wrap why-inner">
+      <div data-reveal>
+        <span class="eyebrow" data-es="Para quién es">Who it’s for</span>
+        <h2 id="wd-who-h" data-es="Si tu trabajo necesita una presencia web de verdad, lo construyo.">If your work needs a real web presence, I’ll build it.</h2>
+        <p class="lede" data-es="No tienes que ser una gran empresa para merecer un buen sitio. Si la gente te busca, te reserva o te paga, necesitas un lugar que se vea hecho a propósito — no un perfil prestado en la red social de turno.">You don’t have to be a big company to deserve a good site. If people look you up, book you, or pay you, you need a home that looks intentional — not a borrowed profile on someone else’s platform.</p>
+      </div>
+      <div class="who-tags" data-reveal>
+        <span class="who-chip"><span class="wd" aria-hidden="true"></span><span data-es="Negocios locales">Local businesses</span></span>
+        <span class="who-chip"><span class="wd" aria-hidden="true"></span><span data-es="Oficios y contratistas">Trades &amp; contractors</span></span>
+        <span class="who-chip"><span class="wd" aria-hidden="true"></span><span data-es="Clínicas y consultorios">Clinics &amp; practices</span></span>
+        <span class="who-chip"><span class="wd" aria-hidden="true"></span><span data-es="Restaurantes y cafés">Restaurants &amp; cafés</span></span>
+        <span class="who-chip"><span class="wd" aria-hidden="true"></span><span data-es="Profesionales y consultores">Professionals &amp; consultants</span></span>
+        <span class="who-chip"><span class="wd" aria-hidden="true"></span><span data-es="Creativos y artistas">Creatives &amp; performers</span></span>
+        <span class="who-chip"><span class="wd" aria-hidden="true"></span><span data-es="Cualquiera que empieza desde cero">Anyone starting from zero</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       HOW IT WORKS — short 4-step process.
+       ============================================================ -->
+  <section id="how-it-works" aria-labelledby="wd-how-h">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <span class="eyebrow" data-es="Cómo funciona">How it works</span>
+        <h2 id="wd-how-h" data-es="Cuatro pasos sencillos, de la idea a publicado.">Four simple steps, from idea to live.</h2>
+        <p class="wd-lede" data-es="Sin papeleo interminable ni reuniones que no van a ningún lado. Trabajas directo conmigo de principio a fin, y siempre sabes en qué punto estamos.">No endless paperwork, no meetings that go nowhere. You work directly with me from start to finish, and you always know exactly where we are.</p>
+      </div>
+
+      <div class="steps">
+        <article class="step" data-reveal>
+          <span class="sn" aria-hidden="true">1</span>
+          <h3 data-es="Conversamos">We chat</h3>
+          <p data-es="Me cuentas qué haces y qué necesita el sitio. Una llamada o unos mensajes bastan — gratis y sin compromiso — y salimos con un plan y un precio cerrado.">You tell me what you do and what the site needs to do. A quick call or a few messages — free and no pressure — and we leave with a plan and one flat price.</p>
+        </article>
+        <article class="step" data-reveal>
+          <span class="sn" aria-hidden="true">2</span>
+          <h3 data-es="Diseño">I design</h3>
+          <p data-es="Convierto eso en un diseño hecho a tu medida y te lo enseño temprano. Tú das tu opinión y lo afinamos juntos antes de escribir una sola línea de la versión final.">I turn that into a design made just for you and show it to you early. You give feedback and we tune it together before a single line of the final build is written.</p>
+        </article>
+        <article class="step" data-reveal>
+          <span class="sn" aria-hidden="true">3</span>
+          <h3 data-es="Construyo">I build</h3>
+          <p data-es="Convierto el diseño aprobado en un sitio real, rápido y a prueba de móvil — con tus formularios, tu mapa y el SEO base ya conectados. Tú revisas y pides ajustes.">I turn the approved design into a real, fast, mobile-proof site — with your forms, your map, and the SEO groundwork already wired up. You review and request tweaks.</p>
+        </article>
+        <article class="step" data-reveal>
+          <span class="sn" aria-hidden="true">4</span>
+          <h3 data-es="Lanzamos">We launch</h3>
+          <p data-es="Publicamos en tu dominio, te entrego las llaves de todo y te muestro cómo actualizarlo. A partir de ahí es tuyo — y sigo a un mensaje de distancia si necesitas algo.">We go live on your domain, I hand you the keys to everything, and I show you how to update it. From there it’s yours — and I’m one message away if you need anything.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PRICE TEASER — "from $900, one flat quote" → /pricing/.
+       ONE shared panel; restyles per mode via tokens.
+       ============================================================ -->
+  <section id="price-teaser" aria-labelledby="wd-price-h">
+    <div class="wrap">
+      <div class="price-teaser" data-reveal>
+        <div class="pt-copy">
+          <span class="eyebrow" data-es="Precios">Pricing</span>
+          <h2 id="wd-price-h" data-es="Desde &lt;span class=&quot;price-anchor&quot;&gt;$900&lt;/span&gt;, un solo presupuesto cerrado.">From <span class="price-anchor">$900</span>, one flat quote.</h2>
+          <p data-es="El número final depende del tamaño y las funciones, pero siempre lo sabes por adelantado — sin reloj por horas, sin facturas sorpresa. Y no pides nada por adelantado: primero me gano tu confianza.">The final number depends on size and features, but you always know it upfront — no hourly meter, no surprise invoices. And nothing’s due up front: I earn your trust first.</p>
+        </div>
+        <div class="pt-actions">
+          <a href="/pricing/" class="btn btn-primary" data-es="Ver precios &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">See pricing <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CLOSING CTA — every page ends here, pointing to /contact/.
+       ============================================================ -->
+  <section id="cta" aria-labelledby="wd-cta-h">
+    <div class="wrap">
+      <div class="cta-band" data-reveal>
+        <span class="eyebrow" style="justify-content:center" data-es="Empecemos">Let’s start</span>
+        <h2 id="wd-cta-h" data-es="¿Listo para un sitio que trabaje tanto como tú?">Ready for a site that works as hard as you do?</h2>
+        <p data-es="Cuéntame en un par de frases qué haces y qué necesitas. Leo cada mensaje yo mismo y respondo en un día hábil con próximos pasos honestos — aunque sea «todavía no me necesitas».">Tell me in a couple of sentences what you do and what you need. I read every message myself and reply within one business day with honest next steps — even if that’s “you don’t need me yet.”</p>
+        <div class="cta-actions">
+          <a href="/contact/" class="btn btn-primary" data-es="Empezar un proyecto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Start a project <span class="arrow" aria-hidden="true">→</span></a>
+          <a href="/pricing/" class="btn btn-ghost" data-es="Ver precios">See pricing</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="wordmark" href="/" aria-label="BANANAbyte home" data-es-aria-label="BANANAbyte inicio">
+          <span class="nana" aria-hidden="true">.</span>
+          <span><span class="banana">BANANA</span><span class="byte">byte</span></span>
+          <span aria-hidden="true" style="font-size:.95em">🍌</span>
+        </a>
+        <p class="foot-blurb" data-es="Un estudio web en Orlando, FL. Sitios web rápidos, limpios y a medida, bien hechos. 🍌">A web studio in Orlando, FL. Fast, clean, custom websites, built right. 🍌</p>
+      </div>
+      <nav class="foot-nav" aria-label="Footer">
+        <a href="/services/" data-es="Servicios">Services</a>
+        <a href="/work/" data-es="Proyectos">Work</a>
+        <a href="/pricing/" data-es="Precios">Pricing</a>
+        <a href="/contact/" data-es="Contacto">Contact</a>
+        <a href="mailto:contact@bananabyte.io">contact@bananabyte.io</a>
+      </nav>
+    </div>
+    <p class="foot-disclaimer" data-es="Los sitios de ejemplo que se muestran son conceptos de demostración; cualquier trabajo real con clientes se muestra solo con el permiso de su dueño.">Example sites shown are demo concepts; any real client work is displayed only with the owner’s permission.</p>
+    <div class="foot-bottom">
+      <span data-es="© &lt;span id=&quot;year&quot;&gt;2026&lt;/span&gt; BANANAbyte LLC — Orlando, FL. &lt;span class=&quot;foot-built&quot;&gt;Hecho por Gabe, un desarrollador de Orlando.&lt;/span&gt;">© <span id="year">2026</span> BANANAbyte LLC — Orlando, FL. <span class="foot-built">Built by Gabe, an Orlando developer.</span></span>
+      <div class="lang-toggle" role="group" aria-label="Language / Idioma">
+        <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+      </div>
+      <span class="made" data-es="¿No eres tú? &lt;button type=&quot;button&quot; class=&quot;reopen-gate&quot; id=&quot;reopen-gate&quot;&gt;Elegir de nuevo&lt;/button&gt;">Not you? <button type="button" class="reopen-gate" id="reopen-gate">Choose again</button></span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/site.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "0928fb51dad843818b6718b55b31e615"}'></script>
+</body>
+</html>

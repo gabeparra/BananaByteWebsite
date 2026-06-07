@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<!--
+  BANANAbyte — Service page: Websites for Performers (/services/performer-sites/).
+
+  Built from the shared page skeleton. ONE set of mode-aware content (no
+  separate business/performer copy panels): it reads well for both audiences
+  and restyles automatically via the site.css CSS custom properties — cool
+  slate + yellow in business mode, black + gold showbiz in performer mode.
+  Page-scoped layout lives in the <style> block in <head> and uses only
+  var(--...) tokens so it adapts to both modes.
+
+  Shared assets (/assets/site.css + /assets/site.js) drive the gate,
+  bilingual swap, mode toggle, mobile drawer and reveal-on-scroll — DO NOT
+  remove the IDs/classes/data-es attributes they depend on.
+-->
+<html lang="en" data-mode="business">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Set <html lang> as early as possible from the saved language choice, so
+     a returning Spanish visitor doesn't get a flash of the wrong lang attr.
+     The full copy swap happens synchronously at the end of <body>. -->
+<script>try{var _l=localStorage.getItem('bb-lang');if(_l==='es'||_l==='en'){document.documentElement.lang=_l;document.documentElement.classList.add('lang-'+_l);}}catch(e){}</script>
+<title>Websites for Performers — Get Your Name in Lights · BANANAbyte</title>
+<meta name="description" content="Showbiz websites for comedians, wrestlers, DJs, musicians and entertainers. Show calendars, booking forms, clip reels, EPK and a mailing list. Flat pricing from $900.">
+<link rel="canonical" href="https://bananabyte.io/services/performer-sites/">
+<meta name="theme-color" content="#16181C">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BANANAbyte">
+<meta property="og:title" content="Websites for Performers — Get Your Name in Lights · BANANAbyte">
+<meta property="og:description" content="Showbiz websites for comedians, wrestlers, DJs, musicians and entertainers. Show calendars, booking forms, clip reels, EPK and a mailing list. Flat pricing from $900.">
+<meta property="og:url" content="https://bananabyte.io/services/performer-sites/">
+<meta property="og:image" content="https://bananabyte.io/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Websites for Performers — Get Your Name in Lights · BANANAbyte">
+<meta name="twitter:description" content="Showbiz websites for comedians, wrestlers, DJs, musicians and entertainers. Show calendars, booking forms, clip reels, EPK and a mailing list. Flat pricing from $900.">
+<meta name="twitter:image" content="https://bananabyte.io/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=Sora:wght@300;400;500;600;700;800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<!-- TURNSTILE: only the contact page needs the widget. If this page has the
+     contact form, add the api.js script here:
+     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script> -->
+<link rel="stylesheet" href="/assets/site.css">
+
+<!-- ============================================================
+     PAGE-SCOPED LAYOUT — only token-based values (var(--...)), so it
+     adapts to both modes (slate+yellow business / black+gold performer).
+     Reuses the global component classes from site.css for everything else.
+     ============================================================ -->
+<style>
+  /* breadcrumb above the hero */
+  .crumb{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-family:var(--font-display);font-size:.8rem;color:var(--ink-mute);margin-bottom:18px}
+  .crumb a{color:var(--ink-soft);transition:color .2s var(--ease)}
+  .crumb a:hover{color:var(--accent)}
+  .crumb .sep{color:var(--line-strong);opacity:.8}
+  .crumb [aria-current]{color:var(--ink-soft)}
+  html[data-mode="performer"] .crumb a{font-family:var(--font-body)}
+
+  /* "Who it's for" audience chips grid */
+  .aud-grid{display:grid;grid-template-columns:1fr;gap:14px}
+  @media(min-width:560px){.aud-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:920px){.aud-grid{grid-template-columns:repeat(3,1fr)}}
+  .aud{
+    display:flex;gap:14px;align-items:flex-start;
+    border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);
+    padding:18px 18px 20px;
+    transition:transform .3s var(--ease),border-color .3s var(--ease),background .3s var(--ease),box-shadow .3s var(--ease);
+  }
+  html[data-mode="performer"] .aud{background:linear-gradient(165deg,var(--panel-2),var(--panel))}
+  .aud:hover{transform:translateY(-3px);border-color:var(--line-strong);background:var(--panel-2)}
+  html[data-mode="performer"] .aud:hover{box-shadow:var(--shadow)}
+  .aud .em{
+    flex:0 0 auto;width:40px;height:40px;border-radius:11px;display:grid;place-items:center;
+    font-size:1.25rem;background:var(--accent-soft);border:1px solid var(--accent-line);
+  }
+  .aud h3{font-size:1.04rem;font-weight:600}
+  html[data-mode="performer"] .aud h3{font-family:var(--font-fraunces);font-size:1.18rem}
+  .aud p{color:var(--ink-soft);font-size:.9rem;margin-top:5px}
+
+  /* "How it works" numbered steps */
+  .steps{display:grid;grid-template-columns:1fr;gap:16px;counter-reset:step}
+  @media(min-width:680px){.steps{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:1000px){.steps{grid-template-columns:repeat(4,1fr)}}
+  .step{
+    position:relative;border:1px solid var(--line);border-radius:var(--radius);
+    background:var(--panel);padding:24px 20px 22px;
+    transition:transform .3s var(--ease),border-color .3s var(--ease),box-shadow .3s var(--ease);
+  }
+  html[data-mode="performer"] .step{background:linear-gradient(165deg,var(--panel-2),var(--panel))}
+  .step:hover{transform:translateY(-3px);border-color:var(--line-strong)}
+  html[data-mode="performer"] .step:hover{box-shadow:var(--shadow)}
+  .step .step-n{
+    font-family:var(--font-display);font-weight:800;font-size:.92rem;letter-spacing:.04em;
+    color:var(--accent);display:inline-flex;align-items:center;gap:9px;margin-bottom:12px;
+  }
+  html[data-mode="performer"] .step .step-n{font-family:var(--font-fraunces);font-style:italic;font-size:1.1rem}
+  .step .step-n .lamp{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 9px 2px rgba(245,200,0,.55)}
+  html[data-mode="business"] .step .step-n .lamp{box-shadow:none}
+  .step h3{font-size:1.06rem;font-weight:600}
+  html[data-mode="performer"] .step h3{font-family:var(--font-fraunces);font-size:1.2rem}
+  .step p{color:var(--ink-soft);font-size:.9rem;margin-top:8px}
+
+  /* flat-quote callout band */
+  .quote-band{
+    border:1px solid var(--line);border-radius:calc(var(--radius) + 6px);
+    background:
+      radial-gradient(110% 130% at 100% 0%, var(--accent-soft), transparent 55%),
+      linear-gradient(160deg,var(--panel-2),var(--panel));
+    padding:clamp(26px,4vw,44px);box-shadow:var(--shadow);
+    display:grid;grid-template-columns:1fr;gap:22px;align-items:center;
+  }
+  html[data-mode="performer"] .quote-band{border-color:var(--line-strong)}
+  @media(min-width:820px){.quote-band{grid-template-columns:1.3fr .7fr}}
+  .quote-band h2{font-size:clamp(1.5rem,3.6vw,2.1rem)}
+  .quote-band p{color:var(--ink-soft);margin-top:12px;max-width:56ch}
+  .quote-band .qb-actions{display:flex;flex-wrap:wrap;gap:14px;align-self:center}
+  @media(min-width:820px){.quote-band .qb-actions{justify-content:flex-end}}
+
+  /* closing CTA */
+  .end-cta{text-align:center;max-width:640px;margin-inline:auto}
+  .end-cta h2{font-size:clamp(1.7rem,4.4vw,2.55rem)}
+  .end-cta p{color:var(--ink-soft);margin-top:14px}
+  .end-cta .ec-actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:30px}
+</style>
+
+<!-- ============================================================
+     NO-JS FALLBACK: with JavaScript disabled, the reveal-on-scroll
+     elements would otherwise stay at opacity:0 and the page would
+     look blank. This forces all [data-reveal] content fully visible
+     and keeps the gate hidden, so the default BUSINESS homepage is
+     shown and never blocked when JS is off.
+     ============================================================ -->
+<noscript>
+<style>
+  [data-reveal]{opacity:1 !important;transform:none !important}
+  .gate{display:none !important}
+</style>
+</noscript>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ============================================================
+     INTRO GATE — hidden by default; JS opens it on first visit only.
+     With JS disabled it stays display:none, so the default business
+     content below is never blocked. Cards are filled from MODES map.
+     ============================================================ -->
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-h" aria-describedby="gate-sub" hidden>
+  <div class="gate-card">
+    <div class="gate-brand">
+      <span class="wm" aria-label="BANANAbyte"><span class="b1">BANANA</span><span class="b2">byte</span><span class="dot" aria-hidden="true">.</span></span>
+      <span aria-hidden="true">🍌</span>
+    </div>
+    <h2 id="gate-h" data-es="¿Qué te trae por aquí?">What brings you here?</h2>
+    <p class="gate-sub" id="gate-sub" data-es="Elige la versión de BANANAbyte que mejor te encaje. Puedes cambiar cuando quieras.">Pick the version of BANANAbyte that fits you. You can switch anytime.</p>
+    <div class="gate-choices" id="gate-choices" role="group" aria-label="Choose your experience" data-es-aria-label="Elige tu experiencia">
+      <!-- choice cards injected here from the MODES map -->
+    </div>
+    <div class="gate-foot">
+      <button type="button" class="gate-skip" id="gate-skip" data-es="Solo estoy mirando — muéstrame la versión normal">Just looking — show me the default</button>
+      <p class="gate-note" data-es="Puedes cambiar cuando quieras desde el menú de arriba.">You can switch anytime from the menu at the top.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     HEADER (shared shell; toggle built from MODES map)
+     ============================================================ -->
+<header class="site">
+  <div class="wrap nav">
+    <div class="nav-left">
+      <a class="wordmark" href="/" aria-label="BANANAbyte home" data-es-aria-label="BANANAbyte inicio">
+        <span class="nana" aria-hidden="true">.</span>
+        <span><span class="banana">BANANA</span><span class="byte">byte</span></span>
+        <span aria-hidden="true" style="font-size:.95em">🍌</span>
+      </a>
+      <div class="mode-toggle" id="mode-toggle" role="radiogroup" aria-label="Choose audience mode" data-es-aria-label="Elige el modo de público">
+        <!-- radio inputs injected here from the MODES map -->
+      </div>
+    </div>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/services/" data-es="Servicios">Services</a>
+      <a href="/work/" data-es="Proyectos">Work</a>
+      <a href="/pricing/" data-es="Precios">Pricing</a>
+      <a href="/contact/" class="nav-cta" data-es="Empezar un proyecto">Start a project</a>
+    </nav>
+    <!-- mobile-only: opens the slide-in menu drawer below -->
+    <button class="hamburger" id="hamburger" type="button"
+            aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="hb-lines" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============================================================
+     MOBILE MENU — slide-in drawer (≤979px). The #mode-toggle node
+     is physically MOVED into #menu-toggle-slot on mobile and back into
+     .nav-left on desktop (see placeMode() in the script), so there is
+     never a duplicate radio group to desync state.
+     ============================================================ -->
+<div class="nav-backdrop" id="nav-backdrop" hidden></div>
+<aside class="mobile-menu" id="mobile-menu" aria-label="Menu" aria-hidden="true" hidden>
+  <div class="mm-inner">
+    <div class="mm-slot" id="menu-toggle-slot"><!-- #mode-toggle relocated here on mobile --></div>
+    <nav class="mm-links" aria-label="Mobile">
+      <a href="/services/" data-es="Servicios">Services</a>
+      <a href="/work/" data-es="Proyectos">Work</a>
+      <a href="/pricing/" data-es="Precios">Pricing</a>
+      <a href="/contact/" data-es="Contacto">Contact</a>
+    </nav>
+    <a href="/contact/" class="btn btn-primary mm-cta" data-es="Empezar un proyecto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Start a project <span class="arrow" aria-hidden="true">→</span></a>
+    <div class="mm-lang-slot" id="menu-lang-slot"><!-- .lang-toggle relocated here on mobile --></div>
+  </div>
+</aside>
+
+<main id="main">
+
+  <!-- ============================================================
+       HERO — "your name in lights"
+       ============================================================ -->
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="wrap">
+      <nav class="crumb" aria-label="Breadcrumb" data-reveal>
+        <a href="/" data-es="Inicio">Home</a>
+        <span class="sep" aria-hidden="true">/</span>
+        <a href="/services/" data-es="Servicios">Services</a>
+        <span class="sep" aria-hidden="true">/</span>
+        <span aria-current="page" data-es="Sitios para artistas">Performer sites</span>
+      </nav>
+
+      <div class="bulbs mode-only-performer" aria-hidden="true">
+        <span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span>
+        <span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span>
+        <span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span>
+      </div>
+
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow" data-reveal data-es="Sitios para artistas · Orlando, FL">Websites for performers · Orlando, FL</span>
+          <h1 id="hero-h" data-reveal data-es="Tu nombre &lt;span class=&quot;mark&quot;&gt;en luces.&lt;/span&gt;">Your name <span class="mark">in lights.</span></h1>
+          <p class="hero-lede" data-reveal data-es="Un sitio de verdad para tu show — no un Linktree, no un perfil que es dueño de tu público. BANANAbyte 🍌 construye sitios rápidos y personales para comediantes, luchadores, DJs, músicos y artistas, con todo lo que un contratante necesita ver y un botón para reservarte. Precio cerrado, todo el escenario es tuyo.">A real home for your act — not a Linktree, not a profile that owns your audience. BANANAbyte 🍌 builds fast, personal sites for comedians, wrestlers, DJs, musicians and entertainers, with everything a booker needs to see and a button to book you. Flat pricing, and the whole stage is yours.</p>
+          <div class="hero-actions" data-reveal>
+            <a href="/contact/" class="btn btn-primary" data-es="Que te contraten &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Get booked <span class="arrow" aria-hidden="true">→</span></a>
+            <a href="/work/" class="btn btn-ghost" data-es="Ver a los headliners">See the headliners</a>
+          </div>
+          <div class="hero-meta" data-reveal>
+            <span data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Precio cerrado, desde $900"><span class="ck" aria-hidden="true">✓</span> Flat pricing, from $900</span>
+            <span data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Online en 1–2 semanas"><span class="ck" aria-hidden="true">✓</span> Live in 1–2 weeks</span>
+            <span data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Todo es tuyo"><span class="ck" aria-hidden="true">✓</span> You own everything</span>
+          </div>
+        </div>
+
+        <div class="marquee-card" data-reveal aria-label="Marquee-style preview" data-es-aria-label="Vista previa estilo marquesina">
+          <div class="frame">
+            <p class="now" data-es="Ahora en cartelera online">Now appearing online</p>
+            <p class="title" data-es="Tu Nombre&lt;br&gt;En Luces">Your Name<br>In Lights</p>
+            <p class="sub" data-es="Fechas de gira, clips, kit de prensa y un botón de contratación — todo en una página que de verdad carga rápido.">Tour dates, clips, a press kit and a booking button — all on one page that actually loads fast.</p>
+            <span class="ticket" data-es="Hecho para los focos · desde Orlando">Built for the spotlight · est. Orlando</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER MOTIF (performer mode only) -->
+  <div class="ticker mode-only-performer" aria-hidden="true">
+    <div class="ticker-track">
+      <span data-es="Páginas de gira">Tour pages</span><span data-es="Formularios de contratación">Booking forms</span><span data-es="Calendarios de shows">Show calendars</span><span data-es="Reels de clips">Clip reels</span><span data-es="Kits de prensa (EPK)">Press kits</span><span data-es="Lista de correo">Mailing list</span><span data-es="Merch y entradas">Merch &amp; tickets</span><span data-es="Hecho en Orlando">Orlando-grown</span>
+      <span data-es="Páginas de gira">Tour pages</span><span data-es="Formularios de contratación">Booking forms</span><span data-es="Calendarios de shows">Show calendars</span><span data-es="Reels de clips">Clip reels</span><span data-es="Kits de prensa (EPK)">Press kits</span><span data-es="Lista de correo">Mailing list</span><span data-es="Merch y entradas">Merch &amp; tickets</span><span data-es="Hecho en Orlando">Orlando-grown</span>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       WHAT YOU GET
+       ============================================================ -->
+  <section id="what-you-get" aria-labelledby="wyg-h">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <span class="eyebrow" data-es="En cartelera">On the bill</span>
+        <h2 id="wyg-h" data-es="Todo lo que tu show necesita en un solo lugar.">Everything your act needs, in one place.</h2>
+        <p data-es="Las piezas que un artista en activo de verdad usa — montadas a mano, sin constructores pesados ni cuotas mensuales misteriosas. Tomas lo que necesitas y dejas el resto.">The pieces a working performer actually uses — built by hand, no bloated builders, no mystery monthly fees. Take what you need and leave the rest.</p>
+      </div>
+
+      <div class="svc-grid">
+        <article class="svc" data-reveal>
+          <span class="svc-num"><span class="lamp" aria-hidden="true"></span>01</span>
+          <div class="ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 7v6c0 4 8 8 8 8s8-4 8-8V7z"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <h3 data-es="Diseño estilo marquesina">Marquee-style design</h3>
+          <p data-es="Una página principal que se siente como ver tu nombre en luces — tu foto, tu voz y tu energía al frente, lista para impresionar en el primer segundo, tanto en el teléfono como en una pantalla grande.">A front page that feels like seeing your name up in lights — your photo, your voice and your energy up top, ready to land in the first second on a phone or a big screen.</p>
+        </article>
+
+        <article class="svc" data-reveal>
+          <span class="svc-num"><span class="lamp" aria-hidden="true"></span>02</span>
+          <div class="ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          </div>
+          <h3 data-es="Calendario de shows y gira">Show &amp; tour calendar</h3>
+          <p data-es="Fechas próximas con ciudad, local, hora y un botón de entradas que siempre apunta al show correcto. Tú lo actualizas en segundos y las fechas pasadas desaparecen solas — nada de enlaces muertos la noche del bolo.">Upcoming dates with city, venue, time and a ticket button that always points to the right show. You update it in seconds and past dates drop off on their own — no dead links the night of a gig.</p>
+        </article>
+
+        <article class="svc feature" data-reveal>
+          <span class="svc-num"><span class="lamp" aria-hidden="true"></span>03</span>
+          <div class="ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m10 9 5 3-5 3z"/></svg>
+          </div>
+          <h3 data-es="Contratación y formulario &lt;span class=&quot;pill&quot;&gt;Clave&lt;/span&gt;">Booking &amp; inquiry form <span class="pill">Key</span></h3>
+          <p data-es="Un formulario de contratación que llega directo a tu correo con fecha, lugar y presupuesto, para que respondas en minutos y no pierdas un bolo por contestar tarde. Sin paneles, sin intermediarios — solo tú y quien quiere contratarte.">A booking form that lands straight in your inbox with date, location and budget, so you can reply in minutes and never lose a gig to a slow response. No dashboards, no middlemen — just you and whoever wants to book you.</p>
+        </article>
+
+        <article class="svc" data-reveal>
+          <span class="svc-num"><span class="lamp" aria-hidden="true"></span>04</span>
+          <div class="ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m16 10 6-3v10l-6-3z"/></svg>
+          </div>
+          <h3 data-es="Reels de clips y video">Clip reels &amp; video</h3>
+          <p data-es="Tus mejores sets, rounds o mezclas bien al frente — incrustados de forma que cargan rápido y se ven nítidos. Los contratantes ven en diez segundos por qué deberían reservarte.">Your best sets, rounds or mixes front and center — embedded so they load fast and look sharp. Bookers see in ten seconds exactly why they should reserve you.</p>
+        </article>
+
+        <article class="svc" data-reveal>
+          <span class="svc-num"><span class="lamp" aria-hidden="true"></span>05</span>
+          <div class="ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5a2 2 0 0 1 2-2h9l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M15 3v5h5M9 13h6M9 17h6"/></svg>
+          </div>
+          <h3 data-es="Kit de prensa (EPK)">Press kit / EPK</h3>
+          <p data-es="Un one-sheet limpio que los contratantes pueden ver o descargar: bio, fotos en alta resolución, créditos, técnico y enlaces. Todo lo que un local pide por correo, listo en una sola página.">A clean one-sheet bookers can view or download: bio, hi-res photos, credits, tech needs and links. Everything a venue emails you for, ready on a single page.</p>
+        </article>
+
+        <article class="svc" data-reveal>
+          <span class="svc-num"><span class="lamp" aria-hidden="true"></span>06</span>
+          <div class="ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v12H4z"/><path d="m4 6 8 6 8-6"/></svg>
+          </div>
+          <h3 data-es="Lista de correo y redes">Mailing list &amp; social</h3>
+          <p data-es="Un registro de lista de correo que crece después de cada show, más todos tus enlaces sociales en un solo lugar — para que seas dueño de tu público y llenes la sala la próxima vez, sin depender del algoritmo de nadie.">A mailing-list signup that grows after every show, plus all your social links in one spot — so you own your audience and pack the room next time, without leaning on anyone’s algorithm.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHO IT'S FOR
+       ============================================================ -->
+  <section id="who-its-for" aria-labelledby="who-h">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <span class="eyebrow" data-es="Para quién es">Who it’s for</span>
+        <h2 id="who-h" data-es="Si actúas ante un público, esto es para ti.">If you play to a crowd, this is for you.</h2>
+        <p data-es="Distintos shows, la misma necesidad: un lugar que te haga ver profesional y facilite que te contraten. Adapto la página a tu mundo.">Different acts, same need: one place that makes you look professional and makes it easy to get booked. I tailor the page to your world.</p>
+      </div>
+
+      <div class="aud-grid">
+        <article class="aud" data-reveal>
+          <span class="em" aria-hidden="true">🎤</span>
+          <div>
+            <h3 data-es="Comediantes">Comedians</h3>
+            <p data-es="Tu reel, fechas de micrófono abierto y headliner, y un botón de contratación para locales y giras.">Your reel, open-mic and headline dates, and a booking button for venues and tours.</p>
+          </div>
+        </article>
+
+        <article class="aud" data-reveal>
+          <span class="em" aria-hidden="true">🤼</span>
+          <div>
+            <h3 data-es="Luchadores">Wrestlers</h3>
+            <p data-es="Calendario de combates, momentos destacados, gimmick y merch — un perfil más grande que la vida que los promotores recuerdan.">Match schedule, highlights, gimmick and merch — a larger-than-life profile promoters remember.</p>
+          </div>
+        </article>
+
+        <article class="aud" data-reveal>
+          <span class="em" aria-hidden="true">🎧</span>
+          <div>
+            <h3 data-es="DJs">DJs</h3>
+            <p data-es="Mezclas y sets incrustados, lista de bolos, technical rider y un contacto directo para residencias y eventos.">Embedded mixes and sets, a gig list, your technical rider, and a direct line for residencies and events.</p>
+          </div>
+        </article>
+
+        <article class="aud" data-reveal>
+          <span class="em" aria-hidden="true">🎸</span>
+          <div>
+            <h3 data-es="Bandas y músicos">Bands &amp; musicians</h3>
+            <p data-es="Música, fechas de gira, lista de correo y enlaces de streaming — más venta de merch y entradas cuando la quieras.">Music, tour dates, a mailing list and streaming links — plus merch and ticket sales when you want them.</p>
+          </div>
+        </article>
+
+        <article class="aud" data-reveal>
+          <span class="em" aria-hidden="true">🎙️</span>
+          <div>
+            <h3 data-es="Hosts y presentadores">Hosts &amp; emcees</h3>
+            <p data-es="Un reel de presentación pulido, tipos de evento que cubres y una forma sencilla de reservar tu tiempo.">A polished hosting reel, the event types you cover, and a simple way to book your time.</p>
+          </div>
+        </article>
+
+        <article class="aud" data-reveal>
+          <span class="em" aria-hidden="true">✨</span>
+          <div>
+            <h3 data-es="Creadores y artistas">Creators &amp; entertainers</h3>
+            <p data-es="Magos, drag, burlesque, spoken word, malabaristas — si subes a un escenario, te armo el hogar que se lo merece.">Magicians, drag, burlesque, spoken word, jugglers — if you take a stage, I’ll build the home it deserves.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       HOW IT WORKS
+       ============================================================ -->
+  <section id="how-it-works" aria-labelledby="how-h">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <span class="eyebrow" data-es="El proceso">The process</span>
+        <h2 id="how-h" data-es="De primera charla a estreno, en cuatro pasos.">From first chat to opening night, in four steps.</h2>
+        <p data-es="Sencillo, sin jerga y con poco de tu tiempo. Tú actúas; yo me encargo del sitio.">Simple, jargon-free and light on your time. You perform; I handle the site.</p>
+      </div>
+
+      <div class="steps">
+        <article class="step" data-reveal>
+          <span class="step-n"><span class="lamp" aria-hidden="true"></span>01</span>
+          <h3 data-es="Hablamos del show">We talk about the act</h3>
+          <p data-es="Una llamada rápida o unos mensajes: qué haces, dónde quieres llegar a actuar y qué tienes ya — clips, fotos, fechas. Sin compromiso.">A quick call or a few messages: what you do, where you want to get booked, and what you already have — clips, photos, dates. No pressure.</p>
+        </article>
+
+        <article class="step" data-reveal>
+          <span class="step-n"><span class="lamp" aria-hidden="true"></span>02</span>
+          <h3 data-es="Te paso un presupuesto cerrado">You get a flat quote</h3>
+          <p data-es="Te mando un número único y un calendario claro antes de tocar el teclado. Lo apruebas y arrancamos — sin reloj por horas ni sorpresas al final.">I send one number and a clear timeline before I touch the keyboard. You approve it and we start — no hourly meter, no surprises at the end.</p>
+        </article>
+
+        <article class="step" data-reveal>
+          <span class="step-n"><span class="lamp" aria-hidden="true"></span>03</span>
+          <h3 data-es="Lo construyo">I build it</h3>
+          <p data-es="Armo tu sitio — marquesina, calendario, reel, EPK y formulario de contratación — y te lo enseño en vivo. Tú revisas, yo afino hasta que se sienta tuyo.">I build your site — marquee, calendar, reel, EPK and booking form — and show it to you live. You review, I refine until it feels like you.</p>
+        </article>
+
+        <article class="step" data-reveal>
+          <span class="step-n"><span class="lamp" aria-hidden="true"></span>04</span>
+          <h3 data-es="Se estrena — y es tuyo">It opens — and it’s yours</h3>
+          <p data-es="Lo publicamos en tu dominio, te entrego las llaves y te enseño a actualizar fechas y clips tú mismo. Código, dominio y cuentas: todo tuyo desde el día uno.">We launch it on your domain, I hand over the keys and show you how to update dates and clips yourself. Code, domain and accounts — all yours from day one.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FLAT QUOTE / PRICING BAND
+       ============================================================ -->
+  <section id="pricing-band" aria-labelledby="qb-h">
+    <div class="wrap">
+      <div class="quote-band" data-reveal>
+        <div>
+          <span class="eyebrow" data-es="Precio cerrado">Flat pricing</span>
+          <h2 id="qb-h" style="margin-top:14px" data-es="Sitios para artistas, desde &lt;span class=&quot;price-anchor&quot;&gt;$900&lt;/span&gt;.">Performer sites, starting from <span class="price-anchor">$900</span>.</h2>
+          <p data-es="Un número único acordado por adelantado — el precio final depende de cuántas piezas necesites (calendario, tienda de merch, EPK descargable). Sin reloj por horas, sin sorpresas y sin pago por adelantado: primero me gano tu confianza. Mira el desglose completo en la página de precios.">One number agreed up front — the final price depends on how many pieces you need (calendar, merch shop, downloadable EPK). No hourly meter, no surprises, and no upfront payment: I earn your trust first. See the full breakdown on the pricing page.</p>
+        </div>
+        <div class="qb-actions">
+          <a href="/pricing/" class="btn btn-ghost" data-es="Ver precios &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">See pricing <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CLOSING CTA → /contact/
+       ============================================================ -->
+  <section id="cta" aria-labelledby="cta-h">
+    <div class="wrap">
+      <div class="end-cta" data-reveal>
+        <span class="eyebrow" style="justify-content:center" data-es="Sube al escenario">Take the stage</span>
+        <h2 id="cta-h" style="margin-top:16px" data-es="Construyamos tu lugar bajo los focos.">Let’s build your spotlight.</h2>
+        <p data-es="Cuéntame qué tienes por venir y dónde quieres actuar. Leo cada mensaje yo mismo y normalmente respondo el mismo día — incluso si la respuesta es «esto te lo armas tú». ¿Quieres comparar opciones primero? Echa un ojo a los precios.">Tell me what you’ve got coming up and where you want to play. I read every message myself and usually reply the same day — even if the answer is “you can do this one yourself.” Want to compare options first? Take a look at the pricing.</p>
+        <div class="ec-actions">
+          <a href="/contact/" class="btn btn-primary" data-es="Que te contraten &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Get booked <span class="arrow" aria-hidden="true">→</span></a>
+          <a href="/pricing/" class="btn btn-ghost" data-es="Ver precios">See pricing</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="wordmark" href="/" aria-label="BANANAbyte home" data-es-aria-label="BANANAbyte inicio">
+          <span class="nana" aria-hidden="true">.</span>
+          <span><span class="banana">BANANA</span><span class="byte">byte</span></span>
+          <span aria-hidden="true" style="font-size:.95em">🍌</span>
+        </a>
+        <p class="foot-blurb" data-es="Un estudio web en Orlando, FL. Sitios web rápidos, limpios y a medida, bien hechos. 🍌">A web studio in Orlando, FL. Fast, clean, custom websites, built right. 🍌</p>
+      </div>
+      <nav class="foot-nav" aria-label="Footer">
+        <a href="/services/" data-es="Servicios">Services</a>
+        <a href="/work/" data-es="Proyectos">Work</a>
+        <a href="/pricing/" data-es="Precios">Pricing</a>
+        <a href="/contact/" data-es="Contacto">Contact</a>
+        <a href="mailto:contact@bananabyte.io">contact@bananabyte.io</a>
+      </nav>
+    </div>
+    <p class="foot-disclaimer" data-es="Los sitios de ejemplo que se muestran son conceptos de demostración; cualquier trabajo real con clientes se muestra solo con el permiso de su dueño.">Example sites shown are demo concepts; any real client work is displayed only with the owner’s permission.</p>
+    <div class="foot-bottom">
+      <span data-es="© &lt;span id=&quot;year&quot;&gt;2026&lt;/span&gt; BANANAbyte LLC — Orlando, FL. &lt;span class=&quot;foot-built&quot;&gt;Hecho por Gabe, un desarrollador de Orlando.&lt;/span&gt;">© <span id="year">2026</span> BANANAbyte LLC — Orlando, FL. <span class="foot-built">Built by Gabe, an Orlando developer.</span></span>
+      <div class="lang-toggle" role="group" aria-label="Language / Idioma">
+        <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+      </div>
+      <span class="made" data-es="¿No eres tú? &lt;button type=&quot;button&quot; class=&quot;reopen-gate&quot; id=&quot;reopen-gate&quot;&gt;Elegir de nuevo&lt;/button&gt;">Not you? <button type="button" class="reopen-gate" id="reopen-gate">Choose again</button></span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/site.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "0928fb51dad843818b6718b55b31e615"}'></script>
+</body>
+</html>

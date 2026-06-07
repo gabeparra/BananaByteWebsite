@@ -40,6 +40,7 @@
   var DEFAULT_MODE = ORDER.filter(function(k){ return MODES[k].default; })[0] || ORDER[0];
   var STORAGE_KEY = 'bb-mode';
   var LANG_KEY = 'bb-lang';
+  var RIBBON_KEY = 'bb-ribbon';   /* '1' once the nudge ribbon is dismissed/resolved */
   var DEFAULT_LANG = 'en';
 
   var docEl = document.documentElement;
@@ -58,6 +59,12 @@
   }
   function saveLang(l){
     try { localStorage.setItem(LANG_KEY, l); } catch(e){ /* private mode — fine */ }
+  }
+  function ribbonDismissed(){
+    try { return localStorage.getItem(RIBBON_KEY) === '1'; } catch(e){ return false; }
+  }
+  function dismissRibbon(){
+    try { localStorage.setItem(RIBBON_KEY, '1'); } catch(e){ /* private mode — fine */ }
   }
 
   /* current language (resolved at boot, before any copy-dependent build) */
@@ -287,22 +294,104 @@
   });
 
   /* ============================================================
+     NUDGE RIBBON — the NON-BLOCKING first-visit affordance that
+     replaces the auto-opening gate. We land first-timers in the
+     default (business) experience immediately and slide a small,
+     dismissable strip under the header that points performers at
+     the showbiz version. It is JS-INJECTED (no page HTML needed)
+     and carries data-es so applyLang() swaps its copy like any
+     other node — it is inserted BEFORE the boot-time applyLang().
+     ============================================================ */
+  var ribbonEl = null;
+
+  function injectRibbon(){
+    if (ribbonEl || ribbonDismissed()) return;       /* once only / never if resolved */
+    var header = document.querySelector('header.site');
+    if (!header || !header.parentNode) return;
+
+    var perf = MODES.performer || MODES[ORDER[ORDER.length - 1]];
+
+    var bar = document.createElement('div');
+    bar.className = 'nudge-ribbon';
+    bar.id = 'nudge-ribbon';
+    bar.setAttribute('role', 'region');
+    bar.setAttribute('aria-label', 'Audience suggestion');
+    bar.setAttribute('data-es-aria-label', 'Sugerencia de público');
+
+    /* lead text (data-es → Spanish swap). Icon is decorative. */
+    var msg = document.createElement('span');
+    msg.className = 'nr-msg';
+    msg.setAttribute('data-es',
+      '<span class="nr-ico" aria-hidden="true">🎤</span> ¿Comediante, DJ, luchador o músico? Mira la versión para el escenario');
+    msg.innerHTML =
+      '<span class="nr-ico" aria-hidden="true">🎤</span> Comedian, DJ, wrestler or musician? See the showbiz version';
+
+    /* switch-to-performer action (real button, localized label + aria) */
+    var go = document.createElement('button');
+    go.type = 'button';
+    go.className = 'nr-go';
+    go.setAttribute('data-es', 'Ver versión para artistas <span class="nr-arrow" aria-hidden="true">→</span>');
+    go.setAttribute('aria-label', 'Switch to the performer version');
+    go.setAttribute('data-es-aria-label', 'Cambiar a la versión para artistas');
+    go.innerHTML = 'See the showbiz version <span class="nr-arrow" aria-hidden="true">→</span>';
+    go.addEventListener('click', function(){
+      removeRibbon();
+      chooseMode(perf.id);                 /* sets data-mode=performer + persists bb-mode */
+    });
+
+    /* dismiss (✕) — persists so it never returns */
+    var close = document.createElement('button');
+    close.type = 'button';
+    close.className = 'nr-close';
+    close.setAttribute('aria-label', 'Dismiss');
+    close.setAttribute('data-es-aria-label', 'Descartar');
+    close.innerHTML = '<span aria-hidden="true">✕</span>';
+    close.addEventListener('click', function(){ removeRibbon(); });
+
+    bar.appendChild(msg);
+    bar.appendChild(go);
+    bar.appendChild(close);
+
+    /* insert right after the sticky header so it reads as part of the chrome */
+    header.parentNode.insertBefore(bar, header.nextSibling);
+    ribbonEl = bar;
+  }
+
+  /* removeRibbon = tear down + persist the dismissal flag */
+  function removeRibbon(){
+    dismissRibbon();
+    if (ribbonEl && ribbonEl.parentNode){ ribbonEl.parentNode.removeChild(ribbonEl); }
+    ribbonEl = null;
+  }
+
+  /* ============================================================
+     FIRST-VISIT NUDGE — decide BEFORE applyLang so the ribbon's
+     copy is part of the same lossless EN/ES swap. We show it only
+     when there's no saved mode AND it hasn't been dismissed.
+     ============================================================ */
+  var savedMode = readMode();
+  var firstVisit = !(savedMode && MODES[savedMode]);
+  if (firstVisit && !ribbonDismissed()){ injectRibbon(); }
+
+  /* ============================================================
      APPLY LANGUAGE — synchronous, at body end (DOM already parsed and
-     the JS-built gate cards / toggle labels already inserted above). A
-     returning ES visitor sees Spanish with no flash; the inline <head>
-     script already set <html lang> early so the lang attr never flickers.
+     the JS-built gate cards / toggle labels / nudge ribbon already
+     inserted above). A returning ES visitor sees Spanish with no flash;
+     the inline <head> script already set <html lang> early so the lang
+     attr never flickers.
      ============================================================ */
   applyLang(LANG);
 
   /* ============================================================
-     BOOT: returning visitors skip the gate; first-timers see it.
+     BOOT: returning visitors land straight in their saved mode;
+     first-timers get the default experience PLUS the non-blocking
+     ribbon (injected above) — the gate no longer auto-opens. It
+     stays available as an explicit re-pick via #reopen-gate.
      ============================================================ */
-  var saved = readMode();
-  if (saved && MODES[saved]){
-    setMode(saved, { save:false });          /* land straight in their mode */
+  if (!firstVisit){
+    setMode(savedMode, { save:false });       /* land straight in their mode */
   } else {
-    setMode(DEFAULT_MODE, { save:false });    /* default content underneath */
-    openGate();                               /* first visit → show gate */
+    setMode(DEFAULT_MODE, { save:false });    /* default content, ribbon nudges */
   }
 
   /* ============================================================

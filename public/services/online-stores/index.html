@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<!--
+  BANANAbyte — /services/online-stores/  (Online Stores & E-commerce)
+
+  ONE mode-agnostic service page. The copy reads for both audiences
+  (business + performer) and restyles automatically via the design-system
+  CSS custom properties — there are no separate per-mode copy panels here.
+  Shared /assets/site.css + /assets/site.js drive the gate, bilingual
+  swap, mode toggle, mobile drawer and reveal-on-scroll: do NOT remove the
+  IDs / classes / data-es attributes they depend on. Built from
+  .page-skeleton.html.
+-->
+<html lang="en" data-mode="business">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Set <html lang> as early as possible from the saved language choice, so
+     a returning Spanish visitor doesn't get a flash of the wrong lang attr.
+     The full copy swap happens synchronously at the end of <body>. -->
+<script>try{var _l=localStorage.getItem('bb-lang');if(_l==='es'||_l==='en'){document.documentElement.lang=_l;document.documentElement.classList.add('lang-'+_l);}}catch(e){}</script>
+<title>Online Stores &amp; E-commerce · BANANAbyte</title>
+<meta name="description" content="BANANAbyte builds e-commerce storefronts on Shopify for Orlando shops, boutiques, makers and brands — product catalog, secure checkout, shipping &amp; tax set up, and you own the store.">
+<link rel="canonical" href="https://bananabyte.io/services/online-stores/">
+<meta name="theme-color" content="#16181C">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BANANAbyte">
+<meta property="og:title" content="Online Stores &amp; E-commerce · BANANAbyte">
+<meta property="og:description" content="E-commerce storefronts on Shopify for shops, boutiques, makers and brands — product catalog, secure checkout, shipping &amp; tax set up, mobile-first, and you own the store.">
+<meta property="og:url" content="https://bananabyte.io/services/online-stores/">
+<meta property="og:image" content="https://bananabyte.io/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Online Stores &amp; E-commerce · BANANAbyte">
+<meta name="twitter:description" content="E-commerce storefronts on Shopify for shops, boutiques, makers and brands — secure checkout, shipping &amp; tax set up, mobile-first, and you own the store.">
+<meta name="twitter:image" content="https://bananabyte.io/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=Sora:wght@300;400;500;600;700;800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<!-- TURNSTILE: only the contact page needs the widget. If this page has the
+     contact form, add the api.js script here:
+     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script> -->
+<link rel="stylesheet" href="/assets/site.css">
+
+<!-- ============================================================
+     PAGE-SCOPED LAYOUT — uses ONLY existing design-system tokens
+     (var(--...)) so it adapts to both modes automatically. No
+     hard-coded brand colors. Reuses .svc / .why / .type-card
+     patterns from site.css for everything else.
+     ============================================================ -->
+<style>
+  /* hero lede gets a little more room on a focused service page */
+  .os-hero .hero-lede{max-width:54ch}
+
+  /* numbered "how it works" steps — a connected vertical timeline that
+     collapses to single cards on mobile, restyles per mode via tokens */
+  .steps{display:grid;grid-template-columns:1fr;gap:16px;counter-reset:step}
+  @media(min-width:760px){.steps{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:1040px){.steps{grid-template-columns:repeat(4,1fr)}}
+  .step{
+    position:relative;border:1px solid var(--line);border-radius:var(--radius);
+    background:var(--panel);padding:24px 22px 22px;overflow:hidden;
+    transition:transform .3s var(--ease),border-color .3s var(--ease),background .3s var(--ease);
+  }
+  html[data-mode="performer"] .step{background:linear-gradient(165deg,var(--panel-2),var(--panel))}
+  .step:hover{transform:translateY(-4px);border-color:var(--line-strong);background:var(--panel-2)}
+  html[data-mode="performer"] .step:hover{box-shadow:var(--shadow)}
+  .step .step-n{
+    counter-increment:step;
+    display:inline-flex;align-items:center;justify-content:center;
+    width:38px;height:38px;border-radius:11px;margin-bottom:14px;
+    font-family:var(--font-display);font-weight:700;font-size:1rem;
+    background:var(--accent-soft);border:1px solid var(--accent-line);color:var(--accent);
+  }
+  .step .step-n::before{content:counter(step,decimal-leading-zero)}
+  html[data-mode="performer"] .step .step-n{
+    font-family:var(--font-fraunces);font-style:italic;
+    background:var(--accent);color:var(--on-accent);border-color:var(--accent);
+    box-shadow:0 0 14px 2px rgba(245,200,0,.4);
+  }
+  .step h3{font-size:1.08rem;font-weight:600}
+  html[data-mode="performer"] .step h3{font-family:var(--font-fraunces);font-size:1.24rem}
+  .step p{color:var(--ink-soft);font-size:.93rem;margin-top:9px}
+
+  /* "who it's for" chips — wrap, no overflow, accent edge on the lead-in */
+  .audience{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
+  .audience .who{
+    display:inline-flex;align-items:center;gap:9px;
+    border:1px solid var(--line);border-radius:999px;
+    background:var(--panel);padding:11px 18px;
+    font-family:var(--font-display);font-weight:600;font-size:.92rem;color:var(--ink);
+    transition:border-color .25s var(--ease),background .25s var(--ease),transform .25s var(--ease);
+  }
+  html[data-mode="performer"] .audience .who{
+    font-family:var(--font-fraunces);background:linear-gradient(165deg,var(--panel-2),var(--panel));
+  }
+  .audience .who:hover{transform:translateY(-2px);border-color:var(--accent-line);background:var(--accent-soft)}
+  .audience .who .dot{
+    width:8px;height:8px;border-radius:50%;flex:none;
+    background:var(--accent);box-shadow:0 0 8px 1px rgba(245,200,0,.4);
+  }
+
+  /* closing CTA band — mirrors the .why strip styling so it reads as a
+     deliberate section close in both modes */
+  .cta-band{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel)}
+  html[data-mode="performer"] .cta-band{
+    border:1px solid var(--line-strong);border-radius:calc(var(--radius) + 6px);
+    background:
+      radial-gradient(100% 120% at 100% 0%, rgba(245,200,0,.1), transparent 55%),
+      linear-gradient(160deg,var(--panel-2),var(--panel));
+    box-shadow:var(--shadow);
+  }
+  .cta-band .cta-inner{
+    display:flex;flex-direction:column;gap:20px;align-items:flex-start;
+    padding-block:clamp(40px,6vw,68px);
+  }
+  @media(min-width:820px){.cta-band .cta-inner{flex-direction:row;justify-content:space-between;align-items:center;gap:32px}}
+  html[data-mode="performer"] .cta-band .cta-inner{padding:clamp(26px,4vw,44px)}
+  .cta-band h2{font-size:clamp(1.5rem,4vw,2.2rem);max-width:22ch}
+  .cta-band p{color:var(--ink-soft);margin-top:12px;max-width:48ch}
+  .cta-band .cta-actions{display:flex;flex-wrap:wrap;gap:14px;flex:none}
+</style>
+
+<!-- ============================================================
+     NO-JS FALLBACK: with JavaScript disabled, the reveal-on-scroll
+     elements would otherwise stay at opacity:0 and the page would
+     look blank. This forces all [data-reveal] content fully visible
+     and keeps the gate hidden, so the default BUSINESS homepage is
+     shown and never blocked when JS is off.
+     ============================================================ -->
+<noscript>
+<style>
+  [data-reveal]{opacity:1 !important;transform:none !important}
+  .gate{display:none !important}
+</style>
+</noscript>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ============================================================
+     INTRO GATE — hidden by default; JS opens it on first visit only.
+     With JS disabled it stays display:none, so the default business
+     content below is never blocked. Cards are filled from MODES map.
+     ============================================================ -->
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-h" aria-describedby="gate-sub" hidden>
+  <div class="gate-card">
+    <div class="gate-brand">
+      <span class="wm" aria-label="BANANAbyte"><span class="b1">BANANA</span><span class="b2">byte</span><span class="dot" aria-hidden="true">.</span></span>
+      <span aria-hidden="true">🍌</span>
+    </div>
+    <h2 id="gate-h" data-es="¿Qué te trae por aquí?">What brings you here?</h2>
+    <p class="gate-sub" id="gate-sub" data-es="Elige la versión de BANANAbyte que mejor te encaje. Puedes cambiar cuando quieras.">Pick the version of BANANAbyte that fits you. You can switch anytime.</p>
+    <div class="gate-choices" id="gate-choices" role="group" aria-label="Choose your experience" data-es-aria-label="Elige tu experiencia">
+      <!-- choice cards injected here from the MODES map -->
+    </div>
+    <div class="gate-foot">
+      <button type="button" class="gate-skip" id="gate-skip" data-es="Solo estoy mirando — muéstrame la versión normal">Just looking — show me the default</button>
+      <p class="gate-note" data-es="Puedes cambiar cuando quieras desde el menú de arriba.">You can switch anytime from the menu at the top.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     HEADER (shared shell; toggle built from MODES map)
+     ============================================================ -->
+<header class="site">
+  <div class="wrap nav">
+    <div class="nav-left">
+      <a class="wordmark" href="/" aria-label="BANANAbyte home" data-es-aria-label="BANANAbyte inicio">
+        <span class="nana" aria-hidden="true">.</span>
+        <span><span class="banana">BANANA</span><span class="byte">byte</span></span>
+        <span aria-hidden="true" style="font-size:.95em">🍌</span>
+      </a>
+      <div class="mode-toggle" id="mode-toggle" role="radiogroup" aria-label="Choose audience mode" data-es-aria-label="Elige el modo de público">
+        <!-- radio inputs injected here from the MODES map -->
+      </div>
+    </div>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/services/" data-es="Servicios">Services</a>
+      <a href="/work/" data-es="Proyectos">Work</a>
+      <a href="/pricing/" data-es="Precios">Pricing</a>
+      <a href="/contact/" class="nav-cta" data-es="Empezar un proyecto">Start a project</a>
+    </nav>
+    <!-- mobile-only: opens the slide-in menu drawer below -->
+    <button class="hamburger" id="hamburger" type="button"
+            aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="hb-lines" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============================================================
+     MOBILE MENU — slide-in drawer (≤979px). The #mode-toggle node
+     is physically MOVED into #menu-toggle-slot on mobile and back into
+     .nav-left on desktop (see placeMode() in the script), so there is
+     never a duplicate radio group to desync state.
+     ============================================================ -->
+<div class="nav-backdrop" id="nav-backdrop" hidden></div>
+<aside class="mobile-menu" id="mobile-menu" aria-label="Menu" aria-hidden="true" hidden>
+  <div class="mm-inner">
+    <div class="mm-slot" id="menu-toggle-slot"><!-- #mode-toggle relocated here on mobile --></div>
+    <nav class="mm-links" aria-label="Mobile">
+      <a href="/services/" data-es="Servicios">Services</a>
+      <a href="/work/" data-es="Proyectos">Work</a>
+      <a href="/pricing/" data-es="Precios">Pricing</a>
+      <a href="/contact/" data-es="Contacto">Contact</a>
+    </nav>
+    <a href="/contact/" class="btn btn-primary mm-cta" data-es="Empezar un proyecto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Start a project <span class="arrow" aria-hidden="true">→</span></a>
+    <div class="mm-lang-slot" id="menu-lang-slot"><!-- .lang-toggle relocated here on mobile --></div>
+  </div>
+</aside>
+
+<main id="main">
+
+  <!-- ============================================================
+       HERO — sell online without the headache
+       ============================================================ -->
+  <section class="hero os-hero" aria-labelledby="os-hero-h">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="tag" data-reveal data-es="&lt;span class=&quot;pulse&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt; Tiendas online · Shopify"><span class="pulse" aria-hidden="true"></span> Online stores · Shopify</span>
+          <h1 id="os-hero-h" data-reveal data-es="Vende online, &lt;span class=&quot;mark&quot;&gt;sin el dolor de cabeza.&lt;/span&gt;">Sell online, <span class="mark">without the headache.</span></h1>
+          <p class="hero-lede" data-reveal data-es="BANANAbyte 🍌 te monta una tienda online de verdad sobre Shopify — páginas de producto, un carrito y un pago seguro que funcionan en cualquier teléfono. Tú subes productos y ves llegar los pedidos; yo me encargo de la parte difícil: pagos, impuestos, envíos y velocidad.">BANANAbyte 🍌 sets you up with a real online store on Shopify — product pages, a cart, and secure checkout that work on any phone. You add products and watch orders roll in; I handle the hard parts: payments, taxes, shipping, and speed.</p>
+          <div class="hero-actions" data-reveal>
+            <a href="/contact/" class="btn btn-primary" data-es="Empezar un proyecto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Start a project <span class="arrow" aria-hidden="true">→</span></a>
+            <a href="/pricing/" class="btn btn-ghost" data-es="Ver precios">See pricing</a>
+          </div>
+          <div class="hero-meta" data-reveal>
+            <span data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Construida sobre Shopify"><span class="ck" aria-hidden="true">✓</span> Built on Shopify</span>
+            <span data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Pago seguro, mobile-first"><span class="ck" aria-hidden="true">✓</span> Secure, mobile-first checkout</span>
+            <span data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; La tienda es tuya"><span class="ck" aria-hidden="true">✓</span> You own the store</span>
+          </div>
+        </div>
+
+        <div class="hero-panel" data-reveal aria-hidden="true">
+          <div class="browser">
+            <div class="browser-bar">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="url">yourshop.com/cart</span>
+            </div>
+            <div class="browser-body">
+              <div class="sk-row"><div class="skeleton" style="width:40%"></div></div>
+              <div class="sk-row" style="margin-bottom:16px"><div class="skeleton" style="width:64%;height:9px"></div></div>
+              <div class="sk-row">
+                <div class="sk-block" style="flex:1"></div>
+                <div class="sk-block" style="flex:1"></div>
+                <div class="sk-block sk-accent" style="flex:1"></div>
+              </div>
+              <div class="sk-row" style="margin-top:6px"><div class="skeleton" style="width:52%;height:9px"></div></div>
+            </div>
+          </div>
+          <div class="panel-badge" data-es="Pago &lt;b&gt;seguro&lt;/b&gt; en cualquier teléfono">Checkout <b>secure</b> on any phone</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHAT YOU GET
+       ============================================================ -->
+  <section id="what-you-get" aria-labelledby="os-what-h">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <span class="eyebrow" data-es="Lo que recibes">What you get</span>
+        <h2 id="os-what-h" data-es="Una tienda lista para vender — no un kit a medio armar.">A store that’s ready to sell — not a half-built kit.</h2>
+        <p data-es="Cada tienda llega completa: el diseño, el catálogo, los pagos y todo lo que hace falta para que el primer pedido entre limpio el día del lanzamiento.">Every store ships complete: the design, the catalog, the payments, and everything needed for that first order to land clean on launch day.</p>
+      </div>
+      <div class="svc-grid">
+
+        <article class="svc" data-reveal>
+          <div class="ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18"/><path d="M8 14h4"/></svg>
+          </div>
+          <h3 data-es="Diseño de tienda a medida">Custom storefront design</h3>
+          <p data-es="Un diseño hecho en torno a tu marca y tus productos — no una plantilla genérica que ya viste en otras diez tiendas. Página de inicio, colecciones y páginas de producto que dan ganas de comprar.">A design built around your brand and your products — not a generic template you’ve seen on ten other shops. A homepage, collections, and product pages that make people want to buy.</p>
+        </article>
+
+        <article class="svc" data-reveal>
+          <div class="ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v10l9 4 9-4V7"/><path d="M12 11v10"/></svg>
+          </div>
+          <h3 data-es="Catálogo de productos">Product catalog</h3>
+          <p data-es="Tus productos cargados de verdad — fotos, descripciones, precios, variantes (talla, color), colecciones y filtros. Te dejo el catálogo armado y fácil de ampliar tú mismo.">Your products loaded for real — photos, descriptions, prices, variants (size, color), collections and filters. I leave the catalog set up and easy for you to expand yourself.</p>
+        </article>
+
+        <article class="svc feature" data-reveal>
+          <div class="ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/><path d="M7 15h4"/></svg>
+          </div>
+          <h3 data-es="Pago seguro y pagos &lt;span class=&quot;pill&quot;&gt;Seguro&lt;/span&gt;">Secure checkout &amp; payments <span class="pill">Secure</span></h3>
+          <p data-es="Pago cifrado y conforme a PCI a través de Shopify Payments — tarjetas, Apple Pay, Google Pay y Shop Pay. Tú nunca tocas datos de tarjetas, y los clientes pagan en un par de toques.">Encrypted, PCI-compliant checkout through Shopify Payments — cards, Apple Pay, Google Pay and Shop Pay. You never touch card data, and customers pay in a couple of taps.</p>
+        </article>
+
+        <article class="svc" data-reveal>
+          <div class="ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h11v8H3z"/><path d="M14 11h4l3 3v2h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>
+          </div>
+          <h3 data-es="Envíos e impuestos configurados">Shipping &amp; tax set up</h3>
+          <p data-es="Tarifas de envío, zonas y etiquetas conectadas, más el cobro automático de impuestos según donde vendas. Sin adivinar el costo de envío ni quedarte debiendo impuestos a fin de año.">Shipping rates, zones and label printing wired up, plus automatic sales-tax collection based on where you sell. No guessing shipping costs or owing tax surprises at year-end.</p>
+        </article>
+
+        <article class="svc" data-reveal>
+          <div class="ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M5 6v13a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6"/><path d="M9 10v6M15 10v6"/></svg>
+          </div>
+          <h3 data-es="Inventario básico">Inventory basics</h3>
+          <p data-es="Conteo de existencias, avisos de poco stock y la opción de ocultar lo agotado automáticamente. Te enseño a actualizarlo en minutos para que nunca vendas algo que ya no tienes.">Stock counts, low-stock alerts, and the option to auto-hide sold-out items. I show you how to update it in minutes so you never sell something you no longer have.</p>
+        </article>
+
+        <article class="svc" data-reveal>
+          <div class="ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg>
+          </div>
+          <h3 data-es="Mobile-first, de verdad">Mobile-first, for real</h3>
+          <p data-es="La mayoría de tus compradores llegan desde el teléfono, así que la tienda se diseña ahí primero: carga rápido, los botones caen donde el pulgar los alcanza y el pago nunca se rompe en una pantalla pequeña.">Most of your buyers arrive on a phone, so the store is designed there first: it loads fast, the buttons land where a thumb can reach, and checkout never breaks on a small screen.</p>
+        </article>
+
+        <article class="svc" data-reveal>
+          <div class="ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10V7a5 5 0 0 1 10 0v3"/><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M12 14v2"/></svg>
+          </div>
+          <h3 data-es="La tienda es tuya">You own the store</h3>
+          <p data-es="La cuenta de Shopify, el dominio, los productos, los clientes — todo a tu nombre desde el primer día. Puedes seguir tú solo, traer a otra persona o irte con todo en la mano cuando quieras.">The Shopify account, the domain, the products, the customers — all in your name from day one. You can run it solo, bring in someone else, or walk away with everything in hand whenever you like.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHO IT'S FOR
+       ============================================================ -->
+  <section id="who-its-for" class="why" aria-labelledby="os-who-h">
+    <div class="wrap why-inner">
+      <div data-reveal>
+        <span class="eyebrow" data-es="Para quién es">Who it’s for</span>
+        <h2 id="os-who-h" data-es="Si vendes productos, esto es para ti.">If you sell products, this is for you.</h2>
+        <p class="lede" data-es="Da igual si llevas años en un local o si recién empiezas a vender desde la mesa de la cocina — una tienda online ordenada te deja cobrar las 24 horas sin estar pendiente del teléfono.">Whether you’ve run a storefront for years or you just started selling off the kitchen table, a clean online store lets you take orders around the clock without babysitting your phone.</p>
+        <div class="audience" data-reveal>
+          <span class="who"><span class="dot" aria-hidden="true"></span><span data-es="Comercios y tiendas">Shops &amp; stores</span></span>
+          <span class="who"><span class="dot" aria-hidden="true"></span><span data-es="Boutiques">Boutiques</span></span>
+          <span class="who"><span class="dot" aria-hidden="true"></span><span data-es="Makers y artesanos">Makers &amp; crafters</span></span>
+          <span class="who"><span class="dot" aria-hidden="true"></span><span data-es="Marcas">Brands</span></span>
+          <span class="who"><span class="dot" aria-hidden="true"></span><span data-es="Cualquiera que venda productos">Anyone selling products</span></span>
+        </div>
+      </div>
+      <div class="why-list" data-reveal>
+        <div class="why-item">
+          <div class="n">01</div>
+          <h4 data-es="Vendes de un local físico">Selling from a storefront</h4>
+          <p data-es="Lleva tu mostrador online para que la gente compre cuando estás cerrado — y recoja en tienda o reciba en casa.">Take your counter online so people can buy when you’re closed — and pick up in-store or have it shipped.</p>
+        </div>
+        <div class="why-item">
+          <div class="n">02</div>
+          <h4 data-es="Vendes en redes o ferias">Selling on socials or markets</h4>
+          <p data-es="Deja de cobrar por DM. Una tienda de verdad cobra sola, lleva el inventario y se ve seria.">Stop taking orders by DM. A real store checks people out for you, tracks stock, and looks legit.</p>
+        </div>
+        <div class="why-item">
+          <div class="n">03</div>
+          <h4 data-es="Haces tú mismo lo que vendes">Making what you sell</h4>
+          <p data-es="Velas, joyería, impresiones, comida — variantes, lotes y avisos de poco stock pensados para makers.">Candles, jewelry, prints, food — variants, batches, and low-stock alerts built for makers.</p>
+        </div>
+        <div class="why-item">
+          <div class="n">04</div>
+          <h4 data-es="Estás lanzando una marca">Launching a brand</h4>
+          <p data-es="Una tienda que se ve cara desde el primer día, lista para crecer con más productos y campañas.">A store that looks premium from day one, ready to grow with more products and campaigns.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       HOW IT WORKS
+       ============================================================ -->
+  <section id="how-it-works" aria-labelledby="os-how-h">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <span class="eyebrow" data-es="Cómo funciona">How it works</span>
+        <h2 id="os-how-h" data-es="De la idea a la primera venta, en cuatro pasos.">From idea to first sale, in four steps.</h2>
+        <p data-es="Sin jerga ni sorpresas. Sabes en qué punto estamos en cada momento, y el precio cerrado no se mueve por el camino.">No jargon, no surprises. You always know where we are, and the flat quote doesn’t move along the way.</p>
+      </div>
+      <div class="steps">
+        <article class="step" data-reveal>
+          <span class="step-n" aria-hidden="true"></span>
+          <h3 data-es="1. Hablamos del plan">1. We map it out</h3>
+          <p data-es="Me cuentas qué vendes, cuántos productos tienes y cómo quieres cobrar y enviar. Salgo con un presupuesto cerrado y un calendario claro — antes de tocar nada.">You tell me what you sell, how many products you have, and how you want to take payments and ship. I come back with one flat quote and a clear timeline — before anything is built.</p>
+        </article>
+        <article class="step" data-reveal>
+          <span class="step-n" aria-hidden="true"></span>
+          <h3 data-es="2. Diseño y armo la tienda">2. I design &amp; build it</h3>
+          <p data-es="Monto la tienda en Shopify en torno a tu marca, cargo tus productos, configuro pagos, envíos e impuestos, y la dejo rápida en el teléfono. Tú revisas avances reales, no maquetas vacías.">I build the store on Shopify around your brand, load your products, set up payments, shipping and tax, and make it fast on a phone. You review real progress, not empty mockups.</p>
+        </article>
+        <article class="step" data-reveal>
+          <span class="step-n" aria-hidden="true"></span>
+          <h3 data-es="3. Probamos cada pedido">3. We test every order</h3>
+          <p data-es="Hacemos compras de prueba de punta a punta — carrito, pago, impuestos, envío y el correo de confirmación — para que el día del lanzamiento el primer pedido real entre perfecto.">We run real end-to-end test orders — cart, checkout, tax, shipping and the confirmation email — so on launch day the first real order lands perfectly.</p>
+        </article>
+        <article class="step" data-reveal>
+          <span class="step-n" aria-hidden="true"></span>
+          <h3 data-es="4. Lanzamos y te enseño">4. We launch &amp; I show you</h3>
+          <p data-es="Conectamos tu dominio, publicamos y te enseño a añadir productos, cumplir pedidos y leer las ventas. La tienda queda a tu nombre, con cuidado continuo opcional si lo quieres.">We connect your domain, go live, and I walk you through adding products, fulfilling orders and reading your sales. The store is in your name, with optional ongoing care if you want it.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PRICING NOTE — store builds run a bit higher; flat quote
+       ============================================================ -->
+  <section id="pricing-note" aria-labelledby="os-price-h">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <span class="eyebrow" data-es="Lo que cuesta">What it costs</span>
+        <h2 id="os-price-h" data-es="Precio cerrado, igual que siempre.">A flat quote, same as always.</h2>
+        <p data-es="Las tiendas online llevan algo más de trabajo que un sitio informativo — catálogo, pagos, impuestos y envíos hay que configurarlos bien — así que arrancan un poco por encima. Aun así recibes un único número cerrado por adelantado, sin reloj por horas y sin sorpresas.">Online stores take a bit more work than a brochure site — catalog, payments, tax and shipping all have to be set up right — so they start a little higher. You still get one flat number upfront, no hourly meter, and no surprises.</p>
+      </div>
+      <p class="price-note" data-reveal>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+        <span data-es="El total final depende del tamaño del catálogo y de las funciones que necesites — siempre lo acordamos por adelantado. Mira la &lt;a href=&quot;/pricing/&quot;&gt;página de precios&lt;/a&gt; para ver el rango, o cuéntame qué vendes y te doy un número.">The final total depends on catalog size and the features you need — we always agree it upfront. See the <a href="/pricing/">pricing page</a> for the range, or tell me what you sell and I’ll give you a number.</span>
+      </p>
+      <div class="price-actions" data-reveal>
+        <a href="/pricing/" class="btn btn-ghost" data-es="Ver precios &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">See pricing <span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CLOSING CTA → /contact/
+       ============================================================ -->
+  <section class="cta-band" aria-labelledby="os-cta-h">
+    <div class="wrap cta-inner" data-reveal>
+      <div>
+        <h2 id="os-cta-h" data-es="¿Listo para empezar a vender online?">Ready to start selling online?</h2>
+        <p data-es="Cuéntame qué vendes y cómo lo despachas hoy. Te respondo en un día hábil con próximos pasos honestos y un presupuesto cerrado — sin presión, sin pago por adelantado.">Tell me what you sell and how you ship it today. I’ll reply within one business day with honest next steps and a flat quote — no pressure, no upfront payment.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="/contact/" class="btn btn-primary" data-es="Empezar un proyecto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Start a project <span class="arrow" aria-hidden="true">→</span></a>
+        <a href="/pricing/" class="btn btn-ghost" data-es="Ver precios">See pricing</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="wordmark" href="/" aria-label="BANANAbyte home" data-es-aria-label="BANANAbyte inicio">
+          <span class="nana" aria-hidden="true">.</span>
+          <span><span class="banana">BANANA</span><span class="byte">byte</span></span>
+          <span aria-hidden="true" style="font-size:.95em">🍌</span>
+        </a>
+        <p class="foot-blurb" data-es="Un estudio web en Orlando, FL. Sitios web rápidos, limpios y a medida, bien hechos. 🍌">A web studio in Orlando, FL. Fast, clean, custom websites, built right. 🍌</p>
+      </div>
+      <nav class="foot-nav" aria-label="Footer">
+        <a href="/services/" data-es="Servicios">Services</a>
+        <a href="/work/" data-es="Proyectos">Work</a>
+        <a href="/pricing/" data-es="Precios">Pricing</a>
+        <a href="/contact/" data-es="Contacto">Contact</a>
+        <a href="mailto:contact@bananabyte.io">contact@bananabyte.io</a>
+      </nav>
+    </div>
+    <p class="foot-disclaimer" data-es="Los sitios de ejemplo que se muestran son conceptos de demostración; cualquier trabajo real con clientes se muestra solo con el permiso de su dueño.">Example sites shown are demo concepts; any real client work is displayed only with the owner’s permission.</p>
+    <div class="foot-bottom">
+      <span data-es="© &lt;span id=&quot;year&quot;&gt;2026&lt;/span&gt; BANANAbyte LLC — Orlando, FL. &lt;span class=&quot;foot-built&quot;&gt;Hecho por Gabe, un desarrollador de Orlando.&lt;/span&gt;">© <span id="year">2026</span> BANANAbyte LLC — Orlando, FL. <span class="foot-built">Built by Gabe, an Orlando developer.</span></span>
+      <div class="lang-toggle" role="group" aria-label="Language / Idioma">
+        <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+      </div>
+      <span class="made" data-es="¿No eres tú? &lt;button type=&quot;button&quot; class=&quot;reopen-gate&quot; id=&quot;reopen-gate&quot;&gt;Elegir de nuevo&lt;/button&gt;">Not you? <button type="button" class="reopen-gate" id="reopen-gate">Choose again</button></span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/site.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "0928fb51dad843818b6718b55b31e615"}'></script>
+</body>
+</html>
