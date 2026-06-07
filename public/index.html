@@ -34,6 +34,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Set <html lang> as early as possible from the saved language choice, so
+     a returning Spanish visitor doesn't get a flash of the wrong lang attr.
+     The full copy swap happens synchronously at the end of <body>. -->
+<script>try{var _l=localStorage.getItem('bb-lang');if(_l==='es'||_l==='en'){document.documentElement.lang=_l;document.documentElement.classList.add('lang-'+_l);}}catch(e){}</script>
 <title>BANANAbyte — Web Design &amp; Development · Orlando</title>
 <meta name="description" content="BANANAbyte is a web design &amp; development studio in Orlando, FL. Fast, clean, custom websites and online stores for small businesses, shops, and performers. Flat pricing, quick turnaround, you own everything.">
 <link rel="canonical" href="https://bananabyte.io/">
@@ -784,6 +788,28 @@
   .foot-bottom{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;margin-top:34px;padding-top:22px;border-top:1px solid var(--line);color:var(--ink-mute);font-size:.82rem}
   .foot-bottom .made{display:inline-flex;align-items:center;gap:7px}
 
+  /* ---------- LANGUAGE TOGGLE (footer, understated segmented EN | ES) ---------- */
+  .lang-toggle{
+    display:inline-flex;align-items:center;gap:0;flex:0 0 auto;
+    border:1px solid var(--line-strong);border-radius:999px;
+    padding:2px;background:var(--panel-2);
+  }
+  .lang-toggle .lang-btn{
+    appearance:none;background:none;border:0;cursor:pointer;
+    font-family:var(--font-display);font-weight:600;font-size:.74rem;line-height:1;
+    letter-spacing:.04em;color:var(--ink-mute);
+    padding:6px 12px;border-radius:999px;
+    transition:color .2s var(--ease),background .2s var(--ease);
+  }
+  .lang-toggle .lang-btn:hover{color:var(--ink)}
+  .lang-toggle .lang-btn[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
+  .lang-toggle .lang-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  html[data-mode="performer"] .lang-toggle{border-color:var(--line-strong);background:rgba(9,9,8,.55)}
+  html[data-mode="performer"] .lang-toggle .lang-btn[aria-pressed="true"]{
+    background:linear-gradient(135deg,var(--honey),var(--accent) 55%,var(--gold));color:var(--on-accent);
+  }
+  html[data-mode="performer"] .lang-toggle .lang-btn:hover{color:var(--honey)}
+
   /* mode-specific content visibility: only the active mode's panels show.
      Default (no JS / business) shows business; html[data-mode] flips it. */
   [data-mode-panel]{display:none}
@@ -905,14 +931,14 @@
       <span class="wm" aria-label="BANANAbyte"><span class="b1">BANANA</span><span class="b2">byte</span><span class="dot" aria-hidden="true">.</span></span>
       <span aria-hidden="true">🍌</span>
     </div>
-    <h2 id="gate-h">What brings you here?</h2>
-    <p class="gate-sub" id="gate-sub">Pick the version of BANANAbyte that fits you. You can switch anytime.</p>
-    <div class="gate-choices" id="gate-choices" role="group" aria-label="Choose your experience">
+    <h2 id="gate-h" data-es="¿Qué te trae por aquí?">What brings you here?</h2>
+    <p class="gate-sub" id="gate-sub" data-es="Elige la versión de BANANAbyte que mejor te encaje. Puedes cambiar cuando quieras.">Pick the version of BANANAbyte that fits you. You can switch anytime.</p>
+    <div class="gate-choices" id="gate-choices" role="group" aria-label="Choose your experience" data-es-aria-label="Elige tu experiencia">
       <!-- choice cards injected here from the MODES map -->
     </div>
     <div class="gate-foot">
-      <button type="button" class="gate-skip" id="gate-skip">Just looking — show me the default</button>
-      <p class="gate-note">You can switch anytime from the menu at the top.</p>
+      <button type="button" class="gate-skip" id="gate-skip" data-es="Solo estoy mirando — muéstrame la versión normal">Just looking — show me the default</button>
+      <p class="gate-note" data-es="Puedes cambiar cuando quieras desde el menú de arriba.">You can switch anytime from the menu at the top.</p>
     </div>
   </div>
 </div>
@@ -923,21 +949,21 @@
 <header class="site">
   <div class="wrap nav">
     <div class="nav-left">
-      <a class="wordmark" href="#main" aria-label="BANANAbyte home">
+      <a class="wordmark" href="#main" aria-label="BANANAbyte home" data-es-aria-label="BANANAbyte inicio">
         <span class="nana" aria-hidden="true">.</span>
         <span><span class="banana">BANANA</span><span class="byte">byte</span></span>
         <span aria-hidden="true" style="font-size:.95em">🍌</span>
       </a>
-      <div class="mode-toggle" id="mode-toggle" role="radiogroup" aria-label="Choose audience mode">
+      <div class="mode-toggle" id="mode-toggle" role="radiogroup" aria-label="Choose audience mode" data-es-aria-label="Elige el modo de público">
         <!-- radio inputs injected here from the MODES map -->
       </div>
     </div>
     <nav class="nav-links" aria-label="Primary">
-      <a href="#services">Services</a>
-      <a href="/work/">Work</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#why">Why me</a>
-      <a href="#contact" class="nav-cta">Start a project</a>
+      <a href="#services" data-es="Servicios">Services</a>
+      <a href="/work/" data-es="Proyectos">Work</a>
+      <a href="#pricing" data-es="Precios">Pricing</a>
+      <a href="#why" data-es="Por qué yo">Why me</a>
+      <a href="#contact" class="nav-cta" data-es="Empezar un proyecto">Start a project</a>
     </nav>
     <!-- mobile-only: opens the slide-in menu drawer below -->
     <button class="hamburger" id="hamburger" type="button"
@@ -958,13 +984,13 @@
   <div class="mm-inner">
     <div class="mm-slot" id="menu-toggle-slot"><!-- #mode-toggle relocated here on mobile --></div>
     <nav class="mm-links" aria-label="Mobile">
-      <a href="#services">Services</a>
-      <a href="/work/">Work</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#why">Why me</a>
-      <a href="#contact">Contact</a>
+      <a href="#services" data-es="Servicios">Services</a>
+      <a href="/work/" data-es="Proyectos">Work</a>
+      <a href="#pricing" data-es="Precios">Pricing</a>
+      <a href="#why" data-es="Por qué yo">Why me</a>
+      <a href="#contact" data-es="Contacto">Contact</a>
     </nav>
-    <a href="#contact" class="btn btn-primary mm-cta">Start a project <span class="arrow" aria-hidden="true">→</span></a>
+    <a href="#contact" class="btn btn-primary mm-cta" data-es="Empezar un proyecto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Start a project <span class="arrow" aria-hidden="true">→</span></a>
   </div>
 </aside>
 
@@ -979,17 +1005,17 @@
     <section class="hero" aria-labelledby="b-hero-h">
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <span class="tag" data-reveal><span class="pulse" aria-hidden="true"></span> Taking on new projects this month</span>
-          <h1 id="b-hero-h" data-reveal>Built right. <span class="mark">Any kind of site</span> your business needs.</h1>
-          <p class="hero-lede" data-reveal>BANANAbyte 🍌 is a web studio in Orlando. I build fast, clean, custom websites and online stores — for shops, local businesses, and the professionals behind them. Flat pricing, quick turnaround, and you own everything when it ships.</p>
+          <span class="tag" data-reveal data-es="&lt;span class=&quot;pulse&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt; Tomando proyectos nuevos este mes"><span class="pulse" aria-hidden="true"></span> Taking on new projects this month</span>
+          <h1 id="b-hero-h" data-reveal data-es="Bien hecho. &lt;span class=&quot;mark&quot;&gt;El sitio que sea&lt;/span&gt; que tu negocio necesita.">Built right. <span class="mark">Any kind of site</span> your business needs.</h1>
+          <p class="hero-lede" data-reveal data-es="BANANAbyte 🍌 es un estudio web en Orlando. Creo sitios web y tiendas online rápidos, limpios y a medida — para comercios, negocios locales y los profesionales detrás de ellos. Precio cerrado, entrega rápida y todo es tuyo cuando lanzamos.">BANANAbyte 🍌 is a web studio in Orlando. I build fast, clean, custom websites and online stores — for shops, local businesses, and the professionals behind them. Flat pricing, quick turnaround, and you own everything when it ships.</p>
           <div class="hero-actions" data-reveal>
-            <a href="#contact" class="btn btn-primary">Start a project <span class="arrow" aria-hidden="true">→</span></a>
-            <a href="/work/" class="btn btn-ghost">See the work</a>
+            <a href="#contact" class="btn btn-primary" data-es="Empezar un proyecto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Start a project <span class="arrow" aria-hidden="true">→</span></a>
+            <a href="/work/" class="btn btn-ghost" data-es="Ver los proyectos">See the work</a>
           </div>
           <div class="hero-meta" data-reveal>
-            <span><span class="ck" aria-hidden="true">✓</span> Flat, upfront pricing</span>
-            <span><span class="ck" aria-hidden="true">✓</span> ~2–3 week turnaround</span>
-            <span><span class="ck" aria-hidden="true">✓</span> You own the code</span>
+            <span data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Precio cerrado y por adelantado"><span class="ck" aria-hidden="true">✓</span> Flat, upfront pricing</span>
+            <span data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Entrega en ~2–3 semanas"><span class="ck" aria-hidden="true">✓</span> ~2–3 week turnaround</span>
+            <span data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; El código es tuyo"><span class="ck" aria-hidden="true">✓</span> You own the code</span>
           </div>
         </div>
 
@@ -1010,7 +1036,7 @@
               </div>
             </div>
           </div>
-          <div class="panel-badge"><b>98</b> Lighthouse performance</div>
+          <div class="panel-badge" data-es="&lt;b&gt;98&lt;/b&gt; en rendimiento Lighthouse"><b>98</b> Lighthouse performance</div>
         </div>
       </div>
     </section>
@@ -1019,57 +1045,57 @@
     <section id="services" aria-labelledby="b-svc-h">
       <div class="wrap">
         <div class="sec-head" data-reveal>
-          <span class="eyebrow">What I build</span>
-          <h2 id="b-svc-h">Whatever your business runs on — I’ll build the site for it.</h2>
-          <p>From a brand-new launch to a store that has to take payments reliably, here’s how I can help.</p>
+          <span class="eyebrow" data-es="Lo que construyo">What I build</span>
+          <h2 id="b-svc-h" data-es="Sea lo que sea que mueva tu negocio, yo le construyo el sitio.">Whatever your business runs on — I’ll build the site for it.</h2>
+          <p data-es="Desde un lanzamiento desde cero hasta una tienda que tiene que cobrar sin fallar, así te puedo ayudar.">From a brand-new launch to a store that has to take payments reliably, here’s how I can help.</p>
         </div>
         <div class="svc-grid">
           <article class="svc" data-reveal>
             <div class="ico" aria-hidden="true">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"/></svg>
             </div>
-            <h3>New websites</h3>
-            <p>A custom site built from scratch around your brand, your goals, and how customers actually find you.</p>
+            <h3 data-es="Sitios web nuevos">New websites</h3>
+            <p data-es="Un sitio a medida, hecho desde cero en torno a tu marca, tus objetivos y la forma real en que tus clientes te encuentran.">A custom site built from scratch around your brand, your goals, and how customers actually find you.</p>
           </article>
 
           <article class="svc" data-reveal>
             <div class="ico" aria-hidden="true">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v5h-5"/></svg>
             </div>
-            <h3>Redesigns</h3>
-            <p>Already have a site that feels dated or clunky? I’ll rebuild it modern, fast, and easy to update.</p>
+            <h3 data-es="Rediseños">Redesigns</h3>
+            <p data-es="¿Ya tienes un sitio que se ve anticuado o torpe? Lo reconstruyo moderno, rápido y fácil de actualizar.">Already have a site that feels dated or clunky? I’ll rebuild it modern, fast, and easy to update.</p>
           </article>
 
           <article class="svc feature" data-reveal>
             <div class="ico" aria-hidden="true">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.5 12.5a1.5 1.5 0 0 0 1.5 1.2h8.4a1.5 1.5 0 0 0 1.5-1.2L22 7H6"/></svg>
             </div>
-            <h3>Online stores <span class="pill">E-commerce</span></h3>
-            <p>Selling something? I set up product pages, carts, and secure checkout that work on every phone — so customers can buy in a couple of taps and you can watch the orders roll in.</p>
+            <h3 data-es="Tiendas online &lt;span class=&quot;pill&quot;&gt;E-commerce&lt;/span&gt;">Online stores <span class="pill">E-commerce</span></h3>
+            <p data-es="¿Vendes algo? Dejo listas las páginas de producto, el carrito y un pago seguro que funcionan en cualquier teléfono — para que tus clientes compren con un par de toques y tú veas llegar los pedidos.">Selling something? I set up product pages, carts, and secure checkout that work on every phone — so customers can buy in a couple of taps and you can watch the orders roll in.</p>
           </article>
 
           <article class="svc" data-reveal>
             <div class="ico" aria-hidden="true">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg>
             </div>
-            <h3>Speed-ups &amp; fixes</h3>
-            <p>Slow load times, broken forms, mobile layout gremlins — I diagnose it and ship the fix, no drama.</p>
+            <h3 data-es="Mejoras de velocidad y arreglos">Speed-ups &amp; fixes</h3>
+            <p data-es="Cargas lentas, formularios rotos, problemas raros en el diseño móvil — lo diagnostico y lanzo el arreglo, sin dramas.">Slow load times, broken forms, mobile layout gremlins — I diagnose it and ship the fix, no drama.</p>
           </article>
 
           <article class="svc" data-reveal>
             <div class="ico" aria-hidden="true">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 1 3 3v.4a7 7 0 0 1 1.4.8l.4-.2a3 3 0 0 1 3 5.2l-.3.2a7 7 0 0 1 0 1.6l.3.2a3 3 0 0 1-3 5.2l-.4-.2a7 7 0 0 1-1.4.8V21a3 3 0 0 1-6 0v-.4a7 7 0 0 1-1.4-.8l-.4.2a3 3 0 0 1-3-5.2l.3-.2a7 7 0 0 1 0-1.6l-.3-.2a3 3 0 0 1 3-5.2l.4.2A7 7 0 0 1 9 5.4V5a3 3 0 0 1 3-3z"/><circle cx="12" cy="12" r="2.6"/></svg>
             </div>
-            <h3>Maintenance</h3>
-            <p>Ongoing updates, content tweaks, backups, and a real person to text when something needs changing.</p>
+            <h3 data-es="Mantenimiento">Maintenance</h3>
+            <p data-es="Actualizaciones continuas, ajustes de contenido, copias de seguridad y una persona real a quien escribir cuando algo necesita cambiar.">Ongoing updates, content tweaks, backups, and a real person to text when something needs changing.</p>
           </article>
 
           <article class="svc" data-reveal>
             <div class="ico" aria-hidden="true">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5a2 2 0 0 1 2-2h9l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M15 3v5h5"/></svg>
             </div>
-            <h3>Not sure yet?</h3>
-            <p>Tell me what your business does and where it’s stuck. I’ll point you to the simplest thing that actually moves the needle.</p>
+            <h3 data-es="¿Aún no lo tienes claro?">Not sure yet?</h3>
+            <p data-es="Cuéntame qué hace tu negocio y dónde está atascado. Te señalo lo más simple que de verdad mueve la aguja.">Tell me what your business does and where it’s stuck. I’ll point you to the simplest thing that actually moves the needle.</p>
           </article>
         </div>
       </div>
@@ -1079,54 +1105,54 @@
     <section id="work" aria-labelledby="b-work-h">
       <div class="wrap">
         <div class="sec-head" data-reveal>
-          <span class="eyebrow">Selected work</span>
-          <h2 id="b-work-h">Sample builds you can click into.</h2>
-          <p>A few demo sites built to show the range — open any to explore the real thing (opens in a new tab).</p>
+          <span class="eyebrow" data-es="Proyectos destacados">Selected work</span>
+          <h2 id="b-work-h" data-es="Ejemplos en los que puedes hacer clic.">Sample builds you can click into.</h2>
+          <p data-es="Algunos sitios de muestra hechos para enseñar el rango — abre cualquiera para explorarlo de verdad (se abre en una pestaña nueva).">A few demo sites built to show the range — open any to explore the real thing (opens in a new tab).</p>
         </div>
         <div class="work-grid">
 
           <!-- Online store -->
           <a class="work" href="/concepts/mock-shop-goods/" target="_blank" rel="noopener" data-reveal>
             <div class="work-shot">
-              <span class="work-cat shop">Online store</span>
-              <img src="/work/thumbs/mock-shop-goods.jpg" alt="Ember &amp; Oak demo site" loading="lazy" width="1280" height="800">
+              <span class="work-cat shop" data-es="Tienda online">Online store</span>
+              <img src="/work/thumbs/mock-shop-goods.jpg" alt="Ember &amp; Oak demo site" data-es-alt="Sitio de demostración de Ember &amp; Oak" loading="lazy" width="1280" height="800">
             </div>
             <div class="work-body">
               <h3>Ember &amp; Oak</h3>
-              <p>A warm, retro candle &amp; coffee shop with a product grid, cart and subscriptions.</p>
-              <span class="work-view">View demo <span class="arrow" aria-hidden="true">→</span></span>
+              <p data-es="Una tienda cálida y retro de velas y café, con catálogo de productos, carrito y suscripciones.">A warm, retro candle &amp; coffee shop with a product grid, cart and subscriptions.</p>
+              <span class="work-view" data-es="Ver demo &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">View demo <span class="arrow" aria-hidden="true">→</span></span>
             </div>
           </a>
 
           <!-- Restaurant -->
           <a class="work" href="/concepts/mock-restaurant/" target="_blank" rel="noopener" data-reveal>
             <div class="work-shot">
-              <span class="work-cat">Restaurant</span>
-              <img src="/work/thumbs/mock-restaurant.jpg" alt="Taco Loco demo site" loading="lazy" width="1280" height="800">
+              <span class="work-cat" data-es="Restaurante">Restaurant</span>
+              <img src="/work/thumbs/mock-restaurant.jpg" alt="Taco Loco demo site" data-es-alt="Sitio de demostración de Taco Loco" loading="lazy" width="1280" height="800">
             </div>
             <div class="work-body">
               <h3>Taco Loco</h3>
-              <p>A vibrant taqueria site with the menu, a photo gallery and table reservations.</p>
-              <span class="work-view">View demo <span class="arrow" aria-hidden="true">→</span></span>
+              <p data-es="Un sitio vibrante de taquería con el menú, una galería de fotos y reservas de mesa.">A vibrant taqueria site with the menu, a photo gallery and table reservations.</p>
+              <span class="work-view" data-es="Ver demo &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">View demo <span class="arrow" aria-hidden="true">→</span></span>
             </div>
           </a>
 
           <!-- Coaching -->
           <a class="work" href="/concepts/mock-personal/" target="_blank" rel="noopener" data-reveal>
             <div class="work-shot">
-              <span class="work-cat">Coaching</span>
-              <img src="/work/thumbs/mock-personal.jpg" alt="Marcus Webb demo site" loading="lazy" width="1280" height="800">
+              <span class="work-cat" data-es="Coaching">Coaching</span>
+              <img src="/work/thumbs/mock-personal.jpg" alt="Marcus Webb demo site" data-es-alt="Sitio de demostración de Marcus Webb" loading="lazy" width="1280" height="800">
             </div>
             <div class="work-body">
               <h3>Marcus Webb</h3>
-              <p>A bright personal-brand site for a coach: clear packages, testimonials and booking.</p>
-              <span class="work-view">View demo <span class="arrow" aria-hidden="true">→</span></span>
+              <p data-es="Un sitio de marca personal luminoso para un coach: paquetes claros, testimonios y reservas.">A bright personal-brand site for a coach: clear packages, testimonials and booking.</p>
+              <span class="work-view" data-es="Ver demo &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">View demo <span class="arrow" aria-hidden="true">→</span></span>
             </div>
           </a>
 
         </div>
         <div class="work-more" data-reveal>
-          <a href="/work/" class="btn btn-ghost">See all our work <span class="arrow" aria-hidden="true">→</span></a>
+          <a href="/work/" class="btn btn-ghost" data-es="Ver todos nuestros proyectos &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">See all our work <span class="arrow" aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
@@ -1135,30 +1161,30 @@
     <section id="why" class="why" aria-labelledby="b-why-h">
       <div class="wrap why-inner">
         <div data-reveal>
-          <span class="eyebrow">Why work with me</span>
-          <h2 id="b-why-h">No agency middlemen. Just clean work and straight answers.</h2>
-          <p class="lede">When you hire BANANAbyte, you work directly with your developer — the one writing the code, picking the colors, answering your email. Nothing gets lost in a handoff.</p>
+          <span class="eyebrow" data-es="Por qué trabajar conmigo">Why work with me</span>
+          <h2 id="b-why-h" data-es="Sin intermediarios de agencia. Solo trabajo limpio y respuestas directas.">No agency middlemen. Just clean work and straight answers.</h2>
+          <p class="lede" data-es="Cuando contratas a BANANAbyte, trabajas directo con tu desarrollador — el mismo que escribe el código, elige los colores y responde tus correos. Nada se pierde en el camino.">When you hire BANANAbyte, you work directly with your developer — the one writing the code, picking the colors, answering your email. Nothing gets lost in a handoff.</p>
         </div>
         <div class="why-list" data-reveal>
           <div class="why-item">
             <div class="n">01</div>
-            <h4>Senior, start to finish</h4>
-            <p>An experienced developer on your project from first call to launch — no juniors learning on your dime.</p>
+            <h4 data-es="Senior, de principio a fin">Senior, start to finish</h4>
+            <p data-es="Un desarrollador con experiencia en tu proyecto desde la primera llamada hasta el lanzamiento — sin juniors aprendiendo a tu costa.">An experienced developer on your project from first call to launch — no juniors learning on your dime.</p>
           </div>
           <div class="why-item">
             <div class="n">02</div>
-            <h4>Flat price</h4>
-            <p>You get the full number before we start. No surprise invoices, no hourly meter running.</p>
+            <h4 data-es="Precio cerrado">Flat price</h4>
+            <p data-es="Tienes el número completo antes de empezar. Sin facturas sorpresa, sin reloj por horas corriendo.">You get the full number before we start. No surprise invoices, no hourly meter running.</p>
           </div>
           <div class="why-item">
             <div class="n">03</div>
-            <h4>You own it</h4>
-            <p>Code, domain, content, accounts — all yours. Walk away anytime with everything in hand.</p>
+            <h4 data-es="Es tuyo">You own it</h4>
+            <p data-es="Código, dominio, contenido, cuentas — todo tuyo. Te puedes ir cuando quieras con todo en la mano.">Code, domain, content, accounts — all yours. Walk away anytime with everything in hand.</p>
           </div>
           <div class="why-item">
             <div class="n">04</div>
-            <h4>Plain language</h4>
-            <p>I explain the tech in words you’d use with a friend, never a wall of jargon to nod along to.</p>
+            <h4 data-es="Lenguaje claro">Plain language</h4>
+            <p data-es="Te explico la parte técnica con palabras que usarías con un amigo, nunca un muro de tecnicismos para asentir sin entender.">I explain the tech in words you’d use with a friend, never a wall of jargon to nod along to.</p>
           </div>
         </div>
       </div>
@@ -1181,26 +1207,26 @@
         </div>
         <div class="hero-grid">
           <div class="hero-copy">
-            <span class="eyebrow" data-reveal>Web studio for performers · Orlando, FL</span>
-            <h1 id="p-hero-h" data-reveal>Get your name <span class="mark">in lights.</span></h1>
-            <p class="hero-lede" data-reveal>BANANAbyte 🍌 builds fast, clean, personal websites for comedians and performers — a real home for your shows, clips and bookings instead of a Linktree. Flat pricing, quick turnaround, you own the whole stage.</p>
+            <span class="eyebrow" data-reveal data-es="Estudio web para artistas · Orlando, FL">Web studio for performers · Orlando, FL</span>
+            <h1 id="p-hero-h" data-reveal data-es="Pon tu nombre &lt;span class=&quot;mark&quot;&gt;en luces.&lt;/span&gt;">Get your name <span class="mark">in lights.</span></h1>
+            <p class="hero-lede" data-reveal data-es="BANANAbyte 🍌 crea sitios web rápidos, limpios y personales para comediantes y artistas — un verdadero hogar para tus shows, clips y contrataciones, no un Linktree. Precio cerrado, entrega rápida y todo el escenario es tuyo.">BANANAbyte 🍌 builds fast, clean, personal websites for comedians and performers — a real home for your shows, clips and bookings instead of a Linktree. Flat pricing, quick turnaround, you own the whole stage.</p>
             <div class="hero-actions" data-reveal>
-              <a href="#contact" class="btn btn-primary">Get a quote <span class="arrow" aria-hidden="true">→</span></a>
-              <a href="/work/" class="btn btn-ghost">See the headliners</a>
+              <a href="#contact" class="btn btn-primary" data-es="Pide un presupuesto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Get a quote <span class="arrow" aria-hidden="true">→</span></a>
+              <a href="/work/" class="btn btn-ghost" data-es="Ver a los headliners">See the headliners</a>
             </div>
             <div class="hero-meta" data-reveal>
-              <span>Flat pricing, no surprises</span>
-              <span>Live in 1–2 weeks</span>
-              <span>You own everything</span>
+              <span data-es="Precio cerrado, sin sorpresas">Flat pricing, no surprises</span>
+              <span data-es="Online en 1–2 semanas">Live in 1–2 weeks</span>
+              <span data-es="Todo es tuyo">You own everything</span>
             </div>
           </div>
 
-          <div class="marquee-card" data-reveal aria-label="Marquee-style preview">
+          <div class="marquee-card" data-reveal aria-label="Marquee-style preview" data-es-aria-label="Vista previa estilo marquesina">
             <div class="frame">
-              <p class="now">Now appearing online</p>
-              <p class="title">Your Name<br>In Lights</p>
-              <p class="sub">Tour dates, clips, press, and a mailing list — all on one page that actually loads fast.</p>
-              <span class="ticket">Built for the spotlight · est. Orlando</span>
+              <p class="now" data-es="Ahora en cartelera online">Now appearing online</p>
+              <p class="title" data-es="Tu Nombre&lt;br&gt;En Luces">Your Name<br>In Lights</p>
+              <p class="sub" data-es="Fechas de gira, clips, prensa y una lista de correo — todo en una página que de verdad carga rápido.">Tour dates, clips, press, and a mailing list — all on one page that actually loads fast.</p>
+              <span class="ticket" data-es="Hecho para el escenario · desde Orlando">Built for the spotlight · est. Orlando</span>
             </div>
           </div>
         </div>
@@ -1210,8 +1236,8 @@
     <!-- TICKER MOTIF -->
     <div class="ticker" aria-hidden="true">
       <div class="ticker-track">
-        <span>Tour pages</span><span>Booking forms</span><span>Show calendars</span><span>Clip reels</span><span>Comedians</span><span>Performers</span><span>Press kits</span><span>Orlando-grown</span>
-        <span>Tour pages</span><span>Booking forms</span><span>Show calendars</span><span>Clip reels</span><span>Comedians</span><span>Performers</span><span>Press kits</span><span>Orlando-grown</span>
+        <span data-es="Páginas de gira">Tour pages</span><span data-es="Formularios de contratación">Booking forms</span><span data-es="Calendarios de shows">Show calendars</span><span data-es="Reels de clips">Clip reels</span><span data-es="Comediantes">Comedians</span><span data-es="Artistas">Performers</span><span data-es="Kits de prensa">Press kits</span><span data-es="Hecho en Orlando">Orlando-grown</span>
+        <span data-es="Páginas de gira">Tour pages</span><span data-es="Formularios de contratación">Booking forms</span><span data-es="Calendarios de shows">Show calendars</span><span data-es="Reels de clips">Clip reels</span><span data-es="Comediantes">Comedians</span><span data-es="Artistas">Performers</span><span data-es="Kits de prensa">Press kits</span><span data-es="Hecho en Orlando">Orlando-grown</span>
       </div>
     </div>
 
@@ -1219,40 +1245,40 @@
     <section id="services" aria-labelledby="p-svc-h">
       <div class="wrap">
         <div class="sec-head" data-reveal>
-          <span class="eyebrow">On the bill</span>
-          <h2 id="p-svc-h">What I build for the spotlight</h2>
-          <p>The pieces a working performer actually needs — done properly, no bloated builders, no mystery monthly fees.</p>
+          <span class="eyebrow" data-es="En cartelera">On the bill</span>
+          <h2 id="p-svc-h" data-es="Lo que construyo para el escenario">What I build for the spotlight</h2>
+          <p data-es="Las piezas que un artista en activo realmente necesita — bien hechas, sin constructores pesados ni cuotas mensuales misteriosas.">The pieces a working performer actually needs — done properly, no bloated builders, no mystery monthly fees.</p>
         </div>
         <div class="svc-grid">
           <article class="svc" data-reveal>
             <span class="svc-num"><span class="lamp" aria-hidden="true"></span>01</span>
-            <h3>Headliner sites</h3>
-            <p>A site from scratch designed around your act — your voice, your reel, your booking flow. Mobile-first and quick to load on day one.</p>
+            <h3 data-es="Sitios de headliner">Headliner sites</h3>
+            <p data-es="Un sitio desde cero diseñado en torno a tu show — tu voz, tu reel, tu flujo de contratación. Mobile-first y rápido de cargar desde el primer día.">A site from scratch designed around your act — your voice, your reel, your booking flow. Mobile-first and quick to load on day one.</p>
           </article>
           <article class="svc" data-reveal>
             <span class="svc-num"><span class="lamp" aria-hidden="true"></span>02</span>
-            <h3>Tour &amp; show calendars</h3>
-            <p>Dates that update themselves, with ticket buttons that always point to the right show. No more dead links the night of a gig.</p>
+            <h3 data-es="Calendarios de gira y shows">Tour &amp; show calendars</h3>
+            <p data-es="Fechas que se actualizan solas, con botones de entradas que siempre apuntan al show correcto. Se acabaron los enlaces muertos la noche del bolo.">Dates that update themselves, with ticket buttons that always point to the right show. No more dead links the night of a gig.</p>
           </article>
           <article class="svc" data-reveal>
             <span class="svc-num"><span class="lamp" aria-hidden="true"></span>03</span>
-            <h3>Clip reels &amp; press kits</h3>
-            <p>Your best sets front and center, a clean one-sheet bookers can grab, and a layout that makes you look as good as you are on stage.</p>
+            <h3 data-es="Reels de clips y kits de prensa">Clip reels &amp; press kits</h3>
+            <p data-es="Tus mejores sets bien al frente, un one-sheet limpio que los contratantes pueden descargar, y un diseño que te hace ver tan bien como eres en el escenario.">Your best sets front and center, a clean one-sheet bookers can grab, and a layout that makes you look as good as you are on stage.</p>
           </article>
           <article class="svc" data-reveal>
             <span class="svc-num"><span class="lamp" aria-hidden="true"></span>04</span>
-            <h3>Booking &amp; mailing list</h3>
-            <p>One booking form that lands in your inbox, plus a mailing list that grows after every show so you own the room next time.</p>
+            <h3 data-es="Contratación y lista de correo">Booking &amp; mailing list</h3>
+            <p data-es="Un formulario de contratación que llega directo a tu correo, más una lista de correo que crece después de cada show para que llenes la sala la próxima vez.">One booking form that lands in your inbox, plus a mailing list that grows after every show so you own the room next time.</p>
           </article>
           <article class="svc" data-reveal>
             <span class="svc-num"><span class="lamp" aria-hidden="true"></span>05</span>
-            <h3>Merch &amp; tickets</h3>
-            <p>A few products or a ticket link, set up cleanly so checkout just works — no fighting a dashboard between sets.</p>
+            <h3 data-es="Merch y entradas">Merch &amp; tickets</h3>
+            <p data-es="Unos cuantos productos o un enlace de entradas, montados de forma limpia para que el pago simplemente funcione — sin pelearte con un panel entre sets.">A few products or a ticket link, set up cleanly so checkout just works — no fighting a dashboard between sets.</p>
           </article>
           <article class="svc feature" data-reveal>
             <span class="svc-num"><span class="lamp" aria-hidden="true"></span>★</span>
-            <h3>Not sure what you need?</h3>
-            <p>Tell me where you’re trying to get booked. I’ll tell you the smallest thing that actually gets you there — and what it costs.</p>
+            <h3 data-es="¿No sabes qué necesitas?">Not sure what you need?</h3>
+            <p data-es="Cuéntame dónde quieres llegar a actuar. Te digo lo mínimo que de verdad te lleva ahí — y cuánto cuesta.">Tell me where you’re trying to get booked. I’ll tell you the smallest thing that actually gets you there — and what it costs.</p>
           </article>
         </div>
       </div>
@@ -1262,51 +1288,51 @@
     <section id="work" aria-labelledby="p-work-h">
       <div class="wrap">
         <div class="sec-head" data-reveal>
-          <span class="eyebrow">Headliners</span>
-          <h2 id="p-work-h">Demo sites built for the stage.</h2>
-          <p>Sample sites for performers — tap any to open the live demo.</p>
+          <span class="eyebrow" data-es="Headliners">Headliners</span>
+          <h2 id="p-work-h" data-es="Sitios de demostración hechos para el escenario.">Demo sites built for the stage.</h2>
+          <p data-es="Sitios de muestra para artistas — toca cualquiera para abrir la demo en vivo.">Sample sites for performers — tap any to open the live demo.</p>
         </div>
         <div class="work-grid">
 
           <a class="work" href="/concepts/mock-comedian/" target="_blank" rel="noopener" data-reveal>
             <div class="work-shot">
-              <span class="work-cat spotlight">Stand-up comedian</span>
-              <img src="/work/thumbs/mock-comedian.jpg" alt="Dani Cole demo site" loading="lazy" width="1280" height="800">
+              <span class="work-cat spotlight" data-es="Comediante de stand-up">Stand-up comedian</span>
+              <img src="/work/thumbs/mock-comedian.jpg" alt="Dani Cole demo site" data-es-alt="Sitio de demostración de Dani Cole" loading="lazy" width="1280" height="800">
             </div>
             <div class="work-body">
               <h3>Dani Cole</h3>
-              <p>A high-energy comedian site with tour dates, clips and venue booking.</p>
-              <span class="work-view">View demo <span class="arrow" aria-hidden="true">→</span></span>
+              <p data-es="Un sitio de comediante con mucha energía, con fechas de gira, clips y contratación de locales.">A high-energy comedian site with tour dates, clips and venue booking.</p>
+              <span class="work-view" data-es="Ver demo &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">View demo <span class="arrow" aria-hidden="true">→</span></span>
             </div>
           </a>
 
           <a class="work" href="/concepts/mock-dj/" target="_blank" rel="noopener" data-reveal>
             <div class="work-shot">
-              <span class="work-cat">DJ / producer</span>
-              <img src="/work/thumbs/mock-dj.jpg" alt="NOVA demo site" loading="lazy" width="1280" height="800">
+              <span class="work-cat" data-es="DJ / productor">DJ / producer</span>
+              <img src="/work/thumbs/mock-dj.jpg" alt="NOVA demo site" data-es-alt="Sitio de demostración de NOVA" loading="lazy" width="1280" height="800">
             </div>
             <div class="work-body">
               <h3>NOVA</h3>
-              <p>A neon nightclub site with an animated visualizer, gig list and bookings.</p>
-              <span class="work-view">View demo <span class="arrow" aria-hidden="true">→</span></span>
+              <p data-es="Un sitio de club nocturno en neón, con visualizador animado, lista de bolos y contrataciones.">A neon nightclub site with an animated visualizer, gig list and bookings.</p>
+              <span class="work-view" data-es="Ver demo &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">View demo <span class="arrow" aria-hidden="true">→</span></span>
             </div>
           </a>
 
           <a class="work" href="/concepts/mock-wrestler/" target="_blank" rel="noopener" data-reveal>
             <div class="work-shot">
-              <span class="work-cat">Pro wrestler</span>
-              <img src="/work/thumbs/mock-wrestler.jpg" alt="Rico Marsh demo site" loading="lazy" width="1280" height="800">
+              <span class="work-cat" data-es="Luchador profesional">Pro wrestler</span>
+              <img src="/work/thumbs/mock-wrestler.jpg" alt="Rico Marsh demo site" data-es-alt="Sitio de demostración de Rico Marsh" loading="lazy" width="1280" height="800">
             </div>
             <div class="work-body">
               <h3>Rico Marsh</h3>
-              <p>A larger-than-life wrestler site with the match schedule, highlights and merch.</p>
-              <span class="work-view">View demo <span class="arrow" aria-hidden="true">→</span></span>
+              <p data-es="Un sitio de luchador más grande que la vida, con el calendario de combates, los mejores momentos y merch.">A larger-than-life wrestler site with the match schedule, highlights and merch.</p>
+              <span class="work-view" data-es="Ver demo &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">View demo <span class="arrow" aria-hidden="true">→</span></span>
             </div>
           </a>
 
         </div>
         <div class="work-more" data-reveal>
-          <a href="/work/" class="btn btn-ghost">See all our work <span class="arrow" aria-hidden="true">→</span></a>
+          <a href="/work/" class="btn btn-ghost" data-es="Ver todos nuestros proyectos &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">See all our work <span class="arrow" aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
@@ -1317,30 +1343,30 @@
         <div class="why" data-reveal>
           <div class="why-inner">
             <div>
-              <span class="eyebrow">No middle-men</span>
-              <h2 id="p-why-h">You’re not hiring an agency. You work directly with your builder.</h2>
-              <p class="lede">When you book BANANAbyte, you work directly with your builder — the one writing the code, picking the lights, answering your email. Nothing gets lost backstage.</p>
+              <span class="eyebrow" data-es="Sin intermediarios">No middle-men</span>
+              <h2 id="p-why-h" data-es="No contratas una agencia. Trabajas directo con quien construye tu sitio.">You’re not hiring an agency. You work directly with your builder.</h2>
+              <p class="lede" data-es="Cuando reservas con BANANAbyte, trabajas directo con quien lo construye — el mismo que escribe el código, elige las luces y responde tus correos. Nada se pierde tras bambalinas.">When you book BANANAbyte, you work directly with your builder — the one writing the code, picking the lights, answering your email. Nothing gets lost backstage.</p>
             </div>
             <div class="why-list">
               <div class="why-item">
                 <div class="n">01</div>
-                <h4>Direct line</h4>
-                <p>You work directly with your builder — no briefs lost in translation, no account managers in between.</p>
+                <h4 data-es="Línea directa">Direct line</h4>
+                <p data-es="Trabajas directo con quien construye tu sitio — sin briefs que se pierden en el camino, sin gestores de cuenta de por medio.">You work directly with your builder — no briefs lost in translation, no account managers in between.</p>
               </div>
               <div class="why-item">
                 <div class="n">02</div>
-                <h4>Flat price</h4>
-                <p>One number, agreed up front. No hourly meter, no scope surprises at the end.</p>
+                <h4 data-es="Precio cerrado">Flat price</h4>
+                <p data-es="Un solo número, acordado por adelantado. Sin reloj por horas, sin sorpresas de alcance al final.">One number, agreed up front. No hourly meter, no scope surprises at the end.</p>
               </div>
               <div class="why-item">
                 <div class="n">03</div>
-                <h4>You own it</h4>
-                <p>Code, domain, content — all yours. No platform lock-in, no holding your site hostage.</p>
+                <h4 data-es="Es tuyo">You own it</h4>
+                <p data-es="Código, dominio, contenido — todo tuyo. Sin ataduras a plataformas, sin tener tu sitio de rehén.">Code, domain, content — all yours. No platform lock-in, no holding your site hostage.</p>
               </div>
               <div class="why-item">
                 <div class="n">04</div>
-                <h4>Plain language</h4>
-                <p>I explain things like a human. If a word needs a glossary, I’m not using it.</p>
+                <h4 data-es="Lenguaje claro">Plain language</h4>
+                <p data-es="Te explico las cosas como una persona normal. Si una palabra necesita glosario, no la uso.">I explain things like a human. If a word needs a glossary, I’m not using it.</p>
               </div>
             </div>
           </div>
@@ -1359,52 +1385,52 @@
   <section id="pricing" aria-labelledby="pricing-h">
     <div class="wrap">
       <div class="sec-head" data-reveal>
-        <span class="eyebrow">Pricing</span>
-        <h2 id="pricing-h">Websites, starting from <span class="price-anchor">$900</span>.</h2>
-        <p>Every project gets one flat quote upfront — no hourly meter, no surprises, and you own everything. Here’s the kind of site I build:</p>
+        <span class="eyebrow" data-es="Precios">Pricing</span>
+        <h2 id="pricing-h" data-es="Sitios web, desde &lt;span class=&quot;price-anchor&quot;&gt;$900&lt;/span&gt;.">Websites, starting from <span class="price-anchor">$900</span>.</h2>
+        <p data-es="Cada proyecto recibe un presupuesto cerrado por adelantado — sin reloj por horas, sin sorpresas, y todo es tuyo. Este es el tipo de sitio que construyo:">Every project gets one flat quote upfront — no hourly meter, no surprises, and you own everything. Here’s the kind of site I build:</p>
       </div>
 
       <div class="type-grid">
 
         <article class="type-card" data-reveal aria-labelledby="type-business">
-          <h3 class="type-name" id="type-business">Business &amp; local</h3>
-          <p class="type-desc">Multi-page sites for shops, restaurants and service businesses — services, booking and lead forms, a blog you can edit, and the local SEO to get found.</p>
+          <h3 class="type-name" id="type-business" data-es="Negocios y locales">Business &amp; local</h3>
+          <p class="type-desc" data-es="Sitios de varias páginas para comercios, restaurantes y empresas de servicios — servicios, formularios de reserva y contacto, un blog que puedes editar, y el SEO local para que te encuentren.">Multi-page sites for shops, restaurants and service businesses — services, booking and lead forms, a blog you can edit, and the local SEO to get found.</p>
         </article>
 
         <article class="type-card" data-reveal aria-labelledby="type-store">
-          <h3 class="type-name" id="type-store">Online stores</h3>
-          <p class="type-desc">Sell online with Shopify — product catalog, secure checkout, payments and shipping set up, customer accounts and order tracking.</p>
+          <h3 class="type-name" id="type-store" data-es="Tiendas online">Online stores</h3>
+          <p class="type-desc" data-es="Vende online con Shopify — catálogo de productos, pago seguro, pagos y envíos configurados, cuentas de cliente y seguimiento de pedidos.">Sell online with Shopify — product catalog, secure checkout, payments and shipping set up, customer accounts and order tracking.</p>
         </article>
 
         <article class="type-card" data-reveal aria-labelledby="type-portfolio">
-          <h3 class="type-name" id="type-portfolio">Personal &amp; portfolio</h3>
-          <p class="type-desc">A sharp home for your work — for creatives, coaches and consultants. Gallery, about, services, and a contact that actually reaches you.</p>
+          <h3 class="type-name" id="type-portfolio" data-es="Personal y portafolio">Personal &amp; portfolio</h3>
+          <p class="type-desc" data-es="Un hogar elegante para tu trabajo — para creativos, coaches y consultores. Galería, sobre ti, servicios y un contacto que de verdad te llega.">A sharp home for your work — for creatives, coaches and consultants. Gallery, about, services, and a contact that actually reaches you.</p>
         </article>
 
         <article class="type-card" data-reveal aria-labelledby="type-blog">
-          <h3 class="type-name" id="type-blog">Blogs &amp; writers</h3>
-          <p class="type-desc">A clean, fast reading experience with an easy editor and a newsletter built in.</p>
+          <h3 class="type-name" id="type-blog" data-es="Blogs y escritores">Blogs &amp; writers</h3>
+          <p class="type-desc" data-es="Una experiencia de lectura limpia y rápida, con un editor fácil y un boletín integrado.">A clean, fast reading experience with an easy editor and a newsletter built in.</p>
         </article>
 
         <article class="type-card" data-reveal aria-labelledby="type-performer">
-          <h3 class="type-name" id="type-performer">Performers &amp; creators</h3>
-          <p class="type-desc">Tour dates, clips, a press kit and a booking form — for comedians, musicians, and anyone who plays to a crowd.</p>
+          <h3 class="type-name" id="type-performer" data-es="Artistas y creadores">Performers &amp; creators</h3>
+          <p class="type-desc" data-es="Fechas de gira, clips, un kit de prensa y un formulario de contratación — para comediantes, músicos y cualquiera que actúe ante un público.">Tour dates, clips, a press kit and a booking form — for comedians, musicians, and anyone who plays to a crowd.</p>
         </article>
 
         <article class="type-card" data-reveal aria-labelledby="type-care">
-          <h3 class="type-name" id="type-care">Redesigns &amp; care</h3>
-          <p class="type-desc">Got a site that’s dated or slow? A measured refresh or a speed-up — plus optional ongoing care so it never becomes an emergency.</p>
+          <h3 class="type-name" id="type-care" data-es="Rediseños y cuidado">Redesigns &amp; care</h3>
+          <p class="type-desc" data-es="¿Tienes un sitio anticuado o lento? Una renovación medida o una mejora de velocidad — más cuidado continuo opcional para que nunca se vuelva una emergencia.">Got a site that’s dated or slow? A measured refresh or a speed-up — plus optional ongoing care so it never becomes an emergency.</p>
         </article>
 
       </div>
 
       <p class="price-note" data-reveal>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-        <span>Final price depends on size and features — you’ll always get one flat quote upfront before any work starts. No upfront payment; I earn your trust first.</span>
+        <span data-es="El precio final depende del tamaño y las funciones — siempre recibes un presupuesto cerrado por adelantado antes de empezar cualquier trabajo. Sin pago por adelantado; primero me gano tu confianza.">Final price depends on size and features — you’ll always get one flat quote upfront before any work starts. No upfront payment; I earn your trust first.</span>
       </p>
 
       <div class="price-actions" data-reveal>
-        <a href="#contact" class="btn btn-primary">Start a project <span class="arrow" aria-hidden="true">→</span></a>
+        <a href="#contact" class="btn btn-primary" data-es="Empezar un proyecto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Start a project <span class="arrow" aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
@@ -1420,27 +1446,27 @@
     <div class="wrap contact-grid">
       <div class="contact-aside" data-reveal>
         <!-- business framing (also the no-JS default) -->
-        <span class="eyebrow" data-contact-mode="business">Start a project</span>
-        <h2 id="contact-h" data-contact-mode="business">Tell me what you’re building.</h2>
-        <p data-contact-mode="business">A few sentences is plenty. I read every message myself and reply within one business day with honest next steps — even if that’s “you don’t need me yet.”</p>
+        <span class="eyebrow" data-contact-mode="business" data-es="Empieza un proyecto">Start a project</span>
+        <h2 id="contact-h" data-contact-mode="business" data-es="Cuéntame qué estás construyendo.">Tell me what you’re building.</h2>
+        <p data-contact-mode="business" data-es="Con un par de frases basta. Yo leo cada mensaje personalmente y respondo en un día hábil con próximos pasos honestos — incluso si es «todavía no me necesitas».">A few sentences is plenty. I read every message myself and reply within one business day with honest next steps — even if that’s “you don’t need me yet.”</p>
         <!-- performer framing -->
-        <span class="eyebrow" data-contact-mode="performer">Take the stage</span>
-        <h2 data-contact-mode="performer">Let’s build your spotlight.</h2>
-        <p data-contact-mode="performer">Tell me what you’ve got coming up. I usually reply the same day — and if it’s not a fit, I’ll point you somewhere that is.</p>
+        <span class="eyebrow" data-contact-mode="performer" data-es="Sube al escenario">Take the stage</span>
+        <h2 data-contact-mode="performer" data-es="Construyamos tu lugar bajo los focos.">Let’s build your spotlight.</h2>
+        <p data-contact-mode="performer" data-es="Cuéntame qué tienes por venir. Normalmente respondo el mismo día — y si no encaja, te señalo a alguien que sí.">Tell me what you’ve got coming up. I usually reply the same day — and if it’s not a fit, I’ll point you somewhere that is.</p>
 
         <a class="contact-mail" data-contact-mode="business" href="mailto:contact@bananabyte.io"><span class="at" aria-hidden="true">✉</span> contact@bananabyte.io</a>
         <a class="contact-mail" data-contact-mode="performer" href="mailto:contact@bananabyte.io"><span class="at" aria-hidden="true">🍌</span> contact@bananabyte.io</a>
 
         <div class="contact-pts">
           <ul data-contact-mode="business">
-            <li><span class="ck" aria-hidden="true">✓</span> Based in Orlando, FL — working with clients anywhere.</li>
-            <li><span class="ck" aria-hidden="true">✓</span> Free, no-pressure first call to scope your project.</li>
-            <li><span class="ck" aria-hidden="true">✓</span> Online stores, business sites, service companies — all welcome.</li>
+            <li data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Con base en Orlando, FL — trabajando con clientes en cualquier lugar."><span class="ck" aria-hidden="true">✓</span> Based in Orlando, FL — working with clients anywhere.</li>
+            <li data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Una primera llamada gratis y sin compromiso para definir tu proyecto."><span class="ck" aria-hidden="true">✓</span> Free, no-pressure first call to scope your project.</li>
+            <li data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Tiendas online, sitios de negocio, empresas de servicios — todos bienvenidos."><span class="ck" aria-hidden="true">✓</span> Online stores, business sites, service companies — all welcome.</li>
           </ul>
           <ul data-contact-mode="performer">
-            <li><span class="ck" aria-hidden="true">✓</span> A quick call or message to figure out what you actually need.</li>
-            <li><span class="ck" aria-hidden="true">✓</span> A flat quote and a clear timeline — no countdown clocks.</li>
-            <li><span class="ck" aria-hidden="true">✓</span> You review, I refine, it ships. Then it’s yours, keys and all.</li>
+            <li data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Una llamada o mensaje rápido para descubrir qué necesitas de verdad."><span class="ck" aria-hidden="true">✓</span> A quick call or message to figure out what you actually need.</li>
+            <li data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Un presupuesto cerrado y un calendario claro — sin relojes de cuenta atrás."><span class="ck" aria-hidden="true">✓</span> A flat quote and a clear timeline — no countdown clocks.</li>
+            <li data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Tú revisas, yo afino, y se publica. Luego es tuyo, con llaves y todo."><span class="ck" aria-hidden="true">✓</span> You review, I refine, it ships. Then it’s yours, keys and all.</li>
           </ul>
         </div>
       </div>
@@ -1450,38 +1476,38 @@
         <!-- honeypot: real users never fill this. ANY value = bot (worker silently 200s).
              Built from FormData, so an UNCHECKED checkbox is omitted entirely. -->
         <div class="hp" aria-hidden="true">
-          <label for="cf-botcheck">Leave this field empty</label>
+          <label for="cf-botcheck" data-es="Deja este campo vacío">Leave this field empty</label>
           <input id="cf-botcheck" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off">
         </div>
 
         <div class="field-row">
           <div class="field">
-            <label for="cf-name">Your name <span class="req" aria-hidden="true">*</span></label>
-            <input type="text" id="cf-name" name="name" autocomplete="name" placeholder="Jordan Pérez" required>
+            <label for="cf-name" data-es="Tu nombre &lt;span class=&quot;req&quot; aria-hidden=&quot;true&quot;&gt;*&lt;/span&gt;">Your name <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="cf-name" name="name" autocomplete="name" placeholder="Jordan Pérez" data-es-placeholder="Jordan Pérez" required>
           </div>
           <div class="field">
-            <label for="cf-email">Email <span class="req" aria-hidden="true">*</span></label>
-            <input type="email" id="cf-email" name="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required>
+            <label for="cf-email" data-es="Correo &lt;span class=&quot;req&quot; aria-hidden=&quot;true&quot;&gt;*&lt;/span&gt;">Email <span class="req" aria-hidden="true">*</span></label>
+            <input type="email" id="cf-email" name="email" autocomplete="email" inputmode="email" placeholder="you@example.com" data-es-placeholder="tu@ejemplo.com" required>
           </div>
         </div>
 
         <div class="field">
-          <label for="cf-ptype">Project type</label>
+          <label for="cf-ptype" data-es="Tipo de proyecto">Project type</label>
           <select id="cf-ptype" name="ptype">
-            <option value="" selected disabled>Choose one…</option>
-            <option>New website</option>
-            <option>Redesign</option>
-            <option>Online store / e-commerce</option>
-            <option>Performer / show site</option>
-            <option>Speed-up or fix</option>
-            <option>Ongoing maintenance</option>
-            <option>Not sure yet</option>
+            <option value="" selected disabled data-es="Elige una opción…">Choose one…</option>
+            <option data-es="Sitio web nuevo">New website</option>
+            <option data-es="Rediseño">Redesign</option>
+            <option data-es="Tienda online / e-commerce">Online store / e-commerce</option>
+            <option data-es="Sitio de artista / show">Performer / show site</option>
+            <option data-es="Mejora de velocidad o arreglo">Speed-up or fix</option>
+            <option data-es="Mantenimiento continuo">Ongoing maintenance</option>
+            <option data-es="Aún no lo sé">Not sure yet</option>
           </select>
         </div>
 
         <div class="field">
-          <label for="cf-message">What do you need? <span class="req" aria-hidden="true">*</span></label>
-          <textarea id="cf-message" name="message" placeholder="A few words about your business or act and what you need — a new site, a refresh, a fix, an online store, a tour page…" required></textarea>
+          <label for="cf-message" data-es="¿Qué necesitas? &lt;span class=&quot;req&quot; aria-hidden=&quot;true&quot;&gt;*&lt;/span&gt;">What do you need? <span class="req" aria-hidden="true">*</span></label>
+          <textarea id="cf-message" name="message" placeholder="A few words about your business or act and what you need — a new site, a refresh, a fix, an online store, a tour page…" data-es-placeholder="Unas líneas sobre tu negocio o tu show y lo que necesitas — un sitio nuevo, una renovación, un arreglo, una tienda online, una página de gira…" required></textarea>
         </div>
 
         <!-- ONE Turnstile widget on the page -->
@@ -1489,16 +1515,16 @@
 
         <div class="form-submit">
           <button type="submit" class="btn btn-primary" id="contact-submit">
-            <span class="cf-lbl">Send it over</span> <span class="arrow" aria-hidden="true">→</span>
+            <span class="cf-lbl" data-es="Enviar">Send it over</span> <span class="arrow" aria-hidden="true">→</span>
           </button>
-          <span class="form-note">I read every message myself.</span>
+          <span class="form-note" data-es="Yo leo cada mensaje personalmente.">I read every message myself.</span>
         </div>
 
         <p class="form-status" id="contact-status" role="status" aria-live="polite"></p>
 
         <p class="form-privacy">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/></svg>
-          <span>I only use your info to reply about your project — no spam, ever. I usually get back within a business day.</span>
+          <span data-es="Solo uso tus datos para responderte sobre tu proyecto — nada de spam, jamás. Normalmente respondo en un día hábil.">I only use your info to reply about your project — no spam, ever. I usually get back within a business day.</span>
         </p>
       </form>
     </div>
@@ -1510,26 +1536,30 @@
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a class="wordmark" href="#main" aria-label="BANANAbyte home">
+        <a class="wordmark" href="#main" aria-label="BANANAbyte home" data-es-aria-label="BANANAbyte inicio">
           <span class="nana" aria-hidden="true">.</span>
           <span><span class="banana">BANANA</span><span class="byte">byte</span></span>
           <span aria-hidden="true" style="font-size:.95em">🍌</span>
         </a>
-        <p class="foot-blurb">A web studio in Orlando, FL. Fast, clean, custom websites, built right. 🍌</p>
+        <p class="foot-blurb" data-es="Un estudio web en Orlando, FL. Sitios web rápidos, limpios y a medida, bien hechos. 🍌">A web studio in Orlando, FL. Fast, clean, custom websites, built right. 🍌</p>
       </div>
       <nav class="foot-nav" aria-label="Footer">
-        <a href="#services">Services</a>
-        <a href="/work/">Selected work</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#why">Why me</a>
-        <a href="#contact">Contact</a>
+        <a href="#services" data-es="Servicios">Services</a>
+        <a href="/work/" data-es="Proyectos destacados">Selected work</a>
+        <a href="#pricing" data-es="Precios">Pricing</a>
+        <a href="#why" data-es="Por qué yo">Why me</a>
+        <a href="#contact" data-es="Contacto">Contact</a>
         <a href="mailto:contact@bananabyte.io">contact@bananabyte.io</a>
       </nav>
     </div>
-    <p class="foot-disclaimer">Example sites shown are demo concepts; any real client work is displayed only with the owner’s permission.</p>
+    <p class="foot-disclaimer" data-es="Los sitios de ejemplo que se muestran son conceptos de demostración; cualquier trabajo real con clientes se muestra solo con el permiso de su dueño.">Example sites shown are demo concepts; any real client work is displayed only with the owner’s permission.</p>
     <div class="foot-bottom">
-      <span>© <span id="year">2026</span> BANANAbyte — Orlando, FL.</span>
-      <span class="made">Not you? <button type="button" class="reopen-gate" id="reopen-gate">Choose again</button></span>
+      <span data-es="© &lt;span id=&quot;year&quot;&gt;2026&lt;/span&gt; BANANAbyte — Orlando, FL.">© <span id="year">2026</span> BANANAbyte — Orlando, FL.</span>
+      <div class="lang-toggle" role="group" aria-label="Language / Idioma">
+        <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+      </div>
+      <span class="made" data-es="¿No eres tú? &lt;button type=&quot;button&quot; class=&quot;reopen-gate&quot; id=&quot;reopen-gate&quot;&gt;Elegir de nuevo&lt;/button&gt;">Not you? <button type="button" class="reopen-gate" id="reopen-gate">Choose again</button></span>
     </div>
   </div>
 </footer>
@@ -1548,33 +1578,40 @@
     business: {
       id: 'business',
       label: 'Business',
+      label_es: 'Negocios',
       toggleIcon: '🏪',
       gateIcon: '🏪',
       gateTitle: 'I run a business',
+      gateTitle_es: 'Tengo un negocio',
       gateBody: 'Shops, online stores, local businesses and the pros behind them. A calm, professional site that earns trust.',
+      gateBody_es: 'Comercios, tiendas online, negocios locales y los profesionales detrás de ellos. Un sitio sereno y profesional que se gana la confianza.',
       gateGo: 'Show me the business studio',
+      gateGo_es: 'Muéstrame el estudio para negocios',
       default: true
     },
     performer: {
       id: 'performer',
       label: 'Performer',
+      label_es: 'Artista',
       toggleIcon: '🎤',
       gateIcon: '🎤',
       gateTitle: 'I am a performer',
+      gateTitle_es: 'Soy artista',
       gateBody: 'Comedians, musicians and creators. Name-in-lights energy with shows, clips and a booking form.',
-      gateGo: 'Put my name in lights'
+      gateBody_es: 'Comediantes, músicos y creadores. Energía de nombre en luces, con shows, clips y un formulario de contratación.',
+      gateGo: 'Put my name in lights',
+      gateGo_es: 'Pon mi nombre en luces'
     }
   };
   var ORDER = Object.keys(MODES);
   var DEFAULT_MODE = ORDER.filter(function(k){ return MODES[k].default; })[0] || ORDER[0];
   var STORAGE_KEY = 'bb-mode';
+  var LANG_KEY = 'bb-lang';
+  var DEFAULT_LANG = 'en';
 
   var docEl = document.documentElement;
   var mainEl = document.getElementById('main');
   var reduceMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-  /* footer year */
-  document.getElementById('year').textContent = new Date().getFullYear();
 
   /* ---------- safe storage helpers ---------- */
   function readMode(){
@@ -1583,6 +1620,19 @@
   function saveMode(m){
     try { localStorage.setItem(STORAGE_KEY, m); } catch(e){ /* private mode — fine */ }
   }
+  function readLang(){
+    try { var v = localStorage.getItem(LANG_KEY); return (v === 'es' || v === 'en') ? v : null; } catch(e){ return null; }
+  }
+  function saveLang(l){
+    try { localStorage.setItem(LANG_KEY, l); } catch(e){ /* private mode — fine */ }
+  }
+
+  /* current language (resolved at boot, before any copy-dependent build) */
+  var LANG = readLang() || DEFAULT_LANG;
+
+  /* footer year (re-applied after any innerHTML swap of its container) */
+  function setYear(){ var y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear(); }
+  setYear();
 
   /* ============================================================
      BUILD: gate choice cards + header toggle, from the MODES map
@@ -1590,22 +1640,27 @@
   var choicesEl = document.getElementById('gate-choices');
   var toggleEl = document.getElementById('mode-toggle');
 
+  /* tiny HTML escaper for text injected into attributes/markup */
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+  /* the gate cards + toggle labels are JS-built, so they hold BOTH languages
+     as data-es / data-en and are swapped by applyLang() like any other node. */
   ORDER.forEach(function(key){
     var m = MODES[key];
 
-    /* gate card (button) */
+    /* gate card (button) — title + body + go carry data-es for the swap */
     var card = document.createElement('button');
     card.type = 'button';
     card.className = 'gate-choice';
     card.setAttribute('data-choose', m.id);
     card.innerHTML =
       '<span class="gc-ico" aria-hidden="true">' + m.gateIcon + '</span>' +
-      '<span class="gc-title">' + m.gateTitle + '</span>' +
-      '<span class="gc-body">' + m.gateBody + '</span>' +
-      '<span class="gc-go" aria-hidden="true">' + m.gateGo + ' →</span>';
+      '<span class="gc-title" data-es="' + esc(m.gateTitle_es) + '">' + esc(m.gateTitle) + '</span>' +
+      '<span class="gc-body" data-es="' + esc(m.gateBody_es) + '">' + esc(m.gateBody) + '</span>' +
+      '<span class="gc-go" aria-hidden="true" data-es="' + esc(m.gateGo_es + ' →') + '">' + esc(m.gateGo) + ' →</span>';
     choicesEl.appendChild(card);
 
-    /* header radio + label */
+    /* header radio + label — label text carries data-es for the swap */
     var input = document.createElement('input');
     input.type = 'radio';
     input.name = 'bb-mode-toggle';
@@ -1614,12 +1669,100 @@
     var label = document.createElement('label');
     label.className = 'lbl';
     label.setAttribute('for', 'mt-' + m.id);
-    label.innerHTML = '<span class="ic" aria-hidden="true">' + m.toggleIcon + '</span> ' + m.label;
+    label.innerHTML = '<span class="ic" aria-hidden="true">' + m.toggleIcon + '</span> '
+      + '<span class="lbl-txt" data-es="' + esc(m.label_es) + '">' + esc(m.label) + '</span>';
     toggleEl.appendChild(input);
     toggleEl.appendChild(label);
 
     card.addEventListener('click', function(){ chooseMode(m.id, true); closeGate(); });
     input.addEventListener('change', function(){ if (input.checked) setMode(m.id, { fade:true, save:true }); });
+  });
+
+  /* ============================================================
+     LANGUAGE — client-side EN/ES copy swap.
+
+     Mechanism: every translatable element carries data-es holding its
+     Spanish INNER HTML (inline child tags preserved). On the FIRST apply
+     we capture the element's original English innerHTML into data-en, so
+     toggling is a lossless innerHTML swap between the two stored values.
+     Attributes (placeholder / aria-label / alt) use parallel
+     data-es-placeholder / data-es-aria-label / data-es-alt, captured into
+     data-en-* on first apply and swapped as attributes (never content).
+     ============================================================ */
+  function swapContent(el, lang){
+    if (el.getAttribute('data-en') === null){
+      el.setAttribute('data-en', el.innerHTML);   /* capture English once */
+    }
+    var html = el.getAttribute('data-' + lang);
+    if (html !== null) el.innerHTML = html;
+  }
+  function swapAttr(el, attr, lang){
+    var enKey = 'data-en-' + attr, esKey = 'data-es-' + attr;
+    if (el.getAttribute(enKey) === null){
+      el.setAttribute(enKey, el.getAttribute(attr) || '');
+    }
+    var v = (lang === 'es') ? el.getAttribute(esKey) : el.getAttribute(enKey);
+    if (v !== null) el.setAttribute(attr, v);
+  }
+
+  function applyLang(lang){
+    if (lang !== 'es' && lang !== 'en') lang = DEFAULT_LANG;
+    LANG = lang;
+
+    /* content swaps */
+    var nodes = document.querySelectorAll('[data-es]');
+    for (var i = 0; i < nodes.length; i++){ swapContent(nodes[i], lang); }
+
+    /* attribute swaps */
+    var ph = document.querySelectorAll('[data-es-placeholder]');
+    for (var p = 0; p < ph.length; p++){ swapAttr(ph[p], 'placeholder', lang); }
+    var ar = document.querySelectorAll('[data-es-aria-label]');
+    for (var a = 0; a < ar.length; a++){ swapAttr(ar[a], 'aria-label', lang); }
+    var al = document.querySelectorAll('[data-es-alt]');
+    for (var t = 0; t < al.length; t++){ swapAttr(al[t], 'alt', lang); }
+
+    /* the footer-year span lives inside a swapped container — restore it */
+    setYear();
+
+    /* <html lang> + a state class for any lang-specific CSS hooks */
+    docEl.lang = lang;
+    docEl.classList.remove('lang-en', 'lang-es');
+    docEl.classList.add('lang-' + lang);
+
+    /* reflect state on the footer toggle buttons */
+    if (langBtns){
+      langBtns.forEach(function(b){
+        b.setAttribute('aria-pressed', b.getAttribute('data-lang') === lang ? 'true' : 'false');
+      });
+    }
+
+    /* the hamburger aria-label depends on BOTH open-state and language */
+    syncHamburgerLabel();
+  }
+
+  /* localized hamburger label (open vs close, EN vs ES) */
+  function syncHamburgerLabel(){
+    var hb = document.getElementById('hamburger');
+    if (!hb) return;
+    var open = hb.getAttribute('aria-expanded') === 'true';
+    var map = {
+      en: { open: 'Close menu', closed: 'Open menu' },
+      es: { open: 'Cerrar menú', closed: 'Abrir menú' }
+    };
+    hb.setAttribute('aria-label', map[LANG][open ? 'open' : 'closed']);
+  }
+
+  /* footer language toggle */
+  var langToggleEl = document.querySelector('.lang-toggle');
+  var langBtns = langToggleEl ? Array.prototype.slice.call(langToggleEl.querySelectorAll('.lang-btn')) : [];
+  function chooseLang(lang){
+    if (lang === LANG) return;
+    applyLang(lang);
+    saveLang(lang);
+    try{ navigator.sendBeacon('/api/event', new Blob([JSON.stringify({name:'lang_'+lang})],{type:'application/json'})); }catch(_){ }
+  }
+  langBtns.forEach(function(b){
+    b.addEventListener('click', function(){ chooseLang(b.getAttribute('data-lang')); });
   });
 
   /* ============================================================
@@ -1703,8 +1846,20 @@
 
   skipBtn.addEventListener('click', function(){ chooseMode(DEFAULT_MODE); closeGate(); });
 
-  /* "Not you? Choose again" — re-opens the gate */
-  document.getElementById('reopen-gate').addEventListener('click', openGate);
+  /* "Not you? Choose again" — re-opens the gate. Delegated, because the
+     button lives inside a [data-es] container whose innerHTML is swapped on
+     language change, which would otherwise drop a directly-bound listener. */
+  document.addEventListener('click', function(e){
+    if (e.target.closest('#reopen-gate')) openGate();
+  });
+
+  /* ============================================================
+     APPLY LANGUAGE — synchronous, at body end (DOM already parsed and
+     the JS-built gate cards / toggle labels already inserted above). A
+     returning ES visitor sees Spanish with no flash; the inline <head>
+     script already set <html lang> early so the lang attr never flickers.
+     ============================================================ */
+  applyLang(LANG);
 
   /* ============================================================
      BOOT: returning visitors skip the gate; first-timers see it.
@@ -1767,6 +1922,27 @@
      is built from FormData, so the UNCHECKED honeypot is naturally
      omitted (the worker treats ANY presence of `botcheck` as a bot).
      ============================================================ */
+  /* localized strings the JS sets at runtime (status messages + button) */
+  var T = {
+    en: {
+      invalid: 'Please add your name, a valid email, and a short note.',
+      verify:  'Please complete the verification above the button, then send.',
+      sending: 'Sending…',
+      ok:      'Got it — I’ll be in touch within a business day. 🍌',
+      fail:    'Something went wrong sending that. Try again, or just email contact@bananabyte.io.',
+      submit:  'Send it over'
+    },
+    es: {
+      invalid: 'Añade tu nombre, un correo válido y una nota breve, por favor.',
+      verify:  'Completa la verificación de arriba del botón y luego envía, por favor.',
+      sending: 'Enviando…',
+      ok:      'Recibido — te escribo dentro de un día hábil. 🍌',
+      fail:    'Algo salió mal al enviar. Inténtalo de nuevo o escribe a contact@bananabyte.io.',
+      submit:  'Enviar'
+    }
+  };
+  function t(key){ return (T[LANG] || T.en)[key]; }
+
   var form = document.getElementById('contact-form');
   if (form){
     var st = document.getElementById('contact-status');
@@ -1779,7 +1955,7 @@
 
       /* native required-field validation first */
       if (!form.checkValidity()){
-        setStatus('err', 'Please add your name, a valid email, and a short note.');
+        setStatus('err', t('invalid'));
         var bad = form.querySelector(':invalid');
         if (bad && bad.focus) bad.focus();
         return;
@@ -1790,15 +1966,15 @@
       /* Turnstile token must be present before sending */
       var ts = form.querySelector('[name="cf-turnstile-response"]');
       if (ts && !ts.value){
-        setStatus('err', 'Please complete the verification above the button, then send.');
+        setStatus('err', t('verify'));
         var w = form.querySelector('.cf-turnstile');
         if (w && w.scrollIntoView) w.scrollIntoView({ block:'center' });
         return;
       }
 
-      setStatus('busy', 'Sending…');
+      setStatus('busy', t('sending'));
       btn.disabled = true;
-      if (lbl) lbl.textContent = 'Sending…';
+      if (lbl) lbl.textContent = t('sending');
       try{ navigator.sendBeacon('/api/event', new Blob([JSON.stringify({name:'form_submit'})],{type:'application/json'})); }catch(_){ }
 
       /* build JSON payload from FormData — unchecked honeypot is omitted */
@@ -1813,22 +1989,22 @@
         .then(function(r){ return r.json().then(function(j){ return { ok:r.ok, j:j }; }); })
         .then(function(r){
           if (r.ok && r.j && r.j.success){
-            setStatus('ok', 'Got it — I’ll be in touch within a business day. 🍌');
+            setStatus('ok', t('ok'));
             form.reset();
             /* reset Turnstile so a second message can be sent */
             if (window.turnstile){ try{ window.turnstile.reset(); }catch(_){} }
           } else {
-            setStatus('err', 'Something went wrong sending that. Try again, or just email contact@bananabyte.io.');
+            setStatus('err', t('fail'));
             if (window.turnstile){ try{ window.turnstile.reset(); }catch(_){} }
           }
         })
         .catch(function(){
-          setStatus('err', 'Something went wrong sending that. Try again, or just email contact@bananabyte.io.');
+          setStatus('err', t('fail'));
           if (window.turnstile){ try{ window.turnstile.reset(); }catch(_){} }
         })
         .finally(function(){
           btn.disabled = false;
-          if (lbl) lbl.textContent = 'Send it over';
+          if (lbl) lbl.textContent = t('submit');
         });
     });
   }
@@ -1875,7 +2051,7 @@
     menu.classList.add('open'); backdrop.classList.add('open');
     menu.setAttribute('aria-hidden', 'false');
     hamburger.setAttribute('aria-expanded', 'true');
-    hamburger.setAttribute('aria-label', 'Close menu');
+    syncHamburgerLabel();
     docEl.classList.add('menu-open');
     var f = menuFocusable();
     if (f.length) f[0].focus();
@@ -1887,7 +2063,7 @@
     menu.classList.remove('open'); backdrop.classList.remove('open');
     menu.setAttribute('aria-hidden', 'true');
     hamburger.setAttribute('aria-expanded', 'false');
-    hamburger.setAttribute('aria-label', 'Open menu');
+    syncHamburgerLabel();
     docEl.classList.remove('menu-open');
     document.removeEventListener('keydown', onMenuKey, true);
     var done = function(){ menu.hidden = true; backdrop.hidden = true; menu.removeEventListener('transitionend', done); };
