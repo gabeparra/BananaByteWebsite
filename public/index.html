@@ -1430,7 +1430,7 @@
   }
 
   /* chooseMode = user explicitly picked (always persists) */
-  function chooseMode(mode){ setMode(mode, { fade:true, save:true }); }
+  function chooseMode(mode){ setMode(mode, { fade:true, save:true }); try{ navigator.sendBeacon('/api/event', new Blob([JSON.stringify({name:'mode_'+mode})],{type:'application/json'})); }catch(_){ } }
 
   /* ============================================================
      INTRO GATE — focus trap, Esc to skip, ARIA
@@ -1583,6 +1583,7 @@
       setStatus('busy', 'Sending…');
       btn.disabled = true;
       if (lbl) lbl.textContent = 'Sending…';
+      try{ navigator.sendBeacon('/api/event', new Blob([JSON.stringify({name:'form_submit'})],{type:'application/json'})); }catch(_){ }
 
       /* build JSON payload from FormData — unchecked honeypot is omitted */
       var data = {};
@@ -1618,5 +1619,6 @@
 
 })();
 </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "0928fb51dad843818b6718b55b31e615"}'></script>
 </body>
 </html>

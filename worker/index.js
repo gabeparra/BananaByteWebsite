@@ -273,6 +273,7 @@ async function handleContact(request, env, origin) {
 const EVENT_NAMES = new Set([
   "text_click", "whatsapp_click", "call_click", "email_click",
   "form_submit", "quote_click", "spin",
+  "mode_business", "mode_performer",
   "theme_crazy", "theme_formal", "lang_es", "lang_en",
 ]);
 
