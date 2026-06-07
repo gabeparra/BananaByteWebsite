@@ -352,6 +352,10 @@
   html[data-mode="performer"] .mm-links a:hover,
   html[data-mode="performer"] .mm-links a:focus-visible{color:var(--honey)}
   .mm-cta{width:100%;justify-content:center;margin-top:auto}
+  /* language toggle relocates into the drawer bottom on mobile */
+  .mm-lang-slot{display:flex;justify-content:center;padding-top:16px;border-top:1px solid var(--line)}
+  .mm-lang-slot:empty{display:none}
+  .mm-lang-slot .lang-toggle{margin:0}
 
   /* lock background scroll while the drawer is open */
   html.menu-open,html.menu-open body{overflow:hidden}
@@ -991,6 +995,7 @@
       <a href="#contact" data-es="Contacto">Contact</a>
     </nav>
     <a href="#contact" class="btn btn-primary mm-cta" data-es="Empezar un proyecto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Start a project <span class="arrow" aria-hidden="true">→</span></a>
+    <div class="mm-lang-slot" id="menu-lang-slot"><!-- .lang-toggle relocated here on mobile --></div>
   </div>
 </aside>
 
@@ -1006,7 +1011,7 @@
       <div class="wrap hero-grid">
         <div class="hero-copy">
           <span class="tag" data-reveal data-es="&lt;span class=&quot;pulse&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt; Tomando proyectos nuevos este mes"><span class="pulse" aria-hidden="true"></span> Taking on new projects this month</span>
-          <h1 id="b-hero-h" data-reveal data-es="Bien hecho. &lt;span class=&quot;mark&quot;&gt;El sitio que sea&lt;/span&gt; que tu negocio necesita.">Built right. <span class="mark">Any kind of site</span> your business needs.</h1>
+          <h1 id="b-hero-h" data-reveal data-es="Creando &lt;span class=&quot;mark&quot;&gt;el sitio&lt;/span&gt; que tu negocio necesite.">Built right. <span class="mark">Any kind of site</span> your business needs.</h1>
           <p class="hero-lede" data-reveal data-es="BANANAbyte 🍌 es un estudio web en Orlando. Creo sitios web y tiendas online rápidos, limpios y a medida — para comercios, negocios locales y los profesionales detrás de ellos. Precio cerrado, entrega rápida y todo es tuyo cuando lanzamos.">BANANAbyte 🍌 is a web studio in Orlando. I build fast, clean, custom websites and online stores — for shops, local businesses, and the professionals behind them. Flat pricing, quick turnaround, and you own everything when it ships.</p>
           <div class="hero-actions" data-reveal>
             <a href="#contact" class="btn btn-primary" data-es="Empezar un proyecto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Start a project <span class="arrow" aria-hidden="true">→</span></a>
@@ -2023,16 +2028,22 @@
   var hamburger   = document.getElementById('hamburger');
   var menu        = document.getElementById('mobile-menu');
   var backdrop    = document.getElementById('nav-backdrop');
+  var langToggle  = document.querySelector('.lang-toggle');
+  var langSlot    = document.getElementById('menu-lang-slot');
+  var langHome    = langToggle ? langToggle.parentNode : null;        /* footer .foot-bottom */
+  var langNext    = langToggle ? langToggle.nextElementSibling : null; /* the "Not you?" span */
   var lastMenuFocus = null;
 
   /* placeMode — put the toggle where the current breakpoint needs it */
   function placeMode(){
-    if (!modeToggle) return;
     if (mq.matches){
-      if (modeToggle.parentNode !== menuSlot) menuSlot.appendChild(modeToggle);
+      /* mobile: move both toggles into the drawer */
+      if (modeToggle && modeToggle.parentNode !== menuSlot) menuSlot.appendChild(modeToggle);
+      if (langToggle && langSlot && langToggle.parentNode !== langSlot) langSlot.appendChild(langToggle);
     } else {
-      /* desktop: back into .nav-left, in its original spot after the wordmark */
-      if (modeToggle.parentNode !== navLeft) navLeft.appendChild(modeToggle);
+      /* desktop: mode toggle back into .nav-left, lang toggle back into the footer */
+      if (modeToggle && modeToggle.parentNode !== navLeft) navLeft.appendChild(modeToggle);
+      if (langToggle && langHome && langToggle.parentNode !== langHome) langHome.insertBefore(langToggle, langNext);
     }
   }
 
