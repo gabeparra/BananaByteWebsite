@@ -132,9 +132,46 @@
   html[data-mode="performer"] .step .st{font-family:var(--font-fraunces)}
   .step .sd{color:var(--ink-soft);font-size:.9rem;margin-top:3px}
 
+  /* compact real-client testimonial — trust element near the form */
+  .mini-quote{
+    margin-top:28px;border:1px solid var(--line);border-radius:var(--radius);
+    background:var(--panel);padding:18px 20px;position:relative;
+  }
+  html[data-mode="performer"] .mini-quote{background:linear-gradient(160deg,var(--panel-2),var(--panel));border-color:var(--line-strong)}
+  .mini-quote .mqk{
+    font-family:var(--font-display);font-weight:600;font-size:.72rem;
+    text-transform:uppercase;letter-spacing:.16em;color:var(--ink-mute);
+    display:flex;align-items:center;gap:7px;margin-bottom:10px;
+  }
+  html[data-mode="performer"] .mini-quote .mqk{font-family:var(--font-body);color:var(--honey,var(--ink-mute))}
+  .mini-quote .mqk svg{width:14px;height:14px;color:var(--accent)}
+  .mini-quote blockquote{
+    margin:0;font-size:.98rem;line-height:1.55;color:var(--ink-soft);
+    border-left:3px solid var(--accent);padding-left:14px;
+  }
+  html[data-mode="performer"] .mini-quote blockquote{font-family:var(--font-fraunces);font-weight:450}
+  .mini-quote cite{
+    display:block;margin-top:12px;padding-left:14px;font-style:normal;
+    font-family:var(--font-display);font-weight:600;font-size:.84rem;color:var(--ink);
+  }
+  .mini-quote cite a{color:var(--accent);transition:color .2s var(--ease)}
+  .mini-quote cite a:hover{color:var(--ink)}
+  .mini-quote cite .role{font-weight:400;color:var(--ink-mute)}
+  html[data-mode="performer"] .mini-quote cite .role{font-family:var(--font-body)}
+
   /* form column heading */
   .form-col h2{font-size:clamp(1.5rem,4vw,2.05rem);margin-bottom:6px}
   .form-col .form-intro{color:var(--ink-soft);margin-bottom:22px;font-size:.98rem;max-width:46ch}
+
+  /* always-visible backup line if the form ever fails to send */
+  .form-fallback{
+    margin-top:14px;color:var(--ink-soft);font-size:.84rem;line-height:1.5;
+    border-left:3px solid var(--line-strong);border-radius:4px;
+    background:var(--panel);padding:10px 14px;
+  }
+  html[data-mode="performer"] .form-fallback{background:linear-gradient(160deg,var(--panel-2),var(--panel))}
+  .form-fallback a{color:var(--accent);font-weight:600;white-space:nowrap}
+  .form-fallback a:hover{text-decoration:underline}
 </style>
 
 <!-- ============================================================
@@ -331,6 +368,21 @@
             </li>
           </ol>
         </div>
+
+        <!-- ============================================================
+             REAL-CLIENT TESTIMONIAL — Peter Hefty (first real BANANAbyte
+             client; his live site links back to BANANAbyte). Featured with
+             his permission. A small trust nudge right at the conversion
+             point. <blockquote>+<cite> for accessibility.
+             ============================================================ -->
+        <figure class="mini-quote" data-reveal>
+          <span class="mqk">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21v-4a4 4 0 0 1 4-4h1M3 8V5a2 2 0 0 1 2-2h3M21 8V5a2 2 0 0 0-2-2h-3M14 13h1a4 4 0 0 1 4 4v4"/></svg>
+            <span data-es="De un cliente de verdad">From a real client</span>
+          </span>
+          <blockquote data-es="Gabe es genial para trabajar — creativo, como un mago haciendo su magia en internet. Le recomendaría BANANAbyte a cualquiera que quiera un verdadero artista y un tipo divertido para construir su sitio.">Gabe is awesome to work with — creative, just like a magician working his magic on the internet. I&rsquo;d recommend BANANAbyte to anyone who wants a real artist and a fun guy to build their site.</blockquote>
+          <cite data-es="&lt;a href=&quot;https://peterheftyandjustin.com/&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;Peter Hefty&lt;/a&gt; — &lt;span class=&quot;role&quot;&gt;ventrílocuo y comediante&lt;/span&gt;"><a href="https://peterheftyandjustin.com/" rel="noopener" target="_blank">Peter Hefty</a> — <span class="role">ventriloquist &amp; comedian</span></cite>
+        </figure>
       </div>
 
       <!-- RIGHT: THE real contact form — POSTs JSON to /api/contact.
@@ -340,6 +392,7 @@
       <div class="form-col" data-reveal>
         <h2 data-es="Empezar un proyecto">Start a project</h2>
         <p class="form-intro" data-es="Llena lo de abajo y te respondo en un día hábil. Prefieres no llenar formularios? Escríbeme un mensaje o un WhatsApp.">Fill this out and I’ll reply within one business day. Prefer not to fill a form? Just text or WhatsApp me.</p>
+        <p class="talk-note" data-es="BANANAbyte es una LLC registrada en Florida — trabajas directamente conmigo, Gabe.">BANANAbyte is a registered Florida LLC — you work directly with me, Gabe.</p>
 
         <form id="contact-form" action="/api/contact" method="POST" novalidate>
           <!-- honeypot: real users never fill this. ANY value = bot (worker silently 200s).
@@ -390,6 +443,11 @@
           </div>
 
           <p class="form-status" id="contact-status" role="status" aria-live="polite"></p>
+
+          <!-- Always-visible backup if the form ever fails to send (server down,
+               JS/Turnstile error). Static fallback — the JS error path also shows
+               a message via #contact-status, but this is the human safety net. -->
+          <p class="form-fallback" id="contact-fallback" data-es="¿No se envía? Escríbeme o mándame un WhatsApp al &lt;a href=&quot;tel:+13212023732&quot;&gt;(321)&amp;nbsp;202-3732&lt;/a&gt; y te respondo enseguida.">Couldn’t send? Text or WhatsApp me at <a href="tel:+13212023732">(321)&nbsp;202-3732</a> and I’ll get right back to you.</p>
 
           <p class="form-privacy">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/></svg>

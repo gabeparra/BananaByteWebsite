@@ -4,8 +4,8 @@
   <script>document.documentElement.className+=" js";</script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Work — BANANAbyte | Website design samples, Orlando</title>
-  <meta name="description" content="Selected work from BANANAbyte — ten sample website builds for shops, creators, performers and local businesses. Demonstration sites showing the range of what a small Orlando studio can make.">
+  <title>Work — BANANAbyte | Real client work + website design samples, Orlando</title>
+  <meta name="description" content="Selected work from BANANAbyte — a real live client site (Peter Hefty & Justin) plus ten concept builds for shops, creators, performers and local businesses, showing the range of what a small Orlando studio can make.">
   <link rel="canonical" href="https://bananabyte.io/work/">
   <meta name="theme-color" content="#0A0A0A">
   <meta name="color-scheme" content="dark">
@@ -15,15 +15,15 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="BANANAbyte">
-  <meta property="og:title" content="Work — BANANAbyte | Website design samples">
-  <meta property="og:description" content="Ten sample website builds for shops, creators, performers and local businesses — demonstration sites showing the range of what BANANAbyte can make.">
+  <meta property="og:title" content="Work — BANANAbyte | Real client work + design samples">
+  <meta property="og:description" content="A real live client site (Peter Hefty & Justin) plus ten concept builds for shops, creators, performers and local businesses — showing the range of what BANANAbyte can make.">
   <meta property="og:url" content="https://bananabyte.io/work/">
   <meta property="og:image" content="https://bananabyte.io/og-image.png">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Work — BANANAbyte | Website design samples">
-  <meta name="twitter:description" content="Ten sample website builds for shops, creators, performers and local businesses — built to show the range of what BANANAbyte can make.">
+  <meta name="twitter:title" content="Work — BANANAbyte | Real client work + design samples">
+  <meta name="twitter:description" content="A real live client site (Peter Hefty & Justin) plus ten concept builds for shops, creators, performers and local businesses — built to show the range of what BANANAbyte can make.">
   <meta name="twitter:image" content="https://bananabyte.io/og-image.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -294,6 +294,136 @@
       grid-column:1 / -1;
     }
 
+    /* ---- section heads (real vs concept) ---- */
+    .sectionhead{ padding:30px 0 0; }
+    .sectionhead.tight{ padding:14px 0 0; }
+    .kicker{
+      display:inline-flex; align-items:center; gap:9px;
+      font-family:var(--mono); font-size:12px; font-weight:700;
+      letter-spacing:.16em; text-transform:uppercase; color:var(--bright);
+    }
+    .kicker .dot{ width:7px; height:7px; border-radius:50%; background:var(--yellow); }
+    .sectionhead h2{
+      font-family:var(--display); font-weight:400;
+      font-size:clamp(24px,5vw,38px); line-height:1.05; letter-spacing:-.02em;
+      margin:.45em 0 0;
+    }
+    .sectionhead p{
+      margin:10px 0 0; max-width:60ch; color:var(--mut);
+      font-size:clamp(15px,2vw,17px); line-height:1.6;
+    }
+
+    /* ---- featured real-client card ---- */
+    .featured{
+      position:relative;
+      display:grid; gap:0;
+      grid-template-columns:1fr;
+      background:linear-gradient(180deg,var(--panel),var(--bg2));
+      border:1px solid var(--edge);
+      border-radius:var(--radius);
+      overflow:hidden;
+      margin:22px 0 8px;
+      transition:transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+      will-change:transform;
+    }
+    .featured::before{
+      content:""; position:absolute; inset:0; pointer-events:none; z-index:1;
+      border-radius:var(--radius);
+      box-shadow:inset 0 0 0 1px rgba(245,200,0,.18);
+    }
+    .featured:hover,
+    .featured:focus-within{
+      transform:translateY(-4px);
+      border-color:var(--yellow);
+      box-shadow:0 18px 44px -22px rgba(0,0,0,.85), 0 0 0 1px rgba(245,200,0,.45);
+    }
+    @media(min-width:860px){
+      .featured{ grid-template-columns:1.15fr 1fr; }
+    }
+    .featured .thumb{
+      aspect-ratio:16/10;
+      border-bottom:1px solid var(--hair);
+    }
+    @media(min-width:860px){
+      .featured .thumb{ aspect-ratio:auto; height:100%; border-bottom:none; border-right:1px solid var(--hair); }
+    }
+    .featured:hover .thumb img,
+    .featured:focus-within .thumb img{ transform:scale(1.04); }
+    .featured .tag.live{
+      background:var(--bright); color:var(--on-yellow);
+      border:1px solid var(--bright);
+      display:inline-flex; align-items:center; gap:6px;
+    }
+    .featured .tag.live .pulse{
+      width:7px; height:7px; border-radius:50%;
+      background:var(--on-yellow);
+      box-shadow:0 0 0 0 rgba(10,10,10,.6);
+      animation:livepulse 1.8s ease-out infinite;
+    }
+    @keyframes livepulse{
+      0%{ box-shadow:0 0 0 0 rgba(10,10,10,.55); }
+      70%{ box-shadow:0 0 0 6px rgba(10,10,10,0); }
+      100%{ box-shadow:0 0 0 0 rgba(10,10,10,0); }
+    }
+    .featured .body{ padding:24px 22px 24px; }
+    .featured .subtitle{
+      margin:6px 0 0;
+      font-family:var(--mono); font-size:12.5px; font-weight:700;
+      letter-spacing:.04em; color:var(--bright);
+    }
+    .featured h2{
+      font-family:var(--sans); font-weight:700;
+      font-size:clamp(20px,2.6vw,24px); line-height:1.2;
+      letter-spacing:-.01em; margin:14px 0 0; color:var(--ink);
+    }
+    .featured .blurb{
+      margin:10px 0 0; color:var(--mut);
+      font-size:15px; line-height:1.6;
+    }
+    .featured .visit{
+      margin:18px 0 0;
+      display:inline-flex; align-items:center; gap:8px;
+      font-family:var(--mono); font-weight:700; font-size:13px;
+      letter-spacing:.03em;
+      min-height:44px; padding:0 18px;
+      border-radius:11px;
+      background:var(--yellow); color:var(--on-yellow);
+      border:1px solid var(--yellow);
+      align-self:flex-start;
+      transition:background .15s ease, transform .15s ease;
+      position:relative; z-index:2;
+    }
+    .featured .visit:hover{ background:var(--bright); }
+    .featured .visit:active{ background:var(--gold); transform:translateY(1px); }
+    .featured .visit .arrow{ transition:transform .2s ease; }
+    .featured .visit:hover .arrow{ transform:translateX(3px); }
+
+    /* ---- testimonial ---- */
+    .testimonial{
+      margin:8px 0 0;
+      border:1px solid var(--hair);
+      border-left:3px solid var(--yellow);
+      border-radius:var(--radius-sm);
+      background:linear-gradient(180deg,var(--panel2),var(--bg2));
+      padding:22px 22px 20px;
+    }
+    .testimonial blockquote{
+      margin:0; color:var(--ink);
+      font-size:clamp(16px,2.1vw,18px); line-height:1.62;
+    }
+    .testimonial blockquote .mark{
+      color:var(--yellow); font-family:var(--display);
+      font-size:1.4em; line-height:0; margin-right:.12em;
+      vertical-align:-.18em;
+    }
+    .testimonial cite{
+      display:block; margin:14px 0 0;
+      font-family:var(--mono); font-style:normal;
+      font-size:12.5px; font-weight:700; letter-spacing:.04em;
+      color:var(--mut);
+    }
+    .testimonial cite b{ color:var(--bright); font-weight:700; }
+
     /* ---- closing CTA band ---- */
     .band{ padding:18px 0 64px; }
     .bandinner{
@@ -377,20 +507,72 @@
     <section class="hero" aria-labelledby="page-title">
       <div class="wrap">
         <span class="eyebrow"><span class="dot" aria-hidden="true"></span>Selected work · Orlando</span>
-        <h1 id="page-title">Ten sites, <span class="hl">ten worlds.</span></h1>
+        <h1 id="page-title">Real work, <span class="hl">and ten worlds.</span></h1>
         <p class="lede">
-          These are <strong>demonstration builds</strong> — sample sites made to show the range of what
-          BANANAbyte can make for shops, creators, performers and local businesses. Each one is a fully
-          designed, clickable concept you can open and explore.
+          One <strong>real client site</strong> that's live on the internet right now — plus ten
+          <strong>concept builds</strong> made to show the range of what BANANAbyte can make for shops,
+          creators, performers and local businesses. Open any of them and explore.
         </p>
         <p class="honest">
           <span class="chip">Honest note</span>
-          <span>Sample / demo work, not paid client projects — BANANAbyte is new. Any real client work is shown only with the owner’s permission. 🍌</span>
+          <span>The concept builds below are sample / demo work, not paid projects. Real client work is shown only with the owner’s permission — and Peter Hefty &amp; Justin gave theirs. 🍌</span>
         </p>
       </div>
     </section>
 
-    <section class="filterbar" aria-label="Filter work by category">
+    <!-- ===== Real client work ===== -->
+    <section class="sectionhead" aria-labelledby="real-title">
+      <div class="wrap">
+        <span class="kicker"><span class="dot" aria-hidden="true"></span>Real client work</span>
+        <h2 id="real-title">Live on the internet right now</h2>
+        <p>My first real client — a site BANANAbyte designed, built and launched. It’s online today, and it credits the studio that made it.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="real-title">
+      <div class="wrap">
+        <article class="featured" aria-label="Peter Hefty &amp; Justin — live client site">
+          <div class="thumb">
+            <div class="tags">
+              <span class="tag cat">Performer</span>
+              <span class="tag live"><span class="pulse" aria-hidden="true"></span>Real client · live</span>
+            </div>
+            <img src="thumbs/peter-hefty.jpg" width="1280" height="800" loading="lazy" decoding="async"
+                 alt="Red-curtain theater-themed booking website for ventriloquist and comedian Peter Hefty and his puppet Justin, with a split layout for a family show and an adult show.">
+          </div>
+          <div class="body">
+            <p class="subtitle">Ventriloquist &amp; comedian — booking site</p>
+            <h2>Peter Hefty &amp; Justin</h2>
+            <p class="blurb">
+              The show-booking site for an award-winning ventriloquist and comedian — featured in the
+              “I Killed” comedy anthology and a promo performer for Paramount’s “Dinner for Schmucks.”
+              A red-curtain theater theme with a two-show split (family + adult), a show calendar and booking.
+            </p>
+            <a class="visit" href="https://peterheftyandjustin.com/" target="_blank" rel="noopener">
+              Visit the live site <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <figure class="testimonial">
+          <blockquote>
+            <span class="mark" aria-hidden="true">“</span>Gabe is awesome to work with — creative, just like a magician working his magic on the internet. Like a magician, there was nothing up his sleeve: everything fantastic just appeared before my eyes — my new website. I'd recommend BANANAbyte to anyone who wants a real artist and a fun guy to build their site.<span class="mark" aria-hidden="true">”</span>
+          </blockquote>
+          <cite><b>Peter Hefty</b> — ventriloquist &amp; comedian</cite>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===== Concept builds ===== -->
+    <section class="sectionhead" aria-labelledby="concept-title">
+      <div class="wrap">
+        <span class="kicker"><span class="dot" aria-hidden="true"></span>Concept builds</span>
+        <h2 id="concept-title">Concept builds — sample sites I made to show range</h2>
+        <p>Demonstration builds, not paid client projects. Each one is a fully designed, clickable concept you can open and explore.</p>
+      </div>
+    </section>
+
+    <section class="filterbar" aria-label="Filter concept builds by category">
       <div class="wrap">
         <ul class="filters" role="group" aria-label="Project categories">
           <li><button type="button" class="filter" data-filter="all" aria-pressed="true">All <span class="n" aria-hidden="true">10</span></button></li>
@@ -404,7 +586,7 @@
       </div>
     </section>
 
-    <section id="work" aria-label="Sample website builds">
+    <section id="work" aria-label="Concept website builds">
       <div class="wrap">
         <ul class="grid" id="grid">
 
