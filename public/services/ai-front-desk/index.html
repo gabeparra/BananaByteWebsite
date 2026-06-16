@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <!--
-  BANANAbyte — Website Design & Build service page (/services/website-design/).
+  BANANAbyte — AI Front Desk service page (/services/ai-front-desk/).
+
+  A SERVICE for the CLIENT'S business: a bilingual (EN/ES) site chat
+  assistant + automations (missed-call text-back, automatic review
+  requests, lead alerts) that answer, capture, and follow up 24/7 so they
+  never miss a lead. AI here is a tool I set up for THEIR business — it is
+  never how their own website is built (that is custom human craft).
 
   ONE set of content for BOTH audiences (business + performer). It restyles
-  automatically via the design-system CSS custom properties: slate + yellow in
-  business mode, black + gold in performer mode when the visitor toggles. No
-  separate copy panels — generic component classes (.hero, .svc-grid, .why,
-  .eyebrow, .btn, .price-anchor) plus a small page-scoped <style> that only
-  uses var(--…) tokens, so nothing is hard-coded to one palette.
+  automatically via the design-system CSS custom properties: slate + yellow
+  in business mode, black + gold in performer mode. No separate copy panels —
+  generic component classes (.hero, .feat-grid, .why, .eyebrow, .btn,
+  .price-anchor) plus a small page-scoped <style> that only uses var(--…)
+  tokens, so nothing is hard-coded to one palette.
 
   Shared assets (/assets/site.css + /assets/site.js) drive the gate, bilingual
   swap, mode toggle, mobile drawer and reveal-on-scroll — the gate/header/
@@ -22,9 +28,9 @@
      a returning Spanish visitor doesn't get a flash of the wrong lang attr.
      The full copy swap happens synchronously at the end of <body>. -->
 <script>try{var _l=localStorage.getItem('bb-lang');if(_l==='es'||_l==='en'){document.documentElement.lang=_l;document.documentElement.classList.add('lang-'+_l);}}catch(e){}</script>
-<title>Website Design &amp; Build · BANANAbyte</title>
-<meta name="description" content="Custom website design and build for Orlando businesses, professionals and individuals. Fast, mobile-first, with lead forms, on-page SEO, and you own everything. From $900, one flat quote.">
-<link rel="canonical" href="https://bananabyte.io/services/website-design/">
+<title>AI Front Desk — a 24/7 Assistant for Your Business · BANANAbyte</title>
+<meta name="description" content="A bilingual front desk for your business that never sleeps. A site chat assistant, missed-call text-back, automatic review requests, and instant lead alerts — so you never miss another customer. From $600 setup + from $199/mo.">
+<link rel="canonical" href="https://bananabyte.io/services/ai-front-desk/">
 <meta name="theme-color" content="#08120C">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -32,13 +38,13 @@
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="BANANAbyte">
-<meta property="og:title" content="Website Design &amp; Build · BANANAbyte">
-<meta property="og:description" content="Custom website design and build for Orlando businesses, professionals and individuals. Fast, mobile-first, with lead forms, on-page SEO, and you own everything. From $900, one flat quote.">
-<meta property="og:url" content="https://bananabyte.io/services/website-design/">
+<meta property="og:title" content="AI Front Desk — a 24/7 Assistant for Your Business · BANANAbyte">
+<meta property="og:description" content="A bilingual front desk for your business that never sleeps. A site chat assistant, missed-call text-back, automatic review requests, and instant lead alerts — so you never miss another customer. From $600 setup + from $199/mo.">
+<meta property="og:url" content="https://bananabyte.io/services/ai-front-desk/">
 <meta property="og:image" content="https://bananabyte.io/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Website Design &amp; Build · BANANAbyte">
-<meta name="twitter:description" content="Custom website design and build for Orlando businesses, professionals and individuals. Fast, mobile-first, with lead forms, on-page SEO, and you own everything. From $900, one flat quote.">
+<meta name="twitter:title" content="AI Front Desk — a 24/7 Assistant for Your Business · BANANAbyte">
+<meta name="twitter:description" content="A bilingual front desk for your business that never sleeps. A site chat assistant, missed-call text-back, automatic review requests, and instant lead alerts — so you never miss another customer. From $600 setup + from $199/mo.">
 <meta name="twitter:image" content="https://bananabyte.io/og-image.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -69,12 +75,32 @@
      ============================================================ -->
 <style>
   /* lede paragraph under a section heading, slightly wider than .sec-head */
-  .wd-lede{color:var(--ink-soft);max-width:60ch;margin-top:14px;font-size:1.02rem}
+  .fd-lede{color:var(--ink-soft);max-width:60ch;margin-top:14px;font-size:1.02rem}
 
-  /* "What you get" — feature list with a check glyph per row */
+  /* hero proof line — a small bilingual "missed call" demo bubble in the panel */
+  .fd-chat{display:flex;flex-direction:column;gap:12px}
+  .fd-bubble{
+    max-width:84%;border-radius:14px;padding:11px 14px;font-size:.9rem;line-height:1.5;
+    border:1px solid var(--line);background:var(--panel-2);color:var(--ink-soft);
+  }
+  .fd-bubble.them{align-self:flex-start;border-bottom-left-radius:5px}
+  .fd-bubble.you{
+    align-self:flex-end;border-bottom-right-radius:5px;
+    background:var(--accent-soft);border-color:var(--accent-line);color:var(--ink);
+  }
+  .fd-bubble .who{display:block;font-family:var(--font-display);font-weight:600;font-size:.68rem;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:5px}
+  .fd-bubble.you .who{color:var(--accent)}
+  .fd-typing{display:inline-flex;gap:4px;align-items:center}
+  .fd-typing i{width:6px;height:6px;border-radius:50%;background:var(--ink-mute);
+    animation:fdType 1.3s ease-in-out infinite}
+  .fd-typing i:nth-child(2){animation-delay:.18s}
+  .fd-typing i:nth-child(3){animation-delay:.36s}
+  @keyframes fdType{0%,60%,100%{opacity:.35;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
+
+  /* "What it does" — feature cards (mirrors website-design .feat grid) */
   .feat-grid{display:grid;grid-template-columns:1fr;gap:14px}
   @media(min-width:640px){.feat-grid{grid-template-columns:repeat(2,1fr)}}
-  @media(min-width:1000px){.feat-grid{grid-template-columns:repeat(3,1fr)}}
   .feat{
     position:relative;border:1px solid var(--line);border-radius:var(--radius);
     background:var(--panel);padding:22px 22px 20px;
@@ -91,20 +117,21 @@
   html[data-mode="performer"] .feat h3{font-family:var(--font-fraunces);font-size:1.24rem}
   .feat p{color:var(--ink-soft);font-size:.93rem;margin-top:8px}
 
-  /* "Who it's for" — compact tag chips that wrap cleanly at 360px */
-  .who-tags{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
-  .who-chip{
-    display:inline-flex;align-items:center;gap:9px;
-    border:1px solid var(--line-strong);border-radius:999px;
-    padding:10px 16px;background:var(--panel);
-    font-family:var(--font-display);font-weight:500;font-size:.92rem;color:var(--ink-soft);
-    transition:border-color .25s var(--ease),background .25s var(--ease),color .25s var(--ease);
-  }
-  html[data-mode="performer"] .who-chip{font-family:var(--font-body)}
-  .who-chip:hover{border-color:var(--accent-line);background:var(--accent-soft);color:var(--ink)}
-  .who-chip .wd{width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none}
+  /* "Why it matters" — stat-led points inside the .why strip */
+  .fd-points{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);
+    border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  @media(min-width:560px){.fd-points{grid-template-columns:1fr 1fr}}
+  html[data-mode="performer"] .fd-points{background:transparent;border:0;gap:18px}
+  .fd-point{background:var(--panel-2);padding:20px}
+  html[data-mode="performer"] .fd-point{background:transparent;padding:0}
+  .fd-point .n{font-family:var(--font-display);font-weight:700;color:var(--accent);
+    font-size:1.5rem;letter-spacing:-.01em;line-height:1}
+  html[data-mode="performer"] .fd-point .n{font-family:var(--font-fraunces);font-style:italic}
+  .fd-point h4{font-size:1.02rem;font-weight:600;margin-top:10px}
+  html[data-mode="performer"] .fd-point h4{font-family:var(--font-fraunces);font-size:1.16rem}
+  .fd-point p{color:var(--ink-soft);font-size:.9rem;margin-top:6px}
 
-  /* "How it works" — numbered steps with a connecting rail */
+  /* "How it works" — numbered steps with a connecting rail (4-up) */
   .steps{display:grid;grid-template-columns:1fr;gap:16px;counter-reset:step}
   @media(min-width:720px){.steps{grid-template-columns:repeat(4,1fr)}}
   .step{
@@ -122,7 +149,6 @@
   .step h3{font-size:1.04rem;font-weight:600}
   html[data-mode="performer"] .step h3{font-family:var(--font-fraunces);font-size:1.18rem}
   .step p{color:var(--ink-soft);font-size:.9rem;margin-top:7px}
-  /* connecting rail between steps on the 4-col desktop layout */
   @media(min-width:720px){
     .step:not(:last-child)::after{
       content:"";position:absolute;top:39px;right:-9px;width:18px;height:1px;
@@ -315,23 +341,23 @@
 <main id="main">
 
   <!-- ============================================================
-       HERO — ONE value prop that reads for businesses AND performers;
-       restyles slate/yellow ↔ black/gold via the design tokens.
+       HERO — the pitch: never miss another customer. Reads for both
+       audiences; restyles slate/yellow ↔ black/gold via design tokens.
        ============================================================ -->
-  <section class="hero" aria-labelledby="wd-hero-h">
+  <section class="hero" aria-labelledby="fd-hero-h">
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <span class="tag" data-reveal data-es="&lt;span class=&quot;pulse&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt; Diseño y desarrollo web · Orlando, FL"><span class="pulse" aria-hidden="true"></span> Website design &amp; build · Orlando, FL</span>
-        <h1 id="wd-hero-h" data-reveal data-es="Un sitio &lt;span class=&quot;mark&quot;&gt;a medida&lt;/span&gt; que de verdad te trae trabajo.">A custom site that <span class="mark">actually brings in business.</span></h1>
-        <p class="hero-lede" data-reveal data-es="No una plantilla más. BANANAbyte 🍌 diseña y construye desde cero un sitio rápido y limpio, hecho en torno a lo que ofreces y a cómo te encuentran tus clientes — para que más visitas se conviertan en llamadas, reservas y pedidos. Precio cerrado, y todo es tuyo cuando lanzamos.">Not another template. BANANAbyte 🍌 designs and builds a fast, clean site from scratch — shaped around what you offer and how people find you — so more visitors turn into calls, bookings, and orders. One flat price, and you own everything when it ships.</p>
+        <span class="tag" data-reveal data-es="&lt;span class=&quot;pulse&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt; Recepción con IA · Bilingüe · 24/7"><span class="pulse" aria-hidden="true"></span> AI front desk · Bilingual · 24/7</span>
+        <h1 id="fd-hero-h" data-reveal data-es="Que no se te escape &lt;span class=&quot;mark&quot;&gt;ni un cliente más.&lt;/span&gt;">Never miss <span class="mark">another customer.</span></h1>
+        <p class="hero-lede" data-reveal data-es="Un asistente bilingüe en tu sitio más un puñado de automatizaciones que responden, captan y dan seguimiento a tus clientes las 24 horas — en inglés y en español. BANANAbyte 🍌 lo arma para tu negocio y lo mantiene, para que ninguna llamada perdida ni mensaje de medianoche se convierta en un cliente que se fue con otro.">A bilingual assistant on your site plus a handful of automations that answer, capture, and follow up with your customers around the clock — in English and Spanish. BANANAbyte 🍌 sets it up for your business and keeps it running, so no missed call or midnight message turns into a customer who went somewhere else.</p>
         <div class="hero-actions" data-reveal>
           <a href="/contact/" class="btn btn-primary" data-es="Empezar un proyecto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Start a project <span class="arrow" aria-hidden="true">→</span></a>
-          <a href="/work/" class="btn btn-ghost" data-es="Ver los proyectos">See the work</a>
+          <a href="/pricing/" class="btn btn-ghost" data-es="Ver precios">See pricing</a>
         </div>
         <div class="hero-meta" data-reveal>
-          <span data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Desde $900, presupuesto cerrado"><span class="ck" aria-hidden="true">✓</span> From $900, one flat quote</span>
-          <span data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Online en ~2–3 semanas"><span class="ck" aria-hidden="true">✓</span> Live in ~2–3 weeks</span>
-          <span data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Eres dueño de todo"><span class="ck" aria-hidden="true">✓</span> You own everything</span>
+          <span data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Atiende en inglés y español"><span class="ck" aria-hidden="true">✓</span> Answers in English &amp; Spanish</span>
+          <span data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Trabaja mientras tú duermes"><span class="ck" aria-hidden="true">✓</span> Works while you sleep</span>
+          <span data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Yo lo armo y lo mantengo"><span class="ck" aria-hidden="true">✓</span> I build it and maintain it</span>
         </div>
       </div>
 
@@ -342,153 +368,156 @@
             <span class="url">yoursite.com</span>
           </div>
           <div class="browser-body">
-            <div class="sk-row"><div class="skeleton" style="width:42%"></div></div>
-            <div class="sk-row"><div class="skeleton" style="width:70%;height:9px"></div></div>
-            <div class="sk-row" style="margin-bottom:16px"><div class="skeleton" style="width:58%;height:9px"></div></div>
-            <div class="sk-row">
-              <div class="sk-block sk-accent" style="flex:1"></div>
-              <div class="sk-block" style="flex:1"></div>
-              <div class="sk-block" style="flex:1"></div>
+            <div class="fd-chat">
+              <div class="fd-bubble them">
+                <span class="who" data-es="Visitante · 11:48 p.m.">Visitor · 11:48 PM</span>
+                <span data-es="Hola, ¿siguen abiertos mañana?">Hi — are you open tomorrow?</span>
+              </div>
+              <div class="fd-bubble you">
+                <span class="who" data-es="Tu asistente">Your assistant</span>
+                <span data-es="¡Hola! Sí, abrimos 9–5. ¿Te aparto un espacio? Déjame tu nombre y teléfono. 🍌">Hi! Yes — we’re open 9–5. Want me to save you a spot? Just drop your name and number. 🍌</span>
+              </div>
+              <div class="fd-bubble them" style="display:flex;align-items:center">
+                <span class="fd-typing" aria-hidden="true"><i></i><i></i><i></i></span>
+              </div>
             </div>
           </div>
         </div>
-        <div class="panel-badge" data-es="&lt;b&gt;98&lt;/b&gt; en rendimiento Lighthouse"><b>98</b> Lighthouse performance</div>
+        <div class="panel-badge" data-es="&lt;b&gt;24/7&lt;/b&gt; capta clientes mientras tú no estás"><b>24/7</b> capturing leads while you’re away</div>
       </div>
     </div>
   </section>
 
   <!-- ============================================================
-       WHAT YOU GET — the concrete deliverables, no lock-in.
+       WHAT IT DOES — the concrete pieces of the service.
        ============================================================ -->
-  <section id="what-you-get" aria-labelledby="wd-what-h">
+  <section id="what-it-does" aria-labelledby="fd-what-h">
     <div class="wrap">
       <div class="sec-head" data-reveal>
-        <span class="eyebrow" data-es="Lo que recibes">What you get</span>
-        <h2 id="wd-what-h" data-es="Todo lo que necesita un sitio para hacer su trabajo — y nada de relleno.">Everything a site needs to do its job — and none of the filler.</h2>
-        <p class="wd-lede" data-es="Cada sitio sale con estas bases. Sin complementos sorpresa ni cuotas que aparecen después: lo que ves aquí es lo que se construye.">Every site ships with these foundations. No surprise add-ons, no fees that show up later — what you see here is what gets built.</p>
+        <span class="eyebrow" data-es="Lo que hace">What it does</span>
+        <h2 id="fd-what-h" data-es="Cuatro maneras de que tu negocio responda — aunque tú no puedas.">Four ways your business answers — even when you can’t.</h2>
+        <p class="fd-lede" data-es="No es una sola cosa, sino un sistema pequeño que trabaja junto: contesta, capta el dato y te avisa. Lo armo a la medida de tu negocio y enciendo solo las piezas que de verdad te sirven.">It isn’t one thing — it’s a small system working together: it answers, captures the details, and tells you. I build it around your business and switch on only the pieces that actually earn their keep.</p>
       </div>
 
       <div class="feat-grid">
         <article class="feat" data-reveal>
           <div class="fk" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2.5"/><path d="M11 18h2"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v12H8l-4 4z"/><path d="M8 10h8M8 13.5h5"/></svg>
           </div>
-          <h3 data-es="Diseño a medida, mobile-first">Custom, mobile-first design</h3>
-          <p data-es="Diseñado desde cero en torno a tu marca y tus clientes — no una plantilla reciclada. Se ve y funciona perfecto primero en el teléfono, donde está la mayoría de tu tráfico.">Designed from scratch around your brand and your customers — never a recycled template. It looks and works right on the phone first, where most of your traffic already is.</p>
+          <h3 data-es="Asistente de chat bilingüe en tu sitio">Bilingual chat assistant on your site</h3>
+          <p data-es="Una ventana de chat en tu propio sitio que responde las preguntas de siempre — horario, precios, ubicación, servicios — y toma reservas o capta el dato, en inglés y en español, las 24 horas. Si no sabe algo, recoge el contacto para que tú cierres.">A chat window on your own site that answers the usual questions — hours, pricing, location, services — and books appointments or captures the lead, in English and Spanish, 24/7. When it doesn’t know something, it grabs the contact info so you can close.</p>
         </article>
 
         <article class="feat" data-reveal>
           <div class="fk" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l1.6 4.2-2 1.6a12 12 0 0 0 5.6 5.6l1.6-2 4.2 1.6V20a2 2 0 0 1-2.2 2A16 16 0 0 1 3 6.2 2 2 0 0 1 5 4z"/><path d="m17 3 4 4M21 3l-4 4" opacity=".55"/></svg>
           </div>
-          <h3 data-es="Carga rápida de verdad">Genuinely fast load</h3>
-          <p data-es="Construido con código limpio y ligero, no con un constructor inflado. Las páginas que cargan rápido mantienen a la gente — y a Google — contentos.">Built with clean, lightweight code instead of a bloated page builder. Pages that load fast keep people — and Google — happy, and keep visitors from bouncing.</p>
+          <h3 data-es="Texto automático por llamada perdida">Missed-call text-back</h3>
+          <p data-es="Cuando estás ocupado y no alcanzas a contestar, quien llamó recibe al instante un mensaje de texto tuyo: «Perdón, ando con un cliente — ¿en qué te ayudo?». La mayoría se queda en vez de marcarle al de la lista de al lado.">When you’re busy and can’t pick up, the caller instantly gets a text from you: “Sorry I missed you — I’m with a customer, how can I help?” Most people stick around instead of dialing the next name on the list.</p>
         </article>
 
         <article class="feat" data-reveal>
           <div class="fk" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v12H8l-4 4z"/><path d="M8 9h8M8 13h5"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9 6.8 19.6l1-5.8L3.5 9.2l5.9-.9z"/></svg>
           </div>
-          <h3 data-es="Formularios de contacto y captación">Contact &amp; lead forms</h3>
-          <p data-es="Formularios que llegan directo a tu correo con protección anti-spam — para que cada consulta, reserva o cotización aterrice donde la verás, no en un panel que nunca abres.">Forms that land straight in your inbox with spam protection built in — so every inquiry, booking, or quote request reaches you where you’ll see it, not in a dashboard you never open.</p>
+          <h3 data-es="Pide reseñas solo, después de cada trabajo">Automatic review requests</h3>
+          <p data-es="Cuando terminas un trabajo o cierras una venta, el sistema le manda al cliente un mensaje amable pidiéndole una reseña de Google — en el momento justo, cuando está contento. Más estrellas, sin que tengas que acordarte.">After a finished job or a closed sale, the system sends the customer a friendly message asking for a Google review — at the right moment, while they’re still happy. More stars, without you having to remember.</p>
         </article>
 
         <article class="feat" data-reveal>
           <div class="fk" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9z"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
           </div>
-          <h3 data-es="SEO on-page básico">Basic on-page SEO</h3>
-          <p data-es="Títulos, descripciones, estructura limpia y velocidad — la base que ayuda a que Google entienda tu sitio y te muestre cuando alguien busca lo que ofreces.">Titles, descriptions, clean structure, and speed — the groundwork that helps Google understand your site and show it when someone searches for what you offer.</p>
-        </article>
-
-        <article class="feat" data-reveal>
-          <div class="fk" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>
-          </div>
-          <h3 data-es="Mapa, horario y datos del negocio">Map, hours &amp; business info</h3>
-          <p data-es="Google Maps integrado, tu dirección, horario y teléfono bien colocados — para que la gente local te encuentre, sepa cuándo estás y llegue sin perderse.">An embedded Google Map, plus your address, hours, and phone placed where they belong — so local folks can find you, know when you’re open, and get there without hunting.</p>
-        </article>
-
-        <article class="feat" data-reveal>
-          <div class="fk" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10V7a5 5 0 0 1 10 0v3"/><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M12 14v3"/></svg>
-          </div>
-          <h3 data-es="Eres dueño de todo — sin ataduras">You own everything — no lock-in</h3>
-          <p data-es="Código, dominio, cuentas y contenido quedan a tu nombre. Sin plataformas que te tengan de rehén ni cuotas mensuales obligatorias. Si algún día te vas, te llevas todo contigo.">Code, domain, accounts, and content are all in your name. No platform holding you hostage, no mandatory monthly fee. If you ever move on, you take the whole thing with you.</p>
+          <h3 data-es="Avisos de clientes a tu teléfono o correo">Lead alerts to your phone or inbox</h3>
+          <p data-es="Cada vez que el asistente capta un cliente nuevo, te llega al instante — por texto o correo — con el nombre, qué quiere y cómo contactarlo. Nada se queda guardado en un panel que nunca abres.">Every time the assistant captures a new lead, it lands on you right away — by text or email — with the name, what they want, and how to reach them. Nothing gets stranded in a dashboard you never open.</p>
         </article>
       </div>
     </div>
   </section>
 
   <!-- ============================================================
-       WHO IT'S FOR — chips + a short framing line.
+       WHY IT MATTERS — the leak this plugs + the bilingual angle.
        ============================================================ -->
-  <section id="who-its-for" class="why" aria-labelledby="wd-who-h">
+  <section id="why-it-matters" class="why" aria-labelledby="fd-why-h">
     <div class="wrap why-inner">
       <div data-reveal>
-        <span class="eyebrow" data-es="Para quién es">Who it’s for</span>
-        <h2 id="wd-who-h" data-es="Si tu trabajo necesita una presencia web de verdad, lo construyo.">If your work needs a real web presence, I’ll build it.</h2>
-        <p class="lede" data-es="No tienes que ser una gran empresa para merecer un buen sitio. Si la gente te busca, te reserva o te paga, necesitas un lugar que se vea hecho a propósito — no un perfil prestado en la red social de turno.">You don’t have to be a big company to deserve a good site. If people look you up, book you, or pay you, you need a home that looks intentional — not a borrowed profile on someone else’s platform.</p>
+        <span class="eyebrow" data-es="Por qué importa">Why it matters</span>
+        <h2 id="fd-why-h" data-es="El cliente que no atiendes hoy llama a otro mañana.">The customer you don’t answer today calls someone else tomorrow.</h2>
+        <p class="lede" data-es="La mayoría de los negocios pequeños pierden clientes en los huecos: la llamada que entró mientras tenías las manos ocupadas, el mensaje de las 10 de la noche, la persona que escribió en español y no recibió respuesta. Este sistema atrapa justo esos momentos — y atiende por igual a tus clientes que hablan inglés y a los que hablan español, automáticamente.">Most small businesses lose customers in the gaps: the call that came in while your hands were full, the 10 PM message, the person who wrote in Spanish and never heard back. This system catches exactly those moments — and serves your English-speaking AND Spanish-speaking customers the same, automatically.</p>
       </div>
-      <div class="who-tags" data-reveal>
-        <span class="who-chip"><span class="wd" aria-hidden="true"></span><span data-es="Negocios locales">Local businesses</span></span>
-        <span class="who-chip"><span class="wd" aria-hidden="true"></span><span data-es="Oficios y contratistas">Trades &amp; contractors</span></span>
-        <span class="who-chip"><span class="wd" aria-hidden="true"></span><span data-es="Clínicas y consultorios">Clinics &amp; practices</span></span>
-        <span class="who-chip"><span class="wd" aria-hidden="true"></span><span data-es="Restaurantes y cafés">Restaurants &amp; cafés</span></span>
-        <span class="who-chip"><span class="wd" aria-hidden="true"></span><span data-es="Profesionales y consultores">Professionals &amp; consultants</span></span>
-        <span class="who-chip"><span class="wd" aria-hidden="true"></span><span data-es="Creativos y artistas">Creatives &amp; performers</span></span>
-        <span class="who-chip"><span class="wd" aria-hidden="true"></span><span data-es="Cualquiera que empieza desde cero">Anyone starting from zero</span></span>
+      <div class="fd-points" data-reveal>
+        <div class="fd-point">
+          <span class="n" aria-hidden="true">24/7</span>
+          <h4 data-es="Nunca cierras del todo">You’re never fully closed</h4>
+          <p data-es="Las consultas no llegan solo de 9 a 5. El asistente responde de noche, en fin de semana y en días festivos — y capta al cliente para que lo llames cuando abras.">Inquiries don’t only show up 9-to-5. The assistant answers at night, on weekends, and on holidays — and captures the lead so you can call back when you open.</p>
+        </div>
+        <div class="fd-point">
+          <span class="n" aria-hidden="true">EN · ES</span>
+          <h4 data-es="Dos idiomas, cero esfuerzo extra">Two languages, zero extra effort</h4>
+          <p data-es="En Florida, una parte enorme de tus clientes habla español. Tu asistente cambia de idioma solo, sin que tengas que contratar a nadie ni traducir nada a mano.">In Florida, a huge share of your customers speaks Spanish. Your assistant switches languages on its own — no extra hire, nothing to translate by hand.</p>
+        </div>
+        <div class="fd-point">
+          <span class="n" aria-hidden="true">&lt;1&nbsp;min</span>
+          <h4 data-es="Respuesta al instante">An instant reply</h4>
+          <p data-es="Quien recibe respuesta en segundos casi siempre se queda contigo. El texto por llamada perdida y el chat contestan antes de que tu cliente piense en buscar a otro.">People who get a reply in seconds almost always stay with you. The missed-call text and the chat answer before your customer thinks to look elsewhere.</p>
+        </div>
+        <div class="fd-point">
+          <span class="n" aria-hidden="true">★★★★★</span>
+          <h4 data-es="Mejor reputación, sin perseguirla">A better reputation, without chasing it</h4>
+          <p data-es="Pedir reseñas en el momento justo sube tus estrellas en Google de forma constante — y más estrellas significan más gente que te elige antes de siquiera llamarte.">Asking for reviews at the right moment steadily lifts your Google rating — and more stars means more people choosing you before they even call.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ============================================================
-       HOW IT WORKS — short 4-step process.
+       HOW IT WORKS — short setup process; I build, wire, you approve,
+       it goes live, and I maintain it.
        ============================================================ -->
-  <section id="how-it-works" aria-labelledby="wd-how-h">
+  <section id="how-it-works" aria-labelledby="fd-how-h">
     <div class="wrap">
       <div class="sec-head" data-reveal>
         <span class="eyebrow" data-es="Cómo funciona">How it works</span>
-        <h2 id="wd-how-h" data-es="Cuatro pasos sencillos, de la idea a publicado.">Four simple steps, from idea to live.</h2>
-        <p class="wd-lede" data-es="Sin papeleo interminable ni reuniones que no van a ningún lado. Trabajas directo conmigo de principio a fin, y siempre sabes en qué punto estamos.">No endless paperwork, no meetings that go nowhere. You work directly with me from start to finish, and you always know exactly where we are.</p>
+        <h2 id="fd-how-h" data-es="Yo lo monto, tú lo apruebas, queda encendido.">I set it up, you approve it, it stays on.</h2>
+        <p class="fd-lede" data-es="No tienes que aprender ninguna herramienta ni mover nada. Trabajas directo conmigo: yo lo armo y lo conecto, tú revisas que suene a ti, y a partir de ahí yo me encargo de mantenerlo funcionando.">You don’t have to learn any tool or wire anything yourself. You work directly with me: I build and connect it, you check that it sounds like you, and from there I keep it running.</p>
       </div>
 
       <div class="steps">
         <article class="step" data-reveal>
           <span class="sn" aria-hidden="true">1</span>
-          <h3 data-es="Conversamos">We chat</h3>
-          <p data-es="Me cuentas qué haces y qué necesita el sitio. Una llamada o unos mensajes bastan — gratis y sin compromiso — y salimos con un plan y un precio cerrado.">You tell me what you do and what the site needs to do. A quick call or a few messages — free and no pressure — and we leave with a plan and one flat price.</p>
+          <h3 data-es="Lo armo a tu medida">I build it</h3>
+          <p data-es="Me cuentas qué pregunta tu cliente, tu horario y tus servicios, y escribo el asistente para que responda con tu tono — en inglés y en español.">You tell me what your customers ask, your hours, and your services, and I write the assistant to answer in your voice — in English and Spanish.</p>
         </article>
         <article class="step" data-reveal>
           <span class="sn" aria-hidden="true">2</span>
-          <h3 data-es="Diseño">I design</h3>
-          <p data-es="Convierto eso en un diseño hecho a tu medida y te lo enseño temprano. Tú das tu opinión y lo afinamos juntos antes de escribir una sola línea de la versión final.">I turn that into a design made just for you and show it to you early. You give feedback and we tune it together before a single line of the final build is written.</p>
+          <h3 data-es="Lo conecto">I wire it up</h3>
+          <p data-es="Lo enlazo a tu sitio y a tu teléfono: el chat, el texto por llamada perdida, las reseñas y los avisos quedan conectados donde ya trabajas.">I connect it to your site and your phone — the chat, the missed-call text, the reviews, and the alerts all hook into where you already work.</p>
         </article>
         <article class="step" data-reveal>
           <span class="sn" aria-hidden="true">3</span>
-          <h3 data-es="Construyo">I build</h3>
-          <p data-es="Convierto el diseño aprobado en un sitio real, rápido y a prueba de móvil — con tus formularios, tu mapa y el SEO base ya conectados. Tú revisas y pides ajustes.">I turn the approved design into a real, fast, mobile-proof site — with your forms, your map, and the SEO groundwork already wired up. You review and request tweaks.</p>
+          <h3 data-es="Tú lo apruebas">You approve it</h3>
+          <p data-es="Lo pruebas tú mismo y me dices qué ajustar. No enciende nada de cara a tus clientes hasta que suene exactamente como quieres.">You try it yourself and tell me what to tweak. Nothing goes customer-facing until it sounds exactly the way you want.</p>
         </article>
         <article class="step" data-reveal>
           <span class="sn" aria-hidden="true">4</span>
-          <h3 data-es="Lanzamos">We launch</h3>
-          <p data-es="Publicamos en tu dominio, te entrego las llaves de todo y te muestro cómo actualizarlo. A partir de ahí es tuyo — y sigo a un mensaje de distancia si necesitas algo.">We go live on your domain, I hand you the keys to everything, and I show you how to update it. From there it’s yours — and I’m one message away if you need anything.</p>
+          <h3 data-es="Queda en vivo">It goes live</h3>
+          <p data-es="Lo encendemos y empieza a atender. Yo lo mantengo al día — afino respuestas, arreglo lo que aparezca y crezco contigo — a un mensaje de distancia.">We switch it on and it starts answering. I keep it maintained — tuning replies, fixing whatever comes up, and growing with you — one message away.</p>
         </article>
       </div>
     </div>
   </section>
 
   <!-- ============================================================
-       PRICE TEASER — "from $900, one flat quote" → /pricing/.
+       PRICE TEASER — recurring: setup + monthly → /pricing/.
        ONE shared panel; restyles per mode via tokens.
        ============================================================ -->
-  <section id="price-teaser" aria-labelledby="wd-price-h">
+  <section id="price-teaser" aria-labelledby="fd-price-h">
     <div class="wrap">
       <div class="price-teaser" data-reveal>
         <div class="pt-copy">
           <span class="eyebrow" data-es="Precios">Pricing</span>
-          <h2 id="wd-price-h" data-es="Desde &lt;span class=&quot;price-anchor&quot;&gt;$900&lt;/span&gt;, un solo presupuesto cerrado.">From <span class="price-anchor">$900</span>, one flat quote.</h2>
-          <p data-es="El número final depende del tamaño y las funciones, pero siempre lo sabes por adelantado — sin reloj por horas, sin facturas sorpresa. Y no pides nada por adelantado: primero me gano tu confianza.">The final number depends on size and features, but you always know it upfront — no hourly meter, no surprise invoices. And nothing’s due up front: I earn your trust first.</p>
+          <h2 id="fd-price-h" data-es="Desde &lt;span class=&quot;price-anchor&quot;&gt;$600&lt;/span&gt; de instalación + desde &lt;span class=&quot;price-anchor&quot;&gt;$199/mes&lt;/span&gt;.">From <span class="price-anchor">$600</span> setup + from <span class="price-anchor">$199/mo</span>.</h2>
+          <p data-es="La instalación lo deja todo armado y conectado a tu negocio. La cuota mensual cubre que siga funcionando: hospedaje, el uso del asistente y mi mantenimiento. El número final depende de cuántas piezas enciendas, y siempre lo sabes por adelantado — sin sorpresas.">The setup gets everything built and wired into your business. The monthly plan keeps it running — hosting, the assistant’s usage, and my upkeep. The final number depends on how many pieces you turn on, and you always know it upfront — no surprises.</p>
         </div>
         <div class="pt-actions">
           <a href="/pricing/" class="btn btn-primary" data-es="Ver precios &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">See pricing <span class="arrow" aria-hidden="true">→</span></a>
@@ -500,12 +529,12 @@
   <!-- ============================================================
        CLOSING CTA — every page ends here, pointing to /contact/.
        ============================================================ -->
-  <section id="cta" aria-labelledby="wd-cta-h">
+  <section id="cta" aria-labelledby="fd-cta-h">
     <div class="wrap">
       <div class="cta-band" data-reveal>
         <span class="eyebrow" style="justify-content:center" data-es="Empecemos">Let’s start</span>
-        <h2 id="wd-cta-h" data-es="¿Listo para un sitio que trabaje tanto como tú?">Ready for a site that works as hard as you do?</h2>
-        <p data-es="Cuéntame en un par de frases qué haces y qué necesitas. Leo cada mensaje yo mismo y respondo en un día hábil con próximos pasos honestos — aunque sea «todavía no me necesitas».">Tell me in a couple of sentences what you do and what you need. I read every message myself and reply within one business day with honest next steps — even if that’s “you don’t need me yet.”</p>
+        <h2 id="fd-cta-h" data-es="¿Cuántos clientes se te están escapando ahora mismo?">How many customers are slipping away right now?</h2>
+        <p data-es="Cuéntame qué hace tu negocio y dónde se te pierden los clientes — la llamada perdida, el mensaje de noche, el cliente en español. Leo cada mensaje yo mismo y respondo en un día hábil con un plan honesto y un precio cerrado.">Tell me what your business does and where you’re losing customers — the missed call, the late-night message, the Spanish-speaking lead. I read every message myself and reply within one business day with an honest plan and one flat price.</p>
         <div class="cta-actions">
           <a href="/contact/" class="btn btn-primary" data-es="Empezar un proyecto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Start a project <span class="arrow" aria-hidden="true">→</span></a>
           <a href="/pricing/" class="btn btn-ghost" data-es="Ver precios">See pricing</a>

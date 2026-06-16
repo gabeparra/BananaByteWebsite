@@ -1056,9 +1056,9 @@
   <!-- ============ CLOSING CTA ============ -->
 <!-- contact form styling — vars-only, so it themes in formal AND crazy -->
 <style>
-  .contact-grid-2{display:grid;grid-template-columns:1fr;gap:22px;margin-top:24px}
+  .contact-grid-2{display:grid;grid-template-columns:minmax(0,1fr);gap:22px;margin-top:24px}
   @media (min-width:900px){
-    .contact-grid-2{grid-template-columns:1.05fr .95fr;gap:30px;align-items:start}
+    .contact-grid-2{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:30px;align-items:start}
   }
   .bb-form-card{
     border:var(--border-w) solid var(--hair);background:var(--panel);

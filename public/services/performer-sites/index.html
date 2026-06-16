@@ -13,7 +13,7 @@
   bilingual swap, mode toggle, mobile drawer and reveal-on-scroll — DO NOT
   remove the IDs/classes/data-es attributes they depend on.
 -->
-<html lang="en" data-mode="business">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +24,7 @@
 <title>Websites for Performers — Get Your Name in Lights · BANANAbyte</title>
 <meta name="description" content="Showbiz websites for comedians, wrestlers, DJs, musicians and entertainers. Show calendars, booking forms, clip reels, EPK and a mailing list. Flat pricing from $1,800.">
 <link rel="canonical" href="https://bananabyte.io/services/performer-sites/">
-<meta name="theme-color" content="#16181C">
+<meta name="theme-color" content="#08120C">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="any">
 
@@ -42,7 +42,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=Sora:wght@300;400;500;600;700;800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<!-- Unified "Bold Banana" type: bold geometric display (Bricolage Grotesque) + warm editorial serif accent (Fraunces) + mono spec (Space Mono) -->
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Fraunces:ital,opsz,wght@1,9..144,500;1,9..144,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <!-- TURNSTILE: only the contact page needs the widget. If this page has the
      contact form, add the api.js script here:
      <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script> -->
@@ -167,7 +168,6 @@
 <noscript>
 <style>
   [data-reveal]{opacity:1 !important;transform:none !important}
-  .gate{display:none !important}
 </style>
 </noscript>
 </head>
@@ -175,30 +175,7 @@
 <a class="skip" href="#main">Skip to content</a>
 
 <!-- ============================================================
-     INTRO GATE — hidden by default; JS opens it on first visit only.
-     With JS disabled it stays display:none, so the default business
-     content below is never blocked. Cards are filled from MODES map.
-     ============================================================ -->
-<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-h" aria-describedby="gate-sub" hidden>
-  <div class="gate-card">
-    <div class="gate-brand">
-      <span class="wm" aria-label="BANANAbyte"><span class="b1">BANANA</span><span class="b2">byte</span><span class="dot" aria-hidden="true">.</span></span>
-      <span aria-hidden="true">🍌</span>
-    </div>
-    <h2 id="gate-h" data-es="¿Qué te trae por aquí?">What brings you here?</h2>
-    <p class="gate-sub" id="gate-sub" data-es="Elige la versión de BANANAbyte que mejor te encaje. Puedes cambiar cuando quieras.">Pick the version of BANANAbyte that fits you. You can switch anytime.</p>
-    <div class="gate-choices" id="gate-choices" role="group" aria-label="Choose your experience" data-es-aria-label="Elige tu experiencia">
-      <!-- choice cards injected here from the MODES map -->
-    </div>
-    <div class="gate-foot">
-      <button type="button" class="gate-skip" id="gate-skip" data-es="Solo estoy mirando — muéstrame la versión normal">Just looking — show me the default</button>
-      <p class="gate-note" data-es="Puedes cambiar cuando quieras desde el menú de arriba.">You can switch anytime from the menu at the top.</p>
-    </div>
-  </div>
-</div>
-
-<!-- ============================================================
-     HEADER (shared shell; toggle built from MODES map)
+     HEADER (unified shell: wordmark + nav + hamburger + lang toggle)
      ============================================================ -->
 <header class="site">
   <div class="wrap nav">
@@ -208,12 +185,50 @@
         <span><span class="banana">BANANA</span><span class="byte">byte</span></span>
         <span aria-hidden="true" style="font-size:.95em">🍌</span>
       </a>
-      <div class="mode-toggle" id="mode-toggle" role="radiogroup" aria-label="Choose audience mode" data-es-aria-label="Elige el modo de público">
-        <!-- radio inputs injected here from the MODES map -->
-      </div>
     </div>
     <nav class="nav-links" aria-label="Primary">
-      <a href="/services/" data-es="Servicios">Services</a>
+      <div class="nav-dd" data-nav-dd>
+        <a href="/services/" class="nav-dd-trigger" data-nav-dd-trigger aria-haspopup="true" aria-expanded="false" aria-controls="svc-dd-panel" data-es="Servicios">Services<span class="nav-dd-caret" aria-hidden="true"><svg viewBox="0 0 12 12" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4.5 6 7.5 9 4.5"/></svg></span></a>
+        <div class="nav-dd-panel" id="svc-dd-panel" role="group" aria-label="Services menu" data-es-aria-label="Menú de servicios">
+          <div class="nav-dd-cols">
+            <div class="nav-dd-col">
+              <p class="nav-dd-head" data-es="Crea tu sitio">Build your site</p>
+              <a class="nav-dd-item" href="/services/website-design/">
+                <span class="nav-dd-name" data-es="Diseño de sitios web">Website design</span>
+                <span class="nav-dd-desc" data-es="Sitios a medida para negocios y profesionales locales.">Custom sites for local businesses &amp; pros.</span>
+              </a>
+              <a class="nav-dd-item" href="/services/online-stores/">
+                <span class="nav-dd-name" data-es="Tiendas online">Online stores</span>
+                <span class="nav-dd-desc" data-es="Vende online — escaparate, carrito y pago.">Sell online — storefront, cart, checkout.</span>
+              </a>
+              <a class="nav-dd-item" href="/services/performer-sites/">
+                <span class="nav-dd-name" data-es="Sitios para artistas">Performer sites</span>
+                <span class="nav-dd-desc" data-es="Fechas de gira, reservas, reels y kit de prensa.">Tour dates, booking, reels, EPK.</span>
+              </a>
+              <a class="nav-dd-item" href="/services/redesign-refresh/">
+                <span class="nav-dd-name" data-es="Rediseño y renovación">Redesign &amp; refresh</span>
+                <span class="nav-dd-desc" data-es="Moderniza un sitio viejo o lento.">Modernize a tired or slow site.</span>
+              </a>
+            </div>
+            <div class="nav-dd-col">
+              <p class="nav-dd-head" data-es="Crece y mantén">Grow &amp; maintain</p>
+              <a class="nav-dd-item" href="/services/website-care/">
+                <span class="nav-dd-name" data-es="Mantenimiento web">Website care</span>
+                <span class="nav-dd-desc" data-es="Actualizaciones, respaldos, monitoreo y ediciones.">Updates, backups, monitoring, edits.</span>
+              </a>
+              <a class="nav-dd-item" href="/services/ai-front-desk/">
+                <span class="nav-dd-name" data-es="Recepcionista con IA">AI Front Desk</span>
+                <span class="nav-dd-desc" data-es="Asistente bilingüe 24/7 + respuesta por texto a llamadas perdidas.">24/7 bilingual assistant + missed-call text-back.</span>
+              </a>
+              <a class="nav-dd-item" href="/services/local-seo/">
+                <span class="nav-dd-name" data-es="SEO local">Local SEO</span>
+                <span class="nav-dd-desc" data-es="Que te encuentren en Google y el mapa.">Get found on Google &amp; the map.</span>
+              </a>
+            </div>
+          </div>
+          <a class="nav-dd-all" href="/services/" data-es="Ver todos los servicios &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">See all services <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
       <a href="/work/" data-es="Proyectos">Work</a>
       <a href="/pricing/" data-es="Precios">Pricing</a>
       <a href="/contact/" class="nav-cta" data-es="Empezar un proyecto">Start a project</a>
@@ -227,23 +242,94 @@
 </header>
 
 <!-- ============================================================
-     MOBILE MENU — slide-in drawer (≤979px). The #mode-toggle node
-     is physically MOVED into #menu-toggle-slot on mobile and back into
-     .nav-left on desktop (see placeMode() in the script), so there is
-     never a duplicate radio group to desync state.
+     MOBILE MENU — slide-in drawer (≤979px). Holds the nav links, the
+     primary CTA, and the relocated language toggle.
      ============================================================ -->
 <div class="nav-backdrop" id="nav-backdrop" hidden></div>
 <aside class="mobile-menu" id="mobile-menu" aria-label="Menu" aria-hidden="true" hidden>
   <div class="mm-inner">
-    <div class="mm-slot" id="menu-toggle-slot"><!-- #mode-toggle relocated here on mobile --></div>
+
+    <!-- drawer header: wordmark + bobbing banana + close -->
+    <div class="mm-head">
+      <a class="mm-wordmark" href="/" aria-label="BANANAbyte home" data-es-aria-label="BANANAbyte inicio">
+        <span class="nana" aria-hidden="true">🍌</span>
+        <span><span class="banana">BANANA</span><span class="byte">byte</span></span>
+      </a>
+      <span class="mm-head-spacer"></span>
+      <button class="mm-close" type="button" data-mm-close aria-label="Close menu" data-es-aria-label="Cerrar menú">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+
     <nav class="mm-links" aria-label="Mobile">
-      <a href="/services/" data-es="Servicios">Services</a>
-      <a href="/work/" data-es="Proyectos">Work</a>
-      <a href="/pricing/" data-es="Precios">Pricing</a>
-      <a href="/contact/" data-es="Contacto">Contact</a>
+      <div class="mm-acc" data-mm-acc>
+        <button type="button" class="mm-acc-toggle" data-mm-acc-toggle aria-expanded="false" aria-controls="mm-svc-panel">
+          <span class="mm-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.2 4.6L19 9.3l-3.5 3.4L16.4 18 12 15.5 7.6 18l.9-5.3L5 9.3l4.8-1.7z"/></svg></span>
+          <span class="mm-label" data-es="Servicios">Services</span>
+          <span class="mm-acc-caret" aria-hidden="true"><svg viewBox="0 0 14 14" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 5.5 7 9l3.5-3.5"/></svg></span>
+        </button>
+        <div class="mm-acc-panel" id="mm-svc-panel" hidden>
+          <p class="mm-eyebrow" data-es="Crea tu sitio">Build your site</p>
+          <a class="mm-acc-item" href="/services/website-design/">
+            <span class="mm-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V7l1.5-3h13L20 7v2"/><path d="M4 9a2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0"/><path d="M5 11v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-8"/><path d="M9 20v-4h4v4"/></svg></span>
+            <span class="mm-acc-tx">
+              <span class="mm-acc-name" data-es="Diseño de sitios web">Website design</span>
+              <span class="mm-acc-desc" data-es="Sitios a medida para negocios y profesionales locales.">Custom sites for local businesses &amp; pros.</span>
+            </span>
+          </a>
+          <a class="mm-acc-item" href="/services/online-stores/">
+            <span class="mm-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/><path d="M3 4h2l2.2 11.2a1.5 1.5 0 0 0 1.5 1.2h8.1a1.5 1.5 0 0 0 1.5-1.2L21 7H6"/></svg></span>
+            <span class="mm-acc-tx">
+              <span class="mm-acc-name" data-es="Tiendas online">Online stores</span>
+              <span class="mm-acc-desc" data-es="Vende online — escaparate, carrito y pago.">Sell online — storefront, cart, checkout.</span>
+            </span>
+          </a>
+          <a class="mm-acc-item" href="/services/performer-sites/">
+            <span class="mm-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/><path d="M9 21h6"/></svg></span>
+            <span class="mm-acc-tx">
+              <span class="mm-acc-name" data-es="Sitios para artistas">Performer sites</span>
+              <span class="mm-acc-desc" data-es="Fechas de gira, reservas, reels y kit de prensa.">Tour dates, booking, reels, EPK.</span>
+            </span>
+          </a>
+          <a class="mm-acc-item" href="/services/redesign-refresh/">
+            <span class="mm-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v5h-5"/></svg></span>
+            <span class="mm-acc-tx">
+              <span class="mm-acc-name" data-es="Rediseño y renovación">Redesign &amp; refresh</span>
+              <span class="mm-acc-desc" data-es="Moderniza un sitio viejo o lento.">Modernize a tired or slow site.</span>
+            </span>
+          </a>
+          <p class="mm-eyebrow" data-es="Crece y mantén">Grow &amp; maintain</p>
+          <a class="mm-acc-item" href="/services/website-care/">
+            <span class="mm-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="m9 11.5 2 2 4-4"/></svg></span>
+            <span class="mm-acc-tx">
+              <span class="mm-acc-name" data-es="Mantenimiento web">Website care</span>
+              <span class="mm-acc-desc" data-es="Actualizaciones, respaldos, monitoreo y ediciones.">Updates, backups, monitoring, edits.</span>
+            </span>
+          </a>
+          <a class="mm-acc-item" href="/services/ai-front-desk/">
+            <span class="mm-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="11" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.3"/><circle cx="9" cy="13" r="1"/><circle cx="15" cy="13" r="1"/><path d="M9.5 16.2c.8.6 1.6.9 2.5.9s1.7-.3 2.5-.9"/><path d="M4 12H2.5M20 12h1.5"/></svg></span>
+            <span class="mm-acc-tx">
+              <span class="mm-acc-name" data-es="Recepcionista con IA">AI Front Desk</span>
+              <span class="mm-acc-desc" data-es="Asistente bilingüe 24/7 + respuesta por texto a llamadas perdidas.">24/7 bilingual assistant + missed-call text-back.</span>
+            </span>
+          </a>
+          <a class="mm-acc-item" href="/services/local-seo/">
+            <span class="mm-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+            <span class="mm-acc-tx">
+              <span class="mm-acc-name" data-es="SEO local">Local SEO</span>
+              <span class="mm-acc-desc" data-es="Que te encuentren en Google y el mapa.">Get found on Google &amp; the map.</span>
+            </span>
+          </a>
+          <a class="mm-acc-all" href="/services/" data-es="Ver todos los servicios &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">See all services <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <a href="/work/"><span class="mm-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.6"/></svg></span><span class="mm-label" data-es="Proyectos">Work</span></a>
+      <a href="/pricing/"><span class="mm-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 13.3 12.6 21a1.8 1.8 0 0 1-2.5 0L3.4 14.3a1.8 1.8 0 0 1-.5-1.2V5a2 2 0 0 1 2-2h8.1a1.8 1.8 0 0 1 1.3.5l6.6 6.6a1.8 1.8 0 0 1-.4 3z"/><circle cx="8.2" cy="8.2" r="1.4"/></svg></span><span class="mm-label" data-es="Precios">Pricing</span></a>
+      <a href="/contact/"><span class="mm-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.4"/><path d="M3.5 6.5 12 12.5l8.5-6"/></svg></span><span class="mm-label" data-es="Contacto">Contact</span></a>
     </nav>
     <a href="/contact/" class="btn btn-primary mm-cta" data-es="Empezar un proyecto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Start a project <span class="arrow" aria-hidden="true">→</span></a>
     <div class="mm-lang-slot" id="menu-lang-slot"><!-- .lang-toggle relocated here on mobile --></div>
+    <p class="mm-sig" data-es="Orlando, FL · &lt;b&gt;BANANAbyte LLC&lt;/b&gt;">Orlando, FL · <b>BANANAbyte LLC</b></p>
   </div>
 </aside>
 
@@ -557,12 +643,11 @@
         <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
         <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
       </div>
-      <span class="made" data-es="¿No eres tú? &lt;button type=&quot;button&quot; class=&quot;reopen-gate&quot; id=&quot;reopen-gate&quot;&gt;Elegir de nuevo&lt;/button&gt;">Not you? <button type="button" class="reopen-gate" id="reopen-gate">Choose again</button></span>
     </div>
   </div>
 </footer>
 
-<script src="/assets/site.js"></script>
+<script defer src="/assets/site.js"></script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "0928fb51dad843818b6718b55b31e615"}'></script>
 </body>
 </html>

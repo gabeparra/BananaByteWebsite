@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <!--
-  BANANAbyte — Website Design & Build service page (/services/website-design/).
+  BANANAbyte — Local SEO & Google Business Profile service page
+  (/services/local-seo/).
+
+  This is a SERVICE the client buys for THEIR business: getting found on
+  Google Maps + local search. It is custom, hands-on work — no claim that
+  BananaByte builds anything "with AI." Any automation referenced is a tool
+  set up for the CLIENT's business, never how the site or listing is made.
 
   ONE set of content for BOTH audiences (business + performer). It restyles
-  automatically via the design-system CSS custom properties: slate + yellow in
-  business mode, black + gold in performer mode when the visitor toggles. No
-  separate copy panels — generic component classes (.hero, .svc-grid, .why,
-  .eyebrow, .btn, .price-anchor) plus a small page-scoped <style> that only
-  uses var(--…) tokens, so nothing is hard-coded to one palette.
+  automatically via the design-system CSS custom properties — generic
+  component classes (.hero, .why, .eyebrow, .btn, .price-anchor) plus a small
+  page-scoped <style> that only uses var(--…) tokens, so nothing is
+  hard-coded to one palette.
 
   Shared assets (/assets/site.css + /assets/site.js) drive the gate, bilingual
   swap, mode toggle, mobile drawer and reveal-on-scroll — the gate/header/
@@ -22,9 +27,9 @@
      a returning Spanish visitor doesn't get a flash of the wrong lang attr.
      The full copy swap happens synchronously at the end of <body>. -->
 <script>try{var _l=localStorage.getItem('bb-lang');if(_l==='es'||_l==='en'){document.documentElement.lang=_l;document.documentElement.classList.add('lang-'+_l);}}catch(e){}</script>
-<title>Website Design &amp; Build · BANANAbyte</title>
-<meta name="description" content="Custom website design and build for Orlando businesses, professionals and individuals. Fast, mobile-first, with lead forms, on-page SEO, and you own everything. From $900, one flat quote.">
-<link rel="canonical" href="https://bananabyte.io/services/website-design/">
+<title>Local SEO &amp; Google Business Profile Setup in Orlando · BANANAbyte</title>
+<meta name="description" content="Get your Orlando business found on Google Maps and local search. Google Business Profile setup, on-page local SEO, review help, and bilingual listings. From $400 setup + from $199/mo.">
+<link rel="canonical" href="https://bananabyte.io/services/local-seo/">
 <meta name="theme-color" content="#08120C">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -32,13 +37,13 @@
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="BANANAbyte">
-<meta property="og:title" content="Website Design &amp; Build · BANANAbyte">
-<meta property="og:description" content="Custom website design and build for Orlando businesses, professionals and individuals. Fast, mobile-first, with lead forms, on-page SEO, and you own everything. From $900, one flat quote.">
-<meta property="og:url" content="https://bananabyte.io/services/website-design/">
+<meta property="og:title" content="Local SEO &amp; Google Business Profile Setup in Orlando · BANANAbyte">
+<meta property="og:description" content="Get your Orlando business found on Google Maps and local search. Google Business Profile setup, on-page local SEO, review help, and bilingual listings. From $400 setup + from $199/mo.">
+<meta property="og:url" content="https://bananabyte.io/services/local-seo/">
 <meta property="og:image" content="https://bananabyte.io/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Website Design &amp; Build · BANANAbyte">
-<meta name="twitter:description" content="Custom website design and build for Orlando businesses, professionals and individuals. Fast, mobile-first, with lead forms, on-page SEO, and you own everything. From $900, one flat quote.">
+<meta name="twitter:title" content="Local SEO &amp; Google Business Profile Setup in Orlando · BANANAbyte">
+<meta name="twitter:description" content="Get your Orlando business found on Google Maps and local search. Google Business Profile setup, on-page local SEO, review help, and bilingual listings. From $400 setup + from $199/mo.">
 <meta name="twitter:image" content="https://bananabyte.io/og-image.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -69,9 +74,9 @@
      ============================================================ -->
 <style>
   /* lede paragraph under a section heading, slightly wider than .sec-head */
-  .wd-lede{color:var(--ink-soft);max-width:60ch;margin-top:14px;font-size:1.02rem}
+  .seo-lede{color:var(--ink-soft);max-width:60ch;margin-top:14px;font-size:1.02rem}
 
-  /* "What you get" — feature list with a check glyph per row */
+  /* "What you get" — feature list with an icon glyph per row */
   .feat-grid{display:grid;grid-template-columns:1fr;gap:14px}
   @media(min-width:640px){.feat-grid{grid-template-columns:repeat(2,1fr)}}
   @media(min-width:1000px){.feat-grid{grid-template-columns:repeat(3,1fr)}}
@@ -315,23 +320,23 @@
 <main id="main">
 
   <!-- ============================================================
-       HERO — ONE value prop that reads for businesses AND performers;
+       HERO — one value prop that reads for businesses AND performers;
        restyles slate/yellow ↔ black/gold via the design tokens.
        ============================================================ -->
-  <section class="hero" aria-labelledby="wd-hero-h">
+  <section class="hero" aria-labelledby="seo-hero-h">
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <span class="tag" data-reveal data-es="&lt;span class=&quot;pulse&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt; Diseño y desarrollo web · Orlando, FL"><span class="pulse" aria-hidden="true"></span> Website design &amp; build · Orlando, FL</span>
-        <h1 id="wd-hero-h" data-reveal data-es="Un sitio &lt;span class=&quot;mark&quot;&gt;a medida&lt;/span&gt; que de verdad te trae trabajo.">A custom site that <span class="mark">actually brings in business.</span></h1>
-        <p class="hero-lede" data-reveal data-es="No una plantilla más. BANANAbyte 🍌 diseña y construye desde cero un sitio rápido y limpio, hecho en torno a lo que ofreces y a cómo te encuentran tus clientes — para que más visitas se conviertan en llamadas, reservas y pedidos. Precio cerrado, y todo es tuyo cuando lanzamos.">Not another template. BANANAbyte 🍌 designs and builds a fast, clean site from scratch — shaped around what you offer and how people find you — so more visitors turn into calls, bookings, and orders. One flat price, and you own everything when it ships.</p>
+        <span class="tag" data-reveal data-es="&lt;span class=&quot;pulse&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt; SEO local y Perfil de Negocio · Orlando, FL"><span class="pulse" aria-hidden="true"></span> Local SEO &amp; Google Business Profile · Orlando, FL</span>
+        <h1 id="seo-hero-h" data-reveal data-es="Aparece cuando Orlando &lt;span class=&quot;mark&quot;&gt;te busca.&lt;/span&gt;">Show up when Orlando <span class="mark">searches for you.</span></h1>
+        <p class="hero-lede" data-reveal data-es="Que la gente cercana te encuentre en Google Maps y en la búsqueda local — y que esas búsquedas se conviertan en llamadas, visitas y reservas. Pongo a punto tu Perfil de Negocio de Google y las bases del SEO local para que salgas donde tus clientes ya están mirando.">Get on the map, get the calls. I help nearby customers find you on Google Maps and local search — and turn those searches into calls, visits, and bookings. I set up and tune your Google Business Profile and the local SEO groundwork so you show up where your customers are already looking.</p>
         <div class="hero-actions" data-reveal>
-          <a href="/contact/" class="btn btn-primary" data-es="Empezar un proyecto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Start a project <span class="arrow" aria-hidden="true">→</span></a>
-          <a href="/work/" class="btn btn-ghost" data-es="Ver los proyectos">See the work</a>
+          <a href="/contact/" class="btn btn-primary" data-es="Quiero aparecer en Google &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Get found on Google <span class="arrow" aria-hidden="true">→</span></a>
+          <a href="/pricing/" class="btn btn-ghost" data-es="Ver precios">See pricing</a>
         </div>
         <div class="hero-meta" data-reveal>
-          <span data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Desde $900, presupuesto cerrado"><span class="ck" aria-hidden="true">✓</span> From $900, one flat quote</span>
-          <span data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Online en ~2–3 semanas"><span class="ck" aria-hidden="true">✓</span> Live in ~2–3 weeks</span>
-          <span data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Eres dueño de todo"><span class="ck" aria-hidden="true">✓</span> You own everything</span>
+          <span data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Configuración desde $400"><span class="ck" aria-hidden="true">✓</span> Setup from $400</span>
+          <span data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Mantenimiento opcional desde $199/mes"><span class="ck" aria-hidden="true">✓</span> Optional care from $199/mo</span>
+          <span data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; En inglés y español"><span class="ck" aria-hidden="true">✓</span> In English &amp; Spanish</span>
         </div>
       </div>
 
@@ -339,12 +344,12 @@
         <div class="browser">
           <div class="browser-bar">
             <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-            <span class="url">yoursite.com</span>
+            <span class="url">google.com/maps</span>
           </div>
           <div class="browser-body">
-            <div class="sk-row"><div class="skeleton" style="width:42%"></div></div>
-            <div class="sk-row"><div class="skeleton" style="width:70%;height:9px"></div></div>
-            <div class="sk-row" style="margin-bottom:16px"><div class="skeleton" style="width:58%;height:9px"></div></div>
+            <div class="sk-row"><div class="skeleton" style="width:54%"></div></div>
+            <div class="sk-row"><div class="skeleton" style="width:38%;height:9px"></div></div>
+            <div class="sk-row" style="margin-bottom:16px"><div class="skeleton" style="width:70%;height:9px"></div></div>
             <div class="sk-row">
               <div class="sk-block sk-accent" style="flex:1"></div>
               <div class="sk-block" style="flex:1"></div>
@@ -352,69 +357,69 @@
             </div>
           </div>
         </div>
-        <div class="panel-badge" data-es="&lt;b&gt;98&lt;/b&gt; en rendimiento Lighthouse"><b>98</b> Lighthouse performance</div>
+        <div class="panel-badge" data-es="&lt;b&gt;#1&lt;/b&gt; en el mapa local"><b>#1</b> in the local map</div>
       </div>
     </div>
   </section>
 
   <!-- ============================================================
-       WHAT YOU GET — the concrete deliverables, no lock-in.
+       WHAT YOU GET — the concrete deliverables.
        ============================================================ -->
-  <section id="what-you-get" aria-labelledby="wd-what-h">
+  <section id="what-you-get" aria-labelledby="seo-what-h">
     <div class="wrap">
       <div class="sec-head" data-reveal>
         <span class="eyebrow" data-es="Lo que recibes">What you get</span>
-        <h2 id="wd-what-h" data-es="Todo lo que necesita un sitio para hacer su trabajo — y nada de relleno.">Everything a site needs to do its job — and none of the filler.</h2>
-        <p class="wd-lede" data-es="Cada sitio sale con estas bases. Sin complementos sorpresa ni cuotas que aparecen después: lo que ves aquí es lo que se construye.">Every site ships with these foundations. No surprise add-ons, no fees that show up later — what you see here is what gets built.</p>
+        <h2 id="seo-what-h" data-es="Todo lo necesario para salir en el mapa — y quedarte ahí.">Everything it takes to land on the map — and stay there.</h2>
+        <p class="seo-lede" data-es="Trabajo práctico y a mano sobre tu presencia en Google: nada automático ni genérico. Configuro, optimizo y limpio cada detalle para que la gente local te encuentre primero.">Hands-on, done-for-you work on your Google presence — nothing automated or generic. I set up, optimize, and clean up every detail so local people find you first.</p>
       </div>
 
       <div class="feat-grid">
         <article class="feat" data-reveal>
           <div class="fk" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2.5"/><path d="M11 18h2"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>
           </div>
-          <h3 data-es="Diseño a medida, mobile-first">Custom, mobile-first design</h3>
-          <p data-es="Diseñado desde cero en torno a tu marca y tus clientes — no una plantilla reciclada. Se ve y funciona perfecto primero en el teléfono, donde está la mayoría de tu tráfico.">Designed from scratch around your brand and your customers — never a recycled template. It looks and works right on the phone first, where most of your traffic already is.</p>
+          <h3 data-es="Perfil de Negocio de Google, bien hecho">Google Business Profile, done right</h3>
+          <p data-es="Reclamo o creo tu perfil y lo dejo completo: categorías correctas, descripción, horario, zonas de servicio y enlaces. Es la ficha que decide si sales en el mapa, así que la armo con cuidado.">I claim or create your profile and fill it out properly: the right categories, description, hours, service areas, and links. This listing decides whether you show on the map, so I build it carefully.</p>
         </article>
 
         <article class="feat" data-reveal>
           <div class="fk" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2.5"/><circle cx="8.5" cy="8.5" r="1.8"/><path d="m21 16-5-5L5 21"/></svg>
           </div>
-          <h3 data-es="Carga rápida de verdad">Genuinely fast load</h3>
-          <p data-es="Construido con código limpio y ligero, no con un constructor inflado. Las páginas que cargan rápido mantienen a la gente — y a Google — contentos.">Built with clean, lightweight code instead of a bloated page builder. Pages that load fast keep people — and Google — happy, and keep visitors from bouncing.</p>
-        </article>
-
-        <article class="feat" data-reveal>
-          <div class="fk" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v12H8l-4 4z"/><path d="M8 9h8M8 13h5"/></svg>
-          </div>
-          <h3 data-es="Formularios de contacto y captación">Contact &amp; lead forms</h3>
-          <p data-es="Formularios que llegan directo a tu correo con protección anti-spam — para que cada consulta, reserva o cotización aterrice donde la verás, no en un panel que nunca abres.">Forms that land straight in your inbox with spam protection built in — so every inquiry, booking, or quote request reaches you where you’ll see it, not in a dashboard you never open.</p>
+          <h3 data-es="Fotos, horario y zonas de servicio">Photos, hours &amp; service areas</h3>
+          <p data-es="Subo y ordeno buenas fotos, dejo el horario y los días festivos al día, y defino las zonas que cubres — para que quien te encuentre sepa de inmediato qué ofreces y dónde.">I add and arrange good photos, keep your hours and holiday days current, and define the areas you cover — so anyone who finds you instantly knows what you offer and where.</p>
         </article>
 
         <article class="feat" data-reveal>
           <div class="fk" aria-hidden="true">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
           </div>
-          <h3 data-es="SEO on-page básico">Basic on-page SEO</h3>
-          <p data-es="Títulos, descripciones, estructura limpia y velocidad — la base que ayuda a que Google entienda tu sitio y te muestre cuando alguien busca lo que ofreces.">Titles, descriptions, clean structure, and speed — the groundwork that helps Google understand your site and show it when someone searches for what you offer.</p>
+          <h3 data-es="SEO local en tu sitio">On-page local SEO</h3>
+          <p data-es="Afino tu sitio para la búsqueda local: títulos, descripciones, datos de contacto consistentes y páginas claras de servicio y ubicación, para que Google conecte tu negocio con tu ciudad.">I tune your site for local search: titles, descriptions, consistent contact details, and clear service and location pages — so Google connects your business to your city.</p>
         </article>
 
         <article class="feat" data-reveal>
           <div class="fk" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v6m0 0 3-3m-3 3L9 6"/><path d="M5 12h14l-1.4 7.5a2 2 0 0 1-2 1.5H8.4a2 2 0 0 1-2-1.5L5 12z"/></svg>
           </div>
-          <h3 data-es="Mapa, horario y datos del negocio">Map, hours &amp; business info</h3>
-          <p data-es="Google Maps integrado, tu dirección, horario y teléfono bien colocados — para que la gente local te encuentre, sepa cuándo estás y llegue sin perderse.">An embedded Google Map, plus your address, hours, and phone placed where they belong — so local folks can find you, know when you’re open, and get there without hunting.</p>
+          <h3 data-es="Palabras clave locales">Local keyword targeting</h3>
+          <p data-es="Investigo cómo busca de verdad la gente de tu zona — «tu servicio cerca de mí», por barrio o por ciudad — y enfoco tu perfil y tu sitio hacia esos términos en lugar de adivinar.">I research how people in your area actually search — &ldquo;your service near me,&rdquo; by neighborhood or by city — and point your profile and site at those real terms instead of guessing.</p>
         </article>
 
         <article class="feat" data-reveal>
           <div class="fk" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10V7a5 5 0 0 1 10 0v3"/><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M12 14v3"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 14.6 9l6 .5-4.6 4 1.4 5.8L12 16.8 6.6 19.3 8 13.5 3.4 9.5 9.4 9z"/></svg>
           </div>
-          <h3 data-es="Eres dueño de todo — sin ataduras">You own everything — no lock-in</h3>
-          <p data-es="Código, dominio, cuentas y contenido quedan a tu nombre. Sin plataformas que te tengan de rehén ni cuotas mensuales obligatorias. Si algún día te vas, te llevas todo contigo.">Code, domain, accounts, and content are all in your name. No platform holding you hostage, no mandatory monthly fee. If you ever move on, you take the whole thing with you.</p>
+          <h3 data-es="Ayuda con las reseñas">Review-generation help</h3>
+          <p data-es="Te dejo un sistema sencillo para pedir reseñas — un enlace directo, un código QR y un guion corto — para que las buenas opiniones lleguen solas. Las reseñas pesan mucho en el mapa.">I set you up with a simple way to ask for reviews — a direct link, a QR code, and a short script — so good reviews come in steadily. Reviews carry real weight on the map.</p>
+        </article>
+
+        <article class="feat" data-reveal>
+          <div class="fk" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18z"/></svg>
+          </div>
+          <h3 data-es="Fichas y contenido bilingüe">Bilingual listings &amp; content</h3>
+          <p data-es="Donde tenga sentido, dejo tu ficha y tu contenido en inglés y en español — para que en Orlando te encuentre y te entienda quien busca en cualquiera de los dos idiomas.">Where it makes sense, I set up your listing and content in both English and Spanish — so in Orlando you&rsquo;re found and understood by people searching in either language.</p>
         </article>
       </div>
     </div>
@@ -423,21 +428,21 @@
   <!-- ============================================================
        WHO IT'S FOR — chips + a short framing line.
        ============================================================ -->
-  <section id="who-its-for" class="why" aria-labelledby="wd-who-h">
+  <section id="who-its-for" class="why" aria-labelledby="seo-who-h">
     <div class="wrap why-inner">
       <div data-reveal>
         <span class="eyebrow" data-es="Para quién es">Who it’s for</span>
-        <h2 id="wd-who-h" data-es="Si tu trabajo necesita una presencia web de verdad, lo construyo.">If your work needs a real web presence, I’ll build it.</h2>
-        <p class="lede" data-es="No tienes que ser una gran empresa para merecer un buen sitio. Si la gente te busca, te reserva o te paga, necesitas un lugar que se vea hecho a propósito — no un perfil prestado en la red social de turno.">You don’t have to be a big company to deserve a good site. If people look you up, book you, or pay you, you need a home that looks intentional — not a borrowed profile on someone else’s platform.</p>
+        <h2 id="seo-who-h" data-es="Si la gente cercana debería encontrarte y no te encuentra, esto es para ti.">If nearby people should find you and don’t, this is for you.</h2>
+        <p class="lede" data-es="Está pensado para negocios locales que viven de clientes cercanos pero no salen — o salen muy abajo — cuando alguien busca en Google. Si dependes de que te encuentren en tu zona, vale oro estar arriba en el mapa.">This is built for local businesses that live on nearby customers but don’t show up — or show up buried — when someone searches Google. If you depend on being found in your area, ranking on the map is worth real money.</p>
       </div>
       <div class="who-tags" data-reveal>
-        <span class="who-chip"><span class="wd" aria-hidden="true"></span><span data-es="Negocios locales">Local businesses</span></span>
+        <span class="who-chip"><span class="wd" aria-hidden="true"></span><span data-es="Servicios a domicilio">Home-service businesses</span></span>
         <span class="who-chip"><span class="wd" aria-hidden="true"></span><span data-es="Oficios y contratistas">Trades &amp; contractors</span></span>
-        <span class="who-chip"><span class="wd" aria-hidden="true"></span><span data-es="Clínicas y consultorios">Clinics &amp; practices</span></span>
+        <span class="who-chip"><span class="wd" aria-hidden="true"></span><span data-es="Tiendas y comercios">Shops &amp; storefronts</span></span>
         <span class="who-chip"><span class="wd" aria-hidden="true"></span><span data-es="Restaurantes y cafés">Restaurants &amp; cafés</span></span>
-        <span class="who-chip"><span class="wd" aria-hidden="true"></span><span data-es="Profesionales y consultores">Professionals &amp; consultants</span></span>
-        <span class="who-chip"><span class="wd" aria-hidden="true"></span><span data-es="Creativos y artistas">Creatives &amp; performers</span></span>
-        <span class="who-chip"><span class="wd" aria-hidden="true"></span><span data-es="Cualquiera que empieza desde cero">Anyone starting from zero</span></span>
+        <span class="who-chip"><span class="wd" aria-hidden="true"></span><span data-es="Clínicas y consultorios">Clinics &amp; practices</span></span>
+        <span class="who-chip"><span class="wd" aria-hidden="true"></span><span data-es="Salones y estudios">Salons &amp; studios</span></span>
+        <span class="who-chip"><span class="wd" aria-hidden="true"></span><span data-es="Cualquier negocio que no aparece en Google">Anyone invisible on Google</span></span>
       </div>
     </div>
   </section>
@@ -445,50 +450,50 @@
   <!-- ============================================================
        HOW IT WORKS — short 4-step process.
        ============================================================ -->
-  <section id="how-it-works" aria-labelledby="wd-how-h">
+  <section id="how-it-works" aria-labelledby="seo-how-h">
     <div class="wrap">
       <div class="sec-head" data-reveal>
         <span class="eyebrow" data-es="Cómo funciona">How it works</span>
-        <h2 id="wd-how-h" data-es="Cuatro pasos sencillos, de la idea a publicado.">Four simple steps, from idea to live.</h2>
-        <p class="wd-lede" data-es="Sin papeleo interminable ni reuniones que no van a ningún lado. Trabajas directo conmigo de principio a fin, y siempre sabes en qué punto estamos.">No endless paperwork, no meetings that go nowhere. You work directly with me from start to finish, and you always know exactly where we are.</p>
+        <h2 id="seo-how-h" data-es="De invisible a en el mapa, en cuatro pasos.">From invisible to on the map, in four steps.</h2>
+        <p class="seo-lede" data-es="Empezamos viendo dónde estás hoy, dejamos tu presencia impecable y, si quieres, la cuido mes a mes. Trabajas directo conmigo y siempre sabes qué se hizo y por qué.">We start by seeing where you stand today, get your presence in great shape, and — if you want — I keep it cared for month to month. You work directly with me and always know what was done and why.</p>
       </div>
 
       <div class="steps">
         <article class="step" data-reveal>
           <span class="sn" aria-hidden="true">1</span>
-          <h3 data-es="Conversamos">We chat</h3>
-          <p data-es="Me cuentas qué haces y qué necesita el sitio. Una llamada o unos mensajes bastan — gratis y sin compromiso — y salimos con un plan y un precio cerrado.">You tell me what you do and what the site needs to do. A quick call or a few messages — free and no pressure — and we leave with a plan and one flat price.</p>
+          <h3 data-es="Auditoría">Audit</h3>
+          <p data-es="Reviso cómo apareces hoy en Google — tu perfil, tu sitio, tus reseñas y quién te gana en tu zona — y te explico claro qué está frenando tu visibilidad.">I check how you show up on Google today — your profile, your site, your reviews, and who&rsquo;s outranking you locally — and tell you plainly what&rsquo;s holding your visibility back.</p>
         </article>
         <article class="step" data-reveal>
           <span class="sn" aria-hidden="true">2</span>
-          <h3 data-es="Diseño">I design</h3>
-          <p data-es="Convierto eso en un diseño hecho a tu medida y te lo enseño temprano. Tú das tu opinión y lo afinamos juntos antes de escribir una sola línea de la versión final.">I turn that into a design made just for you and show it to you early. You give feedback and we tune it together before a single line of the final build is written.</p>
+          <h3 data-es="Configuro el perfil">Set up the profile</h3>
+          <p data-es="Reclamo o creo tu Perfil de Negocio de Google y lo dejo completo y verificado: categorías, descripción, horario, zonas de servicio, fotos y datos de contacto bien puestos.">I claim or create your Google Business Profile and get it complete and verified: categories, description, hours, service areas, photos, and contact details all in place.</p>
         </article>
         <article class="step" data-reveal>
           <span class="sn" aria-hidden="true">3</span>
-          <h3 data-es="Construyo">I build</h3>
-          <p data-es="Convierto el diseño aprobado en un sitio real, rápido y a prueba de móvil — con tus formularios, tu mapa y el SEO base ya conectados. Tú revisas y pides ajustes.">I turn the approved design into a real, fast, mobile-proof site — with your forms, your map, and the SEO groundwork already wired up. You review and request tweaks.</p>
+          <h3 data-es="Optimizo">Optimize</h3>
+          <p data-es="Ajusto tu sitio y tu ficha para las búsquedas locales que importan, dejo todo coherente entre Google y tu web, y monto un sistema sencillo para juntar reseñas.">I tune your site and listing for the local searches that matter, keep everything consistent between Google and your site, and set up a simple system to gather reviews.</p>
         </article>
         <article class="step" data-reveal>
           <span class="sn" aria-hidden="true">4</span>
-          <h3 data-es="Lanzamos">We launch</h3>
-          <p data-es="Publicamos en tu dominio, te entrego las llaves de todo y te muestro cómo actualizarlo. A partir de ahí es tuyo — y sigo a un mensaje de distancia si necesitas algo.">We go live on your domain, I hand you the keys to everything, and I show you how to update it. From there it’s yours — and I’m one message away if you need anything.</p>
+          <h3 data-es="Mantenimiento">Ongoing</h3>
+          <p data-es="Si quieres, me quedo cuidándolo: publicaciones, fotos al día, respuestas a reseñas y un reporte mensual sencillo de cómo subes. Es opcional — la configuración ya queda tuya.">If you want, I stay on to keep it cared for: posts, fresh photos, review replies, and a simple monthly report on how you&rsquo;re climbing. It&rsquo;s optional — the setup is already yours.</p>
         </article>
       </div>
     </div>
   </section>
 
   <!-- ============================================================
-       PRICE TEASER — "from $900, one flat quote" → /pricing/.
+       PRICE TEASER — "from $400 setup + from $199/mo" → /pricing/.
        ONE shared panel; restyles per mode via tokens.
        ============================================================ -->
-  <section id="price-teaser" aria-labelledby="wd-price-h">
+  <section id="price-teaser" aria-labelledby="seo-price-h">
     <div class="wrap">
       <div class="price-teaser" data-reveal>
         <div class="pt-copy">
           <span class="eyebrow" data-es="Precios">Pricing</span>
-          <h2 id="wd-price-h" data-es="Desde &lt;span class=&quot;price-anchor&quot;&gt;$900&lt;/span&gt;, un solo presupuesto cerrado.">From <span class="price-anchor">$900</span>, one flat quote.</h2>
-          <p data-es="El número final depende del tamaño y las funciones, pero siempre lo sabes por adelantado — sin reloj por horas, sin facturas sorpresa. Y no pides nada por adelantado: primero me gano tu confianza.">The final number depends on size and features, but you always know it upfront — no hourly meter, no surprise invoices. And nothing’s due up front: I earn your trust first.</p>
+          <h2 id="seo-price-h" data-es="Desde &lt;span class=&quot;price-anchor&quot;&gt;$400&lt;/span&gt; de configuración, más cuidado opcional desde $199/mes.">From <span class="price-anchor">$400</span> setup, plus optional care from $199/mo.</h2>
+          <p data-es="La configuración es un pago único que deja tu perfil y tu SEO local listos. El mantenimiento mensual es opcional, para seguir publicando, respondiendo reseñas y subiendo en el mapa. El número exacto depende de tu negocio, y siempre lo sabes por adelantado.">The setup is a one-time fee that gets your profile and local SEO in shape. The monthly care is optional — to keep posting, replying to reviews, and climbing the map. The exact number depends on your business, and you always know it upfront.</p>
         </div>
         <div class="pt-actions">
           <a href="/pricing/" class="btn btn-primary" data-es="Ver precios &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">See pricing <span class="arrow" aria-hidden="true">→</span></a>
@@ -500,14 +505,14 @@
   <!-- ============================================================
        CLOSING CTA — every page ends here, pointing to /contact/.
        ============================================================ -->
-  <section id="cta" aria-labelledby="wd-cta-h">
+  <section id="cta" aria-labelledby="seo-cta-h">
     <div class="wrap">
       <div class="cta-band" data-reveal>
         <span class="eyebrow" style="justify-content:center" data-es="Empecemos">Let’s start</span>
-        <h2 id="wd-cta-h" data-es="¿Listo para un sitio que trabaje tanto como tú?">Ready for a site that works as hard as you do?</h2>
-        <p data-es="Cuéntame en un par de frases qué haces y qué necesitas. Leo cada mensaje yo mismo y respondo en un día hábil con próximos pasos honestos — aunque sea «todavía no me necesitas».">Tell me in a couple of sentences what you do and what you need. I read every message myself and reply within one business day with honest next steps — even if that’s “you don’t need me yet.”</p>
+        <h2 id="seo-cta-h" data-es="¿Listo para que Orlando te encuentre?">Ready for Orlando to find you?</h2>
+        <p data-es="Cuéntame qué haces y dónde, y reviso gratis cómo apareces hoy en Google. Leo cada mensaje yo mismo y respondo en un día hábil con próximos pasos honestos — aunque sea «ya estás bien posicionado».">Tell me what you do and where, and I’ll take a free look at how you show up on Google today. I read every message myself and reply within one business day with honest next steps — even if that’s “you’re already ranking fine.”</p>
         <div class="cta-actions">
-          <a href="/contact/" class="btn btn-primary" data-es="Empezar un proyecto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Start a project <span class="arrow" aria-hidden="true">→</span></a>
+          <a href="/contact/" class="btn btn-primary" data-es="Empezar &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Get started <span class="arrow" aria-hidden="true">→</span></a>
           <a href="/pricing/" class="btn btn-ghost" data-es="Ver precios">See pricing</a>
         </div>
       </div>

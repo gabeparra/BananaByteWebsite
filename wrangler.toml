@@ -30,6 +30,21 @@ name = "EVENT_LIMITER"          # -> env.EVENT_LIMITER
 namespace_id = "1002"
 simple = { limit = 40, period = 60 }
 
+# AI front-desk chat rate limit: 12 messages / 60s per IP. Kept tight to bound
+# OpenRouter credit spend (paired with low max_tokens on the /api/chat call).
+[[ratelimits]]
+name = "CHAT_LIMITER"           # -> env.CHAT_LIMITER
+namespace_id = "1003"
+simple = { limit = 12, period = 60 }
+
+# Chat-transcript email logging: 6 beacons / 60s per IP (CF only allows
+# period 10 or 60). The beacon fires once per session at chat-end, so this
+# only ever throttles an abuser trying to flood the owner's inbox.
+[[ratelimits]]
+name = "LOG_LIMITER"            # -> env.LOG_LIMITER
+namespace_id = "1004"
+simple = { limit = 6, period = 60 }
+
 # --- First-party click-analytics counters (cookieless) ---
 [[kv_namespaces]]
 binding = "EVENTS"
@@ -41,4 +56,5 @@ id = "39e64e39242d48659d5b7967cccbde56"
 #   npx wrangler secret put TELEGRAM_CHAT_ID    # owner chat id (kept out of git)
 #   npx wrangler secret put TURNSTILE_SECRET    # Turnstile siteverify secret
 #   npx wrangler secret put STATS_TOKEN         # private key to view /api/stats
+#   npx wrangler secret put OPENROUTER_API_KEY  # sk-or-... for the /api/chat AI front desk
 # For `wrangler dev`, put the same names in a gitignored .dev.vars file.
