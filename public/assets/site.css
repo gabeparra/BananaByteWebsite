@@ -63,7 +63,10 @@
   }
 
   *,*::before,*::after{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+  /* overflow-x:clip (NOT hidden) contains the ticker marquee's reported
+     scrollWidth without creating a scroll container — so the sticky header
+     keeps working and there's no phantom horizontal scroll metric. */
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;overflow-x:clip}
   body{
     margin:0;
     background:var(--bg);
