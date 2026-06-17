@@ -191,6 +191,113 @@
   revealVisible();
 
   /* ============================================================
+     BLOCK REVEAL — every section assembles from a grid of blocks as
+     it scrolls into view (the "blocky" brand aesthetic), MOBILE too.
+     A transient body-level overlay (positioned at the section's
+     document coords, so it never touches the section's own layout)
+     dissolves block-by-block to reveal the section. Compositor-only
+     (opacity/transform), runs once per section, then removes itself.
+     ============================================================ */
+  (function blockReveal(){
+    if (reduceMQ.matches) return;                         /* honor reduced-motion */
+    var secs = Array.prototype.slice.call(document.querySelectorAll('main > section'));
+    if (!secs.length || !('IntersectionObserver' in window)) return;
+
+    function assemble(sec){
+      var r = sec.getBoundingClientRect();
+      if (r.height < 40 || r.width < 40) return;
+      /* a fine grid reads as the blocky/blueprint aesthetic; capped so a very
+         tall section can't spawn a runaway grid. (Measured compositor-cheap —
+         the cells animate transform/opacity only, once per section.) */
+      var cols = Math.max(3, Math.min(8, Math.round(r.width / 100)));
+      var rows = Math.max(2, Math.min(9, Math.round(r.height / 120)));
+      var bg = getComputedStyle(sec).backgroundColor;
+      if (!bg || bg === 'rgba(0, 0, 0, 0)' || bg === 'transparent') bg = getComputedStyle(document.body).backgroundColor;
+      /* TRANSLUCENT fill so the content (letters flying in, cards sliding) is
+         visible THROUGH the dissolving blueprint grid — the grid is the accent,
+         the content animation is the star. */
+      var m = bg.match(/\d+/g);
+      var fill = (m && m.length >= 3) ? 'rgba(' + m[0] + ',' + m[1] + ',' + m[2] + ',0.55)' : 'rgba(8,18,12,0.55)';
+
+      var ov = document.createElement('div');
+      ov.className = 'block-ov'; ov.setAttribute('aria-hidden', 'true');
+      ov.style.top = (r.top + window.pageYOffset) + 'px';
+      ov.style.left = (r.left + window.pageXOffset) + 'px';
+      ov.style.width = r.width + 'px';
+      ov.style.height = r.height + 'px';
+      ov.style.gridTemplateColumns = 'repeat(' + cols + ',1fr)';
+      ov.style.gridTemplateRows = 'repeat(' + rows + ',1fr)';
+
+      var n = cols * rows, maxd = 0;
+      for (var i = 0; i < n; i++){
+        var c = i % cols, rr = (i / cols) | 0;
+        var d = (rr + c) * 28;                            /* diagonal stagger */
+        if (d > maxd) maxd = d;
+        var b = document.createElement('div');
+        b.className = 'block-cell';
+        b.style.background = fill;
+        b.style.transitionDelay = d + 'ms';
+        ov.appendChild(b);
+      }
+      document.body.appendChild(ov);
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){ ov.classList.add('go'); }); });
+      setTimeout(function(){ if (ov.parentNode) ov.parentNode.removeChild(ov); }, maxd + 620);
+    }
+
+    var io = new IntersectionObserver(function(entries, obs){
+      entries.forEach(function(e){
+        if (!e.isIntersecting) return;
+        obs.unobserve(e.target);
+        if (!document.hidden) assemble(e.target);
+      });
+    }, { threshold: 0.06, rootMargin: '0px 0px -6% 0px' });
+    secs.forEach(function(s){ io.observe(s); });
+  })();
+
+  /* ============================================================
+     LETTER FLY-IN — section headings assemble letter-by-letter from
+     alternating sides with a color pop (accent → ink) as they enter
+     view. We split the heading at reveal then RESTORE the original
+     markup, so the bilingual innerHTML swap (applyLang) is never
+     disturbed. Skips headings that contain inline markup.
+     ============================================================ */
+  (function letterReveal(){
+    if (reduceMQ.matches) return;
+    if (!('IntersectionObserver' in window)) return;
+    var heads = Array.prototype.slice.call(document.querySelectorAll('main section h2'))
+      .filter(function(h){ return h.children.length === 0 && h.textContent.trim().length <= 90; });
+    if (!heads.length) return;
+
+    function esc(c){ return c === '&' ? '&amp;' : c === '<' ? '&lt;' : c === '>' ? '&gt;' : c; }
+
+    function fly(h){
+      if (h.getAttribute('data-flying')) return;
+      var text = h.textContent, orig = h.innerHTML, out = '', li = 0;
+      for (var i = 0; i < text.length; i++){
+        var ch = text.charAt(i);
+        if (ch === ' '){ out += ' '; continue; }
+        var sx = (li % 2 ? 1 : -1) * 0.8;       /* alternate letters: from each side */
+        out += '<span class="ltr" style="--li:' + li + ';--sx:' + sx + 'em">' + esc(ch) + '</span>';
+        li++;
+      }
+      h.setAttribute('data-flying', '1');
+      h.innerHTML = out;
+      void h.offsetWidth;                        /* commit before animating */
+      h.classList.add('ltr-go');
+      setTimeout(function(){
+        h.classList.remove('ltr-go');
+        h.removeAttribute('data-flying');
+        h.innerHTML = orig;                      /* restore — keeps applyLang lossless */
+      }, li * 24 + 720);
+    }
+
+    var io = new IntersectionObserver(function(entries, obs){
+      entries.forEach(function(e){ if (e.isIntersecting){ obs.unobserve(e.target); if (!document.hidden) fly(e.target); } });
+    }, { threshold: 0.2, rootMargin: '0px 0px -8% 0px' });
+    heads.forEach(function(h){ io.observe(h); });
+  })();
+
+  /* ============================================================
      "BLUEPRINT → BUILT" — once the hero/ticker scrolls past the top,
      the studio gets down to business: the site itself reassembles IN
      PLACE — the words rebuild block-by-block, edges square off, and
@@ -1032,306 +1139,5 @@
     }, true);   /* capture: fire before any same-target handler that might stop propagation */
   })();
 
-  /* ============================================================
-     AI FRONT DESK — the live bilingual chat widget.
-
-     This is the working demo of the "AI Front Desk" service: a floating
-     launcher (bottom-right) opens an on-brand chat panel. On send it POSTs
-     the running transcript to the same-origin /api/chat Worker, which calls
-     OpenRouter with a BananaByte system persona and returns {reply}.
-
-     • Injected here so it appears on EVERY page — no per-page markup.
-     • Bilingual: all UI copy + the greeting follow the existing LANG state
-       (and re-render live if the visitor flips EN/ES while it's open).
-     • Keeps only the last ~8 turns client-side (the worker also caps).
-     • Accessible: dialog role, labelled controls, focus move + trap, Esc to
-       close, Enter to send. Open/close animation is reduced-motion aware.
-     ============================================================ */
-  (function chatWidget(){
-    var MAX_TURNS = 8;   /* user+assistant pairs kept in the transcript */
-
-    /* bilingual copy — resolved live against the page-level LANG var */
-    var CW = {
-      en: {
-        launch:  'Chat with BananaByte',
-        title:   'BananaByte Assistant',
-        sub:     'AI front desk · replies in seconds',
-        close:   'Close chat',
-        greet:   "Hi! 🍌 Ask me anything about BananaByte — sites, pricing, getting started.",
-        ph:      'Type your message…',
-        send:    'Send',
-        sending: 'Thinking…',
-        error:   "I'm having a hiccup — text Gabe at (321) 202-3732 or use the contact page."
-      },
-      es: {
-        launch:  'Chatea con BananaByte',
-        title:   'Asistente BananaByte',
-        sub:     'Recepción con IA · responde en segundos',
-        close:   'Cerrar chat',
-        greet:   "¡Hola! 🍌 Pregúntame lo que quieras sobre BananaByte — sitios, precios, cómo empezar.",
-        ph:      'Escribe tu mensaje…',
-        send:    'Enviar',
-        sending: 'Pensando…',
-        error:   "Tuve un problemita — escríbele a Gabe al (321) 202-3732 o usa la página de contacto."
-      }
-    };
-    function cw(k){ return (CW[LANG] || CW.en)[k]; }
-
-    /* the running transcript (user/assistant only; system lives server-side) */
-    var history = [];
-    var busy = false;
-    var greeted = false;
-    var lastFocus = null;
-
-    /* ---- transcript logging: email the finished convo to the owner ----
-       A stable per-session id so the worker can de-dupe a close + an unload
-       beacon. 'logged' is the once-per-session guard (set true after we beacon)
-       so the two end triggers never double-send. */
-    var SESSION_CONVO_KEY = 'bb-chat-convo';
-    function convoId(){
-      try {
-        var id = sessionStorage.getItem(SESSION_CONVO_KEY);
-        if (!id){
-          id = 'c-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
-          sessionStorage.setItem(SESSION_CONVO_KEY, id);
-        }
-        return id;
-      } catch(e){
-        /* private mode — fall back to a per-load id (still de-dupes within load) */
-        if (!convoId._mem) convoId._mem = 'c-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
-        return convoId._mem;
-      }
-    }
-    var logged = false;
-    /* Fire-and-forget the transcript when the conversation ENDS, but only on a
-       REAL exchange (≥1 user AND ≥1 assistant) and only ONCE per session. Uses
-       sendBeacon so it survives the page being closed/unloaded. */
-    function logTranscript(){
-      if (logged) return;
-      var hasUser = false, hasAssistant = false;
-      for (var i = 0; i < history.length; i++){
-        if (history[i].role === 'user') hasUser = true;
-        else if (history[i].role === 'assistant') hasAssistant = true;
-      }
-      if (!hasUser || !hasAssistant) return;   /* skip greeting-only / empty chats */
-      logged = true;                            /* set before sending — never double-fire */
-      try {
-        var payload = JSON.stringify({
-          convoId: convoId(),
-          lang: LANG,
-          url: location.pathname,
-          messages: history
-        });
-        navigator.sendBeacon('/api/chat-log', new Blob([payload], { type: 'application/json' }));
-      } catch(e){ /* fire-and-forget — never throw on unload */ }
-    }
-
-    /* ---- build the DOM once ---- */
-    var launcher = document.createElement('button');
-    launcher.type = 'button';
-    launcher.className = 'bb-chat-launch';
-    launcher.setAttribute('aria-haspopup', 'dialog');
-    launcher.setAttribute('aria-expanded', 'false');
-    launcher.innerHTML =
-      '<span class="bb-chat-launch-ic" aria-hidden="true">' +
-        '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
-          '<path d="M21 11.5a8.5 8.5 0 0 1-12.5 7.5L3 21l2-5.5A8.5 8.5 0 1 1 21 11.5z"/>' +
-        '</svg>' +
-        '<span class="bb-chat-launch-emoji" aria-hidden="true">🍌</span>' +
-      '</span>';
-
-    var panel = document.createElement('div');
-    panel.className = 'bb-chat-panel';
-    panel.setAttribute('role', 'dialog');
-    panel.setAttribute('aria-modal', 'false');
-    panel.setAttribute('aria-label', cw('title'));
-    panel.hidden = true;
-    panel.innerHTML =
-      '<div class="bb-chat-head">' +
-        '<div class="bb-chat-head-txt">' +
-          '<span class="bb-chat-title"></span>' +
-          '<span class="bb-chat-sub"></span>' +
-        '</div>' +
-        '<button type="button" class="bb-chat-close" aria-label="">' +
-          '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>' +
-        '</button>' +
-      '</div>' +
-      '<div class="bb-chat-log" role="log" aria-live="polite" aria-atomic="false" tabindex="0"></div>' +
-      '<form class="bb-chat-form">' +
-        '<input type="text" class="bb-chat-input" autocomplete="off" aria-label="" />' +
-        '<button type="submit" class="bb-chat-send" aria-label="">' +
-          '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>' +
-        '</button>' +
-      '</form>';
-
-    document.body.appendChild(launcher);
-    document.body.appendChild(panel);
-
-    /* handles */
-    var elTitle = panel.querySelector('.bb-chat-title');
-    var elSub   = panel.querySelector('.bb-chat-sub');
-    var elClose = panel.querySelector('.bb-chat-close');
-    var elLog   = panel.querySelector('.bb-chat-log');
-    var elForm  = panel.querySelector('.bb-chat-form');
-    var elInput = panel.querySelector('.bb-chat-input');
-    var elSend  = panel.querySelector('.bb-chat-send');
-
-    /* ---- localized static labels (re-applied on language change) ---- */
-    function applyChatLang(){
-      launcher.setAttribute('aria-label', cw('launch'));
-      panel.setAttribute('aria-label', cw('title'));
-      elTitle.textContent = cw('title');
-      elSub.textContent   = cw('sub');
-      elClose.setAttribute('aria-label', cw('close'));
-      elInput.setAttribute('placeholder', cw('ph'));
-      elInput.setAttribute('aria-label', cw('ph'));
-      elSend.setAttribute('aria-label', cw('send'));
-      /* if the greeting bubble is showing and nothing's been said yet, retranslate it */
-      if (greeted && history.length === 0){
-        var g = elLog.querySelector('.bb-chat-msg.assistant .bb-chat-bubble');
-        if (g) g.textContent = cw('greet');
-      }
-    }
-    applyChatLang();
-
-    /* ---- message rendering ---- */
-    function addMsg(role, text){
-      var row = document.createElement('div');
-      row.className = 'bb-chat-msg ' + role;
-      var bubble = document.createElement('div');
-      bubble.className = 'bb-chat-bubble';
-      bubble.textContent = text;
-      row.appendChild(bubble);
-      elLog.appendChild(row);
-      elLog.scrollTop = elLog.scrollHeight;
-      return bubble;
-    }
-    function addTyping(){
-      var row = document.createElement('div');
-      row.className = 'bb-chat-msg assistant bb-chat-typing-row';
-      row.innerHTML = '<div class="bb-chat-bubble bb-chat-typing" aria-hidden="true"><span></span><span></span><span></span></div>';
-      elLog.appendChild(row);
-      elLog.scrollTop = elLog.scrollHeight;
-      return row;
-    }
-
-    /* ---- open / close ---- */
-    function panelFocusable(){
-      return Array.prototype.slice.call(
-        panel.querySelectorAll('button, [href], input, textarea, [tabindex]:not([tabindex="-1"])')
-      ).filter(function(el){ return el.offsetParent !== null && !el.disabled; });
-    }
-    function onPanelKey(e){
-      if (e.key === 'Escape'){ e.preventDefault(); closeChat(); return; }
-      if (e.key === 'Tab'){
-        var f = panelFocusable();
-        if (!f.length) return;
-        var first = f[0], last = f[f.length - 1];
-        if (e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
-        else if (!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
-      }
-    }
-    function openChat(){
-      if (!panel.hidden) return;
-      lastFocus = document.activeElement;
-      panel.hidden = false;
-      void panel.offsetWidth;                 /* allow layout before the open transition */
-      panel.classList.add('open');
-      launcher.classList.add('open');
-      launcher.setAttribute('aria-expanded', 'true');
-      docEl.classList.add('bb-chat-open');     /* CSS locks body scroll on mobile */
-      if (!greeted){ greeted = true; addMsg('assistant', cw('greet')); }
-      document.addEventListener('keydown', onPanelKey, true);
-      /* focus the input so a visitor can type immediately */
-      setTimeout(function(){ elInput.focus(); }, reduceMQ.matches ? 0 : 60);
-    }
-    function closeChat(returnFocus){
-      if (panel.hidden) return;
-      logTranscript();   /* the visitor ended the conversation — log it (once) */
-      panel.classList.remove('open');
-      launcher.classList.remove('open');
-      launcher.setAttribute('aria-expanded', 'false');
-      docEl.classList.remove('bb-chat-open');
-      document.removeEventListener('keydown', onPanelKey, true);
-      var done = function(){ panel.hidden = true; panel.removeEventListener('transitionend', done); };
-      if (reduceMQ.matches){ done(); } else { panel.addEventListener('transitionend', done); setTimeout(done, 320); }
-      if (returnFocus !== false && launcher){ launcher.focus(); }
-    }
-
-    launcher.addEventListener('click', function(){
-      if (panel.hidden) openChat(); else closeChat();
-    });
-    elClose.addEventListener('click', function(){ closeChat(); });
-
-    /* ---- send ---- */
-    function send(text){
-      text = (text || '').trim();
-      if (!text || busy) return;
-      busy = true;
-      elSend.disabled = true;
-
-      addMsg('user', text);
-      history.push({ role: 'user', content: text });
-      /* keep only the last ~8 turns (16 messages) */
-      if (history.length > MAX_TURNS * 2) history = history.slice(-MAX_TURNS * 2);
-
-      elInput.value = '';
-      var typing = addTyping();
-
-      fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ messages: history })
-      })
-        .then(function(r){ return r.json().then(function(j){ return { ok: r.ok, j: j }; }); })
-        .then(function(r){
-          if (typing.parentNode) typing.parentNode.removeChild(typing);
-          var reply = r.j && typeof r.j.reply === 'string' ? r.j.reply : '';
-          if (reply){
-            addMsg('assistant', reply);
-            history.push({ role: 'assistant', content: reply });
-            if (history.length > MAX_TURNS * 2) history = history.slice(-MAX_TURNS * 2);
-          } else {
-            addMsg('assistant', cw('error'));
-          }
-        })
-        .catch(function(){
-          if (typing.parentNode) typing.parentNode.removeChild(typing);
-          addMsg('assistant', cw('error'));
-        })
-        .finally(function(){
-          busy = false;
-          elSend.disabled = false;
-          if (!panel.hidden) elInput.focus();
-        });
-    }
-
-    elForm.addEventListener('submit', function(e){
-      e.preventDefault();
-      send(elInput.value);
-    });
-
-    /* ---- end-of-conversation logging on page exit ----
-       Closing the panel logs the transcript; but a visitor often just leaves
-       the page (or backgrounds the tab) with the chat still open. 'pagehide'
-       covers navigation/close/bfcache; 'visibilitychange'→hidden covers tab
-       switches and mobile app-switch/lock (the most reliable unload signal on
-       mobile). logTranscript()'s once-per-session guard makes the overlap safe. */
-    window.addEventListener('pagehide', logTranscript);
-    document.addEventListener('visibilitychange', function(){
-      if (document.hidden) logTranscript();
-    });
-
-    /* ---- re-render copy when the page language flips while we're mounted.
-       The footer lang buttons call applyLang(); we mirror that by watching the
-       <html> lang-class the toggle sets, so EN/ES stays in sync live. ---- */
-    if (window.MutationObserver){
-      var lastLang = LANG;
-      var langObs = new MutationObserver(function(){
-        if (LANG !== lastLang){ lastLang = LANG; applyChatLang(); }
-      });
-      langObs.observe(docEl, { attributes: true, attributeFilter: ['class', 'lang'] });
-    }
-  })();
 
 })();
