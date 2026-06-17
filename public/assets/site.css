@@ -684,16 +684,33 @@
      WHY STRIP
      ============================================================ */
   .why{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel)}
-  .why-inner{display:grid;grid-template-columns:1fr;gap:26px;align-items:center;padding-block:clamp(40px,6vw,72px)}
-  @media(min-width:900px){.why-inner{grid-template-columns:.85fr 1.15fr}}
-  .why h2{font-size:clamp(1.6rem,4vw,2.3rem);letter-spacing:-.03em}
-  .why .lede{color:var(--ink-soft);margin-top:14px}
+  /* Intro (col 1) + reasons (col 2) sit side-by-side on desktop; the trust band
+     spans the full width below. Previously a 2-col grid with 3 children left the
+     trust band stranded alone in the narrow left column with dead space beside it. */
+  .why-inner{display:grid;grid-template-columns:1fr;gap:clamp(26px,4vw,40px);padding-block:clamp(44px,6vw,84px);align-items:start}
+  @media(min-width:900px){
+    .why-inner{grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);column-gap:clamp(44px,5vw,80px);row-gap:clamp(32px,4vw,52px)}
+    .why-list{grid-column:2}
+    .trust-band{grid-column:1 / -1}
+  }
+  .why-intro{max-width:600px}
+  .why h2{font-size:clamp(1.6rem,4vw,2.3rem);letter-spacing:-.03em;margin-top:10px}
+  .why .lede{color:var(--ink-soft);margin-top:14px;font-size:1.02rem;line-height:1.6}
+  /* three reasons: bordered grid — 3-up on tablet, stacked beside the intro on desktop */
   .why-list{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
-  @media(min-width:560px){.why-list{grid-template-columns:1fr 1fr}}
-  .why-item{background:var(--panel-2);padding:20px}
+  @media(min-width:560px){.why-list{grid-template-columns:repeat(3,1fr)}}
+  @media(min-width:900px){.why-list{grid-template-columns:1fr}}
+  .why-item{background:var(--panel-2);padding:clamp(18px,2vw,24px);display:flex;flex-direction:column;gap:6px}
   .why-item .n{font-family:var(--font-mono);font-weight:700;color:var(--accent);font-size:.82rem;letter-spacing:.06em}
-  .why-item h4{font-size:1.06rem;font-weight:700;margin-top:8px;letter-spacing:-.02em}
-  .why-item p{color:var(--ink-soft);font-size:.9rem;margin-top:6px}
+  .why-item h4{font-size:1.08rem;font-weight:700;letter-spacing:-.02em}
+  .why-item p{color:var(--ink-soft);font-size:.92rem;line-height:1.5}
+  /* trust band — three signals across the full width (was completely UNSTYLED) */
+  .trust-band{display:grid;grid-template-columns:1fr;gap:16px;padding-top:clamp(22px,3vw,32px);border-top:1px solid var(--line)}
+  @media(min-width:680px){.trust-band{grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,36px)}}
+  .trust-sig{display:flex;align-items:flex-start;gap:11px}
+  .trust-sig svg{width:22px;height:22px;flex:none;color:var(--green);margin-top:1px;filter:drop-shadow(0 0 6px var(--green-glow))}
+  .trust-sig p{color:var(--ink-soft);font-size:.92rem;line-height:1.55;margin:0}
+  .trust-sig b{color:var(--ink)}
 
   /* ============================================================
      PRICING  (ONE shared section)
@@ -1465,4 +1482,72 @@
     /* Fixed full-viewport SVG film-grain — one more viewport-sized backing
        store over scrolling content, imperceptible on a phone. Drop it. */
     body::after{display:none}
+  }
+
+  /* ============================================================
+     "BLUEPRINT → BUILT" — scroll past the hero/ticker and the studio
+     gets down to business IN PLACE: the words rebuild block-by-block,
+     content blocks settle, edges square off, glow drains, and the
+     palette cools to graphite + a fine blueprint grid. NO screen-
+     covering curtain — the real content transitions, fast (~0.45s).
+     Reverses on scroll up. Home only (#serious-sentinel marker).
+     ============================================================ */
+  /* The cooled "serious" palette — same token NAMES, graphite values +
+     ONE restrained blueprint-steel accent. */
+  html.is-serious{
+    --bg:#0C0E11; --bg-2:#0F1318; --panel:#12161B; --panel-2:#171C22;
+    --line:rgba(150,176,200,.12); --line-strong:rgba(150,176,200,.22);
+    --ink:#E9EDF1; --ink-soft:#9BA6B2; --ink-mute:#62707E;
+    --accent:#86B2C7; --accent-hi:#A6CBDD; --accent-deep:#3C525E;
+    --accent-soft:rgba(134,178,199,.12); --accent-line:rgba(134,178,199,.40); --on-accent:#0A1318;
+    --green:#8893A0; --green-soft:rgba(136,147,160,.10); --green-line:rgba(136,147,160,.30);
+    --green-glow:rgba(0,0,0,0); --on-green:#0A0F14;
+    --radius:3px; --radius-lg:4px;
+  }
+  /* square corners, tighten headings, drain leftover glow on the CTA */
+  html.is-serious h1,html.is-serious h2,html.is-serious h3{letter-spacing:-.038em}
+  html.is-serious .moss-spores,html.is-serious .ambient-glow{opacity:0 !important}
+  html.is-serious .btn-primary{
+    animation:none !important;
+    box-shadow:0 0 0 1px var(--accent-deep),0 12px 30px -16px rgba(0,0,0,.6);
+  }
+
+  /* fine blueprint grid — fades in fast when serious */
+  .bp-grid{
+    position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0;
+    transition:opacity .3s var(--ease);
+    background-image:
+      linear-gradient(rgba(150,176,200,.09) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(150,176,200,.09) 1px,transparent 1px);
+    background-size:46px 46px;
+  }
+  html.is-serious .bp-grid{opacity:1}
+
+  /* --- the IN-PLACE transition, armed by .theme-switching for ~0.5s --- */
+  /* quick palette crossfade on the big surfaces so the recolor glides, not snaps */
+  html.theme-switching body,html.theme-switching header.site,
+  html.theme-switching section,html.theme-switching footer.site{
+    transition:background-color .26s var(--ease),border-color .26s var(--ease);
+  }
+  /* the WORDS rebuild block-by-block: a stepped clip reveal reads as each
+     heading + eyebrow being assembled from blocks (left → right) */
+  @keyframes bpWordBuild{ from{clip-path:inset(0 100% 0 0)} to{clip-path:inset(0 0 0 0)} }
+  html.theme-switching :is(h1,h2,h3,.eyebrow){
+    animation:bpWordBuild .42s steps(11) both;
+  }
+  /* content blocks settle into place — compositor-only (transform/opacity) */
+  @keyframes bpBlockSettle{ from{opacity:.32;transform:translateY(9px)} to{opacity:1;transform:none} }
+  html.theme-switching :is(.svc,.work,.world,.why-item,.trust-sig,.card){
+    animation:bpBlockSettle .4s var(--ease) both;
+  }
+
+  /* reduced motion: no animation, no crossfade — site.js toggles instantly */
+  @media (prefers-reduced-motion:reduce){
+    html.theme-switching body,html.theme-switching header.site,
+    html.theme-switching section,html.theme-switching footer.site,
+    html.theme-switching :is(h1,h2,h3,.eyebrow),
+    html.theme-switching :is(.svc,.work,.world,.why-item,.trust-sig,.card){
+      transition:none !important;animation:none !important;
+    }
+    .bp-grid{transition:none}
   }

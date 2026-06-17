@@ -191,6 +191,67 @@
   revealVisible();
 
   /* ============================================================
+     "BLUEPRINT → BUILT" — once the hero/ticker scrolls past the top,
+     the studio gets down to business: the site itself reassembles IN
+     PLACE — the words rebuild block-by-block, edges square off, and
+     the palette cools to graphite + a blueprint grid (html.is-serious).
+     No screen-covering curtain; the real content does the work, fast.
+     Reverses on scroll up. Home only (#serious-sentinel marker).
+     ============================================================ */
+  (function seriousMode(){
+    var sentinel = document.getElementById('serious-sentinel');
+    if (!sentinel) return;                       /* home page only */
+    var root = document.documentElement;
+    var reduce = window.matchMedia('(prefers-reduced-motion:reduce)');
+
+    /* faint blueprint grid that fades in when serious — injected, not in HTML */
+    var grid = document.createElement('div');
+    grid.className = 'bp-grid'; grid.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(grid);
+
+    var serious = false, busy = false, timer = null;
+
+    /* Fully CSS-driven + fast: the `theme-switching` class arms the block-build
+       animations on the REAL headings/words/cards; `is-serious` swaps the
+       palette + grid + square edges. We just flip two classes. */
+    function apply(toSerious){
+      busy = true;
+      root.classList.add('theme-switching');
+      root.classList.toggle('is-serious', toSerious);
+      clearTimeout(timer);
+      timer = setTimeout(function(){
+        root.classList.remove('theme-switching');
+        busy = false;
+        sync();           /* re-check in case the user scrolled mid-transition */
+      }, 560);
+    }
+
+    function pastHero(){ return sentinel.getBoundingClientRect().top <= 0; }
+
+    function sync(){
+      if (busy) return;
+      var want = pastHero();
+      if (want === serious) return;
+      serious = want;
+      if (reduce.matches || document.hidden){ root.classList.toggle('is-serious', serious); }
+      else apply(serious);
+    }
+
+    /* A rAF-throttled scroll check — robust to fast flings/anchor jumps that an
+       IntersectionObserver MISSES (the sentinel can leap from below the fold to
+       above the viewport in one frame, never "intersecting"). One
+       getBoundingClientRect + a boolean compare per frame; real work only on flip. */
+    var ticking = false;
+    function onScroll(){ if (document.hidden) return; if (!ticking){ ticking = true; requestAnimationFrame(function(){ ticking = false; sync(); }); } }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+
+    /* initial state with NO animation (e.g. refresh already scrolled down) */
+    serious = pastHero();
+    root.classList.toggle('is-serious', serious);
+  })();
+
+  /* ============================================================
      MOSS FLASH — ambient bioluminescent spore field (the identity
      atmosphere for every page). Lightweight: ~16 absolutely-positioned
      blurred green dots whose drift + pulse are pure CSS animations
