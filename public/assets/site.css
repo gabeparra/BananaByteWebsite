@@ -518,22 +518,22 @@
   /* ============================================================
      SECTION SCAFFOLDING
      ============================================================ */
-  section{padding-block:clamp(56px,8vw,104px)}
+  section{padding-block:clamp(34px,4vw,54px)}
   .eyebrow{
     display:inline-flex;align-items:center;gap:9px;
     font-family:var(--font-mono);font-weight:400;font-size:.74rem;
     text-transform:uppercase;letter-spacing:.16em;color:var(--green);
   }
   .eyebrow::before{content:"";width:24px;height:1px;background:var(--green);box-shadow:0 0 8px var(--green-glow)}
-  .sec-head{max-width:640px;margin-bottom:clamp(34px,5vw,52px)}
+  .sec-head{max-width:640px;margin-bottom:clamp(22px,3vw,34px)}
   .sec-head h2{font-size:clamp(1.8rem,4.6vw,2.7rem);margin-top:16px;letter-spacing:-.03em}
   .sec-head p{color:var(--ink-soft);margin-top:14px;font-size:1.02rem}
 
   /* ============================================================
      HERO
      ============================================================ */
-  .hero{position:relative;padding-block:clamp(58px,9vw,112px)}
-  .hero-grid{display:grid;grid-template-columns:1fr;gap:clamp(40px,6vw,64px);align-items:center}
+  .hero{position:relative;padding-block:clamp(38px,5vw,64px)}
+  .hero-grid{display:grid;grid-template-columns:1fr;gap:clamp(28px,4vw,46px);align-items:center}
   @media(min-width:980px){.hero-grid{grid-template-columns:1.08fr .92fr}}
 
   .hero .tag{
@@ -608,7 +608,7 @@
   .ticker{
     position:relative;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
     background:var(--bg-2);
-    overflow:hidden;margin-block:clamp(36px,6vw,60px);
+    overflow:hidden;margin-block:clamp(22px,3.5vw,38px);
     -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
             mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
   }
@@ -690,7 +690,7 @@
   /* Intro (col 1) + reasons (col 2) sit side-by-side on desktop; the trust band
      spans the full width below. Previously a 2-col grid with 3 children left the
      trust band stranded alone in the narrow left column with dead space beside it. */
-  .why-inner{display:grid;grid-template-columns:1fr;gap:clamp(26px,4vw,40px);padding-block:clamp(44px,6vw,84px);align-items:start}
+  .why-inner{display:grid;grid-template-columns:1fr;gap:clamp(22px,3vw,32px);padding-block:clamp(4px,1.2vw,16px);align-items:start}
   @media(min-width:900px){
     .why-inner{grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);column-gap:clamp(44px,5vw,80px);row-gap:clamp(32px,4vw,52px)}
     .why-list{grid-column:2}
@@ -749,9 +749,19 @@
   /* ============================================================
      CONTACT  (ONE shared section)
      ============================================================ */
-  .contact-grid{display:grid;grid-template-columns:1fr;gap:clamp(28px,5vw,52px)}
+  .contact-grid{display:grid;grid-template-columns:1fr;gap:clamp(24px,4vw,40px)}
   .contact-grid>*{min-width:0}
   @media(min-width:920px){.contact-grid{grid-template-columns:.82fr 1.18fr}}
+  /* "talk to a real person" callout — video + in-person design calls */
+  .calls-note{
+    display:flex;gap:11px;align-items:flex-start;
+    margin-top:18px;padding:13px 15px;
+    border:1px solid var(--green-line);border-radius:var(--radius);
+    background:var(--green-soft);
+    font-size:.95rem;line-height:1.5;color:var(--ink-soft);
+  }
+  .calls-note svg{width:20px;height:20px;flex:none;color:var(--green);margin-top:1px}
+  .calls-note b{color:var(--ink);font-weight:700}
   .contact-aside h2{font-size:clamp(1.8rem,4.6vw,2.6rem);letter-spacing:-.03em}
   .contact-aside p{color:var(--ink-soft);margin-top:16px}
   .contact-mail{
@@ -980,9 +990,9 @@
   [data-reveal].in{opacity:1;transform:none}
   /* content slides in from the SIDES (alternating) for livelier reveals */
   .svc-grid .svc:nth-child(odd),.worlds-grid .world:nth-child(odd),
-  .work-grid .work:nth-child(odd),.why-list .why-item:nth-child(odd){--rx:-52px}
+  .work-grid .work:nth-child(odd),.why-list .why-item:nth-child(odd){--rx:-26px}
   .svc-grid .svc:nth-child(even),.worlds-grid .world:nth-child(even),
-  .work-grid .work:nth-child(even),.why-list .why-item:nth-child(even){--rx:52px}
+  .work-grid .work:nth-child(even),.why-list .why-item:nth-child(even){--rx:26px}
   /* settle-glow as the item lands. Cards (.svc/.work/.type-card) each carry
      their OWN data-reveal and are cascaded by the IntersectionObserver's
      80ms-per-item stagger in site.js, so this single rule covers both the
@@ -1009,21 +1019,21 @@
     display:grid;gap:0;overflow:hidden;
   }
   .block-cell{
-    border:1px solid var(--line-strong);
+    border:1px solid var(--line);
     opacity:1;transform:none;
-    transition:opacity .42s var(--ease),transform .42s var(--ease);
+    transition:opacity .34s var(--ease),transform .34s var(--ease);
   }
-  .block-ov.go .block-cell{opacity:0;transform:scale(.8)}
+  .block-ov.go .block-cell{opacity:0;transform:scale(.96)}
   @media (prefers-reduced-motion:reduce){ .block-ov{display:none !important} }
 
   /* ---- LETTER FLY-IN — section headings assemble letter-by-letter from
      alternating sides, with a color pop (accent → ink). site.js splits the
      heading at reveal then restores it (keeps the bilingual swap intact). ---- */
   .ltr{display:inline-block;white-space:pre}
-  .ltr-go .ltr{animation:letterIn .52s var(--ease) both;animation-delay:calc(var(--li,0) * 24ms)}
+  .ltr-go .ltr{animation:letterIn .42s var(--ease) both;animation-delay:calc(var(--li,0) * 14ms)}
   @keyframes letterIn{
-    0%  {opacity:0;transform:translateX(var(--sx,0)) translateY(.32em);color:var(--accent)}
-    62% {color:var(--accent)}
+    0%  {opacity:0;transform:translateX(var(--sx,0)) translateY(.2em);color:var(--accent)}
+    35% {color:var(--accent)}
     100%{opacity:1;transform:none;color:var(--ink)}
   }
   @media (prefers-reduced-motion:reduce){ .ltr{animation:none !important} }
@@ -1439,3 +1449,75 @@
     }
     .bp-grid{transition:none}
   }
+
+  /* ============================================================
+     FLOATING UI — language toggle (bottom-left) + quick-contact
+     widget (bottom-right), persistent on every page.
+     ============================================================ */
+  .lang-toggle.lang-float{
+    position:fixed;
+    left:max(16px,env(safe-area-inset-left));
+    bottom:max(16px,env(safe-area-inset-bottom));
+    z-index:96;background:var(--panel-2);
+    box-shadow:0 10px 30px -12px rgba(0,0,0,.7);
+  }
+
+  .qc-launch{
+    position:fixed;
+    right:max(16px,env(safe-area-inset-right));
+    bottom:max(16px,env(safe-area-inset-bottom));
+    z-index:97;display:inline-flex;align-items:center;gap:9px;
+    padding:11px 17px 11px 14px;
+    border:1px solid var(--accent-deep);border-radius:999px;
+    background:var(--accent);color:var(--on-accent);
+    font-family:var(--font-head);font-weight:700;font-size:.92rem;cursor:pointer;
+    box-shadow:0 14px 34px -10px rgba(255,210,63,.5);
+    transition:transform .2s var(--ease),box-shadow .2s var(--ease),background .2s var(--ease);
+  }
+  .qc-launch:hover{transform:translateY(-2px);box-shadow:0 18px 42px -10px rgba(255,210,63,.62)}
+  .qc-launch:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+  .qc-launch svg{width:20px;height:20px;flex:none}
+  .qc-launch.open{background:var(--panel-2);color:var(--accent);border-color:var(--accent-line)}
+  @media (max-width:560px){ .qc-launch-txt{display:none} .qc-launch{padding:13px} }
+
+  .qc-panel{
+    position:fixed;
+    right:max(16px,env(safe-area-inset-right));
+    bottom:calc(max(16px,env(safe-area-inset-bottom)) + 62px);
+    z-index:98;width:min(360px,calc(100vw - 32px));
+    background:var(--panel);border:1px solid var(--line-strong);border-radius:16px;
+    box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;
+  }
+  /* [hidden] must beat the explicit display:flex on these (attribute selector
+     out-specifies the bare class), or the panel shows on load + form+done stack. */
+  .qc-panel[hidden],.qc-form[hidden],.qc-done[hidden]{display:none}
+  .qc-head{display:flex;align-items:flex-start;gap:10px;padding:14px 15px;border-bottom:1px solid var(--line);background:var(--panel-2)}
+  .qc-head-txt{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0}
+  .qc-head-txt strong{font-family:var(--font-head);font-size:1rem;color:var(--ink);letter-spacing:-.01em}
+  .qc-head-txt span{font-size:.77rem;color:var(--ink-soft);line-height:1.4}
+  .qc-close{flex:none;width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:8px;background:none;color:var(--ink-soft);cursor:pointer;transition:.2s var(--ease)}
+  .qc-close:hover{color:var(--green);border-color:var(--green-line);background:var(--green-soft)}
+  .qc-close svg{width:16px;height:16px}
+  .qc-form{display:flex;flex-direction:column;gap:9px;padding:13px 15px}
+  .qc-hp{position:absolute !important;left:-9999px;width:1px;height:1px;overflow:hidden}
+  .qc-in{
+    width:100%;padding:10px 12px;border:1px solid var(--line-strong);border-radius:9px;
+    background:var(--bg-2);color:var(--ink);font-family:var(--font-head);font-size:.92rem;
+  }
+  .qc-in::placeholder{color:var(--ink-mute)}
+  .qc-in:focus{outline:none;border-color:var(--green-line);box-shadow:0 0 0 3px var(--green-soft)}
+  .qc-msg{resize:vertical;min-height:62px}
+  .qc-ts{display:flex;justify-content:center}
+  .qc-err{margin:0;font-size:.82rem;color:var(--err)}
+  .qc-send{justify-content:center;margin-top:2px}
+  .qc-done{display:flex;flex-direction:column;align-items:center;gap:5px;text-align:center;padding:28px 18px}
+  .qc-done svg{width:34px;height:34px;color:var(--green)}
+  .qc-done strong{font-family:var(--font-head);font-size:1.12rem;color:var(--ink)}
+  .qc-done span{font-size:.9rem;color:var(--ink-soft)}
+
+  /* tuck the floats away behind the open mobile menu */
+  html.menu-open .lang-toggle.lang-float,
+  html.menu-open .qc-launch,
+  html.menu-open .qc-panel{display:none !important}
+
+  @media (prefers-reduced-motion:reduce){ .qc-launch{transition:none} }

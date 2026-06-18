@@ -217,7 +217,7 @@
          visible THROUGH the dissolving blueprint grid — the grid is the accent,
          the content animation is the star. */
       var m = bg.match(/\d+/g);
-      var fill = (m && m.length >= 3) ? 'rgba(' + m[0] + ',' + m[1] + ',' + m[2] + ',0.55)' : 'rgba(8,18,12,0.55)';
+      var fill = (m && m.length >= 3) ? 'rgba(' + m[0] + ',' + m[1] + ',' + m[2] + ',0.4)' : 'rgba(8,18,12,0.4)';
 
       var ov = document.createElement('div');
       ov.className = 'block-ov'; ov.setAttribute('aria-hidden', 'true');
@@ -231,7 +231,7 @@
       var n = cols * rows, maxd = 0;
       for (var i = 0; i < n; i++){
         var c = i % cols, rr = (i / cols) | 0;
-        var d = (rr + c) * 28;                            /* diagonal stagger */
+        var d = (rr + c) * 16;                            /* diagonal stagger */
         if (d > maxd) maxd = d;
         var b = document.createElement('div');
         b.className = 'block-cell';
@@ -276,7 +276,7 @@
       for (var i = 0; i < text.length; i++){
         var ch = text.charAt(i);
         if (ch === ' '){ out += ' '; continue; }
-        var sx = (li % 2 ? 1 : -1) * 0.8;       /* alternate letters: from each side */
+        var sx = (li % 2 ? 1 : -1) * 0.4;       /* alternate letters: from each side */
         out += '<span class="ltr" style="--li:' + li + ';--sx:' + sx + 'em">' + esc(ch) + '</span>';
         li++;
       }
@@ -288,7 +288,7 @@
         h.classList.remove('ltr-go');
         h.removeAttribute('data-flying');
         h.innerHTML = orig;                      /* restore — keeps applyLang lossless */
-      }, li * 24 + 720);
+      }, li * 14 + 600);
     }
 
     var io = new IntersectionObserver(function(entries, obs){
@@ -379,7 +379,8 @@
   function buildSpores(){
     /* guard on the JS handle AND the DOM, so we can never double-inject */
     if (sporeLayer || document.querySelector('.moss-spores') || reduceMQ.matches) return;
-    var SPORE_COUNT = 16;
+    /* livelier ambient field on desktop (mobile hides it via CSS anyway) */
+    var SPORE_COUNT = window.matchMedia('(min-width:980px)').matches ? 30 : 16;
     var layer = document.createElement('div');
     layer.className = 'moss-spores';
     layer.setAttribute('aria-hidden', 'true');
@@ -570,19 +571,15 @@
   var menu        = document.getElementById('mobile-menu');
   var backdrop    = document.getElementById('nav-backdrop');
   var langToggle  = document.querySelector('.lang-toggle');
-  var langSlot    = document.getElementById('menu-lang-slot');
-  var langHome    = langToggle ? langToggle.parentNode : null;        /* footer .foot-bottom */
-  var langNext    = langToggle ? langToggle.nextElementSibling : null; /* whatever follows it */
   var lastMenuFocus = null;
 
-  /* placeToggles — put the lang toggle where the current breakpoint needs it */
+  /* The lang toggle now FLOATS (fixed, bottom-left) on every page + viewport so
+     it's always in reach. Move it to <body> once so its stacking is clean. */
   function placeToggles(){
-    if (mq.matches){
-      /* mobile: move the lang toggle into the drawer */
-      if (langToggle && langSlot && langToggle.parentNode !== langSlot) langSlot.appendChild(langToggle);
-    } else {
-      /* desktop: lang toggle back into the footer, in its original slot */
-      if (langToggle && langHome && langToggle.parentNode !== langHome) langHome.insertBefore(langToggle, langNext);
+    if (!langToggle) return;
+    if (langToggle.parentNode !== document.body){
+      langToggle.classList.add('lang-float');
+      document.body.appendChild(langToggle);
     }
   }
 
@@ -1000,12 +997,12 @@
      ============================================================ */
   (function confetti(){
     var COLORS = ['#FFD23F', '#FFE177', '#3CF08A'];   /* banana ×2 + moss-green */
-    var layer = null, cleanupTimer = null;
+    var layers = [];   /* active burst layers — concurrent so multiple fireworks coexist */
 
-    function destroy(){
-      if (cleanupTimer){ clearTimeout(cleanupTimer); cleanupTimer = null; }
-      if (layer && layer.parentNode){ layer.parentNode.removeChild(layer); }
-      layer = null;
+    function removeLayer(l){
+      var i = layers.indexOf(l);
+      if (i >= 0) layers.splice(i, 1);
+      if (l && l.parentNode) l.parentNode.removeChild(l);
     }
 
     /* fire(opts): opts.count (pieces), opts.origin {x,y in 0..1 of viewport},
@@ -1023,10 +1020,11 @@
 
       /* fresh layer per burst (tearing down any in-flight one first so taps
          don't accumulate stale layers) */
-      destroy();
-      layer = document.createElement('div');
+      if (layers.length > 6) removeLayer(layers[0]);   /* cap concurrent bursts */
+      var layer = document.createElement('div');
       layer.className = 'bb-confetti';
       layer.setAttribute('aria-hidden', 'true');
+      layers.push(layer);
 
       var frag = document.createDocumentFragment();
       var maxDur = 0;
@@ -1075,13 +1073,13 @@
       document.body.appendChild(layer);
 
       /* auto-clean once the longest piece has finished (+ a small buffer) */
-      cleanupTimer = setTimeout(destroy, maxDur + 120);
+      setTimeout(function(){ removeLayer(layer); }, maxDur + 120);
     }
 
     /* if the tab is hidden mid-flight, tear the layer down (it'd otherwise
        resume mid-animation on return looking stale) */
     document.addEventListener('visibilitychange', function(){
-      if (document.hidden && layer) destroy();
+      if (document.hidden){ while (layers.length) removeLayer(layers[0]); }
     });
 
     /* ---- TRIGGER (a): gentle burst on first HOME load (MOBILE, once/session) */
@@ -1097,15 +1095,42 @@
       try { sessionStorage.setItem(SESSION_KEY, '1'); } catch(e){ /* private mode — fine */ }
     }
 
-    if (isHome && mq.matches && !reduceMQ.matches && !seenThisSession()){
+    if (isHome && !reduceMQ.matches && !seenThisSession()){
       markSeen();   /* set immediately so a fast navigate-away/back won't double-fire */
       /* fire AFTER first paint so we never block load; two rAFs = next frame */
       requestAnimationFrame(function(){
         requestAnimationFrame(function(){
           if (document.hidden) return;   /* re-check: don't fire into a hidden tab */
-          fire({ count: 70, origin: { x: 0.5, y: 0.30 }, spread: window.innerWidth * 0.9, pop: false });
+          if (desktopMQ.matches){
+            /* desktop gets a little fireworks SHOW — three staggered bursts */
+            fire({ count: 48, origin: { x: 0.5,  y: 0.26 }, spread: window.innerWidth * 0.66, pop: true });
+            setTimeout(function(){ fire({ count: 30, origin: { x: 0.22, y: 0.34 }, spread: 300, pop: true }); }, 240);
+            setTimeout(function(){ fire({ count: 30, origin: { x: 0.78, y: 0.32 }, spread: 300, pop: true }); }, 500);
+          } else {
+            fire({ count: 70, origin: { x: 0.5, y: 0.30 }, spread: window.innerWidth * 0.9, pop: false });
+          }
         });
       });
+    }
+
+    /* ---- TRIGGER (c): occasional AMBIENT fireworks on the desktop home so the
+       page keeps feeling alive — small, infrequent bursts from random upper
+       spots. Self-reschedules; pauses while the tab is hidden. ---- */
+    if (isHome && desktopMQ.matches && !reduceMQ.matches){
+      (function loopFireworks(){
+        var delay = 7000 + Math.random() * 9000;   /* every 7–16s */
+        setTimeout(function(){
+          if (!document.hidden && desktopMQ.matches && !reduceMQ.matches){
+            fire({
+              count: 13 + (Math.random() * 13 | 0),
+              origin: { x: 0.1 + Math.random() * 0.8, y: 0.1 + Math.random() * 0.34 },
+              spread: 190 + Math.random() * 150,
+              pop: true
+            });
+          }
+          loopFireworks();
+        }, delay);
+      })();
     }
 
     /* ---- TRIGGER (b): celebratory burst when a "Start a project" CTA is tapped.
@@ -1137,7 +1162,137 @@
         pop: true
       });
     }, true);   /* capture: fire before any same-target handler that might stop propagation */
+
+    /* ---- TRIGGER (d): playful sparkle when you click the hero banana or flip
+       the language — small moments of life, on any device. ---- */
+    document.addEventListener('click', function(e){
+      if (reduceMQ.matches || document.hidden) return;
+      var el = e.target.closest('.hero-banana, .hero-orbit, .lang-btn');
+      if (!el) return;
+      var r = el.getBoundingClientRect();
+      if (!r.width) return;
+      fire({
+        count: 16 + (Math.random() * 12 | 0),
+        origin: { x: (r.left + r.width / 2) / window.innerWidth, y: (r.top + r.height / 2) / window.innerHeight },
+        spread: 200, pop: true
+      });
+    }, true);
   })();
 
+  /* ============================================================
+     QUICK CONTACT — a persistent, NON-AI floating contact form on
+     EVERY page. A launcher (bottom-right) opens a small panel; Send
+     posts straight to the /api/contact Worker (email + Telegram to
+     Gabe). Turnstile is lazy-loaded on first open. Bilingual via
+     applyLang. Reuses the same backend as the /contact/ form.
+     ============================================================ */
+  (function quickContact(){
+    var SITEKEY = '0x4AAAAAADdmY73Y2U4TGmbD';
+    var isOpen = false, tsLoaded = false, sending = false;
+
+    var launch = document.createElement('button');
+    launch.type = 'button';
+    launch.className = 'qc-launch';
+    launch.setAttribute('aria-haspopup', 'dialog');
+    launch.setAttribute('aria-expanded', 'false');
+    launch.setAttribute('aria-label', 'Message Gabe');
+    launch.setAttribute('data-es-aria-label', 'Escríbele a Gabe');
+    launch.innerHTML =
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg>' +
+      '<span class="qc-launch-txt" data-es="Pregúntame">Ask me</span>';
+
+    var panel = document.createElement('div');
+    panel.className = 'qc-panel';
+    panel.setAttribute('role', 'dialog');
+    panel.setAttribute('aria-label', 'Quick contact');
+    panel.setAttribute('data-es-aria-label', 'Contacto rápido');
+    panel.hidden = true;
+    panel.innerHTML =
+      '<div class="qc-head">' +
+        '<div class="qc-head-txt">' +
+          '<strong data-es="Pregúntame lo que sea">Ask me anything</strong>' +
+          '<span data-es="Va directo a mí — no es un bot. Respondo en un día hábil.">Goes straight to me — not a bot. I reply within a business day.</span>' +
+        '</div>' +
+        '<button type="button" class="qc-close" aria-label="Close" data-es-aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>' +
+      '</div>' +
+      '<form class="qc-form" novalidate>' +
+        '<label class="qc-hp" aria-hidden="true">Leave empty<input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"></label>' +
+        '<input type="text" class="qc-in" name="name" autocomplete="name" required placeholder="Your name" data-es-placeholder="Tu nombre" aria-label="Name" data-es-aria-label="Nombre">' +
+        '<input type="email" class="qc-in" name="email" autocomplete="email" inputmode="email" required placeholder="you@email.com" data-es-placeholder="tu@correo.com" aria-label="Email" data-es-aria-label="Correo">' +
+        '<textarea class="qc-in qc-msg" name="message" rows="3" required placeholder="A question, or a few words about your project…" data-es-placeholder="Una pregunta, o unas líneas sobre tu proyecto…" aria-label="Message" data-es-aria-label="Mensaje"></textarea>' +
+        '<div class="cf-turnstile qc-ts" data-sitekey="' + SITEKEY + '" data-theme="auto"></div>' +
+        '<p class="qc-err" role="alert" hidden></p>' +
+        '<button type="submit" class="qc-send btn btn-primary"><span data-es="Enviar">Send</span> <span class="arrow" aria-hidden="true">→</span></button>' +
+      '</form>' +
+      '<div class="qc-done" hidden>' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>' +
+        '<strong data-es="¡Recibido! 🍌">Got it! 🍌</strong>' +
+        '<span data-es="Te respondo pronto.">I’ll get back to you soon.</span>' +
+      '</div>';
+
+    document.body.appendChild(launch);
+    document.body.appendChild(panel);
+
+    var form    = panel.querySelector('.qc-form');
+    var doneEl  = panel.querySelector('.qc-done');
+    var errEl   = panel.querySelector('.qc-err');
+    var sendBtn = panel.querySelector('.qc-send');
+    var nameEl  = form.querySelector('[name="name"]');
+    var emailEl = form.querySelector('[name="email"]');
+    var msgEl   = form.querySelector('[name="message"]');
+    var botEl   = form.querySelector('[name="botcheck"]');
+
+    /* the widget is injected AFTER the first applyLang, so apply the current
+       language to it now (and the lang toggle will re-apply on change). */
+    if (typeof applyLang === 'function') applyLang(LANG);
+
+    function loadTurnstile(){
+      if (tsLoaded) return; tsLoaded = true;
+      if (window.turnstile){ try { window.turnstile.render(panel.querySelector('.qc-ts')); } catch(e){} return; }
+      if (!document.querySelector('script[src*="turnstile/v0/api.js"]')){
+        var s = document.createElement('script');
+        s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+        s.async = true; s.defer = true;
+        document.head.appendChild(s);
+      }
+    }
+
+    function setOpen(o){
+      isOpen = o; panel.hidden = !o;
+      launch.classList.toggle('open', o);
+      launch.setAttribute('aria-expanded', o ? 'true' : 'false');
+      if (o){ loadTurnstile(); setTimeout(function(){ msgEl.focus(); }, 70); }
+    }
+
+    launch.addEventListener('click', function(){ setOpen(!isOpen); });
+    panel.querySelector('.qc-close').addEventListener('click', function(){ setOpen(false); launch.focus(); });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && isOpen){ setOpen(false); launch.focus(); } });
+
+    function txt(en, es){ return LANG === 'es' ? es : en; }
+    function showErr(m){ errEl.textContent = m; errEl.hidden = false; }
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if (sending) return;
+      errEl.hidden = true;
+      var name = nameEl.value.trim(), email = emailEl.value.trim(), msg = msgEl.value.trim();
+      if (!name || !email || !msg){ showErr(txt('Please fill in every field.', 'Completa todos los campos.')); return; }
+      var tsInput = form.querySelector('[name="cf-turnstile-response"]');
+      var token = tsInput ? tsInput.value : '';
+      if (!token){ showErr(txt('One sec — verifying you’re human, then hit Send again.', 'Un segundo — verificando; luego presiona Enviar de nuevo.')); return; }
+
+      var payload = { name: name, email: email, message: msg, 'cf-turnstile-response': token };
+      if (botEl.checked) payload.botcheck = 'on';
+
+      sending = true; sendBtn.disabled = true;
+      fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+        .then(function(r){ return r.json().catch(function(){ return {}; }); })
+        .then(function(d){
+          if (d && (d.ok || d.success)){ form.hidden = true; doneEl.hidden = false; }
+          else { showErr(txt('That didn’t go through — try again, or text (321) 202-3732.', 'No se envió — intenta de nuevo o escribe al (321) 202-3732.')); sending = false; sendBtn.disabled = false; }
+        })
+        .catch(function(){ showErr(txt('Network hiccup — try again, or text (321) 202-3732.', 'Falló la red — intenta de nuevo o escribe al (321) 202-3732.')); sending = false; sendBtn.disabled = false; });
+    });
+  })();
 
 })();
