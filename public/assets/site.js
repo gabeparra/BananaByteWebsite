@@ -191,6 +191,33 @@
   revealVisible();
 
   /* ============================================================
+     HERO CAROUSEL — the "storefront" browser mockup crossfades through
+     real builds (gabrielparra.dev + a client/concept showcase) and
+     updates the URL bar per slide. Pauses while the tab is hidden;
+     reduced-motion just shows the first.
+     ============================================================ */
+  (function heroCarousel(){
+    var box = document.querySelector('[data-hero-carousel]');
+    if (!box) return;
+    var shots = Array.prototype.slice.call(box.querySelectorAll('.hero-shot'));
+    if (shots.length < 2) return;
+    var urlEl = document.querySelector('[data-hero-url]');
+    var i = 0, timer = null, GAP = 3400;
+    function show(n){
+      shots[i].classList.remove('is-on');
+      i = (n + shots.length) % shots.length;
+      shots[i].classList.add('is-on');
+      if (urlEl){ var u = shots[i].getAttribute('data-url'); if (u) urlEl.textContent = u; }
+    }
+    function tick(){ if (!document.hidden) show(i + 1); timer = setTimeout(tick, GAP); }
+    function start(){ if (reduceMQ.matches) return; clearTimeout(timer); timer = setTimeout(tick, GAP); }
+    start();
+    document.addEventListener('visibilitychange', function(){
+      if (document.hidden){ clearTimeout(timer); } else { start(); }
+    });
+  })();
+
+  /* ============================================================
      BLOCK REVEAL — every section assembles from a grid of blocks as
      it scrolls into view (the "blocky" brand aesthetic), MOBILE too.
      A transient body-level overlay (positioned at the section's

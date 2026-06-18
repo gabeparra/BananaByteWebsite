@@ -132,6 +132,10 @@
   .step .st{font-family:var(--font-display);font-weight:600;font-size:.98rem;color:var(--ink)}
   html[data-mode="performer"] .step .st{font-family:var(--font-fraunces)}
   .step .sd{color:var(--ink-soft);font-size:.9rem;margin-top:3px}
+  /* full-width "what happens next" strip below the two columns */
+  .next-steps-strip{margin-top:clamp(34px,4.5vw,52px)}
+  .next-steps-strip .ns-h{text-align:center}
+  @media(min-width:720px){ .next-steps-strip .steps{grid-template-columns:repeat(3,1fr)} }
 
   /* compact real-client testimonial — trust element near the form */
   .mini-quote{
@@ -430,48 +434,6 @@
           <span data-es="&lt;b&gt;¿Prefieres hablarlo?&lt;/b&gt; Una &lt;b&gt;videollamada&lt;/b&gt; cuando te quede bien — o, si estás en el centro de Florida, te visito para una &lt;b&gt;sesión de diseño en persona&lt;/b&gt;."><b>Rather talk it through?</b> A <b>video call</b> whenever works — or, if you’re in Central Florida, I’ll come to you for an <b>in-person design session</b>.</span>
         </div>
 
-        <!-- what happens next -->
-        <div class="next-steps">
-          <p class="ns-h" data-es="Qué pasa después">What happens next</p>
-          <ol class="steps">
-            <li class="step">
-              <span class="sn" aria-hidden="true">1</span>
-              <span class="sb">
-                <span class="st" data-es="Me cuentas los detalles">You send details</span>
-                <span class="sd" data-es="Un par de frases sobre tu negocio o tu show y lo que necesitas — un sitio nuevo, una renovación, un arreglo o una tienda online.">A couple of sentences about your business or act and what you need — a new site, a refresh, a fix, or an online store.</span>
-              </span>
-            </li>
-            <li class="step">
-              <span class="sn" aria-hidden="true">2</span>
-              <span class="sb">
-                <span class="st" data-es="Respondo en 1 día hábil">I reply in 1 business day</span>
-                <span class="sd" data-es="Con un par de preguntas para entenderlo bien y un presupuesto cerrado — sin reloj por horas y sin sorpresas.">With a couple of questions to get it right and a flat quote — no hourly meter, no surprises.</span>
-              </span>
-            </li>
-            <li class="step">
-              <span class="sn" aria-hidden="true">3</span>
-              <span class="sb">
-                <span class="st" data-es="Empezamos">We start</span>
-                <span class="sd" data-es="Cuando te encaje el plan, me pongo a construir — y todo es tuyo cuando lanzamos.">Once the plan fits you, I get building — and everything is yours when it ships.</span>
-              </span>
-            </li>
-          </ol>
-        </div>
-
-        <!-- ============================================================
-             REAL-CLIENT TESTIMONIAL — Peter Hefty (first real BANANAbyte
-             client; his live site links back to BANANAbyte). Featured with
-             his permission. A small trust nudge right at the conversion
-             point. <blockquote>+<cite> for accessibility.
-             ============================================================ -->
-        <figure class="mini-quote" data-reveal>
-          <span class="mqk">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21v-4a4 4 0 0 1 4-4h1M3 8V5a2 2 0 0 1 2-2h3M21 8V5a2 2 0 0 0-2-2h-3M14 13h1a4 4 0 0 1 4 4v4"/></svg>
-            <span data-es="De un cliente de verdad">From a real client</span>
-          </span>
-          <blockquote data-es="Gabe es genial para trabajar — creativo, como un mago haciendo su magia en internet. Le recomendaría BANANAbyte a cualquiera que quiera un verdadero artista y un tipo divertido para construir su sitio.">Gabe is awesome to work with — creative, just like a magician working his magic on the internet. I&rsquo;d recommend BANANAbyte to anyone who wants a real artist and a fun guy to build their site.</blockquote>
-          <cite data-es="&lt;a href=&quot;https://peterheftyandjustin.com/&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;Peter Hefty&lt;/a&gt; — &lt;span class=&quot;role&quot;&gt;ventrílocuo y comediante&lt;/span&gt;"><a href="https://peterheftyandjustin.com/" rel="noopener" target="_blank">Peter Hefty</a> — <span class="role">ventriloquist &amp; comedian</span></cite>
-        </figure>
       </div>
 
       <!-- RIGHT: THE real contact form — POSTs JSON to /api/contact.
@@ -545,6 +507,35 @@
         </form>
       </div>
 
+    </div>
+
+    <!-- "What happens next" — a full-width strip BELOW the two columns, so the
+         left/right columns stay balanced instead of one running long. -->
+    <div class="wrap next-steps-strip" data-reveal>
+      <p class="ns-h" data-es="Qué pasa después">What happens next</p>
+      <ol class="steps">
+        <li class="step">
+          <span class="sn" aria-hidden="true">1</span>
+          <span class="sb">
+            <span class="st" data-es="Me cuentas los detalles">You send details</span>
+            <span class="sd" data-es="Un par de frases sobre tu negocio o tu show y lo que necesitas — un sitio nuevo, una renovación, un arreglo o una tienda online.">A couple of sentences about your business or act and what you need — a new site, a refresh, a fix, or an online store.</span>
+          </span>
+        </li>
+        <li class="step">
+          <span class="sn" aria-hidden="true">2</span>
+          <span class="sb">
+            <span class="st" data-es="Respondo en 1 día hábil">I reply in 1 business day</span>
+            <span class="sd" data-es="Con un par de preguntas para entenderlo bien y un presupuesto cerrado — sin reloj por horas y sin sorpresas.">With a couple of questions to get it right and a flat quote — no hourly meter, no surprises.</span>
+          </span>
+        </li>
+        <li class="step">
+          <span class="sn" aria-hidden="true">3</span>
+          <span class="sb">
+            <span class="st" data-es="Empezamos">We start</span>
+            <span class="sd" data-es="Cuando te encaje el plan, me pongo a construir — y todo es tuyo cuando lanzamos.">Once the plan fits you, I get building — and everything is yours when it ships.</span>
+          </span>
+        </li>
+      </ol>
     </div>
   </section>
 
