@@ -125,7 +125,7 @@
     font-size:clamp(1.7rem,4.5vw,2.1rem);color:var(--ink);margin-top:12px;
     letter-spacing:-.02em;overflow-wrap:break-word;
   }
-  .tier-price .from{display:block;font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:4px}
+  .tier-price .from{display:block;font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:4px}
   .tier-price .per{font-size:.92rem;font-weight:600;color:var(--ink-mute)}
   .tier.popular .tier-price{color:var(--accent)}
   html[data-mode="performer"] .tier.popular .tier-price{
@@ -146,11 +146,76 @@
   html[data-mode="performer"] .tier-cta{font-family:var(--font-body);color:var(--honey,var(--accent))}
   .tier-cta .arrow{transition:transform .25s var(--ease)}
   .tier:hover .tier-cta .arrow{transform:translateX(3px)}
-  .tier-aside{color:var(--ink-mute);font-size:.78rem;margin-top:8px;line-height:1.45}
 
   /* soft "most land around $Y" anchor line under the price */
   .tier-land{color:var(--ink-mute);font-size:.78rem;margin-top:7px;line-height:1.4}
   .tier-land b{color:var(--ink-soft);font-weight:600}
+
+  /* small "Live in about N weeks" timeline pill under the best-for line */
+  .tier-time{
+    display:inline-flex;align-items:center;gap:7px;align-self:flex-start;
+    margin-top:13px;padding:5px 11px;border-radius:999px;
+    border:1px solid var(--line);background:var(--panel-2);
+    font-family:var(--font-display);font-weight:600;font-size:.76rem;color:var(--ink-soft);
+  }
+  html[data-mode="performer"] .tier-time{font-family:var(--font-body)}
+  .tier-time svg{width:13px;height:13px;flex:none;color:var(--accent)}
+  html[data-mode="performer"] .tier-time svg{color:var(--honey,var(--accent))}
+  .tier.popular .tier-time{border-color:var(--accent-line);background:var(--accent-soft)}
+
+  /* foot-of-grid CTA — single primary button centered under the 3 tiers */
+  .tier-foot{display:flex;justify-content:center;margin-top:clamp(22px,3vw,30px)}
+
+  /* compact "premium value" callout inside the flagship tier */
+  .tier-hl{
+    color:var(--ink-soft);font-size:.86rem;margin-top:14px;
+    padding:11px 13px;border-radius:12px;
+    border:1px solid var(--accent-line);background:var(--accent-soft);line-height:1.45;
+  }
+  .tier-hl b{color:var(--accent);font-weight:600}
+  html[data-mode="performer"] .tier-hl b{color:var(--honey,var(--accent))}
+
+  /* ---- compact testimonial pull-quote, sat right beside the prices ---- */
+  .price-quote{
+    margin-top:clamp(24px,3.4vw,34px);
+    border:1px solid var(--line);border-radius:var(--radius);background:var(--panel-2);
+    padding:clamp(20px,3vw,28px);
+    display:flex;flex-wrap:wrap;align-items:center;gap:16px 26px;
+  }
+  html[data-mode="performer"] .price-quote{
+    border-color:var(--accent-line);
+    background:
+      radial-gradient(120% 140% at 0% 0%, rgba(245,200,0,.10), transparent 55%),
+      linear-gradient(160deg,var(--panel-2),var(--panel));
+  }
+  .price-quote blockquote{
+    flex:1 1 360px;min-width:0;margin:0;border:0;padding:0;position:relative;
+    font-family:var(--font-display);font-weight:500;line-height:1.4;letter-spacing:-.01em;
+    color:var(--ink);font-size:clamp(1rem,1.7vw,1.18rem);
+  }
+  html[data-mode="performer"] .price-quote blockquote{font-weight:400;font-style:italic}
+  .price-quote blockquote .em{color:var(--accent);font-style:inherit}
+  html[data-mode="performer"] .price-quote blockquote .em{color:var(--honey,var(--accent))}
+  .price-quote figcaption{flex:none;display:flex;flex-direction:column;gap:4px}
+  .price-quote cite{font-style:normal}
+  .price-quote-link{
+    display:inline-flex;align-items:baseline;gap:7px;flex-wrap:wrap;
+    font-family:var(--font-display);font-weight:700;font-size:.98rem;color:var(--ink);
+    border-bottom:1px solid transparent;padding-bottom:1px;
+    transition:color .2s var(--ease),border-color .2s var(--ease);
+  }
+  html[data-mode="performer"] .price-quote-link{font-family:var(--font-body)}
+  .price-quote-link .role{font-family:var(--font-body);font-weight:400;font-size:.85rem;color:var(--ink-mute)}
+  .price-quote-link:hover{color:var(--accent);border-bottom-color:var(--accent-line)}
+  html[data-mode="performer"] .price-quote-link:hover{color:var(--honey,var(--accent))}
+  .price-quote-link .arrow{font-size:.85em;color:var(--accent)}
+  html[data-mode="performer"] .price-quote-link .arrow{color:var(--honey,var(--accent))}
+  .price-quote-real{
+    margin-top:2px;display:inline-flex;align-items:center;gap:7px;
+    font-family:var(--font-body);font-size:.8rem;color:var(--ink-soft);
+  }
+  .price-quote-real svg{width:15px;height:15px;flex:none;color:var(--accent)}
+  html[data-mode="performer"] .price-quote-real svg{color:var(--honey,var(--accent))}
 
   /* ---- FOUNDING CLIENT rate band (tasteful section, not a popup) ---- */
   .founder{
@@ -186,6 +251,11 @@
   .founder-body p .hl{color:var(--accent);font-weight:600}
   html[data-mode="performer"] .founder-body p .hl{color:var(--honey,var(--accent))}
 
+  /* group sub-headers inside .sec-head: a step between the section h2 and the
+     card titles so the grouping label reads larger than its own cards */
+  .sec-head h3{font-size:clamp(1.25rem,3vw,1.6rem);margin-top:8px;color:var(--ink)}
+  html[data-mode="performer"] .sec-head h3{font-family:var(--font-fraunces)}
+
   /* ---- WEBSITE CARE — "after launch" block, visually distinct from builds ---- */
   .care{
     border-top:1px dashed var(--line-strong);
@@ -208,6 +278,7 @@
     font-family:var(--font-display);font-weight:800;line-height:1.05;
     font-size:clamp(1.5rem,4vw,1.9rem);color:var(--ink);margin-top:10px;letter-spacing:-.02em;
   }
+  .care-price .from{display:block;font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:4px}
   .care-price .per{font-size:.9rem;font-weight:600;color:var(--ink-mute)}
   .care-for{color:var(--ink-soft);font-size:.9rem;margin-top:10px}
   .care-list{list-style:none;margin:16px 0 0;padding:16px 0 0;display:grid;gap:10px;border-top:1px solid var(--line)}
@@ -572,98 +643,70 @@
 
       <div class="tier-grid">
 
-        <!-- Landing / Starter -->
+        <!-- 1. Starter / Refresh — merges the old Landing/Starter + Redesign/Refresh cards -->
         <article class="tier" data-reveal aria-labelledby="tier-starter">
           <div class="tier-price">
             <span class="from" data-es="Desde">From</span>
             $900
           </div>
-          <h3 class="tier-name" id="tier-starter" data-es="Landing / Inicio">Landing / Starter</h3>
-          <p class="tier-for" data-es="La alternativa honesta a un trabajito barato: una sola página pulida que de verdad hace su trabajo.">The honest alternative to a cheap gig: one polished page that actually does its job.</p>
-          <p class="tier-land" data-es="La mayoría ronda los &lt;b&gt;$1,100&lt;/b&gt;.">Most land around <b>$1,100</b>.</p>
+          <h3 class="tier-name" id="tier-starter" data-es="Inicio / Renovación">Starter / Refresh</h3>
+          <p class="tier-for" data-es="Para un sitio nuevo y limpio, o una renovación del que ya tienes.">For a clean new site, or a refresh of the one you already have.</p>
+          <p class="tier-land" data-es="La mayoría queda entre &lt;b&gt;$1,100 y $1,900&lt;/b&gt;.">Most land <b>$1,100–$1,900</b>.</p>
+          <span class="tier-time" data-es="&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;9&quot;/&gt;&lt;path d=&quot;M12 7v5l3 2&quot;/&gt;&lt;/svg&gt; En vivo en 1–2 semanas, aprox."><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Live in about 1–2 weeks</span>
           <ul class="tier-list">
-            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Una página a medida y pulida">One polished, custom one-page site</span></li>
+            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Una página a medida y pulida, o el rediseño de un sitio que ya tienes">A polished custom one-pager, or a redesign of a site you have</span></li>
             <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Formulario de contacto o de captación">Contact or lead form</span></li>
-            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Mobile-first y carga rápida">Mobile-first and fast-loading</span></li>
+            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Look moderno, mobile-first y carga rápida">Fresh modern look, mobile-first and fast-loading</span></li>
+            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Traslado tu contenido actual si es una renovación">Your existing content carried over on a refresh</span></li>
             <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="SEO básico en la página">Basic on-page SEO</span></li>
           </ul>
-          <a href="/contact/" class="tier-cta" data-es="Pide un presupuesto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Get a quote <span class="arrow" aria-hidden="true">→</span></a>
+          <a href="/contact/" class="tier-cta" data-es="Empezar un proyecto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Start a project <span class="arrow" aria-hidden="true">→</span></a>
         </article>
 
-        <!-- Redesign / Refresh — NEW -->
-        <article class="tier" data-reveal aria-labelledby="tier-redesign">
-          <div class="tier-price">
-            <span class="from" data-es="Desde">From</span>
-            $1,500
-          </div>
-          <h3 class="tier-name" id="tier-redesign" data-es="Rediseño / Renovación">Redesign / Refresh</h3>
-          <p class="tier-for" data-es="Para un sitio que ya tienes pero que se ve viejo, lento o se rompe en el teléfono.">For a site you already have that looks dated, loads slow or breaks on phones.</p>
-          <p class="tier-land" data-es="La mayoría ronda los &lt;b&gt;$1,900&lt;/b&gt;.">Most land around <b>$1,900</b>.</p>
-          <ul class="tier-list">
-            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Rediseño visual y look moderno">Fresh look and modern redesign</span></li>
-            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Arreglos de velocidad y de móvil">Speed and mobile fixes</span></li>
-            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Traslado tu contenido actual">Your existing content carried over</span></li>
-            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="SEO básico repasado">Basic SEO tuned up</span></li>
-          </ul>
-          <a href="/contact/" class="tier-cta" data-es="Pide un presupuesto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Get a quote <span class="arrow" aria-hidden="true">→</span></a>
-        </article>
-
-        <!-- Local Business — MOST POPULAR anchor -->
+        <!-- 2. Local Business — FLAGSHIP, MOST POPULAR anchor, in the middle -->
         <article class="tier popular" data-reveal aria-labelledby="tier-local">
           <span class="tier-flag" data-es="★ Más elegido">★ Most popular</span>
           <div class="tier-price">
-            <span class="from" data-es="Desde">From</span>
-            $2,200
+            $2,200<span class="per" data-es="–$2,600">–$2,600</span>
           </div>
           <h3 class="tier-name" id="tier-local" data-es="Negocio local">Local Business</h3>
-          <p class="tier-for" data-es="Para un comercio, restaurante o empresa de servicios que necesita un sitio completo y serio.">For a shop, restaurant or service business that needs a full, serious site.</p>
-          <p class="tier-land" data-es="La mayoría ronda los &lt;b&gt;$2,600&lt;/b&gt;.">Most land around <b>$2,600</b>.</p>
+          <p class="tier-for" data-es="Para un negocio local establecido que necesita el sitio completo a medida.">For an established local business that needs the full custom site.</p>
+          <span class="tier-time" data-es="&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;9&quot;/&gt;&lt;path d=&quot;M12 7v5l3 2&quot;/&gt;&lt;/svg&gt; En vivo en 3–4 semanas, aprox."><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Live in about 3–4 weeks</span>
           <ul class="tier-list">
             <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Sitio a medida de 5–8 páginas">Custom multi-page site (5–8 pages)</span></li>
             <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Formularios de captación y contacto">Lead and contact forms</span></li>
             <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Alta y ajuste de tu Perfil de Empresa en Google">Google Business setup</span></li>
             <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="SEO básico para que te encuentren en la zona">Basic SEO so locals find you</span></li>
-            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Opción en español incluida">Bilingual (English/Spanish) option</span></li>
           </ul>
-          <a href="/contact/" class="tier-cta" data-es="Pide un presupuesto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Get a quote <span class="arrow" aria-hidden="true">→</span></a>
+          <p class="tier-hl" data-es="&lt;b&gt;Bilingüe inglés + español, incluido.&lt;/b&gt; Tu sitio completo en los dos idiomas, así llegas a todo Orlando — parte de lo que hace que valga su precio.">
+            <b>Bilingual English + Spanish, included.</b> Your full site in both languages, so you reach all of Orlando — part of what makes this build worth its price.
+          </p>
+          <a href="/contact/" class="tier-cta" data-es="Reserva una llamada &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Book a call <span class="arrow" aria-hidden="true">→</span></a>
         </article>
 
-        <!-- Online Store -->
+        <!-- 3. Online Store / Bigger build -->
         <article class="tier" data-reveal aria-labelledby="tier-store">
           <div class="tier-price">
             <span class="from" data-es="Desde">From</span>
             $2,500
           </div>
-          <h3 class="tier-name" id="tier-store" data-es="Tienda online">Online Store</h3>
-          <p class="tier-for" data-es="Para cualquiera que venda productos y necesite cobrar online sin fallos.">For anyone selling products who needs reliable online checkout.</p>
+          <h3 class="tier-name" id="tier-store" data-es="Tienda online / Proyecto grande">Online Store / Bigger build</h3>
+          <p class="tier-for" data-es="Para vender online, o para un proyecto más grande de varias páginas.">For selling online, or a bigger multi-page build.</p>
           <p class="tier-land" data-es="La mayoría ronda los &lt;b&gt;$3,200&lt;/b&gt;.">Most land around <b>$3,200</b>.</p>
+          <span class="tier-time" data-es="&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;9&quot;/&gt;&lt;path d=&quot;M12 7v5l3 2&quot;/&gt;&lt;/svg&gt; En vivo en 4–6 semanas, aprox."><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Live in about 4–6 weeks</span>
           <ul class="tier-list">
             <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Tienda Shopify o storefront a medida">Shopify or custom storefront</span></li>
-            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Páginas de producto y catálogo">Product pages and catalog</span></li>
+            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Páginas de producto y catálogo, o un sitio grande de varias páginas">Product pages and catalog, or a large multi-page site</span></li>
             <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Pago seguro, pagos y envíos configurados">Secure checkout, payments &amp; shipping</span></li>
             <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Cuentas de cliente y seguimiento de pedidos">Customer accounts &amp; order tracking</span></li>
           </ul>
-          <a href="/contact/" class="tier-cta" data-es="Pide un presupuesto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Get a quote <span class="arrow" aria-hidden="true">→</span></a>
+          <a href="/contact/" class="tier-cta" data-es="Empezar un proyecto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Start a project <span class="arrow" aria-hidden="true">→</span></a>
         </article>
 
-        <!-- Performer Site -->
-        <article class="tier" data-reveal aria-labelledby="tier-performer">
-          <div class="tier-price">
-            <span class="from" data-es="Desde">From</span>
-            $1,800
-          </div>
-          <h3 class="tier-name" id="tier-performer" data-es="Sitio de artista">Performer Site</h3>
-          <p class="tier-for" data-es="Para comediantes, músicos y artistas que necesitan un hogar real para su show.">For comedians, musicians and performers who need a real home for the act.</p>
-          <p class="tier-land" data-es="La mayoría ronda los &lt;b&gt;$2,300&lt;/b&gt;.">Most land around <b>$2,300</b>.</p>
-          <ul class="tier-list">
-            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Fechas de gira y calendario de shows">Tour dates and show calendar</span></li>
-            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Formulario de contratación a tu correo">Booking form straight to your inbox</span></li>
-            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Reels de clips y galería">Clip reels and gallery</span></li>
-            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Kit de prensa (EPK) que los contratantes descargan">Press kit (EPK) bookers can download</span></li>
-          </ul>
-          <a href="/contact/" class="tier-cta" data-es="Pide un presupuesto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Get a quote <span class="arrow" aria-hidden="true">→</span></a>
-        </article>
+      </div>
 
+      <div class="tier-foot" data-reveal>
+        <a href="/contact/" class="btn btn-primary" data-es="Empezar un proyecto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Start a project <span class="arrow" aria-hidden="true">→</span></a>
       </div>
 
       <p class="price-note" data-reveal>
@@ -672,12 +715,42 @@
       </p>
 
       <!-- ====================================================
+           TRUST PROOF beside the prices — a compact pull-quote
+           from a real client (full version lives on the home page).
+           Research: trust proof next to numbers converts the
+           price-anxious local buyer.
+           ==================================================== -->
+      <figure class="price-quote" data-reveal>
+        <blockquote cite="https://peterheftyandjustin.com/" data-es="Como un buen mago, Gabe no tenía nada bajo la manga: todo apareció fantástico ante mis ojos — &lt;span class=&quot;em&quot;&gt;mi nuevo sitio web&lt;/span&gt;. Se lo recomendaría a cualquiera.">Like a magician, there was nothing up his sleeve: everything fantastic just appeared before my eyes — <span class="em">my new website</span>. I’d recommend BANANAbyte to anyone.</blockquote>
+        <figcaption>
+          <cite><a class="price-quote-link" href="https://peterheftyandjustin.com/" target="_blank" rel="noopener" data-es="Peter Hefty &lt;span class=&quot;role&quot;&gt;ventrílocuo y comediante&lt;/span&gt; &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;↗&lt;/span&gt;">Peter Hefty <span class="role">ventriloquist &amp; comedian</span> <span class="arrow" aria-hidden="true">↗</span></a></cite>
+          <span class="price-quote-real" data-es="&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z&quot;/&gt;&lt;path d=&quot;m9 12 2 2 4-4&quot;/&gt;&lt;/svg&gt; Cliente real — su sitio en vivo lo construyó BANANAbyte."><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/><path d="m9 12 2 2 4-4"/></svg> Real client — his live site was built by BANANAbyte.</span>
+        </figcaption>
+      </figure>
+
+      <!-- ====================================================
            WEBSITE CARE — separate "after launch" block
            ==================================================== -->
       <div class="care">
         <div class="sec-head" data-reveal style="max-width:680px">
-          <span class="eyebrow" data-es="Después de lanzar">After launch</span>
-          <h2 data-es="Cuidado del sitio, para cuando ya está en vivo.">Website Care, for once you’re live.</h2>
+          <span class="eyebrow" data-es="Más servicios">Add-ons</span>
+          <h2 data-es="Otros servicios y extras.">Other services &amp; add-ons</h2>
+          <p data-es="Trabajos específicos y planes continuos que sumas a un sitio nuevo o a uno que ya tienes. Todo con precio claro — pídelos solos o junto con tu proyecto.">Specific builds and ongoing plans you add to a new site or one you already have. All clearly priced — get them on their own or alongside your project.</p>
+        </div>
+
+        <!-- standalone service moved out of the main grid -->
+        <div class="care-grid">
+          <article class="care-plan" data-reveal aria-labelledby="care-performer">
+            <h3 class="care-name" id="care-performer" data-es="Sitio para artistas">Performer / entertainer site</h3>
+            <div class="care-price"><span class="from" data-es="Desde">From</span>$1,800</div>
+            <p class="care-for" data-es="Para comediantes, músicos y artistas: fechas de gira, reservas, reels y kit de prensa.">For comedians, musicians and performers: tour dates, booking, reels and a press kit.</p>
+            <a href="/services/performer-sites/" class="tier-cta" data-es="Ver sitios para artistas &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">See performer sites <span class="arrow" aria-hidden="true">→</span></a>
+          </article>
+        </div>
+
+        <!-- ongoing / monthly Website Care, grouped together -->
+        <div class="sec-head" data-reveal style="max-width:680px;margin-top:clamp(34px,5vw,52px)">
+          <h3 data-es="Cuidado del sitio, para cuando ya está en vivo.">Website Care, for once you’re live.</h3>
           <p data-es="Planes mensuales opcionales — aparte del costo del sitio. Elige el que necesites; puedes cambiarlo o cancelarlo cuando quieras.">Optional monthly plans — separate from the build cost. Pick the one you need; change or cancel it anytime.</p>
         </div>
 
@@ -691,7 +764,7 @@
               <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Seguridad y monitoreo de disponibilidad">Security and uptime monitoring</span></li>
               <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Pequeños ajustes de contenido cada mes">Small monthly content edits</span></li>
             </ul>
-            <a href="/contact/" class="tier-cta" data-es="Pregunta por el Básico &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Ask about Basic <span class="arrow" aria-hidden="true">→</span></a>
+            <a href="/services/website-care/" class="tier-cta" data-es="Ver Cuidado del sitio &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">See Website Care <span class="arrow" aria-hidden="true">→</span></a>
           </article>
 
           <article class="care-plan" data-reveal aria-labelledby="care-plus">
@@ -704,7 +777,7 @@
               <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Soporte con prioridad">Priority support</span></li>
               <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Reporte mensual de tu sitio">Monthly site report</span></li>
             </ul>
-            <a href="/contact/" class="tier-cta" data-es="Pregunta por el Plus &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Ask about Plus <span class="arrow" aria-hidden="true">→</span></a>
+            <a href="/services/website-care/" class="tier-cta" data-es="Ver Cuidado del sitio &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">See Website Care <span class="arrow" aria-hidden="true">→</span></a>
           </article>
         </div>
 
@@ -713,14 +786,14 @@
              grouped with Website Care, separate from the build tiers
              ==================================================== -->
         <div class="sec-head" data-reveal style="max-width:680px;margin-top:clamp(34px,5vw,52px)">
-          <h3 data-es="Servicios de crecimiento, mes a mes.">Growth add-ons, month to month.</h3>
+          <h3 data-es="Crecimiento, mes a mes.">Growth, month to month.</h3>
           <p data-es="Servicios continuos para conseguir y atender más clientes — con una puesta en marcha única y luego una cuota mensual. Súmalos a un sitio nuevo o a uno que ya tengas.">Ongoing services to win and handle more customers — a one-time setup, then a monthly fee. Add them to a new site or to one you already have.</p>
         </div>
 
         <div class="care-grid">
           <article class="care-plan" data-reveal aria-labelledby="care-aifd">
             <h3 class="care-name" id="care-aifd" data-es="Recepcionista con IA">AI Front Desk</h3>
-            <div class="care-price"><span class="from" data-es="Desde" style="display:block;font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:4px">From</span>$199<span class="per" data-es="/mes">/mo</span></div>
+            <div class="care-price"><span class="from" data-es="Desde">From</span>$199<span class="per" data-es="/mes">/mo</span></div>
             <p class="care-for" data-es="Más una puesta en marcha desde $600. Un asistente bilingüe 24/7 y automatizaciones que atrapan cada cliente potencial de tu negocio.">Plus a setup from $600. A 24/7 bilingual assistant and automations that catch every lead for your business.</p>
             <ul class="care-list">
               <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Chat 24/7 en inglés y español">24/7 chat in English and Spanish</span></li>
@@ -728,12 +801,12 @@
               <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Conectado a tu correo, calendario y herramientas">Hooked into your inbox, calendar and tools</span></li>
               <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Puesta a punto continua mes a mes">Ongoing tuning month to month</span></li>
             </ul>
-            <a href="/contact/" class="tier-cta" data-es="Pregunta por la Recepcionista con IA &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Ask about AI Front Desk <span class="arrow" aria-hidden="true">→</span></a>
+            <a href="/services/ai-front-desk/" class="tier-cta" data-es="Ver Recepcionista con IA &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">See AI Front Desk <span class="arrow" aria-hidden="true">→</span></a>
           </article>
 
           <article class="care-plan" data-reveal aria-labelledby="care-seo">
             <h3 class="care-name" id="care-seo" data-es="SEO local / Google Business">Local SEO / Google Business</h3>
-            <div class="care-price"><span class="from" data-es="Desde" style="display:block;font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:4px">From</span>$199<span class="per" data-es="/mes">/mo</span></div>
+            <div class="care-price"><span class="from" data-es="Desde">From</span>$199<span class="per" data-es="/mes">/mo</span></div>
             <p class="care-for" data-es="Más una puesta en marcha desde $400. Tu Perfil de Empresa en Google y SEO local para que los clientes te encuentren en el mapa.">Plus a setup from $400. Your Google Business Profile and local SEO so customers find you on the map.</p>
             <ul class="care-list">
               <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Alta y ajuste de tu Perfil de Empresa en Google">Google Business Profile set up &amp; tuned</span></li>
@@ -741,12 +814,12 @@
               <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Listados de mapas y ayuda con reseñas">Map listings and review help</span></li>
               <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Reporte mensual de tu posición local">Monthly report on your local ranking</span></li>
             </ul>
-            <a href="/contact/" class="tier-cta" data-es="Pregunta por el SEO local &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Ask about Local SEO <span class="arrow" aria-hidden="true">→</span></a>
+            <a href="/services/local-seo/" class="tier-cta" data-es="Ver SEO local &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">See Local SEO <span class="arrow" aria-hidden="true">→</span></a>
           </article>
 
           <article class="care-plan" data-reveal aria-labelledby="care-mkt">
             <h3 class="care-name" id="care-mkt" data-es="Marketing y difusión">Marketing &amp; Outreach</h3>
-            <div class="care-price"><span class="from" data-es="Desde" style="display:block;font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:4px">From</span>$600<span class="per" data-es="/mes">/mo</span></div>
+            <div class="care-price"><span class="from" data-es="Desde">From</span>$600<span class="per" data-es="/mes">/mo</span></div>
             <p class="care-for" data-es="Más una puesta en marcha desde $1,500. Encuentro dónde anunciarte, hago la difusión por ti y monto y manejo tus anuncios — para que te reserven o te encuentren.">Plus a setup from $1,500. I find where to advertise you, do the outreach for you, and set up and run your ads — so you get booked or get found.</p>
             <ul class="care-list">
               <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Difusión a locales, agentes, prensa y directorios — hecha por mí">Outreach to venues, bookers, press &amp; directories — done by me</span></li>
@@ -754,7 +827,7 @@
               <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Perfiles y listados (Google, directorios de eventos, redes)">Profiles &amp; listings (Google, event directories, social)</span></li>
               <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-es="Bilingüe — tus mercados en inglés y en español">Bilingual — your English and Spanish markets</span></li>
             </ul>
-            <a href="/contact/" class="tier-cta" data-es="Pregunta por Marketing y difusión &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Ask about Marketing &amp; Outreach <span class="arrow" aria-hidden="true">→</span></a>
+            <a href="/services/marketing-outreach/" class="tier-cta" data-es="Ver Marketing y difusión &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">See Marketing &amp; Outreach <span class="arrow" aria-hidden="true">→</span></a>
           </article>
         </div>
       </div>
