@@ -191,6 +191,69 @@
   [data-reveal]{opacity:1 !important;transform:none !important}
 </style>
 </noscript>
+
+<!-- ContactPage + Breadcrumb JSON-LD. References the canonical #business
+     entity defined on the homepage; mirrors the visible phone/email/area. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact · BANANAbyte",
+  "url": "https://bananabyte.io/contact/",
+  "description": "Start a project or get a free quote from BANANAbyte, a web design & development studio in Orlando, FL.",
+  "inLanguage": ["en", "es"],
+  "isPartOf": { "@id": "https://bananabyte.io/#website" },
+  "about": { "@id": "https://bananabyte.io/#business" },
+  "mainEntity": {
+    "@id": "https://bananabyte.io/#business",
+    "@type": "ProfessionalService",
+    "name": "BANANAbyte",
+    "url": "https://bananabyte.io",
+    "email": "contact@bananabyte.io",
+    "telephone": "+13212023732",
+    "image": "https://bananabyte.io/og-image.png",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Orlando",
+      "addressRegion": "FL",
+      "addressCountry": "US"
+    },
+    "areaServed": [
+      { "@type": "City", "name": "Orlando" },
+      { "@type": "AdministrativeArea", "name": "Central Florida" }
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "sales",
+      "telephone": "+13212023732",
+      "email": "contact@bananabyte.io",
+      "areaServed": ["Orlando", "Central Florida", "US"],
+      "availableLanguage": ["English", "Spanish"]
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://bananabyte.io/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Contact",
+      "item": "https://bananabyte.io/contact/"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>

@@ -137,6 +137,58 @@
   [data-reveal]{opacity:1 !important;transform:none !important}
 </style>
 </noscript>
+
+<!-- ============================================================
+     STRUCTURED DATA — Service (online stores / e-commerce) + breadcrumb.
+     Provider references the homepage ProfessionalService by @id.
+     ============================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Online Stores & E-commerce",
+  "serviceType": "E-commerce website / online store",
+  "description": "BANANAbyte builds e-commerce storefronts on Shopify for Orlando shops, boutiques, makers and brands — custom storefront design, product catalog, secure PCI-compliant checkout, shipping and tax setup, mobile-first, and you own the store.",
+  "url": "https://bananabyte.io/services/online-stores/",
+  "provider": { "@id": "https://bananabyte.io/#business" },
+  "areaServed": [
+    { "@type": "City", "name": "Orlando" },
+    { "@type": "AdministrativeArea", "name": "Central Florida" }
+  ],
+  "offers": {
+    "@type": "Offer",
+    "price": "2500",
+    "priceCurrency": "USD",
+    "url": "https://bananabyte.io/pricing/"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://bananabyte.io/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Services",
+      "item": "https://bananabyte.io/services/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Online stores",
+      "item": "https://bananabyte.io/services/online-stores/"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>

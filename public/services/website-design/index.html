@@ -149,6 +149,63 @@
   .cta-band p{color:var(--ink-soft);margin-top:14px;font-size:1.02rem}
   .cta-band .cta-actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:clamp(26px,4vw,34px)}
 </style>
+
+<!-- Service + Breadcrumb JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Web design",
+  "name": "Website Design & Build",
+  "description": "Custom website design and build for Orlando businesses, professionals and individuals. Fast, mobile-first, with lead forms, on-page SEO, and you own everything.",
+  "url": "https://bananabyte.io/services/website-design/",
+  "provider": {
+    "@id": "https://bananabyte.io/#business"
+  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Orlando"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Central Florida"
+    }
+  ],
+  "offers": {
+    "@type": "Offer",
+    "price": "900",
+    "priceCurrency": "USD",
+    "url": "https://bananabyte.io/pricing/"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://bananabyte.io/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Services",
+      "item": "https://bananabyte.io/services/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Website design",
+      "item": "https://bananabyte.io/services/website-design/"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>

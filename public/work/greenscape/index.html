@@ -316,6 +316,65 @@
     .reveal{opacity:1;transform:none;transition:none}
   }
 </style>
+
+<!-- CreativeWork JSON-LD — this page is a BANANAbyte concept/case-study build
+     for a fictional Orlando lawn-care business. creator points to the
+     canonical #business entity defined on the homepage. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "@id": "https://bananabyte.io/work/greenscape/#case-study",
+  "name": "GreenScape Lawn Care — Concept Site",
+  "headline": "GreenScape Lawn Care — Orlando's Friendly Lawn & Landscape Crew",
+  "description": "A concept website design by BANANAbyte for \"GreenScape Lawn Care,\" a fictional Orlando lawn & landscape business. Demonstrates a fast, mobile-first, lead-generating site with a before/after slider and quote form.",
+  "url": "https://bananabyte.io/work/greenscape/",
+  "inLanguage": "en",
+  "genre": "Case study",
+  "keywords": ["web design", "landscaping website", "lawn care website", "Orlando", "concept site", "case study"],
+  "about": {
+    "@type": "LocalBusiness",
+    "name": "GreenScape Lawn Care",
+    "description": "Fictional Orlando lawn & landscape business used as a concept-site case study.",
+    "areaServed": {
+      "@type": "City",
+      "name": "Orlando"
+    }
+  },
+  "creator": { "@id": "https://bananabyte.io/#business" },
+  "provider": { "@id": "https://bananabyte.io/#business" },
+  "isPartOf": "https://bananabyte.io/work/",
+  "mainEntityOfPage": "https://bananabyte.io/work/greenscape/"
+}
+</script>
+
+<!-- BreadcrumbList JSON-LD — Home -> Work -> GreenScape -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://bananabyte.io/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Work",
+      "item": "https://bananabyte.io/work/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "GreenScape",
+      "item": "https://bananabyte.io/work/greenscape/"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 

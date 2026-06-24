@@ -154,6 +154,72 @@
   .cta-band p{color:var(--ink-soft);margin-top:14px;font-size:1.02rem}
   .cta-band .cta-actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:clamp(26px,4vw,34px)}
 </style>
+
+<!-- Service + BreadcrumbList JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Local SEO",
+  "name": "Local SEO & Google Business Profile Setup in Orlando",
+  "description": "Get your Orlando business found on Google Maps and local search. Google Business Profile setup, on-page local SEO, review help, and bilingual listings.",
+  "url": "https://bananabyte.io/services/local-seo/",
+  "provider": { "@id": "https://bananabyte.io/#business" },
+  "areaServed": [
+    { "@type": "City", "name": "Orlando" },
+    { "@type": "AdministrativeArea", "name": "Central Florida" }
+  ],
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Local SEO setup",
+      "description": "One-time Google Business Profile setup and local SEO groundwork.",
+      "price": "400",
+      "priceCurrency": "USD",
+      "url": "https://bananabyte.io/services/local-seo/"
+    },
+    {
+      "@type": "Offer",
+      "name": "Local SEO monthly care",
+      "description": "Optional ongoing local SEO care: posts, fresh photos, review replies, and a monthly local-ranking report.",
+      "priceCurrency": "USD",
+      "url": "https://bananabyte.io/services/local-seo/",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": "199",
+        "priceCurrency": "USD",
+        "unitText": "MON"
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://bananabyte.io/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Services",
+      "item": "https://bananabyte.io/services/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Local SEO",
+      "item": "https://bananabyte.io/services/local-seo/"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>

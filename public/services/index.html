@@ -117,6 +117,94 @@
   html[data-mode="performer"] .quote-copy a.inline{color:var(--honey,var(--accent))}
   .quote-actions{display:flex;flex-wrap:wrap;gap:14px}
 </style>
+
+<!-- Breadcrumb + Services CollectionPage JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://bananabyte.io/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Services",
+      "item": "https://bananabyte.io/services/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": "https://bananabyte.io/services/#webpage",
+  "url": "https://bananabyte.io/services/",
+  "name": "Services — Websites, Stores & Performer Sites · BANANAbyte",
+  "description": "Everything BANANAbyte builds in Orlando: custom websites, online stores, performer sites, redesigns and ongoing care. One person, one flat quote, you own everything.",
+  "isPartOf": { "@id": "https://bananabyte.io/#business" },
+  "about": { "@id": "https://bananabyte.io/#business" },
+  "mainEntity": {
+    "@type": "ItemList",
+    "name": "BANANAbyte services",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Website design",
+        "url": "https://bananabyte.io/services/website-design/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Online stores",
+        "url": "https://bananabyte.io/services/online-stores/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Performer sites",
+        "url": "https://bananabyte.io/services/performer-sites/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "Redesign & refresh",
+        "url": "https://bananabyte.io/services/redesign-refresh/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "name": "Website care",
+        "url": "https://bananabyte.io/services/website-care/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 6,
+        "name": "AI Front Desk",
+        "url": "https://bananabyte.io/services/ai-front-desk/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 7,
+        "name": "Local SEO",
+        "url": "https://bananabyte.io/services/local-seo/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 8,
+        "name": "Marketing & Outreach",
+        "url": "https://bananabyte.io/services/marketing-outreach/"
+      }
+    ]
+  }
+}
+</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>

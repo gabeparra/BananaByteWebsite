@@ -175,6 +175,74 @@
   .cta-band p{color:var(--ink-soft);margin-top:14px;font-size:1.02rem}
   .cta-band .cta-actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:clamp(26px,4vw,34px)}
 </style>
+
+<!-- Service + BreadcrumbList JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "AI Front Desk",
+  "serviceType": "AI front desk / chat assistant",
+  "url": "https://bananabyte.io/services/ai-front-desk/",
+  "description": "A bilingual (English/Spanish) site chat assistant plus automations — missed-call text-back, automatic review requests, and instant lead alerts — set up and maintained for your business so you never miss another customer.",
+  "image": "https://bananabyte.io/og-image.png",
+  "provider": { "@id": "https://bananabyte.io/#business" },
+  "areaServed": [
+    { "@type": "City", "name": "Orlando" },
+    { "@type": "AdministrativeArea", "name": "Central Florida" }
+  ],
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Setup",
+      "description": "One-time setup — built and wired into your business.",
+      "price": "600",
+      "priceCurrency": "USD",
+      "url": "https://bananabyte.io/services/ai-front-desk/"
+    },
+    {
+      "@type": "Offer",
+      "name": "Monthly",
+      "description": "Monthly plan — hosting, assistant usage, and ongoing maintenance.",
+      "priceCurrency": "USD",
+      "url": "https://bananabyte.io/services/ai-front-desk/",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": "199",
+        "priceCurrency": "USD",
+        "unitCode": "MON",
+        "billingIncrement": 1
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://bananabyte.io/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Services",
+      "item": "https://bananabyte.io/services/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "AI Front Desk",
+      "item": "https://bananabyte.io/services/ai-front-desk/"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>

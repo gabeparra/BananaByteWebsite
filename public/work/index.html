@@ -516,6 +516,129 @@
       .card:hover .thumb img, .card:focus-within .thumb img{ transform:none; }
     }
   </style>
+
+  <!-- Structured data: breadcrumb + work collection page -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://bananabyte.io/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Work",
+        "item": "https://bananabyte.io/work/"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "url": "https://bananabyte.io/work/",
+    "name": "Work — BANANAbyte",
+    "description": "Selected work from BANANAbyte — a real live client site (Peter Hefty & Justin) plus ten concept builds for shops, creators, performers and local businesses, showing the range of what a small Orlando studio can make.",
+    "inLanguage": "en",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "BANANAbyte",
+      "url": "https://bananabyte.io/"
+    },
+    "about": {
+      "@id": "https://bananabyte.io/#business"
+    },
+    "publisher": {
+      "@id": "https://bananabyte.io/#business"
+    },
+    "primaryImageOfPage": "https://bananabyte.io/og-image.png",
+    "mainEntity": {
+      "@type": "ItemList",
+      "name": "Website design portfolio and concept builds",
+      "numberOfItems": 12,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Peter Hefty & Justin — ventriloquist & comedian booking site",
+          "url": "https://peterheftyandjustin.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "gabrielparra.dev — developer portfolio",
+          "url": "https://gabrielparra.dev/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Maya Okonkwo — Photographer (concept build)",
+          "url": "https://bananabyte.io/concepts/mock-portfolio/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Marcus Webb — Leadership Coach (concept build)",
+          "url": "https://bananabyte.io/concepts/mock-personal/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "The Slow Morning — Lifestyle Blog (concept build)",
+          "url": "https://bananabyte.io/concepts/mock-blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "name": "Wildflower & Co. — Fashion Boutique (concept build)",
+          "url": "https://bananabyte.io/concepts/mock-shop-boutique/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 7,
+          "name": "Ember & Oak — Candles & Coffee (concept build)",
+          "url": "https://bananabyte.io/concepts/mock-shop-goods/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 8,
+          "name": "Dani Cole — Stand-up Comedian (concept build)",
+          "url": "https://bananabyte.io/concepts/mock-comedian/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 9,
+          "name": "Rico Marsh — Pro Wrestler (concept build)",
+          "url": "https://bananabyte.io/concepts/mock-wrestler/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 10,
+          "name": "NOVA — DJ / Producer (concept build)",
+          "url": "https://bananabyte.io/concepts/mock-dj/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 11,
+          "name": "Marveau — Magician (concept build)",
+          "url": "https://bananabyte.io/concepts/mock-magician/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 12,
+          "name": "Taco Loco — Taqueria & Bar (concept build)",
+          "url": "https://bananabyte.io/concepts/mock-restaurant/"
+        }
+      ]
+    }
+  }
+  </script>
 </head>
 
 <body>

@@ -154,6 +154,78 @@
   .cta-band p{color:var(--ink-soft);margin-top:14px;font-size:1.02rem}
   .cta-band .cta-actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:clamp(26px,4vw,34px)}
 </style>
+
+<!-- Service + BreadcrumbList structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Marketing & outreach",
+  "name": "Marketing & Outreach",
+  "description": "Done-for-you marketing legwork in Orlando — research, outreach to the right venues, bookers and partners, ads, and listings, in English and Spanish.",
+  "url": "https://bananabyte.io/services/marketing-outreach/",
+  "provider": { "@id": "https://bananabyte.io/#business" },
+  "areaServed": [
+    { "@type": "City", "name": "Orlando" },
+    { "@type": "AdministrativeArea", "name": "Central Florida" }
+  ],
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "USD",
+    "lowPrice": "600",
+    "highPrice": "1500",
+    "offerCount": "2",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Setup",
+        "price": "1500",
+        "priceCurrency": "USD",
+        "description": "One-time setup from $1,500 — gets your marketing live and runs the first outreach round."
+      },
+      {
+        "@type": "Offer",
+        "name": "Monthly management",
+        "price": "600",
+        "priceCurrency": "USD",
+        "description": "Optional ongoing management from $600/mo — outreach, ads, and a monthly report.",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "600",
+          "priceCurrency": "USD",
+          "unitText": "MON"
+        }
+      }
+    ]
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://bananabyte.io/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Services",
+      "item": "https://bananabyte.io/services/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Marketing & Outreach",
+      "item": "https://bananabyte.io/services/marketing-outreach/"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
