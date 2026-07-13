@@ -102,6 +102,7 @@ html[data-theme="green"]{
   --ink:var(--white); --ink-2:#E6F1EA; --muted:#B9D3C4;
   --line:var(--white); --line-soft:rgba(255,255,255,0.30); --line-hair:rgba(255,255,255,0.16);
   --accent:var(--yellow); --accent-ink:var(--yellow); --accent-soft:rgba(245,200,0,0.20); --on-accent:var(--on-yellow);
+  --accent-ink-plain:#FFD866; /* deeper gold for text laid straight on plain green (#1E6B45) — --accent-ink (#F5C800) only clears ~4.05:1 there; this clears ~4.7:1 */
   --brand-mark:var(--green-bright);
   --lift:3px 3px 0 0 var(--black);
   --tint-lo:rgba(255,255,255,0.04);
@@ -194,7 +195,7 @@ header.site.scrolled{border-bottom-color:var(--line)}
 .wordmark{font-family:var(--font-display);font-weight:900;letter-spacing:-.02em;line-height:1;font-size:1.32rem;display:inline-flex;align-items:center;gap:.5rem;background:transparent;border:0;cursor:pointer;color:var(--ink);padding:0;text-decoration:none}
 .wordmark .txt{display:inline-flex;align-items:baseline;gap:.06em}
 .wordmark .byte{font-family:var(--font-body);font-weight:800;font-size:.82em;letter-spacing:-.01em;color:var(--accent-ink);transform:translateY(-.02em)}
-.wordmark .bmark.spin{animation:markSpin .8s cubic-bezier(.34,1.56,.64,1) 1}
+.wordmark .bmark.spin,.wordmark.spin{animation:markSpin .8s cubic-bezier(.34,1.56,.64,1) 1}
 @keyframes markSpin{0%{transform:rotate(0) scale(1)}55%{transform:rotate(-380deg) scale(1.24)}100%{transform:rotate(-360deg) scale(1)}}
 .banana-pop{position:fixed;z-index:200;pointer-events:none;width:20px;height:20px;will-change:transform,opacity;animation:bananaFloat 1.15s cubic-bezier(.16,1,.3,1) forwards}
 @keyframes bananaFloat{0%{opacity:0;transform:translate(0,0) scale(.6) rotate(0)}15%{opacity:1}100%{opacity:0;transform:translate(var(--bx,0),-58px) scale(1.05) rotate(var(--br,20deg))}}
@@ -252,6 +253,12 @@ section{padding-block:var(--section-y)}
   letter-spacing:.01em;color:var(--accent-ink);
 }
 .eyebrow::before{content:"";width:28px;height:1.5px;background:var(--ink)}
+/* the green theme's plain section surface (#1E6B45) fails small-text AA with
+   --accent-ink alone — swap in the deeper-gold token on that plain background. */
+html[data-theme="green"] .eyebrow{color:var(--accent-ink-plain)}
+/* header wordmark sits on the same plain-green surface as .eyebrow when the
+   scroll-driven theme is green — apply the same deeper-gold fix here. */
+html[data-theme="green"] .wordmark .byte{color:var(--accent-ink-plain)}
 .sec-head{max-width:760px;margin-bottom:clamp(24px,3vw,36px)}
 .sec-head h2{font-size:var(--text-3xl);margin-top:var(--space-4);text-wrap:balance;overflow-wrap:break-word}
 .sec-head p{color:var(--ink-2);margin-top:var(--space-5);font-size:var(--text-lg);font-weight:400;line-height:1.55;max-width:60ch;text-wrap:pretty}
@@ -441,7 +448,6 @@ fieldset{border:0;margin:0;padding:0;min-width:0}
   white-space:nowrap;flex:none;
 }
 .check-row input:checked + label .cl-price{color:var(--accent-ink)}
-.check-row.is-included label .cl-price::before{content:"included · "}
 .check-row.is-included label .cl-price{color:var(--brand-mark)}
 
 /* ---- STEPPER (extra pages) ---- */
@@ -499,7 +505,7 @@ fieldset{border:0;margin:0;padding:0;min-width:0}
    ============================================================ */
 /* mobile sticky total strip */
 .total-sticky-mobile{
-  position:sticky;bottom:0;z-index:80;
+  position:fixed;left:0;right:0;bottom:0;z-index:80;
   background:var(--surface);
   border-top:1.5px solid var(--line);
   padding:14px var(--gutter);
@@ -507,8 +513,16 @@ fieldset{border:0;margin:0;padding:0;min-width:0}
   display:flex;align-items:center;justify-content:space-between;
   gap:var(--space-4);
   box-shadow:0 -3px 0 0 var(--line);
+  /* Hidden until the estimator scrolls into view (toggled via IntersectionObserver),
+     so it rides the bottom the whole time you're configuring — but never floats over
+     the hero or the notes/footer below. */
+  transform:translateY(110%);opacity:0;visibility:hidden;
+  transition:transform .28s ease, opacity .28s ease, visibility .28s;
 }
+.total-sticky-mobile.is-visible{transform:none;opacity:1;visibility:visible}
 @media(min-width:860px){.total-sticky-mobile{display:none}}
+/* leave room so the fixed bar never covers the last control (care plan) on mobile */
+@media(max-width:859px){#estimator{padding-bottom:104px}}
 
 .total-sticky-mobile .tsm-label{
   font-family:var(--font-body);font-weight:800;font-size:.78rem;
@@ -630,7 +644,7 @@ fieldset{border:0;margin:0;padding:0;min-width:0}
   color:var(--ink);
 }
 .est-note-ico svg{width:20px;height:20px}
-.est-note-copy h4{
+.est-note-copy h3{
   font-family:var(--font-display);
   font-weight:800;font-size:1.02rem;
   letter-spacing:-.01em;
@@ -675,8 +689,9 @@ footer.site{border-top:1.5px solid var(--line);padding-block:clamp(44px,5vw,60px
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
   html,body,header.site,.themed{transition:none!important}
-  .wordmark .bmark.spin{animation:none!important}
+  .wordmark .bmark.spin,.wordmark.spin{animation:none!important}
   .banana-pop{display:none!important}
+  .total-sticky-mobile{transition:none!important}
   .total-amt.counting{animation:none!important}
 }
 </style>
@@ -838,6 +853,19 @@ footer.site{border-top:1.5px solid var(--line);padding-block:clamp(44px,5vw,60px
     </div>
   </section>
 
+  <!-- MOBILE STICKY TOTAL — rides the bottom of the screen on small devices.
+       Placed right after the estimator so its sticky range covers the whole
+       time the config panel is on screen (not just once you scroll past the
+       note section below). -->
+  <div class="total-sticky-mobile" role="status" aria-label="Running estimate">
+    <div>
+      <div class="tsm-label">Your estimate</div>
+      <div class="tsm-val" id="tsm-val">$1,000</div>
+      <div class="tsm-mo" id="tsm-mo"></div>
+    </div>
+    <a class="btn btn-primary" id="tsm-cta" href="/contact/" aria-describedby="tsm-val">Get quote <span aria-hidden="true">→</span></a>
+  </div>
+
   <!-- BELOW FOLD — honest notes strip (GREEN block) -->
   <section class="est-note-section themed" data-theme-band="green" aria-labelledby="note-h" data-od-id="pricing-notes">
     <div class="wrap">
@@ -851,7 +879,7 @@ footer.site{border-top:1.5px solid var(--line);padding-block:clamp(44px,5vw,60px
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/><path d="m9 12 2 2 4-4"/></svg>
           </div>
           <div class="est-note-copy">
-            <h4>The estimate is a real starting point</h4>
+            <h3>The estimate is a real starting point</h3>
             <p>These numbers reflect actual past projects. Your final quote may shift based on a 5-minute conversation — but it <b>never moves after we agree</b>. No hourly meter, no surprise line items.</p>
           </div>
         </div>
@@ -860,7 +888,7 @@ footer.site{border-top:1.5px solid var(--line);padding-block:clamp(44px,5vw,60px
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
           </div>
           <div class="est-note-copy">
-            <h4>A 50% deposit starts the work</h4>
+            <h3>A 50% deposit starts the work</h3>
             <p>Half up front, half on launch. <b>You own the code, the domain, and all the content</b> the moment the last payment clears — no strings, no platform lock-in.</p>
           </div>
         </div>
@@ -869,7 +897,7 @@ footer.site{border-top:1.5px solid var(--line);padding-block:clamp(44px,5vw,60px
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14M5 8a7 7 0 0 0 7 7 7 7 0 0 0 7-7M5 8a7 7 0 0 1 7-7 7 7 0 0 1 7 7M5 21h14"/></svg>
           </div>
           <div class="est-note-copy">
-            <h4>Bilingual at no extra friction</h4>
+            <h3>Bilingual at no extra friction</h3>
             <p>English or Spanish — or both if you check the bilingual add-on. <b>All design and copy is done in-house</b>; no translation middleman, no stilted phrasing.</p>
           </div>
         </div>
@@ -878,23 +906,13 @@ footer.site{border-top:1.5px solid var(--line);padding-block:clamp(44px,5vw,60px
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
           </div>
           <div class="est-note-copy">
-            <h4>Care plans keep your site healthy</h4>
+            <h3>Care plans keep your site healthy</h3>
             <p>A care plan is optional but smart. <b>Basic covers updates and backups; Plus adds priority edits and a real human on call.</b> Cancel any month.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- MOBILE STICKY TOTAL — rides the bottom of the screen on small devices -->
-  <div class="total-sticky-mobile" role="status" aria-label="Running estimate">
-    <div>
-      <div class="tsm-label">Your estimate</div>
-      <div class="tsm-val" id="tsm-val">$1,000</div>
-      <div class="tsm-mo" id="tsm-mo"></div>
-    </div>
-    <a class="btn btn-primary" id="tsm-cta" href="/contact/" aria-describedby="tsm-val">Get quote <span aria-hidden="true">→</span></a>
-  </div>
 
 </main>
 
@@ -1187,7 +1205,7 @@ footer.site{border-top:1.5px solid var(--line);padding-block:clamp(44px,5vw,60px
 
       var priceSpan = document.createElement('span');
       priceSpan.className = 'cl-price';
-      priceSpan.textContent = '+$' + fmt(f.price);
+      priceSpan.textContent = included ? 'included' : '+$' + fmt(f.price);
 
       lbl.appendChild(nameSpan);
       lbl.appendChild(priceSpan);
@@ -1493,7 +1511,7 @@ footer.site{border-top:1.5px solid var(--line);padding-block:clamp(44px,5vw,60px
      LOGO EASTER EGG (same one-shot spin as home)
      ============================================================ */
   var wordmark = document.getElementById('wordmark');
-  var mark     = document.getElementById('banana-mark');
+  var mark     = wordmark; /* spin the header logo itself (no separate mark element) */
   var NANA = '<svg viewBox="0 0 48 48" width="20" height="20" aria-hidden="true"><path fill="#F5C800" d="M11 9c-2 8 1 17 8 23 7 6 16 8 22 6 2-1 3-3 2-5-1-1-3-1-5 0-4 2-10 0-15-4C15 27 12 20 13 12c.4-2.5-1.6-4-2 -3z"/><path fill="none" stroke="#111310" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" d="M11.5 9.5c-2 8 1 16.5 8 22.5 7 6 16 8.5 22 6.5"/></svg>';
   if(wordmark && mark){
     wordmark.addEventListener('click', function(){
@@ -1527,6 +1545,17 @@ footer.site{border-top:1.5px solid var(--line);padding-block:clamp(44px,5vw,60px
   if(y) y.textContent = new Date().getFullYear();
 
   document.body.classList.remove('no-js');
+
+  /* mobile running-total bar: show it only while the estimator is on screen */
+  var tsm = document.querySelector('.total-sticky-mobile');
+  var estSec = document.getElementById('estimator');
+  if(tsm && estSec && 'IntersectionObserver' in window){
+    new IntersectionObserver(function(entries){
+      tsm.classList.toggle('is-visible', entries[0].isIntersecting);
+    }, {rootMargin:'0px 0px -20% 0px'}).observe(estSec);
+  } else if(tsm){
+    tsm.classList.add('is-visible');
+  }
 
   /* initial render */
   renderBase();

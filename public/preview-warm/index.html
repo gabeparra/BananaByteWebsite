@@ -149,6 +149,7 @@
     --ink:var(--white); --ink-2:#E6F1EA; --muted:#B9D3C4;
     --line:var(--white); --line-soft:rgba(255,255,255,0.30); --line-hair:rgba(255,255,255,0.16);
     --accent:var(--yellow); --accent-ink:var(--yellow); --accent-soft:rgba(245,200,0,0.20); --on-accent:var(--on-yellow);
+    --accent-ink-plain:#FFD866; /* deeper gold for text laid straight on plain green (#1E6B45) — --accent-ink (#F5C800) only clears ~4.05:1 there; this clears ~4.7:1 */
     --brand-mark:var(--green-bright);
     --lift:3px 3px 0 0 var(--black);
     --tint-lo:rgba(255,255,255,0.04);
@@ -218,10 +219,13 @@
   ::selection{background:var(--accent);color:var(--on-accent)}
   .wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
 
-  a:focus-visible,button:focus-visible{outline:2px solid var(--accent-ink);outline-offset:3px;box-shadow:var(--focus-ring)}
+  a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent-ink);outline-offset:3px;box-shadow:var(--focus-ring)}
 
   .skip{position:absolute;left:-9999px;top:0;z-index:300;background:var(--accent);color:var(--on-accent);font-weight:800;padding:var(--space-3) var(--space-4);border-radius:0 0 var(--radius-md) 0}
   .skip:focus{left:0}
+
+  /* visually-hidden: present for screen readers / aria-labelledby targets, invisible on screen */
+  .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
   /* ============================================================
      THE CUSTOM BANANA LOGOMARK — inline SVG, hand-drawn-feeling.
@@ -258,7 +262,7 @@
   .wordmark .txt{display:inline-flex;align-items:baseline;gap:.06em}
   .wordmark .byte{font-family:var(--font-body);font-weight:800;font-size:.82em;letter-spacing:-.01em;color:var(--accent-ink);transform:translateY(-.02em)}
   /* the ONE kept easter-egg: a single springy spin on logo click (JS, one-shot). */
-  .wordmark .bmark.spin{animation:markSpin .8s cubic-bezier(.34,1.56,.64,1) 1}
+  .wordmark .bmark.spin,.wordmark.spin{animation:markSpin .8s cubic-bezier(.34,1.56,.64,1) 1}
   @keyframes markSpin{0%{transform:rotate(0) scale(1)}55%{transform:rotate(-380deg) scale(1.24)}100%{transform:rotate(-360deg) scale(1)}}
   .banana-pop{position:fixed;z-index:200;pointer-events:none;width:20px;height:20px;will-change:transform,opacity;animation:bananaFloat 1.15s cubic-bezier(.16,1,.3,1) forwards}
   @keyframes bananaFloat{0%{opacity:0;transform:translate(0,0) scale(.6) rotate(0)}15%{opacity:1}100%{opacity:0;transform:translate(var(--bx,0),-58px) scale(1.05) rotate(var(--br,20deg))}}
@@ -323,6 +327,14 @@
     letter-spacing:.01em;color:var(--accent-ink);
   }
   .eyebrow::before{content:"";width:28px;height:1.5px;background:var(--ink)}
+  /* the green theme's plain section surface (#1E6B45) is darker than the raised
+     card surface it's paired with elsewhere — --accent-ink alone fails small-text
+     AA there, so swap in the deeper-gold token whenever an eyebrow sits directly
+     on that plain green background. */
+  html[data-theme="green"] .eyebrow{color:var(--accent-ink-plain)}
+  /* header wordmark sits on the same plain-green surface as .eyebrow when the
+     scroll-driven theme is green — apply the same deeper-gold fix here. */
+  html[data-theme="green"] .wordmark .byte{color:var(--accent-ink-plain)}
   .sec-head{max-width:760px;margin-bottom:clamp(24px,3vw,36px)}
   .sec-head h2{font-size:var(--text-3xl);margin-top:var(--space-4);text-wrap:balance;overflow-wrap:break-word}
   .sec-head p{color:var(--ink-2);margin-top:var(--space-5);font-size:var(--text-lg);font-weight:400;line-height:1.55;max-width:60ch;text-wrap:pretty}
@@ -533,7 +545,7 @@
   .work-body{padding:18px;flex:1;display:flex;flex-direction:column}
   .work-body .kind{font-family:var(--font-body);font-weight:800;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
   .work-body .kind.is-real{color:var(--accent-ink)}
-  .work-body h4{font-family:var(--font-display);font-size:1.2rem;font-weight:800;letter-spacing:-.01em;margin-top:8px;color:var(--ink)}
+  .work-body h3{font-family:var(--font-display);font-size:1.2rem;font-weight:800;letter-spacing:-.01em;margin-top:8px;color:var(--ink)}
   .work-body p{color:var(--ink-2);font-size:.92rem;margin-top:8px;flex:1;line-height:1.5}
   .work-view{display:inline-flex;align-items:center;gap:7px;margin-top:var(--space-4);font-weight:800;font-size:.85rem;color:var(--ink)}
   .work-card.is-real .work-view{color:var(--accent-ink)}
@@ -605,6 +617,9 @@
   .about-copy p b{color:var(--ink);font-weight:700}
   .about-copy .about-cta{margin-top:var(--space-6);display:inline-flex;align-items:center;gap:9px;font-weight:800;font-size:.98rem;color:var(--ink);box-shadow:inset 0 -.5em 0 var(--accent-soft);transition:color var(--motion-fast) var(--ease-standard)}
   .about-copy .about-cta:hover{color:var(--accent-ink)}
+  /* .about-cta sits directly on the plain green section surface (no raised
+     card behind it) — same accent-on-plain-green failure as .eyebrow, same fix. */
+  html[data-theme="green"] .about-copy .about-cta:hover{color:var(--accent-ink-plain)}
 
   .promise{position:relative;justify-self:center;width:min(400px,90vw);border:1.5px solid var(--line);background:var(--surface-raised);box-shadow:var(--lift);padding:clamp(22px,2.6vw,30px)}
   @media(min-width:860px){.promise{justify-self:end;transform:rotate(1.2deg)}}
@@ -658,6 +673,10 @@
   .band-acts{display:flex;flex-wrap:wrap;gap:8px}
   .band-mini{display:inline-flex;align-items:center;gap:var(--space-2);font-weight:700;font-size:.78rem;border:1.5px solid var(--line);border-radius:var(--radius-sm);padding:8px var(--space-4);color:var(--ink);background:transparent;min-height:38px;transition:background var(--motion-fast) var(--ease-standard),color var(--motion-fast) var(--ease-standard),border-color var(--color-scroll) var(--ease-color)}
   .band-mini:hover{background:var(--ink);color:var(--surface)}
+  /* in the green theme --ink is white and --surface is green, so the swap above
+     renders green text (~4.05:1) on the white hover background — force a
+     theme-safe dark ink instead of the green surface token. */
+  html[data-theme="green"] .band-mini:hover{color:var(--black)}
   .band-mini svg{width:14px;height:14px}
 
   /* INLINE CONTACT FORM — the lowest-friction action on the page. A real
@@ -674,7 +693,12 @@
     transition:border-color var(--motion-fast) var(--ease-standard),background var(--color-scroll) var(--ease-color),color var(--color-scroll) var(--ease-color);
   }
   .contact-form input::placeholder,.contact-form textarea::placeholder{color:var(--muted);opacity:.85}
-  .contact-form input:focus,.contact-form textarea:focus{outline:none;border-color:var(--ink)}
+  /* the form's own background is plain green (#1E6B45) in the green theme, and
+     --muted at .85 opacity blends to only ~3.4:1 there — too low for the only
+     visible text in an empty field. Use the lighter --ink-2 token at full
+     opacity instead, matching the plain-green remediation used elsewhere. */
+  html[data-theme="green"] .contact-form input::placeholder,html[data-theme="green"] .contact-form textarea::placeholder{color:var(--ink-2);opacity:1}
+  .contact-form input:focus,.contact-form textarea:focus{border-color:var(--ink)}
   .contact-form textarea{resize:vertical;min-height:88px;line-height:1.5}
   .contact-form .btn{justify-content:center;width:100%;margin-top:2px}
   .contact-or{display:flex;align-items:center;gap:var(--space-3);margin:var(--space-2) 0;color:var(--muted);font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
@@ -713,7 +737,7 @@
   @media(min-width:640px){.process-step+.process-step{border-left:1.5px solid var(--line)}}
   @media(max-width:639px){.process-step+.process-step{border-top:1.5px solid var(--line)}}
   .process-step .wk{font-family:var(--font-display);font-weight:700;font-size:.82rem;color:var(--accent-ink)}
-  .process-step h4{font-family:var(--font-display);font-size:1.05rem;font-weight:800;letter-spacing:-.01em;margin-top:6px;color:var(--ink)}
+  .process-step h3{font-family:var(--font-display);font-size:1.05rem;font-weight:800;letter-spacing:-.01em;margin-top:6px;color:var(--ink)}
   .process-step p{color:var(--ink-2);font-size:.9rem;line-height:1.5;margin-top:6px}
 
   /* ============================================================
@@ -741,7 +765,7 @@
   @media (prefers-reduced-motion:reduce){
     *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
     html,body,header.site,.themed{transition:none!important}
-    .wordmark .bmark.spin{animation:none!important}
+    .wordmark .bmark.spin,.wordmark.spin{animation:none!important}
     .banana-pop{display:none!important}
     /* NO side-gutter fireworks at all under reduced motion */
     .fx-gutter{display:none!important}
@@ -938,7 +962,7 @@
           </div>
           <div class="work-body">
             <span class="kind is-real">Real client · live site</span>
-            <h4>Peter Hefty &amp; Justin</h4>
+            <h3>Peter Hefty &amp; Justin</h3>
             <p>An award-winning ventriloquist &amp; comedian’s live booking site — built by BANANAbyte.</p>
             <span class="work-view">Visit the live site <span aria-hidden="true">↗</span></span>
           </div>
@@ -974,7 +998,7 @@
           </div>
           <div class="work-body">
             <span class="kind">Concept · online store</span>
-            <h4>Ember &amp; Oak</h4>
+            <h3>Ember &amp; Oak</h3>
             <p>A concept build: a warm, retro candle &amp; coffee shop with a product grid, cart and subscriptions.</p>
             <span class="work-view">View demo <span aria-hidden="true">→</span></span>
           </div>
@@ -1008,7 +1032,7 @@
           </div>
           <div class="work-body">
             <span class="kind">Concept · performer site</span>
-            <h4>Mickey Vega</h4>
+            <h3>Mickey Vega</h3>
             <p>A concept build: a stand-up comedian’s site with tour dates, video clips and a booking button that actually gets clicked.</p>
             <span class="work-view">View demo <span aria-hidden="true">→</span></span>
           </div>
@@ -1098,7 +1122,7 @@
           </div>
           <div class="cf-field">
             <label for="cf-contact">Email or phone</label>
-            <input id="cf-contact" name="email" type="text" autocomplete="email" placeholder="Where I should reach you" required>
+            <input id="cf-contact" name="email" type="text" placeholder="Where I should reach you" required>
           </div>
           <div class="cf-field">
             <label for="cf-build">What are you building?</label>
@@ -1124,10 +1148,11 @@
   </section>
 
   <!-- TESTIMONIAL — WHITE block (full-width pull-quote, the unconventional break) -->
-  <section class="quote-band themed" data-theme-band="paper" data-od-id="testimonial" aria-labelledby="quote-h">
+  <section class="quote-band themed" data-theme-band="paper" data-od-id="testimonial" aria-labelledby="proof-h">
     <div class="wrap">
+      <h2 id="proof-h" class="visually-hidden">Client testimonial and how a build runs</h2>
       <figure class="quote-card">
-        <span class="eyebrow" id="quote-h">What a client said</span>
+        <span class="eyebrow">What a client said</span>
         <blockquote cite="https://peterheftyandjustin.com/">Gabe is awesome to work with — creative, just like a magician working his magic on the internet. There was nothing up his sleeve: everything fantastic just appeared before my eyes — <span class="em">my new website</span>.</blockquote>
         <figcaption>
           <cite>
@@ -1143,17 +1168,17 @@
         <div class="process-grid">
           <div class="process-step">
             <span class="wk">Week 1</span>
-            <h4>Sit down &amp; scope</h4>
+            <h3>Sit down &amp; scope</h3>
             <p>We talk through what you do and who you’re for, then lock one flat price — no surprises after.</p>
           </div>
           <div class="process-step">
             <span class="wk">Week 2</span>
-            <h4>Design &amp; build</h4>
+            <h3>Design &amp; build</h3>
             <p>I design and code the whole thing myself, sending real progress you can click, not mockups in an email.</p>
           </div>
           <div class="process-step">
             <span class="wk">Launch</span>
-            <h4>Ship &amp; hand over</h4>
+            <h3>Ship &amp; hand over</h3>
             <p>It goes live, and the code, domain and content are all yours to keep — nothing held hostage.</p>
           </div>
         </div>
@@ -1291,7 +1316,7 @@
      (This is the ONLY moving thing besides the scroll color change.)
      ============================================================ */
   var wordmark = document.getElementById('wordmark');
-  var mark = document.getElementById('banana-mark');
+  var mark = wordmark; /* spin the header logo itself (no separate mark element) */
   var NANA = '<svg viewBox="0 0 48 48" width="20" height="20" aria-hidden="true"><path fill="#F5C800" d="M11 9c-2 8 1 17 8 23 7 6 16 8 22 6 2-1 3-3 2-5-1-1-3-1-5 0-4 2-10 0-15-4C15 27 12 20 13 12c.4-2.5-1.6-4-2 -3z"/><path fill="none" stroke="#111310" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" d="M11.5 9.5c-2 8 1 16.5 8 22.5 7 6 16 8.5 22 6.5"/></svg>';
   if(wordmark && mark){
     wordmark.addEventListener('click', function(){
