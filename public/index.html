@@ -1,1046 +1,470 @@
 <!DOCTYPE html>
-<!--
-  BANANAbyte — PRODUCTION homepage. ONE unified brand (no audience modes):
-  the "Bold Banana / pulse" identity — deep moss-green + banana-yellow with
-  a luminous green glow, on dark. A storefront and a stage under one roof.
-
-  LANDING PAGE: this HOME is a tight landing that links OUT to the
-  dedicated pages (/services/, /work/, /pricing/, /contact/). The real
-  contact form (Turnstile + honeypot, POSTing to /api/contact) lives on
-  /contact/ now; HOME just surfaces phone/text/WhatsApp + a CTA band.
-
-  NO-JS FALLBACK: the page is fully visible with JavaScript disabled;
-  the noscript guard forces [data-reveal] content visible so nothing is
-  hidden. Shared shell (header/footer/drawer + EN/ES) lives in
-  /assets/site.css + /assets/site.js.
-
-  HOME CONTENT (unified, no modes/gate), top to bottom:
-    HERO ("Websites with a pulse") + glowing-banana motif + flat-price chip
-      → audience ticker (one-roof cast) → BOTH WORLDS, ONE STUDIO
-      → WHAT I BUILD teaser (/services/) → SELECTED WORK (Peter Hefty
-      FIRST as the real client + two concept builds, → /work/)
-      → WHY + trust line → Peter testimonial → PRICING teaser
-      (/pricing/) → CONTACT CTA band (phone/text/WhatsApp + /contact/).
-    Fully bilingual (EN default + es-419 data-es innerHTML, escaped).
--->
-<html lang="en">
+<html lang="en" data-theme="paper">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Set <html lang> as early as possible from the saved language choice, so
-     a returning Spanish visitor doesn't get a flash of the wrong lang attr.
-     The full copy swap happens synchronously at the end of <body>. -->
-<script>try{var _l=localStorage.getItem('bb-lang');if(_l==='es'||_l==='en'){document.documentElement.lang=_l;document.documentElement.classList.add('lang-'+_l);}}catch(e){}</script>
-<title>BANANAbyte — Web Design &amp; Development · Orlando</title>
-<meta name="description" content="BANANAbyte is a web design &amp; development studio in Orlando, FL. Fast, clean, custom websites and online stores for small businesses, shops, and performers. Flat pricing, quick turnaround, you own everything.">
-<link rel="canonical" href="https://bananabyte.io/">
-<meta name="theme-color" content="#08120C">
+<title>BANANAbyte — Fresh Site Coming Soon · Orlando</title>
+<meta name="description" content="BANANAbyte is an Orlando bilingual web studio. We're polishing a fresh new site — reach us directly at (321) 202-3732 or contact@bananabyte.io while we finish up.">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="robots" content="noindex">
+
+<link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="/favicon.ico" sizes="any">
-
-<!-- Open Graph -->
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="BANANAbyte">
-<meta property="og:title" content="BANANAbyte — Web Design &amp; Development · Orlando">
-<meta property="og:description" content="An Orlando studio building fast, clean, custom websites and online stores for small businesses, shops, and performers. Flat pricing, quick turnaround, you own everything.">
-<meta property="og:url" content="https://bananabyte.io/">
-<meta property="og:image" content="https://bananabyte.io/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="BANANAbyte — Web Design &amp; Development · Orlando">
-<meta name="twitter:description" content="An Orlando studio building fast, clean, custom websites and online stores for small businesses, shops, and performers.">
-<meta name="twitter:image" content="https://bananabyte.io/og-image.png">
-
-<!-- LocalBusiness JSON-LD -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "@id": "https://bananabyte.io/#business",
-  "name": "BANANAbyte",
-  "description": "A web design & development studio in Orlando, FL, building fast, clean, custom websites and online stores for small businesses, shops, and performers.",
-  "url": "https://bananabyte.io",
-  "email": "contact@bananabyte.io",
-  "telephone": "+13212023732",
-  "image": "https://bananabyte.io/og-image.png",
-  "priceRange": "$$",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Orlando",
-    "addressRegion": "FL",
-    "addressCountry": "US"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": "28.5384",
-    "longitude": "-81.3789"
-  },
-  "areaServed": [
-    {
-      "@type": "City",
-      "name": "Orlando"
-    },
-    {
-      "@type": "AdministrativeArea",
-      "name": "Central Florida"
-    }
-  ],
-  "knowsAbout": ["Web Design", "Web Development", "E-commerce", "Website Maintenance"],
-  "founder": {
-    "@type": "Person",
-    "name": "Gabriel Parra",
-    "jobTitle": "Web Designer & Developer"
-  },
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-    "opens": "09:00",
-    "closes": "18:00"
-  },
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Web Design & Development Services",
-    "itemListElement": [
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Landing / Starter site"
-        },
-        "price": "900",
-        "priceCurrency": "USD"
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Redesign / Refresh"
-        },
-        "price": "1500",
-        "priceCurrency": "USD"
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Local Business website"
-        },
-        "price": "2200",
-        "priceCurrency": "USD"
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Online Store"
-        },
-        "price": "2500",
-        "priceCurrency": "USD"
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Website Care"
-        },
-        "price": "99",
-        "priceCurrency": "USD"
-      }
-    ]
-  },
-  "review": {
-    "@type": "Review",
-    "author": {
-      "@type": "Person",
-      "name": "Peter Hefty"
-    },
-    "reviewRating": {
-      "@type": "Rating",
-      "ratingValue": "5",
-      "bestRating": "5"
-    },
-    "reviewBody": "Gabe is awesome to work with — creative, just like a magician working his magic on the internet. Like a magician, there was nothing up his sleeve: everything fantastic just appeared before my eyes — my new website. I'd recommend BANANAbyte to anyone who wants a real artist and a fun guy to build their site."
-  }
-}
-</script>
-
-<!-- WebSite JSON-LD -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "BANANAbyte",
-  "url": "https://bananabyte.io",
-  "inLanguage": ["en", "es"],
-  "publisher": {
-    "@id": "https://bananabyte.io/#business"
-  }
-}
-</script>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Unified "Bold Banana" type: bold geometric display (Bricolage Grotesque) + warm editorial serif accent (Fraunces) + mono spec (Space Mono) -->
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Fraunces:ital,opsz,wght@1,9..144,500;1,9..144,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<!-- No Turnstile here: the real contact form (with its widget) lives on /contact/. -->
-<link rel="stylesheet" href="/assets/site.css">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-<!-- ============================================================
-     PAGE-SCOPED LAYOUT — landing-only helpers. Uses ONLY shared
-     var(--...) tokens so everything restyles per html[data-mode]
-     (slate+yellow in business, black+gold in performer).
-     ============================================================ -->
 <style>
-  /* glowing-banana motif — floats over the hero studio panel, top-right.
-     Positioning + float/bob now live on the .hero-orbit wrapper in site.css
-     (the banana is a child of the orbit so it can also carry orbiting spores
-     and pointer parallax). This just keeps the panel a positioning context
-     and provides a static fallback drop-shadow for the banana. */
-  .hero-panel{position:relative}
-  .hero-banana{
-    pointer-events:none;
-    filter:drop-shadow(0 18px 34px rgba(0,0,0,.5)) drop-shadow(0 0 26px var(--green-glow));
+  /* ============================================================
+     TOKENS — identical to the approved green/yellow/white/black system.
+     Single file, single screen. No scroll-driven color change needed —
+     the page lives entirely in the GREEN theme (brand confidence on hold).
+     ============================================================ */
+  :root{
+    --font-display:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --font-body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+
+    --text-xs:clamp(11.5px,1vw,12.5px);
+    --text-sm:clamp(13px,1.1vw,14px);
+    --text-base:clamp(15.5px,1.4vw,17px);
+    --text-lg:clamp(18px,1.7vw,20px);
+    --text-2xl:clamp(27px,3.3vw,36px);
+    --text-3xl:clamp(34px,5.2vw,54px);
+
+    --leading-body:1.62;
+    --leading-tight:1.06;
+    --tracking-eyebrow:.16em;
+    --tracking-display:-0.018em;
+    --tracking-hero:-0.024em;
+
+    --space-2:8px; --space-3:12px; --space-4:16px;
+    --space-5:20px; --space-6:24px; --space-8:32px;
+    --space-10:40px; --space-12:48px; --space-16:64px;
+
+    --radius-sm:6px;
+    --radius-md:10px;
+    --radius-pill:9999px;
+
+    /* ---- BRAND PALETTE — fixed, never re-pointed ---- */
+    --white:#FFFFFF;
+    --off-white:#F7F8F5;
+    --black:#111310;
+    --green:#1E6B45;
+    --green-deep:#154D32;
+    --green-bright:#46E08B;
+    --green-ink:#124A2F;
+    --yellow:#F5C800;
+    --yellow-deep:#7A5E00;
+    --on-yellow:#111310;
+
+    /* ---- THEME TOKENS — this page uses the GREEN theme throughout ---- */
+    --surface:var(--green);
+    --surface-raised:var(--green-deep);
+    --ink:var(--white);
+    --ink-2:#E6F1EA;
+    --muted:#B9D3C4;
+    --line:var(--white);
+    --line-soft:rgba(255,255,255,0.28);
+    --line-hair:rgba(255,255,255,0.15);
+    --accent:var(--yellow);
+    --accent-ink:var(--yellow);
+    --on-accent:var(--on-yellow);
+    --brand-mark:var(--green-bright);
+    --lift:3px 3px 0 0 var(--black);
+
+    --motion-fast:150ms;
+    --motion-base:220ms;
+    --ease-standard:cubic-bezier(.2,0,0,1);
   }
 
-  /* "Both worlds, one studio" — the storefront-and-a-stage duality.
-     Two tokenized cards + a centered fusion banner. */
-  .worlds-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:clamp(30px,4vw,42px)}
-  @media(min-width:720px){.worlds-grid{grid-template-columns:1fr 1fr}}
-  .world{
-    position:relative;border:1px solid var(--line);border-radius:var(--radius-lg);
-    background:linear-gradient(180deg,var(--panel-2),var(--panel));
-    padding:28px 26px 24px;overflow:hidden;
-    transition:transform .3s var(--ease),border-color .3s var(--ease),box-shadow .3s var(--ease);
+  *,*::before,*::after{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;overflow-x:clip;min-height:100%}
+  body{
+    margin:0;
+    background-color:var(--surface);
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-size:var(--text-base);
+    line-height:var(--leading-body);
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    min-height:100dvh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow-x:hidden;
   }
-  .world::before{
-    content:"";position:absolute;inset:0;opacity:0;
-    background:radial-gradient(120% 90% at 0% 0%,var(--green-soft),transparent 60%);
-    transition:opacity .3s var(--ease);
-  }
-  .world.stage::before{background:radial-gradient(120% 90% at 100% 0%,var(--accent-soft),transparent 60%)}
-  .world:hover{transform:translateY(-4px);border-color:rgba(60,240,138,.45);box-shadow:0 18px 44px -22px rgba(0,0,0,.7),0 0 36px -14px var(--green-glow)}
-  .world.stage:hover{border-color:var(--accent-line)}
-  .world:hover::before{opacity:1}
-  .world .wk{
-    font-family:var(--font-mono);font-weight:700;font-size:.7rem;letter-spacing:.12em;
-    text-transform:uppercase;color:var(--green);position:relative;
-  }
-  .world.stage .wk{color:var(--accent)}
-  .world h3{font-size:1.28rem;font-weight:700;letter-spacing:-.02em;margin-top:12px;position:relative}
-  .world p{color:var(--ink-soft);font-size:.96rem;margin-top:9px;position:relative}
-  .world ul{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px;position:relative}
-  .world li{
-    font-family:var(--font-mono);font-size:.72rem;color:var(--ink-soft);
-    border:1px solid var(--line-strong);border-radius:999px;padding:5px 11px;background:rgba(8,18,12,.45);
-  }
-  .world.stage li{border-color:var(--accent-line)}
-  .worlds-banner{
-    margin-top:18px;border:1px dashed var(--accent-line);border-radius:var(--radius-lg);
-    padding:24px 26px;background:var(--accent-soft);text-align:center;
-    font-family:var(--font-head);font-weight:800;letter-spacing:-.02em;line-height:1.18;
-    font-size:clamp(1.15rem,3.2vw,1.7rem);color:var(--ink);
-  }
-  .worlds-banner .g{color:var(--green);text-shadow:0 0 18px var(--green-glow)}
-  .worlds-banner .y{color:var(--accent)}
 
-  /* trust line promoted near the hero CTAs (not fine print) */
-  .hero-trust{
-    margin-top:18px;display:inline-flex;align-items:center;gap:10px;
-    border:1px solid var(--accent-line);border-radius:999px;
-    background:var(--accent-soft);padding:9px 16px;
-    font-family:var(--font-display);font-weight:600;font-size:.88rem;color:var(--ink);
-    max-width:100%;
+  /* ---- PAPER GRAIN — same texture as the approved pages, sits on the green ---- */
+  body::before{
+    content:"";
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+    opacity:.055;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
   }
-  html[data-mode="performer"] .hero-trust{font-family:var(--font-body)}
-  .hero-trust svg{width:16px;height:16px;flex:none;color:var(--accent)}
-  html[data-mode="performer"] .hero-trust svg{color:var(--honey,var(--accent))}
 
-  /* "see all ->" link that closes a teaser section */
-  .see-all{margin-top:clamp(20px,3vw,28px)}
-  .see-all .btn{min-width:0}
+  /* ---- SIDE SPARKS — tasteful desktop-only fireworks (2 per side, restrained) ---- */
+  .sparks{
+    position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;
+  }
+  .spark{
+    position:absolute;
+    width:6px;height:6px;
+    border-radius:50%;
+    background:var(--yellow);
+    will-change:transform,opacity;
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .spark{animation:sparkDrift var(--dur,6s) var(--delay,0s) ease-in-out infinite alternate}
+    @keyframes sparkDrift{
+      0%{transform:translate(0,0) scale(.7);opacity:.25}
+      50%{opacity:.55}
+      100%{transform:translate(var(--tx,14px),var(--ty,-22px)) scale(1.1);opacity:.18}
+    }
+  }
+  @media (prefers-reduced-motion:reduce){.sparks{display:none}}
+  /* hide on narrow viewports — gutter sparks only make sense on desktop */
+  @media (max-width:900px){.sparks{display:none}}
 
-  /* trust band — first-person proof signals inside the "why" sections.
-     No photo; tokens-only so it restyles per mode. */
-  .trust-band{
-    margin-top:clamp(22px,3vw,30px);display:grid;grid-template-columns:1fr;gap:1px;
-    background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+  /* ---- WORDMARK ---- */
+  .wordmark{
+    display:inline-flex;align-items:center;gap:.55rem;
+    font-family:var(--font-display);
+    font-weight:900;
+    letter-spacing:-.02em;
+    line-height:1;
+    font-size:1.4rem;
+    color:var(--ink);
+    text-decoration:none;
+    user-select:none;
+    cursor:default;
   }
-  @media(min-width:560px){.trust-band{grid-template-columns:1fr 1fr 1fr}}
-  html[data-mode="performer"] .trust-band{background:transparent;border:0;gap:14px}
-  .trust-sig{display:flex;align-items:flex-start;gap:11px;background:var(--panel-2);padding:16px 17px}
-  html[data-mode="performer"] .trust-sig{
-    background:var(--accent-soft);border:1px solid var(--accent-line);border-radius:14px;padding:16px;
+  .wordmark .txt{display:inline-flex;align-items:baseline;gap:.06em}
+  .wordmark .byte{
+    font-family:var(--font-body);
+    font-weight:800;
+    font-size:.82em;
+    letter-spacing:-.01em;
+    color:var(--accent);
+    transform:translateY(-.02em);
   }
-  .trust-sig svg{width:18px;height:18px;flex:none;color:var(--accent);margin-top:1px}
-  html[data-mode="performer"] .trust-sig svg{color:var(--honey,var(--accent))}
-  .trust-sig p{color:var(--ink-soft);font-size:.9rem;line-height:1.45;margin:0;min-width:0}
-  .trust-sig p b{color:var(--ink);font-weight:600}
+  .bmark{display:inline-block;width:1.2em;height:1.2em;flex:none;vertical-align:-.18em}
+  .bmark .peel{fill:var(--accent)}
+  .bmark .body{fill:none;stroke:var(--ink);stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+  .bmark .tip{fill:var(--ink)}
 
-  /* short pricing teaser band — restyles via tokens */
-  .price-teaser{
-    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-    background:var(--panel);
+  /* ---- BANANA SPIN on click (single springy rotation — same easter egg as homepage) ---- */
+  @keyframes markSpin{
+    0%{transform:rotate(0) scale(1)}
+    55%{transform:rotate(-380deg) scale(1.24)}
+    100%{transform:rotate(-360deg) scale(1)}
   }
-  html[data-mode="performer"] .price-teaser{
-    border:1px solid var(--line-strong);border-radius:calc(var(--radius) + 6px);
-    background:
-      radial-gradient(100% 120% at 100% 0%, rgba(245,200,0,.10), transparent 55%),
-      linear-gradient(160deg,var(--panel-2),var(--panel));
-    box-shadow:var(--shadow);
+  @media (prefers-reduced-motion:no-preference){
+    .bmark.spin{animation:markSpin .8s cubic-bezier(.34,1.56,.64,1) 1}
   }
-  .price-teaser-inner{
-    display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
-    gap:clamp(20px,4vw,40px);padding-block:clamp(6px,1.5vw,16px);
-  }
-  html[data-mode="performer"] .price-teaser-inner{padding-inline:clamp(22px,4vw,42px)}
-  /* pull the pricing teaser + "Start a project" CTA close together */
-  #pricing{padding-bottom:clamp(8px,1.2vw,14px)}
-  #contact.contact-band{padding-top:clamp(10px,1.5vw,16px);padding-bottom:clamp(12px,1.8vw,20px)}
-  .price-teaser-copy{max-width:48ch;min-width:0}
-  .price-teaser-copy h2{font-size:clamp(1.5rem,3.6vw,2.1rem)}
-  html[data-mode="performer"] .price-teaser-copy h2{font-size:clamp(1.7rem,4vw,2.4rem)}
-  .price-teaser-copy p{color:var(--ink-soft);margin-top:12px}
-  .price-teaser-copy .price-anchor{color:var(--accent);font-weight:700}
-  html[data-mode="performer"] .price-teaser-copy .price-anchor{color:var(--honey,var(--accent))}
-  .price-teaser-actions{display:flex;flex-wrap:wrap;gap:14px}
 
-  /* compact contact CTA band — phone/text/WhatsApp + Start a project */
-  .contact-band{
-    border-top:1px solid var(--line-strong);background:var(--panel);
+  /* ---- SMALL ANIMATED BANANA ACCENT (very subtle, respectful) ---- */
+  @media (prefers-reduced-motion:no-preference){
+    .banana-accent{
+      display:inline-block;
+      animation:bananaPulse 3.5s cubic-bezier(.4,0,.6,1) infinite;
+    }
+    @keyframes bananaPulse{
+      0%,100%{transform:rotate(-8deg) scale(1)}
+      50%{transform:rotate(8deg) scale(1.06)}
+    }
   }
-  html[data-mode="performer"] .contact-band{
-    background:
-      radial-gradient(120% 140% at 0% 0%, rgba(245,200,0,.10), transparent 55%),
-      linear-gradient(160deg,var(--panel-2),var(--panel));
-    border-top-color:var(--accent-line);
-  }
-  .contact-band-inner{
-    display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
-    gap:clamp(20px,4vw,36px);padding-block:clamp(12px,1.8vw,18px);
-  }
-  .contact-band-copy{min-width:0;max-width:42ch}
-  .contact-band-copy h2{font-size:clamp(1.5rem,3.6vw,2.05rem)}
-  .contact-band-copy p{color:var(--ink-soft);margin-top:10px}
-  .contact-band-reach{display:flex;flex-direction:column;gap:14px;min-width:min(100%,300px)}
-  /* phone row: number + call/text/WhatsApp minis */
-  .band-phone{
-    display:flex;flex-wrap:wrap;align-items:center;gap:12px;
-    border:1px solid var(--line-strong);border-radius:12px;padding:13px 15px;
-    background:var(--panel-2);
-  }
-  html[data-mode="performer"] .band-phone{background:var(--accent-soft);border-color:var(--accent-line)}
-  .band-phone .pi{
-    width:36px;height:36px;flex:none;border-radius:10px;display:grid;place-items:center;
-    background:var(--panel);border:1px solid var(--line);color:var(--accent);
-  }
-  html[data-mode="performer"] .band-phone .pi{background:transparent;border-color:var(--accent-line)}
-  .band-phone .pi svg{width:17px;height:17px}
-  .band-phone .pt{display:flex;flex-direction:column;gap:1px;min-width:0;margin-right:auto}
-  .band-phone .pk{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);font-family:var(--font-display)}
-  html[data-mode="performer"] .band-phone .pk{font-family:var(--font-body);color:var(--honey,var(--ink-mute))}
-  .band-phone .pv{font-family:var(--font-display);font-weight:600;font-size:1.02rem;color:var(--ink)}
-  .band-acts{display:flex;flex-wrap:wrap;gap:8px}
-  .band-mini{
-    display:inline-flex;align-items:center;gap:6px;
-    font-family:var(--font-display);font-weight:600;font-size:.78rem;
-    border:1px solid var(--line-strong);border-radius:999px;padding:7px 12px;
-    color:var(--ink-soft);background:transparent;min-height:36px;
-    transition:border-color .2s var(--ease),color .2s var(--ease),background .2s var(--ease);
-  }
-  .band-mini:hover{border-color:var(--accent-line);color:var(--ink);background:var(--accent-soft)}
-  html[data-mode="performer"] .band-mini{font-family:var(--font-body)}
-  .band-mini svg{width:14px;height:14px}
+  @media (prefers-reduced-motion:reduce){.banana-accent{display:inline-block}}
 
-  /* "Built by Gabe" — small secondary identity line under the copyright */
-  .foot-built{display:block;margin-top:3px;color:var(--ink-mute);font-size:.92em}
+  /* ---- MAIN CARD ---- */
+  main{
+    position:relative;z-index:1;
+    width:100%;max-width:600px;
+    padding:clamp(36px,7vw,80px) clamp(20px,5vw,52px);
+    display:flex;flex-direction:column;align-items:flex-start;
+    gap:var(--space-8);
+  }
 
-  /* SHARED testimonial band — one real review, visible in BOTH modes and
-     restyled per html[data-mode] via tokens only (no hard-coded colors). */
-  .quote-band{
-    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-    background:var(--panel);padding-block:clamp(22px,3vw,34px);
+  /* Hairline rule on top — editorial masthead feel */
+  .top-rule{
+    width:100%;
+    border:none;
+    border-top:1.5px solid var(--line-soft);
+    margin:0;
   }
-  html[data-mode="performer"] .quote-band{
-    background:
-      radial-gradient(120% 140% at 0% 0%, rgba(245,200,0,.10), transparent 55%),
-      linear-gradient(160deg,var(--panel-2),var(--panel));
-    border-color:var(--accent-line);
+
+  /* ---- EYEBROW ---- */
+  .eyebrow{
+    font-family:var(--font-body);
+    font-size:var(--text-xs);
+    font-weight:700;
+    letter-spacing:var(--tracking-eyebrow);
+    text-transform:uppercase;
+    color:var(--ink);
+    margin:0;
   }
-  .quote-band-inner{padding-block:clamp(4px,1.2vw,16px)}
-  .quote-card{
-    max-width:54ch;margin-inline:auto;text-align:center;min-width:0;
+
+  /* ---- HEADLINE ---- */
+  .headline{
+    font-family:var(--font-display);
+    font-size:var(--text-3xl);
+    font-weight:800;
+    line-height:1.03;
+    letter-spacing:-0.02em;
+    color:var(--ink);
+    margin:0;
   }
-  .quote-band .eyebrow{justify-content:center}
-  .quote-card blockquote{
-    margin:clamp(8px,1.4vw,14px) 0 0;border:0;padding:0;position:relative;
-    font-family:var(--font-display);font-weight:500;line-height:1.36;
-    letter-spacing:-0.01em;color:var(--ink);
-    font-size:clamp(.98rem,1.7vw,1.18rem);
+  /* yellow highlight on the word "new" */
+  .headline .hl{
+    display:inline;
+    background:var(--accent);
+    color:var(--on-accent);
+    padding:.04em .22em .08em;
+    border-radius:var(--radius-sm);
+    font-style:normal;
   }
-  html[data-mode="performer"] .quote-card blockquote{font-weight:400;font-style:italic}
-  /* big decorative opening quote, tokenized so it tints per mode */
-  .quote-card blockquote::before{
-    content:"\201C";display:block;margin:0 auto 2px;
-    font-family:var(--font-display);font-weight:900;line-height:.6;
-    font-size:clamp(1.35rem,2.6vw,1.85rem);color:var(--accent);
+
+  /* ---- BODY COPY ---- */
+  .body-copy{
+    color:var(--ink-2);
+    font-size:var(--text-lg);
+    line-height:1.56;
+    margin:0;
+    max-width:42ch;
   }
-  html[data-mode="performer"] .quote-card blockquote::before{color:var(--honey,var(--accent))}
-  .quote-card .em{color:var(--accent);font-style:inherit}
-  html[data-mode="performer"] .quote-card .em{color:var(--honey,var(--accent))}
-  .quote-card figcaption{
-    margin-top:clamp(18px,2.5vw,24px);
-    display:inline-flex;flex-direction:column;align-items:center;gap:3px;
+  .body-copy + .body-copy{margin-top:calc(var(--space-2) * -1)}
+
+  /* ---- SPANISH LINE ---- */
+  .spanish-line{
+    font-family:var(--font-body);
+    font-size:var(--text-base);
+    font-weight:500;
+    color:var(--muted);
+    margin:0;
+    border-left:2px solid var(--line-soft);
+    padding-left:var(--space-4);
   }
-  .quote-card cite{font-style:normal}
-  .quote-cite-link{
-    display:inline-flex;align-items:baseline;gap:7px;flex-wrap:wrap;justify-content:center;
-    font-family:var(--font-display);font-weight:700;font-size:1rem;color:var(--ink);
-    border-bottom:1px solid transparent;padding-bottom:1px;
-    transition:color .2s var(--ease),border-color .2s var(--ease);
+
+  /* ---- CONTACT BLOCK ---- */
+  .contact-block{
+    display:flex;flex-direction:column;
+    gap:var(--space-3);
+    width:100%;
   }
-  html[data-mode="performer"] .quote-cite-link{font-family:var(--font-body)}
-  .quote-cite-link .role{
-    font-family:var(--font-body);font-weight:400;font-size:.88rem;color:var(--ink-mute);
+  .contact-label{
+    font-size:var(--text-sm);
+    font-weight:700;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 var(--space-2);
   }
-  .quote-cite-link:hover{color:var(--accent);border-bottom-color:var(--accent-line)}
-  html[data-mode="performer"] .quote-cite-link:hover{color:var(--honey,var(--accent))}
-  .quote-cite-link .arrow{font-size:.85em;color:var(--accent)}
-  html[data-mode="performer"] .quote-cite-link .arrow{color:var(--honey,var(--accent))}
-  /* tiny "real client" reassurance under the name */
-  .quote-real{
-    margin-top:9px;display:inline-flex;align-items:center;gap:7px;
-    font-family:var(--font-body);font-size:.82rem;color:var(--ink-soft);
+  .contact-btns{
+    display:flex;flex-wrap:wrap;gap:var(--space-3);
   }
-  .quote-real svg{width:15px;height:15px;flex:none;color:var(--accent)}
-  html[data-mode="performer"] .quote-real svg{color:var(--honey,var(--accent))}
+
+  /* Primary CTA — yellow fill, printed drop-shadow */
+  .btn-primary{
+    display:inline-flex;align-items:center;gap:var(--space-2);
+    font-family:var(--font-body);
+    font-size:var(--text-sm);
+    font-weight:700;
+    letter-spacing:.02em;
+    text-decoration:none;
+    color:var(--on-yellow);
+    background:var(--accent);
+    border-radius:var(--radius-sm);
+    padding:12px var(--space-6);
+    box-shadow:var(--lift);
+    border:1.5px solid var(--black);
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .btn-primary svg{flex:none}
+  @media (prefers-reduced-motion:no-preference){
+    .btn-primary{
+      transition:
+        transform var(--motion-fast) var(--ease-standard),
+        box-shadow var(--motion-fast) var(--ease-standard),
+        background var(--motion-fast) var(--ease-standard);
+    }
+    .btn-primary:hover{
+      transform:translate(-1px,-1px);
+      box-shadow:4px 4px 0 0 var(--black);
+    }
+    .btn-primary:active{
+      transform:translate(2px,2px);
+      box-shadow:1px 1px 0 0 var(--black);
+    }
+  }
+
+  /* Secondary CTA — outlined, white stroke */
+  .btn-secondary{
+    display:inline-flex;align-items:center;gap:var(--space-2);
+    font-family:var(--font-body);
+    font-size:var(--text-sm);
+    font-weight:700;
+    letter-spacing:.02em;
+    text-decoration:none;
+    color:var(--ink);
+    background:transparent;
+    border-radius:var(--radius-sm);
+    padding:11px var(--space-5);
+    border:1.5px solid var(--line-soft);
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .btn-secondary:hover{
+    border-color:var(--ink);
+    background:rgba(255,255,255,0.08);
+  }
+  .btn-secondary svg{flex:none}
+  @media (prefers-reduced-motion:no-preference){
+    .btn-secondary{
+      transition:
+        transform var(--motion-fast) var(--ease-standard),
+        border-color var(--motion-fast) var(--ease-standard),
+        background var(--motion-fast) var(--ease-standard);
+    }
+    .btn-secondary:active{transform:translateY(1px)}
+  }
+
+  /* ---- BOTTOM RULE + FOOTER ---- */
+  .bottom-rule{
+    width:100%;
+    border:none;
+    border-top:1px solid var(--line-hair);
+    margin:0;
+  }
+  .footer-note{
+    color:var(--ink-2);
+    font-size:var(--text-xs);
+    margin:0;
+    line-height:1.5;
+  }
+  .footer-note a{
+    color:var(--ink-2);
+    text-decoration:underline;
+    text-underline-offset:2px;
+  }
+  .footer-note a:hover{color:var(--ink)}
+
+  /* ---- FOCUS ---- */
+  :focus-visible{
+    outline:none;
+    box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 60%, transparent);
+    border-radius:var(--radius-sm);
+  }
+
 </style>
-
-<!-- ============================================================
-     NO-JS FALLBACK: with JavaScript disabled, the reveal-on-scroll
-     elements would otherwise stay at opacity:0 and the page would
-     look blank. This forces all [data-reveal] content fully visible,
-     so the unified homepage is shown in full and never blocked when
-     JS is off.
-     ============================================================ -->
-<noscript>
-<style>
-  [data-reveal]{opacity:1 !important;transform:none !important}
-</style>
-</noscript>
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
 
-<!-- ============================================================
-     HEADER (unified shell: wordmark + nav + hamburger + lang toggle)
-     ============================================================ -->
-<header class="site">
-  <div class="wrap nav">
-    <div class="nav-left">
-      <a class="wordmark" href="/" aria-label="BANANAbyte home" data-es-aria-label="BANANAbyte inicio">
-        <span class="nana" aria-hidden="true">.</span>
-        <span><span class="banana">BANANA</span><span class="byte">byte</span></span>
-        <span aria-hidden="true" style="font-size:.95em">🍌</span>
-      </a>
-    </div>
-    <nav class="nav-links" aria-label="Primary">
-      <div class="nav-dd" data-nav-dd>
-        <a href="/services/" class="nav-dd-trigger" data-nav-dd-trigger aria-haspopup="true" aria-expanded="false" aria-controls="svc-dd-panel" data-es="Servicios">Services<span class="nav-dd-caret" aria-hidden="true"><svg viewBox="0 0 12 12" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4.5 6 7.5 9 4.5"/></svg></span></a>
-        <div class="nav-dd-panel" id="svc-dd-panel" role="group" aria-label="Services menu" data-es-aria-label="Menú de servicios">
-          <div class="nav-dd-cols">
-            <div class="nav-dd-col">
-              <p class="nav-dd-head" data-es="Crea tu sitio">Build your site</p>
-              <a class="nav-dd-item" href="/services/website-design/">
-                <span class="nav-dd-name" data-es="Diseño de sitios web">Website design</span>
-                <span class="nav-dd-desc" data-es="Sitios a medida para negocios y profesionales locales.">Custom sites for local businesses &amp; pros.</span>
-              </a>
-              <a class="nav-dd-item" href="/services/online-stores/">
-                <span class="nav-dd-name" data-es="Tiendas online">Online stores</span>
-                <span class="nav-dd-desc" data-es="Vende online — escaparate, carrito y pago.">Sell online — storefront, cart, checkout.</span>
-              </a>
-              <a class="nav-dd-item" href="/services/performer-sites/">
-                <span class="nav-dd-name" data-es="Sitios para artistas">Performer sites</span>
-                <span class="nav-dd-desc" data-es="Fechas de gira, reservas, reels y kit de prensa.">Tour dates, booking, reels, EPK.</span>
-              </a>
-              <a class="nav-dd-item" href="/services/redesign-refresh/">
-                <span class="nav-dd-name" data-es="Rediseño y renovación">Redesign &amp; refresh</span>
-                <span class="nav-dd-desc" data-es="Moderniza un sitio viejo o lento.">Modernize a tired or slow site.</span>
-              </a>
-            </div>
-            <div class="nav-dd-col">
-              <p class="nav-dd-head" data-es="Crece y mantén">Grow &amp; maintain</p>
-              <a class="nav-dd-item" href="/services/website-care/">
-                <span class="nav-dd-name" data-es="Mantenimiento web">Website care</span>
-                <span class="nav-dd-desc" data-es="Actualizaciones, respaldos, monitoreo y ediciones.">Updates, backups, monitoring, edits.</span>
-              </a>
-              <a class="nav-dd-item" href="/services/ai-front-desk/">
-                <span class="nav-dd-name" data-es="Recepcionista con IA">AI Front Desk</span>
-                <span class="nav-dd-desc" data-es="Asistente bilingüe 24/7 + respuesta por texto a llamadas perdidas.">24/7 bilingual assistant + missed-call text-back.</span>
-              </a>
-              <a class="nav-dd-item" href="/services/local-seo/">
-                <span class="nav-dd-name" data-es="SEO local">Local SEO</span>
-                <span class="nav-dd-desc" data-es="Que te encuentren en Google y el mapa.">Get found on Google &amp; the map.</span>
-              </a>
-              <a class="nav-dd-item" href="/services/marketing-outreach/">
-                <span class="nav-dd-name" data-es="Marketing y difusión">Marketing &amp; Outreach</span>
-                <span class="nav-dd-desc" data-es="Que te reserven o te encuentren — difusión y anuncios.">Get booked or found — outreach &amp; ads.</span>
-              </a>
-            </div>
-          </div>
-          <a class="nav-dd-all" href="/services/" data-es="Ver todos los servicios &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">See all services <span class="arrow" aria-hidden="true">→</span></a>
-        </div>
-      </div>
-      <a href="/work/" data-es="Proyectos">Work</a>
-      <a href="/pricing/" data-es="Precios">Pricing</a>
-      <a href="/contact/" class="nav-cta" data-es="Empezar un proyecto">Start a project</a>
-    </nav>
-    <!-- mobile-only: opens the slide-in menu drawer below -->
-    <button class="hamburger" id="hamburger" type="button"
-            aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
-      <span class="hb-lines" aria-hidden="true"><span></span><span></span><span></span></span>
-    </button>
+<!-- Side sparks — desktop-only, 4 total (2 per gutter), tasteful -->
+<div class="sparks" aria-hidden="true">
+  <!-- Left gutter -->
+  <div class="spark" style="left:3.5%;top:28%;--dur:7.2s;--delay:0s;--tx:12px;--ty:-28px;width:5px;height:5px"></div>
+  <div class="spark" style="left:5%;top:62%;--dur:9.8s;--delay:1.4s;--tx:-8px;--ty:-18px;background:var(--green-bright);width:4px;height:4px;opacity:.3"></div>
+  <!-- Right gutter -->
+  <div class="spark" style="right:4%;top:38%;--dur:8.4s;--delay:.6s;--tx:-14px;--ty:-22px;width:5px;height:5px"></div>
+  <div class="spark" style="right:3%;top:70%;--dur:6.6s;--delay:2.1s;--tx:10px;--ty:-16px;background:var(--green-bright);width:4px;height:4px;opacity:.3"></div>
+</div>
+
+<main>
+  <hr class="top-rule">
+
+  <!-- Wordmark — non-interactive during maintenance; no / link to avoid self-loop -->
+  <div class="wordmark" id="wordmark-wrap" aria-label="BANANAbyte" role="img">
+    <img src="/brand/logo-light.svg" alt="BANANAbyte — Orlando web studio" width="160" height="44" style="height:34px;width:auto;display:block">
   </div>
-</header>
 
-<!-- ============================================================
-     MOBILE MENU — slide-in drawer (≤979px). Holds the nav links, the
-     primary CTA, and the relocated language toggle.
-     ============================================================ -->
-<div class="nav-backdrop" id="nav-backdrop" hidden></div>
-<aside class="mobile-menu" id="mobile-menu" aria-label="Menu" aria-hidden="true" hidden>
-  <div class="mm-inner">
+  <div style="display:flex;flex-direction:column;gap:var(--space-5)">
+    <p class="eyebrow">Orlando · Bilingual Web Studio</p>
 
-    <!-- drawer header: wordmark + bobbing banana + close -->
-    <div class="mm-head">
-      <a class="mm-wordmark" href="/" aria-label="BANANAbyte home" data-es-aria-label="BANANAbyte inicio">
-        <span class="nana" aria-hidden="true">🍌</span>
-        <span><span class="banana">BANANA</span><span class="byte">byte</span></span>
-      </a>
-      <span class="mm-head-spacer"></span>
-      <button class="mm-close" type="button" data-mm-close aria-label="Close menu" data-es-aria-label="Cerrar menú">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-      </button>
-    </div>
+    <h1 class="headline">We're building<br>something <em class="hl">new.</em></h1>
 
-    <nav class="mm-links" aria-label="Mobile">
-      <div class="mm-acc" data-mm-acc>
-        <button type="button" class="mm-acc-toggle" data-mm-acc-toggle aria-expanded="false" aria-controls="mm-svc-panel">
-          <span class="mm-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.2 4.6L19 9.3l-3.5 3.4L16.4 18 12 15.5 7.6 18l.9-5.3L5 9.3l4.8-1.7z"/></svg></span>
-          <span class="mm-label" data-es="Servicios">Services</span>
-          <span class="mm-acc-caret" aria-hidden="true"><svg viewBox="0 0 14 14" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 5.5 7 9l3.5-3.5"/></svg></span>
-        </button>
-        <div class="mm-acc-panel" id="mm-svc-panel" hidden>
-          <p class="mm-eyebrow" data-es="Crea tu sitio">Build your site</p>
-          <a class="mm-acc-item" href="/services/website-design/">
-            <span class="mm-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V7l1.5-3h13L20 7v2"/><path d="M4 9a2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0"/><path d="M5 11v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-8"/><path d="M9 20v-4h4v4"/></svg></span>
-            <span class="mm-acc-tx">
-              <span class="mm-acc-name" data-es="Diseño de sitios web">Website design</span>
-              <span class="mm-acc-desc" data-es="Sitios a medida para negocios y profesionales locales.">Custom sites for local businesses &amp; pros.</span>
-            </span>
-          </a>
-          <a class="mm-acc-item" href="/services/online-stores/">
-            <span class="mm-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/><path d="M3 4h2l2.2 11.2a1.5 1.5 0 0 0 1.5 1.2h8.1a1.5 1.5 0 0 0 1.5-1.2L21 7H6"/></svg></span>
-            <span class="mm-acc-tx">
-              <span class="mm-acc-name" data-es="Tiendas online">Online stores</span>
-              <span class="mm-acc-desc" data-es="Vende online — escaparate, carrito y pago.">Sell online — storefront, cart, checkout.</span>
-            </span>
-          </a>
-          <a class="mm-acc-item" href="/services/performer-sites/">
-            <span class="mm-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/><path d="M9 21h6"/></svg></span>
-            <span class="mm-acc-tx">
-              <span class="mm-acc-name" data-es="Sitios para artistas">Performer sites</span>
-              <span class="mm-acc-desc" data-es="Fechas de gira, reservas, reels y kit de prensa.">Tour dates, booking, reels, EPK.</span>
-            </span>
-          </a>
-          <a class="mm-acc-item" href="/services/redesign-refresh/">
-            <span class="mm-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v5h-5"/></svg></span>
-            <span class="mm-acc-tx">
-              <span class="mm-acc-name" data-es="Rediseño y renovación">Redesign &amp; refresh</span>
-              <span class="mm-acc-desc" data-es="Moderniza un sitio viejo o lento.">Modernize a tired or slow site.</span>
-            </span>
-          </a>
-          <p class="mm-eyebrow" data-es="Crece y mantén">Grow &amp; maintain</p>
-          <a class="mm-acc-item" href="/services/website-care/">
-            <span class="mm-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="m9 11.5 2 2 4-4"/></svg></span>
-            <span class="mm-acc-tx">
-              <span class="mm-acc-name" data-es="Mantenimiento web">Website care</span>
-              <span class="mm-acc-desc" data-es="Actualizaciones, respaldos, monitoreo y ediciones.">Updates, backups, monitoring, edits.</span>
-            </span>
-          </a>
-          <a class="mm-acc-item" href="/services/ai-front-desk/">
-            <span class="mm-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="11" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.3"/><circle cx="9" cy="13" r="1"/><circle cx="15" cy="13" r="1"/><path d="M9.5 16.2c.8.6 1.6.9 2.5.9s1.7-.3 2.5-.9"/><path d="M4 12H2.5M20 12h1.5"/></svg></span>
-            <span class="mm-acc-tx">
-              <span class="mm-acc-name" data-es="Recepcionista con IA">AI Front Desk</span>
-              <span class="mm-acc-desc" data-es="Asistente bilingüe 24/7 + respuesta por texto a llamadas perdidas.">24/7 bilingual assistant + missed-call text-back.</span>
-            </span>
-          </a>
-          <a class="mm-acc-item" href="/services/local-seo/">
-            <span class="mm-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
-            <span class="mm-acc-tx">
-              <span class="mm-acc-name" data-es="SEO local">Local SEO</span>
-              <span class="mm-acc-desc" data-es="Que te encuentren en Google y el mapa.">Get found on Google &amp; the map.</span>
-            </span>
-          </a>
-          <a class="mm-acc-item" href="/services/marketing-outreach/">
-            <span class="mm-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></span>
-            <span class="mm-acc-tx">
-              <span class="mm-acc-name" data-es="Marketing y difusión">Marketing &amp; Outreach</span>
-              <span class="mm-acc-desc" data-es="Que te reserven o te encuentren.">Get booked or found.</span>
-            </span>
-          </a>
-          <a class="mm-acc-all" href="/services/" data-es="Ver todos los servicios &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">See all services <span class="arrow" aria-hidden="true">→</span></a>
-        </div>
-      </div>
-      <a href="/work/"><span class="mm-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.6"/></svg></span><span class="mm-label" data-es="Proyectos">Work</span></a>
-      <a href="/pricing/"><span class="mm-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 13.3 12.6 21a1.8 1.8 0 0 1-2.5 0L3.4 14.3a1.8 1.8 0 0 1-.5-1.2V5a2 2 0 0 1 2-2h8.1a1.8 1.8 0 0 1 1.3.5l6.6 6.6a1.8 1.8 0 0 1-.4 3z"/><circle cx="8.2" cy="8.2" r="1.4"/></svg></span><span class="mm-label" data-es="Precios">Pricing</span></a>
-      <a href="/contact/"><span class="mm-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.4"/><path d="M3.5 6.5 12 12.5l8.5-6"/></svg></span><span class="mm-label" data-es="Contacto">Contact</span></a>
-    </nav>
-    <a href="/contact/" class="btn btn-primary mm-cta" data-es="Empezar un proyecto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Start a project <span class="arrow" aria-hidden="true">→</span></a>
-    <div class="mm-lang-slot" id="menu-lang-slot"><!-- .lang-toggle relocated here on mobile --></div>
-    <p class="mm-sig" data-es="Orlando, FL · &lt;b&gt;BANANAbyte LLC&lt;/b&gt;">Orlando, FL · <b>BANANAbyte LLC</b></p>
+    <p class="body-copy">
+      BANANAbyte is in the middle of a full refresh — better design, faster
+      sites, clearer pricing. We'll be back up shortly.
+    </p>
+
+    <p class="spanish-line" lang="es">
+      Estamos puliendo nuestra nueva web. Volvemos pronto — mientras tanto, aquí estamos.
+    </p>
   </div>
-</aside>
 
-<main id="main">
+  <!-- Contact actions — keep leads flowing -->
+  <div class="contact-block">
+    <p class="contact-label">Reach us directly in the meantime</p>
+    <div class="contact-btns">
 
-    <!-- ============================================================
-         HERO — concept-C "pulse" identity. Bold headline, glowing-banana
-         motif in the studio panel, a subline naming BOTH worlds, the
-         flat-price trust chip, primary + secondary CTAs. The audience
-         ticker (the "one roof" cast) runs directly below the hero.
-         ============================================================ -->
-    <section class="hero" aria-labelledby="b-hero-h">
-      <div class="wrap hero-grid">
-        <div class="hero-copy">
-          <span class="tag" data-reveal data-es="&lt;span class=&quot;pulse&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt; Un estudio · Orlando, FL · hecho por una persona real"><span class="pulse" aria-hidden="true"></span> One studio · Orlando, FL · built by a human</span>
+      <!-- Call — primary yellow action -->
+      <a class="btn-primary" href="tel:+13212023732" aria-label="Call (321) 202-3732">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.8 1.28h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        Call (321) 202-3732
+      </a>
 
-          <!-- LIVE STATUS + CLOCK — monospace HUD bar; the dot pulses and the
-               clock ticks every second (America/New_York) via site.js. The
-               clock span starts with server-agnostic placeholder text so it's
-               never blank before JS; aria-hidden because it's ambient flavor. -->
-          <div class="hero-status" data-reveal aria-hidden="true">
-            <span class="hs-dot" aria-hidden="true"></span>
-            <span class="hs-avail" data-es="Disponible — tomando proyectos">Available — taking projects</span>
-            <span class="hs-sep">·</span>
-            <span class="hs-loc">Orlando, FL</span>
-            <span class="hs-sep">·</span>
-            <span class="hs-clock" data-clock data-es-tz-label="hora local">--:--:-- <span class="hs-mer">--</span> <span class="hs-tzlabel" data-es="hora local">local time</span></span>
-          </div>
-          <h1 id="b-hero-h" data-reveal data-es="Sitios web con &lt;span class=&quot;mark&quot;&gt;pulso&lt;/span&gt;. Bien hechos, lanzados rápido.">Websites with a <span class="mark">pulse</span>. Built right, shipped fast.</h1>
-          <p class="hero-lede" data-reveal data-es="BANANAbyte 🍌 es un estudio web en Orlando. Creo sitios rápidos, limpios y a medida para quienes mantienen interesante a la ciudad — &lt;b&gt;la taquería, la boutique, la tienda online, el comediante, el DJ, el ventrílocuo&lt;/b&gt;. Mismo estudio, mismo cuidado.">BANANAbyte 🍌 is a web studio in Orlando. I build fast, clean, custom sites for the people who keep this city interesting — <b>the taco spot, the boutique, the online store, the comedian, the DJ, the ventriloquist</b>. Same studio, same care.</p>
-          <div class="hero-actions" data-reveal>
-            <a href="/contact/" class="btn btn-primary" data-es="Empezar un proyecto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Start a project <span class="arrow" aria-hidden="true">→</span></a>
-            <a href="/work/" class="btn btn-ghost" data-es="Ver los proyectos">See the work</a>
-          </div>
-          <p class="hero-trust" data-reveal data-es="&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z&quot;/&gt;&lt;path d=&quot;m9 12 2 2 4-4&quot;/&gt;&lt;/svg&gt; Precio cerrado, sin reloj por horas, todo es tuyo."><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/><path d="m9 12 2 2 4-4"/></svg> One flat price, no hourly meter, you own it all.</p>
+      <!-- Text — secondary action -->
+      <a class="btn-secondary" href="sms:+13212023732" aria-label="Text (321) 202-3732">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+        </svg>
+        Text us
+      </a>
 
-          <!-- LIVE-ISH STAT CHIPS — small monospace counters that count up when
-               the hero enters view (site.js). Decorative, so aria-hidden. -->
-          <div class="hero-stats" data-reveal aria-hidden="true">
-            <span class="hstat"><span class="hstat-dot" aria-hidden="true"></span><b class="count" data-count="1">1</b> <span data-es="cliente real en vivo">real client live</span></span>
-            <span class="hstat"><b class="count" data-count="2" data-count-suffix="–3">2–3</b> <span data-es="semanas para lanzar">weeks to launch</span></span>
-            <span class="hstat"><b class="count" data-count="98">98</b> <span data-es="rendimiento Lighthouse">Lighthouse perf</span></span>
-            <span class="hstat"><b class="count" data-count="100" data-count-suffix="%">100%</b> <span data-es="tuyo para siempre">yours to keep</span></span>
-          </div>
+      <!-- WhatsApp -->
+      <a class="btn-secondary" href="https://wa.me/13212023732" target="_blank" rel="noopener noreferrer" aria-label="Message on WhatsApp">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+        </svg>
+        WhatsApp
+      </a>
 
-          <div class="hero-meta" data-reveal>
-            <span data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; En vivo en ~2–3 semanas"><span class="ck" aria-hidden="true">✓</span> Live in ~2–3 weeks</span>
-            <span data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Un solo contacto: yo"><span class="ck" aria-hidden="true">✓</span> One point of contact (me)</span>
-            <span data-es="&lt;span class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt; Tuyo para siempre"><span class="ck" aria-hidden="true">✓</span> Yours to keep</span>
-          </div>
-        </div>
+      <!-- Email -->
+      <a class="btn-secondary" href="mailto:contact@bananabyte.io" aria-label="Email contact@bananabyte.io">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <path d="m2 7 10 7 10-7"/>
+        </svg>
+        contact@bananabyte.io
+      </a>
 
-        <!-- studio panel: a "live" build mock with the glowing-banana motif.
-             data-parallax makes the panel drift slightly toward the pointer
-             (desktop only, site.js, rAF-throttled). The .hero-orbit holds the
-             floating banana + a ring of orbiting spores that circle it. -->
-        <div class="hero-panel" data-reveal data-parallax="panel" aria-hidden="true">
-          <div class="hero-orbit" aria-hidden="true">
-            <span class="orbit-spore os1"></span>
-            <span class="orbit-spore os2"></span>
-            <span class="orbit-spore os3"></span>
-            <span class="orbit-spore os4"></span>
-          <svg class="hero-banana" viewBox="0 0 480 480" aria-hidden="true">
-            <defs>
-              <radialGradient id="bb-halo" cx="50%" cy="42%" r="55%">
-                <stop offset="0%" stop-color="#3CF08A" stop-opacity=".55"/>
-                <stop offset="100%" stop-color="#3CF08A" stop-opacity="0"/>
-              </radialGradient>
-              <linearGradient id="bb-peel" x1="120" y1="80" x2="360" y2="420" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#FFE177"/><stop offset=".55" stop-color="#FFD23F"/><stop offset="1" stop-color="#E0B400"/>
-              </linearGradient>
-            </defs>
-            <circle cx="240" cy="210" r="210" fill="url(#bb-halo)"/>
-            <path d="M150 70c-34 90-8 222 132 256 40 10 78 2 92-22-2 16-14 30-34 38-90 34-200-26-228-128C96 170 108 110 132 78c6-8 12-8 18-8z" fill="url(#bb-peel)" stroke="#B58E00" stroke-width="4" stroke-linejoin="round"/>
-            <path d="M158 92c-22 78 4 184 124 218 26 7 50 4 64-8-78 2-150-50-176-128-10-30-14-58-12-82z" fill="#FFE9A8" opacity=".55"/>
-            <path d="M132 78l-14-22c-3-5 0-12 6-12s12 4 14 10l8 22z" fill="#2A4D1F"/>
-            <g fill="#08120C">
-              <rect x="296" y="300" width="26" height="26" rx="4"/>
-              <rect x="322" y="318" width="22" height="22" rx="4"/>
-              <rect x="282" y="324" width="20" height="20" rx="4"/>
-            </g>
-            <g fill="#3CF08A">
-              <rect x="318" y="296" width="12" height="12" rx="3"/>
-              <rect x="338" y="312" width="9" height="9" rx="2"/>
-            </g>
-          </svg>
-          </div><!-- /.hero-orbit -->
-          <div class="browser">
-            <div class="browser-bar">
-              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-              <span class="url" data-hero-url>gabrielparra.dev</span>
-            </div>
-            <!-- crossfading carousel of real builds (site.js heroCarousel) -->
-            <div class="browser-shots" data-hero-carousel>
-              <img class="hero-shot is-on" src="/work/thumbs/gabrielparra.webp" width="900" height="562" alt="gabrielparra.dev — Gabe's dark, animated mission-control developer portfolio" data-es-alt="gabrielparra.dev — el portafolio de desarrollador de Gabe, oscuro y animado, estilo centro de control" decoding="async" data-url="gabrielparra.dev">
-              <img class="hero-shot" src="/work/thumbs/peter-hefty.webp" width="900" height="562" alt="Peter Hefty & Justin — red-curtain booking site for an Orlando ventriloquist and comedian" data-es-alt="Peter Hefty & Justin — sitio de reservas con cortina roja para un ventrílocuo y comediante de Orlando" decoding="async" data-url="peterheftyandjustin.com">
-              <img class="hero-shot" src="/work/thumbs/mock-restaurant.webp" width="900" height="562" alt="Concept build: a vibrant taqueria and bar website with menu, gallery and reservations" data-es-alt="Concepto: un sitio web vibrante de taquería y bar con menú, galería y reservas" decoding="async" data-url="casa-verde · concept">
-              <img class="hero-shot" src="/work/thumbs/mock-shop-boutique.webp" width="900" height="562" alt="Concept build: a bold fashion boutique online store with product grid and featured collection" data-es-alt="Concepto: una tienda online de boutique de moda con cuadrícula de productos y colección destacada" decoding="async" data-url="boutique · concept">
-              <img class="hero-shot" src="/work/thumbs/mock-dj.webp" width="900" height="562" alt="Concept build: a neon nightclub website for a DJ and producer with an animated visualizer and gig list" data-es-alt="Concepto: un sitio web de discoteca neón para un DJ y productor con visualizador animado y lista de fechas" decoding="async" data-url="dj night · concept">
-            </div>
-          </div>
-          <div class="panel-badge" data-scroll data-scroll-rate="0.08" data-es="&lt;b class=&quot;count&quot; data-count=&quot;98&quot;&gt;98&lt;/b&gt; en rendimiento Lighthouse"><b class="count" data-count="98">98</b> Lighthouse performance</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- AUDIENCE TICKER — the "one roof" cast of clients, business + stage
-         side by side. Doubled track so the -50% CSS loop is seamless. -->
-    <div class="ticker" aria-hidden="true">
-      <div class="ticker-track">
-        <span>Restaurants</span><span>Comedians</span><span>Online stores</span><span>DJs</span><span>Boutiques</span><span>Ventriloquists</span><span>Service pros</span><span>Musicians</span><span>Redesigns</span><span>Magicians</span><span>Website care</span><span>Bands</span>
-        <span>Restaurants</span><span>Comedians</span><span>Online stores</span><span>DJs</span><span>Boutiques</span><span>Ventriloquists</span><span>Service pros</span><span>Musicians</span><span>Redesigns</span><span>Magicians</span><span>Website care</span><span>Bands</span>
-      </div>
     </div>
+  </div>
 
-    <!-- "Blueprint → Built" trigger: once this scrolls past the top, the studio
-         gets down to business — blocks stack up + the theme cools to graphite.
-         site.js (seriousMode) injects the curtain + grid and observes this. -->
-    <div id="serious-sentinel" aria-hidden="true"></div>
+  <hr class="bottom-rule">
 
-    <!-- ============================================================
-         BOTH WORLDS, ONE STUDIO — explicitly fuse business + entertainment.
-         The "storefront and a stage under one roof" duality, witty + credible.
-         ============================================================ -->
-    <section id="worlds" aria-labelledby="b-worlds-h">
-      <div class="wrap">
-        <div class="sec-head" data-reveal>
-          <span class="eyebrow console" data-es="Las dos caras · un solo estudio">Both worlds · one studio</span>
-          <h2 id="b-worlds-h" data-es="Un escaparate y un escenario, bajo el mismo techo.">A storefront and a stage, under one roof.</h2>
-          <p data-es="Los negocios necesitan que los encuentren. Los artistas necesitan que los sientan. Pero, sinceramente, ambos necesitan un sitio que no parezca una plantilla. Así que construyo los dos — sin “modo negocio” y “modo escenario”, un solo estudio con rango.">Businesses need to be found. Performers need to be felt. But honestly? Both need a site that doesn’t look like a template. So I build both — no “business mode” and “showbiz mode,” one studio with range.</p>
-        </div>
-
-        <div class="worlds-grid">
-          <article class="world shop" data-reveal>
-            <span class="wk" data-es="Para negocios">For businesses</span>
-            <h3 data-es="Que te encuentren. Que reserven. Que paguen.">Get found. Get booked. Get paid.</h3>
-            <p data-es="Restaurantes, tiendas, oficios y comercios online que tienen que verse legítimos al primer toque y vender al segundo. Páginas rápidas, SEO de verdad y un pago que funciona.">Restaurants, shops, service pros and online stores that need to look legit on the first tap and convert on the second. Fast pages, real SEO, a checkout that works.</p>
-            <ul>
-              <li data-es="Sitios de negocio">Business sites</li>
-              <li data-es="Tiendas online">Online stores</li>
-              <li data-es="Rediseños">Redesigns</li>
-              <li data-es="SEO local">Local SEO</li>
-            </ul>
-          </article>
-
-          <article class="world stage" data-reveal>
-            <span class="wk" data-es="Para artistas">For performers</span>
-            <h3 data-es="Sal al escenario como en serio.">Headline like you mean it.</h3>
-            <p data-es="Comediantes, DJs, músicos y ventrílocuos que necesitan un sitio con personalidad, una lista de fechas que se actualiza sola y un botón de “contrátame” que de verdad se hace clic.">Comedians, DJs, musicians and ventriloquists who need a show site with personality, a tour list that updates itself, and a “book me” button that actually gets clicked.</p>
-            <ul>
-              <li data-es="Sitios de show">Show sites</li>
-              <li data-es="Fechas / gira">Tour &amp; dates</li>
-              <li data-es="Kits de prensa">Press kits</li>
-              <li data-es="Reservas">Booking flows</li>
-            </ul>
-          </article>
-        </div>
-
-        <div class="worlds-banner" data-reveal data-es="Mismo estudio para el &lt;span class=&quot;g&quot;&gt;reflector&lt;/span&gt; &lt;span class=&quot;y&quot;&gt;y&lt;/span&gt; el escaparate — porque un gran sitio es un gran sitio.">Same studio for the <span class="g">spotlight</span> <span class="y">and</span> the storefront — because a great website is a great website.</div>
-      </div>
-    </section>
-
-    <!-- WHAT I BUILD (teaser → /services/) -->
-    <section id="services" aria-labelledby="b-svc-h">
-      <div class="wrap">
-        <div class="sec-head" data-reveal>
-          <span class="eyebrow console" data-es="Lo que construyo">What I build</span>
-          <h2 id="b-svc-h" data-es="Sea un escaparate o un escenario, yo le construyo el sitio.">Whatever you run — a storefront or a stage — I’ll build the site for it.</h2>
-          <p data-es="Desde sitios de negocio y tiendas online hasta sitios de show y un recepcionista con IA que nunca duerme — esto es lo más pedido.">From business sites and online stores to performer show sites and an AI front desk that never sleeps — here are the highlights.</p>
-        </div>
-        <div class="svc-grid">
-          <article class="svc" data-reveal>
-            <div class="ico" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 21h8"/></svg>
-            </div>
-            <h3 data-es="Sitios de negocio y show">Business &amp; show sites</h3>
-            <p data-es="Sitios a medida, mobile-first, para tiendas, restaurantes, oficios y artistas por igual — hechos para que te encuentren y para que cierren la venta o el bolo.">Custom, mobile-first sites for shops, restaurants, service pros and performers alike — built to be found and built to book the sale or the gig.</p>
-          </article>
-
-          <article class="svc feature" data-reveal>
-            <div class="ico" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.5 12.5a1.5 1.5 0 0 0 1.5 1.2h8.4a1.5 1.5 0 0 0 1.5-1.2L22 7H6"/></svg>
-            </div>
-            <h3 data-es="Tiendas online &lt;span class=&quot;pill&quot;&gt;E-commerce&lt;/span&gt;">Online stores <span class="pill">E-commerce</span></h3>
-            <p data-es="Vende productos, mercancía o entradas sin que la comisión de la plataforma te coma el margen. Páginas de producto, carrito y un pago que funciona en cualquier teléfono.">Sell goods, merch or tickets without the platform tax eating your margins. Product pages, carts, and a checkout that just works on every phone.</p>
-          </article>
-
-          <article class="svc" data-reveal>
-            <div class="ico" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v5h-5"/></svg>
-            </div>
-            <h3 data-es="Rediseños y rescates">Redesigns &amp; rescues</h3>
-            <p data-es="¿Un sitio que carga como en 2009, o un formulario roto? Conservo lo que funciona, arreglo lo que no, y lo dejo moderno, rápido y tuyo otra vez.">A site that loads like 2009, or a form that’s broken? I keep what works, fix what doesn’t, and make it modern, fast, and yours again.</p>
-          </article>
-
-          <article class="svc" data-reveal>
-            <div class="ico" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4M8 16h.01M16 16h.01"/></svg>
-            </div>
-            <h3 data-es="Recepcionista con IA">AI front desk</h3>
-            <p data-es="Un bot amable que responde preguntas, toma reservas y nunca duerme — para que tú puedas salir al escenario (o irte a casa).">A friendly bot that answers FAQs, takes bookings and never sleeps — so you can actually go on stage (or home).</p>
-          </article>
-
-          <article class="svc" data-reveal>
-            <div class="ico" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-            </div>
-            <h3 data-es="Cuidado del sitio">Website care</h3>
-            <p data-es="Actualizaciones, respaldos, ediciones y una persona real cuidándolo — tu sitio se mantiene rápido, seguro y al día sin que toques el código.">Updates, backups, edits and a real human watching over it — your site stays fast, safe and current without you ever touching the code.</p>
-          </article>
-
-          <article class="svc" data-reveal>
-            <div class="ico" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </div>
-            <h3 data-es="SEO local y Google">Local SEO &amp; Google</h3>
-            <p data-es="Aparece cuando tus vecinos buscan. Perfil de Google Business, reseñas y SEO para que los clientes locales correctos te encuentren.">Show up when your neighbors search — Google Business Profile, reviews and on-page SEO so the right local customers actually find you.</p>
-          </article>
-        </div>
-        <div class="see-all" data-reveal>
-          <a href="/services/" class="btn btn-ghost" data-es="Ver todos los servicios &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">See all services <span class="arrow" aria-hidden="true">→</span></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- SELECTED WORK (teaser → /work/) -->
-    <section id="work" aria-labelledby="b-work-h">
-      <div class="wrap">
-        <div class="sec-head" data-reveal>
-          <span class="eyebrow console" data-es="Proyectos destacados">Selected work</span>
-          <h2 id="b-work-h" data-es="Un cliente real — y conceptos en los que puedes hacer clic.">A real client — and concept builds you can click into.</h2>
-          <p data-es="El sitio en vivo de mi primer cliente real (un ventrílocuo premiado), más un concepto de tienda y uno de show — uno de cada mundo. Abre cualquiera en una pestaña nueva.">My first real client’s live site (an award-winning ventriloquist), plus a store concept and a show concept — one from each world. Open any in a new tab.</p>
-        </div>
-        <div class="work-grid">
-
-          <!-- Real client -->
-          <a class="work" href="https://peterheftyandjustin.com/" target="_blank" rel="noopener" data-reveal>
-            <div class="work-shot">
-              <span class="work-cat spotlight" data-es="Cliente real · en vivo">Real client · live</span>
-              <img src="/work/thumbs/peter-hefty.webp" alt="Peter Hefty &amp; Justin — live ventriloquist &amp; comedian site" data-es-alt="Peter Hefty &amp; Justin — sitio en vivo de ventrílocuo y comediante" loading="lazy" decoding="async" width="1280" height="800">
-            </div>
-            <div class="work-body">
-              <h3>Peter Hefty &amp; Justin</h3>
-              <p data-es="El sitio en vivo de un ventrílocuo y comediante premiado — un cliente real, con su show y sus reservas. Hecho por BANANAbyte.">A real, live site for an award-winning ventriloquist &amp; comedian — his show and bookings. Built by BANANAbyte.</p>
-              <span class="work-view" data-es="Ver el sitio en vivo &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Visit live site <span class="arrow" aria-hidden="true">→</span></span>
-            </div>
-          </a>
-
-          <!-- Online store (business world) -->
-          <a class="work" href="/concepts/mock-shop-goods/" target="_blank" rel="noopener" data-reveal>
-            <div class="work-shot">
-              <span class="work-cat shop" data-es="Tienda online">Online store</span>
-              <img src="/work/thumbs/mock-shop-goods.webp" alt="Ember &amp; Oak demo site" data-es-alt="Sitio de demostración de Ember &amp; Oak" loading="lazy" decoding="async" width="1280" height="800">
-            </div>
-            <div class="work-body">
-              <h3>Ember &amp; Oak</h3>
-              <p data-es="Concepto de demostración: una tienda cálida y retro de velas y café, con catálogo de productos, carrito y suscripciones.">A concept build: a warm, retro candle &amp; coffee shop with a product grid, cart and subscriptions.</p>
-              <span class="work-view" data-es="Ver demo &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">View demo <span class="arrow" aria-hidden="true">→</span></span>
-            </div>
-          </a>
-
-          <!-- Performer (stage world) -->
-          <a class="work" href="/concepts/mock-comedian/" target="_blank" rel="noopener" data-reveal>
-            <div class="work-shot">
-              <span class="work-cat" data-es="Sitio de show">Performer site</span>
-              <img src="/work/thumbs/mock-comedian.webp" alt="Mickey Vega comedian demo site" data-es-alt="Sitio de demostración del comediante Mickey Vega" loading="lazy" decoding="async" width="1280" height="800">
-            </div>
-            <div class="work-body">
-              <h3>Mickey Vega</h3>
-              <p data-es="Concepto de demostración: un sitio de comediante con fechas de gira, clips de video y un botón de reservas que sí se hace clic.">A concept build: a stand-up comedian’s site with tour dates, video clips and a booking button that actually gets clicked.</p>
-              <span class="work-view" data-es="Ver demo &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">View demo <span class="arrow" aria-hidden="true">→</span></span>
-            </div>
-          </a>
-
-        </div>
-        <div class="work-more" data-reveal>
-          <a href="/work/" class="btn btn-ghost" data-es="Ver el trabajo &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">See the work <span class="arrow" aria-hidden="true">→</span></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- WHY ME (short trust strip) -->
-    <section id="why" class="why" aria-labelledby="b-why-h">
-      <div class="wrap why-inner">
-        <div class="why-intro" data-reveal>
-          <span class="eyebrow console" data-es="Por qué trabajar conmigo">Why work with me</span>
-          <h2 id="b-why-h" data-es="Sin intermediarios de agencia. Solo trabajo limpio y respuestas directas.">No agency middlemen. Just clean work and straight answers.</h2>
-          <p class="lede" data-es="Tienda o escenario, trabajas directo conmigo — el mismo que escribe el código, elige los colores y responde tus correos. Tomo el trabajo muy en serio; el proceso, no tanto. Nada se pierde en el camino.">Storefront or stage, you work directly with me — the one writing the code, picking the colors, answering your email. I take the work dead seriously; the process, not so much. Nothing gets lost in a handoff.</p>
-        </div>
-        <div class="why-list" data-reveal>
-          <div class="why-item">
-            <div class="n">01</div>
-            <h4 data-es="Senior, de principio a fin">Senior, start to finish</h4>
-            <p data-es="Un desarrollador con experiencia en tu proyecto desde la primera llamada hasta el lanzamiento — sin juniors a tu costa.">An experienced developer from first call to launch — no juniors learning on your dime.</p>
-          </div>
-          <div class="why-item">
-            <div class="n">02</div>
-            <h4 data-es="Precio cerrado">Flat price</h4>
-            <p data-es="El número completo antes de empezar. Sin facturas sorpresa, sin reloj por horas.">The full number before I start. No surprise invoices, no hourly meter.</p>
-          </div>
-          <div class="why-item">
-            <div class="n">03</div>
-            <h4 data-es="Es tuyo">You own it</h4>
-            <p data-es="Código, dominio, contenido, cuentas — todo tuyo. Te puedes ir cuando quieras con todo en la mano.">Code, domain, content, accounts — all yours. Walk away anytime with everything in hand.</p>
-          </div>
-        </div>
-        <div class="trust-band" data-reveal>
-          <div class="trust-sig">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/><path d="m9 12 2 2 4-4"/></svg>
-            <p data-es="Soy Gabe, un desarrollador de Orlando — &lt;b&gt;BANANAbyte es una LLC registrada en Florida&lt;/b&gt;."><b>I’m Gabe</b>, an Orlando developer — BANANAbyte is a registered Florida LLC.</p>
-          </div>
-          <div class="trust-sig">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14M5 8a7 7 0 0 0 7 7 7 7 0 0 0 7-7M5 8a7 7 0 0 1 7-7 7 7 0 0 1 7 7M12 1v14m-7 6h14"/></svg>
-            <p data-es="&lt;b&gt;Bilingüe nativo (inglés + español)&lt;/b&gt; — tu sitio y tus clientes, en los dos idiomas."><b>Native bilingual (English + Spanish)</b> — your site and your customers, in both languages.</p>
-          </div>
-          <div class="trust-sig">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-            <p data-es="Hace poco reconstruí una tienda Shopify — unas &lt;b&gt;20 horas, lanzada a tiempo&lt;/b&gt;.">Most recently rebuilt a Shopify store — about <b>20 hours, launched on time</b>.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-
-
-  <!-- ============================================================
-       PRICING TEASER — short band for BOTH modes (full tier grid lives
-       on /pricing/). Restyles per mode via CSS tokens.
-       ============================================================ -->
-  <section id="pricing" class="price-teaser" aria-labelledby="pricing-h">
-    <div class="wrap price-teaser-inner" data-reveal>
-      <div class="price-teaser-copy">
-        <span class="eyebrow console" data-es="Precios">Pricing</span>
-        <h2 id="pricing-h" style="margin-top:14px" data-es="Un precio cerrado, sin sorpresas.">One flat price, no surprises.</h2>
-        <p data-es="Un sitio a medida para un negocio local ronda los &lt;span class=&quot;price-anchor&quot;&gt;$2,200–$2,600&lt;/span&gt; — con un nivel Landing más sencillo abajo y tiendas online arriba. Un precio cerrado, el número completo por adelantado, y todo es tuyo.">A full custom site for a local business runs around <span class="price-anchor">$2,200–$2,600</span> — with a leaner Landing tier below and online stores above. One flat price, the full number upfront, and everything’s yours.</p>
-      </div>
-      <div class="price-teaser-actions">
-        <a href="/pricing/" class="btn btn-primary" data-es="Ver precios &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">See pricing <span class="arrow" aria-hidden="true">→</span></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       CONTACT CTA BAND — compact, for BOTH modes. The real form lives
-       on /contact/; here I just surface phone/text/WhatsApp + a button.
-       Restyles per mode via CSS tokens.
-       ============================================================ -->
-  <section id="contact" class="contact-band" aria-labelledby="contact-h">
-    <div class="wrap contact-band-inner" data-reveal>
-      <div class="contact-band-copy">
-        <span class="eyebrow console" data-es="Empieza un proyecto">Start a project</span>
-        <h2 id="contact-h" style="margin-top:12px" data-es="Cuéntame qué estás construyendo.">Tell me what you’re building.</h2>
-        <p data-es="Con un par de frases basta. Leo cada mensaje personalmente y respondo en un día hábil — aunque sea «todavía no me necesitas».">A few sentences is plenty. I read every message myself and reply within one business day — even if that’s “you don’t need me yet.”</p>
-        <div class="calls-note">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m23 7-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
-          <span data-es="¿Prefieres hablarlo? Nos metemos a una &lt;b&gt;videollamada&lt;/b&gt; — o, si estás en el centro de Florida, te visito para una &lt;b&gt;sesión de diseño en persona&lt;/b&gt;.">We can hop on a <b>video call</b> — or, if you’re in Central Florida, I’ll come to you for an <b>in-person design session</b>.</span>
-        </div>
-      </div>
-
-      <div class="contact-band-reach">
-        <!-- Phone / Text / WhatsApp — same number, three ways to reach -->
-        <div class="band-phone">
-          <span class="pi" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          </span>
-          <span class="pt">
-            <span class="pk" data-es="Teléfono / Mensaje">Phone / Text</span>
-            <a class="pv" href="tel:+13212023732">(321)&nbsp;202-3732</a>
-          </span>
-          <span class="band-acts">
-            <a class="band-mini" href="tel:+13212023732" aria-label="Call (321) 202-3732" data-es-aria-label="Llamar al (321) 202-3732">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              <span data-es="Llamar">Call</span>
-            </a>
-            <a class="band-mini" href="sms:+13212023732" aria-label="Text (321) 202-3732" data-es-aria-label="Enviar mensaje al (321) 202-3732">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg>
-              <span data-es="Mensaje">Text</span>
-            </a>
-            <a class="band-mini" href="https://wa.me/13212023732" rel="noopener" target="_blank" aria-label="WhatsApp (321) 202-3732" data-es-aria-label="WhatsApp al (321) 202-3732">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.84-2-.94-.26-.1-.45-.15-.64.15-.2.3-.74.93-.9 1.12-.17.2-.34.22-.63.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.34.44-.5.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.64-1.55-.88-2.12-.23-.55-.47-.48-.64-.49h-.55c-.2 0-.5.07-.77.37-.26.3-1 .98-1 2.38s1.03 2.76 1.17 2.95c.15.2 2.02 3.08 4.9 4.32.68.3 1.22.47 1.63.6.69.22 1.31.19 1.8.11.55-.08 1.7-.69 1.93-1.36.24-.67.24-1.24.17-1.36-.07-.12-.27-.2-.56-.34z"/><path d="M12.04 2C6.6 2 2.2 6.4 2.2 11.85c0 1.74.46 3.43 1.32 4.92L2.1 22l5.37-1.4a9.8 9.8 0 0 0 4.56 1.16h.01c5.43 0 9.84-4.4 9.84-9.85C21.88 6.4 17.47 2 12.04 2zm0 17.96h-.01a8.13 8.13 0 0 1-4.14-1.14l-.3-.18-3.08.8.82-3-.2-.31a8.1 8.1 0 0 1-1.24-4.33c0-4.52 3.68-8.2 8.2-8.2 2.2 0 4.26.86 5.81 2.42a8.16 8.16 0 0 1 2.4 5.78c0 4.52-3.67 8.2-8.2 8.2z"/></svg>
-              <span>WhatsApp</span>
-            </a>
-          </span>
-        </div>
-        <a href="/contact/" class="btn btn-primary" data-es="Empezar un proyecto &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;">Start a project <span class="arrow" aria-hidden="true">→</span></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       TESTIMONIAL — SHARED band for BOTH modes (do NOT duplicate inside
-       a panel). One real, owner-approved review from BANANAbyte's first
-       client. Restyles per mode via CSS tokens. <blockquote> + <cite>,
-       name links out to the live site BANANAbyte built for him.
-       ============================================================ -->
-  <section class="quote-band" aria-labelledby="quote-h">
-    <div class="wrap quote-band-inner" data-reveal>
-      <figure class="quote-card">
-        <span class="eyebrow console" id="quote-h" data-es="Lo que dijo un cliente">What a client said</span>
-        <blockquote cite="https://peterheftyandjustin.com/" data-es="Gabe es genial para trabajar — creativo, como un mago haciendo su magia en internet. Como un buen mago, no tenía nada bajo la manga: todo apareció fantástico ante mis ojos — &lt;span class=&quot;em&quot;&gt;mi nuevo sitio web&lt;/span&gt;. Le recomendaría BANANAbyte a cualquiera que quiera un verdadero artista y un tipo divertido para construir su sitio.">Gabe is awesome to work with — creative, just like a magician working his magic on the internet. Like a magician, there was nothing up his sleeve: everything fantastic just appeared before my eyes — <span class="em">my new website</span>. I’d recommend BANANAbyte to anyone who wants a real artist and a fun guy to build their site.</blockquote>
-        <figcaption>
-          <cite>
-            <a class="quote-cite-link" href="https://peterheftyandjustin.com/" target="_blank" rel="noopener" data-es="Peter Hefty &lt;span class=&quot;role&quot;&gt;ventrílocuo y comediante&lt;/span&gt; &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;↗&lt;/span&gt;">Peter Hefty <span class="role">ventriloquist &amp; comedian</span> <span class="arrow" aria-hidden="true">↗</span></a>
-          </cite>
-          <span class="quote-real" data-es="&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z&quot;/&gt;&lt;path d=&quot;m9 12 2 2 4-4&quot;/&gt;&lt;/svg&gt; Cliente real — su sitio en vivo lo construyó BANANAbyte."><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/><path d="m9 12 2 2 4-4"/></svg> Real client — his live site was built by BANANAbyte.</span>
-        </figcaption>
-      </figure>
-    </div>
-  </section>
-
+  <p class="footer-note">
+    BANANAbyte &nbsp;·&nbsp; Orlando, FL &nbsp;·&nbsp;
+    <a href="mailto:contact@bananabyte.io">contact@bananabyte.io</a>
+  </p>
 </main>
 
-<footer class="site">
-  <div class="wrap">
-    <div class="foot-grid">
-      <div>
-        <a class="wordmark" href="/" aria-label="BANANAbyte home" data-es-aria-label="BANANAbyte inicio">
-          <span class="nana" aria-hidden="true">.</span>
-          <span><span class="banana">BANANA</span><span class="byte">byte</span></span>
-          <span aria-hidden="true" style="font-size:.95em">🍌</span>
-        </a>
-        <p class="foot-blurb" data-es="Un estudio web en Orlando, FL. Sitios web rápidos, limpios y a medida, bien hechos. 🍌">A web studio in Orlando, FL. Fast, clean, custom websites, built right. 🍌</p>
-      </div>
-      <nav class="foot-nav" aria-label="Footer">
-        <a href="/services/" data-es="Servicios">Services</a>
-        <a href="/work/" data-es="Proyectos">Work</a>
-        <a href="/pricing/" data-es="Precios">Pricing</a>
-        <a href="/contact/" data-es="Contacto">Contact</a>
-        <a href="mailto:contact@bananabyte.io">contact@bananabyte.io</a>
-      </nav>
-    </div>
-    <p class="foot-disclaimer" data-es="Los sitios de ejemplo que se muestran son conceptos de demostración; cualquier trabajo real con clientes se muestra solo con el permiso de su dueño.">Example sites shown are demo concepts; any real client work is displayed only with the owner’s permission.</p>
-    <div class="foot-bottom">
-      <span data-es="© &lt;span id=&quot;year&quot;&gt;2026&lt;/span&gt; BANANAbyte LLC — Orlando, FL. &lt;span class=&quot;foot-built&quot;&gt;Hecho por Gabe, un desarrollador de Orlando.&lt;/span&gt;">© <span id="year">2026</span> BANANAbyte LLC — Orlando, FL. <span class="foot-built">Built by Gabe, an Orlando developer.</span></span>
-      <div class="lang-toggle" role="group" aria-label="Language / Idioma">
-        <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
-        <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
-      </div>
-    </div>
-  </div>
-</footer>
+<script>
+  // Single springy spin when clicking the banana logo — same easter egg as full site.
+  // Guard: skip the animation if the visitor prefers reduced motion.
+  const mark = document.getElementById('banana-mark');
+  const wordmarkWrap = document.getElementById('wordmark-wrap');
+  if (mark && wordmarkWrap) {
+    wordmarkWrap.addEventListener('click', () => {
+      const rm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (rm) return;
+      mark.classList.remove('spin');
+      // force reflow so the animation re-fires on repeat clicks
+      void mark.offsetWidth;
+      mark.classList.add('spin');
+      mark.addEventListener('animationend', () => mark.classList.remove('spin'), { once: true });
+    });
+  }
+</script>
 
-<script defer src="/assets/site.js"></script>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "0928fb51dad843818b6718b55b31e615"}'></script>
 </body>
 </html>

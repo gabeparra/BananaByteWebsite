@@ -1,0 +1,1542 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="paper">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build Your Site — Instant Estimate · BANANAbyte Orlando</title>
+<meta name="description" content="Configure your site and get a real starting price in seconds. One flat quote, no hourly meters. BANANAbyte — web design studio in Orlando, FL.">
+<meta name="theme-color" content="#FFFFFF">
+
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   TOKENS — exact copy from site shell. Never re-point base vars.
+   ============================================================ */
+:root{
+  --font-display:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --text-xs:clamp(11.5px,1vw,12.5px);
+  --text-sm:clamp(13px,1.1vw,14px);
+  --text-base:clamp(15.5px,1.4vw,17px);
+  --text-lg:clamp(18px,1.7vw,20px);
+  --text-2xl:clamp(27px,3.3vw,36px);
+  --text-3xl:clamp(34px,5.2vw,54px);
+  --text-4xl:clamp(40px,4.4vw,64px);
+  --leading-body:1.62;
+  --leading-tight:1.02;
+  --leading-hero:.96;
+  --tracking-display:-0.018em;
+  --tracking-hero:-0.024em;
+  --tracking-eyebrow:.16em;
+  --space-1:4px;  --space-2:8px;  --space-3:12px; --space-4:16px;
+  --space-5:20px; --space-6:24px; --space-8:32px; --space-10:40px;
+  --section-y:clamp(48px,6vw,84px);
+  --radius-sm:6px;
+  --radius-md:10px;
+  --radius-card:12px;
+  --radius-pill:9999px;
+  --container-max:1200px;
+  --gutter:clamp(20px,5vw,52px);
+  --white:#FFFFFF;
+  --off-white:#F7F8F5;
+  --black:#111310;
+  --black-2:#1B1E19;
+  --green:#1E6B45;
+  --green-deep:#154D32;
+  --green-bright:#46E08B;
+  --green-ink:#124A2F;
+  --yellow:#F5C800;
+  --yellow-deep:#7A5E00;
+  --on-yellow:#111310;
+  --surface:var(--white);
+  --surface-raised:var(--off-white);
+  --surface-recessed:var(--off-white);
+  --ink:var(--black);
+  --ink-2:#33372F;
+  --muted:#5E6357;
+  --line:var(--black);
+  --line-soft:rgba(17,19,16,0.16);
+  --line-hair:rgba(17,19,16,0.10);
+  --accent:var(--yellow);
+  --accent-ink:var(--yellow-deep);
+  --accent-soft:rgba(245,200,0,0.18);
+  --on-accent:var(--on-yellow);
+  --brand-mark:var(--green-ink);
+  --lift:3px 3px 0 0 var(--line);
+  --tint-lo:rgba(30,107,69,0.05);
+  --focus-ring:0 0 0 3px color-mix(in srgb, var(--accent-ink) 55%, transparent);
+  --motion-feedback:90ms;
+  --motion-fast:150ms;
+  --motion-base:220ms;
+  --color-scroll:620ms;
+  --ease-standard:cubic-bezier(.2,0,0,1);
+  --ease-color:cubic-bezier(.4,0,.2,1);
+  --maxw:var(--container-max);
+  color-scheme:light;
+}
+
+html[data-theme="paper"]{
+  --surface:var(--white);
+  --surface-raised:var(--off-white);
+  --surface-recessed:var(--off-white);
+  --ink:var(--black); --ink-2:#33372F; --muted:#5E6357;
+  --line:var(--black); --line-soft:rgba(17,19,16,0.16); --line-hair:rgba(17,19,16,0.10);
+  --accent:var(--yellow); --accent-ink:var(--yellow-deep); --accent-soft:rgba(245,200,0,0.18); --on-accent:var(--on-yellow);
+  --brand-mark:var(--green-ink);
+  --lift:3px 3px 0 0 var(--black);
+  --tint-lo:rgba(30,107,69,0.05);
+}
+
+html[data-theme="green"]{
+  --surface:var(--green);
+  --surface-raised:var(--green-deep);
+  --surface-recessed:var(--green-deep);
+  --ink:var(--white); --ink-2:#E6F1EA; --muted:#B9D3C4;
+  --line:var(--white); --line-soft:rgba(255,255,255,0.30); --line-hair:rgba(255,255,255,0.16);
+  --accent:var(--yellow); --accent-ink:var(--yellow); --accent-soft:rgba(245,200,0,0.20); --on-accent:var(--on-yellow);
+  --brand-mark:var(--green-bright);
+  --lift:3px 3px 0 0 var(--black);
+  --tint-lo:rgba(255,255,255,0.04);
+}
+
+html[data-theme="black"]{
+  --surface:var(--black);
+  --surface-raised:var(--black-2);
+  --surface-recessed:var(--black-2);
+  --ink:var(--white); --ink-2:#DDE0D8; --muted:#9AA093;
+  --line:var(--white); --line-soft:rgba(255,255,255,0.24); --line-hair:rgba(255,255,255,0.13);
+  --accent:var(--yellow); --accent-ink:var(--yellow); --accent-soft:rgba(245,200,0,0.20); --on-accent:var(--on-yellow);
+  --brand-mark:var(--green-bright);
+  --lift:3px 3px 0 0 var(--green-bright);
+  --tint-lo:rgba(70,224,139,0.05);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;overflow-x:clip}
+
+html,body,header.site,.themed{
+  transition:
+    background-color var(--color-scroll) var(--ease-color),
+    border-color var(--color-scroll) var(--ease-color),
+    color var(--color-scroll) var(--ease-color),
+    box-shadow var(--color-scroll) var(--ease-color);
+}
+
+html{background-color:var(--surface)}
+body{
+  margin:0;background-color:var(--surface);color:var(--ink);
+  font-family:var(--font-body);
+  font-size:var(--text-base);line-height:var(--leading-body);font-weight:400;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  overflow-x:hidden;position:relative;
+}
+
+/* paper grain */
+body::before{
+  content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+  opacity:.045;mix-blend-mode:multiply;
+}
+body::after{
+  content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.35' numOctaves='1'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  opacity:.03;mix-blend-mode:multiply;
+}
+
+h1,h2,h3,h4{
+  font-family:var(--font-display);
+  font-weight:800;line-height:var(--leading-tight);
+  letter-spacing:var(--tracking-display);margin:0;color:var(--ink);
+}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+::selection{background:var(--accent);color:var(--on-accent)}
+.wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
+
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent-ink);outline-offset:3px;box-shadow:var(--focus-ring)}
+
+.skip{position:absolute;left:-9999px;top:0;z-index:300;background:var(--accent);color:var(--on-accent);font-weight:800;padding:var(--space-3) var(--space-4);border-radius:0 0 var(--radius-md) 0}
+.skip:focus-visible{left:0}
+
+/* banana logomark */
+.bmark{display:inline-block;width:1.15em;height:1.15em;flex:none;vertical-align:-.18em}
+.bmark .peel{fill:var(--accent)}
+.bmark .body{fill:none;stroke:var(--ink);stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+.bmark .tip{fill:var(--ink)}
+
+/* ============================================================
+   BRAND LOGO — real SVG asset swap keyed off html[data-theme].
+   DARK logo on the default PAPER (light) theme.
+   LIGHT logo on GREEN and BLACK (dark) themes.
+   ============================================================ */
+.brand-logo{height:30px;width:auto;display:block}
+.brand-logo--light{display:none}
+html[data-theme="green"] .brand-logo--dark,html[data-theme="black"] .brand-logo--dark{display:none}
+html[data-theme="green"] .brand-logo--light,html[data-theme="black"] .brand-logo--light{display:block}
+
+/* ============================================================
+   HEADER — exact copy from site shell
+   ============================================================ */
+header.site{position:sticky;top:0;z-index:90;background:var(--surface);border-bottom:1px solid var(--line-soft)}
+@media (hover:hover) and (pointer:fine){header.site{background:color-mix(in srgb,var(--surface) 88%,transparent);backdrop-filter:saturate(120%) blur(8px);-webkit-backdrop-filter:saturate(120%) blur(8px)}}
+header.site.scrolled{border-bottom-color:var(--line)}
+.nav-shell{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);min-height:66px;padding-block:10px}
+
+.wordmark{font-family:var(--font-display);font-weight:900;letter-spacing:-.02em;line-height:1;font-size:1.32rem;display:inline-flex;align-items:center;gap:.5rem;background:transparent;border:0;cursor:pointer;color:var(--ink);padding:0;text-decoration:none}
+.wordmark .txt{display:inline-flex;align-items:baseline;gap:.06em}
+.wordmark .byte{font-family:var(--font-body);font-weight:800;font-size:.82em;letter-spacing:-.01em;color:var(--accent-ink);transform:translateY(-.02em)}
+.wordmark .bmark.spin{animation:markSpin .8s cubic-bezier(.34,1.56,.64,1) 1}
+@keyframes markSpin{0%{transform:rotate(0) scale(1)}55%{transform:rotate(-380deg) scale(1.24)}100%{transform:rotate(-360deg) scale(1)}}
+.banana-pop{position:fixed;z-index:200;pointer-events:none;width:20px;height:20px;will-change:transform,opacity;animation:bananaFloat 1.15s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes bananaFloat{0%{opacity:0;transform:translate(0,0) scale(.6) rotate(0)}15%{opacity:1}100%{opacity:0;transform:translate(var(--bx,0),-58px) scale(1.05) rotate(var(--br,20deg))}}
+
+.nav-links{display:none;align-items:center;gap:var(--space-2)}
+.nav-links a:not(.nav-cta){color:var(--ink-2);font-size:.95rem;font-weight:600;padding:8px var(--space-3);position:relative}
+.nav-links a:not(.nav-cta)::after{content:"";position:absolute;left:var(--space-3);right:var(--space-3);bottom:2px;height:1.5px;background:var(--ink);opacity:0;transition:opacity var(--motion-fast) var(--ease-standard)}
+.nav-links a:not(.nav-cta):hover{color:var(--ink)}
+.nav-links a:not(.nav-cta):hover::after{opacity:1}
+.nav-links a.active-page{color:var(--accent-ink)}
+.nav-cta{
+  display:inline-flex;align-items:center;gap:var(--space-2);min-height:42px;
+  font-weight:800;font-size:.9rem;color:var(--on-accent);
+  padding:9px var(--space-5);background:var(--accent);
+  border:1.5px solid var(--line);border-radius:var(--radius-sm);
+  box-shadow:2px 2px 0 0 var(--line);
+  transition:background var(--motion-fast) var(--ease-standard),color var(--motion-fast) var(--ease-standard),border-color var(--color-scroll) var(--ease-color),box-shadow var(--color-scroll) var(--ease-color);
+}
+@media(min-width:940px){.nav-links{display:flex}.hamburger{display:none}}
+.hamburger{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;background:transparent;border:1.5px solid var(--line);border-radius:var(--radius-sm);color:var(--ink);cursor:pointer;transition:background var(--motion-fast) var(--ease-standard),border-color var(--color-scroll) var(--ease-color),color var(--color-scroll) var(--ease-color)}
+.hamburger:hover{background:var(--accent-soft)}
+.hb{position:relative;display:block;width:18px;height:12px}
+.hb span{position:absolute;left:0;width:100%;height:2px;border-radius:2px;background:var(--ink);transition:transform var(--motion-base) var(--ease-standard),opacity var(--motion-feedback) var(--ease-standard),top var(--motion-base) var(--ease-standard),background-color var(--color-scroll) var(--ease-color)}
+.hb span:nth-child(1){top:0}.hb span:nth-child(2){top:5px}.hb span:nth-child(3){top:10px}
+.hamburger[aria-expanded="true"] .hb span:nth-child(1){top:5px;transform:rotate(45deg)}
+.hamburger[aria-expanded="true"] .hb span:nth-child(2){opacity:0}
+.hamburger[aria-expanded="true"] .hb span:nth-child(3){top:5px;transform:rotate(-45deg)}
+
+.mnav{display:none;flex-direction:column;gap:2px;margin-block:var(--space-3);border:1.5px solid var(--line);border-radius:var(--radius-md);background:var(--surface-raised);box-shadow:var(--lift);padding:var(--space-3)}
+.mnav.open{display:flex}
+.mnav a{display:flex;align-items:center;min-height:50px;padding:var(--space-2) var(--space-3);border-radius:var(--radius-sm);font-weight:700;font-size:1.05rem;color:var(--ink);transition:background var(--motion-fast) var(--ease-standard)}
+.mnav a:hover{background:var(--surface-recessed)}
+.mnav .nav-cta{justify-content:center;margin-top:var(--space-2)}
+
+/* ============================================================
+   SHARED BUTTONS
+   ============================================================ */
+.btn{
+  position:relative;display:inline-flex;align-items:center;gap:9px;cursor:pointer;
+  font-family:var(--font-body);font-weight:800;font-size:1rem;letter-spacing:-.01em;
+  border-radius:var(--radius-sm);padding:13px 24px;border:1.5px solid var(--line);
+  transition:background var(--motion-fast) var(--ease-standard),color var(--motion-fast) var(--ease-standard),border-color var(--color-scroll) var(--ease-color),box-shadow var(--color-scroll) var(--ease-color);
+}
+.btn-primary{background:var(--accent);color:var(--on-accent);box-shadow:var(--lift)}
+.btn-ghost{background:transparent;color:var(--ink);box-shadow:none}
+.btn-ghost:hover{background:var(--ink);color:var(--surface)}
+
+section{padding-block:var(--section-y)}
+.themed{background-color:var(--surface);color:var(--ink)}
+
+.eyebrow{
+  display:inline-flex;align-items:center;gap:var(--space-3);
+  font-family:var(--font-body);
+  font-weight:700;font-size:var(--text-sm);
+  letter-spacing:.01em;color:var(--accent-ink);
+}
+.eyebrow::before{content:"";width:28px;height:1.5px;background:var(--ink)}
+.sec-head{max-width:760px;margin-bottom:clamp(24px,3vw,36px)}
+.sec-head h2{font-size:var(--text-3xl);margin-top:var(--space-4);text-wrap:balance;overflow-wrap:break-word}
+.sec-head p{color:var(--ink-2);margin-top:var(--space-5);font-size:var(--text-lg);font-weight:400;line-height:1.55;max-width:60ch;text-wrap:pretty}
+
+/* ============================================================
+   HERO SECTION — estimate page variant
+   ============================================================ */
+.est-hero{
+  padding-block:clamp(40px,5vw,70px) clamp(28px,3vw,44px);
+  border-bottom:1px solid var(--line-soft);
+}
+.est-hero-tag{display:inline-flex;align-items:center;gap:var(--space-3);font-weight:600;font-size:.86rem;color:var(--muted)}
+.est-hero-tag .dot{width:8px;height:8px;border-radius:50%;background:var(--brand-mark);flex:none;transition:background-color var(--color-scroll) var(--ease-color)}
+.est-hero h1{
+  font-weight:800;font-size:var(--text-3xl);
+  line-height:1.03;
+  letter-spacing:-0.02em;
+  margin-top:var(--space-5);text-wrap:balance;overflow-wrap:break-word;
+}
+.est-hero h1 .mark{
+  font-weight:900;font-style:normal;position:relative;white-space:nowrap;
+}
+.est-hero h1 .mark::after{
+  content:"";position:absolute;left:-2%;right:-2%;bottom:.04em;height:.16em;z-index:-1;
+  background:var(--accent);border-radius:40% 60% 55% 45%;
+  transform:rotate(-.6deg);transition:background-color var(--color-scroll) var(--ease-color);
+}
+.est-hero-lede{color:var(--ink-2);font-size:var(--text-lg);font-weight:400;margin-top:var(--space-5);max-width:52ch;line-height:1.58;text-wrap:pretty}
+
+/* ============================================================
+   ESTIMATOR LAYOUT — two-col on desktop, single col on mobile
+   ============================================================ */
+.est-section{padding-block:clamp(44px,6vw,80px)}
+.est-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:clamp(32px,4vw,52px);
+  align-items:start;
+}
+@media(min-width:860px){
+  .est-grid{
+    grid-template-columns:1.1fr .9fr;
+    gap:clamp(32px,4vw,52px);
+  }
+}
+
+/* ============================================================
+   CONFIGURATOR PANEL — the control side
+   ============================================================ */
+.config-panel{
+  display:flex;flex-direction:column;gap:clamp(28px,3.5vw,40px);
+}
+
+/* fieldset reset — remove UA border/padding so .cfg-group styles take over cleanly */
+fieldset{border:0;margin:0;padding:0;min-width:0}
+
+/* each group: label + controls */
+.cfg-group{
+  border:1.5px solid var(--line);
+  background:var(--surface-raised);
+  box-shadow:var(--lift);
+}
+.cfg-group-head{
+  display:flex;align-items:baseline;gap:var(--space-3);
+  padding:clamp(14px,1.8vw,20px) clamp(16px,2vw,24px);
+  border-bottom:1.5px solid var(--line);
+  background:var(--surface);
+  /* legend reset — when cfg-group-head IS a legend element */
+  width:100%;margin:0;float:none;
+}
+.cfg-group-title{
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:clamp(1rem,1.6vw,1.15rem);
+  letter-spacing:-.01em;
+  color:var(--ink);
+}
+.cfg-group-head .cfg-num{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:.86rem;color:var(--accent-ink);
+  flex:none;
+}
+.cfg-body{padding:clamp(14px,1.8vw,20px) clamp(16px,2vw,24px);display:flex;flex-direction:column;gap:0}
+
+/* ---- RADIO ROWS (base) ---- */
+.radio-row{
+  display:flex;align-items:center;gap:0;
+  padding:11px 0;
+  border-bottom:1px solid var(--line-hair);
+  cursor:pointer;
+  position:relative;
+}
+.radio-row:last-child{border-bottom:0;padding-bottom:0}
+.radio-row:first-child{padding-top:0}
+
+.radio-row input[type="radio"]{
+  flex:none;
+  appearance:none;-webkit-appearance:none;
+  width:18px;height:18px;
+  border:1.5px solid var(--line);
+  border-radius:50%;
+  background:var(--surface);
+  cursor:pointer;
+  transition:border-color var(--motion-fast) var(--ease-standard),background var(--motion-fast) var(--ease-standard);
+  position:relative;
+  margin:0 12px 0 0;
+}
+.radio-row input[type="radio"]::after{
+  content:"";
+  position:absolute;inset:3px;
+  border-radius:50%;
+  background:var(--ink);
+  opacity:0;
+  transition:opacity var(--motion-fast) var(--ease-standard);
+}
+.radio-row input[type="radio"]:checked{
+  border-color:var(--ink);
+  background:var(--surface);
+}
+.radio-row input[type="radio"]:checked::after{opacity:1}
+
+.radio-row label{
+  flex:1;display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);
+  font-size:.95rem;font-weight:500;color:var(--ink-2);
+  cursor:pointer;line-height:1.3;
+}
+.radio-row input:checked + label{color:var(--ink);font-weight:700}
+.radio-row label .rl-price{
+  font-family:var(--font-display);
+  font-weight:600;font-size:.9rem;
+  color:var(--muted);
+  white-space:nowrap;flex:none;
+}
+.radio-row input:checked + label .rl-price{color:var(--accent-ink)}
+
+/* ---- CHECKBOX ROWS (features) ---- */
+.check-row{
+  display:flex;align-items:center;gap:0;
+  padding:11px 0;
+  border-bottom:1px solid var(--line-hair);
+  cursor:pointer;
+}
+.check-row:last-child{border-bottom:0;padding-bottom:0}
+.check-row:first-child{padding-top:0}
+.check-row.is-included{opacity:.6;pointer-events:none}
+
+.check-row input[type="checkbox"]{
+  flex:none;
+  appearance:none;-webkit-appearance:none;
+  width:18px;height:18px;
+  border:1.5px solid var(--line);
+  border-radius:4px;
+  background:var(--surface);
+  cursor:pointer;
+  transition:border-color var(--motion-fast) var(--ease-standard),background var(--motion-fast) var(--ease-standard);
+  position:relative;
+  margin:0 12px 0 0;
+}
+.check-row input[type="checkbox"]::after{
+  content:"";
+  position:absolute;
+  left:4px;top:1px;
+  width:8px;height:5px;
+  border-left:2px solid var(--surface);
+  border-bottom:2px solid var(--surface);
+  transform:rotate(-45deg);
+  opacity:0;
+  transition:opacity var(--motion-fast) var(--ease-standard);
+}
+.check-row input[type="checkbox"]:checked{
+  border-color:var(--ink);
+  background:var(--ink);
+}
+.check-row input[type="checkbox"]:checked::after{opacity:1}
+
+.check-row label{
+  flex:1;display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);
+  font-size:.95rem;font-weight:500;color:var(--ink-2);
+  cursor:pointer;line-height:1.3;
+}
+.check-row input:checked + label{color:var(--ink);font-weight:700}
+.check-row label .cl-price{
+  font-family:var(--font-display);
+  font-weight:600;font-size:.9rem;
+  color:var(--muted);
+  white-space:nowrap;flex:none;
+}
+.check-row input:checked + label .cl-price{color:var(--accent-ink)}
+.check-row.is-included label .cl-price::before{content:"included · "}
+.check-row.is-included label .cl-price{color:var(--brand-mark)}
+
+/* ---- STEPPER (extra pages) ---- */
+.stepper-row{
+  display:flex;align-items:center;gap:var(--space-4);
+  padding:11px 0;
+}
+.stepper-label{
+  flex:1;font-size:.95rem;font-weight:500;color:var(--ink-2);
+  display:flex;flex-direction:column;gap:3px;
+}
+.stepper-label .sl-note{font-size:.8rem;color:var(--muted);font-weight:400}
+.stepper{
+  display:flex;align-items:center;gap:0;
+  border:1.5px solid var(--line);
+  border-radius:var(--radius-sm);
+  overflow:hidden;
+  box-shadow:var(--lift);
+}
+.step-btn{
+  width:44px;height:44px;
+  display:grid;place-items:center;
+  background:var(--surface-raised);
+  border:0;cursor:pointer;color:var(--ink);
+  font-family:var(--font-body);font-size:1.2rem;font-weight:700;
+  transition:background var(--motion-fast) var(--ease-standard),color var(--motion-fast) var(--ease-standard);
+  flex:none;
+}
+.step-btn:hover{background:var(--ink);color:var(--surface)}
+.step-btn:disabled{opacity:.4;cursor:not-allowed}
+.step-btn:disabled:hover{background:var(--surface-raised);color:var(--ink)}
+.step-val{
+  min-width:40px;height:44px;
+  display:grid;place-items:center;
+  font-family:var(--font-display);
+  font-weight:800;font-size:1.1rem;
+  color:var(--ink);
+  border-left:1.5px solid var(--line);
+  border-right:1.5px solid var(--line);
+  background:var(--surface);
+  text-align:center;
+  padding-inline:8px;
+}
+.stepper-price{
+  font-family:var(--font-display);
+  font-weight:600;font-size:.9rem;
+  color:var(--muted);
+  white-space:nowrap;
+  min-width:64px;text-align:right;
+}
+.stepper-price.has-value{color:var(--accent-ink)}
+
+/* ============================================================
+   TOTAL PANEL — sticky on desktop, bottom strip on mobile
+   ============================================================ */
+/* mobile sticky total strip */
+.total-sticky-mobile{
+  position:sticky;bottom:0;z-index:80;
+  background:var(--surface);
+  border-top:1.5px solid var(--line);
+  padding:14px var(--gutter);
+  padding-bottom:max(14px, env(safe-area-inset-bottom));
+  display:flex;align-items:center;justify-content:space-between;
+  gap:var(--space-4);
+  box-shadow:0 -3px 0 0 var(--line);
+}
+@media(min-width:860px){.total-sticky-mobile{display:none}}
+
+.total-sticky-mobile .tsm-label{
+  font-family:var(--font-body);font-weight:800;font-size:.78rem;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+}
+.total-sticky-mobile .tsm-val{
+  font-family:var(--font-display);
+  font-weight:800;font-size:1.6rem;line-height:1;letter-spacing:-.02em;
+  color:var(--ink);
+}
+.total-sticky-mobile .tsm-mo{
+  font-family:var(--font-body);font-size:.8rem;font-weight:600;
+  color:var(--muted);margin-top:2px;
+}
+
+/* desktop total card */
+.total-card{
+  position:sticky;
+  top:calc(66px + 20px);/* below the fixed header */
+  width:100%;
+  border:1.5px solid var(--line);
+  background:var(--surface-raised);
+  box-shadow:var(--lift);
+  display:none;
+}
+@media(min-width:860px){.total-card{display:block}}
+
+.total-card-head{
+  padding:clamp(16px,2vw,22px) clamp(18px,2.2vw,26px);
+  border-bottom:1.5px solid var(--line);
+  display:flex;align-items:center;gap:var(--space-3);
+}
+.total-card-head .pk{
+  font-family:var(--font-body);font-weight:800;font-size:.72rem;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+  flex:1;
+}
+.total-card-head .ck{
+  color:var(--brand-mark);
+  display:inline-flex;
+  transition:color var(--color-scroll) var(--ease-color);
+}
+.total-card-head .ck svg{width:16px;height:16px}
+
+.total-body{padding:clamp(16px,2vw,22px) clamp(18px,2.2vw,26px)}
+
+.total-amt{
+  font-family:var(--font-display);
+  font-weight:900;
+  font-size:clamp(2.2rem,4.5vw,3rem);
+  line-height:1;letter-spacing:-.02em;
+  color:var(--ink);
+}
+.total-amt .cur{font-size:.5em;vertical-align:.7em;color:var(--accent-ink)}
+.total-mo{
+  margin-top:6px;
+  font-family:var(--font-body);font-size:.94rem;font-weight:600;
+  color:var(--muted);
+  min-height:1.4em;/* prevent layout shift when mo line appears/hides */
+}
+.total-mo.active{color:var(--accent-ink)}
+
+/* build breakdown / summary */
+.build-summary{
+  margin-top:clamp(14px,2vw,20px);
+  padding-top:clamp(14px,2vw,18px);
+  border-top:1px dashed var(--line-soft);
+  display:flex;flex-direction:column;gap:0;
+}
+.bs-row{
+  display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3);
+  padding:7px 0;
+  border-bottom:1px solid var(--line-hair);
+  font-size:.88rem;
+}
+.bs-row:last-child{border-bottom:0;padding-bottom:0}
+.bs-row:first-child{padding-top:0}
+.bs-row .bs-name{color:var(--ink-2);font-weight:500;line-height:1.3;flex:1}
+.bs-row .bs-amt{color:var(--muted);font-weight:600;font-size:.84rem;white-space:nowrap;flex:none}
+.bs-row.bs-base .bs-name{color:var(--ink);font-weight:700}
+.bs-row.bs-base .bs-amt{color:var(--accent-ink);font-weight:700}
+.bs-row.bs-included .bs-amt{color:var(--brand-mark)}
+
+.total-note{
+  margin-top:clamp(14px,2vw,18px);
+  padding:13px var(--space-4);
+  border:1px solid var(--line-soft);
+  border-left:3px solid var(--line-soft);
+  background:var(--surface);
+  font-size:.86rem;line-height:1.55;color:var(--ink-2);
+}
+.total-note b{color:var(--ink);font-weight:700}
+
+.total-cta{
+  margin-top:clamp(16px,2vw,22px);
+  display:flex;flex-direction:column;gap:var(--space-3);
+}
+.total-cta .btn{justify-content:center;width:100%}
+
+/* ============================================================
+   BELOW FOLD — honest note strip (GREEN block)
+   ============================================================ */
+.est-note-section{border-block:1px solid var(--line-soft)}
+.est-note-inner{
+  display:grid;grid-template-columns:1fr;
+  gap:clamp(24px,3.5vw,44px);
+  align-items:start;
+}
+@media(min-width:720px){.est-note-inner{grid-template-columns:1fr 1fr}}
+.est-note-item{
+  display:flex;gap:var(--space-5);align-items:flex-start;
+}
+.est-note-ico{
+  flex:none;width:44px;height:44px;
+  display:grid;place-items:center;
+  border:1.5px solid var(--line);
+  background:var(--surface-raised);
+  box-shadow:var(--lift);
+  color:var(--ink);
+}
+.est-note-ico svg{width:20px;height:20px}
+.est-note-copy h4{
+  font-family:var(--font-display);
+  font-weight:800;font-size:1.02rem;
+  letter-spacing:-.01em;
+  color:var(--ink);margin-bottom:6px;
+}
+.est-note-copy p{color:var(--ink-2);font-size:.94rem;line-height:1.56}
+.est-note-copy p b{color:var(--ink);font-weight:700}
+
+/* ============================================================
+   FOOTER — exact copy from site shell
+   ============================================================ */
+footer.site{border-top:1.5px solid var(--line);padding-block:clamp(44px,5vw,60px)}
+.foot-grid{display:flex;flex-direction:column;gap:var(--space-6)}
+@media(min-width:760px){.foot-grid{flex-direction:row;justify-content:space-between;align-items:flex-start}}
+.foot-blurb{color:var(--ink-2);font-size:.94rem;font-weight:400;max-width:42ch;margin-top:var(--space-4);line-height:1.55}
+.foot-quip{color:var(--muted);font-family:var(--font-body);font-weight:400;font-size:.94rem;margin-top:var(--space-3)}
+.foot-quip .nana{display:inline-block;width:1em;height:1em;vertical-align:-.15em}
+.foot-nav{display:flex;flex-wrap:wrap;gap:12px 26px}
+.foot-nav a{color:var(--ink-2);font-size:.94rem;font-weight:600;transition:color var(--motion-fast) var(--ease-standard);display:inline-flex;align-items:center;min-height:40px}
+.foot-nav a:hover{color:var(--accent-ink)}
+.foot-bottom{display:flex;flex-wrap:wrap;gap:var(--space-3);justify-content:space-between;align-items:center;margin-top:36px;padding-top:var(--space-6);border-top:1px solid var(--line-soft);color:var(--muted);font-size:.82rem}
+
+/* ============================================================
+   NUMBER COUNTER ANIMATION — the one memorable micro-interaction
+   ============================================================ */
+@keyframes numPop{
+  0%{transform:translateY(-4px);opacity:.6}
+  100%{transform:translateY(0);opacity:1}
+}
+.total-amt.counting{animation:numPop 200ms var(--ease-standard) forwards}
+
+/* ============================================================
+   NO-JS FALLBACK
+   ============================================================ */
+.no-js .config-panel{display:none}
+.no-js-msg{display:none}
+.no-js .no-js-msg{display:block}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  html,body,header.site,.themed{transition:none!important}
+  .wordmark .bmark.spin{animation:none!important}
+  .banana-pop{display:none!important}
+  .total-amt.counting{animation:none!important}
+}
+</style>
+</head>
+<body class="no-js">
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- HEADER -->
+<header class="site" id="site-header">
+  <div class="wrap">
+    <div class="nav-shell">
+      <a class="wordmark" id="wordmark" href="/preview-warm/" aria-label="BANANAbyte home">
+        <img class="brand-logo brand-logo--dark" src="/brand/logo-dark.svg" alt="BANANAbyte — Orlando web studio" width="150" height="41">
+        <img class="brand-logo brand-logo--light" src="/brand/logo-light.svg" alt="" aria-hidden="true" width="150" height="41">
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="/services/">Services</a>
+        <a href="/work/">Work</a>
+        <a href="/pricing/" class="active-page">Pricing</a>
+        <a href="/preview-warm/about/">About</a>
+        <a href="/contact/" class="nav-cta">Start a project</a>
+      </nav>
+      <button class="hamburger" id="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mnav">
+        <span class="hb" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+    </div>
+    <nav class="mnav" id="mnav" aria-label="Mobile">
+      <a href="/services/">Services</a>
+      <a href="/work/">Work</a>
+      <a href="/pricing/">Pricing</a>
+      <a href="/preview-warm/about/">About</a>
+      <a href="/contact/" class="nav-cta">Start a project <span aria-hidden="true">→</span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO — paper/white block -->
+  <section class="est-hero themed" data-theme-band="paper" data-od-id="estimate-hero">
+    <div class="wrap">
+      <span class="est-hero-tag"><span class="dot" aria-hidden="true"></span> Instant estimate · no commitment</span>
+      <h1>Build your site.<br><span class="mark">See the number.</span></h1>
+      <p class="est-hero-lede">Configure what you need and get a real starting price in seconds. A 5-minute conversation turns it into a flat quote — one number, locked before day one.</p>
+    </div>
+  </section>
+
+  <!-- ESTIMATOR — paper/white block -->
+  <section class="est-section themed" data-theme-band="paper" id="estimator" aria-labelledby="est-h" data-od-id="estimator">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Price configurator</span>
+        <h2 id="est-h">Pick what fits. See what it costs.</h2>
+        <p>Every line is a real number. Change anything — the total updates instantly. When you're ready, send the build straight to our inbox.</p>
+      </div>
+
+      <noscript>
+        <div class="no-js-msg" style="display:block;padding:clamp(20px,3vw,32px);border:1.5px solid var(--line);background:var(--surface-raised);box-shadow:var(--lift);margin-bottom:clamp(24px,3vw,36px)">
+          <p style="font-weight:700;font-size:1.05rem;margin-bottom:8px">JavaScript is required to use this estimator.</p>
+          <p style="color:var(--ink-2)"><a href="/contact/" style="color:var(--accent-ink);font-weight:700;text-decoration:underline">Contact us</a> to get a custom quote — we'll reply within 24 hours.</p>
+        </div>
+      </noscript>
+
+      <div class="est-grid">
+        <!-- LEFT: controls -->
+        <div class="config-panel" id="config-panel">
+
+          <!-- GROUP 1: Base -->
+          <fieldset class="cfg-group" id="grp-base">
+            <legend class="cfg-group-head">
+              <span class="cfg-num" aria-hidden="true">01</span>
+              <span class="cfg-group-title">Site type <span style="font-size:.8em;font-weight:500;color:var(--muted)">(pick one)</span></span>
+            </legend>
+            <div class="cfg-body" id="base-controls">
+              <!-- injected by JS -->
+            </div>
+          </fieldset>
+
+          <!-- GROUP 2: Extra pages -->
+          <fieldset class="cfg-group" id="grp-pages">
+            <legend class="cfg-group-head">
+              <span class="cfg-num" aria-hidden="true">02</span>
+              <span class="cfg-group-title">Extra pages <span style="font-size:.8em;font-weight:500;color:var(--muted)">(beyond what's included)</span></span>
+            </legend>
+            <div class="cfg-body">
+              <div class="stepper-row">
+                <div class="stepper-label">
+                  <span>Additional pages at $250 each</span>
+                  <span class="sl-note" id="pages-note">One-page base includes 1 page; other bases include 5.</span>
+                </div>
+                <div class="stepper" aria-describedby="pages-note">
+                  <button class="step-btn" id="pages-dec" type="button" aria-label="Remove one page" disabled>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg>
+                  </button>
+                  <span class="step-val" id="pages-val" aria-live="polite" aria-label="Extra pages">0</span>
+                  <button class="step-btn" id="pages-inc" type="button" aria-label="Add one page">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                  </button>
+                </div>
+                <span class="stepper-price" id="pages-price" aria-live="polite">—</span>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- GROUP 3: Features -->
+          <fieldset class="cfg-group" id="grp-features">
+            <legend class="cfg-group-head">
+              <span class="cfg-num" aria-hidden="true">03</span>
+              <span class="cfg-group-title">Add-ons <span style="font-size:.8em;font-weight:500;color:var(--muted)">(check all that apply)</span></span>
+            </legend>
+            <div class="cfg-body" id="feature-controls">
+              <!-- injected by JS -->
+            </div>
+          </fieldset>
+
+          <!-- GROUP 4: Care plan -->
+          <fieldset class="cfg-group" id="grp-care">
+            <legend class="cfg-group-head">
+              <span class="cfg-num" aria-hidden="true">04</span>
+              <span class="cfg-group-title">Monthly care plan <span style="font-size:.8em;font-weight:500;color:var(--muted)">(optional)</span></span>
+            </legend>
+            <div class="cfg-body" id="care-controls">
+              <!-- injected by JS -->
+            </div>
+          </fieldset>
+
+        </div><!-- /config-panel -->
+
+        <!-- RIGHT: live total card (desktop) -->
+        <aside class="total-card" aria-label="Running estimate" role="complementary">
+          <div class="total-card-head">
+            <span class="pk">Your estimate</span>
+            <span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/><path d="m9 12 2 2 4-4"/></svg></span>
+          </div>
+          <div class="total-body">
+            <div class="total-amt" id="total-amt" role="status" aria-label="Estimated one-time cost">
+              <span class="cur">$</span><span id="total-num">1,000</span>
+            </div>
+            <div class="total-mo" id="total-mo"></div>
+
+            <!-- build breakdown -->
+            <div class="build-summary" id="build-summary" aria-label="Build breakdown">
+              <!-- injected by JS -->
+            </div>
+
+            <!-- honest note -->
+            <div class="total-note">
+              <b>A real starting point, not a bill.</b> Your final flat quote comes after a 5-minute chat. I set up the hosting and domain and handle all the boring parts, then <b>hand you full control</b> — one flat price, you own everything, in English or Spanish.
+            </div>
+
+            <!-- CTAs -->
+            <div class="total-cta">
+              <a class="btn btn-primary" id="desktop-cta" href="/contact/" aria-describedby="total-amt">Get this exact quote <span aria-hidden="true">→</span></a>
+              <a class="btn btn-ghost" href="/contact/">Start a project</a>
+            </div>
+          </div>
+        </aside>
+      </div><!-- /est-grid -->
+    </div>
+  </section>
+
+  <!-- BELOW FOLD — honest notes strip (GREEN block) -->
+  <section class="est-note-section themed" data-theme-band="green" aria-labelledby="note-h" data-od-id="pricing-notes">
+    <div class="wrap">
+      <div class="sec-head" style="margin-bottom:clamp(32px,4vw,48px)">
+        <span class="eyebrow">How pricing works</span>
+        <h2 id="note-h">Flat price, before day one.</h2>
+      </div>
+      <div class="est-note-inner">
+        <div class="est-note-item">
+          <div class="est-note-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <div class="est-note-copy">
+            <h4>The estimate is a real starting point</h4>
+            <p>These numbers reflect actual past projects. Your final quote may shift based on a 5-minute conversation — but it <b>never moves after we agree</b>. No hourly meter, no surprise line items.</p>
+          </div>
+        </div>
+        <div class="est-note-item">
+          <div class="est-note-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <div class="est-note-copy">
+            <h4>A 50% deposit starts the work</h4>
+            <p>Half up front, half on launch. <b>You own the code, the domain, and all the content</b> the moment the last payment clears — no strings, no platform lock-in.</p>
+          </div>
+        </div>
+        <div class="est-note-item">
+          <div class="est-note-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14M5 8a7 7 0 0 0 7 7 7 7 0 0 0 7-7M5 8a7 7 0 0 1 7-7 7 7 0 0 1 7 7M5 21h14"/></svg>
+          </div>
+          <div class="est-note-copy">
+            <h4>Bilingual at no extra friction</h4>
+            <p>English or Spanish — or both if you check the bilingual add-on. <b>All design and copy is done in-house</b>; no translation middleman, no stilted phrasing.</p>
+          </div>
+        </div>
+        <div class="est-note-item">
+          <div class="est-note-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <div class="est-note-copy">
+            <h4>Care plans keep your site healthy</h4>
+            <p>A care plan is optional but smart. <b>Basic covers updates and backups; Plus adds priority edits and a real human on call.</b> Cancel any month.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOBILE STICKY TOTAL — rides the bottom of the screen on small devices -->
+  <div class="total-sticky-mobile" role="status" aria-label="Running estimate">
+    <div>
+      <div class="tsm-label">Your estimate</div>
+      <div class="tsm-val" id="tsm-val">$1,000</div>
+      <div class="tsm-mo" id="tsm-mo"></div>
+    </div>
+    <a class="btn btn-primary" id="tsm-cta" href="/contact/" aria-describedby="tsm-val">Get quote <span aria-hidden="true">→</span></a>
+  </div>
+
+</main>
+
+<!-- FOOTER — black block -->
+<footer class="site themed" data-theme-band="black" data-od-id="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="wordmark" href="/preview-warm/" aria-label="BANANAbyte home">
+          <img class="brand-logo brand-logo--light" src="/brand/logo-light.svg" alt="BANANAbyte" width="150" height="41" style="display:block">
+        </a>
+        <p class="foot-blurb">A web studio in Orlando, FL. Fast, clean, custom websites, built right.</p>
+        <p class="foot-quip">Powered by good coffee, clean code, and exactly one
+          <svg class="nana" viewBox="0 0 48 48" aria-hidden="true"><path fill="#F5C800" d="M11 9c-2 8 1 17 8 23 7 6 16 8 22 6 2-1 3-3 2-5-1-1-3-1-5 0-4 2-10 0-15-4C15 27 12 20 13 12c.4-2.5-1.6-4-2 -3z"/><path fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" d="M11.5 9.5c-2 8 1 16.5 8 22.5 7 6 16 8.5 22 6.5"/></svg>.
+        </p>
+      </div>
+      <nav class="foot-nav" aria-label="Footer">
+        <a href="/services/">Services</a>
+        <a href="/work/">Work</a>
+        <a href="/pricing/">Pricing</a>
+        <a href="/preview-warm/about/">About</a>
+        <a href="/contact/">Contact</a>
+        <a href="mailto:contact@bananabyte.io">contact@bananabyte.io</a>
+      </nav>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> BANANAbyte LLC — Orlando, FL.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ============================================================
+     PRICING CONFIG — edit the numbers here, nowhere else.
+     All amounts in USD. Care plan amounts are /mo.
+     basePagesIncluded: how many pages each base tier already includes
+     (used by the extra-pages stepper to show the "beyond what's included" note).
+     ============================================================ */
+  var PRICING = {
+    bases: [
+      {
+        id:    'one-page',
+        label: 'One-page site',
+        desc:  'Blog, landing page, a few buttons',
+        price: 1000,
+        pagesIncluded: 1
+      },
+      {
+        id:    'multi-page',
+        label: 'Multi-page business site',
+        desc:  'Up to 5 pages',
+        price: 2000,
+        pagesIncluded: 5
+      },
+      {
+        id:    'online-store',
+        label: 'Online store',
+        desc:  'Product pages, cart, checkout',
+        price: 2600,
+        pagesIncluded: 5
+      },
+      {
+        id:    'performer',
+        label: 'Performer / booking site',
+        desc:  'Reel, photo gallery, tour dates, booking',
+        price: 1200,
+        pagesIncluded: 5,
+        autoSelect: ['video-gallery', 'gallery', 'bookings']
+      }
+    ],
+
+    extraPagePrice: 250,
+
+    features: [
+      {
+        id:    'blog',
+        label: 'Blog / news section',
+        price: 350
+      },
+      {
+        id:    'store-addon',
+        label: 'Online store / cart',
+        desc:  'Add e-commerce to a non-store base',
+        price: 1300,
+        /* auto-included + disabled when base === 'online-store' */
+        autoWithBase: 'online-store'
+      },
+      {
+        id:    'bookings',
+        label: 'Bookings / calendar',
+        price: 450
+      },
+      {
+        id:    'video-gallery',
+        label: 'Video gallery / reel',
+        price: 400
+      },
+      {
+        id:    'gallery',
+        label: 'Photo gallery',
+        price: 250
+      },
+      {
+        id:    'bilingual',
+        label: 'Bilingual — English + Spanish',
+        price: 500
+      },
+      {
+        id:    'copy',
+        label: 'Copywriting — I write it',
+        price: 400
+      },
+      {
+        id:    'logo',
+        label: 'Logo / brand basics',
+        price: 450
+      },
+      {
+        id:    'seo',
+        label: 'Local SEO setup',
+        desc:  'Google Business + on-page',
+        price: 450
+      }
+    ],
+
+    carePlans: [
+      { id: 'none',  label: 'No care plan',          price: 0 },
+      { id: 'basic', label: 'Care Basic',             price: 99,  suffix: '/mo' },
+      { id: 'plus',  label: 'Care Plus',              price: 199, suffix: '/mo' }
+    ]
+  };
+
+  /* ============================================================
+     STATE
+     ============================================================ */
+  var state = {
+    baseId:        'one-page',
+    extraPages:    0,
+    features:      {},   /* featureId → true/false */
+    carePlanId:    'none',
+    _prevBaseId:   null  /* tracks previous base for autoSelect diff */
+  };
+
+  /* init feature state */
+  PRICING.features.forEach(function(f){ state.features[f.id] = false; });
+
+  /* ============================================================
+     HELPERS
+     ============================================================ */
+  function fmt(n){
+    /* format as $X,XXX — no decimals */
+    return n.toLocaleString('en-US');
+  }
+
+  function getBase(){
+    return PRICING.bases.find(function(b){ return b.id === state.baseId; });
+  }
+  function getCarePlan(){
+    return PRICING.carePlans.find(function(c){ return c.id === state.carePlanId; });
+  }
+
+  function calcTotal(){
+    var base = getBase();
+    var total = base.price;
+    total += state.extraPages * PRICING.extraPagePrice;
+    PRICING.features.forEach(function(f){
+      var included = (f.autoWithBase && f.autoWithBase === state.baseId);
+      if(included) return; /* already baked into base conceptually; don't double-count */
+      if(state.features[f.id]) total += f.price;
+    });
+    return total;
+  }
+
+  /* plain-text summary for the URL param */
+  function buildSummaryText(){
+    var base = getBase();
+    var lines = [];
+    lines.push(base.label + ' — $' + fmt(base.price));
+    if(state.extraPages > 0){
+      lines.push(state.extraPages + ' extra page' + (state.extraPages > 1 ? 's' : '') + ' — $' + fmt(state.extraPages * PRICING.extraPagePrice));
+    }
+    PRICING.features.forEach(function(f){
+      var included = (f.autoWithBase && f.autoWithBase === state.baseId);
+      if(included){
+        lines.push(f.label + ' — included');
+        return;
+      }
+      if(state.features[f.id]){
+        lines.push(f.label + ' — $' + fmt(f.price));
+      }
+    });
+    var plan = getCarePlan();
+    if(plan.price > 0){
+      lines.push(plan.label + ' — $' + fmt(plan.price) + '/mo');
+    }
+    lines.push('Estimated one-time total: $' + fmt(calcTotal()));
+    return lines.join(' | ');
+  }
+
+  /* ============================================================
+     DOM RENDER
+     ============================================================ */
+
+  /* --- BASE radios --- */
+  function renderBase(){
+    var el = document.getElementById('base-controls');
+    if(!el) return;
+    el.innerHTML = '';
+    PRICING.bases.forEach(function(b){
+      var row = document.createElement('div');
+      row.className = 'radio-row';
+
+      var inp = document.createElement('input');
+      inp.type = 'radio';
+      inp.name = 'base';
+      inp.id   = 'base-' + b.id;
+      inp.value = b.id;
+      inp.checked = (b.id === state.baseId);
+
+      var lbl = document.createElement('label');
+      lbl.htmlFor = 'base-' + b.id;
+
+      var nameSpan = document.createElement('span');
+      nameSpan.textContent = b.label;
+      if(b.desc){
+        var descEl = document.createElement('span');
+        descEl.style.cssText = 'display:block;font-size:.8rem;font-weight:400;color:var(--muted);margin-top:2px';
+        descEl.textContent = b.desc;
+        nameSpan.appendChild(descEl);
+      }
+
+      var priceSpan = document.createElement('span');
+      priceSpan.className = 'rl-price';
+      priceSpan.textContent = '$' + fmt(b.price);
+
+      lbl.appendChild(nameSpan);
+      lbl.appendChild(priceSpan);
+      row.appendChild(inp);
+      row.appendChild(lbl);
+      el.appendChild(row);
+
+      inp.addEventListener('change', function(){
+        if(this.checked){
+          state.baseId = b.id;
+          onStateChange();
+        }
+      });
+
+      /* helper note for performer — injected as a sibling after the row */
+      if(b.id === 'performer'){
+        var noteEl = document.createElement('p');
+        noteEl.style.cssText = 'font-size:.8rem;color:var(--muted);font-weight:400;line-height:1.45;margin:-6px 0 8px 30px';
+        noteEl.textContent = 'Auto-adds a video reel, photo gallery + booking calendar — uncheck any you don\'t need.';
+        el.appendChild(noteEl);
+      }
+
+    });
+  }
+
+  /* --- FEATURE checkboxes --- */
+  function renderFeatures(){
+    var el = document.getElementById('feature-controls');
+    if(!el) return;
+    el.innerHTML = '';
+    PRICING.features.forEach(function(f){
+      var included = (f.autoWithBase && f.autoWithBase === state.baseId);
+      var row = document.createElement('div');
+      row.className = 'check-row' + (included ? ' is-included' : '');
+
+      var inp = document.createElement('input');
+      inp.type = 'checkbox';
+      inp.id   = 'feat-' + f.id;
+      inp.checked  = included || state.features[f.id];
+      inp.disabled = included;
+
+      var lbl = document.createElement('label');
+      lbl.htmlFor = 'feat-' + f.id;
+
+      var nameSpan = document.createElement('span');
+      nameSpan.textContent = f.label;
+      if(f.desc){
+        var descEl = document.createElement('span');
+        descEl.style.cssText = 'display:block;font-size:.8rem;font-weight:400;color:var(--muted);margin-top:2px';
+        descEl.textContent = f.desc;
+        nameSpan.appendChild(descEl);
+      }
+
+      var priceSpan = document.createElement('span');
+      priceSpan.className = 'cl-price';
+      priceSpan.textContent = '+$' + fmt(f.price);
+
+      lbl.appendChild(nameSpan);
+      lbl.appendChild(priceSpan);
+      row.appendChild(inp);
+      row.appendChild(lbl);
+      el.appendChild(row);
+
+      inp.addEventListener('change', function(){
+        state.features[f.id] = this.checked;
+        onStateChange();
+      });
+    });
+  }
+
+  /* --- CARE PLAN radios --- */
+  function renderCare(){
+    var el = document.getElementById('care-controls');
+    if(!el) return;
+    el.innerHTML = '';
+    PRICING.carePlans.forEach(function(p){
+      var row = document.createElement('div');
+      row.className = 'radio-row';
+
+      var inp = document.createElement('input');
+      inp.type = 'radio';
+      inp.name = 'care';
+      inp.id   = 'care-' + p.id;
+      inp.value = p.id;
+      inp.checked = (p.id === state.carePlanId);
+
+      var lbl = document.createElement('label');
+      lbl.htmlFor = 'care-' + p.id;
+
+      var nameSpan = document.createElement('span');
+      nameSpan.textContent = p.label;
+
+      var priceSpan = document.createElement('span');
+      priceSpan.className = 'rl-price';
+      priceSpan.textContent = p.price > 0 ? '$' + fmt(p.price) + '/mo' : 'Free';
+
+      lbl.appendChild(nameSpan);
+      lbl.appendChild(priceSpan);
+      row.appendChild(inp);
+      row.appendChild(lbl);
+      el.appendChild(row);
+
+      inp.addEventListener('change', function(){
+        if(this.checked){
+          state.carePlanId = p.id;
+          onStateChange();
+        }
+      });
+    });
+  }
+
+  /* ============================================================
+     STEPPER WIRING
+     ============================================================ */
+  var decBtn = document.getElementById('pages-dec');
+  var incBtn = document.getElementById('pages-inc');
+  var pagesValEl = document.getElementById('pages-val');
+  var pagesPriceEl = document.getElementById('pages-price');
+  var pagesNoteEl = document.getElementById('pages-note');
+
+  function renderStepper(){
+    if(!pagesValEl) return;
+    pagesValEl.textContent = state.extraPages;
+    if(decBtn) decBtn.disabled = (state.extraPages <= 0);
+    if(pagesPriceEl){
+      var cost = state.extraPages * PRICING.extraPagePrice;
+      pagesPriceEl.textContent = cost > 0 ? '+$' + fmt(cost) : '—';
+      pagesPriceEl.className = 'stepper-price' + (cost > 0 ? ' has-value' : '');
+    }
+    if(pagesNoteEl){
+      var base = getBase();
+      pagesNoteEl.textContent = 'Your base includes ' + base.pagesIncluded + ' page' + (base.pagesIncluded > 1 ? 's' : '') + '. Each extra is $' + fmt(PRICING.extraPagePrice) + '.';
+    }
+  }
+
+  if(decBtn) decBtn.addEventListener('click', function(){
+    if(state.extraPages > 0){ state.extraPages--; onStateChange(); }
+  });
+  if(incBtn) incBtn.addEventListener('click', function(){
+    state.extraPages++;
+    onStateChange();
+  });
+
+  /* ============================================================
+     TOTAL + SUMMARY UPDATE
+     ============================================================ */
+  var totalAmtEl  = document.getElementById('total-amt');
+  var totalNumEl  = document.getElementById('total-num');
+  var totalMoEl   = document.getElementById('total-mo');
+  var tsmValEl    = document.getElementById('tsm-val');
+  var tsmMoEl     = document.getElementById('tsm-mo');
+  var summaryEl   = document.getElementById('build-summary');
+  var desktopCta  = document.getElementById('desktop-cta');
+  var tsmCta      = document.getElementById('tsm-cta');
+
+  var rm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* number counter — animates the big display value from prev to next */
+  var animFrame = null;
+  var displayedTotal = 1000;
+
+  function animateTo(target){
+    if(rm){
+      /* snap instantly for reduced-motion */
+      displayedTotal = target;
+      renderTotalDisplay(target);
+      return;
+    }
+    if(animFrame) cancelAnimationFrame(animFrame);
+    var start = displayedTotal;
+    var diff  = target - start;
+    if(diff === 0) return;
+    var duration = Math.min(400, Math.abs(diff) / 4);
+    var startTime = null;
+
+    function step(ts){
+      if(!startTime) startTime = ts;
+      var elapsed = ts - startTime;
+      var progress = Math.min(elapsed / duration, 1);
+      /* ease out cubic */
+      var eased = 1 - Math.pow(1 - progress, 3);
+      var current = Math.round(start + diff * eased);
+      renderTotalDisplay(current);
+      if(progress < 1){
+        animFrame = requestAnimationFrame(step);
+      } else {
+        displayedTotal = target;
+        animFrame = null;
+      }
+    }
+    animFrame = requestAnimationFrame(step);
+  }
+
+  function renderTotalDisplay(val){
+    if(totalNumEl) totalNumEl.textContent = fmt(val);
+    if(tsmValEl) tsmValEl.textContent = '$' + fmt(val);
+    /* pop animation */
+    if(totalAmtEl && !rm){
+      totalAmtEl.classList.remove('counting');
+      void totalAmtEl.getBoundingClientRect();
+      totalAmtEl.classList.add('counting');
+    }
+  }
+
+  function updateTotal(){
+    var total = calcTotal();
+    animateTo(total);
+
+    /* monthly line */
+    var plan = getCarePlan();
+    var moText = plan.price > 0 ? '+ $' + fmt(plan.price) + '/mo (' + plan.label + ')' : '';
+    if(totalMoEl){
+      totalMoEl.textContent = moText;
+      totalMoEl.className = 'total-mo' + (plan.price > 0 ? ' active' : '');
+    }
+    if(tsmMoEl){
+      tsmMoEl.textContent = moText;
+    }
+
+    /* CTA URLs — pass summary + total as query param */
+    var summary = buildSummaryText();
+    var ctaUrl = '/contact/?build=' + encodeURIComponent(summary);
+    if(desktopCta) desktopCta.href = ctaUrl;
+    if(tsmCta) tsmCta.href = ctaUrl;
+  }
+
+  function updateSummary(){
+    if(!summaryEl) return;
+    summaryEl.innerHTML = '';
+
+    /* base row */
+    var base = getBase();
+    var baseRow = makeBsRow(base.label, '$' + fmt(base.price), 'bs-base');
+    summaryEl.appendChild(baseRow);
+
+    /* extra pages */
+    if(state.extraPages > 0){
+      var pRow = makeBsRow(
+        state.extraPages + ' extra page' + (state.extraPages > 1 ? 's' : ''),
+        '+$' + fmt(state.extraPages * PRICING.extraPagePrice)
+      );
+      summaryEl.appendChild(pRow);
+    }
+
+    /* features */
+    PRICING.features.forEach(function(f){
+      var included = (f.autoWithBase && f.autoWithBase === state.baseId);
+      if(included){
+        var iRow = makeBsRow(f.label, 'included', 'bs-included');
+        summaryEl.appendChild(iRow);
+        return;
+      }
+      if(state.features[f.id]){
+        var fRow = makeBsRow(f.label, '+$' + fmt(f.price));
+        summaryEl.appendChild(fRow);
+      }
+    });
+
+    /* care plan */
+    var plan = getCarePlan();
+    if(plan.price > 0){
+      var cRow = makeBsRow(plan.label, '$' + fmt(plan.price) + '/mo');
+      summaryEl.appendChild(cRow);
+    }
+  }
+
+  function makeBsRow(name, amt, extraClass){
+    var row = document.createElement('div');
+    row.className = 'bs-row' + (extraClass ? ' ' + extraClass : '');
+    var n = document.createElement('span'); n.className = 'bs-name'; n.textContent = name;
+    var a = document.createElement('span'); a.className = 'bs-amt'; a.textContent = amt;
+    row.appendChild(n);
+    row.appendChild(a);
+    return row;
+  }
+
+  /* ============================================================
+     MAIN STATE CHANGE HANDLER
+     ============================================================ */
+  function onStateChange(){
+    /* when base changes to online-store, auto-check store-addon visually */
+    /* (already handled in renderFeatures — it marks it included + disabled) */
+
+    /* performer auto-select: apply only when the base changes, and clear the
+       previous base's autoSelect features so switching away doesn't carry
+       stale add-ons into the new total. */
+    var base = getBase();
+    if(state.baseId !== state._prevBaseId){
+      /* clear the outgoing base's auto-selected features */
+      var prev = PRICING.bases.find(function(b){ return b.id === state._prevBaseId; });
+      if(prev && prev.autoSelect){
+        prev.autoSelect.forEach(function(fid){ state.features[fid] = false; });
+      }
+      /* apply the incoming base's auto-selected features */
+      if(base.autoSelect){
+        base.autoSelect.forEach(function(fid){ state.features[fid] = true; });
+      }
+    }
+    state._prevBaseId = state.baseId;
+
+    renderFeatures();   /* re-render features so auto-include state is fresh */
+    renderStepper();
+    updateSummary();
+    updateTotal();
+  }
+
+  /* ============================================================
+     SCROLL-DRIVEN THEME (same rAF pattern as home page)
+     ============================================================ */
+  var root   = document.documentElement;
+  var header = document.getElementById('site-header');
+  var bands  = [].slice.call(document.querySelectorAll('[data-theme-band]'));
+
+  function applyBandForY(){
+    var line = window.innerHeight * 0.34;
+    var chosen = bands[0];
+    for(var i=0;i<bands.length;i++){
+      var r = bands[i].getBoundingClientRect();
+      if(r.top <= line){ chosen = bands[i]; } else { break; }
+    }
+    var maxScroll = (document.scrollingElement || document.documentElement).scrollHeight - window.innerHeight;
+    var lead = Math.min(window.innerHeight * 0.6, 460);
+    if(window.scrollY >= (maxScroll - lead)){ chosen = bands[bands.length - 1]; }
+    if(chosen){
+      var t = chosen.getAttribute('data-theme-band');
+      if(root.getAttribute('data-theme') !== t){ root.setAttribute('data-theme', t); }
+    }
+    if(header){ header.classList.toggle('scrolled', window.scrollY > 12); }
+  }
+
+  var ticking = false;
+  function onScroll(){
+    if(!ticking){ ticking = true; requestAnimationFrame(function(){ applyBandForY(); ticking = false; }); }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  applyBandForY();
+  var rt = false;
+  window.addEventListener('resize', function(){
+    if(!rt){ rt = true; requestAnimationFrame(function(){ applyBandForY(); rt = false; }); }
+  }, {passive:true});
+
+  /* ============================================================
+     MOBILE DRAWER
+     ============================================================ */
+  var burger = document.getElementById('hamburger');
+  var drawer = document.getElementById('mnav');
+  if(burger && drawer){
+    burger.addEventListener('click', function(){
+      var open = drawer.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    drawer.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ drawer.classList.remove('open'); burger.setAttribute('aria-expanded','false'); });
+    });
+  }
+
+  /* ============================================================
+     LOGO EASTER EGG (same one-shot spin as home)
+     ============================================================ */
+  var wordmark = document.getElementById('wordmark');
+  var mark     = document.getElementById('banana-mark');
+  var NANA = '<svg viewBox="0 0 48 48" width="20" height="20" aria-hidden="true"><path fill="#F5C800" d="M11 9c-2 8 1 17 8 23 7 6 16 8 22 6 2-1 3-3 2-5-1-1-3-1-5 0-4 2-10 0-15-4C15 27 12 20 13 12c.4-2.5-1.6-4-2 -3z"/><path fill="none" stroke="#111310" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" d="M11.5 9.5c-2 8 1 16.5 8 22.5 7 6 16 8.5 22 6.5"/></svg>';
+  if(wordmark && mark){
+    wordmark.addEventListener('click', function(){
+      if(rm) return;
+      mark.classList.remove('spin'); void mark.getBoundingClientRect(); mark.classList.add('spin');
+      var r = mark.getBoundingClientRect();
+      for(var i=0;i<3;i++){
+        (function(idx){
+          var b = document.createElement('span');
+          b.className = 'banana-pop';
+          b.innerHTML = NANA;
+          b.setAttribute('aria-hidden','true');
+          var spread = (idx - 1) * 22 + (Math.random()*10 - 5);
+          b.style.left = (r.left + r.width/2 - 10) + 'px';
+          b.style.top  = (r.top + r.height/2 - 10) + 'px';
+          b.style.setProperty('--bx', spread.toFixed(1) + 'px');
+          b.style.setProperty('--br', ((Math.random()*60-30)|0) + 'deg');
+          b.style.animationDelay = (idx*60) + 'ms';
+          document.body.appendChild(b);
+          b.addEventListener('animationend', function(){ b.remove(); });
+          setTimeout(function(){ if(b.parentNode) b.remove(); }, 1600);
+        })(i);
+      }
+    });
+  }
+
+  /* ============================================================
+     YEAR + INIT
+     ============================================================ */
+  var y = document.getElementById('year');
+  if(y) y.textContent = new Date().getFullYear();
+
+  document.body.classList.remove('no-js');
+
+  /* initial render */
+  renderBase();
+  renderFeatures();
+  renderCare();
+  renderStepper();
+  updateSummary();
+  updateTotal();
+
+})();
+</script>
+</body>
+</html>

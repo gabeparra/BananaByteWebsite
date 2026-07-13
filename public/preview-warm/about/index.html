@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="paper">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Gabe — BANANAbyte · Orlando web designer &amp; developer</title>
+<meta name="description" content="Hi, I'm Gabe — an Orlando web designer and developer, and I run BANANAbyte solo. You work directly with me: no agency, no handoff, just the person actually building your site. Una persona real, right here in Orlando.">
+<meta name="theme-color" content="#FAFAF7">
+
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+  /* ============================================================
+     TOKENS — green / yellow / WHITE / black EDITORIAL COLOR-BLOCK system.
+     WHITE is the dominant canvas; BLACK is text + full-bleed black
+     sections; brand GREEN (moss/forest) is a real color used in whole
+     sections; banana YELLOW is the rationed accent/highlight.
+
+     The ONLY animation on this page is the SCROLL-DRIVEN COLOR CHANGE:
+     the page's background + text + accent transition smoothly through
+     the palette (white → green → black and back) as you scroll. That
+     lives entirely in the theme variables below + a CSS transition on
+     body/header; an IntersectionObserver just flips <html data-theme>.
+     ============================================================ */
+  :root{
+    --font-display:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --font-body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+
+    --text-xs:clamp(11.5px,1vw,12.5px);
+    --text-sm:clamp(13px,1.1vw,14px);
+    --text-base:clamp(15.5px,1.4vw,17px);
+    --text-lg:clamp(18px,1.7vw,20px);
+    --text-2xl:clamp(27px,3.3vw,36px);
+    --text-3xl:clamp(34px,5.2vw,54px);
+    --text-4xl:clamp(40px,4.4vw,64px);
+
+    --leading-body:1.62;
+    --leading-tight:1.02;
+    --leading-hero:.96;
+    --tracking-display:-0.018em;
+    --tracking-hero:-0.024em;
+    --tracking-eyebrow:.16em;
+
+    --space-1:4px;  --space-2:8px;  --space-3:12px; --space-4:16px;
+    --space-5:20px; --space-6:24px; --space-8:32px; --space-10:40px;
+    --section-y:clamp(48px,6vw,84px);
+
+    --radius-sm:6px;
+    --radius-md:10px;
+    --radius-card:12px;
+    --radius-pill:9999px;
+
+    --container-max:1200px;
+    --gutter:clamp(20px,5vw,52px);
+
+    /* ---- FIXED BRAND SWATCHES (never animate — these are the palette) ---- */
+    --white:#FAFAF7;        /* dominant canvas — warm white, not pure #fff */
+    --white-2:#FFFFFF;      /* raised cards on white */
+    --white-3:#F0EFE9;      /* faint recessed strip on white */
+    --black:#141412;        /* text + full-bleed black sections (not pure #000) */
+    --black-2:#20201C;      /* raised card on black */
+
+    --green:#1E6B45;        /* DEEP moss/forest — the brand green, section fills */
+    --green-2:#175537;      /* darker moss for raised block on green */
+    --green-bright:#46E08B; /* BRIGHT green — hairlines / ticks on dark grounds */
+    --green-ink:#0F3D27;    /* legible green ink on white (~7:1) */
+
+    --yellow:#F5C800;       /* banana YELLOW — the single accent, fills only */
+    --yellow-deep:#7A5E00;  /* legible deep-banana for text on white (~4.9:1) */
+    --on-yellow:#141412;    /* dark ink on the yellow fill */
+
+    /* ---- THEME VARIABLES — a section sets these, body TRANSITIONS between
+           them. This IS the scroll animation: every color below crossfades.
+           Defaults = the WHITE (paper) theme. ---- */
+    --bg:var(--white);            /* the page canvas that animates */
+    --surface:var(--white-2);     /* raised card ground */
+    --surface-2:var(--white-3);   /* recessed strip */
+    --fg:var(--black);            /* primary ink */
+    --fg-2:#3A382F;               /* body copy */
+    --muted:#6A6656;              /* captions */
+    --meta:#8A8674;               /* decorative icon tint only */
+    --rule:var(--black);          /* confident hairline */
+    --rule-soft:rgba(20,20,18,0.16);
+    --rule-hair:rgba(20,20,18,0.10);
+    --accent:var(--yellow);       /* the fill accent (stable across themes) */
+    --accent-ink:var(--yellow-deep); /* legible accent for text on THIS ground */
+    --accent-soft:rgba(245,200,0,0.18);
+    --on-accent:var(--on-yellow);
+    --tick:var(--green-ink);      /* the "yes/check" tint on THIS ground */
+    --hair-green:var(--green-ink);/* green used as a hair/dot on THIS ground */
+    --grain:rgba(20,20,18,1);     /* which way the paper grain multiplies */
+    --grain-opacity:.05;
+
+    --lift-ink:3px 3px 0 0 var(--rule);
+    --focus-ring:0 0 0 3px color-mix(in srgb, var(--accent-ink) 62%, transparent);
+
+    --motion-feedback:90ms;
+    --motion-fast:150ms;
+    --motion-base:220ms;
+    --motion-enter:280ms;
+    --motion-reveal:480ms;
+    /* the ONE color-transition band that drives the whole scroll animation */
+    --motion-theme:560ms;
+    --ease-standard:cubic-bezier(.2,0,0,1);
+    --ease-out:cubic-bezier(.16,1,.3,1);
+    --spring:cubic-bezier(.34,1.56,.64,1);
+
+    --maxw:var(--container-max);
+    color-scheme:light;
+  }
+
+  /* ============================================================
+     THE THEME SETS — swapped on <html data-theme="…"> by the scroll
+     observer. body/header/sections transition their colors, so the
+     visitor sees the palette shift white → green → black → back.
+     ============================================================ */
+  html[data-theme="green"]{
+    --bg:var(--green); --surface:var(--green-2); --surface-2:#134A30;
+    --fg:#FCFDF9; --fg-2:#E4F2E9; --muted:#A9CFBB; --meta:#8FBEA4;
+    --rule:#FCFDF9;
+    --rule-soft:rgba(255,255,255,0.22); --rule-hair:rgba(255,255,255,0.14);
+    --accent:var(--yellow); --accent-ink:var(--yellow); /* bright yellow is legible on deep green */
+    --accent-soft:rgba(245,200,0,0.24); --on-accent:var(--on-yellow);
+    --tick:var(--yellow); --hair-green:var(--green-bright);
+    --grain:rgba(255,255,255,1); --grain-opacity:.06;
+    --lift-ink:3px 3px 0 0 #0C2E1D;
+  }
+  html[data-theme="black"]{
+    --bg:var(--black); --surface:var(--black-2); --surface-2:#191915;
+    --fg:#FAFAF7; --fg-2:#D8D6CC; --muted:#9C9A8C; --meta:#7E7C6F;
+    --rule:#FAFAF7;
+    --rule-soft:rgba(255,255,255,0.20); --rule-hair:rgba(255,255,255,0.12);
+    --accent:var(--yellow); --accent-ink:var(--yellow);
+    --accent-soft:rgba(245,200,0,0.20); --on-accent:var(--on-yellow);
+    --tick:var(--green-bright); --hair-green:var(--green-bright);
+    --grain:rgba(255,255,255,1); --grain-opacity:.05;
+    --lift-ink:3px 3px 0 0 #000;
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;overflow-x:clip}
+  body{
+    margin:0;background-color:var(--bg);color:var(--fg);
+    font-family:var(--font-body);
+    font-size:var(--text-base);line-height:var(--leading-body);font-weight:400;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+    overflow-x:hidden;position:relative;
+    /* THE SCROLL ANIMATION: the page canvas + ink crossfade through the palette */
+    transition:background-color var(--motion-theme) var(--ease-standard),
+               color var(--motion-theme) var(--ease-standard);
+  }
+
+  /* PAPER GRAIN — same two multiplied turbulence layers as the homepage.
+     The tint follows the theme (dark grain on white, light grain on
+     green/black) and crossfades with the section colors. */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+    background-color:var(--grain);opacity:var(--grain-opacity);mix-blend-mode:multiply;
+    -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+    mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+    transition:background-color var(--motion-theme) var(--ease-standard),opacity var(--motion-theme) var(--ease-standard);
+  }
+  html[data-theme="black"]::before{mix-blend-mode:screen}
+  html[data-theme="green"]::before{mix-blend-mode:soft-light}
+
+  h1,h2,h3,h4{
+    font-family:var(--font-display);
+    font-weight:800;line-height:var(--leading-tight);
+    letter-spacing:var(--tracking-display);margin:0;color:var(--fg);
+  }
+  p{margin:0}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  ::selection{background:var(--accent);color:var(--on-accent)}
+  .wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
+
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent-ink);outline-offset:3px;box-shadow:var(--focus-ring)}
+
+  .skip{position:absolute;left:-9999px;top:0;z-index:300;background:var(--accent);color:var(--on-accent);font-weight:800;padding:var(--space-3) var(--space-4);border-radius:0 0 var(--radius-md) 0}
+  .skip:focus{left:0}
+
+  /* ============================================================
+     BRAND LOGO — real SVG asset swap keyed off html[data-theme].
+     DARK logo on the default (paper/white) theme.
+     LIGHT logo on GREEN and BLACK (dark) themes.
+     ============================================================ */
+  .brand-logo{height:30px;width:auto;display:block}
+  .brand-logo--light{display:none}
+  html[data-theme="paper"] .brand-logo--dark{display:block}
+  html[data-theme="green"] .brand-logo--dark,html[data-theme="black"] .brand-logo--dark{display:none}
+  html[data-theme="green"] .brand-logo--light,html[data-theme="black"] .brand-logo--light{display:block}
+
+  /* CUSTOM BANANA LOGOMARK — identical to the homepage; strokes follow the ink. */
+  .bmark{display:inline-block;width:1.15em;height:1.15em;flex:none;vertical-align:-.18em}
+  .bmark .peel{fill:var(--accent)}
+  .bmark .body{fill:none;stroke:var(--fg);stroke-width:6;stroke-linecap:round;stroke-linejoin:round;transition:stroke var(--motion-theme) var(--ease-standard)}
+  .bmark .tip{fill:var(--fg);transition:fill var(--motion-theme) var(--ease-standard)}
+
+  /* HEADER — printed masthead; its ground rides the page theme so it
+     crossfades along with the section colors as you scroll. */
+  header.site{
+    position:sticky;top:0;z-index:90;
+    background:color-mix(in srgb,var(--bg) 90%,transparent);
+    border-bottom:1px solid var(--rule-soft);color:var(--fg);
+    transition:background-color var(--motion-theme) var(--ease-standard),
+               color var(--motion-theme) var(--ease-standard),
+               border-color var(--motion-base) var(--ease-standard),
+               box-shadow var(--motion-base) var(--ease-standard);
+  }
+  @media (hover:hover) and (pointer:fine){header.site{backdrop-filter:saturate(120%) blur(8px);-webkit-backdrop-filter:saturate(120%) blur(8px)}}
+  header.site.scrolled{border-bottom-color:var(--rule-soft);box-shadow:0 1px 0 0 var(--rule-soft)}
+  .nav-shell{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);min-height:66px;padding-block:10px}
+
+  .wordmark{font-family:var(--font-display);font-weight:900;letter-spacing:-.02em;line-height:1;font-size:1.32rem;display:inline-flex;align-items:center;gap:.5rem;background:transparent;border:0;cursor:pointer;color:var(--fg);padding:0;transition:color var(--motion-theme) var(--ease-standard)}
+  .wordmark .txt{display:inline-flex;align-items:baseline;gap:.06em}
+  .wordmark .byte{font-family:var(--font-body);font-weight:800;font-size:.82em;letter-spacing:-.01em;color:var(--accent-ink);transform:translateY(-.02em);transition:color var(--motion-theme) var(--ease-standard)}
+  /* the tiny logo easter-egg keeps ONLY its own transitions (no scroll motion) */
+  .wordmark .bmark{transform-origin:60% 80%}
+  .wordmark .bmark.spin{animation:markSpin .8s var(--spring) 1}
+  @keyframes markSpin{0%{transform:rotate(0) scale(1)}55%{transform:rotate(-380deg) scale(1.24)}100%{transform:rotate(-360deg) scale(1)}}
+  .banana-pop{position:fixed;z-index:200;pointer-events:none;width:20px;height:20px;will-change:transform,opacity;animation:bananaFloat 1.15s var(--ease-out) forwards}
+  @keyframes bananaFloat{0%{opacity:0;transform:translate(0,0) scale(.6) rotate(0)}15%{opacity:1}100%{opacity:0;transform:translate(var(--bx,0),-58px) scale(1.05) rotate(var(--br,20deg))}}
+
+  .nav-links{display:none;align-items:center;gap:var(--space-2)}
+  .nav-links a:not(.nav-cta){color:var(--fg-2);font-size:.95rem;font-weight:600;padding:8px var(--space-3);position:relative;transition:color var(--motion-fast) var(--ease-standard)}
+  /* link underline is INK (accent stays rationed to the CTA). Static, no swipe. */
+  .nav-links a:not(.nav-cta)::after{content:"";position:absolute;left:var(--space-3);right:var(--space-3);bottom:2px;height:1.5px;background:var(--fg);opacity:0;transition:opacity var(--motion-fast) var(--ease-standard),background-color var(--motion-theme) var(--ease-standard)}
+  .nav-links a:not(.nav-cta):hover{color:var(--fg)}
+  .nav-links a:not(.nav-cta):hover::after{opacity:1}
+  .nav-links a[aria-current="page"]{color:var(--fg)}
+  .nav-links a[aria-current="page"]::after{opacity:1}
+  .nav-cta{
+    display:inline-flex;align-items:center;gap:var(--space-2);min-height:42px;
+    font-weight:800;font-size:.9rem;color:var(--on-accent);
+    padding:9px var(--space-5);background:var(--accent);
+    border:1.5px solid var(--rule);border-radius:var(--radius-sm);
+    box-shadow:2px 2px 0 0 var(--rule);
+    transition:background-color var(--motion-theme) var(--ease-standard),border-color var(--motion-theme) var(--ease-standard),box-shadow var(--motion-feedback) var(--ease-standard);
+  }
+  .nav-cta:hover{box-shadow:3px 3px 0 0 var(--rule)}
+  .nav-cta:active{box-shadow:1px 1px 0 0 var(--rule)}
+  @media(min-width:940px){.nav-links{display:flex}.hamburger{display:none}}
+  .hamburger{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;background:transparent;border:1.5px solid var(--rule);border-radius:var(--radius-sm);color:var(--fg);cursor:pointer;transition:background var(--motion-fast) var(--ease-standard),border-color var(--motion-theme) var(--ease-standard),color var(--motion-theme) var(--ease-standard)}
+  .hamburger:hover{background:var(--accent-soft)}
+  .hb{position:relative;display:block;width:18px;height:12px}
+  .hb span{position:absolute;left:0;width:100%;height:2px;border-radius:2px;background:var(--fg);transition:transform var(--motion-base) var(--ease-standard),opacity var(--motion-feedback) var(--ease-standard),top var(--motion-base) var(--ease-standard),background-color var(--motion-theme) var(--ease-standard)}
+  .hb span:nth-child(1){top:0}.hb span:nth-child(2){top:5px}.hb span:nth-child(3){top:10px}
+  .hamburger[aria-expanded="true"] .hb span:nth-child(1){top:5px;transform:rotate(45deg)}
+  .hamburger[aria-expanded="true"] .hb span:nth-child(2){opacity:0}
+  .hamburger[aria-expanded="true"] .hb span:nth-child(3){top:5px;transform:rotate(-45deg)}
+
+  .mnav{display:none;flex-direction:column;gap:2px;margin-block:var(--space-3);border:1.5px solid var(--rule);border-radius:var(--radius-md);background:var(--surface);box-shadow:var(--lift-ink);padding:var(--space-3)}
+  .mnav.open{display:flex}
+  .mnav a{display:flex;align-items:center;min-height:50px;padding:var(--space-2) var(--space-3);border-radius:var(--radius-sm);font-weight:700;font-size:1.05rem;color:var(--fg);transition:background var(--motion-fast) var(--ease-standard)}
+  .mnav a:hover{background:var(--surface-2)}
+  .mnav a[aria-current="page"]{background:var(--surface-2)}
+  .mnav .nav-cta{justify-content:center;margin-top:var(--space-2)}
+
+  /* BUTTONS — riso chips; all their color drives off the live theme. */
+  .btn{
+    position:relative;display:inline-flex;align-items:center;gap:9px;cursor:pointer;
+    font-family:var(--font-body);font-weight:800;font-size:1rem;letter-spacing:-.01em;
+    border-radius:var(--radius-sm);padding:13px 24px;border:1.5px solid var(--rule);
+    transition:box-shadow var(--motion-feedback) var(--ease-standard),background-color var(--motion-theme) var(--ease-standard),color var(--motion-theme) var(--ease-standard),border-color var(--motion-theme) var(--ease-standard);
+  }
+  .btn-primary{background:var(--accent);color:var(--on-accent);box-shadow:var(--lift-ink)}
+  .btn-primary:hover{box-shadow:4px 4px 0 0 var(--rule)}
+  .btn-primary:active{box-shadow:1px 1px 0 0 var(--rule)}
+  .btn-ghost{background:transparent;color:var(--fg);box-shadow:none}
+  .btn-ghost:hover{background:var(--fg);color:var(--bg)}
+
+  /* SECTION SCAFFOLDING — same rhythm + eyebrow + sticker as the homepage.
+     Sections are TRANSPARENT so the animated body ground shows through;
+     each section only declares its theme via data-theme. */
+  section{padding-block:var(--section-y);background:transparent}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:var(--space-3);
+    font-family:var(--font-body);
+    font-weight:700;font-size:var(--text-sm);
+    letter-spacing:.01em;color:var(--accent-ink);transition:color var(--motion-theme) var(--ease-standard);
+  }
+  .eyebrow::before{content:"";width:28px;height:1.5px;background:var(--fg);transition:background-color var(--motion-theme) var(--ease-standard)}
+  .sec-head{max-width:760px;margin-bottom:clamp(24px,3vw,36px)}
+  .sec-head h2{font-size:var(--text-3xl);margin-top:var(--space-4);text-wrap:balance;overflow-wrap:break-word}
+  .sec-head p{color:var(--fg-2);margin-top:var(--space-5);font-size:var(--text-lg);font-weight:400;line-height:1.55;max-width:60ch;text-wrap:pretty}
+
+  .sticker{
+    display:inline-flex;align-items:center;gap:7px;
+    font-family:var(--font-body);font-weight:800;font-size:.72rem;
+    text-transform:uppercase;letter-spacing:.08em;color:var(--on-accent);
+    background:var(--accent);border:1.5px solid var(--rule);border-radius:var(--radius-pill);
+    padding:6px 13px;box-shadow:2px 2px 0 0 var(--rule);
+    transition:border-color var(--motion-theme) var(--ease-standard),box-shadow var(--motion-theme) var(--ease-standard);
+  }
+  .sticker svg{width:13px;height:13px}
+
+  /* a shared margin note */
+  .margin-note{
+    font-family:var(--font-body);
+    font-weight:400;line-height:1.42;color:var(--muted);
+    padding-left:16px;border-left:2px solid var(--accent);
+    transition:color var(--motion-theme) var(--ease-standard),border-color var(--motion-theme) var(--ease-standard);
+  }
+
+  /* shared surface/card treatment so raised blocks recolor with the theme */
+  .card-surface{background:var(--surface);border:1.5px solid var(--rule);box-shadow:var(--lift-ink);transition:background-color var(--motion-theme) var(--ease-standard),border-color var(--motion-theme) var(--ease-standard),box-shadow var(--motion-theme) var(--ease-standard)}
+
+  /* ============================================================
+     ABOUT HERO — first-person "Hi, I'm Gabe" on the WHITE canvas.
+     Copy hangs left; the big dashed PORTRAIT slot sits off-axis right.
+     ============================================================ */
+  .ahero{position:relative;padding-block:clamp(28px,4vw,52px) clamp(26px,3vw,44px)}
+  .ahero-grid{display:grid;grid-template-columns:1fr;gap:clamp(28px,4vw,44px);align-items:start}
+  @media(min-width:980px){.ahero-grid{grid-template-columns:1.06fr .94fr}}
+
+  .ahero-tag{display:inline-flex;align-items:center;gap:var(--space-3);font-weight:600;font-size:.86rem;color:var(--muted);transition:color var(--motion-theme) var(--ease-standard)}
+  .ahero-tag .dot{width:8px;height:8px;border-radius:50%;background:var(--hair-green);flex:none;transition:background-color var(--motion-theme) var(--ease-standard)}
+  .ahero-tag b{color:var(--fg);font-weight:700}
+
+  .ahero h1{
+    font-weight:900;font-size:var(--text-4xl);line-height:1.06;
+    letter-spacing:-0.02em;margin-top:var(--space-5);max-width:28ch;
+    text-wrap:balance;overflow-wrap:break-word;
+  }
+  /* emphasis word — Figtree (not italic); yellow underline is the accent */
+  .ahero h1 .mark{
+    font-weight:900;font-style:normal;position:relative;white-space:nowrap;
+  }
+  /* a hand-drawn banana-yellow underline — STATIC, printed beneath the emphasis word */
+  .ahero h1 .mark::after{
+    content:"";position:absolute;left:-2%;right:-2%;bottom:.04em;height:.16em;z-index:-1;
+    background:var(--accent);border-radius:40% 60% 55% 45%;
+    transform:rotate(-.6deg);transition:background-color var(--motion-theme) var(--ease-standard);
+  }
+
+  .ahero-lede{color:var(--fg-2);font-size:var(--text-lg);font-weight:400;margin-top:var(--space-6);max-width:52ch;line-height:1.58;text-wrap:pretty}
+  .ahero-lede b{color:var(--fg);font-weight:700}
+  .ahero-lede .es{font-family:var(--font-body);font-weight:600;color:var(--fg);box-shadow:inset 0 -.42em 0 var(--accent-soft)}
+  .ahero-actions{display:flex;flex-wrap:wrap;gap:var(--space-4);margin-top:var(--space-8)}
+
+  .ahero-meta{display:flex;flex-wrap:wrap;gap:var(--space-3) var(--space-6);margin-top:var(--space-6);color:var(--muted);font-size:.88rem}
+  .ahero-meta span{display:inline-flex;align-items:center;gap:var(--space-2)}
+  .ahero-meta .ck{display:inline-flex;color:var(--tick);transition:color var(--motion-theme) var(--ease-standard)}
+  .ahero-meta .ck svg{width:15px;height:15px}
+
+  /* ---- THE PORTRAIT — the biggest, most prominent slot on the site ---- */
+  .ahero-side{position:relative;justify-self:center}
+  @media(min-width:980px){.ahero-side{justify-self:end;transform:rotate(-1.4deg)}}
+  .portrait{
+    position:relative;width:min(400px,86vw);
+    border:1.5px solid var(--rule);background:var(--surface);
+    box-shadow:var(--lift-ink);padding:13px 13px 15px;
+    transition:background-color var(--motion-theme) var(--ease-standard),border-color var(--motion-theme) var(--ease-standard),box-shadow var(--motion-theme) var(--ease-standard);
+  }
+  .portrait-img{
+    display:block;width:100%;aspect-ratio:4/5;object-fit:cover;
+    border-radius:var(--radius-sm);
+  }
+  .portrait .cap{display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3);margin-top:13px;padding-top:11px;border-top:1px solid var(--rule-soft)}
+  .portrait .cap .who{font-family:var(--font-display);font-weight:700;font-size:1.06rem;color:var(--fg)}
+  .portrait .cap .role{font-size:.78rem;color:var(--muted)}
+  .portrait-stamp{
+    position:absolute;z-index:3;right:-16px;top:-20px;transform:rotate(9deg);
+    width:108px;height:108px;border-radius:50%;
+    background:var(--accent);border:1.5px solid var(--rule);
+    box-shadow:2px 2px 0 0 var(--rule);
+    display:grid;place-items:center;text-align:center;
+    transition:border-color var(--motion-theme) var(--ease-standard),box-shadow var(--motion-theme) var(--ease-standard);
+  }
+  .portrait-stamp b{font-family:var(--font-display);font-weight:800;font-size:.82rem;line-height:1.04;color:var(--on-accent);letter-spacing:-.01em}
+  .portrait-stamp b small{display:block;font-family:var(--font-body);font-weight:700;font-size:.56rem;letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+  .ahero-note{margin-top:15px;max-width:min(400px,86vw);font-size:.98rem}
+
+  /* ============================================================
+     STORY — a single-column reading measure on a GREEN section. This is
+     the first big color-block: as you scroll off the white hero the whole
+     page transitions to moss green, the first-person copy in cream ink.
+     ============================================================ */
+  .story{border-block:1px solid var(--rule-soft)}
+  .story-inner{max-width:62ch;margin-inline:auto}
+  .story-inner .eyebrow{margin-bottom:var(--space-5)}
+  .story h2{font-size:var(--text-2xl);line-height:var(--leading-tight);text-wrap:balance}
+  .story .lead-p{color:var(--fg);font-size:var(--text-lg);line-height:1.55;margin-top:var(--space-6);font-weight:600;text-wrap:pretty}
+  .story p{color:var(--fg-2);font-size:1.06rem;line-height:1.62;margin-top:var(--space-5);text-wrap:pretty}
+  .story p b{color:var(--fg);font-weight:700}
+  .story h3{
+    font-family:var(--font-display);
+    font-size:clamp(1.35rem,2.6vw,1.7rem);font-weight:800;letter-spacing:-.01em;line-height:1.1;
+    margin-top:clamp(38px,5vw,56px);color:var(--fg);
+  }
+  .story h3 .idx{font-weight:600;font-size:.62em;color:var(--fg);margin-right:.5em;transition:color var(--motion-theme) var(--ease-standard)}
+  .story h3 + p{margin-top:var(--space-4)}
+  .story .margin-note{margin-top:var(--space-5);font-size:.98rem}
+  .story .margin-note b{color:var(--fg-2);font-style:normal;font-weight:700}
+
+  /* ============================================================
+     SOLO PROMISE — the pledge, on the WHITE canvas again. The palette
+     swings back to white here (green → white), a bright editorial reset,
+     with the one framed statement in a raised card.
+     ============================================================ */
+  .promise-sec{border-block:1px solid var(--rule-soft)}
+  .promise-card{
+    position:relative;border:1.5px solid var(--rule);background:var(--surface);
+    box-shadow:var(--lift-ink);padding:clamp(28px,4vw,48px);max-width:920px;margin-inline:auto;
+    transition:background-color var(--motion-theme) var(--ease-standard),border-color var(--motion-theme) var(--ease-standard),box-shadow var(--motion-theme) var(--ease-standard);
+  }
+  .promise-card .corner-sticker{position:absolute;left:clamp(16px,3vw,30px);top:-16px;transform:rotate(-4deg)}
+  .promise-card .pk{font-family:var(--font-body);font-weight:800;font-size:var(--text-xs);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .promise-card q{
+    display:block;quotes:none;margin-top:var(--space-4);
+    font-family:var(--font-display);font-weight:500;
+    line-height:1.26;letter-spacing:-.01em;color:var(--fg);
+    font-size:clamp(1.4rem,3.2vw,2.2rem);text-wrap:balance;
+  }
+  .promise-card q::before,.promise-card q::after{content:""}
+  .promise-card q u{text-decoration:none;font-style:italic;box-shadow:inset 0 -.14em 0 var(--accent-soft)}
+  .promise-grid{display:grid;grid-template-columns:1fr;gap:var(--space-4);margin-top:clamp(24px,3vw,32px);padding-top:clamp(22px,3vw,28px);border-top:1px dashed var(--rule-soft)}
+  @media(min-width:680px){.promise-grid{grid-template-columns:repeat(3,1fr)}}
+  .promise-pt{display:flex;gap:11px;align-items:flex-start}
+  .promise-pt svg{width:20px;height:20px;flex:none;color:var(--tick);margin-top:2px;transition:color var(--motion-theme) var(--ease-standard)}
+  .promise-pt .t{font-weight:700;color:var(--fg);font-size:.98rem}
+  .promise-pt .d{color:var(--fg-2);font-size:.9rem;line-height:1.48;margin-top:2px}
+
+  /* ============================================================
+     PETER HEFTY — the one real client, on a BLACK section. His live site
+     is shown as a SMALLER, contextual thumbnail beside the warm "my one
+     real client" copy — NOT a page-dominating full-bleed spotlight. The
+     image sits at a modest, portfolio-thumbnail scale; the warm framing
+     (and the "Real client · live" badge + visit link) carries the moment.
+     ============================================================ */
+  .client{border-block:1px solid var(--rule-soft)}
+  /* copy leads; the thumbnail is the smaller companion column */
+  .client-inner{display:grid;grid-template-columns:1fr;gap:clamp(28px,4vw,46px);align-items:center}
+  @media(min-width:900px){.client-inner{grid-template-columns:1.3fr .7fr}}
+  .client-copy .eyebrow{margin-bottom:var(--space-4)}
+  .client-copy h2{font-size:var(--text-2xl);line-height:var(--leading-tight);text-wrap:balance}
+  .client-copy p{color:var(--fg-2);margin-top:var(--space-5);font-size:1.05rem;line-height:1.6;max-width:52ch;text-wrap:pretty}
+  .client-copy p b{color:var(--fg);font-weight:700}
+  .client-quote{
+    margin-top:var(--space-6);padding-left:var(--space-5);border-left:2px solid var(--accent);
+    font-family:var(--font-display);
+    font-weight:500;font-size:1.14rem;line-height:1.4;color:var(--fg);
+    transition:border-color var(--motion-theme) var(--ease-standard);
+  }
+  .client-quote cite{display:block;margin-top:10px;font-family:var(--font-body);font-style:normal;font-weight:800;font-size:.9rem;color:var(--fg-2)}
+  .client-quote cite span{font-weight:500;color:var(--muted)}
+  /* the THUMBNAIL — a modest framed card, capped small, with a caption bar
+     underneath (badge + label + visit link) rather than a big lit overlay */
+  .client-shot{position:relative;justify-self:center;width:min(340px,100%);border:1.5px solid var(--rule);background:var(--surface);box-shadow:var(--lift-ink);overflow:hidden;transition:background-color var(--motion-theme) var(--ease-standard),border-color var(--motion-theme) var(--ease-standard),box-shadow var(--motion-theme) var(--ease-standard)}
+  @media(min-width:900px){.client-shot{justify-self:end;transform:rotate(1deg)}}
+  .client-shot .thumb{position:relative;aspect-ratio:16/10;overflow:hidden;border-bottom:1.5px solid var(--rule);background:#000}
+  .client-shot .thumb img{width:100%;height:100%;display:block;object-fit:cover;object-position:top center}
+  .client-shot .corner-sticker{position:absolute;left:12px;top:12px;z-index:3;transform:rotate(-3deg)}
+  .client-shot .visit{
+    display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--space-2);
+    padding:11px 13px;
+  }
+  .client-shot .visit .lbl{font-family:var(--font-display);font-weight:600;font-size:.9rem;color:var(--fg)}
+  .client-shot .visit a{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-body);font-weight:800;font-size:.76rem;color:var(--on-yellow);background:var(--yellow);border:1.5px solid var(--rule);border-radius:var(--radius-sm);padding:7px 11px;transition:border-color var(--motion-theme) var(--ease-standard)}
+
+  /* ============================================================
+     HONEST FRAME — the "no fake team / depth not scale" ledger, back on
+     WHITE. Two printed columns split by a rule.
+     ============================================================ */
+  .honest{border-block:1px solid var(--rule-soft)}
+  .honest-grid{display:grid;grid-template-columns:1fr;gap:0;border:1.5px solid var(--rule);background:var(--surface);box-shadow:var(--lift-ink);transition:background-color var(--motion-theme) var(--ease-standard),border-color var(--motion-theme) var(--ease-standard),box-shadow var(--motion-theme) var(--ease-standard)}
+  @media(min-width:760px){.honest-grid{grid-template-columns:1fr 1fr}}
+  .honest-col{position:relative;padding:clamp(26px,3.4vw,40px)}
+  @media(min-width:760px){.honest-col+.honest-col{border-left:1.5px solid var(--rule)}}
+  @media(max-width:759px){.honest-col+.honest-col{border-top:1.5px solid var(--rule)}}
+  .honest-col .hk{font-family:var(--font-body);font-weight:800;font-size:var(--text-xs);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .honest-col.yes .hk{color:var(--accent-ink);transition:color var(--motion-theme) var(--ease-standard)}
+  .honest-col h3{font-family:var(--font-display);font-size:clamp(1.4rem,3vw,1.9rem);font-weight:800;letter-spacing:-.01em;margin-top:12px;line-height:1.06}
+  .honest-col ul{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-direction:column;gap:12px}
+  .honest-col li{display:flex;gap:11px;align-items:flex-start;font-size:.98rem;color:var(--fg-2);line-height:1.48}
+  .honest-col li svg{width:18px;height:18px;flex:none;margin-top:2px}
+  .honest-col.yes li svg{color:var(--tick);transition:color var(--motion-theme) var(--ease-standard)}
+  .honest-col.no li svg{color:var(--fg-2)}
+  .honest-col li b{color:var(--fg);font-weight:700}
+
+  /* ============================================================
+     CTA — a warm, personal close, on a final GREEN section so the page
+     ends on a confident brand color-block before the black footer.
+     ============================================================ */
+  .cta{border-top:1px solid var(--rule-soft)}
+  .cta-inner{display:grid;grid-template-columns:1fr;gap:clamp(28px,4vw,48px);align-items:center}
+  @media(min-width:820px){.cta-inner{grid-template-columns:1.15fr .85fr}}
+  .cta-copy h2{font-size:var(--text-3xl);line-height:var(--leading-tight);margin-top:var(--space-4);text-wrap:balance}
+  .cta-copy h2 .em{font-weight:900;font-style:normal;position:relative;display:inline;box-shadow:inset 0 -.18em 0 var(--accent-soft)}
+  .cta-copy p{color:var(--fg-2);margin-top:var(--space-5);font-size:1.08rem;line-height:1.58;max-width:50ch;text-wrap:pretty}
+  .cta-copy p b{color:var(--fg);font-weight:700}
+  .cta-actions{display:flex;flex-wrap:wrap;gap:var(--space-4);margin-top:var(--space-8)}
+  .cta-card{position:relative;justify-self:center;border:1.5px solid var(--rule);background:var(--surface);box-shadow:var(--lift-ink);padding:clamp(24px,3vw,34px);width:min(360px,92vw);transform:rotate(-1deg);transition:background-color var(--motion-theme) var(--ease-standard),border-color var(--motion-theme) var(--ease-standard),box-shadow var(--motion-theme) var(--ease-standard)}
+  .cta-card .signed{font-family:var(--font-display);font-weight:700;font-size:1.9rem;color:var(--fg);line-height:1}
+  .cta-card .signed-sub{color:var(--muted);font-size:.9rem;margin-top:8px}
+  .cta-card .facts{margin-top:18px;padding-top:16px;border-top:1px dashed var(--rule-soft);display:flex;flex-direction:column;gap:11px}
+  .cta-card .fact{display:flex;align-items:center;gap:10px;font-size:.92rem;color:var(--fg-2)}
+  .cta-card .fact svg{width:17px;height:17px;flex:none;color:var(--tick);transition:color var(--motion-theme) var(--ease-standard)}
+  .cta-card .fact b{color:var(--fg);font-weight:700}
+  .cta-card .fact a{box-shadow:inset 0 -1.5px 0 var(--rule-soft)}
+
+  /* FOOTER — printed colophon; forced to the BLACK theme, so the page
+     settles into a calm black base at the very bottom. */
+  footer.site{border-top:1.5px solid var(--rule);background:var(--bg);color:var(--fg);padding-block:clamp(44px,5vw,60px);transition:background-color var(--motion-theme) var(--ease-standard),color var(--motion-theme) var(--ease-standard),border-color var(--motion-theme) var(--ease-standard)}
+  .foot-grid{display:flex;flex-direction:column;gap:var(--space-6)}
+  @media(min-width:760px){.foot-grid{flex-direction:row;justify-content:space-between;align-items:flex-start}}
+  .foot-blurb{color:var(--fg-2);font-size:.94rem;font-weight:400;max-width:42ch;margin-top:var(--space-4);line-height:1.55}
+  .foot-quip{color:var(--muted);font-family:var(--font-body);font-weight:400;font-size:.94rem;margin-top:var(--space-3)}
+  .foot-quip .nana{display:inline-block;width:1em;height:1em;vertical-align:-.15em}
+  .foot-disclaimer{color:var(--muted);font-size:.78rem;line-height:1.5;max-width:64ch;margin:var(--space-6) 0 0}
+  .foot-nav{display:flex;flex-wrap:wrap;gap:12px 26px}
+  .foot-nav a{color:var(--fg-2);font-size:.94rem;font-weight:600;transition:color var(--motion-fast) var(--ease-standard);display:inline-flex;align-items:center;min-height:40px}
+  .foot-nav a:hover{color:var(--accent-ink)}
+  .foot-bottom{display:flex;flex-wrap:wrap;gap:var(--space-3);justify-content:space-between;align-items:center;margin-top:36px;padding-top:var(--space-6);border-top:1px solid var(--rule-soft);color:var(--muted);font-size:.82rem}
+  .foot-built{display:block;margin-top:4px;color:var(--muted);font-size:.94em}
+
+  /* ============================================================
+     SIDE-GUTTER FIREWORKS — identical to the homepage: small, occasional
+     yellow/green sparks that live ONLY in the empty desktop side margins,
+     never over content. Two fixed layers pinned to the left/right gutter,
+     purely decorative (aria-hidden, pointer-events:none), each exactly as
+     wide as the margin between the viewport edge and the 1200px container.
+
+     DESKTOP-ONLY (shown ≥1200px, fine pointer + hover only — identical gate
+     to the homepage). Motion is compositor-cheap (transform + opacity only)
+     and fully gated by prefers-reduced-motion below.
+     ============================================================ */
+  .spark-gutter{
+    display:none;
+    position:fixed;top:0;bottom:0;z-index:1;   /* below header(z90)/content, above page bg */
+    width:calc((100vw - var(--maxw)) / 2);     /* exactly the empty margin, never the column */
+    pointer-events:none;overflow:hidden;
+  }
+  .spark-gutter.left{left:0}
+  .spark-gutter.right{right:0}
+  .spark{
+    position:absolute;width:34px;height:34px;margin:-17px 0 0 -17px;
+    will-change:transform,opacity;opacity:0;
+    background:
+      radial-gradient(circle at 50% 50%, var(--sk) 0 1.6px, transparent 2.4px),
+      radial-gradient(circle at 50% 8%,  var(--sk) 0 1.1px, transparent 1.9px),
+      radial-gradient(circle at 50% 92%, var(--sk) 0 1.1px, transparent 1.9px),
+      radial-gradient(circle at 8% 50%,  var(--sk) 0 1.1px, transparent 1.9px),
+      radial-gradient(circle at 92% 50%, var(--sk) 0 1.1px, transparent 1.9px),
+      radial-gradient(circle at 22% 22%, var(--sk) 0 1px, transparent 1.7px),
+      radial-gradient(circle at 78% 22%, var(--sk) 0 1px, transparent 1.7px),
+      radial-gradient(circle at 22% 78%, var(--sk) 0 1px, transparent 1.7px),
+      radial-gradient(circle at 78% 78%, var(--sk) 0 1px, transparent 1.7px);
+    animation:sparkBurst 1500ms cubic-bezier(.16,1,.3,1) forwards;
+  }
+  .spark.drift{
+    width:7px;height:7px;margin:-3.5px 0 0 -3.5px;
+    background:radial-gradient(circle at 50% 50%, var(--sk) 0 1.8px, color-mix(in srgb,var(--sk) 40%,transparent) 2.4px, transparent 3.2px);
+    animation:sparkDrift 4200ms linear forwards;
+  }
+  @keyframes sparkBurst{
+    0%{opacity:0;transform:scale(.25)}
+    18%{opacity:.9}
+    55%{opacity:.75;transform:scale(1)}
+    100%{opacity:0;transform:scale(1.12)}
+  }
+  @keyframes sparkDrift{
+    0%{opacity:0;transform:translateY(6px) scale(.7)}
+    16%{opacity:.7}
+    82%{opacity:.5}
+    100%{opacity:0;transform:translateY(-40px) scale(1)}
+  }
+  @media (min-width:1200px) and (hover:hover) and (pointer:fine){
+    .spark-gutter{display:block}
+  }
+
+  /* ============================================================
+     REDUCED MOTION — the color-on-scroll snaps INSTANTLY (no crossfade);
+     the section themes still apply, just with no animated transition. The
+     one-shot logo easter-egg, reveals, AND the side-gutter fireworks drop.
+     ============================================================ */
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+    .wordmark .bmark.spin{animation:none!important}
+    .banana-pop{display:none!important}
+    .spark-gutter{display:none!important}   /* no fireworks under reduced motion */
+  }
+</style>
+</head>
+<body class="no-js">
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- SIDE-GUTTER FIREWORKS — decorative only; JS drops small yellow/green
+     spark bursts into these two fixed margin layers on desktop. Purely
+     ornamental (aria-hidden), never overlapping content, off under
+     reduced motion and below the desktop gutter breakpoint. -->
+<div class="spark-gutter left" id="spark-left" aria-hidden="true"></div>
+<div class="spark-gutter right" id="spark-right" aria-hidden="true"></div>
+
+<!-- HEADER — identical shell; "About" carries aria-current -->
+<header class="site" id="site-header">
+  <div class="wrap">
+    <div class="nav-shell">
+      <a class="wordmark" id="wordmark" href="/preview-warm/" aria-label="BANANAbyte home">
+        <img class="brand-logo brand-logo--dark" src="/brand/logo-dark.svg" alt="BANANAbyte — Orlando web studio" width="150" height="41">
+        <img class="brand-logo brand-logo--light" src="/brand/logo-light.svg" alt="" aria-hidden="true" width="150" height="41">
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="/services/">Services</a>
+        <a href="/work/">Work</a>
+        <a href="/pricing/">Pricing</a>
+        <a href="/preview-warm/about/" aria-current="page">About</a>
+        <a href="/contact/" class="nav-cta">Start a project</a>
+      </nav>
+      <button class="hamburger" id="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mnav">
+        <span class="hb" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+    </div>
+    <nav class="mnav" id="mnav" aria-label="Mobile">
+      <a href="/services/">Services</a>
+      <a href="/work/">Work</a>
+      <a href="/pricing/">Pricing</a>
+      <a href="/preview-warm/about/" aria-current="page">About</a>
+      <a href="/contact/" class="nav-cta">Start a project <span class="arrow" aria-hidden="true">→</span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ABOUT HERO — WHITE canvas — "Hi, I'm Gabe." + the big candid portrait slot -->
+  <section class="ahero" data-theme="paper" data-od-id="about-hero" aria-labelledby="about-h">
+    <div class="wrap ahero-grid">
+      <div class="ahero-copy">
+        <span class="ahero-tag"><span class="dot" aria-hidden="true"></span> The person behind BANANAbyte · <b>Orlando, FL</b></span>
+        <h1 id="about-h">Hi, I&rsquo;m <span class="mark">Gabe.</span><br>I make websites in Orlando.</h1>
+        <p class="ahero-lede">I&rsquo;m a web designer and developer, and I run <b>BANANAbyte</b> on my own &mdash; no agency, no account managers, no queue. <span class="es" lang="es">Una persona real</span>, right here in Orlando, who&rsquo;ll answer your email and actually build your site. Both, same guy.</p>
+        <div class="ahero-actions">
+          <a href="/contact/" class="btn btn-primary">Start a project <span class="arrow" aria-hidden="true">&rarr;</span></a>
+          <a href="/work/" class="btn btn-ghost">See the work</a>
+        </div>
+        <div class="ahero-meta">
+          <span><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg></span> Designer &amp; developer &mdash; both hats</span>
+          <span><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg></span> English &amp; Spanish</span>
+        </div>
+      </div>
+
+      <!-- THE PORTRAIT — the biggest dashed slot on the site, ready for his real face -->
+      <div class="ahero-side">
+        <div class="portrait">
+          <div class="portrait-stamp" aria-hidden="true"><b>Una<br>persona<small>real · Orlando</small></b></div>
+          <img class="portrait-img" src="./gabe-portrait.webp" width="800" height="1000" loading="eager" decoding="async" alt="Gabe, founder of BANANAbyte, in his Orlando studio">
+          <div class="cap">
+            <span class="who">Gabe</span>
+            <span class="role">founder &middot; designer &middot; developer</span>
+          </div>
+        </div>
+        <p class="ahero-note margin-note">&ldquo;When you hire BANANAbyte, you get me &mdash; not a sales rep who hands you off to a stranger after the invoice clears.&rdquo;</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY — GREEN color-block — first-person, with the four GABE slots -->
+  <section class="story" data-theme="green" data-od-id="about-story" aria-labelledby="story-h">
+    <div class="wrap">
+      <div class="story-inner">
+        <h2 class="eyebrow" id="story-h" style="margin:0">The short version</h2>
+
+        <p class="lead-p">So here&rsquo;s the honest pitch: I&rsquo;m one person who cares a lot about the web, and I&rsquo;d rather build a handful of sites I&rsquo;m genuinely proud of than crank out a hundred I&rsquo;m not. BANANAbyte is small on purpose &mdash; that&rsquo;s the feature, not the caveat.</p>
+
+        <!-- STORY SLOT 1 -->
+        <h3><span class="idx">01</span>Why I started BANANAbyte</h3>
+        <p>I started BANANAbyte because I kept seeing good local businesses stuck with websites that didn&rsquo;t sound like them &mdash; a template someone bolted their name onto and left. I wanted to do the opposite: sit with a person, understand what they actually do, and build the whole thing, design and code, from the ground up.</p>
+
+        <!-- STORY SLOT 2 -->
+        <h3><span class="idx">02</span>Why Orlando</h3>
+        <p>Orlando&rsquo;s more than the parks, and the people who make it interesting &mdash; the taco spot two blocks over, the corner boutique, the comedian working the local room &mdash; are exactly who I want to build for. This is home, so when I say &ldquo;local,&rdquo; I mean I&rsquo;ll actually come sit at your counter.</p>
+
+        <!-- STORY SLOT 3 -->
+        <h3><span class="idx">03</span>The Peter Hefty story</h3>
+        <p>My first real client was <b>Peter Hefty</b>, an award-winning ventriloquist and comedian who needed a booking site with as much personality as his act. We built him a red-curtain, theatrical home on the web &mdash; and when he told me it felt like watching a magician pull his new website out of thin air, that&rsquo;s the moment I knew this was the work I wanted to keep doing.</p>
+
+        <!-- STORY SLOT 4 -->
+        <h3><span class="idx">04</span>One opinion I&rsquo;ll die on</h3>
+        <p>My one strong opinion: a website that makes you fight a pop-up before you can read it has already failed. Fast, quiet, and it works on the cheapest phone in the room &mdash; that&rsquo;s the whole job. Everything clever comes after that, or not at all.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLO PROMISE — WHITE reset — the pledge, stated in full -->
+  <section class="promise-sec" data-theme="paper" data-od-id="about-promise" aria-labelledby="promise-h">
+    <div class="wrap">
+      <div class="promise-card">
+        <span class="corner-sticker sticker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="8" r="4"/></svg> One person, start to finish</span>
+        <span class="pk">The solo promise</span>
+        <q id="promise-h">You work directly with me. I&rsquo;m the whole studio &mdash; so you&rsquo;ll always be <u>emailing the person actually building your site</u>, not a middleman relaying messages to someone you&rsquo;ll never meet.</q>
+        <div class="promise-grid">
+          <div class="promise-pt">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v12H5.2L4 17.2z"/></svg>
+            <div><div class="t">One inbox</div><div class="d">Every reply comes from me &mdash; the same person writing the code.</div></div>
+          </div>
+          <div class="promise-pt">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/><path d="m9 12 2 2 4-4"/></svg>
+            <div><div class="t">No handoff</div><div class="d">Nothing gets lost between sales and build, because there is no in-between.</div></div>
+          </div>
+          <div class="promise-pt">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            <div><div class="t">You own it</div><div class="d">When it ships, the code, domain and content are all yours to keep.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PETER HEFTY — BLACK section — the one real client, shown as a SMALL
+       contextual thumbnail beside the warm story copy (no longer a spotlight) -->
+  <section class="client" data-theme="black" data-od-id="about-client" aria-labelledby="client-h">
+    <div class="wrap client-inner">
+      <div class="client-copy">
+        <span class="eyebrow">The one real client, so far</span>
+        <h2 id="client-h">Peter Hefty trusted me first &mdash; and I don&rsquo;t take that lightly.</h2>
+        <p>I&rsquo;m not going to pad this page with a wall of logos I don&rsquo;t have. What I have is a real relationship: <b>Peter Hefty &amp; Justin</b>, an award-winning ventriloquist and comedian, whose live booking site I designed and built. Being someone&rsquo;s <b>first</b> real client site means you earn every bit of the trust &mdash; and it&rsquo;s the standard I hold every future project to.</p>
+        <blockquote class="client-quote">
+          &ldquo;There was nothing up his sleeve: everything fantastic just appeared before my eyes &mdash; my new website.&rdquo;
+          <cite>Peter Hefty <span>&middot; ventriloquist &amp; comedian</span></cite>
+        </blockquote>
+      </div>
+      <div class="client-shot">
+        <div class="thumb">
+          <span class="corner-sticker sticker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/><path d="m9 12 2 2 4-4"/></svg> Real client &middot; live</span>
+          <img src="./peter-hefty.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="The live homepage of peterheftyandjustin.com — a red-curtain theatrical booking site for Peter Hefty, an award-winning ventriloquist and comedian, built by BANANAbyte.">
+        </div>
+        <div class="visit">
+          <span class="lbl">peterheftyandjustin.com</span>
+          <a href="https://peterheftyandjustin.com/" target="_blank" rel="noopener">Visit the live site <span class="arrow" aria-hidden="true">&#8599;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HONEST FRAME — WHITE — depth, not scale. What a one-person studio is / isn't. -->
+  <section class="honest" data-theme="paper" data-od-id="about-honest" aria-labelledby="honest-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Being honest about it</span>
+        <h2 id="honest-h">A new studio, run by one person. Here&rsquo;s exactly what that means.</h2>
+        <p>I&rsquo;d rather you know precisely what you&rsquo;re getting than oversell it. Small and new comes with real trade-offs &mdash; and real advantages. Both are on the table.</p>
+      </div>
+      <div class="honest-grid">
+        <div class="honest-col yes">
+          <span class="hk">What you get</span>
+          <h3>Depth, not scale.</h3>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>The <b>same person</b> designs, builds and answers your email &mdash; start to finish.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Your project gets <b>real attention</b>, not a slot in an agency&rsquo;s conveyor belt.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Straight answers, <b>one flat price</b> quoted upfront, and you own everything at the end.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Local and <b>bilingual</b> &mdash; we can do the whole thing in English or Spanish.</span></li>
+          </ul>
+        </div>
+        <div class="honest-col no">
+          <span class="hk">What I won&rsquo;t pretend</span>
+          <h3>No smoke, no mirrors.</h3>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><span>No <b>fake team page</b> &mdash; it&rsquo;s me. No stock-photo &ldquo;account executives.&rdquo;</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><span>No invented <b>&ldquo;20 years&rdquo; or a shelf of awards</b> &mdash; BANANAbyte is genuinely new.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><span>No wall of logos I didn&rsquo;t build. One real client, shown proudly &mdash; and honestly.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><span>No disappearing act &mdash; a <b>registered Florida LLC</b> with a real phone number.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA — GREEN close — warm, personal, back to starting a project -->
+  <section class="cta" data-theme="green" data-od-id="about-cta" aria-labelledby="cta-h">
+    <div class="wrap cta-inner">
+      <div class="cta-copy">
+        <span class="eyebrow">Let&rsquo;s make something</span>
+        <h2 id="cta-h">If you&rsquo;ve read this far, we should probably <span class="em">talk.</span></h2>
+        <p>Tell me what you&rsquo;re building &mdash; a few sentences is plenty. No pitch deck, no pressure. I read every message myself and reply within one business day, <b>even if it&rsquo;s just to say you don&rsquo;t need me yet.</b> Either way, you&rsquo;ll be talking to Gabe.</p>
+        <div class="cta-actions">
+          <a href="/contact/" class="btn btn-primary">Start a project <span class="arrow" aria-hidden="true">&rarr;</span></a>
+          <a href="/work/" class="btn btn-ghost">See the work first</a>
+        </div>
+      </div>
+      <aside class="cta-card">
+        <div class="signed">&mdash; Gabe</div>
+        <div class="signed-sub">founder &middot; designer &middot; developer</div>
+        <div class="facts">
+          <div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/><path d="m9 12 2 2 4-4"/></svg> <span><b>BANANAbyte LLC</b> &middot; Orlando, FL</span></div>
+          <div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14M5 8a7 7 0 0 0 7 7 7 7 0 0 0 7-7M5 8a7 7 0 0 1 7-7 7 7 0 0 1 7 7M5 21h14"/></svg> <span>Native <b>English + Spanish</b></span></div>
+          <div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg> <a href="tel:+13212023732"><b>(321)&nbsp;202-3732</b></a></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER — BLACK base — printed colophon -->
+<footer class="site" data-theme="black" data-od-id="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="wordmark" href="/preview-warm/" aria-label="BANANAbyte home">
+          <img class="brand-logo brand-logo--light" src="/brand/logo-light.svg" alt="BANANAbyte" width="150" height="41" style="display:block">
+        </a>
+        <p class="foot-blurb">A web studio in Orlando, FL. Fast, clean, custom websites, built right &mdash; by one person who cares.</p>
+        <p class="foot-quip">Powered by good coffee, clean code, and exactly one
+          <svg class="nana" viewBox="0 0 48 48" aria-hidden="true"><path fill="#F5C800" d="M11 9c-2 8 1 17 8 23 7 6 16 8 22 6 2-1 3-3 2-5-1-1-3-1-5 0-4 2-10 0-15-4C15 27 12 20 13 12c.4-2.5-1.6-4-2 -3z"/><path fill="none" stroke="#FAFAF7" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" d="M11.5 9.5c-2 8 1 16.5 8 22.5 7 6 16 8.5 22 6.5"/></svg>.
+        </p>
+      </div>
+      <nav class="foot-nav" aria-label="Footer">
+        <a href="/services/">Services</a>
+        <a href="/work/">Work</a>
+        <a href="/pricing/">Pricing</a>
+        <a href="/preview-warm/about/" aria-current="page">About</a>
+        <a href="/contact/">Contact</a>
+        <a href="mailto:contact@bananabyte.io">contact@bananabyte.io</a>
+      </nav>
+    </div>
+    <p class="foot-disclaimer">BANANAbyte is a one-person studio and a registered Florida LLC. The one client site shown is displayed with the owner&rsquo;s permission.</p>
+    <div class="foot-bottom">
+      <span>&copy; <span id="year">2026</span> BANANAbyte LLC &mdash; Orlando, FL. <span class="foot-built">Built by Gabe, an Orlando developer.</span></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* mark JS-on so the no-js fallback drops away */
+  document.body.classList.remove('no-js');
+
+  var rm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement;
+
+  /* ---- year ---- */
+  var y = document.getElementById('year'); if(y) y.textContent = new Date().getFullYear();
+
+  /* ---- sticky header state (border/shadow only — no color motion) ---- */
+  var header = document.getElementById('site-header');
+  function onHeader(){ if(header) header.classList.toggle('scrolled', window.scrollY > 12); }
+  onHeader();
+
+  /* ---- mobile drawer ---- */
+  var burger = document.getElementById('hamburger'), drawer = document.getElementById('mnav');
+  if(burger && drawer){
+    burger.addEventListener('click', function(){
+      var open = drawer.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    drawer.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ drawer.classList.remove('open'); burger.setAttribute('aria-expanded','false'); });
+    });
+  }
+
+  /* ============================================================
+     THE ONLY ANIMATION — SCROLL-DRIVEN COLOR CHANGE.
+     As the visitor scrolls up or down, the section nearest the middle of
+     the viewport decides the page theme; <html data-theme> flips and the
+     CSS transition on body/header/sections crossfades the whole palette
+     (white → green → black and back). It reverses on scroll-up because
+     the "dominant" section simply changes back.
+
+     Driven by ONE rAF-throttled scroll check (never a raw per-event
+     handler) + a resize listener. Under prefers-reduced-motion the theme
+     still applies but the CSS transition is ~0ms, so colors snap.
+     ============================================================ */
+  var themed = [].slice.call(document.querySelectorAll('[data-theme]'))
+    .filter(function(el){ return el.tagName === 'SECTION' || el.tagName === 'FOOTER'; });
+
+  var current = root.getAttribute('data-theme') || 'paper';
+  function pickTheme(){
+    var mid = window.innerHeight * 0.5;
+    var best = null, bestDist = Infinity;
+    for(var i=0;i<themed.length;i++){
+      var r = themed[i].getBoundingClientRect();
+      if(r.bottom < 0 || r.top > window.innerHeight) continue; /* off-screen */
+      /* distance from the section's covered span to the viewport midline */
+      var dist = (r.top > mid) ? (r.top - mid) : (r.bottom < mid ? (mid - r.bottom) : 0);
+      if(dist < bestDist){ bestDist = dist; best = themed[i]; }
+    }
+    var next = best ? best.getAttribute('data-theme') : current;
+    if(next && next !== current){ current = next; root.setAttribute('data-theme', next); }
+  }
+
+  var ticking = false;
+  function onScroll(){
+    onHeader();
+    if(ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(function(){ pickTheme(); ticking = false; });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll, {passive:true});
+  pickTheme(); /* set the correct starting theme immediately */
+
+  /* ---- the tiny one-shot banana easter-egg on logo click (the ONLY other
+         moving thing, kept intentionally) ---- */
+  var wordmark = document.getElementById('wordmark');
+  var mark = document.getElementById('banana-mark');
+  var NANA = '<svg viewBox="0 0 48 48" width="20" height="20" aria-hidden="true"><path fill="#F5C800" d="M11 9c-2 8 1 17 8 23 7 6 16 8 22 6 2-1 3-3 2-5-1-1-3-1-5 0-4 2-10 0-15-4C15 27 12 20 13 12c.4-2.5-1.6-4-2 -3z"/><path fill="none" stroke="#141412" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" d="M11.5 9.5c-2 8 1 16.5 8 22.5 7 6 16 8.5 22 6.5"/></svg>';
+  if(wordmark && mark){
+    wordmark.addEventListener('click', function(){
+      if(rm) return;
+      mark.classList.remove('spin'); void mark.getBoundingClientRect(); mark.classList.add('spin');
+      var r = mark.getBoundingClientRect();
+      var n = 3;
+      for(var i=0;i<n;i++){
+        (function(i){
+          var b = document.createElement('span');
+          b.className = 'banana-pop';
+          b.innerHTML = NANA;
+          b.setAttribute('aria-hidden','true');
+          var spread = (i - (n-1)/2) * 22 + (Math.random()*10 - 5);
+          b.style.left = (r.left + r.width/2 - 10) + 'px';
+          b.style.top  = (r.top + r.height/2 - 10) + 'px';
+          b.style.setProperty('--bx', spread.toFixed(1) + 'px');
+          b.style.setProperty('--br', ((Math.random()*60 - 30)|0) + 'deg');
+          b.style.animationDelay = (i*60) + 'ms';
+          document.body.appendChild(b);
+          b.addEventListener('animationend', function(){ b.remove(); });
+          setTimeout(function(){ if(b.parentNode) b.remove(); }, 1600);
+        })(i);
+      }
+    });
+  }
+
+  /* ============================================================
+     SIDE-GUTTER FIREWORKS — consistent with the homepage. Small yellow/
+     green spark bursts (+ the occasional drifting mote) appear in the
+     empty desktop side margins on a gentle timer, never over content.
+
+     Gated three ways: prefers-reduced-motion → never runs; the desktop
+     gutter query (min-width:1200px + hover + fine pointer, identical to the
+     homepage) → only then; document hidden → paused.
+     Compositor-cheap: transform + opacity only; nodes self-remove.
+     ============================================================ */
+  (function(){
+    var reduceMQ = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : {matches:false};
+    var deskMQ   = window.matchMedia ? window.matchMedia('(min-width: 1200px) and (hover: hover) and (pointer: fine)') : {matches:false};
+    var left  = document.getElementById('spark-left');
+    var right = document.getElementById('spark-right');
+    if(!left || !right) return;
+
+    var YELLOW = '#F5C800', GREEN = '#46E08B';
+    var timer = null;
+
+    function isActive(){ return deskMQ.matches && !reduceMQ.matches && !document.hidden; }
+
+    function spawn(){
+      if(!isActive()) return;
+      var gutter = Math.random() < 0.5 ? left : right;
+      var w = gutter.clientWidth;
+      if(w < 46){ return; }                       /* too thin — skip this tick */
+      var drift = Math.random() < 0.32;           /* ~1 in 3 is a soft drifting mote */
+      var s = document.createElement('span');
+      s.className = drift ? 'spark drift' : 'spark';
+      s.style.setProperty('--sk', Math.random() < 0.5 ? YELLOW : GREEN);
+      var pad = 20;
+      var x = pad + Math.random() * Math.max(1, (w - pad * 2));
+      var yy = window.innerHeight * (0.12 + Math.random() * 0.76);
+      s.style.left = x.toFixed(0) + 'px';
+      s.style.top  = yy.toFixed(0) + 'px';
+      gutter.appendChild(s);
+      s.addEventListener('animationend', function(){ s.remove(); });
+      setTimeout(function(){ if(s.parentNode) s.remove(); }, 5000);
+    }
+
+    function schedule(){
+      clearTimeout(timer);
+      var wait = 3500 + Math.random() * 3500;   /* every ~3.5–7s, irregular */
+      timer = setTimeout(function(){ spawn(); schedule(); }, wait);
+    }
+
+    function sync(){
+      if(isActive()){ if(!timer){ schedule(); } }
+      else { clearTimeout(timer); timer = null; }
+    }
+
+    (deskMQ.addEventListener ? deskMQ.addEventListener('change', sync) : deskMQ.addListener && deskMQ.addListener(sync));
+    (reduceMQ.addEventListener ? reduceMQ.addEventListener('change', sync) : reduceMQ.addListener && reduceMQ.addListener(sync));
+    document.addEventListener('visibilitychange', sync);
+
+    sync();
+  })();
+})();
+</script>
+</body>
+</html>
