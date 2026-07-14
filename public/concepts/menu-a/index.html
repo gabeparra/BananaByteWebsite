@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<!--
+  BANANAbyte — MOBILE MENU CONCEPT · DIRECTION A — "REFINED / PREMIUM-CALM"
+  ============================================================================
+  A self-contained demo of a premium slide-in drawer, shown ALREADY OPEN at a
+  phone width (~390px) so it can be screenshotted and judged.
+
+  Brand identity is matched to the LIVE site tokens (public/assets/site.css):
+    base   #08120C   panels #0E2316 / #16291E
+    banana #FFD23F   (primary action)   luminous green #3CF08A (glow accents)
+    type   Bricolage Grotesque (headings + body)  ·  Space Mono (eyebrows/spec)
+
+  DESIGN INTENT (quiet luxury, Linear/Apple-grade):
+    · generous whitespace + a confident type scale, comfortable line-height
+    · hairline dividers; moss/green accent only where it earns it
+    · a slim green accent RAIL on the open Services group
+    · top-level items read big & calm; service sub-items sit one tier quieter
+    · tidy EN | ES pill toggle; the CTA glows softly
+    · mobile-first, fits 390px, NO horizontal overflow
+
+  The drawer is rendered in its open state; the Services accordion is expanded
+  by default so all 7 services show. Tiny JS only powers the (optional) toggles
+  so the screenshot needs no interaction.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>BANANAbyte — Mobile Menu · Direction A (Refined)</title>
+<meta name="theme-color" content="#08120C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     TOKENS — lifted verbatim from the live shared site.css so the
+     drawer is brand-true rather than approximate.
+     ============================================================ */
+  :root{
+    --bg:#08120C;            /* deep moss base */
+    --bg-2:#0B1A11;          /* lifted moss base */
+    --panel:#0E2316;         /* damp moss panel */
+    --panel-2:#16291E;       /* lit moss panel */
+    --panel-3:#1B3325;       /* a touch lighter, for the open rail well */
+
+    --line:rgba(108,255,174,0.12);        /* faint green hairline */
+    --line-strong:rgba(108,255,174,0.22); /* stronger green hairline */
+
+    --ink:#F3FBEF;           /* cream w/ faint cool-green tint */
+    --ink-soft:#B9D6C2;      /* soft sage */
+    --ink-mute:#6E8C79;      /* muted moss-grey */
+
+    --accent:#FFD23F;        /* banana yellow */
+    --accent-hi:#FFE177;
+    --accent-deep:#E0B400;
+    --on-accent:#08120C;
+    --accent-soft:rgba(255,210,63,0.13);
+    --accent-line:rgba(255,210,63,0.40);
+
+    --green:#3CF08A;         /* luminous bioluminescent green */
+    --green-soft:rgba(60,240,138,0.11);
+    --green-line:rgba(60,240,138,0.40);
+    --green-glow:rgba(60,240,138,0.40);
+
+    --font-head:'Bricolage Grotesque', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-mono:'Space Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+    --radius:14px;
+    --radius-lg:20px;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:var(--font-head);
+    color:var(--ink);
+    background:var(--bg);
+    /* a subtle, brand-true ambient field behind the (dimmed) page so the
+       screenshot context reads like the real dark site, not a flat void */
+    background:
+      radial-gradient(120% 80% at 100% -10%, rgba(60,240,138,.06), transparent 60%),
+      radial-gradient(120% 90% at -10% 0%, rgba(255,210,63,.05), transparent 55%),
+      linear-gradient(180deg,#102117 0%, var(--bg) 46%);
+    min-height:100vh;min-height:100dvh;
+    overflow:hidden; /* this demo locks scroll like the real open-menu state */
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ============================================================
+     DIMMED PAGE BEHIND THE DRAWER — just enough faux-content to give
+     the open menu a real, premium context (it is not the subject).
+     ============================================================ */
+  .page{position:fixed;inset:0;padding:18px 20px}
+  .page-bar{
+    display:flex;align-items:center;justify-content:space-between;
+    height:56px;
+  }
+  .page .wordmark{opacity:.5}
+  .ghost-hamburger{
+    width:44px;height:44px;border-radius:12px;
+    border:1px solid var(--line-strong);background:transparent;opacity:.5;
+  }
+  .page-ghost{margin-top:34px;display:flex;flex-direction:column;gap:16px;opacity:.16}
+  .page-ghost .gh{height:13px;border-radius:7px;background:var(--ink)}
+  .page-ghost .gh.w1{width:62%;height:34px}
+  .page-ghost .gh.w2{width:84%}
+  .page-ghost .gh.w3{width:72%}
+  .page-ghost .gh.w4{width:48%}
+
+  /* backdrop scrim — soft, with a faint green bloom edge near the drawer */
+  .scrim{
+    position:fixed;inset:0;z-index:40;
+    background:radial-gradient(140% 120% at 100% 50%, rgba(0,0,0,.30), rgba(4,9,6,.66) 70%);
+    backdrop-filter:blur(3px) saturate(.9);
+    -webkit-backdrop-filter:blur(3px) saturate(.9);
+  }
+
+  /* ============================================================
+     THE WORDMARK — BANANA caps + byte lowercase, banana-yellow "nana".
+     Matches the live .wordmark exactly.
+     ============================================================ */
+  .wordmark{
+    font-family:var(--font-head);font-weight:800;letter-spacing:-0.03em;
+    line-height:1;font-size:1.22rem;display:inline-flex;align-items:center;
+    color:var(--ink);text-decoration:none;
+  }
+  .wordmark .ba{color:var(--ink)}
+  .wordmark .nana{color:var(--accent)}
+  .wordmark .byte{color:var(--accent);font-weight:700}
+
+  /* ============================================================
+     DRAWER — slide-in from the right, shown OPEN.
+     Refined/premium-calm: spacious, hairline structure, a single
+     soft glow on the brand spine + the CTA.
+     ============================================================ */
+  .drawer{
+    position:fixed;top:0;right:0;z-index:60;
+    width:min(90vw,372px);max-width:100%;
+    height:100%;height:100dvh;
+    display:flex;flex-direction:column;
+    background:
+      radial-gradient(120% 60% at 100% 0%, rgba(60,240,138,.07), transparent 58%),
+      linear-gradient(178deg, var(--panel-2) 0%, var(--panel) 30%, #0C1E13 100%);
+    border-left:1px solid var(--line-strong);
+    box-shadow:
+      -30px 0 80px -28px rgba(0,0,0,.85),
+      -1px 0 0 0 rgba(60,240,138,.10);     /* a hairline glow lip on the left edge */
+    overflow:hidden;
+  }
+  /* a single soft vertical brand glow running just inside the left edge */
+  .drawer::before{
+    content:"";position:absolute;left:0;top:14%;bottom:14%;width:1px;
+    background:linear-gradient(180deg,transparent,var(--green) 40%,var(--green) 60%,transparent);
+    opacity:.5;filter:blur(.5px);
+    box-shadow:0 0 16px 1px var(--green-glow);
+    pointer-events:none;
+  }
+
+  .d-scroll{
+    flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;
+    display:flex;flex-direction:column;
+    padding:calc(env(safe-area-inset-top,0px) + 12px) 22px 0;
+    /* hide scrollbar for a clean app-menu feel; content still scrolls */
+    scrollbar-width:none;
+  }
+  .d-scroll::-webkit-scrollbar{display:none}
+
+  /* ---------- HEADER: wordmark + close (X) ---------- */
+  .d-head{
+    display:flex;align-items:center;justify-content:space-between;
+    padding-bottom:10px;
+  }
+  .d-close{
+    width:42px;height:42px;flex:none;
+    display:inline-flex;align-items:center;justify-content:center;
+    border-radius:13px;
+    border:1px solid var(--line-strong);
+    background:rgba(8,18,12,.5);
+    color:var(--ink-soft);cursor:pointer;
+    transition:color .2s var(--ease),border-color .2s var(--ease),background .2s var(--ease),transform .2s var(--ease);
+  }
+  .d-close:hover,.d-close:focus-visible{
+    color:var(--ink);border-color:var(--accent-line);background:var(--accent-soft);
+    transform:rotate(90deg);outline:none;
+  }
+  .d-close svg{display:block}
+
+  /* a quiet mono eyebrow under the header — sets the "studio" tone */
+  .d-eyebrow{
+    font-family:var(--font-mono);font-weight:700;font-size:.62rem;
+    letter-spacing:.22em;text-transform:uppercase;color:var(--ink-mute);
+    padding:0 0 9px;
+  }
+  .d-eyebrow .dot{color:var(--green);text-shadow:0 0 10px var(--green-glow)}
+
+  /* ---------- PRIMARY NAV (top-level) ----------
+     Big, calm, confident. Hairline dividers. Generous min-height for
+     comfortable tap targets and an unhurried rhythm. */
+  .nav{display:flex;flex-direction:column}
+  .nav-row{
+    display:flex;align-items:center;justify-content:space-between;
+    width:100%;min-height:47px;
+    padding:8px 2px;
+    color:var(--ink);text-decoration:none;
+    font-family:var(--font-head);font-weight:700;font-size:1.24rem;
+    letter-spacing:-0.02em;line-height:1;
+    background:transparent;border:0;border-bottom:1px solid var(--line);
+    text-align:left;cursor:pointer;
+    transition:color .2s var(--ease),padding-left .22s var(--ease);
+  }
+  .nav-row:first-child{border-top:1px solid var(--line)}
+  /* leading hairline index — tiny mono numerals, premium-spec detail */
+  .nav-row .ix{
+    font-family:var(--font-mono);font-weight:400;font-size:.62rem;
+    color:var(--ink-mute);letter-spacing:.05em;
+    width:20px;flex:none;align-self:flex-start;margin-top:.5em;
+    transition:color .2s var(--ease);
+  }
+  .nav-row .label{flex:1;min-width:0}
+  .nav-row:hover,.nav-row:focus-visible{color:var(--green);padding-left:8px;outline:none}
+  .nav-row:hover .ix,.nav-row:focus-visible .ix{color:var(--green)}
+
+  /* the Services trigger carries a chevron that rotates when open */
+  .svc-caret{
+    flex:none;color:var(--ink-mute);display:inline-flex;
+    transition:transform .3s var(--ease),color .2s var(--ease);
+  }
+  .svc-caret svg{display:block}
+  .svc-trigger[aria-expanded="true"] .svc-caret{transform:rotate(180deg);color:var(--green)}
+  .svc-trigger[aria-expanded="true"]{color:var(--ink)}
+
+  /* a tiny green presence dot trailing top-level rows that link out, kept
+     ultra-minimal (only Contact gets one, as the "live" action) */
+  .nav-row .go{
+    flex:none;color:var(--ink-mute);font-size:1.1rem;line-height:1;
+    transition:color .2s var(--ease),transform .22s var(--ease);
+  }
+  .nav-row:hover .go{color:var(--green);transform:translateX(3px)}
+
+  /* ============================================================
+     SERVICES GROUP (expanded) — sits ONE tier quieter than top-level.
+     A slim luminous-green accent RAIL runs down the left of the group,
+     binding the seven items together as a sub-region. The items get a
+     softly inset well so the hierarchy reads instantly.
+     ============================================================ */
+  .svc-panel{
+    position:relative;
+    margin:2px 0 2px 2px;
+    padding:3px 0 6px 18px;
+    border-bottom:1px solid var(--line);
+    /* the accent rail */
+  }
+  .svc-panel::before{
+    content:"";position:absolute;left:0;top:6px;bottom:14px;width:2px;border-radius:2px;
+    background:linear-gradient(180deg,var(--green),rgba(60,240,138,.25));
+    box-shadow:0 0 12px 0 var(--green-glow);
+  }
+  .svc-eyebrow{
+    font-family:var(--font-mono);font-weight:700;font-size:.6rem;
+    letter-spacing:.2em;text-transform:uppercase;color:var(--green);
+    margin:1px 0 6px;
+  }
+  .svc-item{
+    display:block;text-decoration:none;
+    padding:5px 2px;
+    border-bottom:1px solid var(--line);
+    transition:padding-left .2s var(--ease);
+  }
+  .svc-item:last-of-type{border-bottom:0}
+  .svc-name{
+    display:block;font-family:var(--font-head);font-weight:600;
+    font-size:1rem;letter-spacing:-0.01em;color:var(--ink);line-height:1.12;
+    transition:color .18s var(--ease);
+  }
+  .svc-desc{
+    display:block;margin-top:2px;
+    font-family:var(--font-head);font-weight:400;font-size:.8rem;line-height:1.34;
+    color:var(--ink-soft);
+  }
+  .svc-item:hover,.svc-item:focus-visible{padding-left:6px;outline:none}
+  .svc-item:hover .svc-name,.svc-item:focus-visible .svc-name{color:var(--green)}
+
+  .svc-all{
+    display:inline-flex;align-items:center;gap:8px;
+    margin-top:9px;
+    font-family:var(--font-head);font-weight:700;font-size:.9rem;
+    letter-spacing:-0.01em;color:var(--accent);text-decoration:none;
+    transition:color .18s var(--ease);
+  }
+  .svc-all .arrow{transition:transform .25s var(--ease)}
+  .svc-all:hover{color:var(--accent-hi)}
+  .svc-all:hover .arrow{transform:translateX(4px)}
+
+  /* ============================================================
+     FOOTER — pinned bottom: language pill + soft-glowing CTA.
+     A hairline separates it from the scrolling nav above.
+     ============================================================ */
+  .d-foot{
+    flex:none;
+    padding:13px 22px calc(env(safe-area-inset-bottom,0px) + 15px);
+    border-top:1px solid var(--line);
+    background:linear-gradient(180deg, transparent, rgba(8,18,12,.35));
+    display:flex;flex-direction:column;gap:11px;
+  }
+
+  /* ---------- EN | ES — a tidy segmented pill ---------- */
+  .lang{
+    align-self:flex-start;
+    display:inline-flex;align-items:center;
+    padding:3px;border-radius:999px;
+    border:1px solid var(--line-strong);
+    background:rgba(8,18,12,.5);
+  }
+  .lang button{
+    appearance:none;border:0;cursor:pointer;
+    font-family:var(--font-mono);font-weight:700;font-size:.72rem;letter-spacing:.08em;
+    padding:7px 15px;border-radius:999px;
+    background:transparent;color:var(--ink-mute);
+    transition:color .2s var(--ease),background .2s var(--ease);
+  }
+  .lang button[aria-pressed="true"]{
+    color:var(--on-accent);
+    background:var(--accent);
+    box-shadow:0 4px 14px -6px rgba(255,210,63,.6);
+  }
+  .lang .sep{width:1px;height:14px;background:var(--line-strong);margin:0 1px}
+  .lang button:not([aria-pressed="true"]):hover{color:var(--ink)}
+
+  /* ---------- CTA — banana fill, soft glow ---------- */
+  .cta{
+    display:inline-flex;align-items:center;justify-content:center;gap:9px;
+    width:100%;min-height:52px;padding:0 22px;
+    border-radius:14px;border:0;cursor:pointer;text-decoration:none;
+    font-family:var(--font-head);font-weight:800;font-size:1.02rem;letter-spacing:-0.01em;
+    color:var(--on-accent);
+    background:linear-gradient(180deg,var(--accent-hi),var(--accent) 55%,var(--accent-deep));
+    box-shadow:
+      0 1px 0 0 rgba(255,255,255,.25) inset,
+      0 0 0 1px var(--accent-deep),
+      0 14px 34px -12px rgba(255,210,63,.55),
+      0 0 40px -16px rgba(255,210,63,.7);
+    transition:transform .2s var(--ease),box-shadow .2s var(--ease);
+  }
+  .cta .arrow{transition:transform .25s var(--ease)}
+  .cta:hover{
+    transform:translateY(-1px);
+    box-shadow:
+      0 1px 0 0 rgba(255,255,255,.3) inset,
+      0 0 0 1px var(--accent-deep),
+      0 18px 40px -12px rgba(255,210,63,.7),
+      0 0 52px -14px rgba(255,210,63,.85);
+  }
+  .cta:hover .arrow{transform:translateX(4px)}
+
+  /* a whisper of mono fine print under the CTA — premium reassurance */
+  .d-fineprint{
+    font-family:var(--font-mono);font-size:.62rem;letter-spacing:.04em;
+    color:var(--ink-mute);text-align:center;margin:-4px 0 0;
+  }
+  .d-fineprint b{color:var(--ink-soft);font-weight:400}
+
+  /* respect reduced motion */
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none !important;animation:none !important}
+  }
+</style>
+</head>
+<body>
+
+  <!-- ===== dimmed page behind the drawer (context only) ===== -->
+  <div class="page" aria-hidden="true">
+    <div class="page-bar">
+      <span class="wordmark"><span class="ba">BA</span><span class="nana">NANA</span><span class="byte">byte</span></span>
+      <span class="ghost-hamburger"></span>
+    </div>
+    <div class="page-ghost">
+      <span class="gh w1"></span>
+      <span class="gh w2"></span>
+      <span class="gh w3"></span>
+      <span class="gh w4"></span>
+    </div>
+  </div>
+
+  <!-- backdrop scrim -->
+  <div class="scrim" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       DRAWER (open) — Direction A · Refined / Premium-Calm
+       ============================================================ -->
+  <nav class="drawer" aria-label="Mobile menu">
+
+    <div class="d-scroll">
+
+      <!-- header: wordmark + close (X) -->
+      <div class="d-head">
+        <a class="wordmark" href="#" aria-label="BANANAbyte home">
+          <span class="ba">BA</span><span class="nana">NANA</span><span class="byte">byte</span>
+        </a>
+        <button class="d-close" type="button" aria-label="Close menu">
+          <svg viewBox="0 0 22 22" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+            <path d="M5 5l12 12M17 5L5 17"/>
+          </svg>
+        </button>
+      </div>
+
+      <p class="d-eyebrow">Menu <span class="dot">·</span> Orlando studio</p>
+
+      <!-- top-level nav -->
+      <div class="nav">
+
+        <!-- Services — expandable trigger -->
+        <button class="nav-row svc-trigger" type="button" aria-expanded="true" aria-controls="svc-panel">
+          <span class="ix">01</span>
+          <span class="label">Services</span>
+          <span class="svc-caret" aria-hidden="true">
+            <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+          </span>
+        </button>
+
+        <!-- expanded services group: slim green rail + 7 items + see-all -->
+        <div class="svc-panel" id="svc-panel">
+          <p class="svc-eyebrow">What I build</p>
+
+          <a class="svc-item" href="#">
+            <span class="svc-name">Website design</span>
+            <span class="svc-desc">Custom sites for local businesses &amp; pros.</span>
+          </a>
+          <a class="svc-item" href="#">
+            <span class="svc-name">Online stores</span>
+            <span class="svc-desc">Sell online — storefront, cart, checkout.</span>
+          </a>
+          <a class="svc-item" href="#">
+            <span class="svc-name">Performer sites</span>
+            <span class="svc-desc">Tour dates, booking, reels, EPK.</span>
+          </a>
+          <a class="svc-item" href="#">
+            <span class="svc-name">Redesign &amp; refresh</span>
+            <span class="svc-desc">Modernize a tired or slow site.</span>
+          </a>
+          <a class="svc-item" href="#">
+            <span class="svc-name">Website care</span>
+            <span class="svc-desc">Updates, backups, monitoring, edits.</span>
+          </a>
+          <a class="svc-item" href="#">
+            <span class="svc-name">AI Front Desk</span>
+            <span class="svc-desc">24/7 bilingual assistant + missed-call text-back.</span>
+          </a>
+          <a class="svc-item" href="#">
+            <span class="svc-name">Local SEO</span>
+            <span class="svc-desc">Get found on Google &amp; the map.</span>
+          </a>
+
+          <a class="svc-all" href="#">See all services <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+
+        <!-- remaining top-level items -->
+        <a class="nav-row" href="#">
+          <span class="ix">02</span>
+          <span class="label">Work</span>
+        </a>
+        <a class="nav-row" href="#">
+          <span class="ix">03</span>
+          <span class="label">Pricing</span>
+        </a>
+        <a class="nav-row" href="#">
+          <span class="ix">04</span>
+          <span class="label">Contact</span>
+          <span class="go" aria-hidden="true">→</span>
+        </a>
+      </div>
+
+    </div><!-- /.d-scroll -->
+
+    <!-- pinned footer: language pill + glowing CTA -->
+    <div class="d-foot">
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" aria-pressed="true">EN</button>
+        <span class="sep" aria-hidden="true"></span>
+        <button type="button" aria-pressed="false">ES</button>
+      </div>
+
+      <a class="cta" href="#">Start a project <span class="arrow" aria-hidden="true">→</span></a>
+      <p class="d-fineprint">Flat pricing · <b>you own everything</b></p>
+    </div>
+
+  </nav>
+
+  <!-- ============================================================
+       Tiny JS — optional only. The drawer ships OPEN and the Services
+       group ships EXPANDED so the static screenshot needs no input.
+       These handlers just make the demo feel alive if poked.
+       ============================================================ -->
+  <script>
+    (function(){
+      var trigger = document.querySelector('.svc-trigger');
+      var panel   = document.getElementById('svc-panel');
+      if(trigger && panel){
+        trigger.addEventListener('click', function(){
+          var open = trigger.getAttribute('aria-expanded') === 'true';
+          trigger.setAttribute('aria-expanded', String(!open));
+          panel.style.display = open ? 'none' : '';
+        });
+      }
+      // EN | ES toggle
+      document.querySelectorAll('.lang button').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          document.querySelectorAll('.lang button').forEach(function(b){
+            b.setAttribute('aria-pressed', String(b === btn));
+          });
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>

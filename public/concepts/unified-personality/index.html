@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BANANAbyte — the web studio with a personality</title>
+<meta name="description" content="An Orlando web studio that builds fast, clean, custom sites for local businesses and performers alike. Flat pricing, real work, one banana with a plan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  /* ============ TOKENS — the loved anchors, kept faithfully ============ */
+  :root{
+    --moss:#0C1810;          /* mossy green-black base */
+    --moss-2:#0F2016;        /* raised panel */
+    --moss-3:#13261B;        /* card */
+    --ink:#EAF4ED;           /* near-white, faint cool-green */
+    --ink-soft:#AEC7B9;      /* soft sage */
+    --ink-mute:#7D9C8B;      /* muted moss-grey */
+    --banana:#F5C800;        /* banana yellow — the signature */
+    --banana-hi:#FFE266;
+    --green:#2FE88C;         /* bioluminescent glow green */
+    --green-glow:rgba(47,232,140,.35);
+    --green-line:rgba(90,230,150,.42);
+    --banana-soft:rgba(245,200,0,.13);
+    --banana-line:rgba(245,200,0,.40);
+    --line:rgba(174,199,185,.14);
+    --line-2:rgba(174,199,185,.22);
+    --on-banana:#1A1500;
+    --font-display:"Bricolage Grotesque",system-ui,sans-serif;
+    --font-body:"Space Grotesk",system-ui,sans-serif;
+    --font-mono:"JetBrains Mono",ui-monospace,monospace;
+    --r:18px;
+    --maxw:1140px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    background:var(--moss);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.55;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+    /* faint bioluminescent bloom anchored top + a banana warmth lower-right */
+    background-image:
+      radial-gradient(900px 520px at 18% -8%, rgba(47,232,140,.14), transparent 60%),
+      radial-gradient(700px 600px at 108% 30%, rgba(245,200,0,.07), transparent 55%);
+    background-attachment:fixed;
+  }
+  ::selection{background:var(--banana);color:var(--on-banana)}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+  .mono{font-family:var(--font-mono);letter-spacing:.02em}
+  .eyebrow{
+    font-family:var(--font-mono);font-size:.72rem;font-weight:600;
+    letter-spacing:.22em;text-transform:uppercase;color:var(--green);
+    display:inline-flex;align-items:center;gap:9px;
+  }
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--green-line);box-shadow:0 0 8px var(--green-glow)}
+
+  /* ============ NAV ============ */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(12px);
+    background:rgba(10,21,14,.72);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .brand{display:flex;align-items:center;gap:11px;font-family:var(--font-display);font-weight:800;font-size:1.22rem;letter-spacing:-.02em}
+  .brand .nana{color:var(--banana)}
+  .brand .byte{color:var(--ink-soft);font-weight:600}
+  /* the mascot — a confident little banana */
+  .mascot{width:34px;height:34px;flex:none;display:block;filter:drop-shadow(0 3px 10px rgba(245,200,0,.35))}
+  .mascot .peel{transform-origin:50% 8%;animation:wiggle 5.5s ease-in-out infinite}
+  @keyframes wiggle{0%,88%,100%{transform:rotate(0)}92%{transform:rotate(-7deg)}96%{transform:rotate(6deg)}}
+  .nav-links{display:flex;align-items:center;gap:26px}
+  .nav-links a:not(.cta){color:var(--ink-soft);font-size:.93rem;font-weight:500;position:relative;transition:color .2s}
+  .nav-links a:not(.cta)::after{content:"";position:absolute;left:0;bottom:-5px;height:2px;width:0;background:var(--banana);transition:width .25s;border-radius:2px}
+  .nav-links a:not(.cta):hover{color:var(--ink)}
+  .nav-links a:not(.cta):hover::after{width:100%}
+  .cta{
+    font-weight:600;font-size:.9rem;padding:9px 17px;border-radius:11px;
+    background:var(--banana);color:var(--on-banana);
+    box-shadow:0 10px 26px -12px rgba(245,200,0,.7);
+    transition:transform .18s,box-shadow .18s;
+  }
+  .cta:hover{transform:translateY(-2px);box-shadow:0 14px 30px -10px rgba(245,200,0,.8)}
+  .menu-btn{display:none;background:none;border:1px solid var(--line-2);color:var(--ink);width:42px;height:38px;border-radius:10px;font-size:1.1rem;cursor:pointer}
+
+  /* ============ HERO ============ */
+  .hero{padding:74px 0 64px;position:relative}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:54px;align-items:center}
+  .pill{
+    display:inline-flex;align-items:center;gap:9px;
+    font-family:var(--font-mono);font-size:.74rem;font-weight:600;letter-spacing:.04em;
+    color:var(--ink-soft);background:var(--moss-3);
+    border:1px solid var(--line-2);border-radius:999px;padding:7px 14px;
+  }
+  .pill .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 var(--green-glow);animation:pulse 2.4s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 var(--green-glow)}70%{box-shadow:0 0 0 7px rgba(47,232,140,0)}100%{box-shadow:0 0 0 0 rgba(47,232,140,0)}}
+
+  h1.hero-h{
+    font-family:var(--font-display);font-weight:800;
+    font-size:clamp(2.5rem,6.4vw,4.4rem);line-height:.99;letter-spacing:-.03em;
+    margin:22px 0 0;
+  }
+  h1.hero-h .glow{
+    color:var(--green);
+    text-shadow:0 0 26px var(--green-glow);
+  }
+  h1.hero-h .nana-u{
+    color:var(--banana);position:relative;white-space:nowrap;
+  }
+  h1.hero-h .nana-u::after{
+    content:"";position:absolute;left:0;right:0;bottom:.04em;height:.11em;border-radius:99px;
+    background:var(--banana);opacity:.32;
+  }
+  .hero-lede{color:var(--ink-soft);font-size:clamp(1.02rem,1.7vw,1.18rem);max-width:33ch;margin-top:22px}
+  .hero-lede b{color:var(--ink);font-weight:600}
+
+  .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+  .btn{font-family:var(--font-body);font-weight:600;font-size:.98rem;padding:13px 22px;border-radius:13px;cursor:pointer;transition:transform .18s,box-shadow .18s,border-color .18s,background .18s}
+  .btn-primary{background:var(--banana);color:var(--on-banana);border:1px solid var(--banana);box-shadow:0 14px 32px -14px rgba(245,200,0,.7)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 38px -12px rgba(245,200,0,.85)}
+  .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line-2)}
+  .btn-ghost:hover{border-color:var(--green-line);box-shadow:0 0 22px -6px var(--green-glow);transform:translateY(-2px)}
+
+  .hero-trust{display:flex;align-items:center;gap:10px;margin-top:24px;color:var(--ink-mute);font-size:.9rem}
+  .hero-trust svg{width:17px;height:17px;color:var(--green);flex:none}
+  .hero-trust b{color:var(--ink-soft)}
+
+  /* HERO ART — a "browser" card that's clearly a real site, with a banana running it */
+  .hero-art{position:relative}
+  .browser{
+    background:var(--moss-2);border:1px solid var(--line-2);border-radius:16px;overflow:hidden;
+    box-shadow:0 40px 90px -40px rgba(0,0,0,.8), 0 0 0 1px rgba(47,232,140,.06);
+    animation:float 7s ease-in-out infinite;
+  }
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+  .browser-bar{display:flex;align-items:center;gap:7px;padding:11px 14px;border-bottom:1px solid var(--line);background:rgba(0,0,0,.18)}
+  .browser-bar i{width:11px;height:11px;border-radius:50%;background:#2b3a31;display:block}
+  .browser-bar i:nth-child(1){background:#FF8A8E55}
+  .browser-bar i:nth-child(2){background:#F5C80055}
+  .browser-bar i:nth-child(3){background:#2FE88C55}
+  .browser-bar .url{margin-left:10px;font-family:var(--font-mono);font-size:.72rem;color:var(--ink-mute);background:var(--moss);padding:5px 12px;border-radius:8px;flex:1;border:1px solid var(--line)}
+  .browser-body{padding:22px;display:grid;gap:14px}
+  .sk-row{display:flex;align-items:center;gap:12px}
+  .sk-av{width:42px;height:42px;border-radius:11px;background:linear-gradient(135deg,var(--banana),var(--green));flex:none}
+  .sk-line{height:11px;border-radius:6px;background:var(--moss-3)}
+  .sk-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px}
+  .sk-card{background:var(--moss-3);border:1px solid var(--line);border-radius:12px;height:78px;padding:13px;display:flex;flex-direction:column;justify-content:flex-end;gap:8px}
+  .sk-tag{font-family:var(--font-mono);font-size:.62rem;color:var(--green);letter-spacing:.08em}
+  .sk-btn{margin-top:6px;align-self:flex-start;background:var(--banana);color:var(--on-banana);font-family:var(--font-body);font-weight:600;font-size:.78rem;padding:8px 14px;border-radius:9px}
+  /* the badge — mascot pokes out of the card */
+  .ship-badge{
+    position:absolute;right:-14px;top:-18px;z-index:3;
+    background:var(--moss-2);border:1px solid var(--green-line);
+    border-radius:14px;padding:10px 13px;display:flex;align-items:center;gap:10px;
+    box-shadow:0 18px 40px -18px rgba(0,0,0,.7), 0 0 26px -8px var(--green-glow);
+    animation:float 7s ease-in-out infinite .6s;
+  }
+  .ship-badge .mascot{width:30px;height:30px}
+  .ship-badge .t{font-family:var(--font-mono);font-size:.72rem;line-height:1.3}
+  .ship-badge .t b{color:var(--green);display:block;font-size:.78rem}
+  .ship-badge .t span{color:var(--ink-mute)}
+
+  /* logo ticker — quiet credibility */
+  .ticker{margin-top:54px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0;overflow:hidden}
+  .ticker-in{display:flex;gap:46px;width:max-content;animation:slide 26s linear infinite;color:var(--ink-mute);font-family:var(--font-mono);font-size:.82rem;letter-spacing:.04em;white-space:nowrap}
+  .ticker:hover .ticker-in{animation-play-state:paused}
+  .ticker-in span{display:inline-flex;align-items:center;gap:46px}
+  .ticker-in span::after{content:"🍌";font-size:.7rem;opacity:.5}
+  @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ============ SECTION SHELL ============ */
+  section.band{padding:84px 0}
+  .sec-head{max-width:60ch}
+  .sec-head h2{font-family:var(--font-display);font-weight:700;font-size:clamp(1.9rem,4vw,2.9rem);line-height:1.04;letter-spacing:-.025em;margin-top:14px}
+  .sec-head p{color:var(--ink-soft);margin-top:14px;font-size:1.04rem;max-width:54ch}
+
+  /* ============ WHAT I BUILD / WHO IT'S FOR — ONE audience ============ */
+  .one-roof{margin-top:46px}
+  .roof-banner{
+    display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px 22px;
+    background:linear-gradient(180deg,var(--moss-2),var(--moss-3));
+    border:1px solid var(--line-2);border-radius:var(--r);
+    padding:22px 26px;text-align:center;
+  }
+  .roof-banner .who{font-family:var(--font-display);font-weight:700;font-size:clamp(1.05rem,2.4vw,1.5rem);color:var(--ink)}
+  .roof-banner .amp{color:var(--banana);font-size:1.3em;line-height:1;transform:translateY(2px)}
+  .roof-banner .sub{flex-basis:100%;color:var(--ink-mute);font-family:var(--font-mono);font-size:.78rem;letter-spacing:.04em;margin-top:4px}
+  .roof-banner .sub .g{color:var(--green)}
+
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+  .svc{
+    background:var(--moss-2);border:1px solid var(--line);border-radius:var(--r);
+    padding:24px 22px;position:relative;overflow:hidden;
+    transition:transform .22s,border-color .22s,box-shadow .22s;
+  }
+  .svc::before{content:"";position:absolute;inset:0;border-radius:var(--r);padding:1px;background:linear-gradient(135deg,transparent 60%,var(--green-line));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .22s}
+  .svc:hover{transform:translateY(-4px);border-color:var(--line-2);box-shadow:0 26px 50px -30px rgba(0,0,0,.8)}
+  .svc:hover::before{opacity:1}
+  .svc .ic{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;background:var(--banana-soft);border:1px solid var(--banana-line);color:var(--banana);margin-bottom:16px}
+  .svc .ic svg{width:21px;height:21px}
+  .svc h3{font-family:var(--font-display);font-weight:600;font-size:1.18rem;letter-spacing:-.01em}
+  .svc p{color:var(--ink-soft);font-size:.95rem;margin-top:8px}
+  .svc .for{margin-top:14px;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.05em;color:var(--ink-mute);display:flex;flex-wrap:wrap;gap:6px}
+  .svc .for b{color:var(--green);font-weight:600}
+
+  /* ============ PERSONALITY / VOICE MOMENT ============ */
+  .voice{position:relative;background:linear-gradient(180deg,var(--moss-2),var(--moss));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .voice-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:center}
+  .voice-stage{position:relative;display:grid;place-items:center;min-height:280px}
+  .stage-glow{position:absolute;width:230px;height:230px;border-radius:50%;background:radial-gradient(circle,var(--green-glow),transparent 68%);filter:blur(8px);animation:breathe 5s ease-in-out infinite}
+  @keyframes breathe{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(1.12);opacity:1}}
+  .mascot-big{width:170px;height:170px;position:relative;z-index:2;filter:drop-shadow(0 16px 28px rgba(0,0,0,.5))}
+  .mascot-big .peel{transform-origin:50% 10%;animation:wiggle 4.5s ease-in-out infinite}
+  .speech{
+    position:absolute;z-index:3;top:6px;right:-6px;
+    background:var(--banana);color:var(--on-banana);
+    font-family:var(--font-display);font-weight:700;font-size:.86rem;
+    padding:8px 14px;border-radius:13px 13px 13px 3px;
+    box-shadow:0 12px 26px -12px rgba(245,200,0,.7);
+    animation:float 6s ease-in-out infinite;
+  }
+  .voice-copy blockquote{
+    font-family:var(--font-display);font-weight:600;
+    font-size:clamp(1.35rem,3vw,2.05rem);line-height:1.18;letter-spacing:-.02em;
+    margin:0;
+  }
+  .voice-copy blockquote .hl{color:var(--banana)}
+  .voice-copy blockquote .g{color:var(--green);text-shadow:0 0 22px var(--green-glow)}
+  .voice-copy .by{margin-top:22px;color:var(--ink-soft);font-size:1rem;max-width:46ch}
+  .voice-copy .by b{color:var(--ink)}
+  .promise{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+  .promise span{
+    font-family:var(--font-mono);font-size:.78rem;color:var(--ink-soft);
+    background:var(--moss-3);border:1px solid var(--line-2);border-radius:999px;padding:7px 14px;
+    display:inline-flex;align-items:center;gap:8px;transition:border-color .2s,color .2s,transform .2s;
+  }
+  .promise span:hover{border-color:var(--banana-line);color:var(--ink);transform:translateY(-2px)}
+  .promise span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green-glow)}
+
+  /* ============ TRUST / REAL CLIENT ============ */
+  .trust-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center;margin-top:46px}
+  .client-card{
+    background:var(--moss-2);border:1px solid var(--line-2);border-radius:var(--r);overflow:hidden;
+    box-shadow:0 34px 70px -40px rgba(0,0,0,.8);
+    transition:transform .25s,box-shadow .25s;
+  }
+  .client-card:hover{transform:translateY(-5px);box-shadow:0 40px 80px -36px rgba(0,0,0,.85),0 0 30px -10px var(--green-glow)}
+  .client-shot{position:relative;aspect-ratio:16/10;background:
+      radial-gradient(120% 140% at 70% 0%, rgba(245,200,0,.16), transparent 55%),
+      linear-gradient(160deg,#1a1320,#0c1810);
+    display:grid;place-items:center;overflow:hidden}
+  .client-shot .spot{position:absolute;width:280px;height:340px;top:-120px;background:conic-gradient(from 180deg at 50% 0,transparent 42%,rgba(245,200,0,.22) 50%,transparent 58%);filter:blur(2px)}
+  .client-shot .stagefloor{position:absolute;bottom:0;left:0;right:0;height:42%;background:linear-gradient(0deg,rgba(0,0,0,.45),transparent)}
+  .client-shot .figure{position:relative;z-index:2;text-align:center}
+  .client-shot .figure .nm{font-family:var(--font-display);font-weight:800;font-size:1.7rem;color:var(--ink);letter-spacing:-.02em}
+  .client-shot .figure .rl{font-family:var(--font-mono);font-size:.74rem;color:var(--banana);letter-spacing:.1em;text-transform:uppercase;margin-top:6px}
+  .client-shot .live{position:absolute;top:14px;left:14px;z-index:3;font-family:var(--font-mono);font-size:.66rem;letter-spacing:.12em;color:var(--green);display:flex;align-items:center;gap:7px;background:rgba(10,21,14,.6);border:1px solid var(--green-line);border-radius:999px;padding:5px 11px}
+  .client-shot .live i{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green-glow);animation:pulse 2.4s infinite}
+  .client-meta{padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--line)}
+  .client-meta .u{font-family:var(--font-mono);font-size:.8rem;color:var(--ink-soft)}
+  .client-meta a{font-weight:600;font-size:.86rem;color:var(--green);display:inline-flex;gap:6px;align-items:center}
+  .client-meta a:hover{text-decoration:underline}
+
+  .trust-copy .stars{color:var(--banana);font-size:1.05rem;letter-spacing:3px}
+  .trust-copy blockquote{font-family:var(--font-display);font-weight:600;font-size:clamp(1.2rem,2.4vw,1.55rem);line-height:1.3;letter-spacing:-.015em;margin:14px 0 0}
+  .trust-copy .cite{margin-top:18px;display:flex;align-items:center;gap:13px}
+  .trust-copy .cite .av{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--banana),var(--green));flex:none;display:grid;place-items:center;font-family:var(--font-display);font-weight:800;color:var(--on-banana);font-size:1.05rem}
+  .trust-copy .cite .who b{display:block;font-weight:700}
+  .trust-copy .cite .who span{color:var(--ink-mute);font-size:.86rem;font-family:var(--font-mono)}
+  .stat-row{display:flex;gap:30px;margin-top:30px;flex-wrap:wrap}
+  .stat .n{font-family:var(--font-display);font-weight:800;font-size:1.9rem;color:var(--ink);line-height:1}
+  .stat .n .g{color:var(--green)}
+  .stat .l{color:var(--ink-mute);font-family:var(--font-mono);font-size:.72rem;letter-spacing:.06em;margin-top:5px}
+
+  /* ============ CLOSER ============ */
+  .closer{text-align:center;padding:96px 0 90px;position:relative}
+  .closer h2{font-family:var(--font-display);font-weight:800;font-size:clamp(2.1rem,5.4vw,3.6rem);line-height:1.02;letter-spacing:-.03em}
+  .closer h2 .nana-u{color:var(--banana)}
+  .closer p{color:var(--ink-soft);max-width:46ch;margin:18px auto 0;font-size:1.06rem}
+  .closer .hero-cta{justify-content:center}
+  .closer .fine{margin-top:20px;color:var(--ink-mute);font-family:var(--font-mono);font-size:.78rem}
+
+  /* ============ FOOTER ============ */
+  footer{border-top:1px solid var(--line);padding:30px 0 40px}
+  .foot-in{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;color:var(--ink-mute);font-size:.86rem}
+  .foot-in .brand{font-size:1.05rem}
+
+  /* reveal */
+  [data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+  [data-reveal].in{opacity:1;transform:none}
+
+  /* ============ RESPONSIVE ============ */
+  @media(max-width:980px){
+    .hero-grid{grid-template-columns:1fr;gap:40px}
+    .hero-art{max-width:460px}
+    .voice-grid,.trust-grid{grid-template-columns:1fr;gap:36px}
+    .voice-stage{min-height:240px;order:-1}
+    .svc-grid{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:640px){
+    .nav-links{display:none}
+    .menu-btn{display:block}
+    .nav-links.open{display:flex;position:absolute;top:68px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--moss-2);border-bottom:1px solid var(--line-2);padding:8px 24px 18px}
+    .nav-links.open a:not(.cta){padding:13px 0;border-bottom:1px solid var(--line)}
+    .nav-links.open .cta{margin-top:12px;text-align:center}
+    .hero{padding:48px 0 44px}
+    section.band{padding:60px 0}
+    .svc-grid{grid-template-columns:1fr}
+    .stat-row{gap:22px}
+    .ship-badge{right:6px;top:-14px}
+    .roof-banner{padding:18px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;scroll-behavior:auto}
+    [data-reveal]{opacity:1;transform:none;transition:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- MASCOT SVG TEMPLATE (reused) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="banana" viewBox="0 0 64 64">
+    <g class="peel">
+      <path d="M14 13c-2 6-2 16 4 26s17 16 28 15c4 0 6-2 5-5-9 3-19-2-25-11S16 18 18 12c1-3-3-2-4 1z" fill="#3A2E05"/>
+    </g>
+    <path d="M16 12c-3 8-2 19 5 29s19 17 30 14c3-1 4-4 2-6-2-2-5-1-8-1-9-1-17-7-22-16S20 16 22 9c1-3-5-2-6 3z" fill="#F5C800"/>
+    <path d="M18 14c-2 7-1 17 5 26s17 15 26 14c-9 0-18-6-23-15S20 19 22 12c0-2-3-1-4 2z" fill="#FFE266" opacity=".7"/>
+    <circle cx="27" cy="26" r="2.4" fill="#1A1500"/>
+    <circle cx="36" cy="30" r="2.4" fill="#1A1500"/>
+    <path d="M28 35c3 3 7 4 10 1" stroke="#1A1500" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  </symbol>
+</svg>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#" aria-label="BANANAbyte home">
+      <svg class="mascot" aria-hidden="true"><use href="#banana"/></svg>
+      <span><span class="nana">BANANA</span><span class="byte">byte</span></span>
+    </a>
+    <nav class="nav-links" id="nav">
+      <a href="#build">What I build</a>
+      <a href="#voice">Why me</a>
+      <a href="#work">Real work</a>
+      <a class="cta" href="#start">Start a project</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="pill" data-reveal><span class="dot"></span> Orlando web studio · one banana, fully booked</span>
+      <h1 class="hero-h" data-reveal>
+        Websites that <span class="glow">work as hard</span> as you do — and are way more <span class="nana-u">fun</span> to show off.
+      </h1>
+      <p class="hero-lede" data-reveal>
+        BANANAbyte 🍌 is a one-person web studio in Orlando. I build fast, clean, custom sites for the <b>shops, restaurants and stages</b> that make this city loud. Flat pricing, real turnaround, and <b>you own everything</b> when it ships.
+      </p>
+      <div class="hero-cta" data-reveal>
+        <a class="btn btn-primary" href="#start">Get a quote in a day →</a>
+        <a class="btn btn-ghost" href="#work">See real work</a>
+      </div>
+      <div class="hero-trust" data-reveal>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/><path d="m9 12 2 2 4-4"/></svg>
+        <span><b>A deposit to start</b>, the rest when you're happy. Sites from <b>$900</b>.</span>
+      </div>
+    </div>
+
+    <div class="hero-art" data-reveal>
+      <div class="ship-badge">
+        <svg class="mascot" aria-hidden="true"><use href="#banana"/></svg>
+        <div class="t"><b>Shipped ✓</b><span>built right, on time</span></div>
+      </div>
+      <div class="browser">
+        <div class="browser-bar"><i></i><i></i><i></i><span class="url">https://your-business.com</span></div>
+        <div class="browser-body">
+          <div class="sk-row">
+            <div class="sk-av"></div>
+            <div style="flex:1;display:grid;gap:7px">
+              <div class="sk-line" style="width:62%"></div>
+              <div class="sk-line" style="width:40%;opacity:.6"></div>
+            </div>
+          </div>
+          <div class="sk-grid">
+            <div class="sk-card"><span class="sk-tag">// shop</span><div class="sk-line" style="width:80%"></div></div>
+            <div class="sk-card"><span class="sk-tag">// shows</span><div class="sk-line" style="width:65%"></div></div>
+          </div>
+          <div class="sk-btn">Book / Buy →</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- quiet credibility ticker -->
+  <div class="wrap"><div class="ticker" aria-hidden="true">
+    <div class="ticker-in">
+      <span>Restaurants&nbsp;</span><span>Online stores&nbsp;</span><span>Comedians&nbsp;</span><span>Boutiques&nbsp;</span><span>DJs &amp; musicians&nbsp;</span><span>Local services&nbsp;</span><span>Ventriloquists&nbsp;</span><span>Redesigns&nbsp;</span>
+      <span>Restaurants&nbsp;</span><span>Online stores&nbsp;</span><span>Comedians&nbsp;</span><span>Boutiques&nbsp;</span><span>DJs &amp; musicians&nbsp;</span><span>Local services&nbsp;</span><span>Ventriloquists&nbsp;</span><span>Redesigns&nbsp;</span>
+    </div>
+  </div></div>
+</section>
+
+<!-- ============ WHAT I BUILD / WHO IT'S FOR ============ -->
+<section class="band" id="build">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="eyebrow">What I build · who it's for</span>
+      <h2>Two kinds of clients. One studio that gets both.</h2>
+      <p>A taco spot and a touring comedian want the exact same thing: a site that loads fast, looks like a million bucks, and actually books the gig. I don't run a "business mode" and a "showbiz mode" — I run one studio with range.</p>
+    </div>
+
+    <div class="one-roof" data-reveal>
+      <div class="roof-banner">
+        <span class="who">The shop on the corner</span>
+        <span class="amp">&amp;</span>
+        <span class="who">the act under the spotlight</span>
+        <span class="sub">same flat pricing · same fast turnaround · <span class="g">same banana doing the work</span></span>
+      </div>
+    </div>
+
+    <div class="svc-grid">
+      <article class="svc" data-reveal>
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 21h8"/></svg></div>
+        <h3>Business websites</h3>
+        <p>Custom, mobile-first sites for shops, restaurants and local services. Built to be found and built to convert.</p>
+        <div class="for">FOR → <b>shops · restaurants · trades</b></div>
+      </article>
+
+      <article class="svc" data-reveal>
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12l-1 7H7z"/><path d="M9 9v4a3 3 0 0 0 6 0V9M12 17v5M8 22h8"/></svg></div>
+        <h3>Show &amp; performer sites</h3>
+        <p>A real home for your act — tour dates, clips, press and a booking button. Not another lonely Linktree.</p>
+        <div class="for">FOR → <b>comedians · DJs · musicians</b></div>
+      </article>
+
+      <article class="svc" data-reveal>
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg></div>
+        <h3>Online stores</h3>
+        <p>Sell goods, merch or tickets without the platform tax eating your margins. Checkout that just works.</p>
+        <div class="for">FOR → <b>boutiques · makers · acts</b></div>
+      </article>
+
+      <article class="svc" data-reveal>
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div>
+        <h3>Redesigns &amp; rescues</h3>
+        <p>Got a site that loads like 2009? I'll keep what works, fix what doesn't, and make it yours again.</p>
+        <div class="for">FOR → <b>anyone with an old site</b></div>
+      </article>
+
+      <article class="svc" data-reveal>
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <h3>Website care</h3>
+        <p>Updates, backups, "the thing broke" texts answered by an actual human. I keep it alive after launch.</p>
+        <div class="for">FOR → <b>everyone, ongoing</b></div>
+      </article>
+
+      <article class="svc" data-reveal>
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4M8 16h.01M16 16h.01"/></svg></div>
+        <h3>AI front desk</h3>
+        <p>A friendly bot that answers FAQs, takes bookings and never sleeps — so you can actually go on stage (or home).</p>
+        <div class="for">FOR → <b>busy shops &amp; acts</b></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PERSONALITY / VOICE MOMENT ============ -->
+<section class="band voice" id="voice">
+  <div class="wrap voice-grid">
+    <div class="voice-stage" data-reveal>
+      <div class="stage-glow"></div>
+      <div class="speech">"I read the brief twice. 🍌"</div>
+      <svg class="mascot-big" aria-hidden="true"><use href="#banana"/></svg>
+    </div>
+    <div class="voice-copy" data-reveal>
+      <span class="eyebrow">Why work with me</span>
+      <blockquote>
+        You get a studio that ships like a <span class="g">pro</span> and texts back like a <span class="hl">human</span>.
+      </blockquote>
+      <p class="by">No account managers, no "circling back," no surprise invoice. <b>You talk to me — the person actually building the thing.</b> I take the work dead seriously and I refuse to take the process boring.</p>
+      <div class="promise">
+        <span>Flat pricing, upfront</span>
+        <span>You own everything</span>
+        <span>Built to load fast</span>
+        <span>I answer my own emails</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRUST / REAL CLIENT ============ -->
+<section class="band" id="work">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="eyebrow">Real work · real client</span>
+      <h2>The proof is already live — and it's award-winning.</h2>
+      <p>I built and ship the live site for Peter Hefty &amp; Justin, an award-winning ventriloquist and comedian. Same studio, same flat pricing, full spotlight treatment.</p>
+    </div>
+
+    <div class="trust-grid">
+      <div class="client-card" data-reveal>
+        <div class="client-shot">
+          <div class="spot"></div>
+          <div class="stagefloor"></div>
+          <span class="live"><i></i> LIVE SITE</span>
+          <div class="figure">
+            <div class="nm">Peter Hefty &amp; Justin</div>
+            <div class="rl">Ventriloquist · Comedian</div>
+          </div>
+        </div>
+        <div class="client-meta">
+          <span class="u mono">peterheftyandjustin.com</span>
+          <a href="https://peterheftyandjustin.com/" target="_blank" rel="noopener">Visit site <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+
+      <div class="trust-copy" data-reveal>
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <blockquote>"Gabe got my whole act online fast and it looks the part. Tour dates, clips, the booking button — all there. People take me more seriously now, and so do the bookers."</blockquote>
+        <div class="cite">
+          <div class="av">PH</div>
+          <div class="who">
+            <b>Peter Hefty</b>
+            <span>Award-winning ventriloquist &amp; comedian</span>
+          </div>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><div class="n">$<span class="g">900</span></div><div class="l">FLAT, STARTING</div></div>
+          <div class="stat"><div class="n"><span class="g">1</span> banana</div><div class="l">DOING THE WHOLE JOB</div></div>
+          <div class="stat"><div class="n">100<span class="g">%</span></div><div class="l">YOURS WHEN IT SHIPS</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLOSER ============ -->
+<section class="band closer" id="start">
+  <div class="wrap">
+    <span class="eyebrow" style="justify-content:center" data-reveal>Let's go</span>
+    <h2 data-reveal>Tell me what you do.<br>I'll show you the <span class="nana-u">site</span> you deserve.</h2>
+    <p data-reveal>Shop, restaurant, online store, or a stage act — same studio, same flat pricing. First reply usually lands the same day.</p>
+    <div class="hero-cta" data-reveal>
+      <a class="btn btn-primary" href="mailto:hi@bananabyte.io">Start a project →</a>
+      <a class="btn btn-ghost" href="#build">See what I build</a>
+    </div>
+    <div class="fine" data-reveal>A deposit to start · the rest when you're happy · 🍌 Orlando, FL</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <a class="brand" href="#" aria-label="BANANAbyte home">
+      <svg class="mascot" aria-hidden="true"><use href="#banana"/></svg>
+      <span><span class="nana">BANANA</span><span class="byte">byte</span></span>
+    </a>
+    <span>© 2026 BANANAbyte — a one-banana web studio in Orlando, FL.</span>
+  </div>
+</footer>
+
+<script>
+  // mobile menu
+  var mb=document.getElementById('menuBtn'),nav=document.getElementById('nav');
+  mb&&mb.addEventListener('click',function(){
+    var o=nav.classList.toggle('open');
+    mb.setAttribute('aria-expanded',o);
+  });
+  nav&&nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');mb.setAttribute('aria-expanded',false)})});
+
+  // scroll reveal
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})
+    },{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('[data-reveal]').forEach(function(el,i){
+      el.style.transitionDelay=(Math.min(i,6)*45)+'ms';
+      io.observe(el);
+    });
+  }else{
+    document.querySelectorAll('[data-reveal]').forEach(function(el){el.classList.add('in')});
+  }
+</script>
+</body>
+</html>

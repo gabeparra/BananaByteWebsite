@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>BananaByte — Everybody gets the spotlight. Web studio, Orlando FL</title>
+<meta name="description" content="BananaByte is a one-person web studio in Orlando run by Gabe. Taco truck or comedy tour — I put you in the spotlight with a fast, clean, built-right website. Flat pricing from $900." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<!-- Anton: heavy marquee display. Fraunces: brand serif voice. Sora: clean credible body. -->
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    /* Dark stage base — deep moss/forest */
+    --stage:#06120C;
+    --moss:#0A1F14;
+    --moss-2:#0E2A1B;
+    --panel:#0C2417;
+    --panel-soft:#10301F;
+    /* Banana yellow — marquee bulb + headline pop */
+    --banana:#FFD200;
+    --banana-soft:#FFE15A;
+    --gold:#E0B11E;
+    /* Luminous green glow */
+    --shine:#39FF9A;
+    --shine-soft:#7CFFC0;
+    --shine-deep:#0FBE6E;
+    /* Ink */
+    --ink:#F3FBF4;
+    --ink-soft:#CFE8D6;
+    --ink-mute:#7FA48C;
+    --line:rgba(57,255,154,.16);
+    --line-strong:rgba(57,255,154,.30);
+    --line-gold:rgba(255,210,0,.22);
+
+    --maxw:1180px;
+    --radius:20px;
+    --shadow:0 30px 70px -30px rgba(0,0,0,.9);
+    --glow-shine:0 0 0 1px rgba(57,255,154,.30), 0 18px 60px -14px rgba(57,255,154,.40);
+    --glow-banana:0 0 0 1px rgba(255,210,0,.30), 0 18px 60px -14px rgba(255,210,0,.32);
+
+    --font-marquee:"Anton", Impact, "Arial Narrow Bold", sans-serif;
+    --font-display:"Fraunces", Georgia, serif;
+    --font-body:"Sora", ui-sans-serif, system-ui, sans-serif;
+  }
+
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important; transition:none !important;}
+  }
+
+  body{
+    margin:0;
+    font-family:var(--font-body);
+    color:var(--ink);
+    background:
+      radial-gradient(1200px 700px at 50% -12%, rgba(57,255,154,.16), transparent 60%),
+      radial-gradient(900px 560px at 88% 8%, rgba(255,210,0,.10), transparent 56%),
+      radial-gradient(1100px 760px at 8% 30%, rgba(15,190,110,.10), transparent 60%),
+      linear-gradient(180deg, var(--stage), var(--moss) 48%, #050F0A);
+    background-attachment:fixed;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+
+  /* Film grain */
+  body::after{
+    content:"";
+    position:fixed; inset:0; pointer-events:none; z-index:1;
+    opacity:.05; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:clamp(18px,5vw,44px);}
+  section{position:relative;z-index:2;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+
+  ::selection{background:var(--banana);color:#10120A;}
+
+  a:focus-visible,button:focus-visible,input:focus-visible{
+    outline:2px solid var(--shine);outline-offset:3px;border-radius:6px;
+  }
+  .skip{position:absolute;left:12px;top:-60px;background:var(--banana);color:#10120A;
+    padding:10px 16px;border-radius:10px;font-weight:700;z-index:200;transition:top .2s;}
+  .skip:focus{top:12px;}
+
+  /* ---------- MARQUEE BULB STRIP (the unifying motif) ---------- */
+  .bulbs{
+    display:flex;gap:clamp(10px,2.4vw,22px);justify-content:center;align-items:center;
+    padding:0;margin:0;flex-wrap:wrap;
+  }
+  .bulb{
+    width:10px;height:10px;border-radius:50%;
+    background:radial-gradient(circle at 38% 34%, #FFF4B8, var(--banana) 56%, var(--gold));
+    box-shadow:0 0 10px 2px rgba(255,210,0,.7), 0 0 22px 4px rgba(255,210,0,.25);
+    animation:bulbpulse 1.8s ease-in-out infinite;
+  }
+  .bulb.g{
+    background:radial-gradient(circle at 38% 34%, #DBFFEC, var(--shine) 56%, var(--shine-deep));
+    box-shadow:0 0 10px 2px rgba(57,255,154,.7), 0 0 22px 4px rgba(57,255,154,.25);
+  }
+  .bulb:nth-child(2n){animation-delay:.3s;}
+  .bulb:nth-child(3n){animation-delay:.6s;}
+  .bulb:nth-child(4n){animation-delay:.9s;}
+  @keyframes bulbpulse{
+    0%,100%{opacity:1;transform:scale(1);}
+    50%{opacity:.45;transform:scale(.82);}
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{position:sticky;top:0;z-index:50;
+    background:rgba(6,18,12,.72);backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);}
+  .navrow{display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding-block:14px;}
+  .brand{display:flex;align-items:center;gap:11px;font-family:var(--font-display);
+    font-weight:900;font-size:1.32rem;letter-spacing:-.01em;}
+  .brand .chip{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
+    background:linear-gradient(150deg,var(--banana),var(--gold));
+    box-shadow:var(--glow-banana);font-size:1.15rem;
+    transform:rotate(-8deg);animation:wobble 5s ease-in-out infinite;}
+  @keyframes wobble{0%,100%{transform:rotate(-8deg);}50%{transform:rotate(4deg);}}
+  .brand .b1{color:var(--banana);}
+  .brand .b2{color:var(--ink);font-style:italic;font-weight:600;}
+  .navlinks{display:flex;gap:26px;align-items:center;font-size:.92rem;font-weight:500;
+    color:var(--ink-soft);}
+  .navlinks a{position:relative;}
+  .navlinks a::after{content:"";position:absolute;left:0;bottom:-6px;height:2px;width:0;
+    background:var(--shine);transition:width .25s ease;}
+  .navlinks a:hover::after{width:100%;}
+  .navlinks .ncta{color:var(--stage);background:var(--banana);padding:9px 16px;border-radius:999px;
+    font-weight:700;box-shadow:var(--glow-banana);}
+  .navlinks .ncta:hover{background:var(--banana-soft);}
+  @media (max-width:760px){.navlinks .hidem{display:none;}}
+
+  /* ---------- HERO ---------- */
+  .hero{padding-top:clamp(40px,7vw,72px);padding-bottom:clamp(48px,8vw,90px);text-align:center;}
+  .hero .topbulbs{margin-bottom:clamp(26px,5vw,44px);}
+  .eyebrow{font-size:.74rem;letter-spacing:.26em;text-transform:uppercase;color:var(--shine);
+    font-weight:700;display:inline-flex;gap:.7rem;align-items:center;}
+  .eyebrow::before,.eyebrow::after{content:"";width:24px;height:1px;
+    background:linear-gradient(90deg,transparent,var(--shine),transparent);}
+
+  .marquee-frame{
+    position:relative;margin:clamp(22px,4vw,34px) auto clamp(20px,3vw,28px);
+    max-width:980px;padding:clamp(20px,4vw,40px) clamp(16px,4vw,40px);
+    border-radius:var(--radius);
+    border:1px solid var(--line-gold);
+    background:
+      radial-gradient(120% 140% at 50% -20%, rgba(57,255,154,.12), transparent 60%),
+      linear-gradient(180deg, rgba(14,42,27,.55), rgba(10,31,20,.35));
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.04), var(--shadow);
+  }
+  /* bulb border around the marquee frame, top + bottom */
+  .marquee-frame::before,.marquee-frame::after{
+    content:"";position:absolute;left:14px;right:14px;height:6px;
+    background-image:radial-gradient(circle, var(--banana) 0 2.4px, transparent 3px);
+    background-size:22px 6px;background-position:center;background-repeat:repeat-x;
+    filter:drop-shadow(0 0 5px rgba(255,210,0,.75));opacity:.9;
+  }
+  .marquee-frame::before{top:9px;}
+  .marquee-frame::after{bottom:9px;}
+
+  h1.headline{
+    font-family:var(--font-marquee);font-weight:400;
+    font-size:clamp(2.5rem,9vw,5.6rem);line-height:.95;letter-spacing:.005em;
+    text-transform:uppercase;margin:0;color:var(--ink);
+    text-shadow:0 2px 0 rgba(0,0,0,.35);
+  }
+  h1.headline .spot{
+    color:var(--banana);
+    text-shadow:0 0 22px rgba(255,210,0,.55), 0 0 50px rgba(255,210,0,.25);
+    position:relative;
+  }
+  h1.headline .shine{
+    color:var(--shine);
+    text-shadow:0 0 22px rgba(57,255,154,.6), 0 0 54px rgba(57,255,154,.3);
+  }
+  .subhead{font-family:var(--font-display);font-style:italic;font-weight:500;
+    color:var(--ink-soft);font-size:clamp(1.05rem,2.6vw,1.5rem);
+    max-width:680px;margin:clamp(16px,3vw,22px) auto 0;line-height:1.45;}
+
+  /* rotating "who" word */
+  .who{display:inline-block;min-width:1ch;color:var(--shine);font-style:normal;font-weight:600;}
+
+  .hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
+    margin-top:clamp(26px,4vw,38px);}
+  .btn{font-family:var(--font-body);font-weight:700;font-size:1rem;
+    padding:15px 28px;border-radius:999px;cursor:pointer;border:1px solid transparent;
+    display:inline-flex;align-items:center;gap:.55rem;transition:transform .15s ease, box-shadow .25s ease, background .25s;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--banana);color:#10120A;box-shadow:var(--glow-banana);}
+  .btn-primary:hover{background:var(--banana-soft);box-shadow:0 0 0 1px rgba(255,210,0,.4),0 22px 70px -16px rgba(255,210,0,.5);}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line-strong);}
+  .btn-ghost:hover{border-color:var(--shine);box-shadow:var(--glow-shine);}
+  .hero-meta{margin-top:22px;color:var(--ink-mute);font-size:.9rem;
+    display:flex;gap:18px;justify-content:center;flex-wrap:wrap;}
+  .hero-meta b{color:var(--banana);font-weight:700;}
+  .hero-meta .dot{color:var(--shine);}
+
+  /* ---------- SECTION SHELL ---------- */
+  .sec{padding-block:clamp(56px,9vw,104px);}
+  .sec-head{max-width:720px;margin:0 auto clamp(34px,5vw,54px);text-align:center;}
+  .sec-head h2{font-family:var(--font-marquee);font-weight:400;text-transform:uppercase;
+    font-size:clamp(2rem,6vw,3.4rem);line-height:1;margin:14px 0 0;letter-spacing:.01em;}
+  .sec-head h2 em{font-style:normal;color:var(--banana);
+    text-shadow:0 0 20px rgba(255,210,0,.4);}
+  .sec-head p{color:var(--ink-soft);font-size:clamp(1rem,2vw,1.16rem);margin-top:16px;}
+
+  /* ---------- THE BILL (who it's for — one audience) ---------- */
+  .bill{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+  @media (max-width:720px){.bill{grid-template-columns:1fr;}}
+  .act{
+    position:relative;border-radius:var(--radius);padding:26px 24px 24px;
+    background:linear-gradient(180deg, var(--panel), var(--moss-2));
+    border:1px solid var(--line);overflow:hidden;
+    transition:transform .2s ease, border-color .25s, box-shadow .3s;
+  }
+  .act:hover{transform:translateY(-4px);border-color:var(--line-strong);box-shadow:var(--glow-shine);}
+  .act .ticket{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;
+    color:var(--stage);background:var(--shine);display:inline-block;padding:4px 10px;border-radius:6px;
+    margin-bottom:14px;}
+  .act.b .ticket{background:var(--banana);}
+  .act h3{font-family:var(--font-display);font-weight:900;font-size:1.4rem;margin:0 0 6px;}
+  .act .roster{color:var(--ink-soft);font-size:.98rem;line-height:1.55;margin:0 0 14px;}
+  .act .tags{display:flex;flex-wrap:wrap;gap:8px;}
+  .act .tags span{font-size:.78rem;color:var(--ink-soft);border:1px solid var(--line);
+    padding:5px 11px;border-radius:999px;background:rgba(57,255,154,.05);}
+  .act.b .tags span{border-color:var(--line-gold);background:rgba(255,210,0,.05);}
+
+  .one-mic{text-align:center;margin-top:clamp(28px,4vw,40px);
+    font-family:var(--font-display);font-style:italic;color:var(--ink-soft);
+    font-size:clamp(1.05rem,2.4vw,1.35rem);}
+  .one-mic b{color:var(--shine);font-style:normal;}
+
+  /* ---------- VOICE / PERSONALITY MOMENT ---------- */
+  .voice{
+    border-radius:calc(var(--radius) + 4px);padding:clamp(34px,6vw,64px) clamp(22px,5vw,56px);
+    text-align:center;position:relative;overflow:hidden;
+    background:
+      radial-gradient(130% 120% at 50% 0%, rgba(255,210,0,.12), transparent 55%),
+      linear-gradient(180deg, var(--moss-2), var(--panel));
+    border:1px solid var(--line-gold);box-shadow:var(--shadow);
+  }
+  /* spotlight cone */
+  .voice::before{
+    content:"";position:absolute;top:-40%;left:50%;transform:translateX(-50%);
+    width:60%;height:160%;
+    background:radial-gradient(ellipse at top, rgba(255,225,90,.18), transparent 62%);
+    pointer-events:none;
+  }
+  .voice .mascot{font-size:clamp(3rem,9vw,5rem);position:relative;display:inline-block;
+    animation:floaty 4.5s ease-in-out infinite;filter:drop-shadow(0 8px 20px rgba(255,210,0,.4));}
+  @keyframes floaty{0%,100%{transform:translateY(0) rotate(-4deg);}50%{transform:translateY(-10px) rotate(4deg);}}
+  .voice blockquote{font-family:var(--font-display);font-weight:600;
+    font-size:clamp(1.4rem,4vw,2.5rem);line-height:1.25;margin:18px auto 0;max-width:760px;
+    position:relative;}
+  .voice blockquote .hl{color:var(--banana);}
+  .voice blockquote .hlg{color:var(--shine);}
+  .voice cite{display:block;margin-top:20px;font-style:normal;color:var(--ink-mute);
+    font-family:var(--font-body);font-size:.92rem;letter-spacing:.04em;}
+  .voice cite b{color:var(--ink);font-weight:600;}
+
+  /* ---------- HEADLINER / REAL CLIENT TRUST ---------- */
+  .headliner{
+    display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(24px,4vw,48px);align-items:center;
+    border-radius:calc(var(--radius)+4px);padding:clamp(26px,4vw,44px);
+    background:linear-gradient(155deg, var(--panel), var(--moss));
+    border:1px solid var(--line);box-shadow:var(--shadow);
+  }
+  @media (max-width:820px){.headliner{grid-template-columns:1fr;}}
+  .headliner .marqcard{
+    position:relative;border-radius:16px;padding:clamp(28px,4vw,40px) clamp(20px,4vw,32px);
+    background:linear-gradient(180deg,#091A11,#06130C);
+    border:1px solid var(--line-gold);text-align:center;overflow:hidden;
+    box-shadow:inset 0 0 60px -20px rgba(255,210,0,.3);
+  }
+  .headliner .marqcard::before,.headliner .marqcard::after{
+    content:"";position:absolute;left:12px;right:12px;height:6px;
+    background-image:radial-gradient(circle, var(--banana) 0 2.2px, transparent 2.8px);
+    background-size:20px 6px;background-position:center;background-repeat:repeat-x;
+    filter:drop-shadow(0 0 4px rgba(255,210,0,.7));
+  }
+  .headliner .marqcard::before{top:10px;}
+  .headliner .marqcard::after{bottom:10px;}
+  .marqcard .now{font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--shine);font-weight:700;}
+  .marqcard .name{font-family:var(--font-marquee);text-transform:uppercase;
+    font-size:clamp(1.8rem,5vw,2.7rem);line-height:1;margin:12px 0 4px;color:var(--banana);
+    text-shadow:0 0 24px rgba(255,210,0,.5);}
+  .marqcard .role{font-family:var(--font-display);font-style:italic;color:var(--ink-soft);
+    font-size:1.02rem;}
+  .marqcard .stars{margin-top:14px;color:var(--banana);letter-spacing:3px;font-size:1.05rem;}
+  .headliner .copy h2{font-family:var(--font-marquee);text-transform:uppercase;font-weight:400;
+    font-size:clamp(1.7rem,4.5vw,2.6rem);line-height:1.02;margin:0 0 14px;}
+  .headliner .copy h2 em{font-style:normal;color:var(--shine);}
+  .headliner .copy p{color:var(--ink-soft);font-size:1.04rem;line-height:1.6;margin:0 0 16px;}
+  .headliner .copy .quote{font-family:var(--font-display);font-style:italic;
+    border-left:3px solid var(--banana);padding-left:16px;color:var(--ink);
+    font-size:1.08rem;margin:0 0 22px;}
+  .linkout{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--shine);}
+  .linkout:hover{color:var(--shine-soft);}
+  .linkout .arr{transition:transform .2s;}
+  .linkout:hover .arr{transform:translateX(4px);}
+
+  /* ---------- CLOSER ---------- */
+  .closer{text-align:center;padding-block:clamp(56px,9vw,100px);}
+  .closer h2{font-family:var(--font-marquee);text-transform:uppercase;font-weight:400;
+    font-size:clamp(2.1rem,7vw,4rem);line-height:1;margin:0 0 8px;}
+  .closer h2 .spot{color:var(--banana);text-shadow:0 0 26px rgba(255,210,0,.5);}
+  .closer p{color:var(--ink-soft);font-size:1.1rem;max-width:560px;margin:14px auto 30px;}
+  .pricepill{display:inline-flex;align-items:baseline;gap:10px;border-radius:999px;
+    border:1px solid var(--line-gold);padding:10px 22px;background:rgba(255,210,0,.06);
+    margin-bottom:30px;font-size:.96rem;color:var(--ink-soft);}
+  .pricepill b{font-family:var(--font-marquee);font-size:1.5rem;color:var(--banana);
+    letter-spacing:.02em;}
+
+  footer{border-top:1px solid var(--line);padding-block:30px;text-align:center;
+    color:var(--ink-mute);font-size:.86rem;}
+  footer b{color:var(--ink-soft);font-weight:600;}
+
+  /* reveal-on-scroll */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1;transform:none;}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap navrow">
+    <a class="brand" href="#main" aria-label="BananaByte home">
+      <span class="chip" aria-hidden="true">🍌</span>
+      <span><span class="b1">Banana</span><span class="b2">Byte</span></span>
+    </a>
+    <nav class="navlinks" aria-label="Primary">
+      <a class="hidem" href="#bill">The Lineup</a>
+      <a class="hidem" href="#headliner">The Headliner</a>
+      <a class="ncta" href="#book">Get on the Bill</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="topbulbs bulbs" aria-hidden="true">
+        <i class="bulb"></i><i class="bulb g"></i><i class="bulb"></i><i class="bulb g"></i>
+        <i class="bulb"></i><i class="bulb g"></i><i class="bulb"></i><i class="bulb g"></i>
+        <i class="bulb"></i><i class="bulb g"></i><i class="bulb"></i>
+      </div>
+
+      <span class="eyebrow">Web Studio · Orlando, FL</span>
+
+      <div class="marquee-frame">
+        <h1 class="headline">
+          Everybody gets<br>the <span class="spot">spotlight</span>.
+        </h1>
+        <p class="subhead">
+          Taco truck or comedy tour, corner barbershop or
+          <span class="who" id="whoWord">headlining act</span> — I build you a website
+          that walks on stage and <span class="shine" style="font-style:normal;">owns the room.</span>
+        </p>
+      </div>
+
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#book">Get on the Bill <span aria-hidden="true">→</span></a>
+        <a class="btn btn-ghost" href="#headliner">See the headliner</a>
+      </div>
+
+      <div class="hero-meta">
+        <span><b>From $900</b> flat</span>
+        <span class="dot" aria-hidden="true">●</span>
+        <span>flat pricing</span>
+        <span class="dot" aria-hidden="true">●</span>
+        <span>One person. <b>Me.</b></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THE LINEUP (who it's for) ============ -->
+  <section class="sec" id="bill">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Tonight's Lineup</span>
+        <h2>Two acts. <em>One marquee.</em></h2>
+        <p>Businesses and performers don't get different treatment here — same bright lights,
+          same fast build, same studio. Pick your act.</p>
+      </div>
+
+      <div class="bill">
+        <article class="act g reveal">
+          <span class="ticket">The Main Street Act</span>
+          <h3>Businesses that mean business</h3>
+          <p class="roster">Restaurants, shops, barbers, contractors, online stores, services —
+            the places people actually need to find. I make sure when they search, you're the
+            one in the warm glow.</p>
+          <div class="tags">
+            <span>Restaurant & menu sites</span>
+            <span>Online stores</span>
+            <span>Service businesses</span>
+            <span>Redesigns</span>
+            <span>AI front-desk</span>
+          </div>
+        </article>
+
+        <article class="act b reveal">
+          <span class="ticket">The Headliner Act</span>
+          <h3>Performers who fill the room</h3>
+          <p class="roster">Comedians, DJs, musicians, ventriloquists, magicians, MCs —
+            people who already know how to command a stage. Your site should do the same
+            thing your set does: open strong, never drag.</p>
+          <div class="tags">
+            <span>Show & tour sites</span>
+            <span>Booking pages</span>
+            <span>Press kits</span>
+            <span>Ticket links</span>
+            <span>Tour dates</span>
+          </div>
+        </article>
+      </div>
+
+      <p class="one-mic reveal">Different rooms, <b>same lighting rig.</b> I treat the
+        taco truck like a headliner — because to your customers, it is.</p>
+    </div>
+  </section>
+
+  <!-- ============ VOICE / PERSONALITY ============ -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="voice reveal">
+        <span class="mascot" aria-hidden="true">🍌</span>
+        <blockquote>
+          Most studios hand you a <span class="hl">stage</span> and disappear.
+          I stick around to <span class="hlg">run the lights.</span>
+        </blockquote>
+        <cite>That's the whole pitch. Fast builds, flat pricing, and one human —
+          <b>me, Gabe</b> — who actually picks up the phone.</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HEADLINER / REAL CLIENT ============ -->
+  <section class="sec" id="headliner">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Now Playing</span>
+        <h2>Real client. <em>Real reviews.</em></h2>
+      </div>
+
+      <div class="headliner reveal">
+        <div class="copy">
+          <h2>I put an <em>award-winner</em> in lights.</h2>
+          <p>Peter Hefty is an award-winning ventriloquist and comedian who's worked
+            rooms for decades. He needed a site that hit as hard as his act — clean, fast,
+            and impossible to ignore. So I built him one.</p>
+          <p class="quote">"It looks like a real headliner's site now — because it is one."</p>
+          <a class="linkout" href="https://peterheftyandjustin.com" target="_blank" rel="noopener">
+            Visit peterheftyandjustin.com <span class="arr" aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <div class="marqcard" aria-hidden="false">
+          <div class="now">★ Now Appearing ★</div>
+          <div class="name">Peter Hefty<br>&amp; Justin</div>
+          <div class="role">Award-winning ventriloquist &amp; comedian</div>
+          <div class="stars" aria-label="Five stars">★ ★ ★ ★ ★</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CLOSER ============ -->
+  <section class="closer" id="book">
+    <div class="wrap reveal">
+      <div class="bulbs" aria-hidden="true" style="margin-bottom:30px;">
+        <i class="bulb g"></i><i class="bulb"></i><i class="bulb g"></i><i class="bulb"></i>
+        <i class="bulb g"></i><i class="bulb"></i><i class="bulb g"></i>
+      </div>
+      <h2>Your turn in the <span class="spot">spotlight</span>.</h2>
+      <p>Tell me what you do. I'll tell you exactly what it costs and when it's live —
+        no agency runaround, no surprise invoice.</p>
+      <div class="pricepill"><span>flat from $900 · you own everything</span></div>
+      <div class="hero-ctas" style="margin-top:0;">
+        <a class="btn btn-primary" href="mailto:hello@bananabyte.io">Get on the Bill <span aria-hidden="true">→</span></a>
+        <a class="btn btn-ghost" href="#bill">See the lineup again</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><b>BananaByte</b> — a one-person web studio in Orlando, FL. Built by Gabe.
+      Everybody gets the spotlight. 🍌</p>
+  </div>
+</footer>
+
+<script>
+  // Rotating "who" word — keeps the 50/50 business+performer balance front and center.
+  (function(){
+    var el = document.getElementById('whoWord');
+    if(!el) return;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var words = ["headlining act","family bakery","touring DJ","online boutique",
+                 "stand-up comedian","auto shop","ventriloquist","food truck"];
+    var i = 0;
+    if(reduce) return;
+    setInterval(function(){
+      i = (i + 1) % words.length;
+      el.style.opacity = 0;
+      setTimeout(function(){ el.textContent = words[i]; el.style.opacity = 1; }, 220);
+    }, 2200);
+    el.style.transition = "opacity .22s ease";
+  })();
+
+  // Reveal on scroll
+  (function(){
+    var els = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('in');}); return; }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+    },{threshold:.16});
+    els.forEach(function(e){ io.observe(e); });
+  })();
+</script>
+</body>
+</html>

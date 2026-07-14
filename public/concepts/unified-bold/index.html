@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BananaByte — Websites with a pulse. Built by one human in Orlando.</title>
+<meta name="description" content="I'm Gabe. I build fast, flat-priced websites for Orlando businesses and performers alike. Shops, restaurants, online stores, comedians, DJs — one studio, built right. From $900.">
+<meta name="theme-color" content="#08120C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Distinctive type: Clash-y geometric headline (Bricolage Grotesque) + warm editorial serif accent (Fraunces) + mono spec (Space Mono) -->
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Fraunces:ital,opsz,wght@1,9..144,500;1,9..144,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* dark moss base */
+    --base:        #08120C;
+    --base-2:      #0B1A11;
+    --panel:       #0E2316;
+    --panel-line:  #1C3A26;
+    /* forest / moss greens */
+    --moss:        #1F7A4D;
+    --moss-deep:   #134A30;
+    --glow:        #3CF08A;   /* luminous shiny green */
+    --glow-soft:   #6CFFAE;
+    /* banana */
+    --banana:      #FFD23F;
+    --banana-hi:   #FFE177;
+    --banana-deep: #E0B400;
+    /* ink */
+    --cream:       #F3FBEF;
+    --cream-dim:   #B9D6C2;
+    --cream-faint: #6E8C79;
+
+    --font-head: 'Bricolage Grotesque', system-ui, sans-serif;
+    --font-serif:'Fraunces', Georgia, serif;
+    --font-mono: 'Space Mono', ui-monospace, monospace;
+
+    --maxw: 1180px;
+    --ease: cubic-bezier(.2,.7,.2,1);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    background:var(--base);
+    color:var(--cream);
+    font-family:var(--font-head);
+    line-height:1.5;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+
+  /* ---------- ambient glow field ---------- */
+  .field{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+  .field::before,.field::after{content:"";position:absolute;border-radius:50%;filter:blur(70px);opacity:.5}
+  .field::before{width:60vw;height:60vw;left:-15vw;top:-18vw;
+    background:radial-gradient(circle,rgba(60,240,138,.30),transparent 65%)}
+  .field::after{width:55vw;height:55vw;right:-18vw;bottom:-22vw;
+    background:radial-gradient(circle,rgba(255,210,63,.16),transparent 62%)}
+  /* subtle dot grid for the "studio / spec" feel */
+  .grid{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+    background-image:radial-gradient(rgba(108,255,174,.10) 1px,transparent 1.4px);
+    background-size:30px 30px;
+    -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000,transparent 75%);
+            mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000,transparent 75%);}
+
+  .page{position:relative;z-index:1}
+
+  /* ---------- nav ---------- */
+  nav{position:sticky;top:0;z-index:50;
+    background:rgba(8,18,12,.72);backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(28,58,38,.7)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;
+    max-width:var(--maxw);margin:0 auto;padding:14px 22px;gap:16px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:1.18rem;letter-spacing:-.02em}
+  .brand .mark{flex:none}
+  .brand b{color:var(--banana)}
+  .nav-links{display:flex;gap:26px;font-size:.92rem;font-weight:600;color:var(--cream-dim)}
+  .nav-links a{transition:color .2s}
+  .nav-links a:hover{color:var(--glow-soft)}
+  .nav-cta{font-weight:700;font-size:.9rem;padding:9px 16px;border-radius:999px;
+    background:var(--banana);color:#1A1405;
+    box-shadow:0 0 0 1px var(--banana-deep), 0 6px 18px rgba(255,210,63,.18);
+    transition:transform .2s var(--ease),box-shadow .2s}
+  .nav-cta:hover{transform:translateY(-1px);box-shadow:0 0 0 1px var(--banana-deep),0 10px 26px rgba(255,210,63,.32)}
+  @media(max-width:760px){.nav-links{display:none}}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;padding:70px 0 56px}
+  .kicker{display:inline-flex;align-items:center;gap:9px;
+    font-family:var(--font-mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--glow-soft);
+    border:1px solid rgba(60,240,138,.32);border-radius:999px;padding:7px 14px;
+    background:rgba(60,240,138,.07)}
+  .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--glow);
+    box-shadow:0 0 10px var(--glow);animation:pulse 2.4s var(--ease) infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.7)}}
+
+  h1.hero-h{
+    font-family:var(--font-head);font-weight:800;
+    font-size:clamp(2.7rem,9.2vw,6.4rem);
+    line-height:.94;letter-spacing:-.035em;
+    margin:22px 0 0;
+    max-width:14ch;
+  }
+  h1.hero-h .pulse-word{position:relative;display:inline-block;
+    color:var(--glow-soft);
+    text-shadow:0 0 26px rgba(60,240,138,.55),0 0 60px rgba(60,240,138,.22)}
+  h1.hero-h em{font-family:var(--font-serif);font-style:italic;font-weight:600;
+    color:var(--banana-hi)}
+  .hero-sub{margin-top:22px;max-width:46ch;font-size:clamp(1.02rem,2.4vw,1.2rem);
+    color:var(--cream-dim);line-height:1.62}
+  .hero-sub b{color:var(--cream);font-weight:700}
+
+  .hero-cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px;align-items:center}
+  .btn-primary{font-weight:800;font-size:1rem;padding:15px 26px;border-radius:14px;
+    background:linear-gradient(180deg,var(--banana-hi),var(--banana));
+    color:#1A1405;
+    box-shadow:0 0 0 1px var(--banana-deep),0 12px 30px rgba(255,210,63,.26);
+    transition:transform .2s var(--ease),box-shadow .2s}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 0 1px var(--banana-deep),0 18px 44px rgba(255,210,63,.4)}
+  .btn-ghost{font-weight:700;font-size:1rem;padding:15px 24px;border-radius:14px;
+    color:var(--cream);border:1px solid var(--panel-line);
+    background:rgba(14,35,22,.5);transition:border-color .2s,color .2s}
+  .btn-ghost:hover{border-color:var(--glow);color:var(--glow-soft)}
+  .price-note{font-family:var(--font-mono);font-size:.82rem;color:var(--cream-faint)}
+  .price-note b{color:var(--banana-hi)}
+
+  /* the BIG banana motif */
+  .hero-stage{position:relative}
+  .banana-blob{
+    position:absolute;right:-2%;top:-6%;width:min(46%,560px);z-index:0;
+    filter:drop-shadow(0 30px 60px rgba(0,0,0,.45));
+    animation:bob 7s ease-in-out infinite;
+  }
+  @keyframes bob{0%,100%{transform:translateY(0) rotate(-7deg)}50%{transform:translateY(-16px) rotate(-3deg)}}
+  @media(max-width:900px){.banana-blob{position:relative;right:auto;top:auto;width:min(62%,360px);margin:34px auto -6px;display:block}}
+
+  .hero-strip{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:42px;
+    padding-top:24px;border-top:1px solid var(--panel-line);
+    font-family:var(--font-mono);font-size:.8rem;color:var(--cream-faint)}
+  .hero-strip span{display:inline-flex;align-items:center;gap:8px}
+  .hero-strip span::before{content:"";width:6px;height:6px;border-radius:50%;
+    background:var(--glow);box-shadow:0 0 8px var(--glow)}
+
+  /* ---------- marquee ---------- */
+  .marquee{overflow:hidden;border-block:1px solid var(--panel-line);
+    background:var(--base-2);padding:18px 0;margin-top:8px;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+            mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+  .marquee-track{display:flex;gap:0;white-space:nowrap;width:max-content;
+    animation:scroll 32s linear infinite}
+  .marquee:hover .marquee-track{animation-play-state:paused}
+  .marquee-track span{font-family:var(--font-head);font-weight:700;
+    font-size:1.45rem;letter-spacing:-.02em;color:var(--cream);
+    padding:0 30px;display:inline-flex;align-items:center;gap:30px}
+  .marquee-track span::after{content:"🍌";font-size:1.1rem;filter:saturate(1.2)}
+  .marquee-track .y{color:var(--banana)}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+
+  /* ---------- section frame ---------- */
+  section.blk{padding:84px 0;position:relative}
+  .eyebrow{font-family:var(--font-mono);font-size:.76rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--glow-soft);margin-bottom:14px;
+    display:flex;align-items:center;gap:10px}
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--glow);opacity:.7}
+  h2.blk-h{font-family:var(--font-head);font-weight:800;
+    font-size:clamp(2rem,5.4vw,3.4rem);line-height:1.02;letter-spacing:-.03em;max-width:18ch}
+  h2.blk-h em{font-family:var(--font-serif);font-style:italic;font-weight:600;color:var(--banana-hi)}
+  .blk-lead{margin-top:18px;max-width:54ch;color:var(--cream-dim);font-size:1.06rem;line-height:1.62}
+
+  /* ---------- ONE ROOF audience ---------- */
+  .oneroof-head{display:flex;align-items:flex-end;justify-content:space-between;gap:26px;flex-wrap:wrap}
+  .oneroof-tag{font-family:var(--font-mono);font-size:.82rem;color:var(--cream-faint);
+    max-width:30ch;text-align:right}
+  @media(max-width:680px){.oneroof-tag{text-align:left}}
+
+  .roof-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:38px}
+  @media(max-width:680px){.roof-grid{grid-template-columns:1fr}}
+  .card{position:relative;border:1px solid var(--panel-line);border-radius:20px;
+    background:linear-gradient(180deg,rgba(14,35,22,.72),rgba(11,26,17,.5));
+    padding:26px 24px;overflow:hidden;transition:transform .25s var(--ease),border-color .25s}
+  .card::before{content:"";position:absolute;inset:0;border-radius:20px;opacity:0;
+    background:radial-gradient(120% 90% at 0% 0%,rgba(60,240,138,.14),transparent 60%);
+    transition:opacity .3s}
+  .card:hover{transform:translateY(-4px);border-color:rgba(60,240,138,.45)}
+  .card:hover::before{opacity:1}
+  .card .tag{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--banana);font-weight:700}
+  .card h3{font-size:1.34rem;font-weight:700;letter-spacing:-.02em;margin:12px 0 8px}
+  .card p{color:var(--cream-dim);font-size:.98rem;line-height:1.6}
+  .card ul{list-style:none;margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
+  .card li{font-family:var(--font-mono);font-size:.74rem;color:var(--cream);
+    border:1px solid var(--panel-line);border-radius:999px;padding:5px 11px;
+    background:rgba(8,18,12,.5)}
+
+  .roof-banner{margin-top:26px;border:1px dashed rgba(255,210,63,.4);border-radius:18px;
+    padding:22px 24px;background:rgba(255,210,63,.05);
+    display:flex;align-items:center;gap:18px;flex-wrap:wrap;justify-content:center;text-align:center}
+  .roof-banner .big{font-family:var(--font-head);font-weight:800;font-size:clamp(1.2rem,3.6vw,1.85rem);
+    letter-spacing:-.02em;line-height:1.15}
+  .roof-banner .big .y{color:var(--banana-hi)}
+  .roof-banner .big .g{color:var(--glow-soft)}
+
+  /* ---------- voice / personality moment ---------- */
+  .voice{background:
+      radial-gradient(80% 120% at 100% 0%,rgba(60,240,138,.10),transparent 55%),
+      var(--base-2);
+    border-block:1px solid var(--panel-line)}
+  .voice-quote{font-family:var(--font-serif);font-style:italic;font-weight:600;
+    font-size:clamp(1.7rem,5.2vw,3.1rem);line-height:1.16;letter-spacing:-.01em;max-width:20ch}
+  .voice-quote .hl{font-family:var(--font-head);font-style:normal;font-weight:800;
+    color:var(--banana);position:relative}
+  .voice-quote .hl::after{content:"";position:absolute;left:-2%;right:-2%;bottom:6%;height:34%;
+    background:rgba(60,240,138,.28);z-index:-1;transform:skewX(-7deg);border-radius:3px}
+  .voice-sign{margin-top:26px;font-family:var(--font-mono);font-size:.9rem;color:var(--cream-faint)}
+  .voice-sign b{color:var(--glow-soft)}
+  .voice-meta{display:flex;gap:14px 36px;flex-wrap:wrap;margin-top:34px}
+  .stat{display:flex;flex-direction:column;gap:2px}
+  .stat .n{font-family:var(--font-head);font-weight:800;font-size:clamp(1.6rem,4.6vw,2.4rem);
+    color:var(--cream);letter-spacing:-.02em}
+  .stat .n .y{color:var(--banana)}
+  .stat .l{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--cream-faint)}
+
+  /* ---------- real client ---------- */
+  .client{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+  @media(max-width:820px){.client{grid-template-columns:1fr;gap:28px}}
+  .client-card{position:relative;border:1px solid var(--panel-line);border-radius:24px;overflow:hidden;
+    background:var(--panel);box-shadow:0 30px 80px rgba(0,0,0,.5)}
+  .client-bar{display:flex;align-items:center;gap:7px;padding:13px 16px;
+    background:rgba(8,18,12,.85);border-bottom:1px solid var(--panel-line)}
+  .client-bar .d{width:11px;height:11px;border-radius:50%;background:#2A4633}
+  .client-bar .d:nth-child(1){background:#ff5f57}
+  .client-bar .d:nth-child(2){background:#febc2e}
+  .client-bar .d:nth-child(3){background:var(--glow)}
+  .client-bar .url{margin-left:10px;font-family:var(--font-mono);font-size:.78rem;color:var(--cream-faint)}
+  .client-shot{padding:30px 26px 34px;
+    background:radial-gradient(120% 80% at 50% 0%,rgba(60,240,138,.10),transparent 60%)}
+  .client-shot .show-eyebrow{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--banana)}
+  .client-shot .show-name{font-family:var(--font-serif);font-style:italic;font-weight:600;
+    font-size:clamp(1.7rem,5vw,2.6rem);line-height:1.05;margin:8px 0 6px;color:var(--cream)}
+  .client-shot .show-sub{color:var(--cream-dim);font-size:.94rem}
+  .client-shot .show-cta{margin-top:18px;display:inline-block;font-weight:800;font-size:.86rem;
+    padding:11px 18px;border-radius:10px;background:var(--banana);color:#1A1405}
+  .client-shot .show-row{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
+  .client-shot .show-row span{font-family:var(--font-mono);font-size:.7rem;color:var(--cream-dim);
+    border:1px solid var(--panel-line);border-radius:8px;padding:5px 9px;background:rgba(8,18,12,.45)}
+
+  .client-copy .eyebrow{justify-content:flex-start}
+  .client-copy h2{font-family:var(--font-head);font-weight:800;font-size:clamp(1.7rem,4.6vw,2.6rem);
+    letter-spacing:-.03em;line-height:1.04}
+  .client-copy h2 em{font-family:var(--font-serif);font-style:italic;font-weight:600;color:var(--banana-hi)}
+  .client-copy p{margin-top:16px;color:var(--cream-dim);font-size:1.04rem;line-height:1.64;max-width:46ch}
+  .client-copy .quote{margin-top:20px;padding-left:18px;border-left:2px solid var(--glow);
+    font-family:var(--font-serif);font-style:italic;font-size:1.08rem;color:var(--cream)}
+  .client-link{margin-top:22px;display:inline-flex;align-items:center;gap:9px;font-weight:700;
+    color:var(--glow-soft);font-size:.95rem}
+  .client-link svg{transition:transform .2s}
+  .client-link:hover svg{transform:translateX(4px)}
+
+  /* ---------- final CTA ---------- */
+  .final{padding:90px 0 80px;text-align:center;position:relative}
+  .final h2{font-family:var(--font-head);font-weight:800;font-size:clamp(2.2rem,7vw,4.4rem);
+    line-height:.98;letter-spacing:-.035em}
+  .final h2 .y{color:var(--banana)}
+  .final h2 .g{color:var(--glow-soft);text-shadow:0 0 30px rgba(60,240,138,.4)}
+  .final p{margin:18px auto 0;max-width:48ch;color:var(--cream-dim);font-size:1.08rem}
+  .final .hero-cta-row{justify-content:center}
+  .final .micro{margin-top:18px;font-family:var(--font-mono);font-size:.78rem;color:var(--cream-faint)}
+
+  footer{border-top:1px solid var(--panel-line);padding:30px 0 50px;background:var(--base-2)}
+  .foot-in{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;
+    font-family:var(--font-mono);font-size:.8rem;color:var(--cream-faint)}
+  .foot-in .brand{font-size:1.05rem}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    .banana-blob,.kicker .dot,.marquee-track{animation:none}
+  }
+</style>
+</head>
+<body>
+<div class="field"></div>
+<div class="grid"></div>
+
+<div class="page">
+
+<!-- NAV -->
+<nav>
+  <div class="nav-in">
+    <a class="brand" href="#top" aria-label="BananaByte home">
+      <svg class="mark" width="28" height="28" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#0E2316" stroke="#1C3A26"/>
+        <path d="M20 18c-3 12 2 26 18 30 4 1 8 0 9-3-9 0-17-6-19-15-1-5-1-9 0-13-4 0-7 0-8 1z" fill="#FFD23F"/>
+        <path d="M20 18c-3 12 2 26 18 30 4 1 8 0 9-3-9 0-17-6-19-15-1-5-1-9 0-13-4 0-7 0-8 1z" fill="url(#g)" opacity=".5"/>
+        <circle cx="44" cy="22" r="3.4" fill="#3CF08A"/>
+        <defs><linearGradient id="g" x1="20" y1="18" x2="47" y2="48"><stop stop-color="#FFE177"/><stop offset="1" stop-color="#E0B400"/></linearGradient></defs>
+      </svg>
+      Banana<b>Byte</b>
+    </a>
+    <div class="nav-links">
+      <a href="#build">What I build</a>
+      <a href="#voice">The vibe</a>
+      <a href="#client">Real work</a>
+      <a href="#pricing">Pricing</a>
+    </div>
+    <a class="nav-cta" href="#start">Start a project</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero wrap" id="top">
+  <div class="hero-stage">
+    <!-- big playful banana motif -->
+    <svg class="banana-blob" viewBox="0 0 480 480" aria-hidden="true">
+      <defs>
+        <radialGradient id="halo" cx="50%" cy="42%" r="55%">
+          <stop offset="0%" stop-color="#3CF08A" stop-opacity=".55"/>
+          <stop offset="100%" stop-color="#3CF08A" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="peel" x1="120" y1="80" x2="360" y2="420" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#FFE177"/><stop offset=".55" stop-color="#FFD23F"/><stop offset="1" stop-color="#E0B400"/>
+        </linearGradient>
+      </defs>
+      <circle cx="240" cy="210" r="210" fill="url(#halo)"/>
+      <!-- banana body -->
+      <path d="M150 70c-34 90-8 222 132 256 40 10 78 2 92-22-2 16-14 30-34 38-90 34-200-26-228-128C96 170 108 110 132 78c6-8 12-8 18-8z"
+            fill="url(#peel)" stroke="#B58E00" stroke-width="4" stroke-linejoin="round"/>
+      <!-- inner highlight -->
+      <path d="M158 92c-22 78 4 184 124 218 26 7 50 4 64-8-78 2-150-50-176-128-10-30-14-58-12-82z"
+            fill="#FFE9A8" opacity=".55"/>
+      <!-- stem -->
+      <path d="M132 78l-14-22c-3-5 0-12 6-12s12 4 14 10l8 22z" fill="#2A4D1F"/>
+      <!-- the "byte" — a green pixel-bite taken out -->
+      <g fill="#08120C">
+        <rect x="296" y="300" width="26" height="26" rx="4"/>
+        <rect x="322" y="318" width="22" height="22" rx="4"/>
+        <rect x="282" y="324" width="20" height="20" rx="4"/>
+      </g>
+      <g fill="#3CF08A">
+        <rect x="296" y="300" width="26" height="26" rx="4" opacity=".0"/>
+        <rect x="318" y="296" width="12" height="12" rx="3"/>
+        <rect x="338" y="312" width="9" height="9" rx="2"/>
+      </g>
+    </svg>
+
+    <div class="kicker reveal"><span class="dot"></span>One studio · Orlando, FL · built by a human</div>
+    <h1 class="hero-h reveal">
+      Websites with a <span class="pulse-word">pulse</span>.<br>
+      Built <em>right</em>, shipped fast.
+    </h1>
+    <p class="hero-sub reveal">
+      I'm Gabe. I build sharp, fast, flat-priced websites for the people who keep Orlando
+      interesting — <b>the taco spot, the boutique, the online store, the comedian, the DJ, the
+      ventriloquist.</b> Same studio. Same care. One banana, lots of byte.
+    </p>
+    <div class="hero-cta-row reveal">
+      <a class="btn-primary" href="#start">Get started →</a>
+      <a class="btn-ghost" href="#client">See real work</a>
+      <span class="price-note">Flat from <b>$900</b> · no surprise invoices</span>
+    </div>
+
+    <div class="hero-strip reveal">
+      <span>Live in ~2 weeks</span>
+      <span>One point of contact (me)</span>
+      <span>Yours to keep</span>
+      <span>AI front-desk optional</span>
+    </div>
+  </div>
+</header>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Restaurants</span><span class="y">Comedians</span><span>Online stores</span><span class="y">DJs</span>
+    <span>Boutiques</span><span class="y">Ventriloquists</span><span>Service pros</span><span class="y">Musicians</span>
+    <span>Redesigns</span><span class="y">Magicians</span><span>Website care</span><span class="y">Bands</span>
+    <span>Restaurants</span><span class="y">Comedians</span><span>Online stores</span><span class="y">DJs</span>
+    <span>Boutiques</span><span class="y">Ventriloquists</span><span>Service pros</span><span class="y">Musicians</span>
+    <span>Redesigns</span><span class="y">Magicians</span><span>Website care</span><span class="y">Bands</span>
+  </div>
+</div>
+
+<!-- WHAT I BUILD / WHO IT'S FOR -->
+<section class="blk wrap" id="build">
+  <div class="oneroof-head reveal">
+    <div>
+      <div class="eyebrow">What I build · Who it's for</div>
+      <h2 class="blk-h">A storefront and a stage <em>under one roof.</em></h2>
+    </div>
+    <p class="oneroof-tag">Businesses need to be found. Performers need to be felt.
+      Honestly? Both need a site that doesn't look like a template. So I build both.</p>
+  </div>
+
+  <div class="roof-grid">
+    <div class="card reveal">
+      <div class="tag">For businesses</div>
+      <h3>Get found. Get booked. Get paid.</h3>
+      <p>Restaurants, shops, service pros and online stores that need to look legit on the
+        first tap and convert the second one. Fast pages, real SEO, a checkout that works.</p>
+      <ul><li>Business sites</li><li>Online stores</li><li>Redesigns</li><li>Local SEO</li><li>Website care</li></ul>
+    </div>
+    <div class="card reveal">
+      <div class="tag">For performers</div>
+      <h3>Headline like you mean it.</h3>
+      <p>Comedians, DJs, musicians and ventriloquists who need a show site with personality,
+        a tour list that updates itself, and a "book me" button that actually gets clicked.</p>
+      <ul><li>Show sites</li><li>Tour / dates</li><li>Press kits</li><li>Booking flows</li><li>Embeds &amp; reels</li></ul>
+    </div>
+  </div>
+
+  <div class="roof-banner reveal">
+    <div class="big">Same studio for the <span class="g">spotlight</span> <span class="y">and</span> the storefront —<br>
+      because a great website is a great website.</div>
+  </div>
+</section>
+
+<!-- VOICE / PERSONALITY -->
+<section class="blk voice" id="voice">
+  <div class="wrap">
+    <div class="eyebrow reveal">The vibe</div>
+    <blockquote class="voice-quote reveal">
+      I take your website <span class="hl">dead seriously.</span>
+      Everything else, we can have a little fun with.
+    </blockquote>
+    <p class="voice-sign reveal">Translation: <b>premium work, zero stiffness.</b> You get a real
+      studio that ships on time and tells you straight — wrapped in a brand that doesn't
+      put people to sleep. Banana on the outside, byte all the way down.</p>
+
+    <div class="voice-meta reveal">
+      <div class="stat"><span class="n">1</span><span class="l">human you talk to</span></div>
+      <div class="stat"><span class="n">~2 <span class="y">wk</span></span><span class="l">typical launch</span></div>
+      <div class="stat"><span class="n">$900<span class="y">+</span></span><span class="l">flat, no surprises</span></div>
+      <div class="stat"><span class="n">100<span class="y">%</span></span><span class="l">yours to keep</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- REAL CLIENT / TRUST -->
+<section class="blk wrap" id="client">
+  <div class="client">
+    <div class="client-card reveal">
+      <div class="client-bar">
+        <span class="d"></span><span class="d"></span><span class="d"></span>
+        <span class="url">peterheftyandjustin.com</span>
+      </div>
+      <div class="client-shot">
+        <div class="show-eyebrow">Live · award-winning</div>
+        <div class="show-name">Peter Hefty &amp; Justin</div>
+        <div class="show-sub">Ventriloquist · comedian · two voices, one suitcase. A real touring
+          show site I designed and built end-to-end.</div>
+        <div class="show-row"><span>Tour dates</span><span>Watch reel</span><span>Press &amp; bookings</span></div>
+        <a class="show-cta" href="https://peterheftyandjustin.com" target="_blank" rel="noopener">Book the show</a>
+      </div>
+    </div>
+
+    <div class="client-copy reveal">
+      <div class="eyebrow">Real client · real launch</div>
+      <h2>Don't take <em>my</em> word for it — take his stage.</h2>
+      <p>Peter is an award-winning ventriloquist and comedian. He needed a site that booked
+        gigs and felt like the show. I built it — copy, design, dates, the works — and it's
+        live and working today. That same playbook is what your shop or your set gets.</p>
+      <div class="quote">"It looks like my act finally has a home online — and the bookings
+        come straight to my inbox."</div>
+      <a class="client-link" href="https://peterheftyandjustin.com" target="_blank" rel="noopener">
+        Visit the live site
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final wrap" id="start">
+  <div class="eyebrow reveal" style="justify-content:center">Let's go</div>
+  <h2 class="reveal">Got a business or a <span class="g">bit</span>?<br>Let's give it a <span class="y">website.</span></h2>
+  <p class="reveal">Tell me what you do. I'll tell you exactly what it costs and how fast it ships —
+    in plain English, on the first call. <b id="pricing">Flat from $900.</b></p>
+  <div class="hero-cta-row reveal">
+    <a class="btn-primary" href="mailto:hello@bananabyte.io">Start my project →</a>
+    <a class="btn-ghost" href="#build">Browse what I build</a>
+  </div>
+  <p class="micro reveal">No retainers you didn't ask for. No dashboards you'll never log into. Just a site that works.</p>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <a class="brand" href="#top">Banana<b style="color:var(--banana)">Byte</b></a>
+    <span>Orlando, FL · built by Gabe, one human · © 2026 BananaByte LLC</span>
+    <span>hello@bananabyte.io</span>
+  </div>
+</footer>
+
+</div>
+
+<script>
+  // scroll reveal
+  (function(){
+    var els = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+    var io = new IntersectionObserver(function(ents){
+      ents.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} });
+    },{threshold:.14, rootMargin:'0px 0px -8% 0px'});
+    els.forEach(function(e,i){ e.style.transitionDelay = (Math.min(i,4)*60)+'ms'; io.observe(e); });
+  })();
+</script>
+</body>
+</html>

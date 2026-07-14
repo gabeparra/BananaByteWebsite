@@ -1,5 +1,11 @@
 User-agent: *
 Allow: /
+# Old multi-page sections are superseded by the one-page site; kept reachable
+# (concept demos link into them) but out of the index.
+Disallow: /services/
+Disallow: /pricing/
+Disallow: /work/
+Disallow: /contact/
 Disallow: /concepts/
 Disallow: /api/
 
