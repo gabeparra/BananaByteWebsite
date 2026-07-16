@@ -247,8 +247,9 @@
   }
   .nav-cta:hover{box-shadow:3px 3px 0 0 var(--rule)}
   .nav-cta:active{box-shadow:1px 1px 0 0 var(--rule)}
-  @media(min-width:940px){.nav-links{display:flex}.hamburger{display:none}}
   .hamburger{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;background:transparent;border:1.5px solid var(--rule);border-radius:var(--radius-sm);color:var(--fg);cursor:pointer;transition:background var(--motion-fast) var(--ease-standard),border-color var(--motion-theme) var(--ease-standard),color var(--motion-theme) var(--ease-standard)}
+  /* desktop: real nav shows, hamburger hides (must come AFTER the .hamburger base rule to win) */
+  @media(min-width:940px){.nav-links{display:flex}.hamburger{display:none}.mnav{display:none!important}}
   .hamburger:hover{background:var(--accent-soft)}
   .hb{position:relative;display:block;width:18px;height:12px}
   .hb span{position:absolute;left:0;width:100%;height:2px;border-radius:2px;background:var(--fg);transition:transform var(--motion-base) var(--ease-standard),opacity var(--motion-feedback) var(--ease-standard),top var(--motion-base) var(--ease-standard),background-color var(--motion-theme) var(--ease-standard)}
