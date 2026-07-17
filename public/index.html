@@ -232,10 +232,6 @@
      Peel = yellow, body-stroke = current ink (so it reads on white,
      green, AND black grounds), tip = current ink.
      ============================================================ */
-  .bmark{display:inline-block;width:1.15em;height:1.15em;flex:none;vertical-align:-.18em}
-  .bmark .peel{fill:var(--accent)}
-  .bmark .body{fill:none;stroke:var(--ink);stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
-  .bmark .tip{fill:var(--ink)}
 
   /* ============================================================
      BRAND LOGO — real SVG asset swap keyed off the same html[data-theme]
@@ -262,7 +258,7 @@
   .wordmark .txt{display:inline-flex;align-items:baseline;gap:.06em}
   .wordmark .byte{font-family:var(--font-body);font-weight:800;font-size:.82em;letter-spacing:-.01em;color:var(--accent-ink);transform:translateY(-.02em)}
   /* the ONE kept easter-egg: a single springy spin on logo click (JS, one-shot). */
-  .wordmark .bmark.spin,.wordmark.spin{animation:markSpin .8s cubic-bezier(.34,1.56,.64,1) 1}
+  .wordmark.spin{animation:markSpin .8s cubic-bezier(.34,1.56,.64,1) 1}
   @keyframes markSpin{0%{transform:rotate(0) scale(1)}55%{transform:rotate(-380deg) scale(1.24)}100%{transform:rotate(-360deg) scale(1)}}
   .banana-pop{position:fixed;z-index:200;pointer-events:none;width:20px;height:20px;will-change:transform,opacity;animation:bananaFloat 1.15s cubic-bezier(.16,1,.3,1) forwards}
   @keyframes bananaFloat{0%{opacity:0;transform:translate(0,0) scale(.6) rotate(0)}15%{opacity:1}100%{opacity:0;transform:translate(var(--bx,0),-58px) scale(1.05) rotate(var(--br,20deg))}}
@@ -398,7 +394,7 @@
 
   /* ---- HERO RIGHT — off-axis printed calling card + stamp ---- */
   .hero-side{position:relative;justify-self:center}
-  @media(min-width:980px){.hero-side{justify-self:end;transform:rotate(-1.4deg)}}
+  @media(min-width:980px){.hero-side{justify-self:end;align-self:center;transform:rotate(-1.4deg)}}
 
   .hero-card{
     position:relative;width:min(360px,84vw);
@@ -406,7 +402,7 @@
     box-shadow:var(--lift);padding:clamp(20px,2.4vw,26px);
   }
   .hero-card .card-mast{display:flex;align-items:center;gap:10px;padding-bottom:14px;border-bottom:1.5px solid var(--line)}
-  .hero-card .card-mast .bmark{width:1.5em;height:1.5em}
+  .hero-card .card-mast .card-mark{height:1.7em;width:auto;flex:none}
   .hero-card .card-mast .m-txt{font-family:var(--font-display);font-weight:800;font-size:1.06rem;letter-spacing:-.01em;line-height:1;color:var(--ink)}
   .hero-card .card-mast .m-txt small{display:block;font-family:var(--font-body);font-weight:700;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:5px}
   .hero-card .card-list{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column}
@@ -766,7 +762,7 @@
   @media (prefers-reduced-motion:reduce){
     *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
     html,body,header.site,.themed{transition:none!important}
-    .wordmark .bmark.spin,.wordmark.spin{animation:none!important}
+    .wordmark.spin{animation:none!important}
     .banana-pop{display:none!important}
     /* NO side-gutter fireworks at all under reduced motion */
     .fx-gutter{display:none!important}
@@ -855,11 +851,7 @@
         <div class="hero-card">
           <div class="hero-stamp" aria-hidden="true"><b>Say<br>hola<small>Orlando · FL</small></b></div>
           <div class="card-mast">
-            <svg class="bmark" viewBox="0 0 48 48" aria-hidden="true">
-              <path class="peel" d="M11 9c-2 8 1 17 8 23 7 6 16 8 22 6 2-1 3-3 2-5-1-1-3-1-5 0-4 2-10 0-15-4C15 27 12 20 13 12c.4-2.5-1.6-4-2 -3z"/>
-              <path class="body" d="M11.5 9.5c-2 8 1 16.5 8 22.5 7 6 16 8.5 22 6.5"/>
-              <path class="tip" d="M9.6 8.2c1.9-.9 3.4-.2 3.9 1.4.3 1-.2 1.9-1 2-1.4.2-3-.6-3.6-1.7-.4-.8-.1-1.4.7-1.7z"/>
-            </svg>
+            <img class="card-mark" src="/brand/mark.svg" width="30" height="26" alt="" aria-hidden="true">
             <span class="m-txt">BANANAbyte<small>Web design studio · Orlando, FL</small></span>
           </div>
           <ul class="card-list">
