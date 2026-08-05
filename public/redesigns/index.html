@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>BANANAbyte — Redesign candidates (5 models)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0B0B0C;--panel:#141416;--ink:#ECECEE;--mut:#8b8b92;--hair:#242428;--yellow:#F5C800;
+      --mono:"JetBrains Mono",ui-monospace,monospace;--display:"Archivo Black",system-ui,sans-serif;
+      --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6}
+    .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+    header{padding:40px 0 8px}
+    .mark{font-weight:700;font-size:20px;letter-spacing:-.02em;display:block}.mark b{color:var(--yellow)}
+    .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin:26px 0 8px}
+    h1{font-family:var(--display);font-weight:400;font-size:clamp(30px,5vw,46px);line-height:1.05;margin:0 0 14px}
+    h1 span{color:var(--yellow)}
+    .sub{color:#c9c9cf;max-width:70ch;margin:0 0 6px}
+    .note{font-family:var(--mono);font-size:12px;color:var(--mut);line-height:1.7;border:1px solid var(--hair);border-radius:12px;background:var(--panel);padding:14px 16px;margin:20px 0 4px}
+    .note b{color:var(--ink)}
+    .grid{display:grid;grid-template-columns:1fr;gap:24px;padding:30px 0 60px}
+    @media(min-width:820px){.grid{grid-template-columns:1fr 1fr}}
+    .card{display:flex;flex-direction:column;border:1px solid var(--hair);background:var(--panel);border-radius:16px;overflow:hidden;transition:border-color .15s,transform .12s,box-shadow .2s}
+    .card:hover{border-color:var(--yellow);transform:translateY(-3px);box-shadow:0 18px 40px -24px rgba(0,0,0,.8)}
+    .shot{aspect-ratio:1200/791;width:100%;background:#000;border-bottom:1px solid var(--hair);display:block;object-fit:cover;object-position:top center}
+    .body{padding:20px 22px 22px}
+    .toprow{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap}
+    .model{font-family:var(--display);font-size:22px}
+    .tag{font-family:var(--mono);font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--bg);background:var(--yellow);padding:3px 8px;border-radius:999px;white-space:nowrap}
+    .dir{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.02em;color:var(--yellow);margin:6px 0 10px}
+    .pal{font-size:14px;color:#c4c4ca;line-height:1.6;margin:0 0 16px}
+    .links{display:flex;gap:8px;flex-wrap:wrap}
+    .links a{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;color:var(--ink);border:1px solid var(--hair);border-radius:8px;padding:8px 12px;transition:border-color .15s,color .15s}
+    .links a:hover{border-color:var(--yellow);color:var(--yellow)}
+    .links a.primary{background:var(--yellow);color:var(--bg);border-color:var(--yellow)}
+    footer{border-top:1px solid var(--hair);padding:22px 0 44px;font-family:var(--mono);font-size:12px;color:var(--mut);text-align:center;line-height:1.7}
+  </style>
+</head>
+<body>
+  <header><div class="wrap">
+    <span class="mark"><b>BANANA</b>byte</span>
+    <p class="eyebrow">[ Redesign candidates · same site · 5 models · pick one to ship ]</p>
+    <h1>Five full redesigns.<br>One <span>site</span> to pick.</h1>
+    <p class="sub">The real BANANAbyte site — home, About and the price estimator — rebuilt end to end by five different models, each free to bring its own art direction. Same content, same working contact form and estimator; only the design changes.</p>
+    <p class="note"><b>All 15 pages passed a functional gate →</b> no JS errors · contact form wired to /api/contact (Turnstile + honeypot + all fields) · estimator totals update live · nav links resolve · no mobile overflow. These are <b>preview candidates</b> (noindex); nothing on the live site changed. Open a set, then tell me which one to make the real bananabyte.io.</p>
+  </div></header>
+
+  <div class="wrap">
+    <div class="grid">
+
+      <div class="card">
+        <a href="opus/"><img class="shot" src="thumbs/opus.webp" width="1200" height="791" loading="lazy" decoding="async" alt="Opus redesign — Marquee Studio, cream letterpress with green and banana yellow"></a>
+        <div class="body">
+          <div class="toprow"><span class="model">Opus</span><span class="tag">opus 4.8 · Claude</span></div>
+          <p class="dir">“Marquee Studio”</p>
+          <p class="pal">A letterpress-broadsheet system on warm cream paper — jet ink, one electric banana yellow, deep Orlando-grove green. 2px keyline grids with hard riso drop-shadows, a highlighter swipe on the key word, an oversized numbered service index, and the storefront/stage duality as a hard split panel.</p>
+          <div class="links"><a class="primary" href="opus/">Home →</a><a href="opus/about/">About</a><a href="opus/build/">Estimator</a></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <a href="fable/"><img class="shot" src="thumbs/fable.webp" width="1200" height="791" loading="lazy" decoding="async" alt="Fable redesign — The Sign Shop, banana yellow as a full painted surface"></a>
+        <div class="body">
+          <div class="toprow"><span class="model">Fable</span><span class="tag">fable 5 · Claude</span></div>
+          <p class="dir">“The Sign Shop”</p>
+          <p class="pal">BANANAbyte as a neighborhood sign painter — banana yellow used as a full painted surface (not a timid accent), warm ink, leaf green for the storefront world, rationed curtain red for the stage. The estimator’s signature is a perforated thermal-receipt card stamped “NOT A BILL”.</p>
+          <div class="links"><a class="primary" href="fable/">Home →</a><a href="fable/about/">About</a><a href="fable/build/">Estimator</a></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <a href="gpt/"><img class="shot" src="thumbs/gpt.webp" width="1200" height="791" loading="lazy" decoding="async" alt="GPT redesign — field guide meets offset showbill, navy with coral and banana yellow"></a>
+        <div class="body">
+          <div class="toprow"><span class="model">GPT</span><span class="tag">gpt-5.6-sol</span></div>
+          <p class="dir">“Field guide × showbill”</p>
+          <p class="pal">An Orlando field guide crossed with an offset-printed showbill: warm paper, inky navy, banana yellow, coral annotations, oversized editorial type and tactile hard-shadow components. The highest-contrast, most magazine-cover take of the five.</p>
+          <div class="links"><a class="primary" href="gpt/">Home →</a><a href="gpt/about/">About</a><a href="gpt/build/">Estimator</a></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <a href="glm/"><img class="shot" src="thumbs/glm.webp" width="1200" height="791" loading="lazy" decoding="async" alt="GLM redesign — moody dark forest-green editorial with serif italics"></a>
+        <div class="body">
+          <div class="toprow"><span class="model">GLM</span><span class="tag">glm-5.2 · z.ai</span></div>
+          <p class="dir">Dark-green editorial</p>
+          <p class="pal">A moody, near-monochrome deep forest-green canvas with cream serif italics on the key words, a banana-yellow marquee thread, and a quiet, magazine-like restraint. The most atmospheric and premium-feeling of the set.</p>
+          <div class="links"><a class="primary" href="glm/">Home →</a><a href="glm/about/">About</a><a href="glm/build/">Estimator</a></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <a href="kimi/"><img class="shot" src="thumbs/kimi.webp" width="1200" height="791" loading="lazy" decoding="async" alt="Kimi redesign — cream, green and yellow serif-forward editorial"></a>
+        <div class="body">
+          <div class="toprow"><span class="model">Kimi</span><span class="tag">k3 · moonshot</span></div>
+          <p class="dir">Cream serif editorial</p>
+          <p class="pal">Warm cream with grove green and banana yellow, led by a confident serif display. A clean 2×3 service grid, a dark work band with the concept builds, and a friendly, readable rhythm — the most approachable, small-business-warm take.</p>
+          <div class="links"><a class="primary" href="kimi/">Home →</a><a href="kimi/about/">About</a><a href="kimi/build/">Estimator</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer><div class="wrap">
+    5 model redesigns · preview candidates (noindex) · the live site is unchanged.<br>
+    <span style="color:var(--yellow)">BANANA</span>byte · Orlando, FL
+  </div></footer>
+</body>
+</html>

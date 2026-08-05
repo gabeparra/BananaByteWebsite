@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Gabe — BANANAbyte · Orlando web designer &amp; developer</title>
+<meta name="description" content="Hi, I'm Gabe — an Orlando web designer and developer, and I run BANANAbyte solo. You work directly with me: no agency, no handoff, just the person actually building your site. Una persona real, right here in Orlando.">
+<meta name="theme-color" content="#FFF6E3">
+
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,600;1,9..144,900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   BANANAbyte — "PEEL PRESS" design system (shared site-wide).
+   Art direction: a screen-printed produce-zine. Warm cream paper,
+   heavy Fraunces display type, ink rules, overprint yellow
+   highlighter swipes, a deep peel-green, dashed registration
+   marks, and flat stamped chips. No gradients, no glass.
+   ============================================================ */
+:root{
+  --paper:#FFF6E3;
+  --paper-2:#FBEECB;
+  --card:#FFFDF6;
+  --ink:#1B1812;
+  --ink-2:#3D372B;
+  --muted:#6E6650;
+  --yellow:#FFD21F;
+  --yellow-deep:#8A6400;
+  --green:#166534;
+  --green-deep:#0F4A25;
+  --green-ink:#125529;
+  --lime:#B7E36B;
+  --dark:#171410;
+  --dark-2:#211D15;
+  --cream-ink:#FFF6E3;
+  --cream-2:#EFE3C4;
+  --cream-muted:#C9BC97;
+
+  --line:var(--ink);
+  --line-soft:rgba(27,24,18,.22);
+  --line-hair:rgba(27,24,18,.12);
+
+  --f-disp:"Fraunces",Georgia,serif;
+  --f-body:"Space Grotesk",system-ui,-apple-system,sans-serif;
+
+  --t-hero:clamp(2.5rem,6.4vw,5.1rem);
+  --t-2:clamp(2rem,4.4vw,3.4rem);
+  --t-3:clamp(1.6rem,3vw,2.2rem);
+  --t-lg:clamp(1.06rem,1.5vw,1.22rem);
+  --t-base:clamp(.98rem,1.3vw,1.06rem);
+  --t-sm:clamp(.82rem,1vw,.9rem);
+
+  --gutter:clamp(20px,5vw,56px);
+  --maxw:1240px;
+  --sec-y:clamp(64px,8vw,120px);
+  --r-sm:8px; --r-md:14px; --r-pill:999px;
+  --lift:5px 5px 0 0 var(--ink);
+
+  --ease:cubic-bezier(.2,0,0,1);
+  color-scheme:light;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;overflow-x:clip}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--f-body);font-size:var(--t-base);line-height:1.62;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:60;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+  opacity:.05;mix-blend-mode:multiply;
+}
+h1,h2,h3,h4{font-family:var(--f-disp);font-weight:900;line-height:1.02;letter-spacing:-.015em;margin:0;color:var(--ink)}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+::selection{background:var(--yellow);color:var(--ink)}
+.wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
+a:focus-visible,button:focus-visible{outline:2.5px solid var(--ink);outline-offset:3px;border-radius:2px}
+.dark-zone a:focus-visible,.dark-zone button:focus-visible{outline-color:var(--yellow)}
+
+.skip{position:absolute;left:-9999px;top:0;z-index:300;background:var(--yellow);color:var(--ink);font-weight:700;padding:12px 18px;border:2px solid var(--ink)}
+.skip:focus{left:0}
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.08s}.rv.d2{transition-delay:.16s}.rv.d3{transition-delay:.24s}
+
+/* ---------- kicker ---------- */
+.kick{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--f-body);font-weight:700;font-size:var(--t-sm);
+  letter-spacing:.18em;text-transform:uppercase;color:var(--green-ink);
+}
+.kick::before{content:"";width:26px;height:10px;background:var(--yellow);border:2px solid var(--ink);border-radius:var(--r-pill);flex:none}
+.dark-zone .kick{color:var(--lime)}
+.dark-zone .kick::before{border-color:var(--cream-ink)}
+
+.sec-head{max-width:820px;margin-bottom:clamp(32px,4vw,52px)}
+.sec-head h2{font-size:var(--t-2);margin-top:18px;text-wrap:balance}
+.sec-head p{color:var(--ink-2);margin-top:18px;font-size:var(--t-lg);line-height:1.55;max-width:60ch;text-wrap:pretty}
+.dark-zone .sec-head p{color:var(--cream-2)}
+
+.hl{position:relative;white-space:nowrap;font-style:normal}
+.hl::after{content:"";position:absolute;left:-3%;right:-3%;bottom:.02em;height:.34em;z-index:-1;background:var(--yellow);border-radius:45% 55% 50% 48%/70%;transform:rotate(-.8deg)}
+.hl.green::after{background:var(--lime)}
+
+/* ---------- buttons ---------- */
+.btn{
+  position:relative;display:inline-flex;align-items:center;gap:10px;cursor:pointer;
+  font-family:var(--f-body);font-weight:700;font-size:1rem;letter-spacing:.01em;
+  border-radius:var(--r-sm);padding:14px 26px;border:2px solid var(--ink);
+  transition:transform .16s var(--ease),box-shadow .16s var(--ease),background .16s var(--ease),color .16s var(--ease);
+  text-align:center;
+}
+.btn-y{background:var(--yellow);color:var(--ink);box-shadow:var(--lift)}
+.btn-y:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 0 var(--ink)}
+.btn-y:active{transform:translate(2px,2px);box-shadow:1px 1px 0 0 var(--ink)}
+.btn-ghost{background:transparent;color:var(--ink)}
+.btn-ghost:hover{background:var(--ink);color:var(--paper)}
+.dark-zone .btn-ghost{color:var(--cream-ink);border-color:var(--cream-ink)}
+.dark-zone .btn-ghost:hover{background:var(--cream-ink);color:var(--dark)}
+.btn .arr{transition:transform .16s var(--ease)}
+.btn:hover .arr{transform:translateX(3px)}
+
+/* ---------- sticker chip ---------- */
+.sticker{
+  display:inline-flex;align-items:center;gap:7px;
+  font-weight:700;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--ink);background:var(--yellow);border:2px solid var(--ink);
+  border-radius:var(--r-pill);padding:6px 14px;box-shadow:3px 3px 0 0 var(--ink);
+}
+.sticker svg{width:13px;height:13px}
+
+/* ============================================================
+   HEADER — shared
+   ============================================================ */
+header.site{position:sticky;top:0;z-index:90;background:var(--paper);border-bottom:2px solid var(--ink)}
+@media(hover:hover) and (pointer:fine){header.site{background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}}
+.nav-shell{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:70px}
+.wordmark{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-disp);font-weight:900;font-size:1.35rem;letter-spacing:-.02em;line-height:1;color:var(--ink)}
+.wordmark .nana{width:30px;height:30px;flex:none;transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.wordmark:hover .nana{transform:rotate(-14deg) scale(1.08)}
+.wordmark .byte{color:var(--green-ink);font-style:italic}
+.nav-links{display:none;align-items:center;gap:4px}
+.nav-links a:not(.nav-cta){color:var(--ink-2);font-size:.95rem;font-weight:600;padding:9px 13px;position:relative}
+.nav-links a:not(.nav-cta)::after{content:"";position:absolute;left:13px;right:13px;bottom:4px;height:2px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .2s var(--ease)}
+.nav-links a:not(.nav-cta):hover{color:var(--ink)}
+.nav-links a:not(.nav-cta):hover::after{transform:scaleX(1)}
+.nav-links a[aria-current="page"]{color:var(--ink)}
+.nav-links a[aria-current="page"]::after{transform:scaleX(1)}
+.nav-cta{display:inline-flex;align-items:center;min-height:42px;font-weight:700;font-size:.9rem;color:var(--ink);padding:9px 20px;background:var(--yellow);border:2px solid var(--ink);border-radius:var(--r-sm);box-shadow:3px 3px 0 0 var(--ink);transition:transform .16s var(--ease),box-shadow .16s var(--ease)}
+.nav-cta:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 0 var(--ink)}
+.hamburger{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;background:var(--card);border:2px solid var(--ink);border-radius:var(--r-sm);color:var(--ink);cursor:pointer}
+.hb{position:relative;display:block;width:18px;height:12px}
+.hb span{position:absolute;left:0;width:100%;height:2px;border-radius:2px;background:var(--ink);transition:transform .22s var(--ease),opacity .1s var(--ease),top .22s var(--ease)}
+.hb span:nth-child(1){top:0}.hb span:nth-child(2){top:5px}.hb span:nth-child(3){top:10px}
+.hamburger[aria-expanded="true"] .hb span:nth-child(1){top:5px;transform:rotate(45deg)}
+.hamburger[aria-expanded="true"] .hb span:nth-child(2){opacity:0}
+.hamburger[aria-expanded="true"] .hb span:nth-child(3){top:5px;transform:rotate(-45deg)}
+@media(min-width:960px){.nav-links{display:flex}.hamburger{display:none}.mnav{display:none!important}}
+.mnav{display:none;flex-direction:column;gap:4px;margin-bottom:16px;border:2px solid var(--ink);border-radius:var(--r-md);background:var(--card);box-shadow:var(--lift);padding:12px}
+.mnav.open{display:flex}
+.mnav a{display:flex;align-items:center;min-height:50px;padding:8px 14px;border-radius:var(--r-sm);font-weight:600;font-size:1.05rem;color:var(--ink)}
+.mnav a:hover{background:var(--paper-2)}
+.mnav a[aria-current="page"]{background:var(--paper-2)}
+.mnav .nav-cta{justify-content:center;margin-top:6px}
+
+/* ============================================================
+   ABOUT HERO — cream, "Hi, I'm Gabe." + portrait card
+   ============================================================ */
+.ahero{position:relative;padding-block:clamp(44px,6vw,84px) clamp(44px,5vw,76px);border-bottom:2px solid var(--ink)}
+.ahero-grid{display:grid;grid-template-columns:1fr;gap:clamp(36px,5vw,56px);align-items:start}
+@media(min-width:1000px){.ahero-grid{grid-template-columns:1.1fr .9fr}}
+.ahero-tag{display:inline-flex;align-items:center;gap:12px;font-weight:500;font-size:.92rem;color:var(--muted);flex-wrap:wrap}
+.ahero-tag .dot{width:10px;height:10px;border-radius:50%;background:var(--green);border:2px solid var(--ink);flex:none}
+.ahero-tag b{color:var(--ink);font-weight:700}
+.ahero h1{font-size:var(--t-hero);line-height:.98;margin-top:22px;max-width:16ch;text-wrap:balance}
+.ahero h1 .ital{font-style:italic;font-weight:900}
+.ahero-lede{color:var(--ink-2);font-size:var(--t-lg);margin-top:26px;max-width:52ch;line-height:1.6;text-wrap:pretty}
+.ahero-lede b{color:var(--ink);font-weight:700}
+.ahero-lede .es{font-weight:600;color:var(--ink);box-shadow:inset 0 -.45em 0 rgba(255,210,31,.55)}
+.ahero-actions{display:flex;flex-wrap:wrap;gap:16px;margin-top:32px}
+.ahero-meta{display:flex;flex-wrap:wrap;gap:10px 24px;margin-top:26px;color:var(--ink-2);font-size:.9rem;font-weight:500}
+.ahero-meta span{display:inline-flex;align-items:center;gap:8px}
+.ahero-meta .ck{display:inline-flex;color:var(--green-ink)}
+.ahero-meta .ck svg{width:16px;height:16px}
+
+/* portrait card */
+.ahero-side{position:relative;justify-self:center}
+@media(min-width:1000px){.ahero-side{justify-self:end;transform:rotate(-1.4deg)}}
+.portrait{position:relative;width:min(400px,86vw);border:2px solid var(--ink);background:var(--card);box-shadow:var(--lift);padding:14px 14px 16px}
+.portrait::before{content:"";position:absolute;inset:7px;border:1px dashed var(--line-soft);pointer-events:none;border-radius:4px;z-index:2}
+.portrait-img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:4px;border:2px solid var(--ink);position:relative}
+.portrait .cap{position:relative;z-index:3;display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line-soft)}
+.portrait .cap .who{font-family:var(--f-disp);font-weight:900;font-style:italic;font-size:1.25rem;color:var(--ink)}
+.portrait .cap .role{font-size:.76rem;color:var(--muted);text-align:right}
+.portrait-stamp{position:absolute;z-index:3;right:-18px;top:-26px;transform:rotate(9deg);width:112px;height:112px;border-radius:50%;background:var(--yellow);border:2px solid var(--ink);box-shadow:3px 3px 0 0 var(--ink);display:grid;place-items:center;text-align:center}
+.portrait-stamp b{font-family:var(--f-disp);font-style:italic;font-weight:900;font-size:.92rem;line-height:1.05;color:var(--ink)}
+.portrait-stamp b small{display:block;font-family:var(--f-body);font-style:normal;font-weight:700;font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;margin-top:3px}
+.ahero-note{display:flex;align-items:flex-start;gap:12px;margin-top:20px;padding-left:16px;border-left:3px solid var(--yellow);font-size:.96rem;line-height:1.5;color:var(--muted);max-width:min(400px,86vw)}
+.ahero-note i{font-style:normal}
+
+/* ============================================================
+   TICKER — shared produce-crate band
+   ============================================================ */
+.ticker{background:var(--yellow);border-bottom:2px solid var(--ink);overflow:hidden;padding-block:12px}
+.ticker-track{display:flex;width:max-content;animation:tick 26s linear infinite}
+.ticker-track span{display:inline-flex;align-items:center;gap:22px;padding-inline:11px;font-family:var(--f-disp);font-weight:900;font-style:italic;font-size:1.05rem;letter-spacing:.02em;color:var(--ink);white-space:nowrap}
+.ticker-track .star{font-style:normal;font-size:.8em}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* ============================================================
+   STORY — green color-block, first-person reading column
+   ============================================================ */
+.story{background:var(--green);color:var(--cream-ink);border-bottom:2px solid var(--ink);padding-block:var(--sec-y)}
+.story-inner{max-width:66ch;margin-inline:auto}
+.story .kick{color:var(--lime)}
+.story .kick::before{border-color:var(--cream-ink)}
+.story .lead-p{color:var(--cream-ink);font-size:var(--t-lg);line-height:1.55;margin-top:26px;font-weight:600;text-wrap:pretty}
+.story h3{font-family:var(--f-disp);color:var(--cream-ink);font-size:clamp(1.4rem,2.6vw,1.8rem);font-weight:900;letter-spacing:-.01em;line-height:1.08;margin-top:clamp(40px,5vw,58px);display:flex;align-items:baseline;gap:14px}
+.story h3 .idx{font-style:italic;font-weight:900;font-size:.66em;color:var(--yellow);flex:none}
+.story p{color:var(--cream-2);font-size:1.04rem;line-height:1.66;margin-top:16px;text-wrap:pretty}
+.story p b{color:var(--cream-ink);font-weight:700}
+
+/* ============================================================
+   SOLO PROMISE — cream, framed statement card
+   ============================================================ */
+.promise-sec{padding-block:var(--sec-y)}
+.promise-card{position:relative;border:2px solid var(--ink);background:var(--card);box-shadow:var(--lift);padding:clamp(30px,4vw,52px);max-width:940px;margin-inline:auto}
+.promise-card::before{content:"";position:absolute;inset:9px;border:1px dashed var(--line-soft);pointer-events:none;border-radius:6px}
+.promise-card .corner-sticker{position:absolute;left:clamp(18px,3vw,32px);top:-17px;transform:rotate(-4deg);z-index:2}
+.promise-card .pk{font-weight:700;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.promise-card q{display:block;quotes:none;margin-top:16px;font-family:var(--f-disp);font-weight:600;line-height:1.26;letter-spacing:-.01em;color:var(--ink);font-size:clamp(1.4rem,3.2vw,2.15rem);text-wrap:balance}
+.promise-card q::before,.promise-card q::after{content:""}
+.promise-card q u{text-decoration:none;font-style:italic;box-shadow:inset 0 -.16em 0 rgba(255,210,31,.6)}
+.promise-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:clamp(26px,3vw,34px);padding-top:clamp(24px,3vw,30px);border-top:1px dashed var(--line-soft)}
+@media(min-width:680px){.promise-grid{grid-template-columns:repeat(3,1fr)}}
+.promise-pt{display:flex;gap:12px;align-items:flex-start}
+.promise-pt svg{width:20px;height:20px;flex:none;color:var(--green-ink);margin-top:2px}
+.promise-pt .t{font-weight:700;color:var(--ink);font-size:.98rem}
+.promise-pt .d{color:var(--ink-2);font-size:.9rem;line-height:1.5;margin-top:3px}
+
+/* ============================================================
+   PETER HEFTY — dark room, thumbnail beside the warm copy
+   ============================================================ */
+.client{background:var(--dark);color:var(--cream-ink);border-bottom:2px solid var(--ink);padding-block:var(--sec-y)}
+.client h2{color:var(--cream-ink)}
+.client-inner{display:grid;grid-template-columns:1fr;gap:clamp(32px,4vw,52px);align-items:center}
+@media(min-width:920px){.client-inner{grid-template-columns:1.25fr .75fr}}
+.client-copy h2{font-size:var(--t-2);margin-top:18px;text-wrap:balance}
+.client-copy p{color:var(--cream-2);margin-top:20px;font-size:1.04rem;line-height:1.62;max-width:54ch;text-wrap:pretty}
+.client-copy p b{color:var(--cream-ink);font-weight:700}
+.client-quote{margin-top:26px;padding-left:20px;border-left:3px solid var(--yellow);font-family:var(--f-disp);font-style:italic;font-weight:600;font-size:clamp(1.1rem,2vw,1.3rem);line-height:1.4;color:var(--cream-ink)}
+.client-quote cite{display:block;margin-top:12px;font-family:var(--f-body);font-style:normal;font-weight:700;font-size:.9rem;color:var(--cream-2)}
+.client-quote cite span{font-weight:500;color:var(--cream-muted)}
+.client-shot{position:relative;justify-self:center;width:min(360px,100%);border:2px solid var(--cream-ink);background:var(--dark-2);box-shadow:5px 5px 0 0 rgba(255,210,31,.9);overflow:hidden;transition:transform .18s var(--ease),box-shadow .18s var(--ease)}
+@media(min-width:920px){.client-shot{justify-self:end;transform:rotate(1deg)}}
+.client-shot:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 0 rgba(255,210,31,.9)}
+.client-shot .thumb{position:relative;aspect-ratio:16/10;overflow:hidden;border-bottom:2px solid var(--cream-ink);background:#0e0c08}
+.client-shot .thumb img{width:100%;height:100%;display:block;object-fit:cover;object-position:top center}
+.client-shot .corner-sticker{position:absolute;left:12px;top:12px;z-index:3;transform:rotate(-3deg)}
+.client-shot .visit{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px}
+.client-shot .visit .lbl{font-family:var(--f-disp);font-style:italic;font-weight:600;font-size:.95rem;color:var(--cream-ink)}
+.client-shot .visit a{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.76rem;color:var(--ink);background:var(--yellow);border:2px solid var(--ink);border-radius:var(--r-sm);padding:7px 12px;transition:transform .15s var(--ease)}
+.client-shot .visit a:hover{transform:translate(-1px,-1px)}
+
+/* ============================================================
+   HONEST FRAME — cream, two printed columns split by a rule
+   ============================================================ */
+.honest{padding-block:var(--sec-y);background:var(--paper-2);border-block:2px solid var(--ink)}
+.honest-grid{display:grid;grid-template-columns:1fr;gap:0;border:2px solid var(--ink);background:var(--card);box-shadow:var(--lift)}
+@media(min-width:780px){.honest-grid{grid-template-columns:1fr 1fr}}
+.honest-col{position:relative;padding:clamp(28px,3.4vw,44px)}
+@media(min-width:780px){.honest-col+.honest-col{border-left:2px solid var(--ink)}}
+@media(max-width:779px){.honest-col+.honest-col{border-top:2px solid var(--ink)}}
+.honest-col .hk{font-weight:700;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.honest-col.yes .hk{color:var(--green-ink)}
+.honest-col h3{font-size:clamp(1.45rem,3vw,2rem);font-weight:900;letter-spacing:-.01em;margin-top:12px;line-height:1.06}
+.honest-col ul{list-style:none;margin:20px 0 0;padding:0;display:flex;flex-direction:column;gap:13px}
+.honest-col li{display:flex;gap:12px;align-items:flex-start;font-size:.97rem;color:var(--ink-2);line-height:1.5}
+.honest-col li svg{width:18px;height:18px;flex:none;margin-top:2px}
+.honest-col.yes li svg{color:var(--green-ink)}
+.honest-col.no li svg{color:var(--ink-2)}
+.honest-col li b{color:var(--ink);font-weight:700}
+
+/* ============================================================
+   CTA — green close
+   ============================================================ */
+.cta{background:var(--green);color:var(--cream-ink);border-bottom:2px solid var(--ink);padding-block:var(--sec-y)}
+.cta h2{color:var(--cream-ink)}
+.cta .kick{color:var(--lime)}
+.cta .kick::before{border-color:var(--cream-ink)}
+.cta-inner{display:grid;grid-template-columns:1fr;gap:clamp(34px,4vw,54px);align-items:center}
+@media(min-width:880px){.cta-inner{grid-template-columns:1.15fr .85fr}}
+.cta-copy h2{font-size:var(--t-2);margin-top:18px;text-wrap:balance}
+.cta-copy h2 .em{font-style:italic;font-weight:900;box-shadow:inset 0 -.18em 0 rgba(183,227,107,.35)}
+.cta-copy p{color:var(--cream-2);margin-top:20px;font-size:1.06rem;line-height:1.6;max-width:50ch;text-wrap:pretty}
+.cta-copy p b{color:var(--cream-ink);font-weight:700}
+.cta-actions{display:flex;flex-wrap:wrap;gap:16px;margin-top:30px}
+.cta-card{position:relative;justify-self:center;border:2px solid var(--ink);background:var(--card);box-shadow:var(--lift);padding:clamp(24px,3vw,34px);width:min(370px,92vw);color:var(--ink)}
+@media(min-width:880px){.cta-card{justify-self:end;transform:rotate(-1deg)}}
+.cta-card::before{content:"";position:absolute;inset:8px;border:1px dashed var(--line-soft);pointer-events:none;border-radius:5px}
+.cta-card .signed{font-family:var(--f-disp);font-style:italic;font-weight:900;font-size:2rem;color:var(--ink);line-height:1;position:relative}
+.cta-card .signed-sub{color:var(--muted);font-size:.88rem;margin-top:8px;position:relative}
+.cta-card .facts{margin-top:18px;padding-top:16px;border-top:1px dashed var(--line-soft);display:flex;flex-direction:column;gap:12px;position:relative}
+.cta-card .fact{display:flex;align-items:center;gap:11px;font-size:.92rem;color:var(--ink-2)}
+.cta-card .fact svg{width:17px;height:17px;flex:none;color:var(--green-ink)}
+.cta-card .fact b{color:var(--ink);font-weight:700}
+.cta-card .fact a{box-shadow:inset 0 -1.5px 0 var(--line-soft)}
+
+/* ============================================================
+   FOOTER — shared near-black colophon
+   ============================================================ */
+footer.site{background:var(--dark);color:var(--cream-ink);padding-block:clamp(48px,5vw,72px) 32px}
+.foot-grid{display:flex;flex-direction:column;gap:32px}
+@media(min-width:780px){.foot-grid{flex-direction:row;justify-content:space-between;align-items:flex-start;gap:48px}}
+footer.site .wordmark{color:var(--cream-ink)}
+footer.site .wordmark .byte{color:var(--yellow)}
+.foot-blurb{color:var(--cream-2);font-size:.95rem;max-width:42ch;margin-top:18px;line-height:1.6}
+.foot-quip{color:var(--cream-muted);font-size:.94rem;margin-top:14px}
+.foot-quip .nana{display:inline-block;width:1.05em;height:1.05em;vertical-align:-.18em}
+.foot-disclaimer{color:var(--cream-muted);font-size:.78rem;line-height:1.55;max-width:64ch;margin:28px 0 0}
+.foot-nav{display:flex;flex-wrap:wrap;gap:8px 26px}
+.foot-nav a{color:var(--cream-2);font-size:.94rem;font-weight:600;display:inline-flex;align-items:center;min-height:40px;transition:color .15s var(--ease)}
+.foot-nav a:hover{color:var(--yellow)}
+.foot-bottom{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;margin-top:40px;padding-top:24px;border-top:1px solid rgba(255,246,227,.2);color:var(--cream-muted);font-size:.82rem}
+.foot-built{display:block;margin-top:4px;color:var(--cream-muted);font-size:.94em}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .ticker-track{animation:none!important;flex-wrap:wrap;width:auto}
+  .rv{opacity:1!important;transform:none!important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ================= HEADER ================= -->
+<header class="site">
+  <div class="wrap">
+    <div class="nav-shell">
+      <a class="wordmark" href="../" aria-label="BANANAbyte home">
+        <svg class="nana" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFD21F" stroke="#1B1812" stroke-width="3" stroke-linejoin="round" d="M11 8c-2.4 8.6 1 18 8.4 24.2C26.7 38.6 36 40.6 42 38.4c2-1 2.8-3.2 1.8-5-.9-1.6-3-1.8-4.8-.9-3.9 1.9-10 .3-14.8-3.6C16.2 26 13 18.6 13.6 10.6c.2-2.4-2.2-4-2.6-2.6z"/><path fill="#1B1812" d="M10.6 5.4c1.5-.4 3.2.8 3.4 2.4l-3.8.6c-.4-1.2-.4-2.6.4-3z"/></svg>
+        <span>BANANA<span class="byte">byte</span></span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="../#services">Services</a>
+        <a href="../#work">Work</a>
+        <a href="../#pricing">Pricing</a>
+        <a href="../about/" aria-current="page">About</a>
+        <a href="../build/">Estimator</a>
+        <a href="../#contact" class="nav-cta">Start a project</a>
+      </nav>
+      <button class="hamburger" id="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mnav">
+        <span class="hb" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+    </div>
+    <nav class="mnav" id="mnav" aria-label="Mobile">
+      <a href="../#services">Services</a>
+      <a href="../#work">Work</a>
+      <a href="../#pricing">Pricing</a>
+      <a href="../about/" aria-current="page">About</a>
+      <a href="../build/">Estimator</a>
+      <a href="../#contact" class="nav-cta">Start a project <span aria-hidden="true">→</span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ================= ABOUT HERO ================= -->
+  <section class="ahero" aria-labelledby="about-h">
+    <div class="wrap ahero-grid">
+      <div class="ahero-copy">
+        <span class="ahero-tag rv"><span class="dot" aria-hidden="true"></span> The person behind BANANAbyte · <b>Orlando, FL</b></span>
+        <h1 id="about-h" class="rv d1">Hi, I&rsquo;m <span class="ital hl">Gabe.</span><br>I make websites in Orlando.</h1>
+        <p class="ahero-lede rv d2">I&rsquo;m a web designer and developer, and I run <b>BANANAbyte</b> on my own &mdash; no agency, no account managers, no queue. <span class="es" lang="es">Una persona real</span>, right here in Orlando, who&rsquo;ll answer your email and actually build your site. Both, same guy.</p>
+        <div class="ahero-actions rv d2">
+          <a href="../#contact" class="btn btn-y">Start a project <span class="arr" aria-hidden="true">&rarr;</span></a>
+          <a href="../#work" class="btn btn-ghost">See the work</a>
+        </div>
+        <div class="ahero-meta rv d3">
+          <span><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg></span> Designer &amp; developer &mdash; both hats</span>
+          <span><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg></span> English &amp; Spanish</span>
+        </div>
+      </div>
+
+      <div class="ahero-side rv d2">
+        <div class="portrait">
+          <div class="portrait-stamp" aria-hidden="true"><b>Una<br>persona<small>real &middot; Orlando</small></b></div>
+          <img class="portrait-img" src="/about/gabe-portrait.webp" width="800" height="1000" loading="eager" decoding="async" alt="Gabe, founder of BANANAbyte, in his Orlando studio">
+          <div class="cap">
+            <span class="who">Gabe</span>
+            <span class="role">founder &middot; designer &middot; developer</span>
+          </div>
+        </div>
+        <p class="ahero-note"><i>&ldquo;When you hire BANANAbyte, you get me &mdash; not a sales rep who hands you off to a stranger after the invoice clears.&rdquo;</i></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TICKER ================= -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>One person <i class="star">✳</i> No handoffs <i class="star">✳</i> Straight answers <i class="star">✳</i> English &amp; Español <i class="star">✳</i> Registered Florida LLC <i class="star">✳</i> Orlando, FL <i class="star">✳</i></span>
+      <span>One person <i class="star">✳</i> No handoffs <i class="star">✳</i> Straight answers <i class="star">✳</i> English &amp; Español <i class="star">✳</i> Registered Florida LLC <i class="star">✳</i> Orlando, FL <i class="star">✳</i></span>
+    </div>
+  </div>
+
+  <!-- ================= STORY ================= -->
+  <section class="story dark-zone" aria-labelledby="story-h">
+    <div class="wrap">
+      <div class="story-inner">
+        <h2 class="kick rv" id="story-h" style="margin:0">The short version</h2>
+
+        <p class="lead-p rv">So here&rsquo;s the honest pitch: I&rsquo;m one person who cares a lot about the web, and I&rsquo;d rather build a handful of sites I&rsquo;m genuinely proud of than crank out a hundred I&rsquo;m not. BANANAbyte is small on purpose &mdash; that&rsquo;s the feature, not the caveat.</p>
+
+        <h3 class="rv"><span class="idx" aria-hidden="true">01</span>Why I started BANANAbyte</h3>
+        <p class="rv">I started BANANAbyte because I kept seeing good local businesses stuck with websites that didn&rsquo;t sound like them &mdash; a template someone bolted their name onto and left. I wanted to do the opposite: sit with a person, understand what they actually do, and build the whole thing, design and code, from the ground up.</p>
+
+        <h3 class="rv"><span class="idx" aria-hidden="true">02</span>Why Orlando</h3>
+        <p class="rv">Orlando&rsquo;s more than the parks, and the people who make it interesting &mdash; the taco spot two blocks over, the corner boutique, the comedian working the local room &mdash; are exactly who I want to build for. This is home, so when I say &ldquo;local,&rdquo; I mean I&rsquo;ll actually come sit at your counter.</p>
+
+        <h3 class="rv"><span class="idx" aria-hidden="true">03</span>The Peter Hefty story</h3>
+        <p class="rv">My first real client was <b>Peter Hefty</b>, an award-winning ventriloquist and comedian who needed a booking site with as much personality as his act. We built him a red-curtain, theatrical home on the web &mdash; and when he told me it felt like watching a magician pull his new website out of thin air, that&rsquo;s the moment I knew this was the work I wanted to keep doing.</p>
+
+        <h3 class="rv"><span class="idx" aria-hidden="true">04</span>One opinion I&rsquo;ll die on</h3>
+        <p class="rv">My one strong opinion: a website that makes you fight a pop-up before you can read it has already failed. Fast, quiet, and it works on the cheapest phone in the room &mdash; that&rsquo;s the whole job. Everything clever comes after that, or not at all.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SOLO PROMISE ================= -->
+  <section class="promise-sec" aria-labelledby="promise-h">
+    <div class="wrap">
+      <div class="promise-card rv">
+        <span class="corner-sticker sticker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="8" r="4"/></svg> One person, start to finish</span>
+        <span class="pk" aria-hidden="true">The solo promise</span>
+        <h2 id="promise-h" class="visually-hidden">The solo promise</h2>
+        <q>You work directly with me. I&rsquo;m the whole studio &mdash; so you&rsquo;ll always be <u>emailing the person actually building your site</u>, not a middleman relaying messages to someone you&rsquo;ll never meet.</q>
+        <div class="promise-grid">
+          <div class="promise-pt">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v12H5.2L4 17.2z"/></svg>
+            <div><div class="t">One inbox</div><div class="d">Every reply comes from me &mdash; the same person writing the code.</div></div>
+          </div>
+          <div class="promise-pt">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/><path d="m9 12 2 2 4-4"/></svg>
+            <div><div class="t">No handoff</div><div class="d">Nothing gets lost between sales and build, because there is no in-between.</div></div>
+          </div>
+          <div class="promise-pt">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            <div><div class="t">You own it</div><div class="d">When it ships, the code, domain and content are all yours to keep.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PETER HEFTY ================= -->
+  <section class="client dark-zone" aria-labelledby="client-h">
+    <div class="wrap client-inner">
+      <div class="client-copy rv">
+        <span class="kick">The one real client, so far</span>
+        <h2 id="client-h">Peter Hefty trusted me first &mdash; and I don&rsquo;t take that lightly.</h2>
+        <p>I&rsquo;m not going to pad this page with a wall of logos I don&rsquo;t have. What I have is a real relationship: <b>Peter Hefty &amp; Justin</b>, an award-winning ventriloquist and comedian, whose live booking site I designed and built. Being someone&rsquo;s <b>first</b> real client site means you earn every bit of the trust &mdash; and it&rsquo;s the standard I hold every future project to.</p>
+        <blockquote class="client-quote">
+          &ldquo;There was nothing up his sleeve: everything fantastic just appeared before my eyes &mdash; my new website.&rdquo;
+          <cite>Peter Hefty <span>&middot; ventriloquist &amp; comedian</span></cite>
+        </blockquote>
+      </div>
+      <div class="client-shot rv d1">
+        <div class="thumb">
+          <span class="corner-sticker sticker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/><path d="m9 12 2 2 4-4"/></svg> Real client &middot; live</span>
+          <img src="/peter-hefty.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="The live homepage of peterheftyandjustin.com — a red-curtain theatrical booking site for Peter Hefty, an award-winning ventriloquist and comedian, built by BANANAbyte.">
+        </div>
+        <div class="visit">
+          <span class="lbl">peterheftyandjustin.com</span>
+          <a href="https://peterheftyandjustin.com/" target="_blank" rel="noopener">Visit the live site <span aria-hidden="true">&#8599;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= HONEST FRAME ================= -->
+  <section class="honest" aria-labelledby="honest-h">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="kick">Being honest about it</span>
+        <h2 id="honest-h">A new studio, run by one person. Here&rsquo;s exactly what that means.</h2>
+        <p>I&rsquo;d rather you know precisely what you&rsquo;re getting than oversell it. Small and new comes with real trade-offs &mdash; and real advantages. Both are on the table.</p>
+      </div>
+      <div class="honest-grid rv">
+        <div class="honest-col yes">
+          <span class="hk">What you get</span>
+          <h3>Depth, not scale.</h3>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>The <b>same person</b> designs, builds and answers your email &mdash; start to finish.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Your project gets <b>real attention</b>, not a slot in an agency&rsquo;s conveyor belt.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Straight answers, <b>one flat price</b> quoted upfront, and you own everything at the end.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Local and <b>bilingual</b> &mdash; we can do the whole thing in English or Spanish.</span></li>
+          </ul>
+        </div>
+        <div class="honest-col no">
+          <span class="hk">What I won&rsquo;t pretend</span>
+          <h3>No smoke, no mirrors.</h3>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><span>No <b>fake team page</b> &mdash; it&rsquo;s me. No stock-photo &ldquo;account executives.&rdquo;</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><span>No invented <b>&ldquo;20 years&rdquo; or a shelf of awards</b> &mdash; BANANAbyte is genuinely new.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><span>No wall of logos I didn&rsquo;t build. One real client, shown proudly &mdash; and honestly.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><span>No disappearing act &mdash; a <b>registered Florida LLC</b> with a real phone number.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CTA ================= -->
+  <section class="cta dark-zone" aria-labelledby="cta-h">
+    <div class="wrap cta-inner">
+      <div class="cta-copy rv">
+        <span class="kick">Let&rsquo;s make something</span>
+        <h2 id="cta-h">If you&rsquo;ve read this far, we should probably <span class="em">talk.</span></h2>
+        <p>Tell me what you&rsquo;re building &mdash; a few sentences is plenty. No pitch deck, no pressure. I read every message myself and reply within one business day, <b>even if it&rsquo;s just to say you don&rsquo;t need me yet.</b> Either way, you&rsquo;ll be talking to Gabe.</p>
+        <div class="cta-actions">
+          <a href="../#contact" class="btn btn-y">Start a project <span class="arr" aria-hidden="true">&rarr;</span></a>
+          <a href="../#work" class="btn btn-ghost">See the work first</a>
+        </div>
+      </div>
+      <aside class="cta-card rv d1">
+        <div class="signed">&mdash; Gabe</div>
+        <div class="signed-sub">founder &middot; designer &middot; developer</div>
+        <div class="facts">
+          <div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/><path d="m9 12 2 2 4-4"/></svg> <span><b>BANANAbyte LLC</b> &middot; Orlando, FL</span></div>
+          <div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14M5 8a7 7 0 0 0 7 7 7 7 0 0 0 7-7M5 8a7 7 0 0 1 7-7 7 7 0 0 1 7 7M5 21h14"/></svg> <span>Native <b>English + Spanish</b></span></div>
+          <div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg> <a href="tel:+13212023732"><b>(321)&nbsp;202-3732</b></a></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="wordmark" href="../" aria-label="BANANAbyte home">
+          <svg class="nana" viewBox="0 0 48 48" aria-hidden="true" style="width:30px;height:30px"><path fill="#FFD21F" stroke="#FFF6E3" stroke-width="3" stroke-linejoin="round" d="M11 8c-2.4 8.6 1 18 8.4 24.2C26.7 38.6 36 40.6 42 38.4c2-1 2.8-3.2 1.8-5-.9-1.6-3-1.8-4.8-.9-3.9 1.9-10 .3-14.8-3.6C16.2 26 13 18.6 13.6 10.6c.2-2.4-2.2-4-2.6-2.6z"/><path fill="#FFF6E3" d="M10.6 5.4c1.5-.4 3.2.8 3.4 2.4l-3.8.6c-.4-1.2-.4-2.6.4-3z"/></svg>
+          <span>BANANA<span class="byte">byte</span></span>
+        </a>
+        <p class="foot-blurb">A web studio in Orlando, FL. Fast, clean, custom websites, built right &mdash; by one person who cares.</p>
+        <p class="foot-quip">Powered by good coffee, clean code, and exactly one
+          <svg class="nana" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFD21F" stroke="#FFF6E3" stroke-width="3" stroke-linejoin="round" d="M11 8c-2.4 8.6 1 18 8.4 24.2C26.7 38.6 36 40.6 42 38.4c2-1 2.8-3.2 1.8-5-.9-1.6-3-1.8-4.8-.9-3.9 1.9-10 .3-14.8-3.6C16.2 26 13 18.6 13.6 10.6c.2-2.4-2.2-4-2.6-2.6z"/></svg>.
+        </p>
+      </div>
+      <nav class="foot-nav" aria-label="Footer">
+        <a href="../#services">Services</a>
+        <a href="../#work">Work</a>
+        <a href="../#pricing">Pricing</a>
+        <a href="../about/" aria-current="page">About</a>
+        <a href="../build/">Estimator</a>
+        <a href="../#contact">Contact</a>
+        <a href="mailto:contact@bananabyte.io">contact@bananabyte.io</a>
+      </nav>
+    </div>
+    <p class="foot-disclaimer">BANANAbyte is a one-person studio and a registered Florida LLC. The one client site shown is displayed with the owner&rsquo;s permission.</p>
+    <div class="foot-bottom">
+      <span>&copy; <span id="year">2026</span> BANANAbyte LLC &mdash; Orlando, FL. <span class="foot-built">Built by Gabe, an Orlando developer.</span></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var rm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- year ---- */
+  var y = document.getElementById('year'); if(y) y.textContent = new Date().getFullYear();
+
+  /* ---- mobile drawer ---- */
+  var burger = document.getElementById('hamburger'), drawer = document.getElementById('mnav');
+  if(burger && drawer){
+    burger.addEventListener('click', function(){
+      var open = drawer.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    drawer.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ drawer.classList.remove('open'); burger.setAttribute('aria-expanded','false'); });
+    });
+  }
+
+  /* ---- reveal-on-scroll ---- */
+  var items = [].slice.call(document.querySelectorAll('.rv'));
+  if(rm || !('IntersectionObserver' in window)){
+    items.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold: 0.12, rootMargin: '0px 0px -40px 0px'});
+    items.forEach(function(el){ io.observe(el); });
+  }
+})();
+</script>
+</body>
+</html>

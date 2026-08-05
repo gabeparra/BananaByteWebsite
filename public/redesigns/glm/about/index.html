@@ -1,0 +1,844 @@
+<!doctype html>
+<html lang="en" data-theme="paper">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Gabe — BANANAbyte · Orlando web designer &amp; developer</title>
+<meta name="description" content="Hi, I'm Gabe — an Orlando web designer and developer, and I run BANANAbyte solo. You work directly with me: no agency, no handoff, just the person actually building your site. Una persona real, right here in Orlando.">
+<meta name="theme-color" content="#1E6B45">
+
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..900,0..100&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   BANANAbyte — shared design system (matches HOME exactly)
+   ============================================================ */
+:root{
+  --font-display:"Fraunces","Georgia",serif;
+  --font-body:"Space Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+
+  --text-xs:clamp(11px,.95vw,12px);
+  --text-sm:clamp(13px,1.05vw,14px);
+  --text-base:clamp(15.5px,1.35vw,17px);
+  --text-lg:clamp(18px,1.6vw,20px);
+  --text-xl:clamp(22px,2.4vw,28px);
+  --text-2xl:clamp(30px,4vw,44px);
+  --text-3xl:clamp(42px,6.4vw,72px);
+  --text-4xl:clamp(56px,8.8vw,116px);
+
+  --leading-tight:1;
+  --leading-display:1.02;
+  --leading-body:1.6;
+
+  --gutter:clamp(20px,5vw,52px);
+  --maxw:1240px;
+  --section-y:clamp(72px,9vw,128px);
+
+  --r-sm:4px;
+  --r-md:8px;
+  --r-lg:14px;
+  --r-pill:9999px;
+
+  --paper:#F4EFE2;
+  --paper-2:#EBE3CF;
+  --paper-raised:#FBF7EC;
+  --ink:#14130F;
+  --ink-2:#2E2B22;
+  --green:#1E6B45;
+  --green-deep:#144A30;
+  --green-bright:#5BE39A;
+  --green-soft:#E8F1EA;
+  --yellow:#F5C800;
+  --yellow-deep:#7A5E00;
+  --on-yellow:#14130F;
+
+  --surface:var(--paper);
+  --surface-2:var(--paper-2);
+  --surface-raised:var(--paper-raised);
+  --ink-1:var(--ink);
+  --ink-mut:#5E584A;
+  --ink-fnt:#8A8473;
+  --line:var(--ink);
+  --line-soft:rgba(20,19,15,.18);
+  --line-hair:rgba(20,19,15,.10);
+  --accent:var(--yellow);
+  --accent-ink:var(--yellow-deep);
+  --accent-soft:rgba(245,200,0,.22);
+  --on-accent:var(--on-yellow);
+  --brand:var(--green);
+  --brand-ink:var(--green);
+  --lift:5px 5px 0 0 var(--ink);
+  --tint:rgba(30,107,69,.06);
+  --focus:0 0 0 3px rgba(245,200,0,.7), 0 0 0 5px var(--ink);
+
+  --motion-fast:140ms;
+  --motion-base:240ms;
+  --color-scroll:700ms;
+  --ease:cubic-bezier(.2,0,0,1);
+  --ease-color:cubic-bezier(.4,0,.2,1);
+
+  color-scheme:light;
+}
+
+html[data-theme="green"]{
+  --surface:var(--green);
+  --surface-2:var(--green-deep);
+  --surface-raised:var(--green-deep);
+  --ink-1:#F4EFE2;
+  --ink-2:#E6F1EA;
+  --ink-mut:#B9D3C4;
+  --ink-fnt:#94B6A2;
+  --line:#F4EFE2;
+  --line-soft:rgba(244,239,226,.30);
+  --line-hair:rgba(244,239,226,.16);
+  --accent:var(--yellow);
+  --accent-ink:#FFD866;
+  --accent-soft:rgba(245,200,0,.22);
+  --on-accent:var(--on-yellow);
+  --brand:var(--green-bright);
+  --brand-ink:var(--green-bright);
+  --lift:5px 5px 0 0 var(--ink);
+  --tint:rgba(255,255,255,.04);
+}
+
+html[data-theme="black"]{
+  --surface:#0E0D0A;
+  --surface-2:#161510;
+  --surface-raised:#1B1A14;
+  --ink-1:#F4EFE2;
+  --ink-2:#D8D3C2;
+  --ink-mut:#9C9684;
+  --ink-fnt:#73705F;
+  --line:#F4EFE2;
+  --line-soft:rgba(244,239,226,.22);
+  --line-hair:rgba(244,239,226,.12);
+  --accent:var(--yellow);
+  --accent-ink:var(--yellow);
+  --accent-soft:rgba(245,200,0,.22);
+  --on-accent:#14130F;
+  --brand:var(--green-bright);
+  --brand-ink:var(--green-bright);
+  --lift:5px 5px 0 0 var(--green-bright);
+  --tint:rgba(91,227,154,.06);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;overflow-x:clip}
+
+html,body,header.site,.themed{
+  transition:
+    background-color var(--color-scroll) var(--ease-color),
+    border-color var(--color-scroll) var(--ease-color),
+    color var(--color-scroll) var(--ease-color),
+    box-shadow var(--color-scroll) var(--ease-color);
+}
+
+html{background:var(--surface)}
+body{
+  margin:0;background:var(--surface);color:var(--ink-1);
+  font-family:var(--font-body);
+  font-size:var(--text-base);line-height:var(--leading-body);font-weight:400;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  overflow-x:hidden;position:relative;
+}
+
+body::before{
+  content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+  opacity:.06;mix-blend-mode:multiply;
+}
+
+::selection{background:var(--yellow);color:var(--on-yellow)}
+
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;margin:0;color:var(--ink-1);letter-spacing:-.02em;font-variation-settings:"opsz" 144,"SOFT" 30;line-height:var(--leading-display)}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button{font-family:inherit}
+
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{
+  outline:2px solid var(--ink-1);outline-offset:3px;box-shadow:var(--focus);border-radius:2px;
+}
+
+.wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
+.skip{position:fixed;left:8px;top:-100px;z-index:300;background:var(--yellow);color:var(--on-yellow);font-weight:700;padding:12px 16px;border:1.5px solid var(--ink);box-shadow:3px 3px 0 0 var(--ink);transition:top 200ms var(--ease)}
+.skip:focus{top:8px}
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* HEADER */
+header.site{position:sticky;top:0;z-index:90;background:var(--surface);border-bottom:1px solid var(--line-soft)}
+@media (hover:hover) and (pointer:fine){header.site{background:color-mix(in srgb,var(--surface) 88%,transparent);backdrop-filter:saturate(130%) blur(10px);-webkit-backdrop-filter:saturate(130%) blur(10px)}}
+.nav-shell{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:74px;padding-block:14px}
+
+.wordmark{display:inline-flex;align-items:center;gap:11px;background:none;border:0;cursor:pointer;color:var(--ink-1);padding:0;font-family:var(--font-display)}
+.wordmark .nana{width:30px;height:30px;display:block;flex:none;transition:transform 400ms var(--ease)}
+.wordmark.spin .nana{animation:markSpin .85s cubic-bezier(.34,1.56,.64,1) 1}
+@keyframes markSpin{0%{transform:rotate(0)}55%{transform:rotate(-400deg) scale(1.25)}100%{transform:rotate(-360deg)}}
+.wordmark .wm-txt{display:flex;align-items:baseline;gap:0;font-weight:700;font-size:1.42rem;line-height:1;letter-spacing:-.03em;font-variation-settings:"opsz" 144,"SOFT" 0}
+.wordmark .wm-txt .byte{font-family:var(--font-body);font-weight:500;font-size:.92rem;letter-spacing:-.01em;color:var(--accent-ink);text-transform:lowercase;margin-left:2px}
+.wordmark .wm-sub{display:none;font-family:var(--font-body);font-size:.66rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-mut);margin-top:4px}
+@media(min-width:540px){.wordmark .wm-sub{display:block}}
+
+.nav-links{display:none;align-items:center;gap:4px}
+.nav-links a{color:var(--ink-2);font-size:.94rem;font-weight:500;padding:9px 14px;position:relative;letter-spacing:-.01em}
+.nav-links a:not(.nav-cta)::after{content:"";position:absolute;left:14px;right:14px;bottom:4px;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform var(--motion-fast) var(--ease)}
+.nav-links a:not(.nav-cta):hover{color:var(--ink-1)}
+.nav-links a:not(.nav-cta):hover::after{transform:scaleX(1)}
+.nav-links a[aria-current="page"]{color:var(--ink-1)}
+.nav-links a[aria-current="page"]::after{transform:scaleX(1)}
+.nav-cta{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:.9rem;color:var(--on-accent);padding:10px 16px;background:var(--accent);border:1.5px solid var(--ink);box-shadow:3px 3px 0 0 var(--ink);transition:transform var(--motion-fast) var(--ease),box-shadow var(--motion-fast) var(--ease)}
+.nav-cta:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 0 var(--ink)}
+
+.hamburger{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;background:transparent;border:1.5px solid var(--ink-1);border-radius:var(--r-sm);color:var(--ink-1);cursor:pointer;transition:background var(--motion-fast),color var(--motion-fast)}
+.hamburger:hover{background:var(--ink-1);color:var(--surface)}
+@media(min-width:980px){.nav-links{display:flex}.hamburger{display:none}.mnav{display:none!important}}
+.hb{position:relative;display:block;width:18px;height:12px}
+.hb span{position:absolute;left:0;width:100%;height:2px;background:currentColor;transition:transform var(--motion-base) var(--ease),opacity 100ms,top var(--motion-base)}
+.hb span:nth-child(1){top:0}.hb span:nth-child(2){top:5px}.hb span:nth-child(3){top:10px}
+.hamburger[aria-expanded="true"] .hb span:nth-child(1){top:5px;transform:rotate(45deg)}
+.hamburger[aria-expanded="true"] .hb span:nth-child(2){opacity:0}
+.hamburger[aria-expanded="true"] .hb span:nth-child(3){top:5px;transform:rotate(-45deg)}
+
+.mnav{display:none;flex-direction:column;gap:2px;margin-top:14px;padding:10px;border:1.5px solid var(--ink-1);background:var(--surface-raised);box-shadow:var(--lift)}
+.mnav.open{display:flex}
+.mnav a{display:flex;align-items:center;min-height:50px;padding:0 14px;font-weight:500;font-size:1.1rem;color:var(--ink-1)}
+.mnav a:hover{background:var(--surface-2)}
+.mnav a[aria-current="page"]{background:var(--surface-2)}
+.mnav .nav-cta{justify-content:center;margin-top:8px;color:var(--on-accent)}
+
+/* BUTTONS */
+.btn{
+  position:relative;display:inline-flex;align-items:center;gap:10px;cursor:pointer;
+  font-family:var(--font-body);font-weight:600;font-size:1rem;letter-spacing:-.01em;
+  border-radius:var(--r-sm);padding:14px 24px;border:1.5px solid var(--ink-1);
+  transition:transform var(--motion-fast) var(--ease),box-shadow var(--motion-fast) var(--ease),background var(--motion-fast),color var(--motion-fast);
+}
+.btn-primary{background:var(--accent);color:var(--on-accent);box-shadow:4px 4px 0 0 var(--ink-1)}
+.btn-primary:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 0 var(--ink-1)}
+.btn-ghost{background:transparent;color:var(--ink-1);box-shadow:none}
+.btn-ghost:hover{background:var(--ink-1);color:var(--surface)}
+html[data-theme="black"] .btn-ghost:hover,html[data-theme="green"] .btn-ghost:hover{color:var(--ink)}
+.btn-lg{padding:18px 32px;font-size:1.08rem}
+
+/* SECTION SCAFFOLDING */
+section{padding-block:var(--section-y)}
+.themed{background:var(--surface);color:var(--ink-1)}
+
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-family:var(--font-body);font-weight:500;font-size:var(--text-sm);letter-spacing:.14em;text-transform:uppercase;color:var(--brand-ink)}
+.eyebrow::before{content:"";width:24px;height:2px;background:var(--brand-ink)}
+html[data-theme="paper"] .eyebrow{color:var(--green)}
+html[data-theme="paper"] .eyebrow::before{background:var(--green)}
+
+.sec-head{max-width:880px;margin-bottom:clamp(40px,5vw,72px)}
+.sec-head h2{font-size:var(--text-3xl);margin-top:18px;font-weight:500;text-wrap:balance;overflow-wrap:break-word;letter-spacing:-.035em}
+.sec-head h2 em{font-style:italic;font-weight:400;font-variation-settings:"opsz" 144,"SOFT" 80}
+.sec-head .lede{color:var(--ink-2);margin-top:24px;font-size:var(--text-lg);max-width:62ch;line-height:1.55;text-wrap:pretty}
+
+/* MARQUEE */
+.marquee{border-block:1.5px solid var(--ink-1);background:var(--yellow);color:var(--on-yellow);overflow:hidden;padding:14px 0;position:relative}
+.marquee-track{display:inline-flex;align-items:center;gap:0;white-space:nowrap;animation:mq 38s linear infinite;will-change:transform}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-track span{font-family:var(--font-display);font-weight:600;font-size:1.4rem;letter-spacing:-.01em;padding:0 22px;display:inline-flex;align-items:center;gap:22px;font-variation-settings:"opsz" 144}
+.marquee-track .dot-sep{width:10px;height:10px;border-radius:50%;background:var(--on-yellow);flex:none}
+.marquee-track em{font-style:italic;font-weight:500}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.marquee-track{animation:none}.marquee-track span:first-child{padding-left:0}}
+
+/* FOOTER */
+footer.site{border-top:1.5px solid var(--line);padding-block:clamp(56px,6vw,84px) clamp(40px,4vw,56px)}
+.foot-grid{display:grid;grid-template-columns:1fr;gap:40px}
+@media(min-width:760px){.foot-grid{grid-template-columns:1.4fr 1fr;gap:60px}}
+.foot-mark{display:inline-flex;align-items:center;gap:12px;margin-bottom:18px}
+.foot-mark .nana{width:32px;height:32px}
+.foot-mark .fm-txt{font-family:var(--font-display);font-weight:600;font-size:1.5rem;letter-spacing:-.03em;color:var(--ink-1)}
+.foot-mark .fm-txt .byte{font-family:var(--font-body);font-weight:500;font-size:.95rem;color:var(--accent-ink);text-transform:lowercase;margin-left:2px}
+.foot-blurb{color:var(--ink-2);font-size:1rem;max-width:42ch;line-height:1.55}
+.foot-quip{color:var(--ink-mut);font-family:var(--font-display);font-style:italic;font-size:1rem;margin-top:14px;font-variation-settings:"opsz" 144,"SOFT" 80}
+.foot-quip .nana{display:inline-block;width:1em;height:1em;vertical-align:-.16em}
+.foot-nav{display:grid;grid-template-columns:1fr 1fr;gap:8px 24px}
+@media(min-width:760px){.foot-nav{grid-template-columns:1fr 1fr}}
+.foot-nav a{color:var(--ink-2);font-size:.96rem;font-weight:500;display:inline-flex;align-items:center;min-height:38px;border-bottom:1px solid transparent;transition:color var(--motion-fast),border-color var(--motion-fast)}
+.foot-nav a:hover{color:var(--accent-ink);border-bottom-color:var(--accent-ink)}
+.foot-nav .wide{grid-column:1 / -1}
+.foot-disclaimer{color:var(--ink-mut);font-size:.8rem;line-height:1.55;max-width:64ch;margin:32px 0 0;padding-top:24px;border-top:1px solid var(--line-soft)}
+.foot-bottom{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;margin-top:32px;color:var(--ink-mut);font-size:.82rem}
+.foot-built{display:block;margin-top:4px;color:var(--ink-fnt);font-size:.94em;font-family:var(--font-display);font-style:italic;font-variation-settings:"opsz" 144,"SOFT" 80}
+
+/* ============================================================
+   ABOUT-SPECIFIC STYLES
+   ============================================================ */
+
+/* --- ABOUT HERO --- */
+.about-hero{position:relative;padding-block:clamp(40px,5vw,72px) clamp(56px,7vw,100px);overflow:hidden}
+.about-hero::before{
+  content:"G";position:absolute;right:-2vw;top:-3vw;z-index:0;
+  font-family:var(--font-display);font-weight:900;font-size:54vw;line-height:.7;
+  color:var(--tint);pointer-events:none;user-select:none;
+  font-variation-settings:"opsz" 144,"SOFT" 100;font-style:italic;
+}
+.about-hero .wrap{position:relative;z-index:1}
+.about-hero-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 24px;margin-bottom:clamp(36px,5vw,56px);padding-bottom:18px;border-bottom:1.5px solid var(--ink-1)}
+.about-hero-issue{display:flex;align-items:center;gap:12px;font-family:var(--font-body);font-size:var(--text-xs);font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+.about-hero-issue .pip{width:7px;height:7px;border-radius:50%;background:var(--brand)}
+.about-hero-issue b{color:var(--ink-1);font-weight:700}
+.about-hero-lang{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-body);font-size:var(--text-xs);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);padding:6px 12px;border:1px solid var(--line-soft);border-radius:var(--r-pill);background:var(--surface-raised)}
+.about-hero-lang .dot{width:6px;height:6px;border-radius:50%;background:var(--green-bright);box-shadow:0 0 0 3px rgba(91,227,154,.25)}
+
+.about-hero-grid{display:grid;grid-template-columns:1fr;gap:clamp(36px,5vw,60px);align-items:start}
+@media(min-width:980px){.about-hero-grid{grid-template-columns:1.15fr .95fr;gap:56px}}
+
+.about-hero h1{
+  font-size:var(--text-4xl);font-weight:500;line-height:.96;letter-spacing:-.04em;
+  margin-top:0;max-width:16ch;text-wrap:balance;font-variation-settings:"opsz" 144,"SOFT" 20;
+}
+.about-hero h1 .ital{font-style:italic;font-weight:400;font-variation-settings:"opsz" 144,"SOFT" 100;color:var(--green)}
+html[data-theme="green"] .about-hero h1 .ital,html[data-theme="black"] .about-hero h1 .ital{color:var(--green-bright)}
+.about-hero h1 .mark{position:relative;display:inline-block;font-style:italic;font-weight:500;font-variation-settings:"opsz" 144,"SOFT" 100;white-space:nowrap}
+.about-hero h1 .mark::after{
+  content:"";position:absolute;left:-3%;right:-3%;bottom:.08em;height:.32em;z-index:-1;
+  background:var(--yellow);border-radius:50% 60% 55% 45% / 60% 50% 50% 40%;
+  transform:rotate(-1deg);
+}
+
+.about-hero-lede{color:var(--ink-2);font-size:var(--text-lg);font-weight:400;margin-top:32px;max-width:52ch;line-height:1.55;text-wrap:pretty}
+.about-hero-lede b{color:var(--ink-1);font-weight:600}
+.about-hero-lede .es{font-family:var(--font-body);font-weight:600;color:var(--ink-1);box-shadow:inset 0 -.42em 0 var(--accent-soft);font-style:italic}
+
+.about-hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+.about-hero-trust{display:flex;flex-wrap:wrap;align-items:center;gap:8px 22px;margin-top:28px;font-size:.88rem;font-weight:500;color:var(--ink-mut);letter-spacing:-.005em}
+.about-hero-trust b{color:var(--ink-1);font-weight:700}
+.about-hero-trust .sep{display:inline-flex;align-items:center;justify-content:center;width:14px;color:var(--ink-fnt)}
+.about-hero-trust .sep::before{content:"";width:5px;height:5px;background:var(--brand);border-radius:50%}
+
+.about-hero-note{margin-top:36px;padding:18px 0 0;border-top:1px dashed var(--line-soft);font-size:.96rem;color:var(--ink-mut);max-width:48ch;line-height:1.55;font-family:var(--font-display);font-style:italic;font-variation-settings:"opsz" 144,"SOFT" 80}
+.about-hero-note u{text-decoration:none;color:var(--ink-1);font-weight:500;background:linear-gradient(180deg,transparent 60%,var(--accent-soft) 60%)}
+
+/* portrait */
+.about-portrait-side{position:relative;justify-self:start;display:flex;flex-direction:column;gap:22px}
+@media(min-width:980px){.about-portrait-side{justify-self:end;align-self:start;padding-top:8px}}
+
+.about-portrait{
+  position:relative;background:var(--surface-raised);border:1.5px solid var(--ink-1);
+  box-shadow:var(--lift);padding:16px 16px 18px;transform:rotate(-1.5deg);width:min(420px,92vw);
+}
+.about-portrait-tag{position:absolute;top:-13px;left:18px;background:var(--yellow);color:var(--on-yellow);font-family:var(--font-body);font-weight:700;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;padding:5px 11px;border:1.5px solid var(--ink-1)}
+.about-portrait img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center;border:1px solid var(--line-hair)}
+.about-portrait .cap{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-top:14px;padding-top:12px;border-top:1.5px solid var(--ink-1)}
+.about-portrait .cap .who{font-family:var(--font-display);font-weight:700;font-size:1.2rem;color:var(--ink-1);letter-spacing:-.02em;font-variation-settings:"opsz" 144}
+.about-portrait .cap .role{font-family:var(--font-body);font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mut);text-align:right;line-height:1.3}
+
+.about-portrait-stamp{
+  position:absolute;right:-14px;bottom:-14px;width:104px;height:104px;border-radius:50%;
+  background:var(--yellow);border:1.5px solid var(--ink-1);box-shadow:3px 3px 0 0 var(--ink-1);
+  display:grid;place-items:center;text-align:center;color:var(--on-yellow);
+  transform:rotate(8deg);font-family:var(--font-display);font-weight:700;
+  font-size:.92rem;line-height:1;letter-spacing:-.01em;
+  font-variation-settings:"opsz" 144,"SOFT" 30;
+}
+.about-portrait-stamp em{display:block;font-style:italic;font-weight:500;font-size:1rem}
+.about-portrait-stamp small{display:block;font-family:var(--font-body);font-weight:600;font-size:.54rem;letter-spacing:.12em;text-transform:uppercase;margin-top:5px}
+
+/* --- STORY (green band) --- */
+.about-story-inner{max-width:68ch;margin-inline:auto}
+.about-story-inner .eyebrow{margin-bottom:28px}
+.about-story h2{font-size:var(--text-2xl);font-weight:500;line-height:1.08;text-wrap:balance;letter-spacing:-.03em}
+.about-story h2 em{font-style:italic;font-weight:400}
+.about-story .lead-p{color:var(--ink-1);font-size:var(--text-lg);line-height:1.55;margin-top:28px;font-weight:500;text-wrap:pretty;max-width:62ch}
+.about-story p{color:var(--ink-2);font-size:1.06rem;line-height:1.68;margin-top:22px;text-wrap:pretty}
+.about-story p b{color:var(--ink-1);font-weight:600}
+.about-story p em{font-style:italic}
+.about-story h3{
+  font-family:var(--font-display);
+  font-size:clamp(1.45rem,2.8vw,2rem);font-weight:600;letter-spacing:-.025em;line-height:1.08;
+  margin-top:clamp(44px,5vw,64px);color:var(--ink-1);
+  font-variation-settings:"opsz" 144,"SOFT" 40;
+  display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;
+}
+.about-story h3 em{font-style:italic;font-weight:400}
+.about-story h3 .idx{
+  font-family:var(--font-body);font-weight:600;font-size:.72rem;letter-spacing:.14em;
+  color:var(--accent-ink);text-transform:uppercase;
+  border:1.5px solid var(--accent-ink);border-radius:var(--r-pill);
+  padding:4px 10px;flex:none;align-self:center;
+}
+.about-story h3 + p{margin-top:18px}
+
+/* --- SOLO PROMISE (paper band) --- */
+.about-promise-card{
+  position:relative;border:1.5px solid var(--ink-1);background:var(--surface-raised);
+  box-shadow:var(--lift);padding:clamp(32px,4vw,52px);max-width:960px;margin-inline:auto;
+}
+.about-promise-card .corner-sticker{
+  position:absolute;left:clamp(20px,3vw,32px);top:-15px;transform:rotate(-3deg);
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font-body);font-weight:700;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--on-yellow);background:var(--yellow);border:1.5px solid var(--ink-1);
+  border-radius:var(--r-pill);padding:6px 14px;box-shadow:3px 3px 0 0 var(--ink-1);
+}
+.about-promise-card .corner-sticker svg{width:13px;height:13px}
+.about-promise-card .pk{font-family:var(--font-body);font-weight:600;font-size:var(--text-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mut)}
+.about-promise-card .pledge{
+  display:block;margin-top:16px;
+  font-family:var(--font-display);font-weight:500;
+  line-height:1.22;letter-spacing:-.025em;color:var(--ink-1);
+  font-size:clamp(1.45rem,3.2vw,2.4rem);text-wrap:balance;
+  font-variation-settings:"opsz" 144,"SOFT" 50;
+}
+.about-promise-card .pledge em{font-style:italic;font-weight:400;background:linear-gradient(180deg,transparent 65%,var(--accent-soft) 65%);padding:0 2px}
+.about-promise-grid{display:grid;grid-template-columns:1fr;gap:24px;margin-top:clamp(28px,3vw,36px);padding-top:clamp(24px,3vw,32px);border-top:1px dashed var(--line-soft)}
+@media(min-width:680px){.about-promise-grid{grid-template-columns:repeat(3,1fr)}}
+.about-promise-pt{display:flex;gap:14px;align-items:flex-start}
+.about-promise-pt svg{width:22px;height:22px;flex:none;color:var(--green);margin-top:2px}
+html[data-theme="green"] .about-promise-pt svg,html[data-theme="black"] .about-promise-pt svg{color:var(--green-bright)}
+.about-promise-pt .t{font-family:var(--font-display);font-weight:600;color:var(--ink-1);font-size:1.1rem;letter-spacing:-.01em;font-variation-settings:"opsz" 144}
+.about-promise-pt .t em{font-style:italic;font-weight:400}
+.about-promise-pt .d{color:var(--ink-2);font-size:.92rem;line-height:1.5;margin-top:4px}
+
+/* --- PETER HEFTY (black band) --- */
+.about-client-inner{display:grid;grid-template-columns:1fr;gap:clamp(32px,4vw,52px);align-items:center}
+@media(min-width:900px){.about-client-inner{grid-template-columns:1.35fr .75fr}}
+.about-client-copy h2{font-size:var(--text-2xl);font-weight:500;line-height:1.05;text-wrap:balance;letter-spacing:-.03em;margin-top:18px}
+.about-client-copy h2 em{font-style:italic;font-weight:400}
+.about-client-copy p{color:var(--ink-2);margin-top:22px;font-size:1.06rem;line-height:1.6;max-width:54ch;text-wrap:pretty}
+.about-client-copy p b{color:var(--ink-1);font-weight:600}
+.about-client-quote{
+  margin-top:32px;padding:0 0 0 24px;border-left:3px solid var(--accent);
+  font-family:var(--font-display);font-weight:500;font-size:clamp(1.2rem,2.2vw,1.5rem);line-height:1.32;color:var(--ink-1);
+  letter-spacing:-.02em;font-variation-settings:"opsz" 144,"SOFT" 50;
+}
+.about-client-quote em{font-style:italic;font-weight:400;background:linear-gradient(180deg,transparent 65%,var(--accent-soft) 65%);padding:0 2px}
+.about-client-quote cite{display:block;margin-top:16px;font-family:var(--font-body);font-style:normal;font-weight:700;font-size:.86rem;color:var(--ink-2);letter-spacing:.02em}
+.about-client-quote cite span{font-weight:500;color:var(--ink-mut)}
+
+.about-client-shot{position:relative;justify-self:center;width:min(360px,100%);border:1.5px solid var(--ink-1);background:var(--surface-raised);box-shadow:var(--lift);overflow:hidden;transform:rotate(1.5deg)}
+.about-client-shot .thumb{position:relative;aspect-ratio:16/10;overflow:hidden;border-bottom:1.5px solid var(--ink-1);background:#000}
+.about-client-shot .thumb img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.about-client-shot .realbadge{
+  position:absolute;left:12px;top:12px;z-index:2;transform:rotate(-3deg);
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--font-body);font-weight:700;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--on-yellow);background:var(--yellow);border:1.5px solid #fff;border-radius:var(--r-pill);
+  padding:5px 10px;box-shadow:2px 2px 0 0 rgba(10,9,7,.4);
+}
+.about-client-shot .realbadge svg{width:11px;height:11px}
+.about-client-shot .visit{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;padding:12px 14px}
+.about-client-shot .visit .lbl{font-family:var(--font-display);font-weight:600;font-size:.86rem;color:var(--ink-1);letter-spacing:-.01em;font-variation-settings:"opsz" 144}
+.about-client-shot .visit a{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-body);font-weight:700;font-size:.72rem;color:var(--on-yellow);background:var(--yellow);border:1.5px solid var(--ink-1);border-radius:var(--r-sm);padding:7px 11px;transition:transform var(--motion-fast) var(--ease)}
+.about-client-shot .visit a:hover{transform:translate(1px,1px)}
+
+/* --- HONEST FRAME (paper band) --- */
+.about-honest-grid{display:grid;grid-template-columns:1fr;gap:0;border:1.5px solid var(--ink-1);background:var(--surface-raised);box-shadow:var(--lift)}
+@media(min-width:760px){.about-honest-grid{grid-template-columns:1fr 1fr}}
+.about-honest-col{position:relative;padding:clamp(28px,3.4vw,44px)}
+@media(min-width:760px){.about-honest-col+.about-honest-col{border-left:1.5px solid var(--ink-1)}}
+@media(max-width:759px){.about-honest-col+.about-honest-col{border-top:1.5px solid var(--ink-1)}}
+.about-honest-col .hk{font-family:var(--font-body);font-weight:600;font-size:var(--text-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mut)}
+.about-honest-col.yes .hk{color:var(--green)}
+.about-honest-col h3{font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2rem);font-weight:600;letter-spacing:-.025em;margin-top:14px;line-height:1.06;color:var(--ink-1);font-variation-settings:"opsz" 144,"SOFT" 40}
+.about-honest-col h3 em{font-style:italic;font-weight:400}
+.about-honest-col ul{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-direction:column;gap:16px}
+.about-honest-col li{display:flex;gap:12px;align-items:flex-start;font-size:1rem;color:var(--ink-2);line-height:1.5;text-wrap:pretty}
+.about-honest-col li svg{width:20px;height:20px;flex:none;margin-top:2px}
+.about-honest-col.yes li svg{color:var(--green)}
+.about-honest-col.no li svg{color:var(--ink-mut)}
+.about-honest-col li b{color:var(--ink-1);font-weight:600}
+
+/* --- CTA (green band) --- */
+.about-cta-inner{display:grid;grid-template-columns:1fr;gap:clamp(36px,4vw,56px);align-items:center}
+@media(min-width:880px){.about-cta-inner{grid-template-columns:1.15fr .85fr}}
+.about-cta-copy h2{font-size:var(--text-3xl);font-weight:500;line-height:1.02;margin-top:18px;text-wrap:balance;letter-spacing:-.035em}
+.about-cta-copy h2 em{font-style:italic;font-weight:400;color:var(--accent-ink)}
+.about-cta-copy p{color:var(--ink-2);margin-top:24px;font-size:1.06rem;line-height:1.6;max-width:52ch;text-wrap:pretty}
+.about-cta-copy p b{color:var(--ink-1);font-weight:600}
+.about-cta-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+
+.about-cta-card{
+  position:relative;justify-self:center;border:1.5px solid var(--ink-1);background:var(--surface-raised);
+  box-shadow:var(--lift);padding:clamp(26px,3vw,36px);width:min(360px,92vw);transform:rotate(-1.5deg);
+}
+.about-cta-card .signed{font-family:var(--font-display);font-weight:700;font-size:2.2rem;color:var(--ink-1);line-height:1;letter-spacing:-.03em;font-variation-settings:"opsz" 144,"SOFT" 30}
+.about-cta-card .signed em{font-style:italic;font-weight:500}
+.about-cta-card .signed-sub{color:var(--ink-mut);font-size:.84rem;margin-top:8px;font-family:var(--font-body);font-weight:500;letter-spacing:.02em}
+.about-cta-card .facts{margin-top:22px;padding-top:18px;border-top:1px dashed var(--line-soft);display:flex;flex-direction:column;gap:14px}
+.about-cta-card .fact{display:flex;align-items:center;gap:12px;font-size:.94rem;color:var(--ink-2)}
+.about-cta-card .fact svg{width:18px;height:18px;flex:none;color:var(--green-bright)}
+.about-cta-card .fact b{color:var(--ink-1);font-weight:600}
+.about-cta-card .fact a{color:var(--ink-1);font-weight:600;border-bottom:2px solid var(--accent);padding-bottom:1px;transition:color var(--motion-fast)}
+.about-cta-card .fact a:hover{color:var(--accent-ink)}
+
+/* REDUCED MOTION */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  html,body,header.site,.themed{transition:none!important}
+  .marquee-track{animation:none!important}
+  .wordmark.spin .nana{animation:none!important}
+  .banana-pop{display:none!important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site" id="site-header">
+  <div class="wrap">
+    <div class="nav-shell">
+      <a class="wordmark" id="wordmark" href="../" aria-label="BANANAbyte — home">
+        <svg class="nana" viewBox="0 0 48 48" aria-hidden="true"><path fill="#F5C800" d="M11 9c-2 8 1 17 8 23 7 6 16 8 22 6 2-1 3-3 2-5-1-1-3-1-5 0-4 2-10 0-15-4C15 27 12 20 13 12c.4-2.5-1.6-4-2-3z"/><path fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" d="M11.5 9.5c-2 8 1 16.5 8 22.5 7 6 16 8.5 22 6.5"/></svg>
+        <span class="wm-txt">BANANA<span class="byte">byte</span><span class="wm-sub">Orlando · Est. 2024</span></span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="../#services">Services</a>
+        <a href="../#work">Work</a>
+        <a href="../#pricing">Pricing</a>
+        <a href="../about/" aria-current="page">About</a>
+        <a href="../#contact" class="nav-cta">Start a project <span aria-hidden="true">→</span></a>
+      </nav>
+      <button class="hamburger" id="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mnav">
+        <span class="hb" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+    </div>
+    <nav class="mnav" id="mnav" aria-label="Mobile">
+      <a href="../#services">Services</a>
+      <a href="../#work">Work</a>
+      <a href="../#pricing">Pricing</a>
+      <a href="../about/" aria-current="page">About</a>
+      <a href="../#contact" class="nav-cta">Start a project <span aria-hidden="true">→</span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============================== ABOUT HERO ============================== -->
+  <section class="about-hero themed" data-theme-band="paper" aria-labelledby="about-h">
+    <div class="wrap">
+      <div class="about-hero-top">
+        <span class="about-hero-issue"><span class="pip" aria-hidden="true"></span> The person behind BANANAbyte · <b>Orlando, FL</b></span>
+        <span class="about-hero-lang"><span class="dot" aria-hidden="true"></span> English &amp; Español</span>
+      </div>
+
+      <div class="about-hero-grid">
+        <div class="about-hero-copy">
+          <h1 id="about-h">
+            Hi, I&rsquo;m <span class="mark">Gabe.</span><br>I make <span class="ital">websites</span> in Orlando.
+          </h1>
+          <p class="about-hero-lede">I&rsquo;m a web designer and developer, and I run <b>BANANAbyte</b> on my own &mdash; no agency, no account managers, no queue. <span class="es" lang="es">Una persona real</span>, right here in Orlando, who&rsquo;ll answer your email and actually build your site. Both, same guy.</p>
+
+          <div class="about-hero-actions">
+            <a href="../#contact" class="btn btn-primary btn-lg">Start a project <span aria-hidden="true">→</span></a>
+            <a href="../#work" class="btn btn-ghost btn-lg">See the work</a>
+          </div>
+
+          <div class="about-hero-trust">
+            <span><b>Designer &amp; developer</b> — both hats</span>
+            <span class="sep" aria-hidden="true"></span>
+            <span><b>English &amp; Spanish</b></span>
+            <span class="sep" aria-hidden="true"></span>
+            <span><b>Replies within 1 business day</b></span>
+          </div>
+
+          <p class="about-hero-note">&ldquo;When you hire BANANAbyte, you get <u>me</u> &mdash; not a sales rep who hands you off to a stranger after the invoice clears.&rdquo;</p>
+        </div>
+
+        <aside class="about-portrait-side">
+          <div class="about-portrait">
+            <span class="about-portrait-tag">No. 01 — the founder</span>
+            <img src="/about/gabe-portrait.webp" width="800" height="1000" loading="eager" decoding="async" alt="Gabe, founder of BANANAbyte, in his Orlando studio">
+            <div class="cap">
+              <span class="who">Gabe</span>
+              <span class="role">founder · designer<br>developer</span>
+            </div>
+            <div class="about-portrait-stamp" aria-hidden="true"><em>Una</em>persona<small>real · Orlando</small></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== MARQUEE ============================== -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span><em>Una</em> persona real<span class="dot-sep"></span></span>
+      <span>No agency · no handoff<span class="dot-sep"></span></span>
+      <span>Just <em>Gabe</em>, in Orlando<span class="dot-sep"></span></span>
+      <span>English &amp; Español<span class="dot-sep"></span></span>
+      <span><em>Una</em> persona real<span class="dot-sep"></span></span>
+      <span>No agency · no handoff<span class="dot-sep"></span></span>
+      <span>Just <em>Gabe</em>, in Orlando<span class="dot-sep"></span></span>
+      <span>English &amp; Español<span class="dot-sep"></span></span>
+    </div>
+  </div>
+
+  <!-- ============================== STORY (GREEN) ============================== -->
+  <section class="about-story themed" data-theme-band="green" aria-labelledby="story-h">
+    <div class="wrap">
+      <div class="about-story-inner">
+        <span class="eyebrow" id="story-h">The short version</span>
+
+        <h2 style="margin-top:18px">So here&rsquo;s the <em>honest</em> pitch.</h2>
+
+        <p class="lead-p">I&rsquo;m one person who cares a lot about the web, and I&rsquo;d rather build a handful of sites I&rsquo;m genuinely proud of than crank out a hundred I&rsquo;m not. BANANAbyte is small on purpose &mdash; that&rsquo;s the feature, not the caveat.</p>
+
+        <h3><span class="idx">01</span> Why I started BANANAbyte</h3>
+        <p>I started BANANAbyte because I kept seeing good local businesses stuck with websites that didn&rsquo;t sound like them &mdash; a template someone bolted their name onto and left. I wanted to do the opposite: sit with a person, understand what they actually do, and build the whole thing, design and code, <b>from the ground up</b>.</p>
+
+        <h3><span class="idx">02</span> Why Orlando</h3>
+        <p>Orlando&rsquo;s more than the parks, and the people who make it interesting &mdash; <b>the taco spot two blocks over, the corner boutique, the comedian working the local room</b> &mdash; are exactly who I want to build for. This is home, so when I say &ldquo;local,&rdquo; I mean I&rsquo;ll actually come sit at your counter.</p>
+
+        <h3><span class="idx">03</span> The Peter Hefty story</h3>
+        <p>My first real client was <b>Peter Hefty</b>, an award-winning ventriloquist and comedian who needed a booking site with as much personality as his act. We built him a red-curtain, theatrical home on the web &mdash; and when he told me it felt like watching a magician pull his new website out of thin air, <em>that&rsquo;s the moment I knew this was the work I wanted to keep doing.</em></p>
+
+        <h3><span class="idx">04</span> One opinion I&rsquo;ll die on</h3>
+        <p>My one strong opinion: a website that makes you fight a pop-up before you can read it has <b>already failed</b>. Fast, quiet, and it works on the cheapest phone in the room &mdash; that&rsquo;s the whole job. Everything clever comes after that, or not at all.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== SOLO PROMISE (PAPER) ============================== -->
+  <section class="themed" data-theme-band="paper" aria-labelledby="promise-h">
+    <div class="wrap">
+      <div class="about-promise-card">
+        <span class="corner-sticker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="8" r="4"/></svg> One person, start to finish</span>
+        <span class="pk" aria-hidden="true">The solo promise</span>
+        <h2 id="promise-h" class="visually-hidden">The solo promise</h2>
+        <p class="pledge">You work directly with me. I&rsquo;m the whole studio &mdash; so you&rsquo;ll always be <em>emailing the person actually building your site</em>, not a middleman relaying messages to someone you&rsquo;ll never meet.</p>
+        <div class="about-promise-grid">
+          <div class="about-promise-pt">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v12H5.2L4 17.2z"/></svg>
+            <div><div class="t"><em>One</em> inbox</div><div class="d">Every reply comes from me &mdash; the same person writing the code.</div></div>
+          </div>
+          <div class="about-promise-pt">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/><path d="m9 12 2 2 4-4"/></svg>
+            <div><div class="t"><em>No</em> handoff</div><div class="d">Nothing gets lost between sales and build, because there is no in-between.</div></div>
+          </div>
+          <div class="about-promise-pt">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            <div><div class="t"><em>You</em> own it</div><div class="d">When it ships, the code, domain and content are all yours to keep.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== PETER HEFTY (BLACK) ============================== -->
+  <section class="themed" data-theme-band="black" aria-labelledby="client-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">The one real client, so far</span>
+        <h2 id="client-h">Peter Hefty trusted me <em>first</em> — and I don&rsquo;t take that lightly.</h2>
+      </div>
+
+      <div class="about-client-inner">
+        <div class="about-client-copy">
+          <p>I&rsquo;m not going to pad this page with a wall of logos I don&rsquo;t have. What I have is a real relationship: <b>Peter Hefty &amp; Justin</b>, an award-winning ventriloquist and comedian, whose live booking site I designed and built. Being someone&rsquo;s <b>first</b> real client site means you earn every bit of the trust &mdash; and it&rsquo;s the standard I hold every future project to.</p>
+          <blockquote class="about-client-quote">
+            &ldquo;There was nothing up his sleeve: <em>everything fantastic just appeared before my eyes</em> — my new website.&rdquo;
+            <cite>Peter Hefty <span>· ventriloquist &amp; comedian</span></cite>
+          </blockquote>
+        </div>
+
+        <div class="about-client-shot">
+          <div class="thumb">
+            <span class="realbadge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/><path d="m9 12 2 2 4-4"/></svg> Real client · live</span>
+            <img src="/peter-hefty.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="The live homepage of peterheftyandjustin.com — a red-curtain theatrical booking site for Peter Hefty, an award-winning ventriloquist and comedian, built by BANANAbyte.">
+          </div>
+          <div class="visit">
+            <span class="lbl">peterheftyandjustin.com</span>
+            <a href="https://peterheftyandjustin.com/" target="_blank" rel="noopener">Visit the live site <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== HONEST FRAME (PAPER) ============================== -->
+  <section class="themed" data-theme-band="paper" aria-labelledby="honest-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Being honest about it</span>
+        <h2 id="honest-h">A new studio, run by <em>one person.</em> Here&rsquo;s exactly what that means.</h2>
+        <p class="lede">I&rsquo;d rather you know precisely what you&rsquo;re getting than oversell it. Small and new comes with real trade-offs &mdash; and real advantages. Both are on the table.</p>
+      </div>
+
+      <div class="about-honest-grid">
+        <div class="about-honest-col yes">
+          <span class="hk">What you get</span>
+          <h3><em>Depth,</em> not scale.</h3>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m20 6-11 11-5-5"/></svg><span>The <b>same person</b> designs, builds and answers your email &mdash; start to finish.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m20 6-11 11-5-5"/></svg><span>Your project gets <b>real attention</b>, not a slot in an agency&rsquo;s conveyor belt.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m20 6-11 11-5-5"/></svg><span>Straight answers, <b>one flat price</b> quoted upfront, and you own everything at the end.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m20 6-11 11-5-5"/></svg><span>Local and <b>bilingual</b> &mdash; we can do the whole thing in English or Spanish.</span></li>
+          </ul>
+        </div>
+        <div class="about-honest-col no">
+          <span class="hk">What I won&rsquo;t pretend</span>
+          <h3><em>No</em> smoke, no mirrors.</h3>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><span>No <b>fake team page</b> &mdash; it&rsquo;s me. No stock-photo &ldquo;account executives.&rdquo;</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><span>No invented <b>&ldquo;20 years&rdquo; or a shelf of awards</b> &mdash; BANANAbyte is genuinely new.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><span>No wall of logos I didn&rsquo;t build. One real client, shown proudly &mdash; and honestly.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><span>No disappearing act &mdash; a <b>registered Florida LLC</b> with a real phone number.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== CTA (GREEN) ============================== -->
+  <section class="themed" data-theme-band="green" aria-labelledby="cta-h">
+    <div class="wrap about-cta-inner">
+      <div class="about-cta-copy">
+        <span class="eyebrow">Let&rsquo;s make something</span>
+        <h2 id="cta-h">If you&rsquo;ve read this far, we should probably <em>talk.</em></h2>
+        <p>Tell me what you&rsquo;re building &mdash; a few sentences is plenty. No pitch deck, no pressure. I read every message myself and reply within one business day, <b>even if it&rsquo;s just to say you don&rsquo;t need me yet.</b> Either way, you&rsquo;ll be talking to Gabe.</p>
+        <div class="about-cta-actions">
+          <a href="../#contact" class="btn btn-primary btn-lg">Start a project <span aria-hidden="true">→</span></a>
+          <a href="../#work" class="btn btn-ghost btn-lg">See the work first</a>
+        </div>
+      </div>
+
+      <aside class="about-cta-card">
+        <div class="signed"><em>—</em> Gabe</div>
+        <div class="signed-sub">founder · designer · developer</div>
+        <div class="facts">
+          <div class="fact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/><path d="m9 12 2 2 4-4"/></svg>
+            <span><b>BANANAbyte LLC</b> · Orlando, FL</span>
+          </div>
+          <div class="fact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14M5 8a7 7 0 0 0 7 7 7 7 0 0 0 7-7M5 8a7 7 0 0 1 7-7 7 7 0 0 1 7 7M5 21h14"/></svg>
+            <span>Native <b>English + Spanish</b></span>
+          </div>
+          <div class="fact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <a href="tel:+13212023732"><b>(321)&nbsp;202-3732</b></a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================== FOOTER ============================== -->
+<footer class="site themed" data-theme-band="black">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="foot-mark" href="../" aria-label="BANANAbyte — home">
+          <svg class="nana" viewBox="0 0 48 48" aria-hidden="true"><path fill="#F5C800" d="M11 9c-2 8 1 17 8 23 7 6 16 8 22 6 2-1 3-3 2-5-1-1-3-1-5 0-4 2-10 0-15-4C15 27 12 20 13 12c.4-2.5-1.6-4-2-3z"/><path fill="none" stroke="#F4EFE2" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" d="M11.5 9.5c-2 8 1 16.5 8 22.5 7 6 16 8.5 22 6.5"/></svg>
+          <span class="fm-txt">BANANA<span class="byte">byte</span></span>
+        </a>
+        <p class="foot-blurb">A web studio in Orlando, FL. Fast, clean, custom websites, built right — by one person who cares.</p>
+        <p class="foot-quip">Powered by good coffee, clean code, and exactly one
+          <svg class="nana" viewBox="0 0 48 48" aria-hidden="true"><path fill="#F5C800" d="M11 9c-2 8 1 17 8 23 7 6 16 8 22 6 2-1 3-3 2-5-1-1-3-1-5 0-4 2-10 0-15-4C15 27 12 20 13 12c.4-2.5-1.6-4-2-3z"/><path fill="none" stroke="#F4EFE2" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" d="M11.5 9.5c-2 8 1 16.5 8 22.5 7 6 16 8.5 22 6.5"/></svg>.
+        </p>
+      </div>
+      <nav class="foot-nav" aria-label="Footer">
+        <a href="../#services">Services</a>
+        <a href="../#work">Work</a>
+        <a href="../#pricing">Pricing</a>
+        <a href="../about/" aria-current="page">About</a>
+        <a href="../#contact">Contact</a>
+        <a href="../build/">Build estimator</a>
+        <a class="wide" href="mailto:contact@bananabyte.io">contact@bananabyte.io</a>
+        <a class="wide" href="tel:+13212023732">(321) 202-3732 · text or WhatsApp</a>
+      </nav>
+    </div>
+    <p class="foot-disclaimer">BANANAbyte is a one-person studio and a registered Florida LLC. The one client site shown is displayed with the owner&rsquo;s permission.</p>
+    <div class="foot-bottom">
+      <span>© <span id="year">2025</span> BANANAbyte LLC — Orlando, FL.<span class="foot-built">Built by Gabe, an Orlando developer.</span></span>
+      <span>English &amp; Español</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var rm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement;
+
+  var y = document.getElementById('year'); if(y) y.textContent = new Date().getFullYear();
+
+  var header = document.getElementById('site-header');
+  var burger = document.getElementById('hamburger'), drawer = document.getElementById('mnav');
+  if(burger && drawer){
+    burger.addEventListener('click', function(){
+      var open = drawer.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    drawer.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ drawer.classList.remove('open'); burger.setAttribute('aria-expanded','false'); });
+    });
+  }
+
+  /* ===== SCROLL-DRIVEN COLOR CHANGE (the signature animation) ===== */
+  var bands = [].slice.call(document.querySelectorAll('[data-theme-band]'));
+  function applyBandForY(){
+    var line = window.innerHeight * 0.34;
+    var chosen = bands[0];
+    for(var i=0;i<bands.length;i++){
+      var r = bands[i].getBoundingClientRect();
+      if(r.top <= line){ chosen = bands[i]; } else { break; }
+    }
+    var maxScroll = (document.scrollingElement || document.documentElement).scrollHeight - window.innerHeight;
+    var lead = Math.min(window.innerHeight * 0.6, 460);
+    if(window.scrollY >= (maxScroll - lead)){ chosen = bands[bands.length - 1]; }
+    if(chosen){
+      var t = chosen.getAttribute('data-theme-band');
+      if(root.getAttribute('data-theme') !== t){ root.setAttribute('data-theme', t); }
+    }
+    if(header){ header.classList.toggle('scrolled', window.scrollY > 12); }
+  }
+  var ticking = false;
+  function onScroll(){
+    if(!ticking){ ticking = true; requestAnimationFrame(function(){ applyBandForY(); ticking = false; }); }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  applyBandForY();
+  var rt = false;
+  window.addEventListener('resize', function(){
+    if(!rt){ rt = true; requestAnimationFrame(function(){ applyBandForY(); rt = false; }); }
+  }, {passive:true});
+
+  /* ===== EASTER EGG: banana spin + pop on logo click ===== */
+  var wordmark = document.getElementById('wordmark');
+  var NANA = '<svg viewBox="0 0 48 48" width="20" height="20" aria-hidden="true"><path fill="#F5C800" d="M11 9c-2 8 1 17 8 23 7 6 16 8 22 6 2-1 3-3 2-5-1-1-3-1-5 0-4 2-10 0-15-4C15 27 12 20 13 12c.4-2.5-1.6-4-2-3z"/><path fill="none" stroke="#14130F" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" d="M11.5 9.5c-2 8 1 16.5 8 22.5 7 6 16 8.5 22 6.5"/></svg>';
+  if(wordmark){
+    wordmark.addEventListener('click', function(ev){
+      /* let the anchor navigate normally; only do the easter-egg on plain click */
+      if(rm) return;
+      wordmark.classList.remove('spin'); void wordmark.getBoundingClientRect(); wordmark.classList.add('spin');
+      var r = wordmark.getBoundingClientRect();
+      var n = 3;
+      for(var i=0;i<n;i++){
+        (function(i){
+          var b = document.createElement('span');
+          b.className = 'banana-pop';
+          b.innerHTML = NANA;
+          b.setAttribute('aria-hidden','true');
+          var spread = (i - (n-1)/2) * 22 + (Math.random()*10 - 5);
+          b.style.cssText = 'position:fixed;z-index:200;pointer-events:none;width:20px;height:20px;will-change:transform,opacity;left:'+(r.left + r.width/2 - 10)+'px;top:'+(r.top + r.height/2 - 10)+'px;animation:bananaFloat 1.15s cubic-bezier(.16,1,.3,1) forwards;--bx:'+(spread.toFixed(1))+'px;--br:'+(((Math.random()*60 - 30)|0))+'deg;animation-delay:'+(i*60)+'ms';
+          document.body.appendChild(b);
+          b.addEventListener('animationend', function(){ b.remove(); });
+          setTimeout(function(){ if(b.parentNode) b.remove(); }, 1600);
+        })(i);
+      }
+    });
+  }
+  var ks = document.createElement('style');
+  ks.textContent = '@keyframes bananaFloat{0%{opacity:0;transform:translate(0,0) scale(.6) rotate(0)}15%{opacity:1}100%{opacity:0;transform:translate(var(--bx,0),-58px) scale(1.05) rotate(var(--br,20deg))}}';
+  document.head.appendChild(ks);
+})();
+</script>
+</body>
+</html>

@@ -7,6 +7,7 @@ Disallow: /pricing/
 Disallow: /work/
 Disallow: /contact/
 Disallow: /concepts/
+Disallow: /redesigns/
 Disallow: /api/
 
 Sitemap: https://bananabyte.io/sitemap.xml

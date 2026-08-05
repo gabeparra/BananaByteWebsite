@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BANANAbyte — Web Design Studio · Orlando, FL</title>
+<meta name="description" content="BANANAbyte is a web design studio in Orlando, FL. Fast, clean, custom websites and online stores for small businesses, shops, and performers. One flat price, you own everything, English or Español.">
+<meta name="theme-color" content="#F3EDDF">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   BANANAbyte — "MARQUEE STUDIO" design system
+   Warm cream broadsheet + jet ink + banana yellow + grove green.
+   Bricolage Grotesque display / Inter body. Thick keyline grid,
+   riso stickers, a horizontal marquee ticker, scroll-reveal.
+   Dark + green "band" sections re-point local color vars — static,
+   no morph. All three pages share this exact system.
+   ============================================================ */
+:root{
+  --font-display:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+
+  --text-sm:clamp(13px,1.05vw,14px);
+  --text-base:clamp(15.5px,1.35vw,17px);
+  --text-lg:clamp(18px,1.7vw,20.5px);
+  --text-xl:clamp(22px,2.3vw,27px);
+  --text-2xl:clamp(28px,3.6vw,40px);
+  --text-3xl:clamp(36px,5.4vw,60px);
+  --text-hero:clamp(46px,8.2vw,104px);
+
+  --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px;
+  --space-6:24px; --space-8:32px; --space-10:40px;
+  --section-y:clamp(56px,7vw,104px);
+
+  --radius:8px; --radius-lg:14px; --radius-pill:9999px;
+  --container:1240px;
+  --gutter:clamp(20px,5vw,56px);
+
+  /* fixed brand swatches */
+  --paper:#F3EDDF;      /* warm cream canvas */
+  --paper-2:#FCF8EF;    /* raised panels */
+  --paper-3:#E8E0CF;    /* recessed strips */
+  --ink:#181509;        /* near-black ink */
+  --ink-2:#3B362A;      /* body copy */
+  --muted:#6C6656;      /* captions */
+  --line:#181509;
+  --line-soft:rgba(24,21,9,.18);
+  --line-hair:rgba(24,21,9,.10);
+  --yellow:#FFC400;
+  --yellow-ink:#6A4D00; /* legible banana for text on cream */
+  --green:#0E5A39;
+  --green-deep:#0A3E28;
+  --green-bright:#37D98A;
+  --on-yellow:#181509;
+
+  --shadow-hard:5px 5px 0 var(--line);
+  --shadow-hard-sm:3px 3px 0 var(--line);
+  --focus-ring:0 0 0 3px color-mix(in srgb,var(--yellow-ink) 60%,transparent);
+
+  --e-out:cubic-bezier(.16,1,.3,1);
+  --e-spring:cubic-bezier(.34,1.56,.64,1);
+  color-scheme:light;
+}
+
+/* --- dark & green section bands re-point local vars (static) --- */
+.band-green{
+  background:var(--green);color:#F6F1E4;
+  --ink:#FCFBF5; --ink-2:#DFEFE6; --muted:#A9CFBB;
+  --line:#FCFBF5; --line-soft:rgba(255,255,255,.26); --line-hair:rgba(255,255,255,.15);
+  --paper-2:var(--green-deep); --paper-3:#0C3A26;
+  --yellow-ink:#FFD23C;
+  --shadow-hard:5px 5px 0 #06251A; --shadow-hard-sm:3px 3px 0 #06251A;
+}
+.band-dark{
+  background:var(--ink);color:#F4EEDF;
+  --ink:#F7F2E4; --ink-2:#D8D2C2; --muted:#9A9482;
+  --line:#F7F2E4; --line-soft:rgba(255,255,255,.20); --line-hair:rgba(255,255,255,.12);
+  --paper-2:#231F13; --paper-3:#1C190E;
+  --yellow-ink:#FFC400;
+  --shadow-hard:5px 5px 0 #000; --shadow-hard-sm:3px 3px 0 #000;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;overflow-x:hidden}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--font-body);font-size:var(--text-base);
+  line-height:1.6;font-weight:400;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  overflow-x:hidden;position:relative;
+}
+/* faint paper grain */
+body::before{
+  content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
+}
+
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:800;line-height:1.02;letter-spacing:-.02em;margin:0;color:var(--ink)}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+::selection{background:var(--yellow);color:var(--on-yellow)}
+.wrap{width:100%;max-width:var(--container);margin-inline:auto;padding-inline:var(--gutter)}
+section{padding-block:var(--section-y);position:relative}
+
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--yellow-ink);outline-offset:3px;box-shadow:var(--focus-ring)}
+
+.skip{position:absolute;left:-9999px;top:0;z-index:300;background:var(--yellow);color:var(--on-yellow);font-weight:700;padding:var(--space-3) var(--space-4);border-radius:0 0 var(--radius) 0}
+.skip:focus{left:0}
+.vh{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ---- highlighter swipe ---- */
+.hl{position:relative;white-space:nowrap;z-index:0}
+.hl::before{
+  content:"";position:absolute;left:-.08em;right:-.08em;bottom:.05em;top:.42em;z-index:-1;
+  background:var(--yellow);border-radius:42% 58% 62% 38% / 60% 45% 55% 40%;
+  transform:rotate(-1.2deg);
+}
+/* ---- eyebrow ---- */
+.eyebrow{display:inline-flex;align-items:center;gap:var(--space-3);font-family:var(--font-body);font-weight:700;font-size:var(--text-sm);letter-spacing:.02em;color:var(--yellow-ink);text-transform:none}
+.eyebrow::before{content:"";width:30px;height:2px;background:var(--yellow-ink);flex:none}
+/* ---- riso sticker ---- */
+.sticker{display:inline-flex;align-items:center;gap:7px;font-family:var(--font-body);font-weight:700;font-size:.72rem;text-transform:uppercase;letter-spacing:.07em;color:var(--on-yellow);background:var(--yellow);border:2px solid var(--line);border-radius:var(--radius-pill);padding:6px 13px;box-shadow:var(--shadow-hard-sm)}
+.sticker svg{width:13px;height:13px}
+
+/* ============================================================ HEADER */
+header.site{position:sticky;top:0;z-index:90;background:color-mix(in srgb,var(--paper) 86%,transparent);backdrop-filter:saturate(130%) blur(9px);-webkit-backdrop-filter:saturate(130%) blur(9px);border-bottom:2px solid var(--line-soft);transition:border-color .2s}
+header.site.scrolled{border-bottom-color:var(--line)}
+.nav-shell{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);min-height:70px;padding-block:10px}
+.wordmark{font-family:var(--font-display);font-weight:800;letter-spacing:-.03em;line-height:1;font-size:1.42rem;display:inline-flex;align-items:center;gap:.5rem;background:none;border:0;cursor:pointer;color:var(--ink);padding:0}
+.wordmark .nana{width:1.5em;height:1.5em;flex:none}
+.wordmark .txt{display:inline-flex;align-items:baseline}
+.wordmark .byte{color:var(--yellow-ink)}
+.wordmark.spin .nana{animation:spin .8s var(--e-spring) 1}
+@keyframes spin{0%{transform:rotate(0) scale(1)}55%{transform:rotate(-380deg) scale(1.22)}100%{transform:rotate(-360deg) scale(1)}}
+.banana-pop{position:fixed;z-index:200;pointer-events:none;width:22px;height:22px;animation:pop 1.15s var(--e-out) forwards}
+@keyframes pop{0%{opacity:0;transform:translate(0,0) scale(.6)}15%{opacity:1}100%{opacity:0;transform:translate(var(--bx,0),-62px) scale(1.05) rotate(var(--br,20deg))}}
+
+.nav-links{display:none;align-items:center;gap:2px}
+.nav-links a:not(.nav-cta){color:var(--ink-2);font-size:.95rem;font-weight:600;padding:9px 14px;position:relative;border-radius:var(--radius)}
+.nav-links a:not(.nav-cta)::after{content:"";position:absolute;left:14px;right:14px;bottom:4px;height:2px;background:var(--yellow-ink);transform:scaleX(0);transform-origin:left;transition:transform .2s var(--e-out)}
+.nav-links a:not(.nav-cta):hover::after,.nav-links a[aria-current="page"]::after{transform:scaleX(1)}
+.nav-links a[aria-current="page"]{color:var(--ink)}
+.nav-cta{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-weight:700;font-size:.92rem;color:var(--on-yellow);padding:10px 20px;background:var(--yellow);border:2px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-hard-sm);transition:transform .12s var(--e-out),box-shadow .12s var(--e-out)}
+.nav-cta:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--line)}
+.nav-cta:active{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--line)}
+.hamburger{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;background:transparent;border:2px solid var(--line);border-radius:var(--radius);color:var(--ink);cursor:pointer}
+@media(min-width:960px){.nav-links{display:flex}.hamburger{display:none}.mnav{display:none!important}}
+.hb{position:relative;display:block;width:19px;height:13px}
+.hb span{position:absolute;left:0;width:100%;height:2.4px;border-radius:2px;background:var(--ink);transition:transform .24s var(--e-out),opacity .1s,top .24s var(--e-out)}
+.hb span:nth-child(1){top:0}.hb span:nth-child(2){top:5.5px}.hb span:nth-child(3){top:11px}
+.hamburger[aria-expanded="true"] .hb span:nth-child(1){top:5.5px;transform:rotate(45deg)}
+.hamburger[aria-expanded="true"] .hb span:nth-child(2){opacity:0}
+.hamburger[aria-expanded="true"] .hb span:nth-child(3){top:5.5px;transform:rotate(-45deg)}
+.mnav{display:none;flex-direction:column;gap:2px;margin-block:var(--space-3);border:2px solid var(--line);border-radius:var(--radius-lg);background:var(--paper-2);box-shadow:var(--shadow-hard);padding:var(--space-3)}
+.mnav.open{display:flex}
+.mnav a{display:flex;align-items:center;min-height:52px;padding:8px var(--space-3);border-radius:var(--radius);font-weight:600;font-size:1.06rem;color:var(--ink)}
+.mnav a:hover{background:var(--paper-3)}
+.mnav .nav-cta{justify-content:center;margin-top:var(--space-2)}
+
+/* ============================================================ BUTTONS */
+.btn{position:relative;display:inline-flex;align-items:center;gap:9px;cursor:pointer;font-family:var(--font-body);font-weight:700;font-size:1rem;letter-spacing:-.005em;border-radius:var(--radius);padding:14px 26px;border:2px solid var(--line);transition:transform .12s var(--e-out),box-shadow .12s var(--e-out),background .15s,color .15s}
+.btn-primary{background:var(--yellow);color:var(--on-yellow);box-shadow:var(--shadow-hard)}
+.btn-primary:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--line)}
+.btn-primary:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--line)}
+.btn-ghost{background:transparent;color:var(--ink);box-shadow:none}
+.btn-ghost:hover{background:var(--ink);color:var(--paper)}
+.band-dark .btn-ghost:hover,.band-green .btn-ghost:hover{background:var(--ink);color:var(--green)}
+.band-dark .btn-ghost:hover{color:var(--ink-invert,#181509)}
+
+/* section heading block */
+.sec-head{max-width:820px}
+.sec-head h2{font-size:var(--text-3xl);margin-top:var(--space-4);text-wrap:balance}
+.sec-head .lead{color:var(--ink-2);margin-top:var(--space-5);font-size:var(--text-lg);line-height:1.55;max-width:62ch;text-wrap:pretty}
+
+/* ============================================================ MARQUEE */
+.marquee{overflow:hidden;border-block:2px solid var(--line);padding-block:16px;position:relative;--dur:38s}
+.marquee-track{display:flex;width:max-content;gap:0;animation:scroll var(--dur) linear infinite;will-change:transform}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-track span{font-family:var(--font-display);font-weight:800;font-size:clamp(20px,2.6vw,30px);letter-spacing:-.01em;padding-inline:22px;display:inline-flex;align-items:center;gap:22px;white-space:nowrap;color:var(--ink)}
+.marquee-track span .star{color:var(--yellow-ink)}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ============================================================ HERO */
+.hero{padding-block:clamp(36px,5vw,72px) clamp(30px,4vw,52px)}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:clamp(32px,5vw,56px);align-items:center}
+@media(min-width:1000px){.hero-grid{grid-template-columns:1.24fr .76fr}}
+.hero-tag{display:inline-flex;align-items:center;gap:var(--space-3);font-weight:600;font-size:.9rem;color:var(--muted)}
+.hero-tag .dot{width:9px;height:9px;border-radius:50%;background:var(--green);flex:none}
+.hero-tag b{color:var(--ink);font-weight:700}
+.hero h1{font-size:var(--text-hero);line-height:.94;letter-spacing:-.035em;margin-top:var(--space-5);max-width:16ch;text-wrap:balance}
+.hero .sub-h1{display:block;font-size:clamp(20px,3vw,34px);font-weight:600;line-height:1.05;letter-spacing:-.02em;margin-top:clamp(14px,1.6vw,20px);color:var(--ink-2)}
+.hero-lede{color:var(--ink-2);font-size:var(--text-lg);margin-top:var(--space-6);max-width:52ch;line-height:1.58;text-wrap:pretty}
+.hero-lede b{color:var(--ink);font-weight:700}
+.hero-actions{display:flex;flex-wrap:wrap;gap:var(--space-4);margin-top:var(--space-8)}
+.hero-trust{display:flex;flex-wrap:wrap;align-items:center;gap:8px var(--space-3);margin-top:var(--space-6);font-size:.88rem;font-weight:600;color:var(--muted)}
+.hero-trust b{color:var(--ink);font-weight:700}
+.hero-trust .sep{width:5px;height:5px;border-radius:50%;background:var(--green);flex:none}
+.hero-mantra{margin-top:var(--space-5);font-size:.98rem;color:var(--muted);max-width:48ch;line-height:1.55}
+.hero-mantra u{text-decoration:none;color:var(--ink);font-weight:600;background:linear-gradient(var(--yellow),var(--yellow)) bottom/100% .42em no-repeat}
+
+/* hero calling card */
+.hero-side{position:relative;justify-self:center}
+@media(min-width:1000px){.hero-side{justify-self:end;transform:rotate(-1.6deg)}}
+.hero-card{position:relative;width:min(380px,86vw);border:2px solid var(--line);background:var(--paper-2);box-shadow:var(--shadow-hard);padding:clamp(22px,2.4vw,28px)}
+.card-mast{display:flex;align-items:center;gap:10px;padding-bottom:15px;border-bottom:2px solid var(--line)}
+.card-mast .nana{width:30px;height:30px;flex:none}
+.card-mast .m-txt{font-family:var(--font-display);font-weight:800;font-size:1.08rem;letter-spacing:-.02em;line-height:1;color:var(--ink)}
+.card-mast .m-txt small{display:block;font-family:var(--font-body);font-weight:700;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-top:5px}
+.card-list{list-style:none;margin:16px 0 0;padding:0}
+.card-list li{display:flex;align-items:center;gap:11px;padding:11px 0;font-size:.94rem;color:var(--ink-2);font-weight:500;border-bottom:1px solid var(--line-hair)}
+.card-list li:last-child{border-bottom:0;padding-bottom:2px}
+.card-list li b{color:var(--ink);font-weight:700}
+.card-list .ck{flex:none;display:inline-flex;color:var(--green)}
+.band-dark .card-list .ck,.band-green .card-list .ck{color:var(--green-bright)}
+.card-list .ck svg{width:17px;height:17px}
+.card-foot{margin-top:15px;padding-top:15px;border-top:2px dashed var(--line-soft);display:flex;align-items:baseline;gap:10px}
+.card-foot .fig{font-family:var(--font-display);font-weight:800;font-size:1.7rem;line-height:1;color:var(--ink)}
+.card-foot .fig-lab{font-size:.82rem;color:var(--muted);line-height:1.32}
+.hero-stamp{position:absolute;z-index:3;right:-18px;top:-22px;transform:rotate(10deg);width:106px;height:106px;border-radius:50%;background:var(--yellow);border:2px solid var(--line);box-shadow:var(--shadow-hard-sm);display:grid;place-items:center;text-align:center}
+.hero-stamp b{font-family:var(--font-display);font-weight:800;font-size:.92rem;line-height:1;color:var(--on-yellow)}
+.hero-stamp b small{display:block;font-family:var(--font-body);font-weight:700;font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;margin-top:3px}
+.meet-bridge{display:inline-flex;align-items:center;gap:11px;margin-top:18px;padding-left:16px;border-left:3px solid var(--yellow);font-size:.96rem;line-height:1.35;color:var(--muted);max-width:min(380px,86vw)}
+.meet-bridge a{font-weight:700;font-size:.92rem;color:var(--ink);white-space:nowrap;background:linear-gradient(var(--line-soft),var(--line-soft)) bottom/100% 1.5px no-repeat;transition:background-size .2s}
+.meet-bridge a:hover{background:linear-gradient(var(--yellow-ink),var(--yellow-ink)) bottom/100% 1.5px no-repeat;color:var(--yellow-ink)}
+.founder-thumb{width:50px;height:50px;border-radius:50%;object-fit:cover;object-position:center top;border:2px solid var(--line);flex:none}
+
+/* ============================================================ BOTH WORLDS split */
+.worlds-grid{display:grid;grid-template-columns:1fr;border:2px solid var(--line);box-shadow:var(--shadow-hard);overflow:hidden;border-radius:2px}
+@media(min-width:800px){.worlds-grid{grid-template-columns:1fr 1fr}}
+.world{position:relative;padding:clamp(28px,3.6vw,46px);background:var(--paper-2)}
+.world.stage{background:var(--green);color:#F6F1E4;--ink:#FCFBF5;--ink-2:#DFEFE6;--muted:#A9CFBB}
+@media(min-width:800px){.world.stage{border-left:2px solid var(--line)}}
+@media(max-width:799px){.world.stage{border-top:2px solid var(--line)}}
+.world .wk{font-family:var(--font-body);font-weight:700;font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+.world.stage .wk{color:var(--yellow)}
+.world h3{font-size:clamp(1.6rem,3.2vw,2.15rem);font-weight:800;margin-top:12px;line-height:1.02}
+.world p{color:var(--ink-2);font-size:1.02rem;margin-top:14px;line-height:1.56}
+.world ul{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.world li{font-size:.76rem;font-weight:700;color:var(--ink-2);border:1.5px solid var(--line-soft);border-radius:var(--radius-pill);padding:6px 13px}
+.world.stage li{border-color:rgba(255,255,255,.3)}
+.worlds-banner{margin-top:clamp(18px,2.2vw,26px);padding:clamp(20px,2.4vw,28px);text-align:center;font-family:var(--font-display);font-weight:700;line-height:1.16;font-size:clamp(1.15rem,2.3vw,1.6rem);color:var(--ink);text-wrap:balance;border:2px solid var(--line);background:var(--paper-2);box-shadow:var(--shadow-hard-sm)}
+.worlds-banner .y{color:var(--yellow-ink)}
+
+/* ============================================================ SERVICES index */
+.svc-list{margin-top:clamp(28px,3.4vw,44px);border-top:2px solid var(--line)}
+.svc{display:grid;grid-template-columns:auto 1fr;gap:var(--space-4);align-items:start;padding:clamp(22px,2.8vw,32px) 0;border-bottom:2px solid var(--line-soft);position:relative;transition:padding-left .25s var(--e-out)}
+@media(min-width:760px){.svc{grid-template-columns:88px 1fr auto;gap:clamp(20px,3vw,44px);align-items:center}}
+.svc:hover{padding-left:clamp(6px,1vw,14px)}
+.svc .num{font-family:var(--font-display);font-weight:800;font-size:clamp(1.8rem,3.4vw,2.6rem);line-height:1;color:var(--paper);-webkit-text-stroke:1.5px var(--line);letter-spacing:-.02em}
+.svc:hover .num{color:var(--yellow)}
+.svc-main h3{font-size:clamp(1.25rem,2.2vw,1.7rem);font-weight:800;display:flex;align-items:center;gap:11px;flex-wrap:wrap;letter-spacing:-.02em}
+.svc-main p{color:var(--ink-2);margin-top:8px;font-size:1rem;line-height:1.52;max-width:64ch}
+.svc .tag-pill{font-family:var(--font-body);font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--on-yellow);background:var(--yellow);padding:3px 9px;border-radius:var(--radius-pill);border:1.5px solid var(--line)}
+.svc .svc-ico{display:none}
+@media(min-width:760px){.svc .svc-ico{display:grid;place-items:center;width:52px;height:52px;border:2px solid var(--line);border-radius:var(--radius);color:var(--ink);background:var(--paper-2);flex:none;justify-self:end}}
+.svc .svc-ico svg{width:24px;height:24px}
+.see-all{margin-top:clamp(30px,4vw,44px)}
+
+/* ============================================================ WORK cards */
+.work-grid{display:grid;grid-template-columns:1fr;gap:clamp(20px,2.6vw,28px);margin-top:clamp(30px,3.6vw,44px)}
+@media(min-width:640px){.work-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.work-grid{grid-template-columns:repeat(3,1fr)}}
+.work-card{position:relative;border:2px solid var(--line);background:var(--paper-2);box-shadow:var(--shadow-hard);overflow:hidden;display:flex;flex-direction:column;transition:transform .18s var(--e-out),box-shadow .18s var(--e-out)}
+.work-card:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 var(--line)}
+.work-shot{position:relative;aspect-ratio:16/10;overflow:hidden;border-bottom:2px solid var(--line);background:var(--paper-3)}
+.work-shot img,.work-shot svg{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+.work-card.is-concept .work-shot::after{content:"CONCEPT";position:absolute;inset:0;display:grid;place-items:center;font-family:var(--font-display);font-weight:800;font-size:clamp(1.5rem,3vw,2.3rem);letter-spacing:.09em;color:rgba(24,21,9,.16);transform:rotate(-13deg);pointer-events:none}
+.work-realbadge{position:absolute;left:12px;top:12px;z-index:2;transform:rotate(-3deg);display:inline-flex;align-items:center;gap:6px;font-family:var(--font-body);font-weight:700;font-size:.66rem;text-transform:uppercase;letter-spacing:.07em;color:var(--on-yellow);background:var(--yellow);border:2px solid #fff;border-radius:var(--radius-pill);padding:5px 11px;box-shadow:2px 2px 0 rgba(0,0,0,.4)}
+.work-realbadge svg{width:12px;height:12px}
+.work-body{padding:18px;flex:1;display:flex;flex-direction:column}
+.work-body .kind{font-family:var(--font-body);font-weight:700;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.work-body .kind.is-real{color:var(--yellow-ink)}
+.work-body h3{font-size:1.28rem;font-weight:800;margin-top:8px;color:var(--ink)}
+.work-body p{color:var(--ink-2);font-size:.92rem;margin-top:8px;flex:1;line-height:1.5}
+.work-view{display:inline-flex;align-items:center;gap:7px;margin-top:var(--space-4);font-weight:700;font-size:.85rem;color:var(--ink)}
+.work-card.is-real .work-view{color:var(--yellow-ink)}
+.work-more{margin-top:clamp(28px,3.6vw,42px)}
+
+/* ============================================================ PROMISE (green) */
+.about-inner{display:grid;grid-template-columns:1fr;gap:clamp(34px,5vw,64px);align-items:center}
+@media(min-width:880px){.about-inner{grid-template-columns:1.06fr .94fr}}
+.about-copy h2{font-size:var(--text-2xl);text-wrap:balance}
+.about-copy p{color:var(--ink-2);margin-top:var(--space-5);font-size:1.08rem;line-height:1.6;max-width:56ch}
+.about-copy p b{color:var(--ink);font-weight:700}
+.about-cta{margin-top:var(--space-6);display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:1rem;color:var(--ink);background:linear-gradient(var(--yellow-ink),var(--yellow-ink)) bottom/100% 2px no-repeat;padding-bottom:2px}
+.promise{position:relative;justify-self:center;width:min(430px,92vw);border:2px solid var(--line);background:var(--paper-2);box-shadow:var(--shadow-hard);padding:clamp(24px,3vw,34px)}
+@media(min-width:880px){.promise{justify-self:end;transform:rotate(1.4deg)}}
+.promise .pk{font-family:var(--font-body);font-weight:700;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.promise ul{list-style:none;margin:16px 0 0;padding:0}
+.promise li{display:flex;align-items:flex-start;gap:13px;padding:15px 0;border-bottom:1px solid var(--line-hair)}
+.promise li:last-child{border-bottom:0;padding-bottom:2px}
+.promise li .pico{flex:none;margin-top:1px;display:inline-flex;color:var(--green-bright)}
+.promise li .pico svg{width:19px;height:19px}
+.promise li .pt{font-size:.98rem;line-height:1.42;color:var(--ink-2)}
+.promise li .pt b{color:var(--ink);font-weight:700}
+
+/* ============================================================ PRICING teaser */
+.price-inner{display:grid;grid-template-columns:1fr;gap:clamp(30px,4vw,56px);align-items:center}
+@media(min-width:840px){.price-inner{grid-template-columns:1.1fr .9fr}}
+.price-copy h2{font-size:var(--text-2xl);margin-top:var(--space-4);text-wrap:balance}
+.price-copy p{color:var(--ink-2);margin-top:var(--space-4);font-size:1.06rem;line-height:1.56;max-width:52ch}
+.price-ticket{position:relative;justify-self:center;border:2px solid var(--line);background:var(--paper-2);box-shadow:var(--shadow-hard);padding:clamp(26px,3vw,36px);width:min(380px,92vw);transform:rotate(-1.2deg)}
+.price-ticket .pk{font-family:var(--font-body);font-weight:700;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.price-ticket .amt{font-family:var(--font-display);font-weight:800;font-size:clamp(2.2rem,3.6vw,3rem);line-height:1;letter-spacing:-.03em;margin-top:10px;color:var(--ink)}
+.price-ticket .amt .cur{font-size:.5em;vertical-align:.7em;color:var(--yellow-ink)}
+.price-ticket .range{font-weight:600;color:var(--muted);font-size:.9rem;margin-top:10px}
+.price-ticket .tiers{margin-top:18px;padding-top:18px;border-top:2px dashed var(--line-soft);display:flex;flex-direction:column;gap:11px}
+.price-ticket .tier{display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3);font-size:.92rem}
+.price-ticket .tier span:first-child{color:var(--ink-2)}
+.price-ticket .tier span:last-child{color:var(--muted);font-weight:600}
+.price-ticket .btn{margin-top:22px;width:100%;justify-content:center}
+
+/* ============================================================ CONTACT */
+.contact-inner{display:grid;grid-template-columns:1fr;gap:clamp(32px,4vw,56px);align-items:start}
+@media(min-width:880px){.contact-inner{grid-template-columns:1.02fr .98fr}}
+.contact-copy h2{font-size:var(--text-2xl);margin-top:var(--space-3);text-wrap:balance}
+.contact-copy p{color:var(--ink-2);margin-top:var(--space-4);font-size:1.04rem;line-height:1.56;max-width:44ch}
+.calls-note{display:flex;gap:var(--space-3);align-items:flex-start;margin-top:var(--space-6);padding:15px var(--space-4);border:2px solid var(--line);border-left:5px solid var(--yellow);border-radius:var(--radius);background:var(--paper-2);box-shadow:var(--shadow-hard-sm);font-size:.94rem;line-height:1.5;color:var(--ink-2)}
+.calls-note svg{width:21px;height:21px;flex:none;color:var(--green);margin-top:1px}
+.band-green .calls-note svg{color:var(--green-bright)}
+.calls-note b{color:var(--ink);font-weight:700}
+.contact-reach{display:flex;flex-direction:column;gap:var(--space-4);min-width:0}
+.contact-form{display:flex;flex-direction:column;gap:var(--space-3);border:2px solid var(--line);border-radius:var(--radius-lg);padding:clamp(18px,2.2vw,26px);background:var(--paper-2);box-shadow:var(--shadow-hard)}
+.cf-field{display:flex;flex-direction:column;gap:6px}
+.contact-form label{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.cf-opt{font-weight:500;color:var(--muted);text-transform:none;letter-spacing:0}
+.contact-form input,.contact-form textarea{font-family:var(--font-body);font-size:.98rem;color:var(--ink);background:var(--paper);border:2px solid var(--line-soft);border-radius:var(--radius);padding:12px var(--space-3);width:100%;transition:border-color .15s}
+.band-green .contact-form input,.band-green .contact-form textarea{background:#0C4630}
+.contact-form input::placeholder,.contact-form textarea::placeholder{color:var(--muted);opacity:.9}
+.band-green .contact-form input::placeholder,.band-green .contact-form textarea::placeholder{color:var(--ink-2);opacity:1}
+.contact-form input:focus,.contact-form textarea:focus{border-color:var(--ink)}
+.contact-form textarea{resize:vertical;min-height:92px;line-height:1.5}
+.contact-form .cf-turnstile{margin:2px 0}
+.contact-form .btn{justify-content:center;width:100%;margin-top:2px}
+#contact-submit[disabled]{opacity:.6;cursor:progress}
+.form-status{margin:8px 0 0;font-size:.92rem;font-weight:600;min-height:1.2em}
+.form-status.busy{color:var(--muted)}
+.form-status.ok{color:var(--ink)}
+.form-status.err{color:#B23A1E}
+.band-green .form-status.err{color:#FFD0C4}
+.form-fallback{margin:6px 0 0;font-size:.85rem;color:var(--muted)}
+.form-fallback a{color:var(--yellow-ink);font-weight:700}
+.band-green .form-fallback a{color:var(--yellow)}
+.contact-or{display:flex;align-items:center;gap:var(--space-3);margin:var(--space-2) 0;color:var(--muted);font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.contact-or::before,.contact-or::after{content:"";flex:1;height:2px;background:var(--line-soft)}
+.band-phone{display:flex;flex-wrap:wrap;align-items:center;gap:13px;border:2px solid var(--line);border-radius:var(--radius);padding:15px var(--space-4);background:var(--paper-2);box-shadow:var(--shadow-hard-sm)}
+.band-phone .pi{width:42px;height:42px;flex:none;border-radius:var(--radius);display:grid;place-items:center;background:var(--paper-3);border:2px solid var(--line-soft);color:var(--ink)}
+.band-phone .pi svg{width:19px;height:19px}
+.band-phone .pt{display:flex;flex-direction:column;gap:1px;min-width:0;margin-right:auto}
+.band-phone .pk{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.band-phone .pv{font-weight:800;font-size:1.1rem;color:var(--ink)}
+.band-acts{display:flex;flex-wrap:wrap;gap:8px}
+.band-mini{display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:.78rem;border:2px solid var(--line);border-radius:var(--radius);padding:9px var(--space-4);color:var(--ink);background:transparent;min-height:40px;transition:background .15s,color .15s}
+.band-mini:hover{background:var(--ink);color:var(--paper)}
+.band-green .band-mini:hover{color:var(--green)}
+.band-mini svg{width:15px;height:15px}
+
+/* ============================================================ TESTIMONIAL */
+.quote-card{max-width:66ch;margin-inline:auto}
+.quote-card blockquote{margin:clamp(16px,2vw,24px) 0 0;border:0;padding:0;position:relative;font-family:var(--font-display);font-weight:600;line-height:1.24;letter-spacing:-.02em;color:var(--ink);font-size:clamp(1.6rem,3.6vw,2.7rem);text-wrap:balance}
+.quote-card blockquote::before{content:"\201C";position:absolute;left:-.52em;top:-.12em;font-family:var(--font-display);font-weight:800;font-size:1.5em;line-height:1;color:var(--yellow)}
+.quote-card blockquote .em{background:linear-gradient(var(--yellow),var(--yellow)) bottom/100% .28em no-repeat}
+.quote-card figcaption{margin-top:clamp(26px,3vw,36px);display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-4)}
+.quote-cite-link{display:inline-flex;align-items:baseline;gap:var(--space-2);flex-wrap:wrap;font-weight:800;font-size:1.06rem;color:var(--ink)}
+.quote-cite-link .role{font-weight:500;font-size:.88rem;color:var(--muted)}
+.quote-cite-link:hover{color:var(--yellow-ink)}
+.quote-real{display:inline-flex;align-items:center;gap:7px;font-size:.8rem;color:var(--muted);padding-left:var(--space-4);border-left:2px solid var(--line-soft)}
+.quote-real svg{width:15px;height:15px;flex:none;color:var(--green)}
+.process{max-width:66ch;margin:clamp(34px,4vw,48px) auto 0;padding-top:clamp(28px,3.4vw,38px);border-top:2px dashed var(--line-soft)}
+.process .pk{font-family:var(--font-body);font-weight:700;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.process-grid{display:grid;grid-template-columns:1fr;margin-top:var(--space-4);border:2px solid var(--line);background:var(--paper-2);box-shadow:var(--shadow-hard);border-radius:2px;overflow:hidden}
+@media(min-width:640px){.process-grid{grid-template-columns:repeat(3,1fr)}}
+.process-step{padding:clamp(18px,2vw,24px)}
+@media(min-width:640px){.process-step+.process-step{border-left:2px solid var(--line)}}
+@media(max-width:639px){.process-step+.process-step{border-top:2px solid var(--line)}}
+.process-step .wk{font-family:var(--font-display);font-weight:800;font-size:.88rem;color:var(--yellow-ink)}
+.process-step h3{font-size:1.1rem;font-weight:800;margin-top:6px;color:var(--ink)}
+.process-step p{color:var(--ink-2);font-size:.9rem;line-height:1.5;margin-top:6px}
+
+/* ============================================================ FOOTER */
+footer.site{border-top:2px solid var(--line);padding-block:clamp(46px,5vw,64px)}
+.foot-grid{display:flex;flex-direction:column;gap:var(--space-6)}
+@media(min-width:760px){.foot-grid{flex-direction:row;justify-content:space-between;align-items:flex-start}}
+.foot-brand .wordmark{color:var(--ink)}
+.foot-blurb{color:var(--ink-2);font-size:.94rem;max-width:42ch;margin-top:var(--space-4);line-height:1.55}
+.foot-quip{color:var(--muted);font-size:.94rem;margin-top:var(--space-3)}
+.foot-quip .nana{display:inline-block;width:1em;height:1em;vertical-align:-.15em}
+.foot-disclaimer{color:var(--muted);font-size:.78rem;line-height:1.5;max-width:64ch;margin:var(--space-6) 0 0}
+.foot-nav{display:flex;flex-wrap:wrap;gap:10px 26px}
+.foot-nav a{color:var(--ink-2);font-size:.94rem;font-weight:600;display:inline-flex;align-items:center;min-height:40px}
+.foot-nav a:hover{color:var(--yellow-ink)}
+.foot-bottom{display:flex;flex-wrap:wrap;gap:var(--space-3);justify-content:space-between;align-items:center;margin-top:38px;padding-top:var(--space-6);border-top:1px solid var(--line-soft);color:var(--muted);font-size:.82rem}
+.foot-built{color:var(--muted)}
+
+/* ============================================================ REVEAL */
+.rise{opacity:0;transform:translateY(20px);transition:opacity .6s var(--e-out),transform .6s var(--e-out)}
+.rise.in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .marquee-track{animation:none!important}
+  .banana-pop{display:none!important}
+  .rise{opacity:1!important;transform:none!important}
+}
+</style>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- HEADER -->
+<header class="site" id="site-header">
+  <div class="wrap">
+    <div class="nav-shell">
+      <a class="wordmark" id="wordmark" href="./" aria-label="BANANAbyte home">
+        <svg class="nana" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC400" d="M11 9c-2 8 1 17 8 23 7 6 16 8 22 6 2-1 3-3 2-5-1-1-3-1-5 0-4 2-10 0-15-4C15 27 12 20 13 12c.4-2.5-1.6-4-2-3z"/><path fill="none" stroke="#181509" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" d="M11.5 9.5c-2 8 1 16.5 8 22.5 7 6 16 8.5 22 6.5"/></svg>
+        <span class="txt">BANANA<span class="byte">byte</span></span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#pricing">Pricing</a>
+        <a href="about/">About</a>
+        <a href="#contact" class="nav-cta">Start a project</a>
+      </nav>
+      <button class="hamburger" id="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mnav">
+        <span class="hb" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+    </div>
+    <nav class="mnav" id="mnav" aria-label="Mobile">
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#pricing">Pricing</a>
+      <a href="about/">About</a>
+      <a href="#contact" class="nav-cta">Start a project <span aria-hidden="true">→</span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="wrap hero-grid">
+      <div class="hero-copy rise">
+        <span class="hero-tag"><span class="dot" aria-hidden="true"></span> One studio · Orlando · <b>English &amp; Español</b></span>
+        <h1 id="hero-h">Handmade websites for <span class="hl">Orlando.</span><span class="sub-h1">Built for the shops, stages &amp; small businesses.</span></h1>
+        <p class="hero-lede">BANANAbyte is a web design studio in Orlando, building fast, clean, custom sites for the people who keep this city interesting — <b>the taco spot, the boutique, the online store, the comedian, the DJ, the ventriloquist</b>. One flat price, and it's yours.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Start a project <span aria-hidden="true">→</span></a>
+          <a href="#work" class="btn btn-ghost">See the work</a>
+        </div>
+        <p class="hero-trust"><b>Orlando, FL</b> <span class="sep" aria-hidden="true"></span> replies within 1 business day <span class="sep" aria-hidden="true"></span> <b>you own everything</b></p>
+        <p class="hero-mantra">One flat price, quoted before day one. No hourly meter. When it ships, <u>you own all of it</u> — code, domain, content — in English or Spanish.</p>
+      </div>
+
+      <div class="hero-side rise">
+        <div class="hero-card">
+          <div class="hero-stamp" aria-hidden="true"><b>Say<br>hola<small>Orlando · FL</small></b></div>
+          <div class="card-mast">
+            <svg class="nana" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC400" d="M11 9c-2 8 1 17 8 23 7 6 16 8 22 6 2-1 3-3 2-5-1-1-3-1-5 0-4 2-10 0-15-4C15 27 12 20 13 12c.4-2.5-1.6-4-2-3z"/><path fill="none" stroke="#181509" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" d="M11.5 9.5c-2 8 1 16.5 8 22.5 7 6 16 8.5 22 6.5"/></svg>
+            <span class="m-txt">BANANAbyte<small>Web design studio · Orlando, FL</small></span>
+          </div>
+          <ul class="card-list">
+            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg></span> Custom sites &amp; online <b>stores</b></li>
+            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg></span> Show sites for <b>performers</b></li>
+            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg></span> Flat price · <b>you own everything</b></li>
+          </ul>
+          <div class="card-foot">
+            <span class="fig">1</span>
+            <span class="fig-lab">registered Florida studio — bilingual, and you deal with it directly.</span>
+          </div>
+        </div>
+        <p class="meet-bridge"><img class="founder-thumb" src="/gabe-face.webp" width="50" height="50" loading="eager" decoding="async" alt="Gabe, founder of BANANAbyte"> There's a person behind the studio. <a href="about/">Meet Gabe <span aria-hidden="true">→</span></a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Storefronts<span class="star">✦</span>Stages<span class="star">✦</span>Online stores<span class="star">✦</span>Show sites<span class="star">✦</span>Redesigns<span class="star">✦</span>Local SEO<span class="star">✦</span>Bilingual<span class="star">✦</span></span>
+      <span>Storefronts<span class="star">✦</span>Stages<span class="star">✦</span>Online stores<span class="star">✦</span>Show sites<span class="star">✦</span>Redesigns<span class="star">✦</span>Local SEO<span class="star">✦</span>Bilingual<span class="star">✦</span></span>
+    </div>
+  </div>
+
+  <!-- BOTH WORLDS -->
+  <section class="band-green" id="worlds" aria-labelledby="worlds-h">
+    <div class="wrap">
+      <div class="sec-head rise">
+        <span class="eyebrow">Both worlds, one studio</span>
+        <h2 id="worlds-h">A storefront and a stage, under one roof.</h2>
+        <p class="lead">Businesses need to be found. Performers need to be felt. Both need a site that doesn't look like a template — so BANANAbyte builds both. No "business mode" and "showbiz mode." One studio with range.</p>
+      </div>
+      <div class="worlds-grid rise" style="margin-top:clamp(28px,3.4vw,44px)">
+        <article class="world shop">
+          <span class="wk">For businesses</span>
+          <h3>Get found. Get booked. Get paid.</h3>
+          <p>Restaurants, shops, service pros and online stores that need to look legit on the first tap and convert on the second. Fast pages, real SEO, a checkout that works.</p>
+          <ul><li>Business sites</li><li>Online stores</li><li>Redesigns</li><li>Local SEO</li></ul>
+        </article>
+        <article class="world stage">
+          <span class="wk">For performers</span>
+          <h3>Headline like you mean it.</h3>
+          <p>Comedians, DJs, musicians and ventriloquists who need a show site with personality, a tour list that updates itself, and a "book me" button that actually gets clicked.</p>
+          <ul><li>Show sites</li><li>Tour &amp; dates</li><li>Press kits</li><li>Booking flows</li></ul>
+        </article>
+      </div>
+      <div class="worlds-banner rise">Same studio for the spotlight <span class="y">and</span> the storefront — because a great website is a great website.</div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" aria-labelledby="svc-h">
+    <div class="wrap">
+      <div class="sec-head rise">
+        <span class="eyebrow">What the studio builds</span>
+        <h2 id="svc-h">A storefront or a stage — there's a site for it.</h2>
+        <p class="lead">From business sites and online stores to performer show sites, redesigns, and local SEO — here are the highlights.</p>
+      </div>
+      <div class="svc-list">
+        <article class="svc rise">
+          <span class="num" aria-hidden="true">01</span>
+          <div class="svc-main"><h3>Business &amp; show sites</h3><p>Custom, mobile-first sites for shops, restaurants, service pros and performers alike — built to be found and built to book the sale or the gig.</p></div>
+          <div class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 21h8"/></svg></div>
+        </article>
+        <article class="svc rise">
+          <span class="num" aria-hidden="true">02</span>
+          <div class="svc-main"><h3>Online stores <span class="tag-pill">E-commerce</span></h3><p>Sell goods, merch or tickets without the platform tax eating your margins. Product pages, carts, and a checkout that just works on every phone.</p></div>
+          <div class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.5 12.5a1.5 1.5 0 0 0 1.5 1.2h8.4a1.5 1.5 0 0 0 1.5-1.2L22 7H6"/></svg></div>
+        </article>
+        <article class="svc rise">
+          <span class="num" aria-hidden="true">03</span>
+          <div class="svc-main"><h3>Redesigns &amp; rescues</h3><p>A site that loads like 2009, or a form that's broken? Keep what works, fix what doesn't, and make it modern, fast, and yours again.</p></div>
+          <div class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v5h-5"/></svg></div>
+        </article>
+        <article class="svc rise">
+          <span class="num" aria-hidden="true">04</span>
+          <div class="svc-main"><h3>Booking assistant <span class="tag-pill">Optional</span></h3><p>Optional: a booking helper so you're not answering the same FAQ at midnight — built and watched by me, so a real person is still behind it.</p></div>
+          <div class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4M8 16h.01M16 16h.01"/></svg></div>
+        </article>
+        <article class="svc rise">
+          <span class="num" aria-hidden="true">05</span>
+          <div class="svc-main"><h3>Website care</h3><p>Updates, backups, edits and a real human watching over it — your site stays fast, safe and current without you ever touching the code.</p></div>
+          <div class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        </article>
+        <article class="svc rise">
+          <span class="num" aria-hidden="true">06</span>
+          <div class="svc-main"><h3>Local SEO &amp; Google</h3><p>Show up when your neighbors search — Google Business Profile, reviews and on-page SEO so the right local customers actually find you.</p></div>
+          <div class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        </article>
+      </div>
+      <div class="see-all rise"><a href="#contact" class="btn btn-ghost">Start a project <span aria-hidden="true">→</span></a></div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="band-dark" id="work" aria-labelledby="work-h">
+    <div class="wrap">
+      <div class="sec-head rise">
+        <span class="eyebrow">Previous work</span>
+        <h2 id="work-h">One real client — and concepts you can click into.</h2>
+        <p class="lead">The studio's first live client site (an award-winning ventriloquist), shown alongside a store concept and a show concept — one from each world. The real one is badged; the rest are honestly labelled concepts.</p>
+      </div>
+      <div class="work-grid">
+        <a class="work-card is-real rise" href="https://peterheftyandjustin.com/" target="_blank" rel="noopener">
+          <div class="work-shot">
+            <span class="work-realbadge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/><path d="m9 12 2 2 4-4"/></svg> Real client · live</span>
+            <img src="/peter-hefty.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="The live homepage of peterheftyandjustin.com — a red-curtain theatrical booking site for Peter Hefty, an award-winning ventriloquist and comedian, built by BANANAbyte.">
+          </div>
+          <div class="work-body">
+            <span class="kind is-real">Real client · live site</span>
+            <h3>Peter Hefty &amp; Justin</h3>
+            <p>An award-winning ventriloquist &amp; comedian's live booking site — built by BANANAbyte.</p>
+            <span class="work-view">Visit the live site <span aria-hidden="true">↗</span></span>
+          </div>
+        </a>
+
+        <a class="work-card is-concept rise" href="#contact">
+          <div class="work-shot">
+            <svg viewBox="0 0 400 250" role="img" aria-label="Ember &amp; Oak concept — a warm retro candle and coffee online store."><rect width="400" height="250" fill="#F0E6D2"/><rect x="0" y="0" width="400" height="42" fill="#7A4A2B"/><circle cx="24" cy="21" r="7" fill="#FFC400"/><rect x="42" y="16" width="90" height="10" rx="3" fill="#F0E6D2"/><rect x="300" y="15" width="80" height="12" rx="6" fill="#FFC400"/><rect x="26" y="66" width="150" height="18" rx="4" fill="#3A2A1A"/><rect x="26" y="92" width="120" height="10" rx="3" fill="#8A6A4A"/><rect x="26" y="120" width="105" height="30" rx="6" fill="#7A4A2B"/><rect x="212" y="70" width="78" height="70" rx="6" fill="#D9A441"/><rect x="300" y="70" width="78" height="70" rx="6" fill="#C57B3C"/><rect x="212" y="150" width="78" height="70" rx="6" fill="#C57B3C"/><rect x="300" y="150" width="78" height="70" rx="6" fill="#D9A441"/><rect x="26" y="170" width="150" height="50" rx="6" fill="#E4D3B4"/></svg>
+          </div>
+          <div class="work-body">
+            <span class="kind">Concept · online store</span>
+            <h3>Ember &amp; Oak</h3>
+            <p>A concept build: a warm, retro candle &amp; coffee shop with a product grid, cart and subscriptions.</p>
+            <span class="work-view">View concept <span aria-hidden="true">→</span></span>
+          </div>
+        </a>
+
+        <a class="work-card is-concept rise" href="#contact">
+          <div class="work-shot">
+            <svg viewBox="0 0 400 250" role="img" aria-label="Dani Cole concept — a bold neon crowd-work comedian site with tour dates."><rect width="400" height="250" fill="#141026"/><circle cx="200" cy="90" r="130" fill="#2A1F52"/><rect x="0" y="0" width="400" height="40" fill="#0E0A1C"/><circle cx="24" cy="20" r="7" fill="#FF3DA5"/><rect x="300" y="14" width="80" height="12" rx="6" fill="#FFC400"/><rect x="70" y="70" width="260" height="26" rx="4" fill="#FF3DA5"/><rect x="110" y="106" width="180" height="14" rx="4" fill="#7CE7FF"/><rect x="130" y="150" width="140" height="34" rx="17" fill="#FFC400"/><rect x="40" y="205" width="70" height="24" rx="4" fill="#2A1F52"/><rect x="120" y="205" width="70" height="24" rx="4" fill="#2A1F52"/><rect x="200" y="205" width="70" height="24" rx="4" fill="#2A1F52"/><rect x="280" y="205" width="70" height="24" rx="4" fill="#2A1F52"/></svg>
+          </div>
+          <div class="work-body">
+            <span class="kind">Concept · performer site</span>
+            <h3>Dani Cole</h3>
+            <p>A concept build: a crowd-work comedian's site with tour dates, video clips and a booking button that actually gets clicked.</p>
+            <span class="work-view">View concept <span aria-hidden="true">→</span></span>
+          </div>
+        </a>
+      </div>
+      <div class="work-more rise"><a href="#contact" class="btn btn-ghost">Start a project <span aria-hidden="true">→</span></a></div>
+    </div>
+  </section>
+
+  <!-- PROMISE -->
+  <section class="band-green" id="about" aria-labelledby="about-h">
+    <div class="wrap about-inner">
+      <div class="about-copy rise">
+        <span class="eyebrow">How the studio works</span>
+        <h2 id="about-h">No agency middlemen. Just clean work and straight answers.</h2>
+        <p>Storefront or stage, you work with a studio small enough to answer your email the same day and careful enough to sweat the details. The work is taken dead seriously; the process, not so much. <b>Nothing gets lost in a handoff, because there is no handoff.</b></p>
+        <p>Bilingual, local, and honest about scope — BANANAbyte would rather build one site it's proud of than crank out ten it isn't.</p>
+        <a class="about-cta" href="about/">Meet the person behind it <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="promise rise">
+        <span class="pk">The studio's promise</span>
+        <ul>
+          <li><span class="pico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/><path d="m9 12 2 2 4-4"/></svg></span><span class="pt"><b>One flat price</b>, quoted before day one — no hourly meter, no surprise line items.</span></li>
+          <li><span class="pico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/><path d="m9 12 2 2 4-4"/></svg></span><span class="pt"><b>You own everything</b> — the code, the domain, the content. Nothing's held hostage.</span></li>
+          <li><span class="pico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14M5 8a7 7 0 0 0 7 7 7 7 0 0 0 7-7M5 8a7 7 0 0 1 7-7 7 7 0 0 1 7 7M5 21h14"/></svg></span><span class="pt"><b>Bilingual, in-house</b> — designed and written in English or Spanish, no translation middleman.</span></li>
+          <li><span class="pico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="pt"><b>A registered Florida studio</b> — a real business you can look up, not a gig account.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" aria-labelledby="pricing-h">
+    <div class="wrap price-inner">
+      <div class="price-copy rise">
+        <span class="eyebrow">Pricing</span>
+        <h2 id="pricing-h">The whole number, before day one.</h2>
+        <p>A full custom site for a local business lands in the range on the right, with a leaner Landing tier under it and online stores above. You see the full figure upfront — then it never moves.</p>
+      </div>
+      <div class="price-ticket rise">
+        <div class="pk">Custom business site</div>
+        <div class="amt"><span class="cur">$</span>2,200<span style="color:var(--muted);font-weight:400">–</span>2,600</div>
+        <div class="range">flat · quoted before day one</div>
+        <div class="tiers">
+          <div class="tier"><span>Landing tier</span><span>below</span></div>
+          <div class="tier"><span>Online store</span><span>above</span></div>
+          <div class="tier"><span>Website care</span><span>monthly</span></div>
+        </div>
+        <a href="build/" class="btn btn-primary">See full pricing <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="band-green" id="contact" aria-labelledby="contact-h">
+    <div class="wrap contact-inner">
+      <div class="contact-copy rise">
+        <span class="eyebrow">Start a project</span>
+        <h2 id="contact-h">Tell the studio what you're building.</h2>
+        <p>A few sentences is plenty. Every message is read by a real person and answered within one business day — even if the answer is "you don't need us yet."</p>
+        <div class="calls-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m23 7-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+          <span>Hop on a <b>video call</b> — or, if you're in Central Florida, book an <b>in-person design session</b> and we'll come to you.</span>
+        </div>
+      </div>
+      <div class="contact-reach rise">
+        <form id="contact-form" class="contact-form" action="/api/contact" method="POST" aria-label="Start a project" novalidate>
+          <div class="vh" aria-hidden="true">
+            <label for="cf-botcheck">Leave this field empty</label>
+            <input id="cf-botcheck" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off">
+          </div>
+          <div class="cf-field">
+            <label for="cf-name">Your name</label>
+            <input id="cf-name" name="name" type="text" autocomplete="name" placeholder="First name is fine" required>
+          </div>
+          <div class="cf-field">
+            <label for="cf-email">Your email</label>
+            <input id="cf-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com — I'll reply here" required>
+          </div>
+          <div class="cf-field">
+            <label for="cf-phone">Phone <span class="cf-opt">(optional)</span></label>
+            <input id="cf-phone" name="phone" type="tel" autocomplete="tel" placeholder="If you'd rather I call or text">
+          </div>
+          <div class="cf-field">
+            <label for="cf-build">What are you building?</label>
+            <textarea id="cf-build" name="message" placeholder="A few sentences is plenty — a taco spot site, an online store, a show site…" required></textarea>
+          </div>
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAADdmY73Y2U4TGmbD" data-theme="auto"></div>
+          <button type="submit" id="contact-submit" class="btn btn-primary"><span class="cf-lbl">Send it to Gabe</span> <span aria-hidden="true">→</span></button>
+          <p class="form-status" id="contact-status" role="status" aria-live="polite"></p>
+          <p class="form-fallback">Couldn't send? Text or WhatsApp me at <a href="tel:+13212023732">(321)&nbsp;202-3732</a> and I'll get right back to you.</p>
+        </form>
+        <div class="contact-or">or reach me directly</div>
+        <div class="band-phone">
+          <span class="pi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+          <span class="pt">
+            <span class="pk">Phone / Text</span>
+            <a class="pv" href="tel:+13212023732">(321)&nbsp;202-3732</a>
+          </span>
+          <span class="band-acts">
+            <a class="band-mini" href="tel:+13212023732" aria-label="Call (321) 202-3732"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Call</span></a>
+            <a class="band-mini" href="sms:+13212023732" aria-label="Text (321) 202-3732"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg><span>Text</span></a>
+            <a class="band-mini" href="https://wa.me/13212023732" rel="noopener" target="_blank" aria-label="WhatsApp (321) 202-3732"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.84-2-.94-.26-.1-.45-.15-.64.15-.2.3-.74.93-.9 1.12-.17.2-.34.22-.63.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.34.44-.5.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.64-1.55-.88-2.12-.23-.55-.47-.48-.64-.49h-.55c-.2 0-.5.07-.77.37-.26.3-1 .98-1 2.38s1.03 2.76 1.17 2.95c.15.2 2.02 3.08 4.9 4.32.68.3 1.22.47 1.63.6.69.22 1.31.19 1.8.11.55-.08 1.7-.69 1.93-1.36.24-.67.24-1.24.17-1.36-.07-.12-.27-.2-.56-.34z"/><path d="M12.04 2C6.6 2 2.2 6.4 2.2 11.85c0 1.74.46 3.43 1.32 4.92L2.1 22l5.37-1.4a9.8 9.8 0 0 0 4.56 1.16h.01c5.43 0 9.84-4.4 9.84-9.85C21.88 6.4 17.47 2 12.04 2zm0 17.96h-.01a8.13 8.13 0 0 1-4.14-1.14l-.3-.18-3.08.8.82-3-.2-.31a8.1 8.1 0 0 1-1.24-4.33c0-4.52 3.68-8.2 8.2-8.2 2.2 0 4.26.86 5.81 2.42a8.16 8.16 0 0 1 2.4 5.78c0 4.52-3.67 8.2-8.2 8.2z"/></svg><span>WhatsApp</span></a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section aria-labelledby="proof-h">
+    <div class="wrap">
+      <h2 id="proof-h" class="vh">Client testimonial and how a build runs</h2>
+      <figure class="quote-card rise">
+        <span class="eyebrow">What a client said</span>
+        <blockquote cite="https://peterheftyandjustin.com/">Gabe is awesome to work with — creative, just like a magician working his magic on the internet. There was nothing up his sleeve: everything fantastic just appeared before my eyes — <span class="em">my new website</span>.</blockquote>
+        <figcaption>
+          <cite><a class="quote-cite-link" href="https://peterheftyandjustin.com/" target="_blank" rel="noopener">Peter Hefty <span class="role">ventriloquist &amp; comedian</span> <span aria-hidden="true">↗</span></a></cite>
+          <span class="quote-real"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/><path d="m9 12 2 2 4-4"/></svg> Real client — his live site was built by BANANAbyte.</span>
+        </figcaption>
+      </figure>
+      <div class="process rise">
+        <span class="pk">How a build actually runs</span>
+        <div class="process-grid">
+          <div class="process-step"><span class="wk">Week 1</span><h3>Sit down &amp; scope</h3><p>We talk through what you do and who you're for, then lock one flat price — no surprises after.</p></div>
+          <div class="process-step"><span class="wk">Week 2</span><h3>Design &amp; build</h3><p>I design and code the whole thing myself, sending real progress you can click, not mockups in an email.</p></div>
+          <div class="process-step"><span class="wk">Launch</span><h3>Ship &amp; hand over</h3><p>It goes live, and the code, domain and content are all yours to keep — nothing held hostage.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site band-dark">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="wordmark" href="./" aria-label="BANANAbyte home">
+          <svg class="nana" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC400" d="M11 9c-2 8 1 17 8 23 7 6 16 8 22 6 2-1 3-3 2-5-1-1-3-1-5 0-4 2-10 0-15-4C15 27 12 20 13 12c.4-2.5-1.6-4-2-3z"/><path fill="none" stroke="#F7F2E4" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" d="M11.5 9.5c-2 8 1 16.5 8 22.5 7 6 16 8.5 22 6.5"/></svg>
+          <span class="txt">BANANA<span class="byte">byte</span></span>
+        </a>
+        <p class="foot-blurb">A web studio in Orlando, FL. Fast, clean, custom websites, built right.</p>
+        <p class="foot-quip">Powered by good coffee, clean code, and exactly one
+          <svg class="nana" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC400" d="M11 9c-2 8 1 17 8 23 7 6 16 8 22 6 2-1 3-3 2-5-1-1-3-1-5 0-4 2-10 0-15-4C15 27 12 20 13 12c.4-2.5-1.6-4-2-3z"/><path fill="none" stroke="#F7F2E4" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" d="M11.5 9.5c-2 8 1 16.5 8 22.5 7 6 16 8.5 22 6.5"/></svg>.
+        </p>
+      </div>
+      <nav class="foot-nav" aria-label="Footer">
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#pricing">Pricing</a>
+        <a href="about/">About</a>
+        <a href="#contact">Contact</a>
+        <a href="mailto:contact@bananabyte.io">contact@bananabyte.io</a>
+      </nav>
+    </div>
+    <p class="foot-disclaimer">Concept builds shown are demo previews, clearly labelled; the one real client site is displayed with the owner's permission.</p>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> BANANAbyte LLC — Orlando, FL. <span class="foot-built">Built by Gabe, an Orlando developer.</span></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var rm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var y = document.getElementById('year'); if(y) y.textContent = new Date().getFullYear();
+
+  var header = document.getElementById('site-header');
+  var ticking = false;
+  function onScroll(){
+    if(ticking) return; ticking = true;
+    requestAnimationFrame(function(){ if(header) header.classList.toggle('scrolled', window.scrollY > 12); ticking = false; });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  var burger = document.getElementById('hamburger'), drawer = document.getElementById('mnav');
+  if(burger && drawer){
+    burger.addEventListener('click', function(){
+      var open = drawer.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    drawer.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ drawer.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }); });
+  }
+
+  /* scroll reveal */
+  var rises = [].slice.call(document.querySelectorAll('.rise'));
+  if('IntersectionObserver' in window && !rm){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {rootMargin:'0px 0px -8% 0px', threshold:.08});
+    rises.forEach(function(el){ io.observe(el); });
+  } else { rises.forEach(function(el){ el.classList.add('in'); }); }
+
+  /* logo easter egg */
+  var wordmark = document.getElementById('wordmark');
+  var NANA = '<svg viewBox="0 0 48 48" width="22" height="22" aria-hidden="true"><path fill="#FFC400" d="M11 9c-2 8 1 17 8 23 7 6 16 8 22 6 2-1 3-3 2-5-1-1-3-1-5 0-4 2-10 0-15-4C15 27 12 20 13 12c.4-2.5-1.6-4-2-3z"/><path fill="none" stroke="#181509" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" d="M11.5 9.5c-2 8 1 16.5 8 22.5 7 6 16 8.5 22 6.5"/></svg>';
+  if(wordmark){
+    wordmark.addEventListener('click', function(){
+      if(rm) return;
+      wordmark.classList.remove('spin'); void wordmark.getBoundingClientRect(); wordmark.classList.add('spin');
+      var r = wordmark.getBoundingClientRect();
+      for(var i=0;i<3;i++){(function(idx){
+        var b = document.createElement('span'); b.className='banana-pop'; b.innerHTML=NANA; b.setAttribute('aria-hidden','true');
+        b.style.left = (r.left + 6 + idx*8) + 'px'; b.style.top = (r.top + 4) + 'px';
+        b.style.setProperty('--bx', ((idx-1)*22 + (Math.random()*10-5)).toFixed(1)+'px');
+        b.style.setProperty('--br', ((Math.random()*60-30)|0)+'deg');
+        b.style.animationDelay = (idx*60)+'ms';
+        document.body.appendChild(b);
+        b.addEventListener('animationend', function(){ b.remove(); });
+        setTimeout(function(){ if(b.parentNode) b.remove(); }, 1600);
+      })(i);}
+    });
+  }
+})();
+</script>
+<script>
+/* Contact form → /api/contact worker (Turnstile token + honeypot, JSON POST). */
+(function(){
+  var form = document.getElementById('contact-form');
+  if(!form) return;
+  var st  = document.getElementById('contact-status');
+  var btn = document.getElementById('contact-submit');
+  var lbl = form.querySelector('.cf-lbl');
+  function setStatus(kind, msg){ st.className = 'form-status' + (kind ? ' ' + kind : ''); st.textContent = msg || ''; }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!form.checkValidity()){
+      setStatus('err', 'Please add your name, a valid email, and a short message.');
+      var bad = form.querySelector(':invalid'); if(bad && bad.focus) bad.focus();
+      return;
+    }
+    if(form.botcheck && form.botcheck.checked) return; /* honeypot tripped → bail silently */
+
+    var ts = form.querySelector('[name="cf-turnstile-response"]');
+    if(ts && !ts.value){
+      setStatus('err', 'Please complete the quick verification below the message box.');
+      var w = form.querySelector('.cf-turnstile'); if(w && w.scrollIntoView) w.scrollIntoView({ block:'center' });
+      return;
+    }
+
+    setStatus('busy', 'Sending…');
+    btn.disabled = true; if(lbl) lbl.textContent = 'Sending…';
+    try{ navigator.sendBeacon('/api/event', new Blob([JSON.stringify({name:'form_submit'})], {type:'application/json'})); }catch(_){ }
+
+    var data = {}; new FormData(form).forEach(function(v, k){ data[k] = v; });
+    fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    })
+      .then(function(r){ return r.json().then(function(j){ return { ok:r.ok, j:j }; }); })
+      .then(function(r){
+        if(r.ok && r.j && r.j.success){
+          setStatus('ok', 'Got it — thanks! I’ll reply within one business day.');
+          form.reset();
+          if(window.turnstile){ try{ window.turnstile.reset(); }catch(_){} }
+        } else {
+          setStatus('err', 'Something went wrong sending that — please text me, or try again.');
+          if(window.turnstile){ try{ window.turnstile.reset(); }catch(_){} }
+        }
+      })
+      .catch(function(){
+        setStatus('err', 'Something went wrong sending that — please text me, or try again.');
+        if(window.turnstile){ try{ window.turnstile.reset(); }catch(_){} }
+      })
+      .finally(function(){ btn.disabled = false; if(lbl) lbl.textContent = 'Send it to Gabe'; });
+  });
+})();
+</script>
+</body>
+</html>
