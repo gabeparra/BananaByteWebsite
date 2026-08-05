@@ -138,8 +138,6 @@ header.site{
 }
 .nav-shell{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px;padding-block:8px}
 .wordmark{display:inline-flex;align-items:baseline;gap:2px;line-height:1}
-.wordmark .big{font-family:var(--f-display);font-weight:800;font-size:1.34rem;letter-spacing:-.03em}
-.wordmark .byte{font-family:var(--f-mono);font-weight:600;font-size:.98rem;background:var(--banana);border:2px solid var(--ink);border-radius:4px;padding:1px 5px;margin-left:4px;transform:translateY(-1px)}
 .nav-links{display:none;align-items:center;gap:4px}
 .nav-links a:not(.nav-cta){
   font-family:var(--f-mono);font-weight:500;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;
@@ -202,7 +200,7 @@ header.site{
 .signcard .sc-top{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:14px;border-bottom:var(--bd)}
 .signcard .sc-name{font-family:var(--f-display);font-weight:800;font-size:1.12rem;letter-spacing:-.02em}
 .signcard .sc-name small{display:block;font-family:var(--f-mono);font-weight:500;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:5px}
-.signcard .nana{width:30px;height:30px;flex:none}
+.signcard .nana{width:30px;height:auto;flex:none}
 .signcard ul{list-style:none;margin:14px 0 0;padding:0}
 .signcard li{display:flex;align-items:center;gap:11px;padding:10px 0;font-size:.94rem;color:var(--ink-2);border-bottom:1px solid var(--ink-hair)}
 .signcard li:last-child{border-bottom:0;padding-bottom:2px}
@@ -450,8 +448,6 @@ footer.site{background:var(--ink);color:var(--cream);padding-block:clamp(44px,5v
 .foot-grid{display:flex;flex-direction:column;gap:26px}
 @media(min-width:760px){.foot-grid{flex-direction:row;justify-content:space-between;align-items:flex-start}}
 .foot-word{display:inline-flex;align-items:baseline}
-.foot-word .big{font-family:var(--f-display);font-weight:800;font-size:1.3rem;letter-spacing:-.03em;color:var(--cream)}
-.foot-word .byte{font-family:var(--f-mono);font-weight:600;font-size:.95rem;background:var(--banana);color:var(--ink);border:2px solid var(--banana);border-radius:4px;padding:1px 5px;margin-left:4px}
 .foot-blurb{color:var(--cream-2);font-size:.94rem;max-width:42ch;margin-top:16px;line-height:1.55}
 .foot-quip{color:var(--cream-mut);font-size:.92rem;margin-top:12px}
 .foot-quip .nana{display:inline-block;width:1em;height:1em;vertical-align:-.15em}
@@ -477,7 +473,7 @@ footer.site{background:var(--ink);color:var(--cream);padding-block:clamp(44px,5v
   <div class="wrap">
     <div class="nav-shell">
       <a class="wordmark" href="./" aria-label="BANANAbyte home">
-        <span class="big">BANANA</span><span class="byte">byte</span>
+        <img src="/brand/logo-dark.svg" alt="BANANAbyte" style="height:32px;width:auto;display:block">
       </a>
       <nav class="nav-links" aria-label="Primary">
         <a href="#services">Services</a>
@@ -528,7 +524,7 @@ footer.site{background:var(--ink);color:var(--cream);padding-block:clamp(44px,5v
         <div class="signcard">
           <div class="sc-top">
             <span class="sc-name">BANANAbyte<small>Web design studio &middot; Orlando, FL</small></span>
-            <svg class="nana" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFCE1F" d="M11 9c-2 8 1 17 8 23 7 6 16 8 22 6 2-1 3-3 2-5-1-1-3-1-5 0-4 2-10 0-15-4C15 27 12 20 13 12c.4-2.5-1.6-4-2-3z"/><path fill="none" stroke="#201A0B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M11.5 9.5c-2 8 1 16.5 8 22.5 7 6 16 8.5 22 6.5"/></svg>
+            <img class="nana" src="/brand/mark.svg" alt="">
           </div>
           <ul>
             <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg></span> Custom sites &amp; online <b>stores</b></li>
@@ -878,11 +874,11 @@ footer.site{background:var(--ink);color:var(--cream);padding-block:clamp(44px,5v
     <div class="foot-grid">
       <div>
         <a class="foot-word" href="./" aria-label="BANANAbyte home">
-          <span class="big">BANANA</span><span class="byte">byte</span>
+          <img src="/brand/logo-light.svg" alt="BANANAbyte" style="height:30px;width:auto;display:block">
         </a>
         <p class="foot-blurb">A web studio in Orlando, FL. Fast, clean, custom websites, built right.</p>
         <p class="foot-quip">Powered by good coffee, clean code, and exactly one
-          <svg class="nana" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFCE1F" d="M11 9c-2 8 1 17 8 23 7 6 16 8 22 6 2-1 3-3 2-5-1-1-3-1-5 0-4 2-10 0-15-4C15 27 12 20 13 12c.4-2.5-1.6-4-2-3z"/><path fill="none" stroke="#FBF6E7" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" d="M11.5 9.5c-2 8 1 16.5 8 22.5 7 6 16 8.5 22 6.5"/></svg>.
+          <img class="nana" src="/brand/mark.svg" alt="">.
         </p>
       </div>
       <nav class="foot-nav" aria-label="Footer">

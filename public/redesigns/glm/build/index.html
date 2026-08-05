@@ -185,11 +185,12 @@ header.site{position:sticky;top:0;z-index:90;background:var(--surface);border-bo
 .nav-shell{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:74px;padding-block:14px}
 
 .wordmark{display:inline-flex;align-items:center;gap:11px;background:none;border:0;cursor:pointer;color:var(--ink-1);padding:0;font-family:var(--font-display)}
-.wordmark .nana{width:30px;height:30px;display:block;flex:none;transition:transform 400ms var(--ease)}
-.wordmark.spin .nana{animation:markSpin .85s cubic-bezier(.34,1.56,.64,1) 1}
+.wordmark .wm-logo{height:32px;width:auto;display:block;flex:none;transition:transform 400ms var(--ease)}
+.wordmark.spin .wm-logo{animation:markSpin .85s cubic-bezier(.34,1.56,.64,1) 1}
 @keyframes markSpin{0%{transform:rotate(0)}55%{transform:rotate(-400deg) scale(1.25)}100%{transform:rotate(-360deg)}}
-.wordmark .wm-txt{display:flex;align-items:baseline;gap:0;font-weight:700;font-size:1.42rem;line-height:1;letter-spacing:-.03em;font-variation-settings:"opsz" 144,"SOFT" 0}
-.wordmark .wm-txt .byte{font-family:var(--font-body);font-weight:500;font-size:.92rem;letter-spacing:-.01em;color:var(--accent-ink);text-transform:lowercase;margin-left:2px}
+.wordmark .wm-logo.wm-light{display:none}
+html[data-theme="green"] .wordmark .wm-logo.wm-dark,html[data-theme="black"] .wordmark .wm-logo.wm-dark{display:none}
+html[data-theme="green"] .wordmark .wm-logo.wm-light,html[data-theme="black"] .wordmark .wm-logo.wm-light{display:block}
 .wordmark .wm-sub{display:none;font-family:var(--font-body);font-size:.66rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-mut);margin-top:4px}
 @media(min-width:540px){.wordmark .wm-sub{display:block}}
 
@@ -552,9 +553,7 @@ footer.site{border-top:1.5px solid var(--line);padding-block:clamp(56px,6vw,84px
 .foot-grid{display:grid;grid-template-columns:1fr;gap:40px}
 @media(min-width:760px){.foot-grid{grid-template-columns:1.4fr 1fr;gap:60px}}
 .foot-mark{display:inline-flex;align-items:center;gap:12px;margin-bottom:18px}
-.foot-mark .nana{width:32px;height:32px}
-.foot-mark .fm-txt{font-family:var(--font-display);font-weight:600;font-size:1.5rem;letter-spacing:-.03em;color:var(--ink-1);font-variation-settings:"opsz" 144,"SOFT" 30}
-.foot-mark .fm-txt .byte{font-family:var(--font-body);font-weight:500;font-size:.95rem;color:var(--accent-ink);text-transform:lowercase;margin-left:2px}
+.foot-mark .fm-logo{height:34px;width:auto;display:block}
 .foot-blurb{color:var(--ink-2);font-size:1rem;max-width:42ch;line-height:1.55}
 .foot-quip{color:var(--ink-mut);font-family:var(--font-display);font-style:italic;font-size:1rem;margin-top:14px;font-variation-settings:"opsz" 144,"SOFT" 80}
 .foot-quip .nana{display:inline-block;width:1em;height:1em;vertical-align:-.16em}
@@ -574,7 +573,7 @@ footer.site{border-top:1.5px solid var(--line);padding-block:clamp(56px,6vw,84px
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
   html,body,header.site,.themed{transition:none!important}
   .marquee-track{animation:none!important}
-  .wordmark.spin .nana{animation:none!important}
+  .wordmark.spin .wm-logo{animation:none!important}
   .banana-pop{display:none!important}
   .total-amt.counting{animation:none!important}
   .est-hero-live .dot{animation:none!important}
@@ -588,8 +587,9 @@ footer.site{border-top:1.5px solid var(--line);padding-block:clamp(56px,6vw,84px
   <div class="wrap">
     <div class="nav-shell">
       <a class="wordmark" id="wordmark" href="../" aria-label="BANANAbyte — home">
-        <svg class="nana" viewBox="0 0 48 48" aria-hidden="true"><path fill="#F5C800" d="M11 9c-2 8 1 17 8 23 7 6 16 8 22 6 2-1 3-3 2-5-1-1-3-1-5 0-4 2-10 0-15-4C15 27 12 20 13 12c.4-2.5-1.6-4-2-3z"/><path fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" d="M11.5 9.5c-2 8 1 16.5 8 22.5 7 6 16 8.5 22 6.5"/></svg>
-        <span class="wm-txt">BANANA<span class="byte">byte</span><span class="wm-sub">Orlando · Est. 2024</span></span>
+        <img class="wm-logo wm-dark" src="/brand/logo-dark.svg" alt="BANANAbyte">
+        <img class="wm-logo wm-light" src="/brand/logo-light.svg" alt="BANANAbyte">
+        <span class="wm-sub">Orlando · Est. 2024</span>
       </a>
       <nav class="nav-links" aria-label="Primary">
         <a href="../#services">Services</a>
@@ -821,8 +821,7 @@ footer.site{border-top:1.5px solid var(--line);padding-block:clamp(56px,6vw,84px
     <div class="foot-grid">
       <div>
         <a class="foot-mark" href="../" aria-label="BANANAbyte — home">
-          <svg class="nana" viewBox="0 0 48 48" aria-hidden="true"><path fill="#F5C800" d="M11 9c-2 8 1 17 8 23 7 6 16 8 22 6 2-1 3-3 2-5-1-1-3-1-5 0-4 2-10 0-15-4C15 27 12 20 13 12c.4-2.5-1.6-4-2-3z"/><path fill="none" stroke="#F4EFE2" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" d="M11.5 9.5c-2 8 1 16.5 8 22.5 7 6 16 8.5 22 6.5"/></svg>
-          <span class="fm-txt">BANANA<span class="byte">byte</span></span>
+          <img class="fm-logo" src="/brand/logo-light.svg" alt="BANANAbyte">
         </a>
         <p class="foot-blurb">A web studio in Orlando, FL. Fast, clean, custom websites — built right, for the shops and stages that keep this city interesting.</p>
         <p class="foot-quip">Powered by good coffee, clean code, and exactly one
