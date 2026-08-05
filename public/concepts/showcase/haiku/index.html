@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tacos El Sol - Street Tacos in Orlando</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #d4421d;
+      --secondary: #f59e0b;
+      --accent: #065f46;
+      --light: #faf8f3;
+      --dark: #1a1a1a;
+      --gray: #6b7280;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --light: #1a1a1a;
+        --dark: #faf8f3;
+      }
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      color: var(--dark);
+      background-color: var(--light);
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      background: var(--light);
+      border-bottom: 2px solid var(--secondary);
+      padding: 1rem 2rem;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .wordmark {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: -1px;
+    }
+
+    nav {
+      display: flex;
+      gap: 2.5rem;
+      flex: 1;
+      justify-content: center;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.3s, border-bottom-color 0.3s;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 2px;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+
+    nav a:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 4px;
+    }
+
+    .header-right {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .lang-toggle {
+      background: transparent;
+      border: 2px solid var(--secondary);
+      border-radius: 20px;
+      padding: 0.25rem;
+      display: flex;
+      cursor: pointer;
+    }
+
+    .lang-toggle button {
+      background: transparent;
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.85rem;
+      border-radius: 18px;
+      transition: all 0.3s;
+      color: var(--gray);
+    }
+
+    .lang-toggle button:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+
+    .lang-toggle button.active {
+      background: var(--secondary);
+      color: #1a1a1a;
+    }
+
+    .cta-button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 0.95rem;
+    }
+
+    .cta-button:hover {
+      background: var(--dark);
+      transform: translateY(-2px);
+    }
+
+    .cta-button:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
+      padding: 4rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(212, 66, 29, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      z-index: 1;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    .hero .tagline {
+      font-size: clamp(1rem, 3vw, 1.4rem);
+      color: var(--dark);
+      margin-bottom: 2.5rem;
+      font-weight: 500;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .primary-cta {
+      background: var(--primary);
+      color: white;
+      padding: 1rem 2.5rem;
+      font-size: 1rem;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+      transition: all 0.3s;
+    }
+
+    .primary-cta:hover {
+      background: var(--dark);
+      transform: translateY(-3px);
+    }
+
+    .primary-cta:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+
+    .secondary-cta {
+      background: transparent;
+      color: var(--primary);
+      padding: 1rem 2.5rem;
+      font-size: 1rem;
+      border: 2px solid var(--primary);
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: all 0.3s;
+    }
+
+    .secondary-cta:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .secondary-cta:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+
+    /* Sections */
+    section {
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 2.5rem);
+      color: var(--primary);
+      margin-bottom: 3rem;
+      text-align: center;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+
+    section h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: var(--secondary);
+    }
+
+    /* Menu */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .menu-item {
+      background: var(--light);
+      padding: 2rem;
+      border-radius: 8px;
+      border-left: 4px solid var(--secondary);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s;
+    }
+
+    .menu-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .menu-item h3 {
+      color: var(--primary);
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .menu-item .description {
+      color: var(--gray);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .menu-item .price {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    .drinks {
+      background: #f0fdf4;
+      padding: 2rem;
+      border-radius: 8px;
+      border-left: 4px solid var(--accent);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .drinks h4 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .drink-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+      font-size: 0.95rem;
+    }
+
+    .drink-item span:last-child {
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* Find Us */
+    .locations {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .location-card {
+      background: var(--light);
+      padding: 2.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      border-top: 4px solid var(--secondary);
+    }
+
+    .location-card h3 {
+      color: var(--primary);
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .location-card p {
+      margin-bottom: 1rem;
+      color: var(--gray);
+      line-height: 1.8;
+    }
+
+    .location-card strong {
+      color: var(--dark);
+    }
+
+    .schedule {
+      background: rgba(0, 0, 0, 0.03);
+      padding: 2rem;
+      border-radius: 8px;
+      margin-top: 2rem;
+    }
+
+    .schedule h4 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .schedule-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      font-size: 0.95rem;
+    }
+
+    .schedule-item:last-child {
+      border-bottom: none;
+    }
+
+    .schedule-item strong {
+      color: var(--dark);
+    }
+
+    /* Catering */
+    .catering {
+      background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
+      border-radius: 12px;
+      padding: 4rem;
+      text-align: center;
+    }
+
+    .catering h3 {
+      font-size: 1.8rem;
+      color: var(--dark);
+      margin-bottom: 1.5rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .catering p {
+      font-size: 1.1rem;
+      color: var(--dark);
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .catering-cta {
+      background: var(--primary);
+      color: white;
+      padding: 1rem 2.5rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: all 0.3s;
+    }
+
+    .catering-cta:hover {
+      background: var(--dark);
+      transform: translateY(-3px);
+    }
+
+    .catering-cta:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+
+    /* Story */
+    .story-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .story-text {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--dark);
+    }
+
+    .story-text p {
+      margin-bottom: 1.5rem;
+    }
+
+    .review-quote {
+      background: var(--light);
+      padding: 2rem;
+      border-left: 4px solid var(--primary);
+      border-radius: 4px;
+      font-style: italic;
+      color: var(--gray);
+      font-size: 1.1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .story-image {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      border-radius: 12px;
+      padding: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 6rem;
+      min-height: 400px;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: var(--light);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+
+    .footer-section h4 {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      color: var(--secondary);
+    }
+
+    .footer-section p {
+      font-size: 0.9rem;
+      color: #d1d5db;
+      line-height: 1.8;
+    }
+
+    .footer-section a {
+      color: var(--secondary);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-section a:hover {
+      color: white;
+    }
+
+    .footer-section a:focus {
+      outline: 2px solid var(--secondary);
+      outline-offset: 2px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #374151;
+      padding-top: 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #9ca3af;
+    }
+
+    /* Concept Badge */
+    .concept-badge {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--primary);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      z-index: 999;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem;
+      }
+
+      .header-content {
+        gap: 0.5rem;
+        justify-content: space-between;
+      }
+
+      .wordmark {
+        font-size: 1.4rem;
+        flex-basis: 100%;
+        order: 1;
+      }
+
+      nav {
+        gap: 1rem;
+        order: 3;
+        width: 100%;
+        flex-basis: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 1rem;
+      }
+
+      nav a {
+        font-size: 0.85rem;
+      }
+
+      .header-right {
+        order: 2;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero .tagline {
+        font-size: 1.1rem;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .primary-cta, .secondary-cta {
+        width: 100%;
+        text-align: center;
+      }
+
+      .story-content {
+        grid-template-columns: 1fr;
+      }
+
+      .story-image {
+        min-height: 300px;
+      }
+
+      section {
+        padding: 3rem 1.5rem;
+      }
+
+      section h2 {
+        font-size: 2rem;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .locations {
+        grid-template-columns: 1fr;
+      }
+
+      .catering {
+        padding: 2rem;
+      }
+
+      .concept-badge {
+        top: 10px;
+        right: 10px;
+        font-size: 0.65rem;
+        padding: 0.4rem 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="concept-badge">CONCEPT</div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-content">
+      <div class="wordmark">Tacos El Sol</div>
+      <nav role="navigation" aria-label="Main navigation">
+        <a href="#menu" data-en="Menu" data-es="Menú">Menu</a>
+        <a href="#findus" data-en="Find us" data-es="Encuentranos">Find us</a>
+        <a href="#catering" data-en="Catering" data-es="Catering">Catering</a>
+        <a href="#story" data-en="Story" data-es="Historia">Story</a>
+      </nav>
+      <div class="header-right">
+        <div class="lang-toggle" role="radiogroup" aria-label="Choose language">
+          <button class="active" data-lang="en" role="radio" aria-checked="true">EN</button>
+          <button data-lang="es" role="radio" aria-checked="false">ES</button>
+        </div>
+        <a href="#order" class="cta-button" data-en="Order pickup" data-es="Pedir en línea">Order pickup</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Tacos El Sol</h1>
+      <p class="tagline" data-en="Street tacos, family recipe, Orlando since 2016." data-es="Tacos de la calle, receta de familia, Orlando desde 2016.">Street tacos, family recipe, Orlando since 2016.</p>
+      <div class="hero-buttons">
+        <button class="primary-cta" onclick="document.getElementById('order').scrollIntoView({behavior: 'smooth'})" data-en="Order pickup" data-es="Pedir en línea">Order pickup</button>
+        <button class="secondary-cta" onclick="document.getElementById('menu').scrollIntoView({behavior: 'smooth'})" data-en="See the menu" data-es="Ver el menú">See the menu</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu -->
+  <section id="menu">
+    <h2 data-en="Menu" data-es="Menú">Menu</h2>
+    <div class="menu-grid">
+      <div class="menu-item">
+        <h3 data-en="Al Pastor" data-es="Al Pastor">Al Pastor</h3>
+        <p class="description" data-en="Marinated pork, pineapple, onion, cilantro" data-es="Cerdo marinado, piña, cebolla, cilantro">Marinated pork, pineapple, onion, cilantro</p>
+        <p class="price">$3.75</p>
+      </div>
+      <div class="menu-item">
+        <h3 data-en="Carne Asada" data-es="Carne Asada">Carne Asada</h3>
+        <p class="description" data-en="Grilled steak, salsa verde" data-es="Filete a la parrilla, salsa verde">Grilled steak, salsa verde</p>
+        <p class="price">$4.25</p>
+      </div>
+      <div class="menu-item">
+        <h3 data-en="Pollo Adobado" data-es="Pollo Adobado">Pollo Adobado</h3>
+        <p class="description" data-en="Adobo chicken, pickled red onion" data-es="Pollo en adobo, cebolla roja encurtida">Adobo chicken, pickled red onion</p>
+        <p class="price">$3.75</p>
+      </div>
+      <div class="menu-item">
+        <h3 data-en="Birria" data-es="Birria">Birria</h3>
+        <p class="description" data-en="Slow-braised beef, consomé to dip" data-es="Res deshebrada lentamente, consomé para acompañar">Slow-braised beef, consomé to dip</p>
+        <p class="price">$4.75</p>
+      </div>
+      <div class="menu-item">
+        <h3 data-en="Nopal" data-es="Nopales">Nopal</h3>
+        <p class="description" data-en="Grilled cactus, queso fresco" data-es="Nopal a la parrilla, queso fresco">Grilled cactus, queso fresco</p>
+        <p class="price">$3.50</p>
+      </div>
+    </div>
+
+    <div class="drinks">
+      <h4 data-en="Drinks" data-es="Bebidas">Drinks</h4>
+      <div class="drink-item">
+        <span data-en="Horchata" data-es="Horchata">Horchata</span>
+        <span>$3.00</span>
+      </div>
+      <div class="drink-item">
+        <span data-en="Jarritos" data-es="Jarritos">Jarritos</span>
+        <span>$2.50</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Find Us -->
+  <section id="findus">
+    <h2 data-en="Find us" data-es="Encuentranos">Find us</h2>
+    <div class="locations">
+      <div class="location-card">
+        <h3 data-en="Fixed Stand" data-es="Local Fijo">Fixed Stand</h3>
+        <p><strong>1420 N Mills Ave</strong><br>Orlando, FL</p>
+        <p><strong data-en="Hours:" data-es="Horario:">Hours:</strong> <span data-en="Wed–Sun, 11am–9pm" data-es="Miér–Dom, 11am–9pm">Wed–Sun, 11am–9pm</span></p>
+      </div>
+      <div class="location-card">
+        <h3 data-en="Truck Schedule" data-es="Horario del Camión">Truck Schedule</h3>
+        <div class="schedule">
+          <div class="schedule-item">
+            <strong data-en="Monday" data-es="Lunes">Monday</strong>
+            <span data-en="Lake Eola · 11am–2pm" data-es="Lake Eola · 11am–2pm">Lake Eola · 11am–2pm</span>
+          </div>
+          <div class="schedule-item">
+            <strong data-en="Tuesday" data-es="Martes">Tuesday</strong>
+            <span data-en="Winter Park Farmers Market · 4–8pm" data-es="Mercado Agricultores Winter Park · 4–8pm">Winter Park Farmers Market · 4–8pm</span>
+          </div>
+          <div class="schedule-item">
+            <strong data-en="Friday & Saturday" data-es="Viernes & Sábado">Friday & Saturday</strong>
+            <span data-en="Mills50 · 9pm–1am" data-es="Mills50 · 9pm–1am">Mills50 · 9pm–1am</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Catering -->
+  <section id="catering">
+    <h2 data-en="Catering" data-es="Catering">Catering</h2>
+    <div class="catering">
+      <h3 data-en="Feeding a crowd?" data-es="¿Necesitas alimentar mucha gente?">Feeding a crowd?</h3>
+      <p data-en="We cater parties, offices, and weddings. Taco bar from $14 per person." data-es="Proporcionamos catering para fiestas, oficinas y bodas. Taquería desde $14 por persona.">We cater parties, offices, and weddings. Taco bar from $14 per person.</p>
+      <button class="catering-cta" data-en="Get a quote" data-es="Obtener cotización">Get a quote</button>
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section id="story">
+    <h2 data-en="Our Story" data-es="Nuestra Historia">Our Story</h2>
+    <div class="story-content">
+      <div class="story-text">
+        <p data-en="Run by the Reyes family. What started as one truck in 2016 is now a truck plus a fixed stand. Same recipes from Guadalajara, same family on the griddle." data-es="Dirigida por la familia Reyes. Lo que comenzó como un camión en 2016 ahora es un camión más un local fijo. Las mismas recetas de Guadalajara, la misma familia en la parrilla.">Run by the Reyes family. What started as one truck in 2016 is now a truck plus a fixed stand. Same recipes from Guadalajara, same family on the griddle.</p>
+        <div class="review-quote">
+          <span data-en="&quot;Best birria in Orlando, hands down.&quot; — a regular" data-es="&quot;Mejor birria en Orlando, sin duda.&quot; — un cliente fiel">"Best birria in Orlando, hands down." — a regular</span>
+        </div>
+      </div>
+      <div class="story-image">🌮</div>
+    </div>
+  </section>
+
+  <!-- Order Section -->
+  <section id="order" style="text-align: center;">
+    <h2 data-en="Ready to order?" data-es="¿Listo para pedir?">Ready to order?</h2>
+    <p style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--gray);" data-en="Call us at (407) 555-0148 or find us on Instagram @tacoselsol" data-es="Llámanos al (407) 555-0148 o encuéntranos en Instagram @tacoselsol">Call us at (407) 555-0148 or find us on Instagram @tacoselsol</p>
+    <p style="color: var(--gray);" data-en="Open now at our fixed stand or check the truck schedule above." data-es="Abierto ahora en nuestro local fijo o consulta el horario del camión arriba.">Open now at our fixed stand or check the truck schedule above.</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4 data-en="Contact" data-es="Contacto">Contact</h4>
+        <p><strong>(407) 555-0148</strong><br>
+        <a href="mailto:hola@tacoselsol.example">hola@tacoselsol.example</a></p>
+      </div>
+      <div class="footer-section">
+        <h4 data-en="Follow Us" data-es="Síguenos">Follow Us</h4>
+        <p><a href="https://instagram.com/tacoselsol" target="_blank" rel="noopener noreferrer">@tacoselsol on Instagram</a></p>
+      </div>
+      <div class="footer-section">
+        <h4 data-en="Hours" data-es="Horario">Hours</h4>
+        <p><span data-en="Fixed stand:" data-es="Local fijo:">Fixed stand:</span><br>
+        <span data-en="Wed–Sun 11am–9pm" data-es="Miér–Dom 11am–9pm">Wed–Sun 11am–9pm</span></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p data-en="Tacos El Sol • Recipes from Guadalajara • Orlando, Florida" data-es="Tacos El Sol • Recetas de Guadalajara • Orlando, Florida">Tacos El Sol • Recipes from Guadalajara • Orlando, Florida</p>
+    </div>
+  </footer>
+
+  <script>
+    // Language Toggle
+    const langToggle = document.querySelectorAll('.lang-toggle button');
+    const htmlElement = document.documentElement;
+    let currentLang = localStorage.getItem('tacoselsol_lang') || 'en';
+
+    // Initialize language
+    function initLanguage() {
+      htmlElement.lang = currentLang;
+      updateLanguageDisplay(currentLang);
+      updateToggleState(currentLang);
+    }
+
+    function updateLanguageDisplay(lang) {
+      document.querySelectorAll('[data-en][data-es]').forEach(element => {
+        const text = element.dataset[lang];
+        if (text) {
+          if (element.tagName === 'SPAN' && element.parentElement.tagName === 'DIV' && element.parentElement.classList.contains('review-quote')) {
+            element.textContent = text;
+          } else if (element.classList.contains('review-quote')) {
+            element.textContent = text;
+          } else {
+            element.textContent = text;
+          }
+        }
+      });
+    }
+
+    function updateToggleState(lang) {
+      langToggle.forEach(btn => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-checked', 'false');
+        if (btn.dataset.lang === lang) {
+          btn.classList.add('active');
+          btn.setAttribute('aria-checked', 'true');
+        }
+      });
+    }
+
+    // Language toggle click handlers
+    langToggle.forEach(btn => {
+      btn.addEventListener('click', function() {
+        currentLang = this.dataset.lang;
+        localStorage.setItem('tacoselsol_lang', currentLang);
+        htmlElement.lang = currentLang;
+        updateLanguageDisplay(currentLang);
+        updateToggleState(currentLang);
+      });
+    });
+
+    // Initialize on page load
+    initLanguage();
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#') {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

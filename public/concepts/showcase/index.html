@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>BANANAbyte — Same brief, four models</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0B0B0C;--panel:#141416;--ink:#ECECEE;--mut:#8b8b92;--hair:#242428;--yellow:#F5C800;
+      --mono:"JetBrains Mono",ui-monospace,monospace;--display:"Archivo Black",system-ui,sans-serif;
+      --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6}
+    .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+    header{padding:40px 0 8px}
+    .back{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--mut);text-decoration:none}
+    .back:hover{color:var(--yellow)}
+    .mark{font-weight:700;font-size:20px;letter-spacing:-.02em;display:block;margin-top:14px}.mark b{color:var(--yellow)}
+    .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin:26px 0 8px}
+    h1{font-family:var(--display);font-weight:400;font-size:clamp(30px,5vw,46px);line-height:1.05;margin:0 0 14px}
+    h1 span{color:var(--yellow)}
+    .sub{color:#c9c9cf;max-width:66ch;margin:0 0 6px}
+    .brief{font-family:var(--mono);font-size:12px;color:var(--mut);line-height:1.7;border:1px solid var(--hair);border-radius:12px;background:var(--panel);padding:14px 16px;margin:20px 0 4px;max-width:none}
+    .brief b{color:var(--ink)}
+    .grid{display:grid;grid-template-columns:1fr;gap:22px;padding:30px 0 60px}
+    @media(min-width:760px){.grid{grid-template-columns:1fr 1fr}}
+    .card{display:flex;flex-direction:column;text-decoration:none;color:inherit;border:1px solid var(--hair);background:var(--panel);
+      border-radius:16px;overflow:hidden;transition:border-color .15s,transform .12s,box-shadow .2s}
+    .card:hover{border-color:var(--yellow);transform:translateY(-3px);box-shadow:0 18px 40px -24px rgba(0,0,0,.8)}
+    .shot{aspect-ratio:1200/806;width:100%;background:#000;border-bottom:1px solid var(--hair);display:block;object-fit:cover;object-position:top center}
+    .body{padding:20px 22px 22px}
+    .toprow{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+    .model{font-family:var(--display);font-size:22px}
+    .tag{font-family:var(--mono);font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--bg);background:var(--yellow);padding:3px 8px;border-radius:999px;white-space:nowrap}
+    .oneline{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.02em;color:var(--yellow);margin:6px 0 10px}
+    .pal{font-size:14px;color:#c4c4ca;line-height:1.6;margin:0}
+    .view{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--yellow);margin-top:16px;display:inline-block}
+    footer{border-top:1px solid var(--hair);padding:22px 0 44px;font-family:var(--mono);font-size:12px;color:var(--mut);text-align:center;line-height:1.7}
+  </style>
+</head>
+<body>
+  <header><div class="wrap">
+    <a class="back" href="../">&larr; back to concepts</a>
+    <span class="mark"><b>BANANA</b>byte</span>
+    <p class="eyebrow">[ Showcase · one brief · four models · what changes is taste, not the ask ]</p>
+    <h1>Same brief.<br>Four <span>models</span>.</h1>
+    <p class="sub">One fictional client — <b>Tacos El Sol</b>, a bilingual family taquería in Orlando — handed identical copy, menu, prices, hours and a working EN/ES toggle. The <em>only</em> variable is which Claude model built it. Same words in, four different sites out.</p>
+    <p class="brief"><b>The shared brief →</b> a self-contained one-page site: sticky nav · striking hero · signature-taco menu with prices · fixed stand + weekly truck schedule · catering pitch · Reyes-family story + review · footer. Hard rules: no external images (CSS/SVG/emoji only), a real vanilla-JS English/Spanish toggle, responsive + accessible. Nobody was told <em>how</em> it should look.</p>
+  </div></header>
+
+  <div class="wrap">
+    <div class="grid">
+
+      <a class="card" href="opus/">
+        <img class="shot" src="opus.webp" width="1200" height="806" loading="lazy" decoding="async" alt="Tacos El Sol built by Opus — saturated sun-gradient hero with a scalloped papel-picado edge">
+        <div class="body">
+          <div class="toprow"><span class="model">Opus</span><span class="tag">opus 4.8</span></div>
+          <p class="oneline">Warm, saturated, balanced.</p>
+          <p class="pal">Chile-red + marigold over masa cream, salsa-verde catering band, Talavera-blue accents. Anton sign-painter caps against Fraunces italics + DM Sans. A radiant sun-rays hero with a scalloped torn-paper edge, hard-offset "sticker" cards, and a hand-tilted price tag.</p>
+          <span class="view">Open Opus →</span>
+        </div>
+      </a>
+
+      <a class="card" href="sonnet/">
+        <img class="shot" src="sonnet.webp" width="1200" height="806" loading="lazy" decoding="async" alt="Tacos El Sol built by Sonnet — cream editorial layout with a papel-picado paper-banner motif">
+        <div class="body">
+          <div class="toprow"><span class="model">Sonnet</span><span class="tag">sonnet 4.5</span></div>
+          <p class="oneline">Editorial, light, refined.</p>
+          <p class="pal">A papel-picado paper-banner motif recurs as the signature element, with a sun-ray mark, hand-torn menu dividers and perforated ticket-stub schedule cards. Tortilla cream, marigold, chile red and cactus green in Fraunces italic display + DM Sans + Space Mono numerals — a hand-lettered menu-board feel, not a template.</p>
+          <span class="view">Open Sonnet →</span>
+        </div>
+      </a>
+
+      <a class="card" href="haiku/">
+        <img class="shot" src="haiku.webp" width="1200" height="806" loading="lazy" decoding="async" alt="Tacos El Sol built by Haiku — clean card-grid layout with terracotta and golden gradients">
+        <div class="body">
+          <div class="toprow"><span class="model">Haiku</span><span class="tag">haiku 4.5</span></div>
+          <p class="oneline">Clean, calm, quick.</p>
+          <p class="pal">Warm clay terracotta, golden sunshine and forest-green accents in a modern grid. Playfair Display serif headings against friendly Poppins body, soft card-based sections with generous breathing room and gentle gradient moments in the hero and story. The most restrained, conventional-trust take of the four.</p>
+          <span class="view">Open Haiku →</span>
+        </div>
+      </a>
+
+      <a class="card" href="fable/">
+        <img class="shot" src="fable.webp" width="1200" height="806" loading="lazy" decoding="async" alt="Tacos El Sol built by Fable — bold sunburst hero with a smiling hand-drawn sun and chunky slab type">
+        <div class="body">
+          <div class="toprow"><span class="model">Fable</span><span class="tag">fable 5</span></div>
+          <p class="oneline">Loud, hand-painted, fiesta.</p>
+          <p class="pal">Mexican <em>rotulista</em> mercado-sign vernacular: saturated sun-yellow ground with chile red, nopal green, masa cream and jamaica pink. Alfa Slab One caps with painted offset shadows over Karla body. A smiling SVG sun over conic-gradient rays, a papel-picado banner divider, and chunky starburst price tags on ticket-style cards.</p>
+          <span class="view">Open Fable →</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <footer><div class="wrap">
+    Same brief, four models · internal showcase · <b>Tacos El Sol</b> is a concept, not a live business.<br>
+    Site by <span style="color:var(--yellow)">BANANA</span>byte · Orlando, FL
+  </div></footer>
+</body>
+</html>

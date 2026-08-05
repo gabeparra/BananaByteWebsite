@@ -1,0 +1,691 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tacos El Sol — Street tacos, family recipe, Orlando since 2016</title>
+<meta name="description" content="Tacos El Sol. Street tacos and a family recipe from Guadalajara. Fixed stand plus truck, Orlando since 2016.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..700&family=DM+Sans:opsz,wght@9..40,400..700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --chile:#c81d25;        /* deep tomato-chile red */
+    --chile-dark:#8f0f16;
+    --marigold:#ffb703;     /* cempasúchil / marigold */
+    --sun:#ff8500;          /* warm orange */
+    --lime:#3a7d34;         /* salsa verde green */
+    --cream:#fff6e6;        /* warm masa cream */
+    --cream-2:#ffeecb;
+    --ink:#2a1206;          /* dark cocoa ink */
+    --ink-soft:#5a3a26;
+    --tile-blue:#1f6f8b;    /* talavera blue accent */
+    --shadow:rgba(42,18,6,.18);
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:"DM Sans",system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{margin:0;line-height:1;font-weight:400}
+  a{color:inherit}
+  img{max-width:100%}
+  .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 clamp(18px,4vw,40px)}
+
+  /* ---------- Display type ---------- */
+  .display{
+    font-family:"Anton",Impact,sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.01em;
+    line-height:.92;
+  }
+  .serif{font-family:"Fraunces",Georgia,serif}
+  .eyebrow{
+    font-family:"Fraunces",serif;
+    font-style:italic;
+    font-weight:600;
+    color:var(--chile);
+    letter-spacing:.02em;
+    font-size:clamp(1rem,2.4vw,1.35rem);
+  }
+
+  /* ---------- CONCEPT ribbon ---------- */
+  .concept-ribbon{
+    position:fixed;top:19px;right:-52px;z-index:120;
+    transform:rotate(45deg);
+    background:var(--ink);color:var(--marigold);
+    font-family:"DM Sans",sans-serif;font-weight:700;
+    font-size:.68rem;letter-spacing:.28em;
+    padding:6px 60px;
+    box-shadow:0 3px 10px var(--shadow);
+    pointer-events:none;
+  }
+  @media(max-width:640px){
+    .concept-ribbon{top:14px;right:-56px;font-size:.6rem;padding:5px 60px}
+  }
+
+  /* ---------- Header ---------- */
+  header.site{
+    position:sticky;top:0;z-index:100;
+    background:var(--chile);
+    color:var(--cream);
+    border-bottom:4px solid var(--ink);
+    box-shadow:0 4px 0 rgba(0,0,0,.12);
+  }
+  .bar{
+    display:flex;align-items:center;gap:clamp(10px,2vw,26px);
+    height:66px;
+  }
+  .wordmark{
+    display:flex;align-items:center;gap:10px;
+    text-decoration:none;color:var(--cream);
+    font-family:"Anton",sans-serif;text-transform:uppercase;
+    font-size:1.5rem;letter-spacing:.02em;line-height:1;
+    white-space:nowrap;
+  }
+  .wordmark .sun-badge{
+    width:34px;height:34px;flex:0 0 auto;border-radius:50%;
+    background:
+      radial-gradient(circle at 50% 50%, var(--marigold) 0 46%, transparent 47%),
+      conic-gradient(from 0deg, var(--marigold) 0 8%, transparent 8% 12.5%,
+        var(--marigold) 12.5% 20.5%, transparent 20.5% 25%,
+        var(--marigold) 25% 33%, transparent 33% 37.5%,
+        var(--marigold) 37.5% 45.5%, transparent 45.5% 50%,
+        var(--marigold) 50% 58%, transparent 58% 62.5%,
+        var(--marigold) 62.5% 70.5%, transparent 70.5% 75%,
+        var(--marigold) 75% 83%, transparent 83% 87.5%,
+        var(--marigold) 87.5% 95.5%, transparent 95.5% 100%);
+    box-shadow:inset 0 0 0 2px var(--chile);
+  }
+  .wordmark small{
+    font-family:"Fraunces",serif;font-style:italic;font-weight:600;
+    text-transform:none;font-size:.62rem;letter-spacing:.02em;
+    opacity:.85;display:block;margin-top:-3px;
+  }
+  nav.primary{margin-left:auto;display:flex;align-items:center;gap:clamp(6px,1.5vw,22px)}
+  nav.primary a{
+    text-decoration:none;color:var(--cream);
+    font-weight:600;font-size:.98rem;
+    padding:6px 2px;border-bottom:2px solid transparent;
+    transition:border-color .15s,color .15s;
+  }
+  nav.primary a:hover{border-color:var(--marigold)}
+  .navlinks{display:flex;gap:clamp(6px,1.5vw,22px)}
+
+  .lang-toggle{
+    display:inline-flex;border:2px solid var(--cream);border-radius:999px;
+    overflow:hidden;background:transparent;padding:0;cursor:pointer;
+    font-family:"DM Sans",sans-serif;font-weight:700;font-size:.8rem;
+  }
+  .lang-toggle span{padding:5px 11px;line-height:1;transition:background .15s,color .15s}
+  .lang-toggle .on{background:var(--cream);color:var(--chile)}
+  .lang-toggle .off{color:var(--cream)}
+  .lang-toggle:focus-visible{outline:3px solid var(--marigold);outline-offset:3px}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:.5em;
+    font-family:"DM Sans",sans-serif;font-weight:700;
+    text-decoration:none;cursor:pointer;border:none;
+    padding:12px 20px;border-radius:999px;
+    font-size:1rem;line-height:1;
+    transition:transform .12s ease, box-shadow .12s ease, background .15s;
+  }
+  .btn:active{transform:translateY(1px)}
+  .btn-primary{
+    background:var(--marigold);color:var(--ink);
+    box-shadow:0 4px 0 var(--chile-dark);
+  }
+  .btn-primary:hover{background:#ffc22e;box-shadow:0 6px 0 var(--chile-dark);transform:translateY(-1px)}
+  .btn-ghost{
+    background:transparent;color:var(--ink);
+    box-shadow:inset 0 0 0 2.5px var(--ink);
+  }
+  .btn-ghost:hover{background:var(--ink);color:var(--cream)}
+  .btn-header{padding:9px 16px;font-size:.92rem;white-space:nowrap}
+  .btn:focus-visible,nav.primary a:focus-visible,.wordmark:focus-visible{
+    outline:3px solid var(--marigold);outline-offset:3px;border-radius:6px;
+  }
+
+  /* hide text nav on small; keep toggle + order */
+  @media(max-width:860px){
+    .navlinks{display:none}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;overflow:hidden;
+    background:
+      radial-gradient(circle at 50% 118%, var(--sun) 0 22%, transparent 60%),
+      linear-gradient(180deg, #ffd34d 0%, var(--marigold) 46%, var(--sun) 100%);
+    color:var(--ink);
+    padding:clamp(48px,9vw,110px) 0 clamp(60px,11vw,130px);
+  }
+  /* sun rays */
+  .hero::before{
+    content:"";position:absolute;left:50%;bottom:-60%;
+    width:170vw;height:170vw;transform:translateX(-50%);
+    background:conic-gradient(from 0deg,
+      rgba(255,255,255,.16) 0 3deg, transparent 3deg 15deg);
+    opacity:.5;pointer-events:none;
+  }
+  .hero .wrap{position:relative;z-index:2;text-align:center}
+  .hero .eyebrow{color:var(--chile-dark)}
+  .hero h1{
+    font-family:"Anton",sans-serif;text-transform:uppercase;
+    font-size:clamp(3.4rem,15vw,9.5rem);
+    line-height:.86;letter-spacing:.005em;
+    margin:.12em 0 .18em;
+    color:var(--chile);
+    text-shadow:4px 4px 0 var(--cream), 8px 8px 0 rgba(42,18,6,.14);
+  }
+  .hero h1 .el{color:var(--ink)}
+  .hero-tag{
+    font-family:"Fraunces",serif;font-weight:600;
+    font-size:clamp(1.15rem,3.2vw,1.7rem);
+    max-width:22ch;margin:0 auto clamp(26px,4vw,38px);
+    color:var(--ink-soft);
+  }
+  .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .hero-cta .btn{font-size:1.08rem;padding:15px 26px}
+  .est{
+    display:inline-block;margin-top:26px;
+    font-family:"Fraunces",serif;font-style:italic;font-weight:500;
+    color:var(--chile-dark);font-size:.95rem;letter-spacing:.04em;
+  }
+  /* torn/scalloped bottom edge */
+  .hero-edge{position:relative;z-index:2;line-height:0;margin-top:-1px}
+  .hero-edge svg{display:block;width:100%;height:34px}
+
+  /* ---------- Section shell ---------- */
+  section{padding:clamp(56px,8vw,96px) 0}
+  .sec-head{margin-bottom:clamp(28px,4vw,46px)}
+  .sec-head h2{
+    font-family:"Anton",sans-serif;text-transform:uppercase;
+    font-size:clamp(2.4rem,7vw,4.6rem);color:var(--ink);
+    letter-spacing:.01em;
+  }
+  .sec-head .eyebrow{display:block;margin-bottom:.35em}
+
+  /* ---------- Menu ---------- */
+  .menu{background:var(--chile);color:var(--cream);position:relative}
+  .menu::after{ /* subtle papel-picado band top */
+    content:"";position:absolute;top:0;left:0;right:0;height:14px;
+    background:repeating-linear-gradient(90deg,
+      var(--marigold) 0 20px, var(--lime) 20px 40px,
+      var(--cream) 40px 60px, var(--tile-blue) 60px 80px);
+    opacity:.9;
+  }
+  .menu .sec-head h2{color:var(--cream)}
+  .menu .sec-head .eyebrow{color:var(--marigold)}
+  .menu-grid{display:grid;gap:clamp(14px,2vw,20px);grid-template-columns:1fr}
+  @media(min-width:720px){.menu-grid{grid-template-columns:1fr 1fr}}
+  .taco{
+    display:flex;gap:14px;align-items:flex-start;
+    background:rgba(255,246,230,.06);
+    border:2px solid rgba(255,246,230,.16);
+    border-radius:16px;padding:18px 20px;
+    transition:transform .12s, background .15s, border-color .15s;
+  }
+  .taco:hover{transform:translateY(-3px);background:rgba(255,246,230,.11);border-color:var(--marigold)}
+  .taco .emoji{font-size:1.7rem;line-height:1;filter:saturate(1.1)}
+  .taco .body{flex:1;min-width:0}
+  .taco .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .taco h3{
+    font-family:"Fraunces",serif;font-weight:700;font-size:1.28rem;color:var(--cream);
+  }
+  .taco .price{
+    font-family:"Anton",sans-serif;font-size:1.25rem;color:var(--marigold);
+    flex:0 0 auto;
+  }
+  .taco p{margin:.3em 0 0;font-size:.96rem;color:rgba(255,246,230,.82)}
+  .veg-tag{
+    display:inline-block;margin-left:8px;vertical-align:middle;
+    background:var(--lime);color:var(--cream);
+    font-size:.6rem;font-weight:700;letter-spacing:.12em;
+    padding:3px 7px;border-radius:5px;text-transform:uppercase;
+  }
+  .drinks{
+    margin-top:clamp(22px,3vw,32px);
+    display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px;
+    background:var(--marigold);color:var(--ink);
+    border-radius:16px;padding:18px 24px;
+  }
+  .drinks strong{
+    font-family:"Anton",sans-serif;text-transform:uppercase;
+    font-size:1.15rem;letter-spacing:.03em;margin-right:6px;
+  }
+  .drinks .item{font-family:"Fraunces",serif;font-weight:600;font-size:1.05rem}
+  .drinks .dot{opacity:.45}
+
+  /* ---------- Find us ---------- */
+  .find{background:var(--cream-2)}
+  .find-grid{display:grid;gap:clamp(18px,3vw,30px);grid-template-columns:1fr}
+  @media(min-width:820px){.find-grid{grid-template-columns:.9fr 1.1fr}}
+  .card{
+    background:var(--cream);border:3px solid var(--ink);
+    border-radius:20px;padding:clamp(22px,3vw,32px);
+    box-shadow:6px 6px 0 var(--ink);
+  }
+  .card.stand{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+  .card h3{
+    font-family:"Anton",sans-serif;text-transform:uppercase;
+    font-size:1.5rem;letter-spacing:.02em;margin-bottom:.5em;
+    display:flex;align-items:center;gap:10px;
+  }
+  .card.stand h3{color:var(--marigold)}
+  .addr{font-family:"Fraunces",serif;font-size:1.35rem;font-weight:600;line-height:1.25}
+  .hours-pill{
+    display:inline-block;margin-top:14px;
+    background:var(--marigold);color:var(--ink);
+    font-weight:700;font-size:.95rem;padding:8px 16px;border-radius:999px;
+  }
+  .sched{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+  .sched li{
+    display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;
+    padding-bottom:12px;border-bottom:2px dashed rgba(42,18,6,.2);
+  }
+  .sched li:last-child{border-bottom:none;padding-bottom:0}
+  .day{
+    font-family:"Anton",sans-serif;text-transform:uppercase;
+    background:var(--chile);color:var(--cream);
+    font-size:.8rem;letter-spacing:.06em;
+    padding:6px 10px;border-radius:8px;align-self:start;white-space:nowrap;
+    min-width:62px;text-align:center;
+  }
+  .sched .place{font-weight:700}
+  .sched .time{color:var(--ink-soft);font-size:.95rem}
+
+  /* ---------- Catering ---------- */
+  .catering{
+    background:linear-gradient(135deg,var(--lime),#2c5f28);
+    color:var(--cream);text-align:center;position:relative;overflow:hidden;
+  }
+  .catering::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 15% 20%, rgba(255,183,3,.18) 0 12%, transparent 13%),
+      radial-gradient(circle at 85% 70%, rgba(255,183,3,.15) 0 10%, transparent 11%);
+    pointer-events:none;
+  }
+  .catering .wrap{position:relative;z-index:2;max-width:760px}
+  .catering h2{
+    font-family:"Anton",sans-serif;text-transform:uppercase;
+    font-size:clamp(2.2rem,6.5vw,4rem);margin-bottom:.25em;
+  }
+  .catering p{font-family:"Fraunces",serif;font-size:clamp(1.15rem,2.8vw,1.5rem);font-weight:500;margin:0 auto 1.4em;max-width:32ch}
+  .price-tag{
+    display:inline-block;background:var(--marigold);color:var(--ink);
+    font-family:"Anton",sans-serif;font-size:1.05rem;letter-spacing:.02em;
+    text-transform:uppercase;padding:8px 16px;border-radius:10px;
+    transform:rotate(-2deg);margin-bottom:1.6em;
+  }
+
+  /* ---------- Story ---------- */
+  .story{background:var(--cream)}
+  .story-grid{display:grid;gap:clamp(24px,4vw,50px);grid-template-columns:1fr;align-items:center}
+  @media(min-width:820px){.story-grid{grid-template-columns:1.2fr .8fr}}
+  .story p.lead{
+    font-family:"Fraunces",serif;font-size:clamp(1.15rem,2.6vw,1.5rem);
+    line-height:1.5;color:var(--ink);font-weight:500;
+  }
+  .story p.lead .hl{color:var(--chile);font-weight:700}
+  .quote{
+    background:var(--chile);color:var(--cream);
+    border-radius:20px;padding:clamp(26px,4vw,40px);
+    box-shadow:8px 8px 0 var(--ink);position:relative;
+  }
+  .quote .mark{
+    font-family:"Fraunces",serif;font-size:4.5rem;line-height:.5;
+    color:var(--marigold);display:block;height:.5em;
+  }
+  .quote blockquote{
+    margin:0;font-family:"Fraunces",serif;font-style:italic;
+    font-weight:600;font-size:clamp(1.3rem,3.4vw,1.8rem);line-height:1.25;
+  }
+  .quote cite{
+    display:block;margin-top:1em;font-style:normal;font-weight:700;
+    font-family:"DM Sans",sans-serif;color:var(--marigold);font-size:.95rem;
+    letter-spacing:.03em;
+  }
+  .stars{color:var(--marigold);font-size:1.1rem;letter-spacing:.15em;margin-bottom:.4em}
+
+  /* ---------- Footer ---------- */
+  footer.site{background:var(--ink);color:var(--cream);padding:clamp(46px,6vw,70px) 0 30px}
+  .foot-grid{display:grid;gap:clamp(24px,4vw,40px);grid-template-columns:1fr}
+  @media(min-width:720px){.foot-grid{grid-template-columns:1.4fr 1fr 1fr}}
+  footer.site h4{
+    font-family:"Anton",sans-serif;text-transform:uppercase;
+    font-size:1.05rem;letter-spacing:.06em;color:var(--marigold);
+    margin:0 0 .9em;font-weight:400;
+  }
+  footer .wordmark{color:var(--cream);font-size:1.7rem}
+  footer .brand-tag{
+    font-family:"Fraunces",serif;font-style:italic;
+    color:rgba(255,246,230,.75);margin-top:.6em;max-width:26ch;
+  }
+  footer a{color:var(--cream);text-decoration:none;border-bottom:1px solid rgba(255,183,3,.4)}
+  footer a:hover{color:var(--marigold);border-color:var(--marigold)}
+  footer ul{list-style:none;margin:0;padding:0;display:grid;gap:.6em;font-size:.98rem}
+  .foot-note{
+    margin-top:clamp(30px,5vw,48px);padding-top:22px;
+    border-top:1px solid rgba(255,246,230,.18);
+    display:flex;flex-wrap:wrap;gap:10px 20px;justify-content:space-between;
+    font-size:.82rem;color:rgba(255,246,230,.62);
+  }
+  .foot-note .bilingual{font-family:"Fraunces",serif;font-style:italic}
+
+  /* reduced motion */
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *{transition:none!important}
+  }
+  .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+</style>
+</head>
+<body>
+
+<div class="concept-ribbon" aria-hidden="true">CONCEPT</div>
+
+<a class="btn btn-primary visually-hidden" href="#main" style="position:absolute;left:8px;top:8px;width:auto;height:auto;clip:auto;z-index:200" onfocus="this.classList.remove('visually-hidden')" onblur="this.classList.add('visually-hidden')" data-en="Skip to content" data-es="Saltar al contenido">Skip to content</a>
+
+<!-- ================= HEADER ================= -->
+<header class="site">
+  <div class="wrap bar">
+    <a class="wordmark" href="#top" aria-label="Tacos El Sol home">
+      <span class="sun-badge" aria-hidden="true"></span>
+      <span>Tacos<span style="color:var(--marigold)"> El Sol</span>
+        <small data-en="Orlando · since 2016" data-es="Orlando · desde 2016">Orlando · since 2016</small>
+      </span>
+    </a>
+
+    <nav class="primary" aria-label="Primary">
+      <div class="navlinks">
+        <a href="#menu" data-en="Menu" data-es="Menú">Menu</a>
+        <a href="#find" data-en="Find us" data-es="Dónde estamos">Find us</a>
+        <a href="#catering" data-en="Catering" data-es="Eventos">Catering</a>
+        <a href="#story" data-en="Story" data-es="Historia">Story</a>
+      </div>
+
+      <button class="lang-toggle" id="langToggle" role="switch" aria-checked="false"
+              aria-label="Switch language to Spanish">
+        <span class="on" data-lang="en">EN</span><span class="off" data-lang="es">ES</span>
+      </button>
+
+      <a class="btn btn-primary btn-header" href="#order"
+         data-en="Order pickup" data-es="Ordena para llevar">Order pickup</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<a id="top"></a>
+
+<!-- ================= HERO ================= -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="wrap">
+    <p class="eyebrow" data-en="🌮 Guadalajara street tacos" data-es="🌮 Tacos de la calle de Guadalajara">🌮 Guadalajara street tacos</p>
+    <h1 id="hero-title">Tacos <span class="el">El&nbsp;Sol</span></h1>
+    <p class="hero-tag" data-en="Street tacos, family recipe, Orlando since 2016."
+       data-es="Tacos de la calle, receta de familia, Orlando desde 2016.">
+       Street tacos, family recipe, Orlando since 2016.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#order" data-en="Order pickup" data-es="Ordena para llevar">Order pickup</a>
+      <a class="btn btn-ghost" href="#menu" data-en="See the menu" data-es="Ver el menú">See the menu</a>
+    </div>
+    <span class="est" data-en="Family-run · recipes from Guadalajara" data-es="De familia · recetas de Guadalajara">Family-run · recipes from Guadalajara</span>
+  </div>
+</section>
+<div class="hero-edge" aria-hidden="true">
+  <svg viewBox="0 0 1200 34" preserveAspectRatio="none">
+    <path d="M0,34 L0,10 Q30,34 60,10 T120,10 T180,10 T240,10 T300,10 T360,10 T420,10 T480,10 T540,10 T600,10 T660,10 T720,10 T780,10 T840,10 T900,10 T960,10 T1020,10 T1080,10 T1140,10 T1200,10 L1200,34 Z" fill="#c81d25"/>
+  </svg>
+</div>
+
+<!-- ================= MENU ================= -->
+<section class="menu" id="menu" aria-labelledby="menu-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" data-en="Hot off the griddle" data-es="Recién salido del comal">Hot off the griddle</span>
+      <h2 id="menu-title" data-en="Signature tacos" data-es="Nuestros tacos">Signature tacos</h2>
+    </div>
+
+    <div class="menu-grid">
+      <article class="taco">
+        <span class="emoji" aria-hidden="true">🌮</span>
+        <div class="body">
+          <div class="top">
+            <h3 data-en="Al Pastor" data-es="Al Pastor">Al Pastor</h3>
+            <span class="price">$3.75</span>
+          </div>
+          <p data-en="Marinated pork, pineapple, onion, cilantro."
+             data-es="Cerdo marinado, piña, cebolla, cilantro.">Marinated pork, pineapple, onion, cilantro.</p>
+        </div>
+      </article>
+
+      <article class="taco">
+        <span class="emoji" aria-hidden="true">🥩</span>
+        <div class="body">
+          <div class="top">
+            <h3 data-en="Carne Asada" data-es="Carne Asada">Carne Asada</h3>
+            <span class="price">$4.25</span>
+          </div>
+          <p data-en="Grilled steak, salsa verde."
+             data-es="Bistec a la parrilla, salsa verde.">Grilled steak, salsa verde.</p>
+        </div>
+      </article>
+
+      <article class="taco">
+        <span class="emoji" aria-hidden="true">🐔</span>
+        <div class="body">
+          <div class="top">
+            <h3 data-en="Pollo Adobado" data-es="Pollo Adobado">Pollo Adobado</h3>
+            <span class="price">$3.75</span>
+          </div>
+          <p data-en="Adobo chicken, pickled red onion."
+             data-es="Pollo en adobo, cebolla morada encurtida.">Adobo chicken, pickled red onion.</p>
+        </div>
+      </article>
+
+      <article class="taco">
+        <span class="emoji" aria-hidden="true">🍲</span>
+        <div class="body">
+          <div class="top">
+            <h3 data-en="Birria" data-es="Birria">Birria</h3>
+            <span class="price">$4.75</span>
+          </div>
+          <p data-en="Slow-braised beef, consomé to dip."
+             data-es="Res cocida a fuego lento, consomé para remojar.">Slow-braised beef, consomé to dip.</p>
+        </div>
+      </article>
+
+      <article class="taco" style="grid-column:1/-1">
+        <span class="emoji" aria-hidden="true">🌵</span>
+        <div class="body">
+          <div class="top">
+            <h3>Nopal <span class="veg-tag" data-en="Veg" data-es="Veg">Veg</span></h3>
+            <span class="price">$3.50</span>
+          </div>
+          <p data-en="Grilled cactus, queso fresco."
+             data-es="Nopal a la parrilla, queso fresco.">Grilled cactus, queso fresco.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="drinks">
+      <strong data-en="Drinks" data-es="Bebidas">Drinks</strong>
+      <span class="item">Horchata $3</span>
+      <span class="dot" aria-hidden="true">·</span>
+      <span class="item">Jarritos $2.50</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FIND US ================= -->
+<section class="find" id="find" aria-labelledby="find-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" data-en="Come say hola" data-es="Ven a saludar">Come say hola</span>
+      <h2 id="find-title" data-en="Where to find us" data-es="Dónde estamos">Where to find us</h2>
+    </div>
+
+    <div class="find-grid">
+      <div class="card stand">
+        <h3><span aria-hidden="true">📍</span> <span data-en="The fixed stand" data-es="El puesto fijo">The fixed stand</span></h3>
+        <p class="addr">1420 N Mills Ave<br>Orlando, FL</p>
+        <span class="hours-pill" data-en="Wed–Sun · 11am–9pm" data-es="Mié–Dom · 11am–9pm">Wed–Sun · 11am–9pm</span>
+      </div>
+
+      <div class="card">
+        <h3><span aria-hidden="true">🚚</span> <span data-en="Truck this week" data-es="El camión esta semana">Truck this week</span></h3>
+        <ul class="sched">
+          <li>
+            <span class="day" data-en="Mon" data-es="Lun">Mon</span>
+            <span><span class="place" data-en="Lake Eola · lunch" data-es="Lake Eola · almuerzo">Lake Eola · lunch</span><br>
+              <span class="time">11am–2pm</span></span>
+          </li>
+          <li>
+            <span class="day" data-en="Tue" data-es="Mar">Tue</span>
+            <span><span class="place" data-en="Winter Park farmers market" data-es="Mercado de Winter Park">Winter Park farmers market</span><br>
+              <span class="time">4–8pm</span></span>
+          </li>
+          <li>
+            <span class="day" data-en="Fri–Sat" data-es="Vie–Sáb">Fri–Sat</span>
+            <span><span class="place" data-en="Mills50 · late night" data-es="Mills50 · noche">Mills50 · late night</span><br>
+              <span class="time">9pm–1am</span></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CATERING ================= -->
+<section class="catering" id="catering" aria-labelledby="cat-title">
+  <div class="wrap">
+    <h2 id="cat-title" data-en="Feeding a crowd?" data-es="¿Vas a alimentar a una multitud?">Feeding a crowd?</h2>
+    <p data-en="We cater parties, offices, and weddings. Build-your-own taco bar."
+       data-es="Damos servicio a fiestas, oficinas y bodas. Barra de tacos para armar.">
+       We cater parties, offices, and weddings. Build-your-own taco bar.</p>
+    <span class="price-tag" data-en="Taco bar from $14 / person" data-es="Barra de tacos desde $14 / persona">Taco bar from $14 / person</span>
+    <div>
+      <a class="btn btn-primary" href="#order" data-en="Get a quote" data-es="Pide una cotización">Get a quote</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STORY ================= -->
+<section class="story" id="story" aria-labelledby="story-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" data-en="Our family" data-es="Nuestra familia">Our family</span>
+      <h2 id="story-title" data-en="The Reyes family" data-es="La familia Reyes">The Reyes family</h2>
+    </div>
+    <div class="story-grid">
+      <p class="lead"
+         data-en="Run by the Reyes family. What started as one truck in 2016 is now a truck plus a fixed stand. Same recipes from Guadalajara, <span class='hl'>same family on the griddle.</span>"
+         data-es="Manejado por la familia Reyes. Lo que empezó como un solo camión en 2016 ahora es un camión más un puesto fijo. Las mismas recetas de Guadalajara, <span class='hl'>la misma familia en el comal.</span>">
+         Run by the Reyes family. What started as one truck in 2016 is now a truck plus a fixed stand. Same recipes from Guadalajara, <span class="hl">same family on the griddle.</span></p>
+
+      <figure class="quote">
+        <span class="mark" aria-hidden="true">“</span>
+        <div class="stars" aria-hidden="true">★★★★★</div>
+        <blockquote data-en="Best birria in Orlando, hands down."
+                    data-es="La mejor birria de Orlando, sin duda.">Best birria in Orlando, hands down.</blockquote>
+        <cite data-en="— a regular" data-es="— un cliente de siempre">— a regular</cite>
+      </figure>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site" id="order">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <span class="wordmark" style="pointer-events:none">
+          <span class="sun-badge" aria-hidden="true"></span>
+          <span>Tacos<span style="color:var(--marigold)"> El Sol</span></span>
+        </span>
+        <p class="brand-tag" data-en="Street tacos, family recipe. Orlando since 2016."
+           data-es="Tacos de la calle, receta de familia. Orlando desde 2016.">Street tacos, family recipe. Orlando since 2016.</p>
+        <p style="margin-top:1.4em">
+          <a class="btn btn-primary" href="tel:+14075550148"
+             data-en="Order pickup · call us" data-es="Ordena para llevar · llámanos">Order pickup · call us</a>
+        </p>
+      </div>
+
+      <div>
+        <h4 data-en="Contact" data-es="Contacto">Contact</h4>
+        <ul>
+          <li><a href="tel:+14075550148">(407) 555-0148</a></li>
+          <li><a href="mailto:hola@tacoselsol.example">hola@tacoselsol.example</a></li>
+          <li><a href="https://instagram.com/tacoselsol" rel="noopener">@tacoselsol</a> <span data-en="on Instagram" data-es="en Instagram">on Instagram</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 data-en="Hours" data-es="Horario">Hours</h4>
+        <ul>
+          <li><strong data-en="Stand:" data-es="Puesto:">Stand:</strong> <span data-en="Wed–Sun, 11am–9pm" data-es="Mié–Dom, 11am–9pm">Wed–Sun, 11am–9pm</span></li>
+          <li data-en="1420 N Mills Ave, Orlando FL" data-es="1420 N Mills Ave, Orlando FL">1420 N Mills Ave, Orlando FL</li>
+          <li data-en="Truck: see this week's schedule" data-es="Camión: ve el horario de la semana">Truck: see this week's schedule</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-note">
+      <span data-en="© 2026 Tacos El Sol · Orlando, FL · Concept demo, not a live business."
+            data-es="© 2026 Tacos El Sol · Orlando, FL · Demo conceptual, no es un negocio real.">© 2026 Tacos El Sol · Orlando, FL · Concept demo, not a live business.</span>
+      <span class="bilingual" data-en="Se habla español · English spoken" data-es="Se habla español · English spoken">Se habla español · English spoken</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var toggle = document.getElementById('langToggle');
+  var onEl = toggle.querySelector('[data-lang="en"]');
+  var offEl = toggle.querySelector('[data-lang="es"]');
+
+  function apply(lang){
+    var isES = lang === 'es';
+    document.documentElement.lang = lang;
+
+    document.querySelectorAll('[data-en]').forEach(function(el){
+      var val = el.getAttribute(isES ? 'data-es' : 'data-en');
+      if(val == null) return;
+      // some strings contain markup (the story highlight)
+      if(val.indexOf('<') !== -1){ el.innerHTML = val; }
+      else { el.textContent = val; }
+    });
+
+    // toggle visual state
+    onEl.classList.toggle('on', !isES);
+    onEl.classList.toggle('off', isES);
+    offEl.classList.toggle('on', isES);
+    offEl.classList.toggle('off', !isES);
+
+    toggle.setAttribute('aria-checked', isES ? 'true' : 'false');
+    toggle.setAttribute('aria-label', isES ? 'Cambiar idioma a inglés' : 'Switch language to Spanish');
+
+    try{ localStorage.setItem('tes-lang', lang); }catch(e){}
+  }
+
+  toggle.addEventListener('click', function(){
+    apply(document.documentElement.lang === 'es' ? 'en' : 'es');
+  });
+
+  var saved = 'en';
+  try{ saved = localStorage.getItem('tes-lang') || 'en'; }catch(e){}
+  apply(saved);
+})();
+</script>
+</body>
+</html>
