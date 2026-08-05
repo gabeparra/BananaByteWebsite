@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tacos El Sol — Street tacos, family recipe, Orlando since 2016</title>
+<meta name="description" content="Tacos El Sol: street tacos, family recipe, Orlando since 2016. Fixed stand in Mills50 plus a roaming truck. Catering available.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,700;1,9..144,900&family=Archivo:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF2DF;
+    --cream-2:#F6E8CC;
+    --sun:#FFB924;
+    --sun-deep:#F59E0B;
+    --terra:#D9481C;
+    --terra-deep:#B2340E;
+    --green:#1E5B34;
+    --green-deep:#13401F;
+    --ink:#2A1B0E;
+    --ink-soft:#5C4A36;
+    --card:#FFF9EE;
+    --radius:18px;
+    --shadow:0 10px 0 -4px rgba(42,27,14,.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    font-family:"Archivo",system-ui,sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.55;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{font-family:"Fraunces",serif;font-weight:900;line-height:1.02;letter-spacing:-.015em}
+  a{color:inherit}
+  img,svg{display:block}
+  :focus-visible{outline:3px solid var(--terra);outline-offset:3px;border-radius:4px}
+
+  .wrap{max-width:1140px;margin:0 auto;padding:0 clamp(18px,4vw,40px)}
+
+  /* ---------- Concept ribbon ---------- */
+  .ribbon{
+    position:fixed;top:22px;right:-46px;z-index:90;
+    transform:rotate(45deg);
+    background:var(--ink);color:var(--cream);
+    font-size:.62rem;font-weight:800;letter-spacing:.22em;
+    padding:.4rem 3rem;text-transform:uppercase;
+    box-shadow:0 2px 8px rgba(0,0,0,.25);
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky;top:0;z-index:80;
+    background:rgba(251,242,223,.92);
+    backdrop-filter:blur(10px);
+    border-bottom:2px solid var(--ink);
+  }
+  .head-in{display:flex;align-items:center;gap:1rem;padding:.7rem 0}
+  .wordmark{display:flex;align-items:center;gap:.55rem;text-decoration:none;font-family:"Fraunces",serif;font-weight:900;font-size:1.35rem;letter-spacing:-.02em}
+  .wordmark .sun-mark{width:34px;height:34px;flex:none}
+  nav.main{margin-left:auto}
+  nav.main ul{display:flex;gap:1.4rem;list-style:none}
+  nav.main a{
+    text-decoration:none;font-weight:700;font-size:.92rem;
+    border-bottom:2px solid transparent;padding:.15rem 0;
+  }
+  nav.main a:hover{border-color:var(--sun)}
+  .head-actions{display:flex;align-items:center;gap:.7rem;margin-left:1.1rem}
+  .lang-toggle{
+    display:flex;border:2px solid var(--ink);border-radius:999px;overflow:hidden;
+    background:var(--card);font-weight:800;font-size:.78rem;
+  }
+  .lang-toggle span{padding:.32rem .7rem;display:block;cursor:default}
+  .lang-toggle span[aria-pressed="true"]{background:var(--ink);color:var(--cream)}
+  .btn{
+    display:inline-block;text-decoration:none;font-weight:800;
+    border:2px solid var(--ink);border-radius:999px;
+    padding:.55rem 1.3rem;font-size:.92rem;
+    background:var(--sun);color:var(--ink);
+    box-shadow:3px 3px 0 var(--ink);
+    transition:transform .15s ease, box-shadow .15s ease;
+    cursor:pointer;
+  }
+  .btn:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink)}
+  .btn:active{transform:translate(1px,1px);box-shadow:2px 2px 0 var(--ink)}
+  .btn.ghost{background:var(--card)}
+  .btn.terra{background:var(--terra);color:var(--cream)}
+  .btn.big{padding:.85rem 1.9rem;font-size:1.05rem;box-shadow:4px 4px 0 var(--ink)}
+  .btn.big:hover{box-shadow:7px 7px 0 var(--ink)}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    background:
+      radial-gradient(circle at 88% 8%, rgba(255,185,36,.35), transparent 42%),
+      linear-gradient(180deg,var(--cream) 0%, var(--cream-2) 100%);
+    border-bottom:2px solid var(--ink);
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.15fr .85fr;gap:2rem;align-items:center;
+    padding:clamp(3rem,7vw,5.5rem) 0 clamp(3.4rem,7vw,5.8rem);
+  }
+  .kicker{
+    display:inline-flex;align-items:center;gap:.5rem;
+    font-weight:800;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--terra-deep);
+    border:2px solid var(--terra-deep);border-radius:999px;
+    padding:.3rem .9rem;margin-bottom:1.4rem;background:var(--card);
+  }
+  .hero h1{font-size:clamp(3.2rem,8.5vw,6.4rem)}
+  .hero h1 .accent{color:var(--terra);font-style:italic}
+  .hero .one-liner{
+    margin:1.3rem 0 2rem;max-width:34ch;
+    font-size:clamp(1.1rem,2.2vw,1.4rem);font-weight:500;color:var(--ink-soft);
+  }
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:1rem}
+  .hero-art{position:relative;display:flex;justify-content:center}
+  .hero-sun{width:min(340px,80%);height:auto;filter:drop-shadow(6px 6px 0 rgba(42,27,14,.18))}
+  .hero-badge{
+    position:absolute;bottom:6%;left:4%;
+    background:var(--green);color:var(--cream);
+    font-family:"Fraunces",serif;font-weight:700;font-style:italic;
+    padding:.5rem 1.1rem;border:2px solid var(--ink);border-radius:12px;
+    box-shadow:3px 3px 0 var(--ink);font-size:1rem;
+    transform:rotate(-4deg);
+  }
+
+  /* ---------- Marquee ---------- */
+  .marquee{
+    background:var(--terra);color:var(--cream);
+    border-bottom:2px solid var(--ink);
+    overflow:hidden;white-space:nowrap;
+    padding:.6rem 0;
+  }
+  .marquee-track{
+    display:inline-block;font-family:"Fraunces",serif;font-weight:700;font-style:italic;
+    font-size:1.05rem;letter-spacing:.03em;
+    animation:scroll 26s linear infinite;
+  }
+  .marquee-track span{margin:0 1.4rem}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion:reduce){.marquee-track{animation:none}}
+
+  /* ---------- Sections common ---------- */
+  section{padding:clamp(3.4rem,7vw,5.4rem) 0}
+  .sec-label{
+    display:inline-block;font-weight:800;font-size:.75rem;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--terra-deep);margin-bottom:.6rem;
+  }
+  .sec-title{font-size:clamp(2.1rem,5vw,3.4rem);margin-bottom:1.6rem}
+  .sec-title em{color:var(--terra)}
+
+  /* scalloped divider edge */
+  .scallop{
+    height:22px;
+    background:radial-gradient(circle at 12px 0, var(--cream) 12px, transparent 13px);
+    background-size:26px 22px;background-repeat:repeat-x;
+  }
+
+  /* ---------- Menu ---------- */
+  .menu-sec{background:var(--green);color:var(--cream)}
+  .menu-sec .sec-label{color:var(--sun)}
+  .menu-sec .sec-title em{color:var(--sun)}
+  .menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.1rem}
+  .taco{
+    background:var(--card);color:var(--ink);
+    border:2px solid var(--ink);border-radius:var(--radius);
+    padding:1.3rem 1.3rem 1.1rem;
+    box-shadow:var(--shadow);
+    display:flex;flex-direction:column;gap:.35rem;
+    transition:transform .18s ease;
+  }
+  .taco:hover{transform:translateY(-4px)}
+  .taco-top{display:flex;align-items:baseline;justify-content:space-between;gap:.8rem}
+  .taco h3{font-size:1.45rem}
+  .taco .price{
+    font-family:"Fraunces",serif;font-weight:900;font-size:1.25rem;color:var(--terra);
+    white-space:nowrap;
+  }
+  .taco p{color:var(--ink-soft);font-size:.95rem}
+  .taco .tag{
+    align-self:flex-start;font-size:.65rem;font-weight:800;letter-spacing:.15em;
+    text-transform:uppercase;color:var(--green);
+    border:1.5px solid var(--green);border-radius:999px;padding:.12rem .6rem;margin-top:.3rem;
+  }
+  .drinks{
+    margin-top:2rem;display:flex;flex-wrap:wrap;gap:.9rem;align-items:center;
+  }
+  .drinks .label{font-family:"Fraunces",serif;font-weight:700;font-style:italic;font-size:1.2rem;margin-right:.4rem}
+  .drink-chip{
+    background:rgba(255,249,238,.12);border:2px dashed rgba(251,242,223,.6);
+    border-radius:999px;padding:.45rem 1.1rem;font-weight:700;font-size:.95rem;
+  }
+  .drink-chip b{color:var(--sun)}
+
+  /* ---------- Find us ---------- */
+  .find-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+  .find-card{
+    border:2px solid var(--ink);border-radius:var(--radius);
+    padding:1.6rem;background:var(--card);box-shadow:var(--shadow);
+  }
+  .find-card.stand{background:var(--sun)}
+  .find-card h3{font-size:1.5rem;margin-bottom:.7rem;display:flex;align-items:center;gap:.55rem}
+  .find-card .addr{font-weight:700;font-size:1.1rem}
+  .find-card .hours{margin-top:.4rem;font-weight:600;color:var(--ink)}
+  .sched{list-style:none;margin-top:.4rem;display:flex;flex-direction:column;gap:.65rem}
+  .sched li{display:flex;gap:.8rem;align-items:baseline}
+  .sched .day{
+    flex:none;width:4.6rem;font-weight:800;font-size:.8rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--terra-deep);
+  }
+  .sched .what{font-weight:600}
+  .sched .when{color:var(--ink-soft);font-size:.92rem}
+
+  /* ---------- Catering ---------- */
+  .catering-sec{background:var(--terra);color:var(--cream);position:relative;overflow:hidden}
+  .catering-sec .sec-label{color:var(--sun)}
+  .catering-in{display:grid;grid-template-columns:1.3fr .7fr;gap:2rem;align-items:center}
+  .catering-sec .sec-title{margin-bottom:.8rem}
+  .catering-sec p{max-width:46ch;font-size:1.15rem;font-weight:500}
+  .catering-cta{justify-self:end}
+  .btn.on-terra{background:var(--cream);color:var(--ink)}
+
+  /* ---------- Story ---------- */
+  .story-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:2.2rem;align-items:start}
+  .story-text p{font-size:1.12rem;color:var(--ink-soft);max-width:56ch}
+  .story-text p b{color:var(--ink)}
+  .quote-card{
+    background:var(--card);border:2px solid var(--ink);border-radius:var(--radius);
+    padding:1.8rem;box-shadow:var(--shadow);position:relative;
+    transform:rotate(1.5deg);
+  }
+  .quote-card::before{
+    content:"“";position:absolute;top:-1.6rem;left:1.1rem;
+    font-family:"Fraunces",serif;font-size:5rem;font-weight:900;color:var(--sun);
+    -webkit-text-stroke:2px var(--ink);
+  }
+  .quote-card blockquote{
+    font-family:"Fraunces",serif;font-weight:700;font-style:italic;
+    font-size:1.45rem;line-height:1.25;margin-top:1rem;
+  }
+  .quote-card cite{
+    display:block;margin-top:.9rem;font-style:normal;font-weight:700;
+    color:var(--terra-deep);font-size:.95rem;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--ink);color:var(--cream);padding:3rem 0 2rem}
+  .foot-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:2rem;margin-bottom:2.2rem}
+  footer h4{
+    font-family:"Fraunces",serif;font-size:1.05rem;font-weight:700;
+    color:var(--sun);margin-bottom:.6rem;letter-spacing:.02em;
+  }
+  footer a{color:var(--cream);text-decoration:none;border-bottom:1px solid rgba(251,242,223,.35)}
+  footer a:hover{border-color:var(--sun);color:var(--sun)}
+  footer ul{list-style:none;display:flex;flex-direction:column;gap:.4rem;font-size:.95rem}
+  .foot-mark{display:flex;align-items:center;gap:.6rem;font-family:"Fraunces",serif;font-weight:900;font-size:1.5rem;margin-bottom:.7rem}
+  .foot-note{
+    border-top:1px solid rgba(251,242,223,.25);padding-top:1.4rem;
+    font-size:.85rem;color:rgba(251,242,223,.7);
+    display:flex;flex-wrap:wrap;gap:.5rem 2rem;justify-content:space-between;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;text-align:left}
+    .hero-art{order:-1}
+    .hero-sun{width:min(240px,60%)}
+    .find-grid,.catering-in,.story-grid{grid-template-columns:1fr}
+    .catering-cta{justify-self:start}
+    .foot-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:760px){
+    nav.main{display:none}
+    .head-actions{margin-left:auto}
+    .head-in{flex-wrap:nowrap}
+    .wordmark{font-size:1.15rem}
+    .btn.head-order{padding:.45rem .95rem;font-size:.82rem}
+  }
+  @media (max-width:480px){
+    .foot-grid{grid-template-columns:1fr}
+    .hero-ctas .btn{width:100%;text-align:center}
+    .ribbon{top:14px;right:-50px;font-size:.55rem}
+  }
+</style>
+</head>
+<body>
+
+<div class="ribbon" aria-hidden="true">Concept</div>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <div class="wrap head-in">
+    <a class="wordmark" href="#top" aria-label="Tacos El Sol — home">
+      <svg class="sun-mark" viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="20" cy="20" r="11" fill="#FFB924" stroke="#2A1B0E" stroke-width="2"/>
+        <g stroke="#2A1B0E" stroke-width="2.4" stroke-linecap="round">
+          <path d="M20 2v5M20 33v5M2 20h5M33 20h5M7 7l3.5 3.5M29.5 29.5L33 33M33 7l-3.5 3.5M10.5 29.5L7 33"/>
+        </g>
+      </svg>
+      Tacos El Sol
+    </a>
+    <nav class="main" aria-label="Primary">
+      <ul>
+        <li><a href="#menu" data-en="Menu" data-es="Menú">Menu</a></li>
+        <li><a href="#find" data-en="Find us" data-es="Encuéntranos">Find us</a></li>
+        <li><a href="#catering" data-en="Catering" data-es="Banquetes">Catering</a></li>
+        <li><a href="#story" data-en="Story" data-es="Historia">Story</a></li>
+      </ul>
+    </nav>
+    <div class="head-actions">
+      <div class="lang-toggle" role="group" aria-label="Language / Idioma">
+        <span id="btn-en" role="button" tabindex="0" aria-pressed="true">EN</span>
+        <span id="btn-es" role="button" tabindex="0" aria-pressed="false">ES</span>
+      </div>
+      <a class="btn head-order" href="#order" data-en="Order pickup" data-es="Ordena para llevar">Order pickup</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="kicker" data-en="★ Family-run · Recipes from Guadalajara" data-es="★ Negocio familiar · Recetas de Guadalajara">★ Family-run · Recipes from Guadalajara</span>
+      <h1>Tacos <span class="accent">El Sol</span></h1>
+      <p class="one-liner" data-en="Street tacos, family recipe, Orlando since 2016." data-es="Tacos de la calle, receta de familia, Orlando desde 2016.">Street tacos, family recipe, Orlando since 2016.</p>
+      <div class="hero-ctas">
+        <a class="btn big" href="#order" data-en="Order pickup" data-es="Ordena para llevar">Order pickup</a>
+        <a class="btn big ghost" href="#menu" data-en="See the menu" data-es="Ver el menú">See the menu</a>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg class="hero-sun" viewBox="0 0 300 300">
+        <g stroke="#2A1B0E" stroke-width="4" stroke-linecap="round">
+          <path d="M150 8v28M150 264v28M8 150h28M264 150h28M50 50l20 20M230 230l20 20M250 50l-20 20M70 230l-20 20"/>
+        </g>
+        <circle cx="150" cy="150" r="92" fill="#FFB924" stroke="#2A1B0E" stroke-width="4"/>
+        <circle cx="150" cy="150" r="66" fill="#F6E8CC" stroke="#2A1B0E" stroke-width="3.5"/>
+        <!-- taco -->
+        <path d="M96 168a54 40 0 0 1 108 0z" fill="#F59E0B" stroke="#2A1B0E" stroke-width="4" stroke-linejoin="round"/>
+        <path d="M104 162q12-14 23-4q10-12 22-3q11-11 23-2q11-9 22 3" fill="none" stroke="#1E5B34" stroke-width="6" stroke-linecap="round"/>
+        <circle cx="122" cy="150" r="5" fill="#D9481C"/>
+        <circle cx="152" cy="143" r="5" fill="#D9481C"/>
+        <circle cx="180" cy="150" r="5" fill="#D9481C"/>
+        <rect x="92" y="166" width="116" height="10" rx="5" fill="#F59E0B" stroke="#2A1B0E" stroke-width="4"/>
+      </svg>
+      <span class="hero-badge" data-en="Mills50, Orlando" data-es="Mills50, Orlando">Mills50, Orlando</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marquee-track">
+    <span>Al Pastor</span><span>·</span><span>Carne Asada</span><span>·</span><span>Birria</span><span>·</span><span>Pollo Adobado</span><span>·</span><span>Nopal</span><span>·</span><span>Horchata</span><span>·</span><span>Jarritos</span><span>·</span>
+    <span>Al Pastor</span><span>·</span><span>Carne Asada</span><span>·</span><span>Birria</span><span>·</span><span>Pollo Adobado</span><span>·</span><span>Nopal</span><span>·</span><span>Horchata</span><span>·</span><span>Jarritos</span><span>·</span>
+  </div>
+</div>
+
+<!-- ============ MENU ============ -->
+<section class="menu-sec" id="menu">
+  <div class="wrap">
+    <span class="sec-label" data-en="The menu" data-es="El menú">The menu</span>
+    <h2 class="sec-title" data-en="Signature tacos" data-es="Tacos de la casa">Signature tacos</h2>
+    <div class="menu-grid">
+      <article class="taco">
+        <div class="taco-top"><h3>Al Pastor</h3><span class="price">$3.75</span></div>
+        <p data-en="Marinated pork, pineapple, onion, cilantro." data-es="Cerdo marinado, piña, cebolla y cilantro.">Marinated pork, pineapple, onion, cilantro.</p>
+      </article>
+      <article class="taco">
+        <div class="taco-top"><h3>Carne Asada</h3><span class="price">$4.25</span></div>
+        <p data-en="Grilled steak, salsa verde." data-es="Bistec a la parrilla, salsa verde.">Grilled steak, salsa verde.</p>
+      </article>
+      <article class="taco">
+        <div class="taco-top"><h3>Pollo Adobado</h3><span class="price">$3.75</span></div>
+        <p data-en="Adobo chicken, pickled red onion." data-es="Pollo adobado, cebolla morada curtida.">Adobo chicken, pickled red onion.</p>
+      </article>
+      <article class="taco">
+        <div class="taco-top"><h3>Birria</h3><span class="price">$4.75</span></div>
+        <p data-en="Slow-braised beef, consommé to dip." data-es="Res cocida a fuego lento, con su consomé para mojar.">Slow-braised beef, consommé to dip.</p>
+      </article>
+      <article class="taco">
+        <div class="taco-top"><h3>Nopal</h3><span class="price">$3.50</span></div>
+        <p data-en="Grilled cactus, queso fresco." data-es="Nopal a la parrilla, queso fresco.">Grilled cactus, queso fresco.</p>
+        <span class="tag" data-en="Vegetarian" data-es="Vegetariano">Vegetarian</span>
+      </article>
+    </div>
+    <div class="drinks">
+      <span class="label" data-en="To drink —" data-es="Para tomar —">To drink —</span>
+      <span class="drink-chip">Horchata <b>$3</b></span>
+      <span class="drink-chip">Jarritos <b>$2.50</b></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FIND US ============ -->
+<section id="find">
+  <div class="wrap">
+    <span class="sec-label" data-en="Where to find us" data-es="Dónde encontrarnos">Where to find us</span>
+    <h2 class="sec-title"><span data-en="One stand, " data-es="Un puesto, ">One stand, </span><em data-en="one truck." data-es="una troca.">one truck.</em></h2>
+    <div class="find-grid">
+      <div class="find-card stand">
+        <h3 aria-hidden="false">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2A1B0E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+          <span data-en="The fixed stand" data-es="El puesto fijo">The fixed stand</span>
+        </h3>
+        <p class="addr">1420 N Mills Ave, Orlando, FL</p>
+        <p class="hours" data-en="Open Wed–Sun, 11am–9pm" data-es="Abierto mié–dom, 11am–9pm">Open Wed–Sun, 11am–9pm</p>
+        <p style="margin-top:1.1rem"><a class="btn terra" href="#order" data-en="Order pickup" data-es="Ordena para llevar">Order pickup</a></p>
+      </div>
+      <div class="find-card">
+        <h3>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2A1B0E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 8h13v9H1zM14 11h4l4 4v2h-8z"/><circle cx="5.5" cy="18.5" r="1.8"/><circle cx="17.5" cy="18.5" r="1.8"/></svg>
+          <span data-en="Truck schedule" data-es="Ruta de la troca">Truck schedule</span>
+        </h3>
+        <ul class="sched">
+          <li>
+            <span class="day" data-en="Mon" data-es="Lun">Mon</span>
+            <span><span class="what" data-en="Lake Eola lunch" data-es="Comida en Lake Eola">Lake Eola lunch</span><br><span class="when">11am–2pm</span></span>
+          </li>
+          <li>
+            <span class="day" data-en="Tue" data-es="Mar">Tue</span>
+            <span><span class="what" data-en="Winter Park farmers market" data-es="Mercado de Winter Park">Winter Park farmers market</span><br><span class="when">4–8pm</span></span>
+          </li>
+          <li>
+            <span class="day" data-en="Fri–Sat" data-es="Vie–Sáb">Fri–Sat</span>
+            <span><span class="what" data-en="Late night in Mills50" data-es="Noche en Mills50">Late night in Mills50</span><br><span class="when">9pm–1am</span></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CATERING ============ -->
+<section class="catering-sec" id="catering">
+  <div class="wrap catering-in">
+    <div>
+      <span class="sec-label" data-en="Catering" data-es="Banquetes">Catering</span>
+      <h2 class="sec-title" data-en="Feeding a crowd?" data-es="¿Hay que alimentar a mucha gente?">Feeding a crowd?</h2>
+      <p data-en="We cater parties, offices, and weddings. Taco bar from $14 per person." data-es="Llevamos tacos a fiestas, oficinas y bodas. Barra de tacos desde $14 por persona.">We cater parties, offices, and weddings. Taco bar from $14 per person.</p>
+    </div>
+    <div class="catering-cta">
+      <a class="btn big on-terra" href="mailto:hola@tacoselsol.example?subject=Catering%20quote" data-en="Get a quote" data-es="Pide una cotización">Get a quote</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STORY ============ -->
+<section id="story">
+  <div class="wrap">
+    <span class="sec-label" data-en="Our story" data-es="Nuestra historia">Our story</span>
+    <h2 class="sec-title"><span data-en="The " data-es="La familia ">The </span><em>Reyes</em><span data-en=" family." data-es="."> family.</span></h2>
+    <div class="story-grid">
+      <div class="story-text">
+        <p data-en="Tacos El Sol is run by the Reyes family. What started as one truck in 2016 is now a truck plus a fixed stand. Same recipes from Guadalajara, same family on the griddle."
+           data-es="Tacos El Sol lo maneja la familia Reyes. Lo que empezó como una sola troca en 2016 hoy es una troca más un puesto fijo. Las mismas recetas de Guadalajara, la misma familia en la plancha.">
+          Tacos El Sol is run by the Reyes family. What started as one truck in 2016 is now a truck plus a fixed stand. Same recipes from Guadalajara, same family on the griddle.
+        </p>
+      </div>
+      <figure class="quote-card">
+        <blockquote data-en="Best birria in Orlando, hands down." data-es="La mejor birria de Orlando, sin duda.">Best birria in Orlando, hands down.</blockquote>
+        <figcaption><cite data-en="— a regular" data-es="— un cliente de siempre">— a regular</cite></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ORDER ANCHOR ============ -->
+<section id="order" style="background:var(--cream-2);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);text-align:center;padding-top:3rem;padding-bottom:3rem">
+  <div class="wrap">
+    <h2 class="sec-title" style="margin-bottom:.6rem" data-en="Ready when you are." data-es="Cuando tú quieras.">Ready when you are.</h2>
+    <p style="max-width:44ch;margin:0 auto 1.6rem;color:var(--ink-soft);font-size:1.1rem"
+       data-en="Call ahead and skip the line — pickup at 1420 N Mills Ave."
+       data-es="Llama y evita la fila — recoge en 1420 N Mills Ave.">
+      Call ahead and skip the line — pickup at 1420 N Mills Ave.
+    </p>
+    <a class="btn big terra" href="tel:+14075550148" data-en="Call (407) 555-0148" data-es="Llama al (407) 555-0148">Call (407) 555-0148</a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-mark">
+          <svg width="30" height="30" viewBox="0 0 40 40" aria-hidden="true">
+            <circle cx="20" cy="20" r="11" fill="#FFB924"/>
+            <g stroke="#FFB924" stroke-width="2.4" stroke-linecap="round">
+              <path d="M20 2v5M20 33v5M2 20h5M33 20h5M7 7l3.5 3.5M29.5 29.5L33 33M33 7l-3.5 3.5M10.5 29.5L7 33"/>
+            </g>
+          </svg>
+          Tacos El Sol
+        </div>
+        <p style="font-size:.95rem;color:rgba(251,242,223,.75);max-width:32ch"
+           data-en="Street tacos, family recipe, Orlando since 2016."
+           data-es="Tacos de la calle, receta de familia, Orlando desde 2016.">
+          Street tacos, family recipe, Orlando since 2016.
+        </p>
+      </div>
+      <div>
+        <h4 data-en="Contact" data-es="Contacto">Contact</h4>
+        <ul>
+          <li><a href="tel:+14075550148">(407) 555-0148</a></li>
+          <li><a href="mailto:hola@tacoselsol.example">hola@tacoselsol.example</a></li>
+          <li><a href="https://instagram.com/tacoselsol" rel="noopener">@tacoselsol <span data-en="on Instagram" data-es="en Instagram">on Instagram</span></a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-en="Hours" data-es="Horario">Hours</h4>
+        <ul>
+          <li data-en="Stand: Wed–Sun, 11am–9pm" data-es="Puesto: mié–dom, 11am–9pm">Stand: Wed–Sun, 11am–9pm</li>
+          <li data-en="Truck: see weekly schedule above" data-es="Troca: ver la ruta semanal arriba">Truck: see weekly schedule above</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-note">
+      <span data-en="Made with pride in Orlando · Hecho con orgullo en Orlando" data-es="Hecho con orgullo en Orlando · Made with pride in Orlando">Made with pride in Orlando · Hecho con orgullo en Orlando</span>
+      <span data-en="© 2025 Tacos El Sol — a BANANAbyte concept demo" data-es="© 2025 Tacos El Sol — demo conceptual de BANANAbyte">© 2025 Tacos El Sol — a BANANAbyte concept demo</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var nodes = Array.prototype.slice.call(document.querySelectorAll("[data-en][data-es]"));
+  var btnEN = document.getElementById("btn-en");
+  var btnES = document.getElementById("btn-es");
+  var current = "en";
+  try {
+    var saved = localStorage.getItem("elsol-lang");
+    if (saved === "en" || saved === "es") current = saved;
+  } catch(e){}
+
+  function apply(lang){
+    current = lang;
+    nodes.forEach(function(el){
+      var v = el.getAttribute("data-" + lang);
+      if (v !== null) el.textContent = v;
+    });
+    document.documentElement.setAttribute("lang", lang);
+    btnEN.setAttribute("aria-pressed", lang === "en" ? "true" : "false");
+    btnES.setAttribute("aria-pressed", lang === "es" ? "true" : "false");
+    try { localStorage.setItem("elsol-lang", lang); } catch(e){}
+  }
+
+  function bind(el, lang){
+    el.addEventListener("click", function(){ apply(lang); });
+    el.addEventListener("keydown", function(ev){
+      if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); apply(lang); }
+    });
+  }
+  bind(btnEN, "en");
+  bind(btnES, "es");
+  apply(current);
+})();
+</script>
+</body>
+</html>

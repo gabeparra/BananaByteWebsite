@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tacos El Sol — street tacos, family recipe, Orlando since 2016.">
+  <title>Tacos El Sol | Orlando</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--sun:#ffc928;--red:#d83b25;--ink:#17382d;--cream:#fff5da;--paper:#fffbef;--lime:#b9d94a;--white:#fff;--line:rgba(23,56,45,.18);--display:"Archivo Black",Impact,sans-serif;--body:"DM Sans",Arial,sans-serif}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:92px}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;overflow-x:hidden}a{color:inherit}button,a{touch-action:manipulation}a:focus-visible,button:focus-visible{outline:4px solid var(--lime);outline-offset:4px}::selection{background:var(--sun);color:var(--ink)}
+    .concept{position:fixed;z-index:1000;right:0;bottom:18px;background:var(--ink);color:var(--white);padding:7px 13px 7px 17px;border-radius:20px 0 0 20px;font-size:10px;font-weight:800;letter-spacing:.18em;box-shadow:0 4px 18px #17382d33}
+    .site-header{position:sticky;top:0;z-index:100;background:rgba(255,251,239,.94);border-bottom:2px solid var(--ink);backdrop-filter:blur(12px)}.header-inner{max-width:1240px;margin:auto;min-height:76px;padding:10px 24px;display:flex;align-items:center;gap:28px}.wordmark{text-decoration:none;font-family:var(--display);font-size:20px;letter-spacing:-.04em;white-space:nowrap}.wordmark i{font-style:normal;color:var(--red)}.sun-dot{display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--sun);margin-right:5px;border:2px solid var(--ink)}nav{display:flex;align-items:center;gap:23px;margin-left:auto}nav a{text-decoration:none;font-weight:700;font-size:14px}nav a:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px}.language{display:flex;border:2px solid var(--ink);border-radius:99px;padding:3px;background:white}.language button{border:0;background:transparent;color:var(--ink);font:700 12px var(--body);padding:5px 8px;border-radius:99px;cursor:pointer}.language button[aria-pressed="true"]{background:var(--ink);color:white}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:11px 20px;border:2px solid var(--ink);border-radius:7px;background:var(--sun);box-shadow:4px 4px 0 var(--ink);text-decoration:none;font-weight:800;transition:transform .15s,box-shadow .15s}.btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}.btn-dark{background:var(--ink);color:white;box-shadow:4px 4px 0 var(--sun)}.btn-ghost{background:transparent}.header-cta{font-size:14px;min-height:42px;padding:8px 14px}
+    .hero{position:relative;isolation:isolate;min-height:690px;display:grid;align-items:center;background:var(--sun);border-bottom:2px solid var(--ink);overflow:hidden}.hero:before{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(circle at 82% 45%,transparent 0 99px,var(--ink) 100px 103px,transparent 104px),repeating-linear-gradient(105deg,transparent 0 44px,rgba(255,255,255,.22) 45px 47px,transparent 48px 92px)}.hero-inner{max-width:1240px;width:100%;margin:auto;padding:88px 24px 100px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(350px,.85fr);align-items:center;gap:55px}.eyebrow{display:inline-block;margin:0 0 17px;padding:6px 11px;background:var(--red);color:white;border:2px solid var(--ink);font-weight:800;font-size:12px;letter-spacing:.16em;text-transform:uppercase;transform:rotate(-2deg)}h1,h2,h3,p{margin-top:0}.hero h1{font:clamp(62px,9.5vw,138px)/.79 var(--display);letter-spacing:-.075em;text-transform:uppercase;margin:0 0 29px;max-width:840px}.hero h1 span{display:block;color:var(--red);text-shadow:3px 3px 0 var(--cream);transform:translateX(.42em)}.lead{font-size:clamp(20px,2.1vw,29px);font-weight:700;max-width:640px;line-height:1.25;margin-bottom:30px}.actions{display:flex;flex-wrap:wrap;gap:15px}.taco-art{position:relative;aspect-ratio:1;display:grid;place-items:center;filter:drop-shadow(18px 25px 0 rgba(23,56,45,.15));transform:rotate(5deg)}.taco-art svg{width:110%;overflow:visible}.stamp{position:absolute;right:-12px;top:0;width:112px;aspect-ratio:1;border-radius:50%;background:var(--cream);border:3px solid var(--ink);display:grid;place-content:center;text-align:center;font:14px/1.05 var(--display);transform:rotate(12deg)}
+    .section{padding:105px 24px}.wrap{max-width:1160px;margin:auto}.section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:55px}.kicker{color:var(--red);font-weight:800;text-transform:uppercase;letter-spacing:.15em;font-size:12px;margin-bottom:9px}.section h2{font:clamp(42px,6vw,78px)/.95 var(--display);letter-spacing:-.055em;margin-bottom:0}.section-note{max-width:330px;font-weight:600}
+    .menu{background:var(--paper)}.menu-grid{display:grid;grid-template-columns:repeat(2,1fr);border-top:2px solid var(--ink)}.menu-item{display:grid;grid-template-columns:1fr auto;gap:8px 18px;padding:28px 20px 28px 0;border-bottom:2px solid var(--ink)}.menu-item:nth-child(even){padding-left:30px;border-left:2px solid var(--ink)}.menu-item h3{font:23px/1 var(--display);margin:0}.price{font:22px/1 var(--display);color:var(--red)}.menu-item p{grid-column:1/-1;margin:0;color:#496258}.drinks{margin-top:28px;background:var(--ink);color:white;padding:24px 29px;display:flex;justify-content:space-between;gap:20px;align-items:center;border-radius:8px;box-shadow:7px 7px 0 var(--sun)}.drinks h3{font:23px var(--display);margin:0}.drinks p{margin:0;font-weight:700}
+    .locations{background:var(--red);color:white;border-block:2px solid var(--ink);position:relative}.locations .kicker{color:var(--sun)}.location-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:25px}.card{background:var(--cream);color:var(--ink);padding:36px;border:2px solid var(--ink);border-radius:8px;box-shadow:8px 8px 0 var(--ink)}.card-label{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}.card h3{font:clamp(26px,3vw,38px)/1 var(--display);margin:12px 0 22px}.address{font-size:21px;font-weight:700}.hours{display:inline-block;background:var(--sun);border:2px solid var(--ink);padding:8px 12px;font-weight:800;transform:rotate(-1deg)}.schedule{list-style:none;padding:0;margin:0}.schedule li{display:grid;grid-template-columns:75px 1fr;gap:15px;padding:15px 0;border-top:1px solid var(--line)}.schedule strong{font-family:var(--display);color:var(--red)}
+    .catering{background:var(--sun);border-bottom:2px solid var(--ink)}.catering-box{display:grid;grid-template-columns:1.4fr auto;align-items:center;gap:55px}.catering h2{max-width:800px;margin-bottom:25px}.catering p{font-size:24px;font-weight:700;max-width:760px;margin-bottom:0}
+    .story{background:var(--cream)}.story-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:80px;align-items:center}.family-mark{aspect-ratio:1;border:2px solid var(--ink);border-radius:50%;background:var(--lime);display:grid;place-items:center;position:relative;box-shadow:12px 12px 0 var(--red)}.family-mark .big{font-size:clamp(85px,13vw,160px)}.family-mark:after{content:"GUADALAJARA → ORLANDO";position:absolute;bottom:12%;background:var(--cream);border:2px solid var(--ink);padding:8px 13px;font-size:11px;font-weight:800;letter-spacing:.12em;transform:rotate(-5deg)}.story-copy>p{font-size:clamp(21px,2.5vw,30px);line-height:1.4}.quote{margin:40px 0 0;padding:28px 0 0;border-top:3px solid var(--red);font:clamp(28px,4vw,48px)/1.05 var(--display);letter-spacing:-.035em}.quote cite{display:block;font:700 14px var(--body);letter-spacing:0;margin-top:17px}
+    footer{background:var(--ink);color:white;padding:70px 24px 35px}.footer-grid{max-width:1160px;margin:auto;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:55px}.footer-brand{font:clamp(35px,5vw,60px)/.9 var(--display);color:var(--sun)}footer h3{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--lime);margin-bottom:18px}footer p{margin-bottom:9px}footer a{color:white;text-underline-offset:4px}.bilingual{max-width:1160px;margin:50px auto 0;padding-top:22px;border-top:1px solid #ffffff35;display:flex;justify-content:space-between;gap:20px;color:#d8e1dc;font-size:13px}
+    @media(max-width:900px){nav{display:none}.header-inner{gap:12px}.language{margin-left:auto}.hero-inner{grid-template-columns:1fr;padding-top:70px}.taco-art{max-width:430px;margin:-20px auto -80px}.hero h1 span{transform:none}.location-grid,.story-grid{grid-template-columns:1fr}.story-grid{gap:60px}.family-mark{max-width:430px;margin:auto}.catering-box{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}.footer-brand{grid-column:1/-1}}
+    @media(max-width:600px){body{font-size:16px}.header-inner{padding:9px 14px;min-height:66px}.wordmark{font-size:17px}.header-cta{display:none}.hero{min-height:auto}.hero-inner{padding:60px 18px 86px;gap:35px}.hero h1{font-size:66px}.lead{font-size:20px}.actions .btn{flex:1;padding-inline:12px}.stamp{width:88px;font-size:11px}.section{padding:78px 18px}.section-head{display:block;margin-bottom:37px}.section-note{margin-top:18px}.menu-grid{grid-template-columns:1fr}.menu-item:nth-child(even){padding-left:0;border-left:0}.menu-item{padding-right:0}.drinks{display:block}.drinks h3{margin-bottom:8px}.card{padding:27px 23px}.schedule li{grid-template-columns:60px 1fr}.catering p{font-size:20px}.story-grid{gap:45px}.footer-grid{grid-template-columns:1fr;gap:35px}.footer-brand{grid-column:auto}.bilingual{display:block}.concept{bottom:10px}.section h2{font-size:45px}}
+  </style>
+</head>
+<body>
+  <div class="concept" data-en="CONCEPT" data-es="CONCEPTO">CONCEPT</div>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="wordmark" href="#top" aria-label="Tacos El Sol home"><span class="sun-dot"></span>TACOS <i>EL SOL</i></a>
+      <nav aria-label="Primary navigation" data-aria-en="Primary navigation" data-aria-es="Navegación principal">
+        <a href="#menu" data-en="Menu" data-es="Menú">Menu</a><a href="#find" data-en="Find us" data-es="Encuéntranos">Find us</a><a href="#catering" data-en="Catering" data-es="Banquetes">Catering</a><a href="#story" data-en="Story" data-es="Historia">Story</a>
+      </nav>
+      <div class="language" role="group" aria-label="Choose language" data-aria-en="Choose language" data-aria-es="Elegir idioma"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="es" aria-pressed="false">ES</button></div>
+      <a class="btn header-cta" href="#order" data-en="Order pickup" data-es="Ordenar para recoger">Order pickup</a>
+    </div>
+  </header>
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <div>
+          <p class="eyebrow" data-en="Family-run · Orlando, FL" data-es="Negocio familiar · Orlando, FL">Family-run · Orlando, FL</p>
+          <h1 id="hero-title">Tacos <span>El Sol</span></h1>
+          <p class="lead" data-en="Street tacos, family recipe, Orlando since 2016." data-es="Tacos de la calle, receta de familia, Orlando desde 2016.">Street tacos, family recipe, Orlando since 2016.</p>
+          <div class="actions"><a class="btn btn-dark" href="#order" data-en="Order pickup →" data-es="Ordenar para recoger →">Order pickup →</a><a class="btn btn-ghost" href="#menu" data-en="See the menu" data-es="Ver el menú">See the menu</a></div>
+        </div>
+        <div class="taco-art" aria-hidden="true">
+          <svg viewBox="0 0 500 500" role="img"><path d="M55 285C78 110 247 48 393 135c52 31 77 80 65 147z" fill="#fff5da" stroke="#17382d" stroke-width="12"/><path d="M67 286c54-98 122-142 204-132 77 9 133 53 177 131z" fill="#d83b25" stroke="#17382d" stroke-width="12"/><path d="M80 286c45-60 96-90 153-90s113 30 168 90z" fill="#ffc928" stroke="#17382d" stroke-width="12"/><g fill="#b9d94a" stroke="#17382d" stroke-width="7"><circle cx="157" cy="228" r="25"/><circle cx="248" cy="218" r="22"/><circle cx="338" cy="239" r="27"/></g><g fill="#fff5da"><circle cx="201" cy="249" r="12"/><circle cx="294" cy="258" r="13"/></g><path d="M50 286h416c-18 99-97 161-210 161S67 385 50 286Z" fill="#ffc928" stroke="#17382d" stroke-width="12"/><path d="M88 332c95 37 213 37 335 0" fill="none" stroke="#d83b25" stroke-width="13" stroke-linecap="round"/></svg>
+          <div class="stamp" data-en="RECIPES FROM GUADALAJARA" data-es="RECETAS DE GUADALAJARA">RECIPES FROM<br>GUADALAJARA</div>
+        </div>
+      </div>
+    </section>
+    <section class="section menu" id="menu" aria-labelledby="menu-title"><div class="wrap">
+      <div class="section-head"><div><p class="kicker" data-en="Made to order" data-es="Hechos al momento">Made to order</p><h2 id="menu-title" data-en="Signature tacos" data-es="Tacos de la casa">Signature tacos</h2></div><p class="section-note" data-en="Family recipes, hot griddle, no shortcuts." data-es="Recetas de familia, comal caliente, sin atajos.">Family recipes, hot griddle, no shortcuts.</p></div>
+      <div class="menu-grid">
+        <article class="menu-item"><h3>Al Pastor</h3><span class="price">$3.75</span><p data-en="marinated pork, pineapple, onion, cilantro" data-es="cerdo marinado, piña, cebolla, cilantro">marinated pork, pineapple, onion, cilantro</p></article>
+        <article class="menu-item"><h3>Carne Asada</h3><span class="price">$4.25</span><p data-en="grilled steak, salsa verde" data-es="carne asada, salsa verde">grilled steak, salsa verde</p></article>
+        <article class="menu-item"><h3>Pollo Adobado</h3><span class="price">$3.75</span><p data-en="adobo chicken, pickled red onion" data-es="pollo adobado, cebolla morada encurtida">adobo chicken, pickled red onion</p></article>
+        <article class="menu-item"><h3>Birria</h3><span class="price">$4.75</span><p data-en="slow-braised beef, consomme to dip" data-es="res cocida lentamente, consomé para mojar">slow-braised beef, consomme to dip</p></article>
+        <article class="menu-item"><h3>Nopal <span data-en="(veg)" data-es="(vegetariano)">(veg)</span></h3><span class="price">$3.50</span><p data-en="grilled cactus, queso fresco" data-es="nopal asado, queso fresco">grilled cactus, queso fresco</p></article>
+      </div>
+      <div class="drinks"><h3 data-en="Something cold" data-es="Algo frío">Something cold</h3><p>Horchata $3 &nbsp;·&nbsp; Jarritos $2.50</p></div>
+    </div></section>
+    <section class="section locations" id="find" aria-labelledby="find-title"><div class="wrap">
+      <div class="section-head"><div><p class="kicker" data-en="Come hungry" data-es="Ven con hambre">Come hungry</p><h2 id="find-title" data-en="Find your tacos" data-es="Encuentra tus tacos">Find your tacos</h2></div></div>
+      <div class="location-grid">
+        <article class="card"><span class="card-label" data-en="Fixed stand" data-es="Puesto fijo">Fixed stand</span><h3 data-en="Mills Avenue" data-es="Avenida Mills">Mills Avenue</h3><p class="address">1420 N Mills Ave<br>Orlando, FL</p><p class="hours" data-en="Wed–Sun · 11am–9pm" data-es="Mié–Dom · 11am–9pm">Wed–Sun · 11am–9pm</p></article>
+        <article class="card"><span class="card-label" data-en="Truck schedule" data-es="Horario del camión">Truck schedule</span><h3 data-en="Catch us around town" data-es="Búscanos por la ciudad">Catch us around town</h3><ul class="schedule">
+          <li><strong data-en="MON" data-es="LUN">MON</strong><span data-en="Lake Eola lunch · 11am–2pm" data-es="Almuerzo en Lake Eola · 11am–2pm">Lake Eola lunch · 11am–2pm</span></li>
+          <li><strong data-en="TUE" data-es="MAR">TUE</strong><span data-en="Winter Park farmers market · 4–8pm" data-es="Mercado de agricultores de Winter Park · 4–8pm">Winter Park farmers market · 4–8pm</span></li>
+          <li><strong data-en="FRI+SAT" data-es="VIE+SÁB">FRI+SAT</strong><span data-en="Late night in Mills50 · 9pm–1am" data-es="Noche en Mills50 · 9pm–1am">Late night in Mills50 · 9pm–1am</span></li>
+        </ul></article>
+      </div>
+    </div></section>
+    <section class="section catering" id="catering" aria-labelledby="catering-title"><div class="wrap catering-box"><div><p class="kicker" data-en="Bring the taquería to you" data-es="Llevamos la taquería contigo">Bring the taquería to you</p><h2 id="catering-title" data-en="Feeding a crowd?" data-es="¿Tienes muchos invitados?">Feeding a crowd?</h2><p data-en="We cater parties, offices, and weddings. Taco bar from $14 per person." data-es="Ofrecemos banquetes para fiestas, oficinas y bodas. Barra de tacos desde $14 por persona.">We cater parties, offices, and weddings. Taco bar from $14 per person.</p></div><a class="btn btn-dark" href="mailto:hola@tacoselsol.example?subject=Catering%20quote" data-en="Get a quote →" data-es="Pide una cotización →">Get a quote →</a></div></section>
+    <section class="section story" id="story" aria-labelledby="story-title"><div class="wrap story-grid">
+      <div class="family-mark" aria-hidden="true"><span class="big">☀️</span></div>
+      <div class="story-copy"><p class="kicker" data-en="The Reyes family" data-es="La familia Reyes">The Reyes family</p><h2 id="story-title" data-en="Same family. Same griddle." data-es="La misma familia. El mismo comal.">Same family. Same griddle.</h2><p data-en="Run by the Reyes family. What started as one truck in 2016 is now a truck plus a fixed stand. Same recipes from Guadalajara, same family on the griddle." data-es="Dirigido por la familia Reyes. Lo que comenzó con un solo camión en 2016 ahora es un camión y un puesto fijo. Las mismas recetas de Guadalajara, la misma familia frente al comal.">Run by the Reyes family. What started as one truck in 2016 is now a truck plus a fixed stand. Same recipes from Guadalajara, same family on the griddle.</p><blockquote class="quote"><span data-en="“Best birria in Orlando, hands down.”" data-es="“La mejor birria de Orlando, sin duda.”">“Best birria in Orlando, hands down.”</span><cite data-en="— a regular" data-es="— un cliente frecuente">— a regular</cite></blockquote></div>
+    </div></section>
+  </main>
+  <footer id="order"><div class="footer-grid">
+    <div><div class="footer-brand">TACOS<br>EL SOL</div></div>
+    <div><h3 data-en="Order & say hello" data-es="Ordena y salúdanos">Order & say hello</h3><p><a href="tel:+14075550148">(407) 555-0148</a></p><p><a href="mailto:hola@tacoselsol.example">hola@tacoselsol.example</a></p><p><a href="https://instagram.com/tacoselsol">@tacoselsol <span data-en="on Instagram" data-es="en Instagram">on Instagram</span></a></p></div>
+    <div><h3 data-en="Stand hours" data-es="Horario del puesto">Stand hours</h3><p data-en="Wednesday to Sunday" data-es="Miércoles a domingo">Wednesday to Sunday</p><p data-en="11am to 9pm" data-es="11am a 9pm">11am to 9pm</p><p>1420 N Mills Ave</p></div>
+  </div><div class="bilingual"><span data-en="Made with family recipes and Orlando sunshine." data-es="Hecho con recetas de familia y el sol de Orlando.">Made with family recipes and Orlando sunshine.</span><span>English / Español · © 2026 Tacos El Sol</span></div></footer>
+  <script>
+    (() => {
+      const buttons = document.querySelectorAll('[data-lang]');
+      const setLanguage = (lang) => {
+        document.documentElement.lang = lang;
+        document.querySelectorAll('[data-en][data-es]').forEach(el => el.textContent = el.dataset[lang]);
+        document.querySelectorAll('[data-aria-en][data-aria-es]').forEach(el => el.setAttribute('aria-label', el.dataset['aria' + (lang === 'en' ? 'En' : 'Es')]));
+        buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.lang === lang)));
+        document.title = lang === 'en' ? 'Tacos El Sol | Orlando' : 'Tacos El Sol | Orlando, Florida';
+      };
+      buttons.forEach(button => button.addEventListener('click', () => setLanguage(button.dataset.lang)));
+    })();
+  </script>
+</body>
+</html>
