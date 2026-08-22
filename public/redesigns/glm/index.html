@@ -395,9 +395,8 @@ html[data-theme="green"] .hero-card-list .ck,html[data-theme="black"] .hero-card
 /* ===================================================================
    WORK
    =================================================================== */
-.work-grid{display:grid;grid-template-columns:1fr;gap:24px}
-@media(min-width:760px){.work-grid{grid-template-columns:1fr 1fr}}
-@media(min-width:1080px){.work-grid{grid-template-columns:repeat(3,1fr);gap:28px}}
+.work-grid{display:grid;grid-template-columns:1fr;gap:24px;max-width:900px;margin-inline:auto}
+@media(min-width:760px){.work-grid{grid-template-columns:1fr 1fr;gap:28px}}
 
 .work-card{position:relative;background:var(--surface-raised);border:1.5px solid var(--line);box-shadow:var(--lift);overflow:hidden;display:flex;flex-direction:column;transition:transform var(--motion-base) var(--ease),box-shadow var(--motion-base) var(--ease)}
 .work-card:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 0 var(--line)}
@@ -410,22 +409,12 @@ html[data-theme="green"] .hero-card-list .ck,html[data-theme="black"] .hero-card
   font-family:var(--font-display);font-weight:700;font-style:italic;font-size:clamp(1.6rem,3.4vw,2.4rem);letter-spacing:.06em;
   color:rgba(20,19,15,.16);transform:rotate(-12deg);pointer-events:none;font-variation-settings:"opsz" 144,"SOFT" 80;
 }
-.work-realbadge{
-  position:absolute;left:14px;top:14px;z-index:2;transform:rotate(-3deg);
-  display:inline-flex;align-items:center;gap:6px;
-  font-family:var(--font-body);font-weight:700;font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--on-yellow);background:var(--yellow);border:1.5px solid #fff;border-radius:var(--r-pill);
-  padding:5px 11px;box-shadow:2px 2px 0 0 rgba(10,9,7,.4);
-}
-.work-realbadge svg{width:11px;height:11px}
 
 .work-body{padding:20px;flex:1;display:flex;flex-direction:column}
 .work-body .kind{font-family:var(--font-body);font-weight:600;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mut)}
-.work-body .kind.is-real{color:var(--accent-ink)}
 .work-body h3{font-family:var(--font-display);font-size:1.45rem;font-weight:600;letter-spacing:-.02em;margin-top:8px;color:var(--ink-1)}
 .work-body p{color:var(--ink-2);font-size:.92rem;margin-top:10px;flex:1;line-height:1.55}
 .work-view{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-weight:600;font-size:.86rem;color:var(--ink-1)}
-.work-card.is-real .work-view{color:var(--accent-ink)}
 .work-view::after{content:"→";transition:transform var(--motion-fast)}
 .work-card:hover .work-view::after{transform:translateX(4px)}
 
@@ -530,25 +519,9 @@ html[data-theme="green"] .direct-mini:hover,html[data-theme="black"] .direct-min
 .direct-mini svg{width:13px;height:13px}
 
 /* ===================================================================
-   TESTIMONIAL
+   PROCESS
    =================================================================== */
-.quote-card{max-width:780px;margin-inline:auto}
-.quote-card .qmark{font-family:var(--font-display);font-weight:700;font-style:italic;font-size:5rem;line-height:.8;color:var(--accent-ink);margin-bottom:-12px;display:block;font-variation-settings:"opsz" 144,"SOFT" 80}
-.quote-card blockquote{
-  margin:0;border:0;padding:0;
-  font-family:var(--font-display);font-weight:500;line-height:1.2;letter-spacing:-.02em;color:var(--ink-1);
-  font-size:clamp(1.5rem,3.2vw,2.6rem);text-wrap:balance;font-variation-settings:"opsz" 144,"SOFT" 50;
-}
-.quote-card blockquote em{font-style:italic;font-weight:400;background:linear-gradient(180deg,transparent 65%,var(--accent-soft) 65%);padding:0 2px}
-.quote-card figcaption{margin-top:clamp(28px,3.4vw,40px);display:flex;flex-wrap:wrap;align-items:center;gap:18px}
-.quote-cite-link{display:inline-flex;align-items:baseline;gap:8px;flex-wrap:wrap;font-family:var(--font-display);font-weight:600;font-size:1.15rem;color:var(--ink-1);letter-spacing:-.01em;transition:color var(--motion-fast)}
-.quote-cite-link .role{font-family:var(--font-body);font-weight:500;font-size:.84rem;color:var(--ink-mut);letter-spacing:0}
-.quote-cite-link:hover{color:var(--accent-ink)}
-.quote-real{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;color:var(--ink-mut);padding-left:18px;border-left:1px solid var(--line-soft)}
-.quote-real svg{width:14px;height:14px;color:var(--green)}
-html[data-theme="green"] .quote-real svg,html[data-theme="black"] .quote-real svg{color:var(--green-bright)}
-
-.process{max-width:780px;margin:clamp(48px,6vw,72px) auto 0;padding-top:clamp(28px,3vw,40px);border-top:1px dashed var(--line-soft)}
+.process{max-width:780px;margin:0 auto}
 .process-head{font-family:var(--font-body);font-weight:600;font-size:var(--text-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mut)}
 .process-grid{display:grid;grid-template-columns:1fr;gap:0;margin-top:18px;background:var(--surface-raised);border:1.5px solid var(--ink-1);box-shadow:var(--lift)}
 @media(min-width:680px){.process-grid{grid-template-columns:repeat(3,1fr)}}
@@ -785,24 +758,11 @@ footer.site{border-top:1.5px solid var(--line);padding-block:clamp(56px,6vw,84px
     <div class="wrap">
       <div class="sec-head">
         <span class="eyebrow">Previous work</span>
-        <h2 id="work-h">One <em>real</em> client — and concept builds you can click into.</h2>
-        <p class="lede">The studio's first live client site (an award-winning ventriloquist), shown alongside a store concept and a show concept — one from each world. The real one is badged; the rest are honestly labelled concepts.</p>
+        <h2 id="work-h">Concept builds you can click into.</h2>
+        <p class="lede">A few concept builds — a store and a show site, one from each world — all honestly labelled as concepts, not live client work.</p>
       </div>
 
       <div class="work-grid">
-        <a class="work-card is-real" href="https://peterheftyandjustin.com/" target="_blank" rel="noopener">
-          <div class="work-shot">
-            <span class="work-realbadge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/><path d="m9 12 2 2 4-4"/></svg> Real client · live</span>
-            <img src="/peter-hefty.webp" width="1600" height="1100" loading="lazy" decoding="async" alt="The live homepage of peterheftyandjustin.com — a theatrical red-curtain booking site for Peter Hefty, an award-winning ventriloquist and comedian, built by BANANAbyte.">
-          </div>
-          <div class="work-body">
-            <span class="kind is-real">Real client · live site</span>
-            <h3>Peter Hefty &amp; Justin</h3>
-            <p>An award-winning ventriloquist &amp; comedian's live booking site — built by BANANAbyte.</p>
-            <span class="work-view">Visit the live site <span aria-hidden="true">↗</span></span>
-          </div>
-        </a>
-
         <a class="work-card is-concept" href="/concepts/mock-shop-goods/" target="_blank" rel="noopener">
           <div class="work-shot">
             <img src="/mock-shop.webp" width="1600" height="1100" loading="lazy" decoding="async" alt="Ember &amp; Oak concept — a warm retro candles &amp; specialty-coffee online store with a product grid and cart, built by BANANAbyte.">
@@ -941,21 +901,10 @@ footer.site{border-top:1.5px solid var(--line);padding-block:clamp(56px,6vw,84px
     </div>
   </section>
 
-  <!-- ============================== TESTIMONIAL + PROCESS ============================== -->
+  <!-- ============================== PROCESS ============================== -->
   <section class="themed" data-theme-band="paper" aria-labelledby="proof-h">
     <div class="wrap">
-      <h2 id="proof-h" class="visually-hidden">What a client said and how a build runs</h2>
-      <figure class="quote-card">
-        <span class="qmark" aria-hidden="true">"</span>
-        <span class="eyebrow">What a client said</span>
-        <blockquote cite="https://peterheftyandjustin.com/" style="margin-top:18px">Gabe is awesome to work with — creative, just like a magician working his magic on the internet. There was nothing up his sleeve: everything fantastic just appeared before my eyes — <em>my new website</em>.</blockquote>
-        <figcaption>
-          <cite>
-            <a class="quote-cite-link" href="https://peterheftyandjustin.com/" target="_blank" rel="noopener">Peter Hefty <span class="role">ventriloquist &amp; comedian</span> <span aria-hidden="true">↗</span></a>
-          </cite>
-          <span class="quote-real"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/><path d="m9 12 2 2 4-4"/></svg> Real client — his live site was built by BANANAbyte.</span>
-        </figcaption>
-      </figure>
+      <h2 id="proof-h" class="visually-hidden">How a build actually runs</h2>
 
       <div class="process">
         <span class="process-head">How a build actually runs</span>
@@ -1006,7 +955,7 @@ footer.site{border-top:1.5px solid var(--line);padding-block:clamp(56px,6vw,84px
         <a class="wide" href="tel:+13212023732">(321) 202-3732 · text or WhatsApp</a>
       </nav>
     </div>
-    <p class="foot-disclaimer">Concept builds shown are demo sites, clearly labelled; the one real client site is displayed with the owner's permission.</p>
+    <p class="foot-disclaimer">Concept builds shown are demo sites, clearly labelled as concepts.</p>
     <div class="foot-bottom">
       <span>© <span id="year">2025</span> BANANAbyte LLC — Orlando, FL.<span class="foot-built">Built by Gabe, an Orlando developer.</span></span>
       <span>English &amp; Español</span>

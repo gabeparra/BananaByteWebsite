@@ -278,7 +278,6 @@ header.site{
 .work .kicker{color:var(--banana)}
 .work-grid{display:grid;grid-template-columns:1fr;gap:clamp(18px,2.4vw,26px)}
 @media(min-width:660px){.work-grid{grid-template-columns:1fr 1fr}}
-@media(min-width:1000px){.work-grid{grid-template-columns:repeat(3,1fr)}}
 .work-card{
   position:relative;border:2px solid var(--cream);border-radius:var(--r);
   background:#2B2410;overflow:hidden;display:flex;flex-direction:column;
@@ -289,15 +288,6 @@ header.site{
 .work-shot{position:relative;aspect-ratio:16/10;overflow:hidden;border-bottom:2px solid var(--cream);background:#171204}
 .work-shot img{width:100%;height:100%;object-fit:cover;object-position:top center}
 .work-shot svg{width:100%;height:100%;display:block}
-.work-realbadge{
-  position:absolute;left:12px;top:12px;z-index:2;transform:rotate(-2.5deg);
-  display:inline-flex;align-items:center;gap:6px;
-  font-family:var(--f-mono);font-weight:600;font-size:.64rem;
-  text-transform:uppercase;letter-spacing:.08em;color:var(--ink);
-  background:var(--banana);border:2px solid var(--ink);border-radius:999px;
-  padding:5px 11px;box-shadow:2px 2px 0 0 rgba(0,0,0,.5);
-}
-.work-realbadge svg{width:12px;height:12px}
 .concept-mark{
   position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;
   font-family:var(--f-mono);font-weight:600;font-size:clamp(1rem,2.4vw,1.5rem);
@@ -306,11 +296,9 @@ header.site{
 }
 .work-body{padding:18px;flex:1;display:flex;flex-direction:column}
 .work-body .kind{font-family:var(--f-mono);font-weight:500;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cream-mut)}
-.work-body .kind.is-real{color:var(--banana)}
 .work-body h3{font-size:1.24rem;margin-top:8px;letter-spacing:-.01em}
 .work-body p{color:var(--cream-2);font-size:.92rem;margin-top:8px;flex:1;line-height:1.5}
 .work-view{display:inline-flex;align-items:center;gap:7px;margin-top:16px;font-weight:700;font-size:.86rem;color:var(--cream)}
-.work-card.is-real .work-view{color:var(--banana)}
 .work-note{margin-top:clamp(24px,3vw,34px);font-family:var(--f-mono);font-size:.78rem;letter-spacing:.04em;color:var(--cream-mut);max-width:70ch}
 
 /* ---- STUDIO PROMISE — leaf green ledger ---------------------------------- */
@@ -363,23 +351,9 @@ header.site{
 .price-window .tier span:last-child{font-family:var(--f-mono);font-size:.78rem;color:#5A4A10}
 .price-window .btn{margin-top:22px;width:100%;justify-content:center}
 
-/* ---- TESTIMONIAL + PROCESS ----------------------------------------------- */
+/* ---- PROCESS --------------------------------------------------------------- */
 .quote-band{padding-block:var(--sec-y);background:var(--paper-dim);border-block:var(--bd)}
-.quote-card{max-width:66ch;margin-inline:auto;min-width:0}
-.quote-card blockquote{
-  margin:clamp(16px,2vw,24px) 0 0;padding:0;position:relative;
-  font-family:var(--f-display);font-weight:600;line-height:1.24;letter-spacing:-.015em;
-  font-size:clamp(1.4rem,3.2vw,2.3rem);text-wrap:balance;
-}
-.quote-card blockquote::before{content:"\201C";position:absolute;left:-.52em;top:-.12em;font-weight:800;font-size:1.6em;line-height:1;color:var(--banana);-webkit-text-stroke:2px var(--ink)}
-.quote-card .em{font-style:italic;box-shadow:inset 0 -.22em 0 var(--banana)}
-.quote-card figcaption{margin-top:clamp(22px,3vw,32px);display:flex;flex-wrap:wrap;align-items:center;gap:14px}
-.quote-cite-link{display:inline-flex;align-items:baseline;gap:8px;flex-wrap:wrap;font-weight:700;font-size:1.05rem}
-.quote-cite-link .role{font-weight:400;font-size:.88rem;color:var(--muted)}
-.quote-cite-link:hover{color:var(--leaf-ink)}
-.quote-real{display:inline-flex;align-items:center;gap:7px;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.04em;color:var(--muted);padding-left:14px;border-left:1px solid var(--ink-soft)}
-.quote-real svg{width:14px;height:14px;flex:none;color:var(--leaf-ink)}
-.process{max-width:66ch;margin:clamp(32px,4vw,48px) auto 0;padding-top:clamp(26px,3.4vw,36px);border-top:2px dashed var(--ink-soft)}
+.process{max-width:66ch;margin:0 auto;padding-top:0;border-top:0}
 .process .pk{font-family:var(--f-mono);font-weight:600;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
 .process-grid{display:grid;grid-template-columns:1fr;margin-top:16px;border:var(--bd);border-radius:var(--r);overflow:hidden;background:var(--paper);box-shadow:var(--lift-sm)}
 @media(min-width:640px){.process-grid{grid-template-columns:repeat(3,1fr)}}
@@ -640,24 +614,11 @@ footer.site{background:var(--ink);color:var(--cream);padding-block:clamp(44px,5v
     <div class="wrap">
       <div class="sec-head rv">
         <span class="kicker">Previous work</span>
-        <h2 id="work-h">One real client &mdash; and concept builds you can click into.</h2>
-        <p>The studio&rsquo;s first live client site (an award-winning ventriloquist), shown alongside a store concept and a show concept &mdash; one from each world. The real one is badged; the rest are honestly labelled concepts.</p>
+        <h2 id="work-h">Concept builds you can click into.</h2>
+        <p>A store concept and a show concept &mdash; one from each world, honestly labelled as demos throughout.</p>
       </div>
 
       <div class="work-grid rv">
-        <a class="work-card is-real" href="https://peterheftyandjustin.com/" target="_blank" rel="noopener">
-          <div class="work-shot">
-            <span class="work-realbadge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/><path d="m9 12 2 2 4-4"/></svg> Real client &middot; live</span>
-            <img src="/peter-hefty.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="The live homepage of peterheftyandjustin.com — a red-curtain theatrical booking site for Peter Hefty, an award-winning ventriloquist and comedian, built by BANANAbyte.">
-          </div>
-          <div class="work-body">
-            <span class="kind is-real">Real client &middot; live site</span>
-            <h3>Peter Hefty &amp; Justin</h3>
-            <p>An award-winning ventriloquist &amp; comedian&rsquo;s live booking site &mdash; built by BANANAbyte.</p>
-            <span class="work-view">Visit the live site <span aria-hidden="true">&#8599;</span></span>
-          </div>
-        </a>
-
         <a class="work-card is-concept" href="/concepts/mock-shop-goods/" target="_blank" rel="noopener">
           <div class="work-shot">
             <svg viewBox="0 0 320 200" role="img" aria-label="Sketch of the Ember and Oak concept storefront layout">
@@ -711,7 +672,7 @@ footer.site{background:var(--ink);color:var(--cream);padding-block:clamp(44px,5v
           </div>
         </a>
       </div>
-      <p class="work-note rv">Concept builds are demo sites, clearly labelled. The one real client site is shown with the owner&rsquo;s permission.</p>
+      <p class="work-note rv">Concept builds are demo sites, clearly labelled throughout.</p>
     </div>
   </section>
 
@@ -772,21 +733,10 @@ footer.site{background:var(--ink);color:var(--cream);padding-block:clamp(44px,5v
     </div>
   </section>
 
-  <!-- TESTIMONIAL + PROCESS -->
+  <!-- PROCESS -->
   <section class="quote-band" aria-labelledby="proof-h">
     <div class="wrap">
-      <h2 id="proof-h" class="visually-hidden">Client testimonial and how a build runs</h2>
-      <figure class="quote-card rv">
-        <span class="kicker">What a client said</span>
-        <blockquote cite="https://peterheftyandjustin.com/">Gabe is awesome to work with &mdash; creative, just like a magician working his magic on the internet. There was nothing up his sleeve: everything fantastic just appeared before my eyes &mdash; <span class="em">my new website</span>.</blockquote>
-        <figcaption>
-          <cite>
-            <a class="quote-cite-link" href="https://peterheftyandjustin.com/" target="_blank" rel="noopener">Peter Hefty <span class="role">ventriloquist &amp; comedian</span> <span aria-hidden="true">&#8599;</span></a>
-          </cite>
-          <span class="quote-real"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/><path d="m9 12 2 2 4-4"/></svg> Real client &mdash; his live site was built by BANANAbyte.</span>
-        </figcaption>
-      </figure>
-
+      <h2 id="proof-h" class="visually-hidden">How a build runs</h2>
       <div class="process rv">
         <span class="pk">How a build actually runs</span>
         <div class="process-grid">
@@ -891,7 +841,7 @@ footer.site{background:var(--ink);color:var(--cream);padding-block:clamp(44px,5v
         <a href="mailto:contact@bananabyte.io">contact@bananabyte.io</a>
       </nav>
     </div>
-    <p class="foot-disclaimer">Concept builds shown are demo sites, clearly labelled; the one real client site is displayed with the owner&rsquo;s permission.</p>
+    <p class="foot-disclaimer">Concept builds shown are demo sites, clearly labelled throughout.</p>
     <div class="foot-bottom">
       <span>&copy; <span id="year">2026</span> BANANAbyte LLC &mdash; Orlando, FL. <span class="foot-built">Built by Gabe, an Orlando developer.</span></span>
     </div>

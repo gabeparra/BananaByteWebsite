@@ -240,40 +240,6 @@ header.site{position:sticky;top:0;z-index:90;background:var(--paper);border-bott
 .promise-pt .t{font-weight:700;font-size:.98rem}
 .promise-pt .d{color:var(--ink-2);font-size:.9rem;line-height:1.48;margin-top:2px}
 
-/* ---- PETER — backstage dark ----------------------------------------------- */
-.client{padding-block:var(--sec-y);background:var(--ink);color:var(--cream);border-block:var(--bd)}
-.client .kicker{color:var(--banana)}
-.client-inner{display:grid;grid-template-columns:1fr;gap:clamp(30px,4.5vw,52px);align-items:center}
-@media(min-width:900px){.client-inner{grid-template-columns:1.3fr .7fr}}
-.client-copy h2{font-size:var(--t-h2);margin-top:14px;text-wrap:balance}
-.client-copy p{color:var(--cream-2);margin-top:18px;font-size:1.05rem;line-height:1.6;max-width:54ch;text-wrap:pretty}
-.client-copy p b{color:var(--cream);font-weight:700}
-.client-quote{
-  margin:24px 0 0;padding-left:20px;border-left:3px solid var(--curtain);
-  font-family:var(--f-display);font-weight:600;font-size:1.16rem;line-height:1.4;color:var(--cream);
-}
-.client-quote cite{display:block;margin-top:10px;font-family:var(--f-mono);font-style:normal;font-weight:600;font-size:.78rem;letter-spacing:.04em;color:var(--cream-2)}
-.client-quote cite span{font-weight:400;color:var(--cream-mut)}
-.client-shot{
-  position:relative;justify-self:center;width:min(340px,100%);
-  border:2px solid var(--cream);border-radius:var(--r);background:#2B2410;
-  box-shadow:5px 5px 0 0 rgba(0,0,0,.6);overflow:hidden;
-}
-@media(min-width:900px){.client-shot{justify-self:end;transform:rotate(1deg)}}
-.client-shot .thumb{position:relative;aspect-ratio:16/10;overflow:hidden;border-bottom:2px solid var(--cream);background:#000}
-.client-shot .thumb img{width:100%;height:100%;object-fit:cover;object-position:top center}
-.client-shot .badge{
-  position:absolute;left:12px;top:12px;z-index:3;transform:rotate(-2.5deg);
-  display:inline-flex;align-items:center;gap:6px;
-  font-family:var(--f-mono);font-weight:600;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--ink);background:var(--banana);border:2px solid var(--ink);border-radius:999px;padding:5px 11px;
-}
-.client-shot .badge svg{width:12px;height:12px}
-.client-shot .visit{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;padding:11px 13px}
-.client-shot .visit .lbl{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.03em;color:var(--cream-2)}
-.client-shot .visit a{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.78rem;color:var(--ink);background:var(--banana);border:2px solid var(--ink);border-radius:6px;padding:7px 11px;transition:background var(--fast) var(--ease)}
-.client-shot .visit a:hover{background:var(--banana-hot)}
-
 /* ---- HONEST FRAME — paper ledger ------------------------------------------ */
 .honest{padding-block:var(--sec-y);background:var(--paper-dim);border-bottom:var(--bd)}
 .honest-grid{display:grid;grid-template-columns:1fr;border:var(--bd);border-radius:var(--r);overflow:hidden;background:var(--paper);box-shadow:var(--lift)}
@@ -416,10 +382,7 @@ footer.site{background:var(--ink);color:var(--cream);padding-block:clamp(44px,5v
         <h3 class="rv"><span class="idx" aria-hidden="true">02</span>Why Orlando</h3>
         <p class="rv">Orlando&rsquo;s more than the parks, and the people who make it interesting &mdash; the taco spot two blocks over, the corner boutique, the comedian working the local room &mdash; are exactly who I want to build for. This is home, so when I say &ldquo;local,&rdquo; I mean I&rsquo;ll actually come sit at your counter.</p>
 
-        <h3 class="rv"><span class="idx" aria-hidden="true">03</span>The Peter Hefty story</h3>
-        <p class="rv">My first real client was <b>Peter Hefty</b>, an award-winning ventriloquist and comedian who needed a booking site with as much personality as his act. We built him a red-curtain, theatrical home on the web &mdash; and when he told me it felt like watching a magician pull his new website out of thin air, that&rsquo;s the moment I knew this was the work I wanted to keep doing.</p>
-
-        <h3 class="rv"><span class="idx" aria-hidden="true">04</span>One opinion I&rsquo;ll die on</h3>
+        <h3 class="rv"><span class="idx" aria-hidden="true">03</span>One opinion I&rsquo;ll die on</h3>
         <p class="rv">My one strong opinion: a website that makes you fight a pop-up before you can read it has already failed. Fast, quiet, and it works on the cheapest phone in the room &mdash; that&rsquo;s the whole job. Everything clever comes after that, or not at all.</p>
       </div>
     </div>
@@ -451,31 +414,6 @@ footer.site{background:var(--ink);color:var(--cream);padding-block:clamp(44px,5v
     </div>
   </section>
 
-  <!-- PETER HEFTY -->
-  <section class="client on-dark" aria-labelledby="client-h">
-    <div class="wrap client-inner">
-      <div class="client-copy rv">
-        <span class="kicker">The one real client, so far</span>
-        <h2 id="client-h">Peter Hefty trusted me first &mdash; and I don&rsquo;t take that lightly.</h2>
-        <p>I&rsquo;m not going to pad this page with a wall of logos I don&rsquo;t have. What I have is a real relationship: <b>Peter Hefty &amp; Justin</b>, an award-winning ventriloquist and comedian, whose live booking site I designed and built. Being someone&rsquo;s <b>first</b> real client site means you earn every bit of the trust &mdash; and it&rsquo;s the standard I hold every future project to.</p>
-        <blockquote class="client-quote">
-          &ldquo;There was nothing up his sleeve: everything fantastic just appeared before my eyes &mdash; my new website.&rdquo;
-          <cite>Peter Hefty <span>&middot; ventriloquist &amp; comedian</span></cite>
-        </blockquote>
-      </div>
-      <div class="client-shot rv">
-        <div class="thumb">
-          <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/><path d="m9 12 2 2 4-4"/></svg> Real client &middot; live</span>
-          <img src="/peter-hefty.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="The live homepage of peterheftyandjustin.com — a red-curtain theatrical booking site for Peter Hefty, an award-winning ventriloquist and comedian, built by BANANAbyte.">
-        </div>
-        <div class="visit">
-          <span class="lbl">peterheftyandjustin.com</span>
-          <a href="https://peterheftyandjustin.com/" target="_blank" rel="noopener">Visit the live site <span aria-hidden="true">&#8599;</span></a>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- HONEST FRAME -->
   <section class="honest" aria-labelledby="honest-h">
     <div class="wrap">
@@ -501,7 +439,7 @@ footer.site{background:var(--ink);color:var(--cream);padding-block:clamp(44px,5v
           <ul>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><span>No <b>fake team page</b> &mdash; it&rsquo;s me. No stock-photo &ldquo;account executives.&rdquo;</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><span>No invented <b>&ldquo;20 years&rdquo; or a shelf of awards</b> &mdash; BANANAbyte is genuinely new.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><span>No wall of logos I didn&rsquo;t build. One real client, shown proudly &mdash; and honestly.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><span>No wall of logos I didn&rsquo;t build &mdash; just concept work, clearly labelled as concepts.</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><span>No disappearing act &mdash; a <b>registered Florida LLC</b> with a real phone number.</span></li>
           </ul>
         </div>

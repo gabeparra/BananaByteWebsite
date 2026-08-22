@@ -312,7 +312,7 @@ ul{padding:0;list-style:none}
 .work{display:grid;grid-template-columns:1fr;gap:clamp(20px,2.4vw,30px);
   margin-top:clamp(30px,4vw,48px)}
 @media(min-width:700px){.work{grid-template-columns:1fr 1fr}}
-@media(min-width:1040px){.work{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1040px){.work{grid-template-columns:repeat(2,1fr);max-width:840px;margin-inline:auto}}
 .work__card{display:flex;flex-direction:column;background:var(--panel);
   border:1.5px solid var(--edge);transition:transform 320ms var(--ease)}
 .work__card:hover{transform:translateY(-5px)}
@@ -325,13 +325,11 @@ ul{padding:0;list-style:none}
 .work__tag.is-concept{background:#0A0E0B;color:#F4F1E6;border-color:#0A0E0B}
 .work__body{display:flex;flex-direction:column;flex:1;padding:clamp(18px,2vw,24px)}
 .work__kind{color:var(--dim)}
-.work__card.is-real .work__kind{color:var(--acc-text)}
 .work__body h3{font-family:var(--font-display);font-weight:700;font-size:1.3rem;
   letter-spacing:-.028em;margin-top:12px}
 .work__body p{color:var(--fg-2);font-size:.93rem;line-height:1.55;margin-top:10px;flex:1}
 .work__go{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-weight:700;
   font-size:.88rem;color:var(--fg)}
-.work__card.is-real .work__go{color:var(--acc-text)}
 .work__go .ar{font-family:var(--font-mono);transition:transform 220ms var(--ease)}
 .work__card:hover .work__go .ar{transform:translateX(3px)}
 
@@ -399,8 +397,6 @@ ul{padding:0;list-style:none}
   font-weight:700;font-size:1.05rem;transition:color 180ms var(--ease)}
 .quote__who .role{font-weight:400;font-size:.88rem;color:var(--dim)}
 .quote__who:hover{color:var(--acc-text)}
-.quote__real{display:inline-flex;align-items:center;gap:9px;color:var(--dim);font-size:.85rem}
-.quote__real svg{width:15px;height:15px;color:var(--mark);flex:none}
 .steps{display:grid;grid-template-columns:1fr;margin-top:clamp(40px,5vw,64px);
   border-top:1.5px solid var(--edge)}
 @media(min-width:760px){.steps{grid-template-columns:repeat(3,1fr)}}
@@ -524,7 +520,7 @@ ul{padding:0;list-style:none}
 <div class="drawer" id="drawer" hidden>
   <nav aria-label="Mobile">
     <a href="#services">Services<small>What the studio builds</small></a>
-    <a href="#work">Work<small>One real client + concepts</small></a>
+    <a href="#work">Work<small>Concept builds</small></a>
     <a href="#pricing">Pricing<small>Flat, before day one</small></a>
     <a href="build/">Estimate<small>Build it, see the number</small></a>
     <a href="about/">About<small>Meet Gabe</small></a>
@@ -552,7 +548,7 @@ ul{padding:0;list-style:none}
           <p class="hero__mantra">One flat price, quoted before day one. No hourly meter. When it ships, <u>you own all of it</u> — code, domain, content — in English or Spanish.</p>
           <div class="hero__meta">
             <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m20 6-11 11-5-5"/></svg> Live in ~2–3 weeks</span>
-            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m20 6-11 11-5-5"/></svg> Real client work, not templates</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m20 6-11 11-5-5"/></svg> Custom builds, not templates</span>
           </div>
         </div>
 
@@ -646,25 +642,12 @@ ul{padding:0;list-style:none}
     <div class="shell">
       <div class="rise">
         <p class="sec-mark mono"><span>§ 03</span><span>Previous work</span><i></i></p>
-        <h2 class="sec-title" id="work-h">One real client — and concept builds you can click into.</h2>
-        <p class="sec-lede">The studio’s first live client site (an award-winning ventriloquist), shown alongside a store concept and a show concept — one from each world. The real one is badged; the rest are honestly labelled concepts.</p>
+        <h2 class="sec-title" id="work-h">Concept builds you can click into.</h2>
+        <p class="sec-lede">A store concept and a show concept — one from each world — built to show the range, and honestly labelled as concepts, not live client work.</p>
       </div>
 
       <div class="work">
-        <a class="work__card is-real rise" style="--d:1" href="https://peterheftyandjustin.com/" target="_blank" rel="noopener">
-          <div class="work__shot">
-            <span class="chip chip--fill work__tag"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/><path d="m9 12 2 2 4-4"/></svg> Real client · live</span>
-            <img src="/peter-hefty.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="The live homepage of peterheftyandjustin.com — a red-curtain theatrical booking site for Peter Hefty, an award-winning ventriloquist and comedian, built by BANANAbyte.">
-          </div>
-          <div class="work__body">
-            <p class="work__kind mono">Real client · live site</p>
-            <h3>Peter Hefty &amp; Justin</h3>
-            <p>An award-winning ventriloquist &amp; comedian’s live booking site — built by BANANAbyte.</p>
-            <span class="work__go">Visit the live site <span class="ar" aria-hidden="true">↗</span></span>
-          </div>
-        </a>
-
-        <a class="work__card rise" style="--d:2" href="/concepts/mock-shop-goods/" target="_blank" rel="noopener">
+        <a class="work__card rise" style="--d:1" href="/concepts/mock-shop-goods/" target="_blank" rel="noopener">
           <div class="work__shot">
             <span class="chip work__tag is-concept">Concept</span>
             <img src="/mock-shop.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="Ember &amp; Oak concept — a warm retro candles &amp; specialty-coffee online store with a product grid and cart, built by BANANAbyte.">
@@ -677,7 +660,7 @@ ul{padding:0;list-style:none}
           </div>
         </a>
 
-        <a class="work__card rise" style="--d:3" href="/concepts/mock-comedian/" target="_blank" rel="noopener">
+        <a class="work__card rise" style="--d:2" href="/concepts/mock-comedian/" target="_blank" rel="noopener">
           <div class="work__shot">
             <span class="chip work__tag is-concept">Concept</span>
             <img src="/mock-comedian.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="Dani Cole concept — a bold neon crowd-work comedian site with a next-show ticket card, tour dates and video clips, built by BANANAbyte.">
@@ -778,18 +761,13 @@ ul{padding:0;list-style:none}
     </div>
   </section>
 
-  <!-- ============================ TESTIMONIAL ============================= -->
+  <!-- =============================== PROCESS =============================== -->
   <section class="slab slab--paper" aria-labelledby="proof-h">
     <div class="shell">
-      <h2 id="proof-h" class="vh">Client testimonial and how a build runs</h2>
-      <figure class="quote rise">
-        <p class="sec-mark mono"><span>§ 06</span><span>What a client said</span><i></i></p>
-        <blockquote cite="https://peterheftyandjustin.com/">“Gabe is awesome to work with — creative, just like a magician working his magic on the internet. There was nothing up his sleeve: everything fantastic just appeared before my eyes — <span class="em">my new website</span>.”</blockquote>
-        <figcaption>
-          <cite><a class="quote__who" href="https://peterheftyandjustin.com/" target="_blank" rel="noopener">Peter Hefty <span class="role">ventriloquist &amp; comedian</span> <span aria-hidden="true">↗</span></a></cite>
-          <span class="quote__real"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/><path d="m9 12 2 2 4-4"/></svg> Real client — his live site was built by BANANAbyte.</span>
-        </figcaption>
-      </figure>
+      <div class="rise">
+        <p class="sec-mark mono"><span>§ 06</span><span>How a build runs</span><i></i></p>
+        <h2 class="sec-title" id="proof-h">Three weeks, start to launch.</h2>
+      </div>
 
       <div class="steps">
         <div class="step rise"><p class="step__w mono">Week 1</p><h3>Sit down &amp; scope</h3><p>We talk through what you do and who you’re for, then lock one flat price — no surprises after.</p></div>
@@ -892,7 +870,7 @@ ul{padding:0;list-style:none}
         </nav>
       </div>
     </div>
-    <p class="foot__disc">Concept builds shown are demo sites, clearly labelled; the one real client site is displayed with the owner’s permission.</p>
+    <p class="foot__disc">Concept builds shown are demo sites, clearly labelled.</p>
     <div class="foot__bottom">
       <span>© <span id="year">2026</span> BANANAbyte LLC — Orlando, FL. Built by Gabe, an Orlando developer.</span>
       <span class="mono">English &amp; Español</span>

@@ -175,48 +175,6 @@
   .tier-hl b{color:var(--accent);font-weight:600}
   html[data-mode="performer"] .tier-hl b{color:var(--honey,var(--accent))}
 
-  /* ---- compact testimonial pull-quote, sat right beside the prices ---- */
-  .price-quote{
-    margin-top:clamp(24px,3.4vw,34px);
-    border:1px solid var(--line);border-radius:var(--radius);background:var(--panel-2);
-    padding:clamp(20px,3vw,28px);
-    display:flex;flex-wrap:wrap;align-items:center;gap:16px 26px;
-  }
-  html[data-mode="performer"] .price-quote{
-    border-color:var(--accent-line);
-    background:
-      radial-gradient(120% 140% at 0% 0%, rgba(245,200,0,.10), transparent 55%),
-      linear-gradient(160deg,var(--panel-2),var(--panel));
-  }
-  .price-quote blockquote{
-    flex:1 1 360px;min-width:0;margin:0;border:0;padding:0;position:relative;
-    font-family:var(--font-display);font-weight:500;line-height:1.4;letter-spacing:-.01em;
-    color:var(--ink);font-size:clamp(1rem,1.7vw,1.18rem);
-  }
-  html[data-mode="performer"] .price-quote blockquote{font-weight:400;font-style:italic}
-  .price-quote blockquote .em{color:var(--accent);font-style:inherit}
-  html[data-mode="performer"] .price-quote blockquote .em{color:var(--honey,var(--accent))}
-  .price-quote figcaption{flex:none;display:flex;flex-direction:column;gap:4px}
-  .price-quote cite{font-style:normal}
-  .price-quote-link{
-    display:inline-flex;align-items:baseline;gap:7px;flex-wrap:wrap;
-    font-family:var(--font-display);font-weight:700;font-size:.98rem;color:var(--ink);
-    border-bottom:1px solid transparent;padding-bottom:1px;
-    transition:color .2s var(--ease),border-color .2s var(--ease);
-  }
-  html[data-mode="performer"] .price-quote-link{font-family:var(--font-body)}
-  .price-quote-link .role{font-family:var(--font-body);font-weight:400;font-size:.85rem;color:var(--ink-mute)}
-  .price-quote-link:hover{color:var(--accent);border-bottom-color:var(--accent-line)}
-  html[data-mode="performer"] .price-quote-link:hover{color:var(--honey,var(--accent))}
-  .price-quote-link .arrow{font-size:.85em;color:var(--accent)}
-  html[data-mode="performer"] .price-quote-link .arrow{color:var(--honey,var(--accent))}
-  .price-quote-real{
-    margin-top:2px;display:inline-flex;align-items:center;gap:7px;
-    font-family:var(--font-body);font-size:.8rem;color:var(--ink-soft);
-  }
-  .price-quote-real svg{width:15px;height:15px;flex:none;color:var(--accent)}
-  html[data-mode="performer"] .price-quote-real svg{color:var(--honey,var(--accent))}
-
   /* ---- FOUNDING CLIENT rate band (tasteful section, not a popup) ---- */
   .founder{
     border:1px solid var(--accent-line);border-radius:var(--radius-lg);
@@ -715,20 +673,6 @@
       </p>
 
       <!-- ====================================================
-           TRUST PROOF beside the prices — a compact pull-quote
-           from a real client (full version lives on the home page).
-           Research: trust proof next to numbers converts the
-           price-anxious local buyer.
-           ==================================================== -->
-      <figure class="price-quote" data-reveal>
-        <blockquote cite="https://peterheftyandjustin.com/" data-es="Como un buen mago, Gabe no tenía nada bajo la manga: todo apareció fantástico ante mis ojos — &lt;span class=&quot;em&quot;&gt;mi nuevo sitio web&lt;/span&gt;. Se lo recomendaría a cualquiera.">Like a magician, there was nothing up his sleeve: everything fantastic just appeared before my eyes — <span class="em">my new website</span>. I’d recommend BANANAbyte to anyone.</blockquote>
-        <figcaption>
-          <cite><a class="price-quote-link" href="https://peterheftyandjustin.com/" target="_blank" rel="noopener" data-es="Peter Hefty &lt;span class=&quot;role&quot;&gt;ventrílocuo y comediante&lt;/span&gt; &lt;span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;&gt;↗&lt;/span&gt;">Peter Hefty <span class="role">ventriloquist &amp; comedian</span> <span class="arrow" aria-hidden="true">↗</span></a></cite>
-          <span class="price-quote-real" data-es="&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z&quot;/&gt;&lt;path d=&quot;m9 12 2 2 4-4&quot;/&gt;&lt;/svg&gt; Cliente real — su sitio en vivo lo construyó BANANAbyte."><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/><path d="m9 12 2 2 4-4"/></svg> Real client — his live site was built by BANANAbyte.</span>
-        </figcaption>
-      </figure>
-
-      <!-- ====================================================
            WEBSITE CARE — separate "after launch" block
            ==================================================== -->
       <div class="care">
@@ -985,7 +929,7 @@
         <a href="mailto:contact@bananabyte.io">contact@bananabyte.io</a>
       </nav>
     </div>
-    <p class="foot-disclaimer" data-es="Los sitios de ejemplo que se muestran son conceptos de demostración; cualquier trabajo real con clientes se muestra solo con el permiso de su dueño.">Example sites shown are demo concepts; any real client work is displayed only with the owner’s permission.</p>
+    <p class="foot-disclaimer" data-es="Los sitios de ejemplo que se muestran son conceptos de demostración, no clientes reales.">Example sites shown are demo concepts, not real clients.</p>
     <div class="foot-bottom">
       <span data-es="© &lt;span id=&quot;year&quot;&gt;2026&lt;/span&gt; BANANAbyte LLC — Orlando, FL. &lt;span class=&quot;foot-built&quot;&gt;Hecho por Gabe, un desarrollador de Orlando.&lt;/span&gt;">© <span id="year">2026</span> BANANAbyte LLC — Orlando, FL. <span class="foot-built">Built by Gabe, an Orlando developer.</span></span>
       <div class="lang-toggle" role="group" aria-label="Language / Idioma">

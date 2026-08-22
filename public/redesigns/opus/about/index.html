@@ -260,31 +260,9 @@ ul{padding:0;list-style:none}
 .pledge__pt .t{font-weight:700;font-size:1rem}
 .pledge__pt .d{color:var(--fg-2);font-size:.92rem;line-height:1.5;margin-top:4px}
 
-/* --------------------------------- client --------------------------------- */
-.split{display:grid;grid-template-columns:1fr;gap:clamp(34px,4vw,60px);align-items:center}
-@media(min-width:920px){.split{grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr)}}
 .copy p{color:var(--fg-2);margin-top:20px;font-size:1.04rem;line-height:1.62;
   max-width:52ch;text-wrap:pretty}
 .copy p b{color:var(--fg);font-weight:600}
-.pullquote{margin-top:clamp(24px,3vw,32px);padding-left:20px;border-left:2px solid var(--banana);
-  font-family:var(--font-display);font-weight:600;font-size:clamp(1.05rem,1.9vw,1.3rem);
-  line-height:1.35;letter-spacing:-.02em}
-.pullquote cite{display:block;margin-top:12px;font-family:var(--font-text);font-style:normal;
-  font-weight:700;font-size:.9rem;color:var(--fg-2)}
-.pullquote cite span{font-weight:400;color:var(--dim)}
-.shot{position:relative;background:var(--panel);border:1.5px solid var(--edge);max-width:380px;width:100%}
-@media(min-width:920px){.shot{margin-left:auto}}
-.shot__img{position:relative;aspect-ratio:16/10;overflow:hidden;border-bottom:1.5px solid var(--edge);background:#000}
-.shot__img img{width:100%;height:100%;object-fit:cover;object-position:top center}
-.shot__tag{position:absolute;left:12px;top:12px;z-index:2}
-.shot__visit{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
-  gap:10px;padding:14px 16px}
-.shot__visit .lbl{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--dim)}
-.shot__visit a{display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border-radius:2px;
-  background:var(--banana);color:#090C0A;font-weight:700;font-size:.78rem;
-  transition:background-color 180ms var(--ease)}
-.shot__visit a:hover{background:#FFD733}
 
 /* --------------------------------- honest --------------------------------- */
 .honest{display:grid;grid-template-columns:1fr;margin-top:clamp(30px,4vw,48px);
@@ -391,7 +369,7 @@ ul{padding:0;list-style:none}
 <div class="drawer" id="drawer" hidden>
   <nav aria-label="Mobile">
     <a href="../#services">Services<small>What the studio builds</small></a>
-    <a href="../#work">Work<small>One real client + concepts</small></a>
+    <a href="../#work">Work<small>Concept builds</small></a>
     <a href="../#pricing">Pricing<small>Flat, before day one</small></a>
     <a href="../build/">Estimate<small>Build it, see the number</small></a>
     <a href="../about/" aria-current="page">About<small>You’re here</small></a>
@@ -460,10 +438,7 @@ ul{padding:0;list-style:none}
         <h3><span class="n">02</span>Why Orlando</h3>
         <p>Orlando’s more than the parks, and the people who make it interesting — the taco spot two blocks over, the corner boutique, the comedian working the local room — are exactly who I want to build for. This is home, so when I say “local,” I mean I’ll actually come sit at your counter.</p>
 
-        <h3><span class="n">03</span>The Peter Hefty story</h3>
-        <p>My first real client was <b>Peter Hefty</b>, an award-winning ventriloquist and comedian who needed a booking site with as much personality as his act. We built him a red-curtain, theatrical home on the web — and when he told me it felt like watching a magician pull his new website out of thin air, that’s the moment I knew this was the work I wanted to keep doing.</p>
-
-        <h3><span class="n">04</span>One opinion I’ll die on</h3>
+        <h3><span class="n">03</span>One opinion I’ll die on</h3>
         <p>My one strong opinion: a website that makes you fight a pop-up before you can read it has already failed. Fast, quiet, and it works on the cheapest phone in the room — that’s the whole job. Everything clever comes after that, or not at all.</p>
       </div>
     </div>
@@ -494,37 +469,11 @@ ul{padding:0;list-style:none}
     </div>
   </section>
 
-  <!-- =============================== CLIENT =============================== -->
-  <section class="slab slab--ink" aria-labelledby="client-h">
-    <div class="shell split">
-      <div class="copy rise">
-        <p class="sec-mark mono"><span>§ 02</span><span>The one real client, so far</span><i></i></p>
-        <h2 class="sec-title" id="client-h">Peter Hefty trusted me first — and I don’t take that lightly.</h2>
-        <p>I’m not going to pad this page with a wall of logos I don’t have. What I have is a real relationship: <b>Peter Hefty &amp; Justin</b>, an award-winning ventriloquist and comedian, whose live booking site I designed and built. Being someone’s <b>first</b> real client site means you earn every bit of the trust — and it’s the standard I hold every future project to.</p>
-        <blockquote class="pullquote">
-          “There was nothing up his sleeve: everything fantastic just appeared before my eyes — my new website.”
-          <cite>Peter Hefty <span>· ventriloquist &amp; comedian</span></cite>
-        </blockquote>
-      </div>
-
-      <div class="shot rise" style="--d:1">
-        <div class="shot__img">
-          <span class="chip chip--fill shot__tag"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V5z"/><path d="m9 12 2 2 4-4"/></svg> Real client · live</span>
-          <img src="/peter-hefty.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="The live homepage of peterheftyandjustin.com — a red-curtain theatrical booking site for Peter Hefty, an award-winning ventriloquist and comedian, built by BANANAbyte.">
-        </div>
-        <div class="shot__visit">
-          <span class="lbl">peterheftyandjustin.com</span>
-          <a href="https://peterheftyandjustin.com/" target="_blank" rel="noopener">Visit the live site <span aria-hidden="true">↗</span></a>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- =============================== HONEST =============================== -->
   <section class="slab slab--paper" aria-labelledby="honest-h">
     <div class="shell">
       <div class="rise">
-        <p class="sec-mark mono"><span>§ 03</span><span>Being honest about it</span><i></i></p>
+        <p class="sec-mark mono"><span>§ 02</span><span>Being honest about it</span><i></i></p>
         <h2 class="sec-title" id="honest-h">A new studio, run by one person. Here’s exactly what that means.</h2>
         <p class="sec-lede">I’d rather you know precisely what you’re getting than oversell it. Small and new comes with real trade-offs — and real advantages. Both are on the table.</p>
       </div>
@@ -546,7 +495,7 @@ ul{padding:0;list-style:none}
           <ul>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><span>No <b>fake team page</b> — it’s me. No stock-photo “account executives.”</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><span>No invented <b>“20 years” or a shelf of awards</b> — BANANAbyte is genuinely new.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><span>No wall of logos I didn’t build. One real client, shown proudly — and honestly.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><span>No wall of logos to pad the page. Concept builds, honestly labelled as concepts.</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><span>No disappearing act — a <b>registered Florida LLC</b> with a real phone number.</span></li>
           </ul>
         </div>
@@ -558,7 +507,7 @@ ul{padding:0;list-style:none}
   <section class="slab slab--banana" aria-labelledby="cta-h">
     <div class="shell cta__grid">
       <div class="copy rise">
-        <p class="sec-mark mono"><span>§ 04</span><span>Let’s make something</span><i></i></p>
+        <p class="sec-mark mono"><span>§ 03</span><span>Let’s make something</span><i></i></p>
         <h2 class="sec-title" id="cta-h">If you’ve read this far, we should probably <span class="hl">talk.</span></h2>
         <p>Tell me what you’re building — a few sentences is plenty. No pitch deck, no pressure. I read every message myself and reply within one business day, <b>even if it’s just to say you don’t need me yet.</b> Either way, you’ll be talking to Gabe.</p>
         <div class="hero__acts">
